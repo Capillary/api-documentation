@@ -2,10 +2,8 @@
 title: API Reference
 
 language_tabs:
-  - JSON
-  - ruby
-  - python
-  - php
+  - json
+  
 
 toc_footers:
   - <a href='#'>Capillary V2.0 API Documentation</a>
@@ -98,8 +96,16 @@ You should know the following:
 
 `https://<Respective cluster’s API URL>/v2/customers?source=<Source Name>`
 
+### Sample Request
 
-```JSON
+```json
+https://us.intouch.capillarytech.com/v2/customers?source=WECHAT&accountId=22232
+
+```
+> 
+
+```json
+### Sample Post Request
 
 {
  "profiles": 
@@ -136,6 +142,18 @@ You should know the following:
    }
  }
 }
+
+```
+
+```json
+
+### Sample Response
+
+{
+"createdId": 329,
+"warnings":[]
+}
+
 
 ```
 
