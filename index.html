@@ -1,0 +1,1340 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>Capillary API V2.0 Doc</title>
+
+    <style>
+      .highlight table td { padding: 5px; }
+.highlight table pre { margin: 0; }
+.highlight, .highlight .w {
+  color: #f8f8f2;
+  background-color: #272822;
+}
+.highlight .err {
+  color: #272822;
+  background-color: #f92672;
+}
+.highlight .c, .highlight .cd, .highlight .cm, .highlight .c1, .highlight .cs {
+  color: #75715e;
+}
+.highlight .cp {
+  color: #f4bf75;
+}
+.highlight .nt {
+  color: #f4bf75;
+}
+.highlight .o, .highlight .ow {
+  color: #f8f8f2;
+}
+.highlight .p, .highlight .pi {
+  color: #f8f8f2;
+}
+.highlight .gi {
+  color: #a6e22e;
+}
+.highlight .gd {
+  color: #f92672;
+}
+.highlight .gh {
+  color: #66d9ef;
+  background-color: #272822;
+  font-weight: bold;
+}
+.highlight .k, .highlight .kn, .highlight .kp, .highlight .kr, .highlight .kv {
+  color: #ae81ff;
+}
+.highlight .kc {
+  color: #fd971f;
+}
+.highlight .kt {
+  color: #fd971f;
+}
+.highlight .kd {
+  color: #fd971f;
+}
+.highlight .s, .highlight .sb, .highlight .sc, .highlight .sd, .highlight .s2, .highlight .sh, .highlight .sx, .highlight .s1 {
+  color: #a6e22e;
+}
+.highlight .sr {
+  color: #a1efe4;
+}
+.highlight .si {
+  color: #cc6633;
+}
+.highlight .se {
+  color: #cc6633;
+}
+.highlight .nn {
+  color: #f4bf75;
+}
+.highlight .nc {
+  color: #f4bf75;
+}
+.highlight .no {
+  color: #f4bf75;
+}
+.highlight .na {
+  color: #66d9ef;
+}
+.highlight .m, .highlight .mf, .highlight .mh, .highlight .mi, .highlight .il, .highlight .mo, .highlight .mb, .highlight .mx {
+  color: #a6e22e;
+}
+.highlight .ss {
+  color: #a6e22e;
+}
+    </style>
+    <link href="stylesheets/screen.css" rel="stylesheet" media="screen" />
+    <link href="stylesheets/print.css" rel="stylesheet" media="print" />
+      <script src="javascripts/all.js"></script>
+  </head>
+
+  <body class="index" data-languages="[&quot;json&quot;]">
+    <a href="#" id="nav-button">
+      <span>
+        NAV
+        <img src="images/navbar.png" alt="Navbar" />
+      </span>
+    </a>
+    <div class="tocify-wrapper">
+      <img src="images/logo.png" alt="Logo" />
+        <div class="lang-selector">
+              <a href="#" data-language-name="json">json</a>
+        </div>
+        <div class="search">
+          <input type="text" class="search" id="input-search" placeholder="Search">
+        </div>
+        <ul class="search-results"></ul>
+      <div id="toc">
+      </div>
+        <ul class="toc-footer">
+            <li><a href='#'>Capillary V2.0 API Documentation</a></li>
+            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+        </ul>
+    </div>
+    <div class="page-wrapper">
+      <div class="dark-box"></div>
+      <div class="content">
+        <h1 id="introduction">Introduction</h1>
+
+<p>The Capillary APIs are RESTful APIs that help third party applications manage an Organization’s CRM and/or Loyalty Program through Capillary’s platform. This document lists the APIs that can be used to integrate with the Capillary Server Application, their descriptions, resource information, request parameters, request URIs, and sample requests.</p>
+
+<p>The v2.0 APIs allow you to manage customers from different sources of an organization.</p>
+
+<h2 id="sources">Sources</h2>
+
+<p>Capillary v2.0 APIs provide extended support for multiple sources, i.e., these APIs can be used for different sources of an organization such as InStore, MartJack, WeChat, Ecommerce and Facebook. </p>
+
+<p>If your organization supports multiple sources, customer accounts from different sources can be linked automatically to a single user to provide a holistic view of customer data.</p>
+
+<h2 id="account-ids">Account IDs</h2>
+
+<p>An organization can have multiple accounts for sources such as WeChat and Facebook. To extend support to multiple accounts of a single source, account id has been implemented in v2.0 APIs. For example, if an organization have multiple WeChat accounts, it can communicate with customers through all the accounts using v2.0 APIs (with the help of account ids). </p>
+
+<p>To provide the flexibility to manage customers of different accounts (same brand and same source), you can use account id. To manage customers of a specific account, you need to specify the source name and the respective account id to.  </p>
+
+<p>For example, each official WeChat account will have an account id.</p>
+
+<h2 id="identifiers">Identifiers</h2>
+
+<p>Identifiers are anything which uniquely identifies a customer either in different sources or within a source like openId (in case of WECHAT) and ecommId (in case of e-commerce Integration). An identifier can be a mobile number, email id, or external id. Identifiers are also used to lookup customers and obtain their capillary ids for further operations.</p>
+
+<p>When a same identifier is registered in different sources, the two accounts will be merged automatically to a single customer account. For example, assume that a customer has registered on InStore using his mobile number and e-commerce site using email id. Now, if the customer registers the same mobile number both accounts will be merged into a single account automatically which consists of customer details and activities of both sources separately.</p>
+
+<p>Before starting to use Capillary APIs V2.0, it is important to understand different types of official accounts created for your organization on different sources supported by Capillary. </p>
+
+<h1 id="organization-setup">Organization Setup</h1>
+
+<p>The Capillary APIs are RESTful APIs that help third party applications manage their organization’s CRM and/or Loyalty Program through Capillary’s platform. This document provides detailed information on all the APIs and guides in how to each API with the appropriate samples.</p>
+
+<h2 id="authentication">Authentication</h2>
+
+<p>Before starting with authentication, ensure that your organization is registered on Capillary InTouch and at least one TILL has been created for your organization. Stores and store TILLs will be created based on the size and outlets of your organization. You need to know the username and password of the TILL that you want to authenticate for making API calls. </p>
+
+<aside class="notice"> To gain access to our entities in the Rest API, you need to authenticate your TILL with its username and password using the HTTP Basic Authentication.</aside>
+
+<h3 id="authorization-header">Authorization Header</h3>
+
+<p>Authorization Header is used for validating authentication credentials. The Authorization Header is constructed as shown below:</p>
+
+<p><code class="prettyprint">Authorization: Basic &lt;Base64 encoded (username: md5(password)&gt;</code></p>
+
+<p>In the Authorization Header pass the Base64 decoded form of username and md5 formatted password.</p>
+
+<p>For example, if the username is “store.server” and the password is &lsquo;server123&rsquo;, md5 of the password is 8a16a6b70505eb1f1ff7cdc0cd5559a7</p>
+
+<p>Encode the username and md5 password to Base64, then the header is formed as shown below</p>
+
+<p><code class="prettyprint">Authorization: Basic c3RvcmUuc2VydmVyOjhhMTZhNmI3MDUwNWViMWYxZmY3Y2RjMGNkNTU1OWE3</code></p>
+
+<h3 id="other-headers-required">Other Headers Required</h3>
+
+<ul>
+<li><p><strong>Content type</strong> - This should be set as application/json</p></li>
+<li><p><strong>Accept</strong> - This should also be set as application/json</p></li>
+</ul>
+
+<h2 id="resource-information">Resource Information</h2>
+
+<h3 id="request-url-format">Request URL Format</h3>
+
+<p><code class="prettyprint">https://&lt;host&gt;/v2/&lt;entity&gt;/...</code></p>
+
+<table><thead>
+<tr>
+<th>Entry</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Host</td>
+<td>The server to which the API calls are made. This should be the URL of the respective cluster from where the calls are made. * India: intouch.capillary.co.in * APAC2: apac2.intouch.capillarytech.com * EU: eu.intouch.capillarytech.com * US: us.intouch.capillarytech.com * CN: intouch.capillarytech.cn.com</td>
+</tr>
+<tr>
+<td>API Version Number</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Entity</td>
+<td>Provide the appropriate entity based on the action to be performed. <strong>Supported entities</strong>: customers, communications, coupon, organization, points, product, store, transaction, goodwill requests, add events, integration resources, referral and request</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>The Capillary Cloud REST APIs support the standard HTTP methods GET,  PUT, DELETE and POST</td>
+</tr>
+<tr>
+<td>Response Format</td>
+<td>v2.0 APIs return information only in json</td>
+</tr>
+</tbody></table>
+
+          <h1 id="customer">Customer</h1>
+
+<h2 id="register-customer">Register Customer</h2>
+<pre class="highlight html"><code># Sample Request
+
+https://us.intouch.capillarytech.com/v2/customers?source=WECHAT<span class="err">&amp;</span>accountId=22232
+</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
+ </span><span class="nt">"profiles"</span><span class="p">:</span><span class="w"> 
+ </span><span class="p">[</span><span class="w">
+ </span><span class="p">{</span><span class="w">
+ </span><span class="nt">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+ </span><span class="nt">"Favorite Color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Green"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"Favorite Sport"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cricket"</span><span class="w">
+ </span><span class="p">},</span><span class="w">
+ </span><span class="nt">"identifiers"</span><span class="p">:</span><span class="w">
+ </span><span class="p">[</span><span class="w">
+ </span><span class="p">{</span><span class="w">
+ </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom.sayer@example.com"</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+ </span><span class="p">],</span><span class="w">
+ </span><span class="nt">"commChannels"</span><span class="p">:</span><span class="w"> 
+ </span><span class="p">[</span><span class="w">
+ </span><span class="p">{</span><span class="w">
+ </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wechat"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ojOPTwFOX-aBmdRlE9MHptPjt2w19"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"primary"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+ </span><span class="p">]</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+ </span><span class="p">],</span><span class="w">
+ </span><span class="nt">"loyaltyInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+   </span><span class="nt">"loyaltyType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"non_loyalty"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"attributionV2"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+     </span><span class="nt">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-23T19:11:18+08:00"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>The above API call returns the following response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</span><span class="nt">"createdId"</span><span class="p">:</span><span class="w"> </span><span class="mi">329</span><span class="p">,</span><span class="w">
+</span><span class="nt">"warnings"</span><span class="p">:[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>The API allows you to register customers in the organization’s loyalty and promotion programs. API v2.0 supports registering customers in different sources such as INSTORE,MARTJACK, WECHAT and FACEBOOK.  For sources like WeChat and Facebook, an organization can have multiple official accounts. To register a customer in a specific account of a source, the respective account id is required.</p>
+
+<p>Before starting to use the API, it is very important to understand the following concepts</p>
+
+<ul>
+<li><p>If an identifier registered in a source is registered again in a different source, the accounts are combined automatically to a single customer account. For example, if a mobile number registered in MartJack is again tried to register in InStore, the two accounts will be combined automatically to a single account holding two different entries - InStore and MartJack.</p></li>
+<li><p>If an identifier registered in a source or in a specific account (for sources with multiple accounts), cannot be registered again in the same source or specific account id, i.e., identifiers should be unique within a source or within an account (for sources with multiple accounts)</p></li>
+<li><p>For a customer account, you can register multiple identifiers of same type. So, a customer can have more than registered mobile number, email id, or external id</p></li>
+<li><p>No customer details can be updated using this API. To update customer details, use customer update API and for identifiers, use Update Identifier API</p></li>
+</ul>
+
+<h3 id="prerequisites">Prerequisites</h3>
+
+<p>Before starting with the customer registration API, it is important to know the following:</p>
+
+<ul>
+<li><p>Different sources (InStore, MartJack, WeChat, Facebook etc) supported for your organization </p></li>
+<li><p>Specific account id in which you want to register (for sources with multiple accounts such as WeChat and Facebook)</p></li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/customers?source=&lt;Source Name&gt;</code></p>
+
+<h3 id="request-attributes">Request Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>loyaltyinfo</td>
+<td>loyaltyType</td>
+<td>Loyalty status of the customer (“loyalty”, “non_loyalty”)</td>
+</tr>
+<tr>
+<td>profiles</td>
+<td>commChannels</td>
+<td>Different channels through which you want to communicate with the customer (“email”, “mobile”, “wechat”)</td>
+</tr>
+<tr>
+<td>profiles</td>
+<td>Firstname</td>
+<td>First name of the customer</td>
+</tr>
+<tr>
+<td>profiles</td>
+<td>Lastname</td>
+<td>Last name of the customer</td>
+</tr>
+<tr>
+<td>profiles</td>
+<td>identifiers</td>
+<td>Identifier used for registering customer in a specific source (&ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;externalId&rdquo;, &ldquo;wechat&rdquo;,&ldquo;martjackId&rdquo;, &ldquo;fbId&rdquo;)</td>
+</tr>
+<tr>
+<td>profiles</td>
+<td>fields</td>
+<td>Custom fields configured for the current organization</td>
+</tr>
+<tr>
+<td>attributionV2</td>
+<td>createDate</td>
+<td>Time and date of registration in YYYY-MM-DDTHH:MM:SS+HH:MM (Time Zone). Example: 2016-06-23T19:11:18+08:00</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-customer-details">Update Customer Details</h2>
+<pre class="highlight html"><code># Sample Request
+
+https://us.intouch.capillarytech.com/v2/customers/329?source=WECHAT<span class="err">&amp;</span>accountId=22232
+</code></pre>
+<blockquote>
+<p>Following is the sample POST JSON for updating customer&rsquo;s profile</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+ </span><span class="nt">"profiles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+     </span><span class="nt">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
+     </span><span class="nt">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
+     </span><span class="nt">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+       </span><span class="nt">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bangalore"</span><span class="w">
+     </span><span class="p">},</span><span class="w">
+     </span><span class="nt">"identifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">919111111111</span><span class="w">
+        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom.sawyer@example.com"</span><span class="w">
+        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wechat"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wc_2"</span><span class="w">
+        </span><span class="p">}],</span><span class="w">
+        </span><span class="nt">"commChannels"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom.sawyer@example.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"primary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"verified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"residence"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wechat"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wc_2"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"primary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"verified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"residence"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}],</span><span class="w">
+        </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WECHAT"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234"</span><span class="w">
+    </span><span class="p">}],</span><span class="w">
+    </span><span class="nt">"loyaltyInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"loyaltyType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"loyalty"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</span><span class="nt">"createdId"</span><span class="p">:</span><span class="w"> </span><span class="mi">329</span><span class="p">,</span><span class="w">
+</span><span class="nt">"warnings"</span><span class="p">:[]</span><span class="w"> 
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>The customer update API allows you to update customer details on any source - INSTORE,MARTJACK, WECHAT or FACEBOOK. You can update profile information, communication details, custom field values, and loyalty status – non loyalty to loyalty.</p>
+
+<p><em>Limitations of customer update API</em>:</p>
+
+<ul>
+<li>You cannot update customer identifiers using this API</li>
+<li>You cannot modify source type</li>
+<li>You cannot change a loyalty customer to non-loyalty</li>
+</ul>
+
+<h3 id="prerequisites">Prerequisites</h3>
+
+<p>The following are the prerequisites for updating customer details:</p>
+
+<ul>
+<li>Unique customer id of the respective customer</li>
+<li>Account id of the specific source in which you want to modify the customer details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/customers/&lt;Customer ID&gt;?source=&lt;Source Name&gt;</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>customer_id</td>
+<td>Unique id of the registered customer account that you want to update</td>
+</tr>
+<tr>
+<td>source</td>
+<td>Source in which you want to register the customer (INSTORE, MARTJACK, WECHAT, FACEBOOK). If ‘source=WECHAT or FACEBOOK, you also need to provide the respective account id on which you want to update the customer details.</td>
+</tr>
+<tr>
+<td>account_Id</td>
+<td>Account in which you want to register the customer (Required only for sources with multiple accounts)</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-attributes">Request Attributes</h3>
+
+<p>It is recommended to pass source in the request URL rather than in the request attributes.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>loyaltyinfo</td>
+<td>loyaltyType</td>
+<td>Loyalty status of the customer (“loyalty”, “non_loyalty”)</td>
+</tr>
+<tr>
+<td>profiles</td>
+<td>commChannels</td>
+<td>Different channels through which you want to communicate with the customer (“email”, “mobile”, “wechat”)</td>
+</tr>
+<tr>
+<td>profiles</td>
+<td>Firstname</td>
+<td>First name of the customer</td>
+</tr>
+<tr>
+<td>profiles</td>
+<td>Lastname</td>
+<td>Last name of the customer</td>
+</tr>
+<tr>
+<td>profiles</td>
+<td>identifiers</td>
+<td>Identifier used for registering customer in a specific source (&ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;externalId&rdquo;, &ldquo;wechat&rdquo;,&ldquo;martjackId&rdquo;, &ldquo;fbId&rdquo;)</td>
+</tr>
+<tr>
+<td>profiles</td>
+<td>fields</td>
+<td>Custom fields configured for the current organization</td>
+</tr>
+</tbody></table>
+
+<h3 id="error-codes">Error Codes</h3>
+
+<table><thead>
+<tr>
+<th>CODE</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>8008</td>
+<td>Update failed. Different profiles are identified in the same source</td>
+</tr>
+<tr>
+<td>8009</td>
+<td>Update failed. No customer found with the given identifier</td>
+</tr>
+<tr>
+<td>8010</td>
+<td>Communication channel is invalid</td>
+</tr>
+<tr>
+<td>8018</td>
+<td>A loyalty customer cannot be converted to a non-loyalty customer</td>
+</tr>
+<tr>
+<td>8067</td>
+<td></td>
+</tr>
+<tr>
+<td>8059</td>
+<td>Unable to push customer to solr</td>
+</tr>
+<tr>
+<td>8058</td>
+<td>Invalid mobile number passed in the comm channel</td>
+</tr>
+<tr>
+<td>8057</td>
+<td>Invalid email id passed in the comm channel</td>
+</tr>
+<tr>
+<td>8045</td>
+<td>No account id is passed</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-customer-identifiers">Update Customer Identifiers</h2>
+<pre class="highlight html"><code># Sample Request
+
+https://us.intouch.capillarytech.com/v2/customers/418/changeIdentifier?source=WECHAT<span class="err">&amp;</span>accountId=22232
+</code></pre>
+<blockquote>
+<p>In the POST json, pass the identifier(s) that you want to add and/or remove separately as shown below</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</span><span class="nt">"add"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wechat"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ray11"</span><span class="w">
+</span><span class="p">}],</span><span class="w">
+</span><span class="nt">"remove"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom.sawyer@example.com"</span><span class="w">
+</span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Following is the sample response generated for the above sample call</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+</span><span class="nt">"warnings"</span><span class="p">:[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This API allows you to update identifiers of a registered customer on any supported sources - INSTORE,MARTJACK, WECHAT and FACEBOOK. You can either add a new identifier or remove an existing identifier.</p>
+
+<p><strong>Identifiers</strong>: &ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;externalId&rdquo;, &ldquo;wechat&rdquo;,&ldquo;martjackId&rdquo;, &ldquo;fbId&rdquo;
+Limitations of update customer identifier API:
+* Identifiers should be unique within a source. However, for sources with multiple accounts such as WeChat and Facebook, identifiers should be unique across the account
+* If the new identifier you want add exists on a different source, the two accounts will be merged automatically making the current customer account victim and the account into which it has been  merged as a survivor
+* No other details except customer indentifiers can be updated using this API</p>
+
+<h3 id="prerequisites">Prerequisites</h3>
+
+<ul>
+<li>Valid customer identifier(s) that you want to add to the existing account</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/customers/&lt;Customer ID&gt;/changeIdentifier?source=&lt;Source Name&gt;</code></p>
+
+<p>To update an identifier on a source with multiple accounts, you need to provide the respective account id.</p>
+
+<aside class="notice">The new identifier that you want to update should be unique across the source (for sources with single accounts) and unique across the account (for sources with multiple accounts).</aside>
+
+<h3 id="request-attributes">Request Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attributes</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>add</td>
+<td>New identifier that you want to add to the existing account. Pass the identifiers as a key value pair.<code>{“type&quot;: &quot;wechat&quot;, &quot;value&quot;: &quot;TS11&quot;}</code></td>
+</tr>
+<tr>
+<td>remove</td>
+<td>Existing Identifier that you want to remove from the customer account. <code>{&quot;type&quot;: &quot;email&quot;, &quot;value&quot;: &quot;tom.sawyer@example.com&quot;}</code></td>
+</tr>
+</tbody></table>
+
+<h3 id="error-codes">Error Codes</h3>
+
+<table><thead>
+<tr>
+<th>CODE</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>8007</td>
+<td>Unable to update. The identifier is already registered in the same source</td>
+</tr>
+<tr>
+<td>8008</td>
+<td>The new identifier already exists in the same source</td>
+</tr>
+<tr>
+<td>8009</td>
+<td>Unable to identify the customer. Customer id is invalid</td>
+</tr>
+<tr>
+<td>8051</td>
+<td>Same identifier found in other source. Merging into the account with user id X</td>
+</tr>
+<tr>
+<td>8053</td>
+<td>Each identifier is registered with a different customer in other source. Unable to merge accounts</td>
+</tr>
+<tr>
+<td>8053</td>
+<td>Same identifier is registered on other source. The account is already merged with user id X</td>
+</tr>
+<tr>
+<td>8064</td>
+<td>External id validation failed</td>
+</tr>
+<tr>
+<td>8066</td>
+<td></td>
+</tr>
+<tr>
+<td>8067</td>
+<td></td>
+</tr>
+<tr>
+<td>8059</td>
+<td>Unable to push customer to solr</td>
+</tr>
+<tr>
+<td>8058</td>
+<td>Invalid mobile number passed in the comm channel</td>
+</tr>
+<tr>
+<td>8057</td>
+<td>Invalid email id passed in the comm channel</td>
+</tr>
+<tr>
+<td>8056</td>
+<td>Invalid mobile number</td>
+</tr>
+<tr>
+<td>8055</td>
+<td>Invalid email id</td>
+</tr>
+<tr>
+<td>8045</td>
+<td>Account id is not passed</td>
+</tr>
+<tr>
+<td>8010</td>
+<td>Comm channel is invalid</td>
+</tr>
+</tbody></table>
+
+<h2 id="fetch-customers-using-partial-strings">Fetch Customers using Partial Strings</h2>
+<pre class="highlight html"><code># Sample Request
+
+http://newapi.nightly.capillary.in/v2/customers/search?limit=10<span class="err">&amp;</span>offset=0<span class="err">&amp;</span>q=tom
+</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">33</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">261504789</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"matchedIdentifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"idType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"firstName"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"idValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"profiles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sawyer"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">261506099</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"matchedIdentifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"idType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"firstName"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"idValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"profiles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sawyer"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">261504579</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"matchedIdentifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"idType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"firstName"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"idValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+
+      </span><span class="nt">"profiles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sawyer"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">261506077</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"matchedIdentifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"idType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"firstName"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"idValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"profiles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sawyer"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This API allows you to fetch customers automatically from all the sources based on the query string passed. You can fetch customers by identifiers or name that starts with the specified keyword. For example, you can fetch customers whose any of their identifiers (across all the sources) start with ‘99455’ or name that start with ‘john’ and so on.</p>
+
+<aside class="notice"> The keyword that you pass will be fetched automatically from all the sources. You do not need to explicitly specify the source type for this API.</aside>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/customers/search?q=&lt;Identifiers or name that starts with XXXX&gt;</code></p>
+
+<p>To fetch customer from a specific account of a source (with multiple accounts), you need to provide the respective account id.</p>
+
+<h3 id="request-parameter">Request Parameter</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>q</td>
+<td>Parameter based on which you want to fetch customers. It will fetch the customers whose first name/last name/identifiers start with the keyword specified in q=””</td>
+</tr>
+</tbody></table>
+
+<h2 id="fetch-customer-id">Fetch Customer ID</h2>
+<pre class="highlight html"><code># Sample Request
+
+https://eu.intouch.capillarytech.com/v2/customers/ lookup?identifierName=mobile<span class="err">&amp;</span>identifierValue=919111111111
+</code></pre>
+<blockquote>
+<p>The entity field shows the customer id of that specific customer</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="mi">306</span><span class="p">,</span><span class="w">
+</span><span class="nt">"warnings"</span><span class="p">:[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>This API allows you to fetch the id of a specific customer using any of his/her registered identifiers. You can fetch the customer id to know the profile and loyalty details of a specific customer, to perform any action on the customer account such as updating customer details, and managing subscription details.</p>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/customers/lookup?source=&lt;Source Name&gt;&amp; identifierName=&lt;Identifier&gt;&amp;identifierValue=&lt;Identifier value&gt;</code></p>
+
+<p>To fetch customer id from a specific account of a source (with multiple accounts), you need to provide the respective account id.</p>
+
+<h3 id="request-parameter">Request Parameter</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>q</td>
+<td>Identifier based on which you want to fetch the customer id. <strong>Values</strong>: &ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;externalId&rdquo;, &ldquo;wechat&rdquo;,&ldquo;martjackId&rdquo;, or &ldquo;fbId&rdquo;</td>
+</tr>
+</tbody></table>
+
+<h3 id="error-codes">Error Codes</h3>
+
+<table><thead>
+<tr>
+<th>CODE</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>8015</td>
+<td>No customer found with the given identifier</td>
+</tr>
+<tr>
+<td>8065</td>
+<td>No customer found in the given source with the given identifier</td>
+</tr>
+<tr>
+<td>8045</td>
+<td>Account id is not passed</td>
+</tr>
+<tr>
+<td>8013</td>
+<td>Customer identifier is invalid. Also check if the parameter identifierName is passed correctly</td>
+</tr>
+<tr>
+<td>8011</td>
+<td>Source is invalid</td>
+</tr>
+</tbody></table>
+
+<h2 id="fetch-customer-details">Fetch Customer Details</h2>
+<pre class="highlight html"><code># Sample Request
+
+https://eu.intouch.capillarytech.com/v2/customers/17742?source=WECHAT<span class="err">&amp;</span>accountId=22232
+</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17742</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"profiles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+       </span><span class="p">{</span><span class="w">
+           </span><span class="nt">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+               </span><span class="nt">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-23T19:11:18+08:00"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                   </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rr.till"</span><span class="p">,</span><span class="w">
+                   </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                   </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rr.till"</span><span class="p">,</span><span class="w">
+                   </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                   </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rr.till"</span><span class="p">,</span><span class="w">
+                   </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                   </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rr.till"</span><span class="p">,</span><span class="w">
+                   </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"modifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-12T18:50:23+08:00"</span><span class="w">
+           </span><span class="p">},</span><span class="w">
+           </span><span class="nt">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+               </span><span class="nt">"Gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="w">
+               </span><span class="s2">"Favorite Color"</span><span class="err">:</span><span class="w"> </span><span class="s2">"Green"</span><span class="w">
+           </span><span class="p">},</span><span class="w">
+           </span><span class="nt">"identifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                   </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+                   </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom.sawyer@example.com"</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+           </span><span class="p">],</span><span class="w">
+           </span><span class="nt">"commChannels"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                   </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wechat"</span><span class="p">,</span><span class="w">
+                   </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ojOPTwFOX-aBmdRlE9MHptPjt2w19"</span><span class="p">,</span><span class="w">
+                   </span><span class="nt">"primary"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                   </span><span class="nt">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                   </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                       </span><span class="nt">"residence"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                       </span><span class="nt">"office"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+                   </span><span class="p">}</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+           </span><span class="p">],</span><span class="w">
+           </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WECHAT"</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">17742</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"conflictingProfileList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+           </span><span class="p">],</span><span class="w">
+           </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-12T18:50:23+08:00"</span><span class="w">
+       </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"loyaltyInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+       </span><span class="nt">"loyaltyType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"non_loyalty"</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"attributionV2"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+           </span><span class="nt">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-23T19:11:18+08:00"</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+               </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rr.till"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rr.till"</span><span class="w">
+           </span><span class="p">},</span><span class="w">
+           </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+               </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rr.till"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rr.till"</span><span class="w">
+           </span><span class="p">},</span><span class="w">
+           </span><span class="nt">"modifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-12T18:50:23+08:00"</span><span class="w">
+       </span><span class="p">},</span><span class="w">
+       </span><span class="nt">"lifetimePurchases"</span><span class="p">:</span><span class="w"> </span><span class="mi">230</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"segments"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>When embed=&ldquo;points&rdquo;</p>
+</blockquote>
+<pre class="highlight json"><code><span class="s2">"pointsSummary"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nt">"adjusted"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> 
+</span><span class="nt">"cumulativePurchases"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> 
+</span><span class="nt">"currentSlab"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Platinum"</span><span class="p">,</span><span class="w"> 
+</span><span class="nt">"expired"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> 
+</span><span class="nt">"lifetimePoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> 
+</span><span class="nt">"loyaltyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">51373283</span><span class="p">,</span><span class="w"> 
+</span><span class="nt">"loyaltyPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> 
+</span><span class="nt">"nextSlab"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> 
+</span><span class="nt">"nextSlabDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w"> 
+</span><span class="nt">"nextSlabSerialNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w"> 
+</span><span class="nt">"redeemed"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> 
+</span><span class="nt">"returned"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> 
+</span><span class="nt">"slabExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2116-12-07T23:59:59+05:30"</span><span class="p">,</span><span class="w"> 
+</span><span class="nt">"slabSNo"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>When embed=&ldquo;subscription&rdquo;</p>
+</blockquote>
+<pre class="highlight json"><code><span class="s2">"subscriptionInfo"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"campaignId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> 
+                    </span><span class="nt">"communicationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> 
+                    </span><span class="nt">"subscriptions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                              </span><span class="p">{</span><span class="w">
+                                        </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EMAIL"</span><span class="p">,</span><span class="w"> 
+                                        </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRANS"</span><span class="p">,</span><span class="w"> 
+                                        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="w">
+                              </span><span class="p">},</span><span class="w"> 
+                              </span><span class="p">{</span><span class="w">
+                                        </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SMS"</span><span class="p">,</span><span class="w"> 
+                                        </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRANS"</span><span class="p">,</span><span class="w"> 
+                                        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="w">
+                              </span><span class="p">},</span><span class="w"> 
+                              </span><span class="p">{</span><span class="w">
+                                        </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EMAIL"</span><span class="p">,</span><span class="w"> 
+                                        </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BULK"</span><span class="p">,</span><span class="w"> 
+                                        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="w">
+                              </span><span class="p">},</span><span class="w"> 
+                              </span><span class="p">{</span><span class="w">
+                                        </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SMS"</span><span class="p">,</span><span class="w"> 
+                                        </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BULK"</span><span class="p">,</span><span class="w"> 
+                                        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="w">
+                              </span><span class="p">}</span><span class="w">
+                    </span><span class="p">]</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>This API allows you to fetch the complete details of a customer such as:</p>
+
+<ul>
+<li>profile information – first name, last name, registered date, registered at TILL </li>
+<li>recent profile updated – details of the recent update in profile information</li>
+<li>registered identifiers, communication channels and</li>
+<li>loyalty information – loyalty status, registered date, purchases etc.</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;Respective cluster URL&gt;/v2/customers/&lt;Customer id&gt;?source=&lt;Source Name&gt;&amp;accountId=&lt;accountId&gt;</code></p>
+
+<p>To fetch customer details from a specific account of a source (with multiple accounts), you need to provide the respective account id.</p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Customer ID</td>
+<td>Unique id of the customer that you want to fetch</td>
+</tr>
+<tr>
+<td>source</td>
+<td>Fetch the details of the customer on a specific source (INSTORE, MARTJACK, WECHAT, ALL). To fetch details of the customer from all sources, pass <code>/source=”ALL”</code>. If ‘source=WECHAT’, you also need to provide the account id of the respective WeChat account in which you want to modify the customer details.</td>
+</tr>
+<tr>
+<td>account_Id</td>
+<td>Respective account of WeChat</td>
+</tr>
+<tr>
+<td>embed</td>
+<td>To get points and subscription details of the customer (points, subscription). Usage: <code>https://<Cluster API URL>/v2/customers/<Customer id>/source=WECHAT&amp;accountId=<Specific WeChat account’s id>&amp;embed=”points”</code></td>
+</tr>
+</tbody></table>
+
+<h3 id="error-codes">Error Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>8069</td>
+<td>The customer is merged into another account</td>
+</tr>
+<tr>
+<td>8065</td>
+<td>No customer found in the given source with the given identifier</td>
+</tr>
+<tr>
+<td>8015</td>
+<td>No customer found with the given identifier</td>
+</tr>
+<tr>
+<td>8063</td>
+<td></td>
+</tr>
+<tr>
+<td>8062</td>
+<td>Unable to fetch loyalty points</td>
+</tr>
+<tr>
+<td>8045</td>
+<td>Account id is not passed</td>
+</tr>
+<tr>
+<td>8012</td>
+<td>Source is invalid</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-subscription-details">Update Subscription Details</h2>
+<pre class="highlight html"><code># Sample Request
+
+https://eu.intouch.capillarytech.com/v2/customers/17742/subscriptions
+</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">POST</span><span class="w"> </span><span class="err">Request</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+    </span><span class="nt">"communicationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"campaignId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LALALALA"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"scope"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USER"</span><span class="p">,</span><span class="w"> 
+        </span><span class="nt">"subScope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NONE"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> 
+    </span><span class="nt">"subscriptions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EMAIL"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BULK"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTOUT"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SMS"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BULK"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTOUT"</span><span class="w">
+        </span><span class="p">},</span><span class="w"> 
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EMAIL"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRANS"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SMS"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRANS"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Following is the sample response generated for the above request </p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"scope"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"scopeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USER"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"subScope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NONE"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"setCreatedOn"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"setPriority"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"setScopeId"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"setScope"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"setSubScope"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"subscriptions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EMAIL"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BULK"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTOUT"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EMAIL"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRANS"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SMS"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRANS"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"campaignId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"communicationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sample reason"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Subscription represents the communication channels a customer has subscribed to. The communication channels can be email, sms, or WeChat.</p>
+
+<p>This API allows you to modify the subscription status of a customer in any of the communication channels. You can opt-in or opt-out customer’s mobile number/email id/WeChat id from transaction or bulk messages.</p>
+
+<ul>
+<li><strong>Transaction Messages</strong>: These are personalized messages sent to a specific customer such as new transaction details, points/coupon reddemption details, birthday wishes and so on</li>
+<li><strong>Bulk Messages</strong>: These are promotion messages sent to all or group of customers</li>
+</ul>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Entry</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td>/customers/&hellip;/subscriptions</td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
+</tr>
+<tr>
+<td>Accept</td>
+<td>application/json</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;Respective cluster URL&gt;/v2/customers/&lt;Customer ID&gt;/subscriptions</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Customer ID</td>
+<td>Unique id of the customer for which you want to modify subscription details</td>
+</tr>
+<tr>
+<td>channel</td>
+<td>Communication channel that you want to modify. <strong>Value</strong>: SMS, EMAIL, WECHAT</td>
+</tr>
+<tr>
+<td>priority</td>
+<td>Type of service for which you want to modify the subscription details.<code class="prettyprint">TRANS</code> for personalized messages and <code class="prettyprint">BULK</code> for campaign or bulk messages</td>
+</tr>
+<tr>
+<td>type</td>
+<td><code class="prettyprint">OPTIN</code> to subscribe and <code class="prettyprint">OPTOUT</code> to unsubscribe</td>
+</tr>
+</tbody></table>
+
+<h2 id="retrieve-subscription-details">Retrieve Subscription Details</h2>
+<pre class="highlight html"><code># Sample Request
+https://eu.intouch.capillarytech.com/v2/customers/17742/subscriptions
+</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+   </span><span class="nt">"subscriptions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+       </span><span class="p">{</span><span class="w">
+           </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EMAIL"</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRANS"</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="w">
+       </span><span class="p">},</span><span class="w">
+       </span><span class="p">{</span><span class="w">
+           </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SMS"</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRANS"</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="w">
+       </span><span class="p">},</span><span class="w">
+       </span><span class="p">{</span><span class="w">
+           </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EMAIL"</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BULK"</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="w">
+       </span><span class="p">},</span><span class="w">
+       </span><span class="p">{</span><span class="w">
+           </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SMS"</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BULK"</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="w">
+       </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"campaignId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"communicationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This API allows you to retrieve the subscription details of a customer for SMS, email and WeChat. The status will be OPTIN for subscribed and OPTOUT for unsubscribed.</p>
+
+<table><thead>
+<tr>
+<th>Entry</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td>/customers/&hellip;/subscriptions</td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
+</tr>
+<tr>
+<td>Accept</td>
+<td>application/json</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;Respective cluster URL&gt;/v2/customers/&lt;Customer ID&gt;/subscriptions</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Customer ID</td>
+<td>Unique id of the customer that you want to fetch</td>
+</tr>
+</tbody></table>
+
+          <h1 id="transaction">Transaction</h1>
+
+          <h1 id="wallet">Wallet</h1>
+
+          <h1 id="data-ingestion">Data Ingestion</h1>
+
+<h1 id="add-events">Add Events</h1>
+
+          <h1 id="good-will-requests">Good Will Requests</h1>
+
+<h1 id="add-events">Add Events</h1>
+
+          <h1 id="integration-resources">Integration Resources</h1>
+
+          <h1 id="referral">Referral</h1>
+
+          <h1 id="requests">Requests</h1>
+
+      </div>
+      <div class="dark-box">
+          <div class="lang-selector">
+                <a href="#" data-language-name="json">json</a>
+          </div>
+      </div>
+    </div>
+  </body>
+</html>
