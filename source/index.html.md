@@ -25,35 +25,33 @@ search: true
 
 # Introduction
 
-The Capillary APIs are RESTful APIs that help third party applications manage an Organization’s CRM and/or Loyalty Program through Capillary’s platform. This document lists the APIs that can be used to integrate with the Capillary Server Application, their descriptions, resource information, request parameters, request URIs, and sample requests.
+This document describes the RESTful APIs provided by Capillary. These APIs can be consumed by Capillary or other brands that are registered with Capillary/MartJack to manage their CRM. Capillary V2 APIs support multiple sources such as InSource, MartJack, Facebook, and WeChat.
 
-The v2.0 APIs allow you to manage customers from different sources of an organization.
+This document provides detailed information on all the APIs and guides in how to each API with the appropriate samples.
 
-## Sources
-Capillary v2.0 APIs provide extended support for multiple sources, i.e., these APIs can be used for different sources of an organization such as InStore, MartJack, WeChat, Ecommerce and Facebook. 
 
-If your organization supports multiple sources, customer accounts from different sources can be linked automatically to a single user to provide a holistic view of customer data.
+## Source
+Source is an entity through which a customer is registered. Unlike v1.1 APIs, v2.0 APIs provide extended support for multiple sources, i.e., you can now manage accouts of different sources such as InStore, MartJack, WeChat, Ecommerce and Facebook.
+
+V2.0 APIs also support multiple accounts of a single source. For example, an org could have multiple accounts of WeChat and Facebook. Each account will have a different account id. You would need to pass the respective account id when making API calls.
 
 ## Account IDs
-An organization can have multiple accounts for sources such as WeChat and Facebook. To extend support to multiple accounts of a single source, account id has been implemented in v2.0 APIs. For example, if an organization have multiple WeChat accounts, it can communicate with customers through all the accounts using v2.0 APIs (with the help of account ids). 
+An organization can have multiple accounts of a source (such as WeChat). Each account of a source will have a unique account id. You can manage customers from different accounts of a source by passing the respective account id along with the source.
 
-To provide the flexibility to manage customers of different accounts (same brand and same source), you can use account id. To manage customers of a specific account, you need to specify the source name and the respective account id to.  
-
-For example, each official WeChat account will have an account id.
 
 ## Identifiers
-Identifiers are anything which uniquely identifies a customer either in different sources or within a source like openId (in case of WECHAT) and ecommId (in case of e-commerce Integration). An identifier can be a mobile number, email id, or external id. Identifiers are also used to lookup customers and obtain their capillary ids for further operations.
+A customer identifier is a unique identifier that is used for registering in a source such as mobile number, email id, or external id. Identifier are also used to lookup customers and retrieve their capillary unique ids.
 
-When a same identifier is registered in different sources, the two accounts will be merged automatically to a single customer account. For example, assume that a customer has registered on InStore using his mobile number and e-commerce site using email id. Now, if the customer registers the same mobile number both accounts will be merged into a single account automatically which consists of customer details and activities of both sources separately.
+Capillary V2.0 APIs merge accounts automatically when a same identifier is registered in different sources.For example, assume that a customer has registered on InStore using his mobile number and e-commerce site using his email id. Now, if the customer registers the same mobile number in e-commerce site, the  accounts will be merged automatically to a single customer id. You can retrieve the customer details from various sources of an organization using the unique customer id.
 
-Before starting to use Capillary APIs V2.0, it is important to understand different types of official accounts created for your organization on different sources supported by Capillary. 
+Before starting with v2.0 APIs, it is important to understand different official accounts created for each source and the respective account ids.
 
 
 # Organization Setup
-The Capillary APIs are RESTful APIs that help third party applications manage their organization’s CRM and/or Loyalty Program through Capillary’s platform. This document provides detailed information on all the APIs and guides in how to each API with the appropriate samples.
+The following sub-sections guides you in authenticating your organization to use Capillary v2.0 APIs.
 
 ## Authentication
-Before starting with authentication, ensure that your organization is registered on Capillary InTouch and at least one TILL has been created for your organization. Stores and store TILLs will be created based on the size and outlets of your organization. You need to know the username and password of the TILL that you want to authenticate for making API calls. 
+Before starting with authentication process, ensure that your organization is registered in Capillary InTouch and at least one TILL has been created for your organization. Stores and store TILLs will be created based on the size and outlets of your organization. You need to know the username and password of the TILL that you want to authenticate for making API calls. 
 
 <aside class="notice"> To gain access to our entities in the Rest API, you need to authenticate your TILL with its username and password using the HTTP Basic Authentication.</aside>
 
@@ -70,6 +68,14 @@ Encode the username and md5 password to Base64, then the header is formed as sho
 
 `Authorization: Basic c3RvcmUuc2VydmVyOjhhMTZhNmI3MDUwNWViMWYxZmY3Y2RjMGNkNTU1OWE3`
 
+Now, v2 API supports submitting requests on behalf of other TILLs (active TILLs). In db the combination of attribution_lookup and lookup_code are mapped to TILL ids and org ids. When a new POST request is placed with the combination of a lookup name and lookup code, the data will be inserted in the db on behalf of the TILL that is mapped to the specified combination. 
+
+To submit requests on behalf of other TILLs, include the following code along with the HEADER: 
+
+`X-CAP-API-ATTRIBUTION-LOOKUP-TYPE:<name>`
+`X-CAP-API-ATTRIBUTION-LOOKUP:<value>`(value is case sensitive)
+
+
 ### Other Headers Required
 * **Content type** - This should be set as application/json
 
@@ -82,10 +88,10 @@ Encode the username and md5 password to Base64, then the header is formed as sho
 
 Entry | Description
 ----- | -----------
-Host | The server to which the API calls are made. This should be the URL of the respective cluster from where the calls are made. * India: intouch.capillary.co.in * APAC2: apac2.intouch.capillarytech.com * EU: eu.intouch.capillarytech.com * US: us.intouch.capillarytech.com * CN: intouch.capillarytech.cn.com
+Host | The server to which the API calls are made. This should be the URL of the respective cluster from where the calls are made. * India: apac.intouch.capillary.co.in * APAC2: apac2.intouch.capillarytech.com * EU: eu.intouch.capillarytech.com * US: us.intouch.capillarytech.com * CN: intouch.capillarytech.cn.com
 API Version Number | v2
 Entity | Provide the appropriate entity based on the action to be performed. **Supported entities**: customers, communications, coupon, organization, points, product, store, transaction, goodwill requests, add events, integration resources, referral and request
-HTTP Methods | The Capillary Cloud REST APIs support the standard HTTP methods GET,  PUT, DELETE and POST
+HTTP Methods | The Capillary Cloud REST APIs support the standard HTTP methods GET, PUT, DELETE and POST
 Response Format | v2.0 APIs return information only in json
 
 

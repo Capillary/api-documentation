@@ -5,7 +5,7 @@
 ```html
 # Sample Request
  
-https://us.intouch.capillarytech.com/v2/customers?source=WECHAT&accountId=22232
+https://us.api.capillarytech.com/v2/customers?source=WECHAT&accountId=22232
 ```
 
 
@@ -56,30 +56,37 @@ https://us.intouch.capillarytech.com/v2/customers?source=WECHAT&accountId=22232
 }
 ```
 
-The API allows you to register customers in the organization’s loyalty and promotion programs. API v2.0 supports registering customers in different sources such as INSTORE,MARTJACK, WECHAT and FACEBOOK.  For sources like WeChat and Facebook, an organization can have multiple official accounts. To register a customer in a specific account of a source, the respective account id is required.
+This API allows registering customers in the org's loyalty program through different sources such as INSTORE,MARTJACK, WECHAT and FACEBOOK.  For sources with multiple accounts (such as WeChat and Facebook), you must specify the respective account id along with the source name.
 
-Before starting to use the API, it is very important to understand the following concepts
+Following are the features and limitations of the customer registration API:
 
-* If an identifier registered in a source is registered again in a different source, the accounts are combined automatically to a single customer account. For example, if a mobile number registered in MartJack is again tried to register in InStore, the two accounts will be combined automatically to a single account holding two different entries - InStore and MartJack.
+* If you try to register an identifier in a source which is already registered in a different source, the accounts will be tagged automatically to a single customer account. For example, if you register a customer in InStore with a mobile number which is already registered in MartJack, the two accounts will be tagged automatically to a single account with two different entries - InStore and MartJack.
 
-* If an identifier registered in a source or in a specific account (for sources with multiple accounts), cannot be registered again in the same source or specific account id, i.e., identifiers should be unique within a source or within an account (for sources with multiple accounts)
+* Identifiers should be unique within a source for single account sources and unique within an account for multiple account sources. That is, an identifier once registered in a source or an account for a customer cannot be registered again for a different customer. 
 
-* For a customer account, you can register multiple identifiers of same type. So, a customer can have more than registered mobile number, email id, or external id
+* Multiple identifiers of the same type can be registered per customer. Now, you can register multiple mobile numbers, email ids and external ids for a customer within a source.
 
-* No customer details can be updated using this API. To update customer details, use customer update API and for identifiers, use Update Identifier API
+* Customer details cannot be updated with this API. To update customer details, use customer update API; and to update identifiers, use Update Identifier API
 
 
 
 ### Prerequisites
-Before starting with the customer registration API, it is important to know the following:
+Following are the prerequisites to use customer registration API:
 
-* Different sources (InStore, MartJack, WeChat, Facebook etc) supported for your organization 
+* Different sources (InStore, MartJack, WeChat, Facebook etc) supported by your organization 
 
-* Specific account id in which you want to register (for sources with multiple accounts such as WeChat and Facebook)
+* Account ids in which you want to register customers(for sources with multiple accounts such as WeChat and Facebook)
 
 ### Request URL
 
-`https://<Respective cluster’s API URL>/v2/customers?source=<Source Name>`
+`https://<Respective cluster’s API URL>/v2/customers?source=<Source Name>&accountId=<account id>`
+
+### Request Parameters
+Parameter | Value | Description
+--------- | ----- | -----------
+source* | INSTORE/WECHAT/MARTJACK/FACEBOOK | Source in which you want to register a customer
+accountId* | - | For sources with multiple accounts, pass the specific account id in which you want to register a customer
+
 
 ### Request Attributes
 Parameter | Value | Description
@@ -99,7 +106,7 @@ attributionV2 | createDate | Time and date of registration in YYYY-MM-DDTHH:MM:S
 ```html
 # Sample Request
 
-https://us.intouch.capillarytech.com/v2/customers/329?source=WECHAT&accountId=22232
+https://us.api.capillarytech.com/v2/customers/329?source=WECHAT&accountId=22232
 ```
 > Following is the sample POST JSON for updating customer's profile
 
@@ -159,33 +166,33 @@ https://us.intouch.capillarytech.com/v2/customers/329?source=WECHAT&accountId=22
 
 ```
 
-The customer update API allows you to update customer details on any source - INSTORE,MARTJACK, WECHAT or FACEBOOK. You can update profile information, communication details, custom field values, and loyalty status – non loyalty to loyalty.
+Allows updating customer details on any source - INSTORE,MARTJACK, WECHAT or FACEBOOK. You can update profile information, communication details, custom field values, and loyalty status (only non loyalty to loyalty).
 
-*Limitations of customer update API*:
+*Limitations of the customer update API*:
 
-* You cannot update customer identifiers using this API
-* You cannot modify source type
-* You cannot change a loyalty customer to non-loyalty
+* Cannot update identifiers with this API
+* Cannot modify source type
+* Cannot change a loyalty customer to non-loyalty but can change a non-loyalty customer to a loyalty
 
 ### Prerequisites
 The following are the prerequisites for updating customer details:
 
 * Unique customer id of the respective customer
+* Source in which you want to modify the details
 * Account id of the specific source in which you want to modify the customer details
 
 
 ### Request URL
-`https://<Respective cluster’s API URL>/v2/customers/<Customer ID>?source=<Source Name>`
+`https://<Respective cluster’s API URL>/v2/customers/<Customer ID>?source=<Source Name>&accountId=<account id>`
 
 ### Request Parameters
 Parameter | Description
 --------- | -----------
-customer_id | Unique id of the registered customer account that you want to update
-source | Source in which you want to register the customer (INSTORE, MARTJACK, WECHAT, FACEBOOK). If ‘source=WECHAT or FACEBOOK, you also need to provide the respective account id on which you want to update the customer details.
-account_Id | Account in which you want to register the customer (Required only for sources with multiple accounts)
+customer_id* | Unique id of the customer whose details need to be updated
+source* | Specify the source in which you want to update the customer details - INSTORE, MARTJACK, WECHAT, FACEBOOK. If ‘source=WECHAT/FACEBOOK`, you also need to provide the respective account id.
+account_Id** | Account in which you want to update the customer details (Required only for sources with multiple accounts)
 
 ### Request Attributes
-It is recommended to pass source in the request URL rather than in the request attributes.
 
 Parameter | Value | Description
 --------- | ----- | -----------
@@ -217,7 +224,7 @@ CODE | DESCRIPTION
 ```html
 # Sample Request
 
-https://us.intouch.capillarytech.com/v2/customers/418/changeIdentifier?source=WECHAT&accountId=22232
+https://us.api.capillarytech.com/v2/customers/418/changeIdentifier?source=WECHAT&accountId=22232
 ```
 > In the POST json, pass the identifier(s) that you want to add and/or remove separately as shown below
 
@@ -244,31 +251,39 @@ https://us.intouch.capillarytech.com/v2/customers/418/changeIdentifier?source=WE
 ```
 
 
-This API allows you to update identifiers of a registered customer on any supported sources - INSTORE,MARTJACK, WECHAT and FACEBOOK. You can either add a new identifier or remove an existing identifier.
+Allows adding/removing identifiers of a customer in different sources, i.e., you can either add a new identifier or remove an existing identifier of a customer in a source.
 
 **Identifiers**: "mobile", "email", "externalId", "wechat","martjackId", "fbId"
-Limitations of update customer identifier API:
-* Identifiers should be unique within a source. However, for sources with multiple accounts such as WeChat and Facebook, identifiers should be unique across the account
-* If the new identifier you want add exists on a different source, the two accounts will be merged automatically making the current customer account victim and the account into which it has been  merged as a survivor
-* No other details except customer indentifiers can be updated using this API
+
+Limitations of the customer identifier update API:
+* Only identifiers can be updated using this API
+* Identifiers should be unique within a source for single account sources and unique within an account for multiple account sources.
+* If an identifier that you add already exists in a different source/account, the account will be automatically merged into the existing account maintaining different entries of each source. The new account will be a victim account and the existing account is a survivor account.
+
 
 ### Prerequisites
 * Valid customer identifier(s) that you want to add to the existing account
 
 
 ### Request URL
-`https://<Respective cluster’s API URL>/v2/customers/<Customer ID>/changeIdentifier?source=<Source Name>`
-
-To update an identifier on a source with multiple accounts, you need to provide the respective account id.
+`https://<Respective cluster’s API URL>/v2/customers/<Customer ID>/changeIdentifier?source=<Source Name>&accountId=<account id>`
 
 <aside class="notice">The new identifier that you want to update should be unique across the source (for sources with single accounts) and unique across the account (for sources with multiple accounts).</aside>
+
+
+### Request Parameters
+Parameter | Description
+--------- | -----------
+customer_id* | Unique id of the customer whose identifiers need to be updated
+source* | Specify the source in which you want to update customer identifier(s) - INSTORE, MARTJACK, WECHAT, FACEBOOK. If ‘source=WECHAT/FACEBOOK`, you also need to provide the respective account id.
+account_Id** | Account in which you want to update the customer identifier (Required only for sources with multiple accounts)
 
 
 ### Request Attributes
 Attributes | Description
 ---------- | -----------
 add | New identifier that you want to add to the existing account. Pass the identifiers as a key value pair.<code>{“type": "wechat", "value": "TS11"}</code>
-remove | Existing Identifier that you want to remove from the customer account. <code>{"type": "email", "value": "tom.sawyer@example.com"}</code>
+remove | Existing Identifier that you want to remove from the specified account. <code>{"type": "email", "value": "tom.sawyer@example.com"}</code>
 
 
 ### Error Codes
@@ -293,7 +308,7 @@ CODE | DESCRIPTION
 
 
 
-## Fetch Customers using Partial Strings
+## Fetch Customers using Partial Strings (Advanced Customer Search)
 ```html
 # Sample Request
 
@@ -386,7 +401,7 @@ http://newapi.nightly.capillary.in/v2/customers/search?limit=10&offset=0&q=tom
 }
 ```
 
-This API allows you to fetch customers automatically from all the sources based on the query string passed. You can fetch customers by identifiers or name that starts with the specified keyword. For example, you can fetch customers whose any of their identifiers (across all the sources) start with ‘99455’ or name that start with ‘john’ and so on.
+Allows fetching customers from all sources using query string. For example, you can fetch customers whose identifiers starting with 99455, or name that starts with ‘john’ and so on.
 
 <aside class="notice"> The keyword that you pass will be fetched automatically from all the sources. You do not need to explicitly specify the source type for this API.</aside>
 
@@ -401,33 +416,37 @@ Parameter | Description
 q |  Parameter based on which you want to fetch customers. It will fetch the customers whose first name/last name/identifiers start with the keyword specified in q=””
 
 
+
+
 ## Fetch Customer ID
 ```html
 # Sample Request
 
-https://eu.intouch.capillarytech.com/v2/customers/ lookup?identifierName=mobile&identifierValue=919111111111
+https://eu.api.capillarytech.com/v2/customers/lookup?identifierName=mobile&identifierValue=919111111111
 ```
-> The entity field shows the customer id of that specific customer
+> The entity field shows the unique customer id
 
 ```json
 {
 "entity": 306,
 "warnings":[]
 }
-
 ```
 
-This API allows you to fetch the id of a specific customer using any of his/her registered identifiers. You can fetch the customer id to know the profile and loyalty details of a specific customer, to perform any action on the customer account such as updating customer details, and managing subscription details.
+Allows fetching unique customer ids of registered customers. The unique id is required to fetch customer details, update customer details, manage subscription details and so on.
 
 ### Request URL
-`https://<Respective cluster’s API URL>/v2/customers/lookup?source=<Source Name>& identifierName=<Identifier>&identifierValue=<Identifier value>`
+`https://<Respective cluster’s API URL>/v2/customers/lookup?source=<Source Name>&accountId=<account id>&identifierName=<Identifier>&identifierValue=<Identifier value>`
 
-To fetch customer id from a specific account of a source (with multiple accounts), you need to provide the respective account id.
 
 ### Request Parameter
 Parameter | Description
 --------- | -----------
-q | Identifier based on which you want to fetch the customer id. **Values**: "mobile", "email", "externalId", "wechat","martjackId", or "fbId"
+source* | Specify the source in which the customer is registered
+accountId** | Specify the account id of the specific source if the source has multiple accounts
+identifierName* | Identifier based on which you want to fetch the customer id. **Values**: "mobile", "email", "externalId", "wechat","martjackId", or "fbId"
+identifierValue* | Pass the respective identifier value
+
 
 ### Error Codes
 CODE | DESCRIPTION
@@ -445,7 +464,7 @@ CODE | DESCRIPTION
 ```html
 # Sample Request
 
-https://eu.intouch.capillarytech.com/v2/customers/17742?source=WECHAT&accountId=22232
+https://eu.api.capillarytech.com/v2/customers/17742?source=WECHAT&accountId=22232
 ```
 
 ```json
@@ -576,7 +595,7 @@ https://eu.intouch.capillarytech.com/v2/customers/17742?source=WECHAT&accountId=
 
 ```
 
-This API allows you to fetch the complete details of a customer such as:
+Allows fetching customer details such as:
 
 * profile information – first name, last name, registered date, registered at TILL 
 * recent profile updated – details of the recent update in profile information
@@ -586,14 +605,14 @@ This API allows you to fetch the complete details of a customer such as:
 ### Request URL
 `https://<Respective cluster URL>/v2/customers/<Customer id>?source=<Source Name>&accountId=<accountId>`
 
-To fetch customer details from a specific account of a source (with multiple accounts), you need to provide the respective account id.
+To fetch customer details from a specific account of a source (source with multiple accounts), you need to provide the respective account id.
 
 ### Request Parameters
 Parameter | Description
 --------- | -----------
-Customer ID | Unique id of the customer that you want to fetch
-source | Fetch the details of the customer on a specific source (INSTORE, MARTJACK, WECHAT, ALL). To fetch details of the customer from all sources, pass <code>/source=”ALL”</code>. If ‘source=WECHAT’, you also need to provide the account id of the respective WeChat account in which you want to modify the customer details.
-account_Id | Respective account of WeChat
+id | Unique identifier of the customer that you want to fetch
+source | Fetch the details of the customer on a specific source (INSTORE, MARTJACK, WECHAT, ALL). To fetch details of a customer from all sources, pass <code>/source=”ALL”</code>. For sources with multiple accounts, you also need to pass the specific accountId
+account_Id |  For sources with multiple accounts, you also need to pass the specific accountId
 embed | To get points and subscription details of the customer (points, subscription). Usage: <code>https://<Cluster API URL>/v2/customers/<Customer id>/source=WECHAT&accountId=<Specific WeChat account’s id>&embed=”points”</code>
 
 ### Error Codes
@@ -612,7 +631,7 @@ Code | Description
 ```html
 # Sample Request
 
-https://eu.intouch.capillarytech.com/v2/customers/17742/subscriptions
+https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 ```
 
 ```json
@@ -696,12 +715,12 @@ https://eu.intouch.capillarytech.com/v2/customers/17742/subscriptions
   "warnings": []
 }
 ```
-Subscription represents the communication channels a customer has subscribed to. The communication channels can be email, sms, or WeChat.
+Subscription represents communication channels a customer has subscribed to. The communication channels can be email, sms, or WeChat.
 
-This API allows you to modify the subscription status of a customer in any of the communication channels. You can opt-in or opt-out customer’s mobile number/email id/WeChat id from transaction or bulk messages.
+This API allows you update different subscription channels of a customer. You can either opt-in or opt-out a customer’s mobile number/email id/WeChat id from receiving transaction and/or bulk messages.
 
-* **Transaction Messages**: These are personalized messages sent to a specific customer such as new transaction details, points/coupon reddemption details, birthday wishes and so on
-* **Bulk Messages**: These are promotion messages sent to all or group of customers
+* **Transaction Messages**: These are personalized messages sent to the respective customer instantly when a new transaction is made, redeemed points/coupon, send birthday/anniversary wishes and so on
+* **Bulk Messages**: These are promotion messages sent to a list of customers
 
 ### Resource Information
 
@@ -722,15 +741,16 @@ Batch Support | No
 ### Request Parameters
 Parameter | Description
 --------- | -----------
-Customer ID | Unique id of the customer for which you want to modify subscription details
-channel | Communication channel that you want to modify. **Value**: SMS, EMAIL, WECHAT
+id | Unique id of the customer for whom you want to modify the subscription details
+channel | Pass the communication channel that you want to update. **Value**: SMS, EMAIL, WECHAT
 priority | Type of service for which you want to modify the subscription details.`TRANS` for personalized messages and `BULK` for campaign or bulk messages
 type | `OPTIN` to subscribe and `OPTOUT` to unsubscribe
+
 
 ## Retrieve Subscription Details
 ```html
 # Sample Request
-https://eu.intouch.capillarytech.com/v2/customers/17742/subscriptions
+https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 ```
 
 ```json
@@ -766,7 +786,7 @@ https://eu.intouch.capillarytech.com/v2/customers/17742/subscriptions
 ```
 
 
-This API allows you to retrieve the subscription details of a customer for SMS, email and WeChat. The status will be OPTIN for subscribed and OPTOUT for unsubscribed.
+Allows retrieving the subscription details of a customer to SMS, email and WeChat. The status will be OPTIN for subscribed and OPTOUT for unsubscribed.
 
 Entry | Description
 ----- | -----------
@@ -785,5 +805,5 @@ Batch Support | No
 ### Request Parameters
 Parameter | Description
 --------- | -----------
-Customer ID | Unique id of the customer that you want to fetch
+id | Pass the unique id of the customer to fetch the subscription details
 
