@@ -68,6 +68,7 @@ Following are the features and limitations of the customer registration API:
 
 * Customer details cannot be updated with this API. To update customer details, use customer update API; and to update identifiers, use Update Identifier API
 
+* It is not required to pass communication channels for InStore registrations. Each type of identifier registered will be considered for communication channels automatically. For example, mobile number for SMS and email id for email
 
 
 ### Prerequisites
@@ -807,3 +808,243 @@ Parameter | Description
 --------- | -----------
 id | Pass the unique id of the customer to fetch the subscription details
 
+
+## Retrieve Customer Trackers
+
+```html
+# Sample Request
+https://eu.api.capillarytech.com/v2/customers/17742/trackers
+```
+
+```json
+# Sample Response
+
+
+```
+
+Allows retrieving all the tracker events of a customer. Trackers are created in Loyalty Program to perform some actions on the tracker value for a specific duration. Trackers are created based on bill amount, number of bills, bill discount, bill gross amount, quantity of line items and customer visits.
+
+
+Entry | Description
+----- | -----------
+URI | /customers/<id>/trackers
+Rate Limited? | Yes
+Content-Type | application/json
+Accept | application/json
+Authentication | Yes
+Response Formats | JSON 
+HTTP Method | GET
+Batch Support | No
+
+### Request URL
+`https://<Respective cluster URL>/v2/customers/<Customer ID>/trackers`
+
+### Request Parameters
+Parameter | Description
+--------- | -----------
+id | Pass the unique id of the customer whose tracker details need to be fetched
+
+
+
+
+## Retrieve Change Identifiers Log
+```html
+# Sample Request
+https://eu.api.capillarytech.com/v2/customers/17742/changeIdentifierLog
+```
+
+```json
+# Sample Response
+[
+  {
+    "userId":338886724,
+    "source":"WECHAT",
+    "actionType":"ADD",
+    "identifiers":[
+      {
+        "source":"WECHAT",
+        "type":"wechat",
+        "value":"WECHATwechat_406843",
+        "userId":338886724
+      },
+      {
+        "source":"WECHAT",
+        "type":"email",
+        "value":"wechatautoemail7756406843@gmail.com",
+        "userId":338886724
+      }
+    ],
+    "createdDate":"2017-07-25T22:15:02+08:00",
+    "warnings":[
+
+    ]
+  },
+  {
+    "userId":338886724,
+    "source":"INSTORE",
+    "actionType":"ADD",
+    "identifiers":[
+      {
+        "source":"INSTORE",
+        "type":"email",
+        "value":"wechatautoemail7756406843@gmail.com",
+        "userId":338886724
+      },
+      {
+        "source":"INSTORE",
+        "type":"mobile",
+        "value":"917756406843",
+        "userId":338886724
+      }
+    ],
+    "createdDate":"2017-07-25T22:15:05+08:00",
+    "warnings":[
+
+    ]
+  },
+  {
+    "userId":338886724,
+    "source":"INSTORE",
+    "actionType":"COMBINE",
+    "identifiers":[
+      {
+        "source":"INSTORE",
+        "type":"email",
+        "value":"wechatautoemail7756406843@gmail.com",
+        "userId":338886724
+      },
+      {
+        "source":"INSTORE",
+        "type":"email",
+        "value":"wechatautoemail7756406843@gmail.com",
+        "userId":338886724
+      },
+      {
+        "source":"INSTORE",
+        "type":"mobile",
+        "value":"917756406843",
+        "userId":338886724
+      }
+    ],
+    "createdDate":"2017-07-25T22:15:05+08:00",
+    "warnings":[
+
+    ]
+  },
+  {
+    "userId":338886724,
+    "source":"INSTORE",
+    "actionType":"ADD",
+    "identifiers":[
+      {
+        "source":"INSTORE",
+        "type":"email",
+        "value":"wechatautoemail7756406843@gmail.com",
+        "userId":338886724
+      },
+      {
+        "source":"INSTORE",
+        "type":"externalId",
+        "value":"          918989898007",
+        "userId":338886724
+      }
+    ],
+    "createdDate":"2017-07-26T18:46:30+08:00",
+    "warnings":[
+
+    ]
+  },
+  {
+    "userId":338886724,
+    "source":"INSTORE",
+    "actionType":"REMOVE",
+    "identifiers":[
+      {
+        "source":"INSTORE",
+        "type":"email",
+        "value":"wechatautoemail7756406843@gmail.com",
+        "userId":338886724
+      },
+      {
+        "source":"INSTORE",
+        "type":"externalId",
+        "value":"          918989898007",
+        "userId":338886724
+      }
+    ],
+    "createdDate":"2017-07-26T18:47:00+08:00",
+    "warnings":[
+
+    ]
+  },
+  {
+    "userId":338886724,
+    "source":"INSTORE",
+    "actionType":"ADD",
+    "identifiers":[
+      {
+        "source":"INSTORE",
+        "type":"email",
+        "value":"wechatautoemail7756406843@gmail.com",
+        "userId":338886724
+      },
+      {
+        "source":"INSTORE",
+        "type":"externalId",
+        "value":"          918989898008,918989898008",
+        "userId":338886724
+      }
+    ],
+    "createdDate":"2017-07-26T18:47:41+08:00",
+    "warnings":[
+
+    ]
+  },
+  {
+    "userId":338886724,
+    "source":"INSTORE",
+    "actionType":"REMOVE",
+    "identifiers":[
+      {
+        "source":"INSTORE",
+        "type":"email",
+        "value":"wechatautoemail7756406843@gmail.com",
+        "userId":338886724
+      },
+      {
+        "source":"INSTORE",
+        "type":"externalId",
+        "value":"          918989898008,918989898008",
+        "userId":338886724
+      }
+    ],
+    "createdDate":"2017-07-26T18:48:12+08:00",
+    "warnings":[
+
+    ]
+  }
+]
+
+```
+
+Allows retrieving the history of identifier updates such as add, update, remove and merge. You can see only updates made through v2.0 APIs but not through v1.1.
+
+
+Entry | Description
+----- | -----------
+URI | /customers/<id>/changeIdentifierLog
+Rate Limited? | Yes
+Content-Type | application/json
+Accept | application/json
+Authentication | Yes
+Response Formats | JSON 
+HTTP Method | GET
+Batch Support | No
+
+### Request URL
+`https://<Respective cluster URL>/v2/customers/<Customer ID>/changeIdentifierLog`
+
+### Request Parameters
+Parameter | Description
+--------- | -----------
+id | Pass the unique id of the customer to fetch the history of identifier updates

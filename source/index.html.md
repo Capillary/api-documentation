@@ -31,12 +31,12 @@ This document provides detailed information on all the APIs and guides in how to
 
 
 ## Source
-Source is an entity through which a customer is registered. Unlike v1.1 APIs, v2.0 APIs provide extended support for multiple sources, i.e., you can now manage accouts of different sources such as InStore, MartJack, WeChat, Ecommerce and Facebook.
+Source is an entry through which a customer is registered. Unlike v1.1 APIs, v2.0 APIs provide extended support for multiple sources, i.e., you can now manage accouts of different sources such as InStore, MartJack, WeChat, Ecommerce and Facebook.
 
 V2.0 APIs also support multiple accounts of a single source. For example, an org could have multiple accounts of WeChat and Facebook. Each account will have a different account id. You would need to pass the respective account id when making API calls.
 
 ## Account IDs
-An organization can have multiple accounts of a source (such as WeChat). Each account of a source will have a unique account id. You can manage customers from different accounts of a source by passing the respective account id along with the source.
+An organization can have multiple accounts of a source (such as WeChat). Each account will have a unique account id. You can manage customers from different accounts by passing the respective account id along with the source.
 
 
 ## Identifiers

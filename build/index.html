@@ -119,39 +119,35 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
-<p>The Capillary APIs are RESTful APIs that help third party applications manage an Organization’s CRM and/or Loyalty Program through Capillary’s platform. This document lists the APIs that can be used to integrate with the Capillary Server Application, their descriptions, resource information, request parameters, request URIs, and sample requests.</p>
+<p>This document describes the RESTful APIs provided by Capillary. These APIs can be consumed by Capillary or other brands that are registered with Capillary/MartJack to manage their CRM. Capillary V2 APIs support multiple sources such as InSource, MartJack, Facebook, and WeChat.</p>
 
-<p>The v2.0 APIs allow you to manage customers from different sources of an organization.</p>
+<p>This document provides detailed information on all the APIs and guides in how to each API with the appropriate samples.</p>
 
-<h2 id="sources">Sources</h2>
+<h2 id="source">Source</h2>
 
-<p>Capillary v2.0 APIs provide extended support for multiple sources, i.e., these APIs can be used for different sources of an organization such as InStore, MartJack, WeChat, Ecommerce and Facebook. </p>
+<p>Source is an entity through which a customer is registered. Unlike v1.1 APIs, v2.0 APIs provide extended support for multiple sources, i.e., you can now manage accouts of different sources such as InStore, MartJack, WeChat, Ecommerce and Facebook.</p>
 
-<p>If your organization supports multiple sources, customer accounts from different sources can be linked automatically to a single user to provide a holistic view of customer data.</p>
+<p>V2.0 APIs also support multiple accounts of a single source. For example, an org could have multiple accounts of WeChat and Facebook. Each account will have a different account id. You would need to pass the respective account id when making API calls.</p>
 
 <h2 id="account-ids">Account IDs</h2>
 
-<p>An organization can have multiple accounts for sources such as WeChat and Facebook. To extend support to multiple accounts of a single source, account id has been implemented in v2.0 APIs. For example, if an organization have multiple WeChat accounts, it can communicate with customers through all the accounts using v2.0 APIs (with the help of account ids). </p>
-
-<p>To provide the flexibility to manage customers of different accounts (same brand and same source), you can use account id. To manage customers of a specific account, you need to specify the source name and the respective account id to.  </p>
-
-<p>For example, each official WeChat account will have an account id.</p>
+<p>An organization can have multiple accounts of a source (such as WeChat). Each account of a source will have a unique account id. You can manage customers from different accounts of a source by passing the respective account id along with the source.</p>
 
 <h2 id="identifiers">Identifiers</h2>
 
-<p>Identifiers are anything which uniquely identifies a customer either in different sources or within a source like openId (in case of WECHAT) and ecommId (in case of e-commerce Integration). An identifier can be a mobile number, email id, or external id. Identifiers are also used to lookup customers and obtain their capillary ids for further operations.</p>
+<p>A customer identifier is a unique identifier that is used for registering in a source such as mobile number, email id, or external id. Identifier are also used to lookup customers and retrieve their capillary unique ids.</p>
 
-<p>When a same identifier is registered in different sources, the two accounts will be merged automatically to a single customer account. For example, assume that a customer has registered on InStore using his mobile number and e-commerce site using email id. Now, if the customer registers the same mobile number both accounts will be merged into a single account automatically which consists of customer details and activities of both sources separately.</p>
+<p>Capillary V2.0 APIs merge accounts automatically when a same identifier is registered in different sources.For example, assume that a customer has registered on InStore using his mobile number and e-commerce site using his email id. Now, if the customer registers the same mobile number in e-commerce site, the  accounts will be merged automatically to a single customer id. You can retrieve the customer details from various sources of an organization using the unique customer id.</p>
 
-<p>Before starting to use Capillary APIs V2.0, it is important to understand different types of official accounts created for your organization on different sources supported by Capillary. </p>
+<p>Before starting with v2.0 APIs, it is important to understand different official accounts created for each source and the respective account ids.</p>
 
 <h1 id="organization-setup">Organization Setup</h1>
 
-<p>The Capillary APIs are RESTful APIs that help third party applications manage their organization’s CRM and/or Loyalty Program through Capillary’s platform. This document provides detailed information on all the APIs and guides in how to each API with the appropriate samples.</p>
+<p>The following sub-sections guides you in authenticating your organization to use Capillary v2.0 APIs.</p>
 
 <h2 id="authentication">Authentication</h2>
 
-<p>Before starting with authentication, ensure that your organization is registered on Capillary InTouch and at least one TILL has been created for your organization. Stores and store TILLs will be created based on the size and outlets of your organization. You need to know the username and password of the TILL that you want to authenticate for making API calls. </p>
+<p>Before starting with authentication process, ensure that your organization is registered in Capillary InTouch and at least one TILL has been created for your organization. Stores and store TILLs will be created based on the size and outlets of your organization. You need to know the username and password of the TILL that you want to authenticate for making API calls. </p>
 
 <aside class="notice"> To gain access to our entities in the Rest API, you need to authenticate your TILL with its username and password using the HTTP Basic Authentication.</aside>
 
@@ -168,6 +164,13 @@
 <p>Encode the username and md5 password to Base64, then the header is formed as shown below</p>
 
 <p><code class="prettyprint">Authorization: Basic c3RvcmUuc2VydmVyOjhhMTZhNmI3MDUwNWViMWYxZmY3Y2RjMGNkNTU1OWE3</code></p>
+
+<p>Now, v2 API supports submitting requests on behalf of other TILLs (active TILLs). In db the combination of attribution_lookup and lookup_code are mapped to TILL ids and org ids. When a new POST request is placed with the combination of a lookup name and lookup code, the data will be inserted in the db on behalf of the TILL that is mapped to the specified combination. </p>
+
+<p>To submit requests on behalf of other TILLs, include the following code along with the HEADER: </p>
+
+<p><code class="prettyprint">X-CAP-API-ATTRIBUTION-LOOKUP-TYPE:&lt;name&gt;</code>
+<code class="prettyprint">X-CAP-API-ATTRIBUTION-LOOKUP:&lt;value&gt;</code>(value is case sensitive)</p>
 
 <h3 id="other-headers-required">Other Headers Required</h3>
 
@@ -190,7 +193,7 @@
 </thead><tbody>
 <tr>
 <td>Host</td>
-<td>The server to which the API calls are made. This should be the URL of the respective cluster from where the calls are made. * India: intouch.capillary.co.in * APAC2: apac2.intouch.capillarytech.com * EU: eu.intouch.capillarytech.com * US: us.intouch.capillarytech.com * CN: intouch.capillarytech.cn.com</td>
+<td>The server to which the API calls are made. This should be the URL of the respective cluster from where the calls are made. * India: apac.intouch.capillary.co.in * APAC2: apac2.intouch.capillarytech.com * EU: eu.intouch.capillarytech.com * US: us.intouch.capillarytech.com * CN: intouch.capillarytech.cn.com</td>
 </tr>
 <tr>
 <td>API Version Number</td>
@@ -202,7 +205,7 @@
 </tr>
 <tr>
 <td>HTTP Methods</td>
-<td>The Capillary Cloud REST APIs support the standard HTTP methods GET,  PUT, DELETE and POST</td>
+<td>The Capillary Cloud REST APIs support the standard HTTP methods GET, PUT, DELETE and POST</td>
 </tr>
 <tr>
 <td>Response Format</td>
@@ -215,7 +218,7 @@
 <h2 id="register-customer">Register Customer</h2>
 <pre class="highlight html"><code># Sample Request
 
-https://us.intouch.capillarytech.com/v2/customers?source=WECHAT<span class="err">&amp;</span>accountId=22232
+https://us.api.capillarytech.com/v2/customers?source=WECHAT<span class="err">&amp;</span>accountId=22232
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
  </span><span class="nt">"profiles"</span><span class="p">:</span><span class="w"> 
  </span><span class="p">[</span><span class="w">
@@ -260,29 +263,50 @@ https://us.intouch.capillarytech.com/v2/customers?source=WECHAT<span class="err"
 </span><span class="nt">"warnings"</span><span class="p">:[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>The API allows you to register customers in the organization’s loyalty and promotion programs. API v2.0 supports registering customers in different sources such as INSTORE,MARTJACK, WECHAT and FACEBOOK.  For sources like WeChat and Facebook, an organization can have multiple official accounts. To register a customer in a specific account of a source, the respective account id is required.</p>
+<p>This API allows registering customers in the org&rsquo;s loyalty program through different sources such as INSTORE,MARTJACK, WECHAT and FACEBOOK.  For sources with multiple accounts (such as WeChat and Facebook), you must specify the respective account id along with the source name.</p>
 
-<p>Before starting to use the API, it is very important to understand the following concepts</p>
+<p>Following are the features and limitations of the customer registration API:</p>
 
 <ul>
-<li><p>If an identifier registered in a source is registered again in a different source, the accounts are combined automatically to a single customer account. For example, if a mobile number registered in MartJack is again tried to register in InStore, the two accounts will be combined automatically to a single account holding two different entries - InStore and MartJack.</p></li>
-<li><p>If an identifier registered in a source or in a specific account (for sources with multiple accounts), cannot be registered again in the same source or specific account id, i.e., identifiers should be unique within a source or within an account (for sources with multiple accounts)</p></li>
-<li><p>For a customer account, you can register multiple identifiers of same type. So, a customer can have more than registered mobile number, email id, or external id</p></li>
-<li><p>No customer details can be updated using this API. To update customer details, use customer update API and for identifiers, use Update Identifier API</p></li>
+<li><p>If you try to register an identifier in a source which is already registered in a different source, the accounts will be tagged automatically to a single customer account. For example, if you register a customer in InStore with a mobile number which is already registered in MartJack, the two accounts will be tagged automatically to a single account with two different entries - InStore and MartJack.</p></li>
+<li><p>Identifiers should be unique within a source for single account sources and unique within an account for multiple account sources. That is, an identifier once registered in a source or an account for a customer cannot be registered again for a different customer. </p></li>
+<li><p>Multiple identifiers of the same type can be registered per customer. Now, you can register multiple mobile numbers, email ids and external ids for a customer within a source.</p></li>
+<li><p>Customer details cannot be updated with this API. To update customer details, use customer update API; and to update identifiers, use Update Identifier API</p></li>
 </ul>
 
 <h3 id="prerequisites">Prerequisites</h3>
 
-<p>Before starting with the customer registration API, it is important to know the following:</p>
+<p>Following are the prerequisites to use customer registration API:</p>
 
 <ul>
-<li><p>Different sources (InStore, MartJack, WeChat, Facebook etc) supported for your organization </p></li>
-<li><p>Specific account id in which you want to register (for sources with multiple accounts such as WeChat and Facebook)</p></li>
+<li><p>Different sources (InStore, MartJack, WeChat, Facebook etc) supported by your organization </p></li>
+<li><p>Account ids in which you want to register customers(for sources with multiple accounts such as WeChat and Facebook)</p></li>
 </ul>
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/customers?source=&lt;Source Name&gt;</code></p>
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/customers?source=&lt;Source Name&gt;&amp;accountId=&lt;account id&gt;</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Value</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>source*</td>
+<td>INSTORE/WECHAT/MARTJACK/FACEBOOK</td>
+<td>Source in which you want to register a customer</td>
+</tr>
+<tr>
+<td>accountId*</td>
+<td>-</td>
+<td>For sources with multiple accounts, pass the specific account id in which you want to register a customer</td>
+</tr>
+</tbody></table>
 
 <h3 id="request-attributes">Request Attributes</h3>
 
@@ -333,7 +357,7 @@ https://us.intouch.capillarytech.com/v2/customers?source=WECHAT<span class="err"
 <h2 id="update-customer-details">Update Customer Details</h2>
 <pre class="highlight html"><code># Sample Request
 
-https://us.intouch.capillarytech.com/v2/customers/329?source=WECHAT<span class="err">&amp;</span>accountId=22232
+https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err">&amp;</span>accountId=22232
 </code></pre>
 <blockquote>
 <p>Following is the sample POST JSON for updating customer&rsquo;s profile</p>
@@ -392,14 +416,14 @@ https://us.intouch.capillarytech.com/v2/customers/329?source=WECHAT<span class="
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
-<p>The customer update API allows you to update customer details on any source - INSTORE,MARTJACK, WECHAT or FACEBOOK. You can update profile information, communication details, custom field values, and loyalty status – non loyalty to loyalty.</p>
+<p>Allows updating customer details on any source - INSTORE,MARTJACK, WECHAT or FACEBOOK. You can update profile information, communication details, custom field values, and loyalty status (only non loyalty to loyalty).</p>
 
-<p><em>Limitations of customer update API</em>:</p>
+<p><em>Limitations of the customer update API</em>:</p>
 
 <ul>
-<li>You cannot update customer identifiers using this API</li>
-<li>You cannot modify source type</li>
-<li>You cannot change a loyalty customer to non-loyalty</li>
+<li>Cannot update identifiers with this API</li>
+<li>Cannot modify source type</li>
+<li>Cannot change a loyalty customer to non-loyalty but can change a non-loyalty customer to a loyalty</li>
 </ul>
 
 <h3 id="prerequisites">Prerequisites</h3>
@@ -408,12 +432,13 @@ https://us.intouch.capillarytech.com/v2/customers/329?source=WECHAT<span class="
 
 <ul>
 <li>Unique customer id of the respective customer</li>
+<li>Source in which you want to modify the details</li>
 <li>Account id of the specific source in which you want to modify the customer details</li>
 </ul>
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/customers/&lt;Customer ID&gt;?source=&lt;Source Name&gt;</code></p>
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/customers/&lt;Customer ID&gt;?source=&lt;Source Name&gt;&amp;accountId=&lt;account id&gt;</code></p>
 
 <h3 id="request-parameters">Request Parameters</h3>
 
@@ -424,22 +449,20 @@ https://us.intouch.capillarytech.com/v2/customers/329?source=WECHAT<span class="
 </tr>
 </thead><tbody>
 <tr>
-<td>customer_id</td>
-<td>Unique id of the registered customer account that you want to update</td>
+<td>customer_id*</td>
+<td>Unique id of the customer whose details need to be updated</td>
 </tr>
 <tr>
-<td>source</td>
-<td>Source in which you want to register the customer (INSTORE, MARTJACK, WECHAT, FACEBOOK). If ‘source=WECHAT or FACEBOOK, you also need to provide the respective account id on which you want to update the customer details.</td>
+<td>source*</td>
+<td>Specify the source in which you want to update the customer details - INSTORE, MARTJACK, WECHAT, FACEBOOK. If ‘source=WECHAT/FACEBOOK`, you also need to provide the respective account id.</td>
 </tr>
 <tr>
-<td>account_Id</td>
-<td>Account in which you want to register the customer (Required only for sources with multiple accounts)</td>
+<td>account_Id**</td>
+<td>Account in which you want to update the customer details (Required only for sources with multiple accounts)</td>
 </tr>
 </tbody></table>
 
 <h3 id="request-attributes">Request Attributes</h3>
-
-<p>It is recommended to pass source in the request URL rather than in the request attributes.</p>
 
 <table><thead>
 <tr>
@@ -529,7 +552,7 @@ https://us.intouch.capillarytech.com/v2/customers/329?source=WECHAT<span class="
 <h2 id="update-customer-identifiers">Update Customer Identifiers</h2>
 <pre class="highlight html"><code># Sample Request
 
-https://us.intouch.capillarytech.com/v2/customers/418/changeIdentifier?source=WECHAT<span class="err">&amp;</span>accountId=22232
+https://us.api.capillarytech.com/v2/customers/418/changeIdentifier?source=WECHAT<span class="err">&amp;</span>accountId=22232
 </code></pre>
 <blockquote>
 <p>In the POST json, pass the identifier(s) that you want to add and/or remove separately as shown below</p>
@@ -553,13 +576,14 @@ https://us.intouch.capillarytech.com/v2/customers/418/changeIdentifier?source=WE
 </span><span class="nt">"warnings"</span><span class="p">:[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This API allows you to update identifiers of a registered customer on any supported sources - INSTORE,MARTJACK, WECHAT and FACEBOOK. You can either add a new identifier or remove an existing identifier.</p>
+<p>Allows adding/removing identifiers of a customer in different sources, i.e., you can either add a new identifier or remove an existing identifier of a customer in a source.</p>
 
-<p><strong>Identifiers</strong>: &ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;externalId&rdquo;, &ldquo;wechat&rdquo;,&ldquo;martjackId&rdquo;, &ldquo;fbId&rdquo;
-Limitations of update customer identifier API:
-* Identifiers should be unique within a source. However, for sources with multiple accounts such as WeChat and Facebook, identifiers should be unique across the account
-* If the new identifier you want add exists on a different source, the two accounts will be merged automatically making the current customer account victim and the account into which it has been  merged as a survivor
-* No other details except customer indentifiers can be updated using this API</p>
+<p><strong>Identifiers</strong>: &ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;externalId&rdquo;, &ldquo;wechat&rdquo;,&ldquo;martjackId&rdquo;, &ldquo;fbId&rdquo;</p>
+
+<p>Limitations of the customer identifier update API:
+* Only identifiers can be updated using this API
+* Identifiers should be unique within a source for single account sources and unique within an account for multiple account sources.
+* If an identifier that you add already exists in a different source/account, the account will be automatically merged into the existing account maintaining different entries of each source. The new account will be a victim account and the existing account is a survivor account.</p>
 
 <h3 id="prerequisites">Prerequisites</h3>
 
@@ -569,11 +593,31 @@ Limitations of update customer identifier API:
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/customers/&lt;Customer ID&gt;/changeIdentifier?source=&lt;Source Name&gt;</code></p>
-
-<p>To update an identifier on a source with multiple accounts, you need to provide the respective account id.</p>
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/customers/&lt;Customer ID&gt;/changeIdentifier?source=&lt;Source Name&gt;&amp;accountId=&lt;account id&gt;</code></p>
 
 <aside class="notice">The new identifier that you want to update should be unique across the source (for sources with single accounts) and unique across the account (for sources with multiple accounts).</aside>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>customer_id*</td>
+<td>Unique id of the customer whose identifiers need to be updated</td>
+</tr>
+<tr>
+<td>source*</td>
+<td>Specify the source in which you want to update customer identifier(s) - INSTORE, MARTJACK, WECHAT, FACEBOOK. If ‘source=WECHAT/FACEBOOK`, you also need to provide the respective account id.</td>
+</tr>
+<tr>
+<td>account_Id**</td>
+<td>Account in which you want to update the customer identifier (Required only for sources with multiple accounts)</td>
+</tr>
+</tbody></table>
 
 <h3 id="request-attributes">Request Attributes</h3>
 
@@ -589,7 +633,7 @@ Limitations of update customer identifier API:
 </tr>
 <tr>
 <td>remove</td>
-<td>Existing Identifier that you want to remove from the customer account. <code>{&quot;type&quot;: &quot;email&quot;, &quot;value&quot;: &quot;tom.sawyer@example.com&quot;}</code></td>
+<td>Existing Identifier that you want to remove from the specified account. <code>{&quot;type&quot;: &quot;email&quot;, &quot;value&quot;: &quot;tom.sawyer@example.com&quot;}</code></td>
 </tr>
 </tbody></table>
 
@@ -667,7 +711,7 @@ Limitations of update customer identifier API:
 </tr>
 </tbody></table>
 
-<h2 id="fetch-customers-using-partial-strings">Fetch Customers using Partial Strings</h2>
+<h2 id="fetch-customers-using-partial-strings-advanced-customer-search">Fetch Customers using Partial Strings (Advanced Customer Search)</h2>
 <pre class="highlight html"><code># Sample Request
 
 http://newapi.nightly.capillary.in/v2/customers/search?limit=10<span class="err">&amp;</span>offset=0<span class="err">&amp;</span>q=tom
@@ -756,7 +800,7 @@ http://newapi.nightly.capillary.in/v2/customers/search?limit=10<span class="err"
   </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This API allows you to fetch customers automatically from all the sources based on the query string passed. You can fetch customers by identifiers or name that starts with the specified keyword. For example, you can fetch customers whose any of their identifiers (across all the sources) start with ‘99455’ or name that start with ‘john’ and so on.</p>
+<p>Allows fetching customers from all sources using query string. For example, you can fetch customers whose identifiers starting with 99455, or name that starts with ‘john’ and so on.</p>
 
 <aside class="notice"> The keyword that you pass will be fetched automatically from all the sources. You do not need to explicitly specify the source type for this API.</aside>
 
@@ -783,24 +827,21 @@ http://newapi.nightly.capillary.in/v2/customers/search?limit=10<span class="err"
 <h2 id="fetch-customer-id">Fetch Customer ID</h2>
 <pre class="highlight html"><code># Sample Request
 
-https://eu.intouch.capillarytech.com/v2/customers/ lookup?identifierName=mobile<span class="err">&amp;</span>identifierValue=919111111111
+https://eu.api.capillarytech.com/v2/customers/lookup?identifierName=mobile<span class="err">&amp;</span>identifierValue=919111111111
 </code></pre>
 <blockquote>
-<p>The entity field shows the customer id of that specific customer</p>
+<p>The entity field shows the unique customer id</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
 </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="mi">306</span><span class="p">,</span><span class="w">
 </span><span class="nt">"warnings"</span><span class="p">:[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
 </span></code></pre>
-<p>This API allows you to fetch the id of a specific customer using any of his/her registered identifiers. You can fetch the customer id to know the profile and loyalty details of a specific customer, to perform any action on the customer account such as updating customer details, and managing subscription details.</p>
+<p>Allows fetching unique customer ids of registered customers. The unique id is required to fetch customer details, update customer details, manage subscription details and so on.</p>
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/customers/lookup?source=&lt;Source Name&gt;&amp; identifierName=&lt;Identifier&gt;&amp;identifierValue=&lt;Identifier value&gt;</code></p>
-
-<p>To fetch customer id from a specific account of a source (with multiple accounts), you need to provide the respective account id.</p>
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/customers/lookup?source=&lt;Source Name&gt;&amp;accountId=&lt;account id&gt;&amp;identifierName=&lt;Identifier&gt;&amp;identifierValue=&lt;Identifier value&gt;</code></p>
 
 <h3 id="request-parameter">Request Parameter</h3>
 
@@ -811,8 +852,20 @@ https://eu.intouch.capillarytech.com/v2/customers/ lookup?identifierName=mobile<
 </tr>
 </thead><tbody>
 <tr>
-<td>q</td>
+<td>source*</td>
+<td>Specify the source in which the customer is registered</td>
+</tr>
+<tr>
+<td>accountId**</td>
+<td>Specify the account id of the specific source if the source has multiple accounts</td>
+</tr>
+<tr>
+<td>identifierName*</td>
 <td>Identifier based on which you want to fetch the customer id. <strong>Values</strong>: &ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;externalId&rdquo;, &ldquo;wechat&rdquo;,&ldquo;martjackId&rdquo;, or &ldquo;fbId&rdquo;</td>
+</tr>
+<tr>
+<td>identifierValue*</td>
+<td>Pass the respective identifier value</td>
 </tr>
 </tbody></table>
 
@@ -849,7 +902,7 @@ https://eu.intouch.capillarytech.com/v2/customers/ lookup?identifierName=mobile<
 <h2 id="fetch-customer-details">Fetch Customer Details</h2>
 <pre class="highlight html"><code># Sample Request
 
-https://eu.intouch.capillarytech.com/v2/customers/17742?source=WECHAT<span class="err">&amp;</span>accountId=22232
+https://eu.api.capillarytech.com/v2/customers/17742?source=WECHAT<span class="err">&amp;</span>accountId=22232
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17742</span><span class="p">,</span><span class="w">
    </span><span class="nt">"profiles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -974,7 +1027,7 @@ https://eu.intouch.capillarytech.com/v2/customers/17742?source=WECHAT<span class
           </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
-<p>This API allows you to fetch the complete details of a customer such as:</p>
+<p>Allows fetching customer details such as:</p>
 
 <ul>
 <li>profile information – first name, last name, registered date, registered at TILL </li>
@@ -987,7 +1040,7 @@ https://eu.intouch.capillarytech.com/v2/customers/17742?source=WECHAT<span class
 
 <p><code class="prettyprint">https://&lt;Respective cluster URL&gt;/v2/customers/&lt;Customer id&gt;?source=&lt;Source Name&gt;&amp;accountId=&lt;accountId&gt;</code></p>
 
-<p>To fetch customer details from a specific account of a source (with multiple accounts), you need to provide the respective account id.</p>
+<p>To fetch customer details from a specific account of a source (source with multiple accounts), you need to provide the respective account id.</p>
 
 <h3 id="request-parameters">Request Parameters</h3>
 
@@ -998,16 +1051,16 @@ https://eu.intouch.capillarytech.com/v2/customers/17742?source=WECHAT<span class
 </tr>
 </thead><tbody>
 <tr>
-<td>Customer ID</td>
-<td>Unique id of the customer that you want to fetch</td>
+<td>id</td>
+<td>Unique identifier of the customer that you want to fetch</td>
 </tr>
 <tr>
 <td>source</td>
-<td>Fetch the details of the customer on a specific source (INSTORE, MARTJACK, WECHAT, ALL). To fetch details of the customer from all sources, pass <code>/source=”ALL”</code>. If ‘source=WECHAT’, you also need to provide the account id of the respective WeChat account in which you want to modify the customer details.</td>
+<td>Fetch the details of the customer on a specific source (INSTORE, MARTJACK, WECHAT, ALL). To fetch details of a customer from all sources, pass <code>/source=”ALL”</code>. For sources with multiple accounts, you also need to pass the specific accountId</td>
 </tr>
 <tr>
 <td>account_Id</td>
-<td>Respective account of WeChat</td>
+<td>For sources with multiple accounts, you also need to pass the specific accountId</td>
 </tr>
 <tr>
 <td>embed</td>
@@ -1056,7 +1109,7 @@ https://eu.intouch.capillarytech.com/v2/customers/17742?source=WECHAT<span class
 <h2 id="update-subscription-details">Update Subscription Details</h2>
 <pre class="highlight html"><code># Sample Request
 
-https://eu.intouch.capillarytech.com/v2/customers/17742/subscriptions
+https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 </code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">POST</span><span class="w"> </span><span class="err">Request</span><span class="w">
 
 </span><span class="p">{</span><span class="w">
@@ -1137,13 +1190,13 @@ https://eu.intouch.capillarytech.com/v2/customers/17742/subscriptions
   </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Subscription represents the communication channels a customer has subscribed to. The communication channels can be email, sms, or WeChat.</p>
+<p>Subscription represents communication channels a customer has subscribed to. The communication channels can be email, sms, or WeChat.</p>
 
-<p>This API allows you to modify the subscription status of a customer in any of the communication channels. You can opt-in or opt-out customer’s mobile number/email id/WeChat id from transaction or bulk messages.</p>
+<p>This API allows you update different subscription channels of a customer. You can either opt-in or opt-out a customer’s mobile number/email id/WeChat id from receiving transaction and/or bulk messages.</p>
 
 <ul>
-<li><strong>Transaction Messages</strong>: These are personalized messages sent to a specific customer such as new transaction details, points/coupon reddemption details, birthday wishes and so on</li>
-<li><strong>Bulk Messages</strong>: These are promotion messages sent to all or group of customers</li>
+<li><strong>Transaction Messages</strong>: These are personalized messages sent to the respective customer instantly when a new transaction is made, redeemed points/coupon, send birthday/anniversary wishes and so on</li>
+<li><strong>Bulk Messages</strong>: These are promotion messages sent to a list of customers</li>
 </ul>
 
 <h3 id="resource-information">Resource Information</h3>
@@ -1201,12 +1254,12 @@ https://eu.intouch.capillarytech.com/v2/customers/17742/subscriptions
 </tr>
 </thead><tbody>
 <tr>
-<td>Customer ID</td>
-<td>Unique id of the customer for which you want to modify subscription details</td>
+<td>id</td>
+<td>Unique id of the customer for whom you want to modify the subscription details</td>
 </tr>
 <tr>
 <td>channel</td>
-<td>Communication channel that you want to modify. <strong>Value</strong>: SMS, EMAIL, WECHAT</td>
+<td>Pass the communication channel that you want to update. <strong>Value</strong>: SMS, EMAIL, WECHAT</td>
 </tr>
 <tr>
 <td>priority</td>
@@ -1220,7 +1273,7 @@ https://eu.intouch.capillarytech.com/v2/customers/17742/subscriptions
 
 <h2 id="retrieve-subscription-details">Retrieve Subscription Details</h2>
 <pre class="highlight html"><code># Sample Request
-https://eu.intouch.capillarytech.com/v2/customers/17742/subscriptions
+https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 </code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
 </span><span class="p">{</span><span class="w">
    </span><span class="nt">"subscriptions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -1251,7 +1304,7 @@ https://eu.intouch.capillarytech.com/v2/customers/17742/subscriptions
    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This API allows you to retrieve the subscription details of a customer for SMS, email and WeChat. The status will be OPTIN for subscribed and OPTOUT for unsubscribed.</p>
+<p>Allows retrieving the subscription details of a customer to SMS, email and WeChat. The status will be OPTIN for subscribed and OPTOUT for unsubscribed.</p>
 
 <table><thead>
 <tr>
@@ -1306,8 +1359,8 @@ https://eu.intouch.capillarytech.com/v2/customers/17742/subscriptions
 </tr>
 </thead><tbody>
 <tr>
-<td>Customer ID</td>
-<td>Unique id of the customer that you want to fetch</td>
+<td>id</td>
+<td>Pass the unique id of the customer to fetch the subscription details</td>
 </tr>
 </tbody></table>
 
