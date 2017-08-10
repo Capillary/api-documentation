@@ -299,8 +299,8 @@ https://us.api.capillarytech.com/v2/customers?source=WECHAT<span class="err">&am
 </thead><tbody>
 <tr>
 <td>source*</td>
-<td>INSTORE/WECHAT/MARTJACK/FACEBOOK</td>
-<td>Source in which you want to register a customer</td>
+<td>INSTORE/WECHAT/MARTJACK/FACEBOOK/ALL</td>
+<td>Source in which you want to register a customer. Specify source=ALL to fetch details from all the available sources</td>
 </tr>
 <tr>
 <td>accountId*</td>
@@ -1370,6 +1370,105 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 https://eu.api.capillarytech.com/v2/customers/17742/trackers
 </code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
 
+</span><span class="p">{</span><span class="w">
+</span><span class="nt">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17270</span><span class="p">,</span><span class="w">
+</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TestBill"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"conditionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">210</span><span class="p">,</span><span class="w">
+</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BILL_AMOUNT"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-03T12:38:00+05:30"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16995</span><span class="p">,</span><span class="w">
+</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BA2400"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"conditionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">193</span><span class="p">,</span><span class="w">
+</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BILL_AMOUNT"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">6000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-01T10:41:20+05:30"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16995</span><span class="p">,</span><span class="w">
+</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BA2400"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"conditionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">192</span><span class="p">,</span><span class="w">
+</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BILL_AMOUNT"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">6000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-01T10:41:20+05:30"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">37651</span><span class="p">,</span><span class="w">
+</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BillInfinite"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"conditionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">7717</span><span class="p">,</span><span class="w">
+</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BILL_AMOUNT"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">6000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-01T10:41:20+05:30"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">37651</span><span class="p">,</span><span class="w">
+</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BillInfinite"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"conditionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">7716</span><span class="p">,</span><span class="w">
+</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BILL_AMOUNT"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">6000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-01T10:41:20+05:30"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20530</span><span class="p">,</span><span class="w">
+</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Testingbug"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"conditionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1094</span><span class="p">,</span><span class="w">
+</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BILL_AMOUNT"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03T12:38:00+05:30"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20531</span><span class="p">,</span><span class="w">
+</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testingbug2"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"conditionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1096</span><span class="p">,</span><span class="w">
+</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LINEITEM_AMOUNT"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-03T12:38:00+05:30"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20531</span><span class="p">,</span><span class="w">
+</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testingbug2"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"conditionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1095</span><span class="p">,</span><span class="w">
+</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LINEITEM_AMOUNT"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-03T12:38:00+05:30"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17018</span><span class="p">,</span><span class="w">
+</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LiAm2400"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"conditionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">195</span><span class="p">,</span><span class="w">
+</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LINEITEM_AMOUNT"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">6000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-01T10:41:20+05:30"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17018</span><span class="p">,</span><span class="w">
+</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LiAm2400"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"conditionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">194</span><span class="p">,</span><span class="w">
+</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LINEITEM_AMOUNT"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-03T10:41:20+05:30"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17427</span><span class="p">,</span><span class="w">
+</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LineCount"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"conditionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">217</span><span class="p">,</span><span class="w">
+</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LINEITEM_COUNT"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+</span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03T12:38:00+05:30"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">],</span><span class="w">
+</span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+</span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+</span><span class="err">}</span><span class="w">
 
 </span></code></pre>
 <p>Allows retrieving all the tracker events of a customer. Trackers are created in Loyalty Program to perform some actions on the tracker value for a specific duration. Trackers are created based on bill amount, number of bills, bill discount, bill gross amount, quantity of line items and customer visits.</p>
@@ -1684,6 +1783,267 @@ https://eu.api.capillarytech.com/v2/customers/17742/changeIdentifierLog
           <h1 id="referral">Referral</h1>
 
           <h1 id="requests">Requests</h1>
+
+          <h1 id="user-authentication">User Authentication</h1>
+
+<p>The userAuth resource allows existing customers of InStore to register on the org&rsquo;s web page/mobile app, authenticate login credentials, and update user details.</p>
+
+<h2 id="register-users">Register Users</h2>
+<pre class="highlight html"><code># Sample Request
+
+https://us.api.capillarytech.com/v2/user_auth/register
+</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">POST</span><span class="w"> </span><span class="err">Request</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"71000000000"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom.sawyer@example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom123"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24335250</span><span class="p">,</span><span class="w">
+</span><span class="nt">"profiles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+</span><span class="nt">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nt">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-22T00:00:00+05:30"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+
+
+
+</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"modifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-12-05T13:04:22+05:30"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+</span><span class="nt">"identifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"autoemail734253194812111111@gmail.com"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"externalId"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ext_id7342531948111"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">],</span><span class="w">
+</span><span class="nt">"commChannels"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"autoemail734253194812111111@gmail.com"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"primary"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+</span><span class="nt">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+</span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nt">"residence"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+</span><span class="nt">"office"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">],</span><span class="w">
+</span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">24335250</span><span class="p">,</span><span class="w">
+</span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nt">"conflictingProfileList"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+</span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-04T11:12:14+05:30"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">],</span><span class="w">
+</span><span class="nt">"loyaltyInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nt">"loyaltyType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"loyalty"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"attributionV2"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nt">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-22T00:00:00+05:30"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"modifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-12-05T13:04:22+05:30"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"lifetimePurchases"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">97</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"segments"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+</span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+</span><span class="err">}</span><span class="w">
+
+
+</span></code></pre>
+<p>Allows an org&rsquo;s InStore customers to register on their web page or mobile app. You need to use only the mobile number/email id that is registered on InStore.</p>
+
+<h3 id="request-url">Request URL</h3>
+
+<p>`https://<Respective cluster’s API URL>/v2/user_auth/register</p>
+
+<h3 id="request-attributes">Request Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mobile</td>
+<td>Specify a valid mobile number of the user that is already registered with your org (in any source)</td>
+</tr>
+<tr>
+<td>email</td>
+<td>Specify a valid email id of the user that is already registered with your org (in any source)</td>
+</tr>
+<tr>
+<td>password</td>
+<td>Specify a password for the user account as a MD5 hash</td>
+</tr>
+</tbody></table>
+
+<h2 id="user-authentication">User Authentication</h2>
+<pre class="highlight html"><code># Sample Request
+
+https://us.api.capillarytech.com/v2/user_auth/authorize_user
+</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">POST</span><span class="w"> </span><span class="err">Request</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"71000000000"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom.sawyer@example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom1234"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
+
+
+</span></code></pre>
+<p>Validates whether the provided user credentials are valid or not.</p>
+
+<h3 id="request-url">Request URL</h3>
+
+<p>`https://<Respective cluster’s API URL>/v2/user_auth/authorize_user</p>
+
+<h3 id="request-attributes">Request Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mobile</td>
+<td>Provide the registered mobile number of the user</td>
+</tr>
+<tr>
+<td>email</td>
+<td>Provide the registered email id of the user</td>
+</tr>
+<tr>
+<td>password</td>
+<td>Provice the password in md5 hash form</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-password">Update Password</h2>
+<pre class="highlight html"><code># Sample Request
+
+https://us.api.capillarytech.com/v2/user_auth/update
+</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">POST</span><span class="w"> </span><span class="err">Request</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"71000000000"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom.sawyer@example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom12345"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
+
+
+</span></code></pre>
+<p>Allows updating password of an user account.</p>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/user_auth/update</code></p>
+
+<h3 id="request-attributes">Request Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mobile</td>
+<td>Provide the registered mobile number of the user</td>
+</tr>
+<tr>
+<td>email</td>
+<td>Provide the registered email id of the user</td>
+</tr>
+<tr>
+<td>password</td>
+<td>Provice the new password in md5 hash form</td>
+</tr>
+</tbody></table>
+
+          <h1 id="customer-walkin">Customer Walkin</h1>
+
+<h2 id="trigger-customer-walkin-notifiction-in-instore">Trigger Customer Walkin Notifiction in InStore</h2>
+<pre class="highlight html"><code># Sample Request
+
+https://us.api.capillarytech.com/v2/customer/walkin?till_code=kn.003<span class="err">&amp;</span>identifierName=mobile<span class="err">&amp;</span>identifierValue={{mobile1}}<span class="err">&amp;</span>source=INSTORE
+</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+   </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer checkin successfull"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+   </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+   </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Triggers customer walkin notifications on InStore, i.e., when a customer walks in to the store, InStore triggers a desktop notification with the customer details. </p>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/customer/walkin?till_code=&lt;till code&gt;&amp;identifierName=&lt;mobile/email/external_id&gt;&amp;identifierValue={{}}&amp;source=&lt;source&gt;
+&amp;accountId=&lt;account id&gt;</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>till_code</td>
+<td>Destination TILL code that you want to push the notification</td>
+</tr>
+<tr>
+<td>identifierName</td>
+<td>Identifier tracked when the customer walked in. Values: MOBILE, EMAIL,</td>
+</tr>
+<tr>
+<td>identifierValue</td>
+<td>The respective identifier value</td>
+</tr>
+<tr>
+<td>source</td>
+<td>Source in which the customer is identified</td>
+</tr>
+<tr>
+<td>accountId</td>
+<td>account in which the customer is identified (for sources with multiple account ids)</td>
+</tr>
+</tbody></table>
 
       </div>
       <div class="dark-box">
