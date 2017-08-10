@@ -19,7 +19,8 @@ includes:
   - integrationResource
   - referral
   - requests
-
+  - userAuth
+  - customerWalkin
 search: true
 ---
 

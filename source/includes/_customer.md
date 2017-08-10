@@ -85,7 +85,7 @@ Following are the prerequisites to use customer registration API:
 ### Request Parameters
 Parameter | Value | Description
 --------- | ----- | -----------
-source* | INSTORE/WECHAT/MARTJACK/FACEBOOK | Source in which you want to register a customer
+source* | INSTORE/WECHAT/MARTJACK/FACEBOOK/ALL | Source in which you want to register a customer. Specify source=ALL to fetch details from all the available sources
 accountId* | - | For sources with multiple accounts, pass the specific account id in which you want to register a customer
 
 
@@ -819,6 +819,105 @@ https://eu.api.capillarytech.com/v2/customers/17742/trackers
 ```json
 # Sample Response
 
+{
+"pagination": {
+"limit": 0,
+"offset": 0,
+"total": 0
+},
+"data": [
+  {
+"id": 17270,
+"name": "TestBill",
+"conditionId": 210,
+"type": "BILL_AMOUNT",
+"value": 0,
+"updatedOn": "2017-08-03T12:38:00+05:30"
+},
+  {
+"id": 16995,
+"name": "BA2400",
+"conditionId": 193,
+"type": "BILL_AMOUNT",
+"value": 6000,
+"updatedOn": "2017-08-01T10:41:20+05:30"
+},
+  {
+"id": 16995,
+"name": "BA2400",
+"conditionId": 192,
+"type": "BILL_AMOUNT",
+"value": 6000,
+"updatedOn": "2017-08-01T10:41:20+05:30"
+},
+  {
+"id": 37651,
+"name": "BillInfinite",
+"conditionId": 7717,
+"type": "BILL_AMOUNT",
+"value": 6000,
+"updatedOn": "2017-08-01T10:41:20+05:30"
+},
+  {
+"id": 37651,
+"name": "BillInfinite",
+"conditionId": 7716,
+"type": "BILL_AMOUNT",
+"value": 6000,
+"updatedOn": "2017-08-01T10:41:20+05:30"
+},
+  {
+"id": 20530,
+"name": "Testingbug",
+"conditionId": 1094,
+"type": "BILL_AMOUNT",
+"value": 0,
+"updatedOn": "2016-08-03T12:38:00+05:30"
+},
+  {
+"id": 20531,
+"name": "testingbug2",
+"conditionId": 1096,
+"type": "LINEITEM_AMOUNT",
+"value": 0,
+"updatedOn": "2017-08-03T12:38:00+05:30"
+},
+  {
+"id": 20531,
+"name": "testingbug2",
+"conditionId": 1095,
+"type": "LINEITEM_AMOUNT",
+"value": 0,
+"updatedOn": "2017-08-03T12:38:00+05:30"
+},
+  {
+"id": 17018,
+"name": "LiAm2400",
+"conditionId": 195,
+"type": "LINEITEM_AMOUNT",
+"value": 6000,
+"updatedOn": "2017-08-01T10:41:20+05:30"
+},
+  {
+"id": 17018,
+"name": "LiAm2400",
+"conditionId": 194,
+"type": "LINEITEM_AMOUNT",
+"value": 0,
+"updatedOn": "2017-08-03T10:41:20+05:30"
+},
+  {
+"id": 17427,
+"name": "LineCount",
+"conditionId": 217,
+"type": "LINEITEM_COUNT",
+"value": 0,
+"updatedOn": "2016-08-03T12:38:00+05:30"
+}
+],
+"warnings": [],
+"errors": [],
+}
 
 ```
 
