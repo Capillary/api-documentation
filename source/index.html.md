@@ -12,7 +12,6 @@ toc_footers:
 
 includes:
   - customer
-  - transaction
   - otp
   - userAuth
   - customerWalkin
