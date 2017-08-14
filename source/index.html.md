@@ -13,12 +13,7 @@ toc_footers:
 includes:
   - customer
   - transaction
-  - wallet
-  - dataIngestion
-  - goodWillRequests
-  - integrationResource
-  - referral
-  - requests
+  - otp
   - userAuth
   - customerWalkin
 search: true
