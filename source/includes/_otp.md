@@ -26,7 +26,7 @@ Allows fetchng recent OTP issued to a customer. For now, OTP is issued for redee
 
 ### Request URL
 
-`https://<Respective cluster’s API URL>/v2/otp/source=<source name>&accountId=<account id>&<identifier name>=<identifier Value>&scope=<POINTS/COUPONS>
+`https://<Respective cluster’s API URL>/v2/otp/source=<source name>&accountId=<account id>&<identifier name>=<identifier Value>&scope=<POINTS/COUPONS>`
 
 ### Request Attributes
 Parameter | Description
