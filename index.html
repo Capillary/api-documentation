@@ -1768,21 +1768,47 @@ https://eu.api.capillarytech.com/v2/customers/17742/changeIdentifierLog
 
           <h1 id="transaction">Transaction</h1>
 
-          <h1 id="wallet">Wallet</h1>
+          <h1 id="otp">OTP</h1>
 
-          <h1 id="data-ingestion">Data Ingestion</h1>
+<h2 id="fetch-otp">Fetch OTP</h2>
+<pre class="highlight html"><code># Sample Request
 
-<h1 id="add-events">Add Events</h1>
+https://us.api.capillarytech.com/v2/otp
+</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
 
-          <h1 id="good-will-requests">Good Will Requests</h1>
 
-<h1 id="add-events">Add Events</h1>
+</span></code></pre>
+<p>Allows fetchng recent OTP issued to a customer. For now, OTP is issued for redeeming points. If there is more than one valid OTP available for the customer, this API fetches the recently issued OTP. </p>
 
-          <h1 id="integration-resources">Integration Resources</h1>
+<h3 id="request-url">Request URL</h3>
 
-          <h1 id="referral">Referral</h1>
+<p>`https://<Respective cluster’s API URL>/v2/otp</p>
 
-          <h1 id="requests">Requests</h1>
+<h3 id="request-attributes">Request Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifierName</td>
+<td>Registered identifier of the customer. Values: mobile, email, external_id, wechat</td>
+</tr>
+<tr>
+<td>identifierValue</td>
+<td>Specify the value of the selected identifierName</td>
+</tr>
+<tr>
+<td>threshold</td>
+<td>Specify the validity of the OTP (in seconds) that you want to fetch</td>
+</tr>
+<tr>
+<td>scope</td>
+<td>Specify</td>
+</tr>
+</tbody></table>
 
           <h1 id="user-authentication">User Authentication</h1>
 
