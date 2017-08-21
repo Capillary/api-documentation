@@ -15,6 +15,7 @@ includes:
   - otp
   - userAuth
   - customerWalkin
+  - org
 search: true
 ---
 
