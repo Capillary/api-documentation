@@ -144,7 +144,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 
 ```
 
-Allows updating all the details of an account except UUID and source type.
+Allows updating all the details of an account except UUID and source type. You can also activate or deactivate an account using isActive tag.
 
 ### Resource Information
 Attribute | Value
@@ -254,7 +254,6 @@ Batch Support | No
 Parameter | Description
 --------- | -----------
 org id* | Provide the org id for which you want to retrieve source details
-
 
 
 
