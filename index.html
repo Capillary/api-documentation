@@ -1957,6 +1957,10 @@ https://us.api.capillarytech.com/v2/user_auth/authorize_user
 
 </span></code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
 
+</span><span class="p">{</span><span class="w">
+    </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
 </span></code></pre>
 <p>Validates whether the provided user credentials are valid or not.</p>
@@ -2001,7 +2005,10 @@ https://us.api.capillarytech.com/v2/user_auth/update
 
 </span></code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
 
-
+</span><span class="p">{</span><span class="w">
+    </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Allows updating password of an user account.</p>
 
@@ -2028,6 +2035,60 @@ https://us.api.capillarytech.com/v2/user_auth/update
 <tr>
 <td>password</td>
 <td>Provice the new password in md5 hash form</td>
+</tr>
+</tbody></table>
+
+<h2 id="response-codes">Response Codes</h2>
+
+<h3 id="success-codes">Success Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>91025</td>
+<td>Password updated successfully</td>
+</tr>
+<tr>
+<td>91030</td>
+<td>User is registered successfully</td>
+</tr>
+</tbody></table>
+
+<h3 id="error-codes">Error Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>91024</td>
+<td>Authentation failed. Unable to authorize user with the given credentials</td>
+</tr>
+<tr>
+<td>91026</td>
+<td>Unable to update password</td>
+</tr>
+<tr>
+<td>91027</td>
+<td>Invalid username (mobile number/email id)</td>
+</tr>
+<tr>
+<td>91028</td>
+<td>Invalid password format. Pass the password in MD5 Hash format</td>
+</tr>
+<tr>
+<td>91029</td>
+<td>User is registered already</td>
+</tr>
+<tr>
+<td>91031</td>
+<td>Unable to register user</td>
 </tr>
 </tbody></table>
 
@@ -2080,6 +2141,46 @@ https://us.api.capillarytech.com/v2/customer/walkin?till_code=kn.003<span class=
 <tr>
 <td>accountId</td>
 <td>account in which the customer is identified (for sources with multiple account ids)</td>
+</tr>
+</tbody></table>
+
+<h2 id="response-codes">Response Codes</h2>
+
+<h3 id="error-codes">Error Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>8099</td>
+<td>No identifier passed in the param</td>
+</tr>
+<tr>
+<td>8098</td>
+<td>Invalid Till</td>
+</tr>
+<tr>
+<td>8097</td>
+<td>SNS service not working</td>
+</tr>
+<tr>
+<td>8096</td>
+<td>Invalid Till code</td>
+</tr>
+<tr>
+<td>8095</td>
+<td>Invalid source passed</td>
+</tr>
+<tr>
+<td>8094</td>
+<td>No identifier value passed in the param</td>
+</tr>
+<tr>
+<td>8093</td>
+<td>Walkin failed from store network</td>
 </tr>
 </tbody></table>
 
@@ -2464,6 +2565,68 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <tr>
 <td>UUID*</td>
 <td>Pass the UUID of the account that you want to retrieve</td>
+</tr>
+</tbody></table>
+
+<h2 id="response-codes">Response Codes</h2>
+
+<h3 id="success-codes">Success Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<h3 id="error-codes">Error Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>3213</td>
+<td>Unable to find org source</td>
+</tr>
+<tr>
+<td>3214</td>
+<td>Unable to add org source</td>
+</tr>
+<tr>
+<td>3215</td>
+<td>No source types found</td>
+</tr>
+<tr>
+<td>3216</td>
+<td>Invalid source name</td>
+</tr>
+<tr>
+<td>3217</td>
+<td>Invalid account identifier of the source</td>
+</tr>
+<tr>
+<td>3218</td>
+<td>Invalid source type</td>
+</tr>
+<tr>
+<td>3219</td>
+<td>Unable to update source. Invalid UUID</td>
+</tr>
+<tr>
+<td>3220</td>
+<td>Org source already exists with the given values</td>
+</tr>
+<tr>
+<td>3221</td>
+<td>Unable to update org source / Invalid org id</td>
+</tr>
+<tr>
+<td>3222</td>
+<td>No configurations found for the provided source id</td>
 </tr>
 </tbody></table>
 
