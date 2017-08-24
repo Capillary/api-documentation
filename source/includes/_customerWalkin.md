@@ -36,4 +36,16 @@ source | Source in which the customer is identified
 accountId | account in which the customer is identified (for sources with multiple account ids)
 
 
+## Response Codes
 
+### Error Codes
+
+Code | Description
+---- | -----------
+8099 | No identifier passed in the param
+8098 | Invalid Till
+8097 | SNS service not working
+8096 | Invalid Till code
+8095 | Invalid source passed
+8094 | No identifier value passed in the param
+8093 | Walkin failed from store network

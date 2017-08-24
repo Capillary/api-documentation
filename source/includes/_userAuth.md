@@ -139,6 +139,10 @@ https://us.api.capillarytech.com/v2/user_auth/authorize_user
 ```json
 # Sample Response
 
+{
+    "entity": true,
+    "warnings": []
+}
 
 ```
 
@@ -154,6 +158,8 @@ Parameter | Description
 mobile | Provide the registered mobile number of the user
 email | Provide the registered email id of the user
 password | Provice the password in md5 hash form
+
+
 
 
 
@@ -181,7 +187,10 @@ https://us.api.capillarytech.com/v2/user_auth/update
 ```json
 # Sample Response
 
-
+{
+    "entity": true,
+    "warnings": []
+}
 ```
 
 Allows updating password of an user account.
@@ -200,3 +209,22 @@ password | Provice the new password in md5 hash form
 
 
 
+## Response Codes
+
+### Success Codes
+
+Code | Description
+---- | -----------
+91025 | Password updated successfully
+91030 | User is registered successfully 
+
+### Error Codes
+
+Code | Description
+---- | -----------
+91024 | Authentation failed. Unable to authorize user with the given credentials
+91026 | Unable to update password
+91027 | Invalid username (mobile number/email id)
+91028 | Invalid password format. Pass the password in MD5 Hash format
+91029 | User is registered already
+91031 | Unable to register user

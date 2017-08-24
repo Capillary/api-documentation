@@ -314,3 +314,24 @@ Parameter | Description
 --------- | -----------
 org id* | Provide the org id for which you want to retrieve source details
 UUID* | Pass the UUID of the account that you want to retrieve
+
+
+## Response Codes
+### Success Codes
+Code | Description
+---- | -----------
+
+
+### Error Codes
+Code | Description
+---- | -----------
+3213 | Unable to find org source
+3214 | Unable to add org source
+3215 | No source types found
+3216 | Invalid source name
+3217 | Invalid account identifier of the source
+3218 | Invalid source type
+3219 | Unable to update source. Invalid UUID
+3220 | Org source already exists with the given values
+3221 | Unable to update org source / Invalid org id
+3222 | No configurations found for the provided source id
