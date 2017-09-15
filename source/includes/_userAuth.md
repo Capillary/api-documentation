@@ -105,7 +105,7 @@ Allows an org's InStore customers to register on their web page or mobile app. Y
 
 ### Request URL
 
-`https://<Respective cluster’s API URL>/v2/user_auth/register
+`https://<Respective cluster’s API URL>/v2/user_auth/register`
 
 ### Request Attributes
 Parameter | Description
@@ -150,7 +150,7 @@ Validates whether the provided user credentials are valid or not.
 
 ### Request URL
 
-`https://<Respective cluster’s API URL>/v2/user_auth/authorize_user
+`https://<Respective cluster’s API URL>/v2/user_auth/authorize_user`
 
 ### Request Attributes
 Parameter | Description
