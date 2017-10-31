@@ -1,4 +1,4 @@
-# OTP
+# Other APIs
 
 
 ## Fetch OTP
@@ -39,4 +39,31 @@ threshold | Specify the validity of the OTP (in seconds) that you want to fetch
 scope | Specify the scope of the OTP issued. Values: POINTS/COUPONS
 
 
+## Generate External IDs
 
+```html
+# Sample Request
+ 
+https://us.api.capillarytech.com/v2/cardNumber
+```
+
+
+```json
+# Sample Response
+{
+    "entity": "1000000010",
+    "warnings": []
+}
+```
+
+This API lets you generate external ids manually which can be tagged to a customer while registering. A unique external id is generated every time you call this API. To generate external ids, the option CONF_CARD_NUMBER_GENERATION_ENABLED on InTouch > Settings > Miscellaneous> Registration Configuration page should have enabled. When a customer is registered without an external id, this API is called in the backend and the unique external id is tagged to the customer automatically. However, it will not override external ids if entered manually.
+
+### Prerequisites
+
+* This API works only if CONF_CARD_NUMBER_GENERATION_ENABLED and CONF_CLIENT_V2_API_ENABLED are checked on the Registration Configuration page
+* It is valid only for the account ids configured on the SOURCE_ACCOUNTS_EXTERNALID_ENABLED of the Registration Configuration page
+
+
+### Request URL
+
+`https://<Respective cluster’s API URL>/v2/cardNumber`
