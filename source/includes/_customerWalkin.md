@@ -1,6 +1,6 @@
-# Customer Walkin
+# Customer Walk-in
 
-## Trigger Customer Walkin Notifiction in InStore 
+## Trigger Customer Walk-in Notifications on InStore 
 
 ```html
 # Sample Request
@@ -12,7 +12,7 @@ https://us.api.capillarytech.com/v2/customer/walkin?till_code=kn.003&identifierN
 # Sample Response
 
 {
-   "entity": "Customer checkin successfull",
+   "entity": "Customer check-in successful",
    "warnings": [],
    "errors": [],
    "success": true

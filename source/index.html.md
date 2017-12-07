@@ -16,18 +16,19 @@ includes:
   - userAuth
   - customerWalkin
   - org
+  - verticals
 search: true
 ---
 
 # Introduction
 
-This document describes the RESTful APIs provided by Capillary. These APIs can be consumed by Capillary or other brands that are registered with Capillary/MartJack to manage their CRM. Capillary V2 APIs support multiple sources such as InSource, MartJack, Facebook, and WeChat.
+This document describes the RESTful APIs provided by Capillary. These APIs can be consumed by Capillary or other brands that are registered with Capillary/MartJack to manage their CRM. Capillary V2 APIs support multiple sources such as InStore, MartJack, Facebook, and WeChat.
 
 This document provides detailed information on all the APIs and guides in how to each API with the appropriate samples.
 
 
 ## Source
-Source is an entry through which a customer is registered. Unlike v1.1 APIs, v2.0 APIs provide extended support for multiple sources, i.e., you can now manage accouts of different sources such as InStore, MartJack, WeChat, Ecommerce and Facebook.
+Source is an entry through which a customer is registered. Unlike v1.1 APIs, v2.0 APIs provide extended support for multiple sources, i.e., you can now manage accounts of different sources such as InStore, MartJack, WeChat, e-commerce and Facebook.
 
 V2.0 APIs also support multiple accounts of a single source. For example, an org could have multiple accounts of WeChat and Facebook. Each account will have a different account id. You would need to pass the respective account id when making API calls.
 
