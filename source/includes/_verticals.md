@@ -133,9 +133,15 @@ Batch Support | NA
 
 
 
-### Request URL
+
+
+
+
+
+## Add/Enable Verticals
 ```html
 # Sample Request
+
 https://us.api.capillarytech.com/v2/verticals
 ```
 
@@ -147,14 +153,6 @@ https://us.api.capillarytech.com/v2/verticals
   "verticalName": "Electronics"
 }
 ```
-
-`https://<Cluster URL>/v2/verticals`
-
-
-
-
-
-## Add/Enable Verticals
 
 
 Lets you enable a vertical to the org. Make sure that you pass the exact vertical name or id as available in the database. Use `verticals/meta` API to get the entire list of verticals available for the org.  
@@ -172,6 +170,9 @@ HTTP Method | POST
 Batch Support | No
 
 
+### Request URL
+
+`https://<Cluster URL>/v2/verticals`
 
 
 
@@ -195,17 +196,22 @@ http://us.api.capillarytech.com/v2/verticals/2
 
 Disables an existing vertical.
 
-### Request URL
-`https://<Cluster URL>/v2/verticals/<vertical id>`
+
 
 ### Resource Information
 
 Information | Value
 ----------- | -----
-URI | /verticals/<id>
+URI | /verticals/(vertical id)
 Authentication | Yes
 HTTP Method | DELETE
 Batch Support | No
+
+
+### Request URL
+`https://<Cluster URL>/v2/verticals/<vertical id>`
+
+
 
 
 ## Response Codes
