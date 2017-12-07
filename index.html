@@ -119,13 +119,13 @@
       <div class="content">
         <h1 id="introduction">Introduction</h1>
 
-<p>This document describes the RESTful APIs provided by Capillary. These APIs can be consumed by Capillary or other brands that are registered with Capillary/MartJack to manage their CRM. Capillary V2 APIs support multiple sources such as InSource, MartJack, Facebook, and WeChat.</p>
+<p>This document describes the RESTful APIs provided by Capillary. These APIs can be consumed by Capillary or other brands that are registered with Capillary/MartJack to manage their CRM. Capillary V2 APIs support multiple sources such as InStore, MartJack, Facebook, and WeChat.</p>
 
 <p>This document provides detailed information on all the APIs and guides in how to each API with the appropriate samples.</p>
 
 <h2 id="source">Source</h2>
 
-<p>Source is an entry through which a customer is registered. Unlike v1.1 APIs, v2.0 APIs provide extended support for multiple sources, i.e., you can now manage accouts of different sources such as InStore, MartJack, WeChat, Ecommerce and Facebook.</p>
+<p>Source is an entry through which a customer is registered. Unlike v1.1 APIs, v2.0 APIs provide extended support for multiple sources, i.e., you can now manage accounts of different sources such as InStore, MartJack, WeChat, e-commerce and Facebook.</p>
 
 <p>V2.0 APIs also support multiple accounts of a single source. For example, an org could have multiple accounts of WeChat and Facebook. Each account will have a different account id. You would need to pass the respective account id when making API calls.</p>
 
@@ -2115,16 +2115,16 @@ https://us.api.capillarytech.com/v2/user_auth/update
 </tr>
 </tbody></table>
 
-          <h1 id="customer-walkin">Customer Walkin</h1>
+          <h1 id="customer-walk-in">Customer Walk-in</h1>
 
-<h2 id="trigger-customer-walkin-notifiction-in-instore">Trigger Customer Walkin Notifiction in InStore</h2>
+<h2 id="trigger-customer-walk-in-notifications-on-instore">Trigger Customer Walk-in Notifications on InStore</h2>
 <pre class="highlight html"><code># Sample Request
 
 https://us.api.capillarytech.com/v2/customer/walkin?till_code=kn.003<span class="err">&amp;</span>identifierName=mobile<span class="err">&amp;</span>identifierValue={{mobile1}}<span class="err">&amp;</span>source=INSTORE
 </code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
 
 </span><span class="p">{</span><span class="w">
-   </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer checkin successfull"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer check-in successful"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
    </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
@@ -2650,6 +2650,210 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <tr>
 <td>3222</td>
 <td>No configurations found for the provided source id</td>
+</tr>
+</tbody></table>
+
+          <h1 id="verticals">Verticals</h1>
+
+<h2 id="retrieve-all-verticals-available-for-the-org">Retrieve All Verticals Available for the Org</h2>
+<pre class="highlight html"><code># Sample Request
+https://us.api.capillarytech.com/v2/verticals/meta
+</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+    </span><span class="nt">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jewellery"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-commerce"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Electronics"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apparel"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"F&amp;B"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Retrieves the list of all verticals available for the org. This include both active and inactive verticals.</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<p>| | |
+&ndash; | &ndash;
+URI | /verticals/meta
+Authentication | Yes
+HTTP Method | GET
+Batch Support | NA</p>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">htpps://&lt;Cluster URL&gt;/v2/verticals/meta</code></p>
+
+<h2 id="retrieve-verticals-enabled-for-the-org">Retrieve Verticals Enabled for the Org</h2>
+<pre class="highlight html"><code># Sample Request
+https://us.api.capillarytech.com/v2/verticals
+</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+    </span><span class="nt">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"verticalId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"verticalName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jewellery"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"verticalId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"verticalName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-commerce"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"verticalId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"verticalName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Electronics"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"verticalId"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"verticalName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apparel"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"verticalId"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"verticalName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Home Appliance"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>Retrieves the list of verticals enabled for the org (active verticals).</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<p>| | |
+&ndash; | &ndash;
+URI | /verticals
+Authentication | Yes
+HTTP Method | GET
+Batch Support | NA</p>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">htpps://&lt;Cluster URL&gt;/v2/verticals</code></p>
+
+<h3 id="request-url">Request URL</h3>
+<pre class="highlight html"><code># Sample Request
+https://us.api.capillarytech.com/v2/verticals
+</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"verticalId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"verticalName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Electronics"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p><code class="prettyprint">https://&lt;Cluster URL&gt;/v2/verticals</code></p>
+
+<h2 id="add-enable-verticals">Add/Enable Verticals</h2>
+
+<p>Lets you enable a vertical to the org. Make sure that you pass the exact vertical name or id as available in the database. Use <code class="prettyprint">verticals/meta</code> API to get the entire list of verticals available for the org.  </p>
+
+<aside class="notice">A vertical added through this API will be enabled by default irrespective of the value passed in isActive. You cannot disable a vertical using this API</aside>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<p>| | |
+&ndash; | &ndash;
+URI | /verticals
+Authentication | Yes
+HTTP Method | POST
+Batch Support | No</p>
+
+<h2 id="disable-an-org-vertical">Disable an Org Vertical</h2>
+<pre class="highlight html"><code># Sample Request
+http://us.api.capillarytech.com/v2/verticals/2
+</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"verticalId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Disables an existing vertical.</p>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;Cluster URL&gt;/v2/verticals/&lt;vertical id&gt;</code></p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<p>| | |
+&ndash; | &ndash;
+URI | /verticals/<id>
+Authentication | Yes
+HTTP Method | DELETE
+Batch Support | No</p>
+
+<h2 id="response-codes">Response Codes</h2>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>91027</td>
+<td>Unable to find vertical</td>
+</tr>
+<tr>
+<td>91028</td>
+<td>Invalid vertical</td>
+</tr>
+<tr>
+<td>91029</td>
+<td>Unable to add vertical. Invalid vertical name passed</td>
+</tr>
+<tr>
+<td>91030</td>
+<td>Unable to add org vertical</td>
+</tr>
+<tr>
+<td>91031</td>
+<td>Unable to disable the vertical</td>
+</tr>
+<tr>
+<td>91032</td>
+<td>Org is already mapped to the specified vertical id</td>
 </tr>
 </tbody></table>
 
