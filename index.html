@@ -2804,8 +2804,9 @@ https://us.api.capillarytech.com/v2/verticals
 
 <p><code class="prettyprint">htpps://&lt;Cluster URL&gt;/v2/verticals</code></p>
 
-<h3 id="request-url">Request URL</h3>
+<h2 id="add-enable-verticals">Add/Enable Verticals</h2>
 <pre class="highlight html"><code># Sample Request
+
 https://us.api.capillarytech.com/v2/verticals
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
@@ -2814,10 +2815,6 @@ https://us.api.capillarytech.com/v2/verticals
   </span><span class="nt">"verticalName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Electronics"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p><code class="prettyprint">https://&lt;Cluster URL&gt;/v2/verticals</code></p>
-
-<h2 id="add-enable-verticals">Add/Enable Verticals</h2>
-
 <p>Lets you enable a vertical to the org. Make sure that you pass the exact vertical name or id as available in the database. Use <code class="prettyprint">verticals/meta</code> API to get the entire list of verticals available for the org.  </p>
 
 <aside class="notice">A vertical added through this API will be enabled by default irrespective of the value passed in isActive. You cannot disable a vertical using this API</aside>
@@ -2848,6 +2845,10 @@ https://us.api.capillarytech.com/v2/verticals
 </tr>
 </tbody></table>
 
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;Cluster URL&gt;/v2/verticals</code></p>
+
 <h2 id="disable-an-org-vertical">Disable an Org Vertical</h2>
 <pre class="highlight html"><code># Sample Request
 http://us.api.capillarytech.com/v2/verticals/2
@@ -2861,10 +2862,6 @@ http://us.api.capillarytech.com/v2/verticals/2
 </span></code></pre>
 <p>Disables an existing vertical.</p>
 
-<h3 id="request-url">Request URL</h3>
-
-<p><code class="prettyprint">https://&lt;Cluster URL&gt;/v2/verticals/&lt;vertical id&gt;</code></p>
-
 <h3 id="resource-information">Resource Information</h3>
 
 <table><thead>
@@ -2875,7 +2872,7 @@ http://us.api.capillarytech.com/v2/verticals/2
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td>/verticals/<id></td>
+<td>/verticals/(vertical id)</td>
 </tr>
 <tr>
 <td>Authentication</td>
@@ -2890,6 +2887,10 @@ http://us.api.capillarytech.com/v2/verticals/2
 <td>No</td>
 </tr>
 </tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;Cluster URL&gt;/v2/verticals/&lt;vertical id&gt;</code></p>
 
 <h2 id="response-codes">Response Codes</h2>
 
