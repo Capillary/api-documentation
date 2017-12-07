@@ -48,8 +48,8 @@ Retrieves the list of all verticals available for the org. This include both act
 
 ### Resource Information
 
-| | |
--- | --
+Information | Value
+----------- | --
 URI | /verticals/meta
 Authentication | Yes
 HTTP Method | GET
@@ -119,8 +119,8 @@ Retrieves the list of verticals enabled for the org (active verticals).
 
 ### Resource Information
 
-| | |
--- | --
+Information | Value
+----------- | --
 URI | /verticals
 Authentication | Yes
 HTTP Method | GET
@@ -164,8 +164,8 @@ Lets you enable a vertical to the org. Make sure that you pass the exact vertica
 
 ### Resource Information
 
-| | |
--- | --
+Information | Value
+----------- | --
 URI | /verticals
 Authentication | Yes
 HTTP Method | POST
@@ -200,8 +200,8 @@ Disables an existing vertical.
 
 ### Resource Information
 
-| | |
--- | --
+Information | Value
+----------- | --
 URI | /verticals/<id>
 Authentication | Yes
 HTTP Method | DELETE
