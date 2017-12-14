@@ -91,7 +91,6 @@ params |
 
 
 ## Add Survey Responses
-## POST Survey
 ```html
 http://us.api.capillarytech.com/v2/survey/responses?112
 ```
