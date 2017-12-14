@@ -35,7 +35,7 @@ Batch Support | No
 Attribute | Description
 --------- | -----------
 title* | Specify the title of the survey form
-surveyType | productsurvey, store survey, cloud cherry
+surveyType | product survey, store survey, cloud cherry
 source* | Source where the survey is hosted
 brandLogo | Provide the path of the brand logo
 brandWebsite | Provide the official web site link of the org
@@ -51,13 +51,13 @@ http://us.api.capillarytech.com/v2/survey/questions?112
 ```json
 [
   {
- "tag": "Nps",
+ "tag": "nps",
  "fieldType": "nps",
- "question": "How do you feel about the store ?",
+ "question": "How do you feel about the store?",
  "qxnExternalId":"112",
  "fieldOptions": "{\r\n\"opt1\": \"product not available\",\r\n\"opt2\": \"price too high \",\r\n\"opt3 \": \"I just don\u2019t like your store\"\r\n}",
  "parentId": 0,
- "params": "abc"
+ "params": ""
   }
 ]
 
@@ -81,10 +81,10 @@ Batch Support | Yes
 Attribute | Description
 --------- | -----------
 tag | 
-fieldType* | Specify the type of the field - TextBlock, TextBlock, TextAreaBlock, Multiple Choice, Checkboxes, Scale, Star Rating, multiquestion, Add Call us back question,nps
+fieldType* | Specify the type of the field - TextBlock, TextAreaBlock, Multiple Choice, Checkboxes, Scale, Star Rating, multiquestion, Add Call us back question, and nps
 question* | Specify the survey question
 qxnExternalId* | Pass the external id of the question provided by the vendor  
-fieldOptions | 
+fieldOptions | Specify the options you want to provide for each question. Not applicable for TextBlock, TextAreaBlock
 parentId | Survey questions can have sub questions. Example: The value will be 0 by default. If it is a sub-question, parent id will a positive value
 params | 
 
@@ -102,10 +102,10 @@ http://us.api.capillarytech.com/v2/survey/responses?112
 		"userId": 134223,
   		"formId":123,
  		"tokenId":1,
-  		"fieldValue":"aweer",
-		"entityType": "transaction",
+  		"fieldValue":"Sample answer",
+		"entityType": "checkBox",
 		"entityId": 222,
-		"responseChannel": "SMS"
+		"responseChannel": "online"
 }]
 
 ```
@@ -134,7 +134,7 @@ tokenId* | Provide the unique id assigned to a customer to submit a survey
 fieldValue* | Specify the value/answer chosen for the question
 entityType | Specify the entity type of the survey - checkBox/TextBox/SelectBox/TextArea/radiobutton
 entityId | Pass the id of the respective entity type
-responseChannel |Specify the response channel - Online/ Offline
+responseChannel | Specify the response channel - online/ offline
  
 
 
@@ -288,12 +288,12 @@ http://api.nightly.capillary.in/v2/survey/questions/214 <survey question id>
     "qxnExternalId": "Question01",
     "question": "Question01",
     "fieldOptions": "{\r\n\"opt1\": \"product not available\",\r\n\"opt2\": \"price too high \",\r\n\"opt3 \": \"I just don’t like your store\"\r\n}",
-    "fieldType": "text",
-    "tag": "Nps",
+    "fieldType": "Multiple Choice",
+    "tag": "nps",
     "isActive": true,
     "lastUpdatedOn": "2017-12-06",
     "parentId": 0,
-    "params": "bbbb",
+    "params": "",
     "warnings": [
     ]
 }
@@ -353,7 +353,7 @@ http://us.intouch.capillarytech.com/v2/survey/responses/118
     "id": 118,
     "surveyQuestionId": 256,
     "entityId": 0,
-    "fieldValue": "ghuj",
+    "fieldValue": "Sample answer",
     "formId": 1234,
     "userId": 13422223,
     "tokenId": 23,
