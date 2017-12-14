@@ -137,7 +137,7 @@ responseChannel | Specify the response channel - online/ offline
  
 
 
-## Retrieve Survey Details
+## Retrieve Details of a Survey
 
 ```html
 http://us.intouch.capillarytech.com/v2/survey?extRefId=123
@@ -255,7 +255,7 @@ http://us.intouch.capillarytech.com/v2/survey/questions/214
 }
 ```
 
-
+Retrieves all questions of a specific survey.
 
 ### Resource Information
 Information | Value
@@ -278,7 +278,7 @@ Survey question id | Pass the primary key of the question id
 
 ## Retrieve Details of a Specific Question
 ```html
-http://api.nightly.capillary.in/v2/survey/questions/214 <survey question id>
+http://api.nightly.capillary.in/v2/survey/questions/214
 ```
 
 ```json
@@ -300,7 +300,22 @@ http://api.nightly.capillary.in/v2/survey/questions/214 <survey question id>
 
 Retrieves details of a specific question.
 
+### Resource Information
+Information | Value
+----------- | -----
+URI | /survey/questions/{question external id}
+Authentication | Yes
+HTTP Method | GET
+Batch Support | No
 
+
+### Request URL
+`http://<Cluster URL>/v2/survey/questions/<survey question id>`
+
+### Request Parameter
+Parameter | Description
+--------- | ----------
+Survey question id* | Pass the question id for which you want to see the details
 
 
 
