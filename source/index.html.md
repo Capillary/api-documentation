@@ -17,6 +17,7 @@ includes:
   - customerWalkin
   - org
   - verticals
+  - survey
   - extendedFields
 search: true
 ---
