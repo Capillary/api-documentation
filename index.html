@@ -2804,94 +2804,6 @@ https://us.api.capillarytech.com/v2/verticals
 
 <p><code class="prettyprint">htpps://&lt;Cluster URL&gt;/v2/verticals</code></p>
 
-<h2 id="add-enable-verticals">Add/Enable Verticals</h2>
-<pre class="highlight html"><code># Sample Request
-
-https://us.api.capillarytech.com/v2/verticals
-</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"verticalId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"verticalName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Electronics"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>Lets you enable a vertical to the org. Make sure that you pass the exact vertical name or id as available in the database. Use <code class="prettyprint">verticals/meta</code> API to get the entire list of verticals available for the org.  </p>
-
-<aside class="notice">A vertical added through this API will be enabled by default irrespective of the value passed in isActive. You cannot disable a vertical using this API</aside>
-
-<h3 id="resource-information">Resource Information</h3>
-
-<table><thead>
-<tr>
-<th>Information</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URI</td>
-<td>/verticals</td>
-</tr>
-<tr>
-<td>Authentication</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>HTTP Method</td>
-<td>POST</td>
-</tr>
-<tr>
-<td>Batch Support</td>
-<td>No</td>
-</tr>
-</tbody></table>
-
-<h3 id="request-url">Request URL</h3>
-
-<p><code class="prettyprint">https://&lt;Cluster URL&gt;/v2/verticals</code></p>
-
-<h2 id="disable-an-org-vertical">Disable an Org Vertical</h2>
-<pre class="highlight html"><code># Sample Request
-http://us.api.capillarytech.com/v2/verticals/2
-</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
-</span><span class="p">{</span><span class="w">
-    </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"verticalId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>Disables an existing vertical.</p>
-
-<h3 id="resource-information">Resource Information</h3>
-
-<table><thead>
-<tr>
-<th>Information</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URI</td>
-<td>/verticals/(vertical id)</td>
-</tr>
-<tr>
-<td>Authentication</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>HTTP Method</td>
-<td>DELETE</td>
-</tr>
-<tr>
-<td>Batch Support</td>
-<td>No</td>
-</tr>
-</tbody></table>
-
-<h3 id="request-url">Request URL</h3>
-
-<p><code class="prettyprint">https://&lt;Cluster URL&gt;/v2/verticals/&lt;vertical id&gt;</code></p>
-
 <h2 id="response-codes">Response Codes</h2>
 
 <table><thead>
@@ -2923,6 +2835,637 @@ http://us.api.capillarytech.com/v2/verticals/2
 <tr>
 <td>91032</td>
 <td>Org is already mapped to the specified vertical id</td>
+</tr>
+</tbody></table>
+
+          <h1 id="extended-fields">Extended Fields</h1>
+
+<h2 id="retrieve-extended-fields-of-the-organization">Retrieve Extended Fields of the Organization</h2>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/extendedFields
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gender"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gender"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STANDARD_ENUM"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"marital_status"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-19"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Marital Status"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STANDARD_ENUM"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"city"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-13"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"City"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STRING"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">26</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dob"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-13"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Date of Birth"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DATETIME"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">27</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ssnNumber"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-13"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SSN Number"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STRING"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nationality"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-13"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nationality"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COUNTRY"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">43</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ethnicity"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-20"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ethnicity"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STRING"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">44</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"zip"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-20"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Zip Code"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STRING"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"born_in"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-22"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-22"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Birth Country"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COUNTRY"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">46</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"preferred_store"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-22"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-22"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Preferred Store"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ORG_ENTITY"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">47</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"preferred_cashier"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-22"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-22"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Preferred Cashier"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ASSOCIATE_USER"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">48</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"preferred_language"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-22"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-22"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Preferred Language"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LANGUAGE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">49</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"preferred_currency"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-22"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-22"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Preferred Currency"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CURRENCY"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">52</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"profession"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-22"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-22"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Profession"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STRING"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">53</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"religion"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-22"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-22"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Religion"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STRING"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">54</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wedding_date"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-22"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-22"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Wedding Date"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DATETIME"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"country_of_residence"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-11-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-11-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Country of Residence"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"COUNTRY"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">62</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"kid_status"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-11-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-11-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">" Is customer having kids"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STANDARD_ENUM"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"lineitem"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"uuid"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UUID"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STRING"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"serial_number"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-19"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Serial Number"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STRING"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vat_tax_percentage"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-19"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vat Tax Percentage"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOUBLE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"vat_amount"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-19"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vat Tax Amount"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOUBLE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"service_tax_amount"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-19"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Service Tax Amount"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOUBLE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"service_tax_percentage"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-19"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Service Tax Percentage"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOUBLE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">37</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CentralGST"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-23"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Central GST"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOUBLE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">38</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"StateGST"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-23"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"State GST"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOUBLE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">39</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IntegratedGST"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-23"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Integrated GST"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOUBLE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"size"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-22"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-22"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Size"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STRING"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">55</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"special_lineitem_type"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-23"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-23"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Special LineItem Type"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STANDARD_ENUM"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MetalRate"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Metal Rate"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOUBLE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MetalWeight"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Metal Weight"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOUBLE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"StoneCharge"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Stone Charge"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOUBLE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MakingCharge"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Making Charge"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOUBLE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GrossWeight"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-23"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gross Weight"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOUBLE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">33</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MetalPurity"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-23"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Metal Purity"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOUBLE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unit"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-28"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Unit"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STANDARD_ENUM"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">41</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DesignCode"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-20"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Design Code"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STRING"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">42</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SupplierCode"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-07-20"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Supplier Code"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STRING"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"imei_number"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-05-19"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"regular_transaction"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STRING"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">51</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"inseam"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-22"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-22"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Inseam"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOUBLE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"transaction"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">29</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cashier_id"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-13"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cashier Id"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STRING"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">34</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CentralGST"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-23"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Central GST"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOUBLE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">35</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"StateGST"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-23"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"State GST"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOUBLE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">36</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IntegratedGST"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-23"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Integrated GST"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOUBLE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">61</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tax_amount"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-11-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-11-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">" Tax Amount"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOUBLE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">63</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NPS"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-11-28"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-11-28"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NPS"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INTEGER"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GrossWeight"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-23"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gross Weight"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOUBLE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">31</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MetalPurity"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-14"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-23"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Metal Purity"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DOUBLE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"booking_type"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-23"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-23"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Booking Type"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STANDARD_ENUM"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">57</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order_date_time"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-23"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-23"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Order Time"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DATETIME"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">58</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"delivery_date_time"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-23"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-23"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Delivery Time"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DATETIME"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">59</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"order_channel"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-23"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-10-23"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Order Channel"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUSTOM_ENUM"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>Retrieves the details of all extended fields configured for the organization.</p>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;Cluster URL&gt;/v2/extendedFields</code></p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Information</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td>/extendedFields</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
 </tr>
 </tbody></table>
 
