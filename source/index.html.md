@@ -17,6 +17,7 @@ includes:
   - customerWalkin
   - org
   - verticals
+  - extendedFields
 search: true
 ---
 
