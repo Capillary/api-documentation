@@ -2841,16 +2841,8 @@ https://us.api.capillarytech.com/v2/verticals
           <h1 id="survey">Survey</h1>
 
 <h2 id="create-a-survey">Create a Survey</h2>
-
-<blockquote>
-<p>Sample Request</p>
-</blockquote>
 <pre class="highlight html"><code>http://us.api.capillarytech.com/v2/survey/v2/survey
-</code></pre>
-<blockquote>
-<p>Sample POST Request</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
         </span><span class="nt">"title"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Product feedback survey"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"surveyType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"online"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cloudcherry/Capillary"</span><span class="p">,</span><span class="w">
@@ -2859,15 +2851,6 @@ https://us.api.capillarytech.com/v2/verticals
         </span><span class="nt">"externalRefId"</span><span class="p">:</span><span class="s2">"123"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre>
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-   </span><span class="nt">"createdId"</span><span class="p">:</span><span class="w"> </span><span class="mi">328</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-   </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Allows creating a new survey </p>
 
@@ -2897,7 +2880,7 @@ https://us.api.capillarytech.com/v2/verticals
 </tr>
 </tbody></table>
 
-<h3 id="request-url">Request URL</h3>
+<h3 id="sample-request">Sample Request</h3>
 
 <p><code class="prettyprint">http://&lt;cluster url&gt;/v2/survey</code></p>
 
@@ -2919,7 +2902,7 @@ https://us.api.capillarytech.com/v2/verticals
 </tr>
 <tr>
 <td>source*</td>
-<td>Source where the survey is hosted - Cloudcherry/Capillary</td>
+<td>Source where the survey is hosted</td>
 </tr>
 <tr>
 <td>brandLogo</td>
@@ -2936,16 +2919,8 @@ https://us.api.capillarytech.com/v2/verticals
 </tbody></table>
 
 <h2 id="add-questions-to-a-survey">Add Questions to a Survey</h2>
-
-<blockquote>
-<p>Sample Request</p>
-</blockquote>
-<pre class="highlight html"><code>http://us.api.capillarytech.com/v2/survey/questions?surveyId=112
-</code></pre>
-<blockquote>
-<p>Sample POST Request</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
+<pre class="highlight html"><code>http://us.api.capillarytech.com/v2/survey/questions?112
+</code></pre><pre class="highlight json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
  </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nps"</span><span class="p">,</span><span class="w">
  </span><span class="nt">"fieldType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nps"</span><span class="p">,</span><span class="w">
@@ -2957,28 +2932,6 @@ https://us.api.capillarytech.com/v2/verticals
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
 
-</span></code></pre>
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-       </span><span class="p">{</span><span class="w">
-           </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">433</span><span class="p">,</span><span class="w">
-           </span><span class="nt">"qxnExternalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"102"</span><span class="p">,</span><span class="w">
-           </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"What is your feedback about the prooduct?"</span><span class="p">,</span><span class="w">
-           </span><span class="nt">"fieldOptions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{\r\n\"opt1\": \"product not available\",\r\n\"opt2\": \"price too high \",\r\n\"opt3 \": \"I just don’t like your store\"\r\n}"</span><span class="p">,</span><span class="w">
-           </span><span class="nt">"fieldType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Checkboxes"</span><span class="p">,</span><span class="w">
-           </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nps"</span><span class="p">,</span><span class="w">
-           </span><span class="nt">"parentId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-           </span><span class="nt">"params"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
-       </span><span class="p">}</span><span class="w">
-   </span><span class="p">],</span><span class="w">
-   </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-   </span><span class="p">],</span><span class="w">
-   </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-   </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Allows adding questions to the existing survey.</p>
 
@@ -3008,11 +2961,9 @@ https://us.api.capillarytech.com/v2/verticals
 </tr>
 </tbody></table>
 
-<h3 id="request-url">Request URL</h3>
+<h3 id="sample-request">Sample Request</h3>
 
-<p><code class="prettyprint">http://&lt;cluster url&gt;/v2/survey/questions?surveyId={survey id}</code></p>
-
-<p><code class="prettyprint">http://&lt;cluster url&gt;/v2/survey/questions?extRefId={external reference id}</code></p>
+<p><code class="prettyprint">http://&lt;cluster url&gt;/v2/survey/questions?{surveyId/extRefId}</code></p>
 
 <h3 id="request-attributes">Request Attributes</h3>
 
@@ -3024,7 +2975,7 @@ https://us.api.capillarytech.com/v2/verticals
 </thead><tbody>
 <tr>
 <td>tag</td>
-<td>Possible values: Nps, CSAT, Comments, or Feedback</td>
+<td></td>
 </tr>
 <tr>
 <td>fieldType*</td>
@@ -3053,50 +3004,18 @@ https://us.api.capillarytech.com/v2/verticals
 </tbody></table>
 
 <h2 id="add-survey-responses">Add Survey Responses</h2>
-
-<blockquote>
-<p>Sample Request</p>
-</blockquote>
 <pre class="highlight html"><code>http://us.api.capillarytech.com/v2/survey/responses?112
-</code></pre>
-<blockquote>
-<p>Sample POST Request</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[{</span><span class="w">
+</code></pre><pre class="highlight json"><code><span class="p">[{</span><span class="w">
         </span><span class="nt">"surveyQuestionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"233"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">134223</span><span class="p">,</span><span class="w">
         </span><span class="nt">"formId"</span><span class="p">:</span><span class="mi">123</span><span class="p">,</span><span class="w">
         </span><span class="nt">"tokenId"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nt">"fieldValue"</span><span class="p">:</span><span class="s2">"Sample answer"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"entityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"feedback"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"entityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"checkBox"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">222</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"responseChannel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Email"</span><span class="w">
+        </span><span class="nt">"responseChannel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"online"</span><span class="w">
 </span><span class="p">}]</span><span class="w">
 
-</span></code></pre>
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-       </span><span class="p">{</span><span class="w">
-           </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">146</span><span class="p">,</span><span class="w">
-           </span><span class="nt">"surveyQuestionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">233</span><span class="p">,</span><span class="w">
-           </span><span class="nt">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">222</span><span class="p">,</span><span class="w">
-           </span><span class="nt">"entityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"feedback"</span><span class="p">,</span><span class="w">
-           </span><span class="nt">"fieldValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sample answer"</span><span class="p">,</span><span class="w">
-           </span><span class="nt">"formId"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w">
-           </span><span class="nt">"responseChannel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Email"</span><span class="p">,</span><span class="w">
-           </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">134223</span><span class="p">,</span><span class="w">
-           </span><span class="nt">"tokenId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-           </span><span class="nt">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-12T15:18:23+05:30"</span><span class="w">
-       </span><span class="p">}</span><span class="w">
-   </span><span class="p">],</span><span class="w">
-   </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-   </span><span class="p">],</span><span class="w">
-   </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-   </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Allows adding customer responses to a survey.</p>
 
@@ -3110,7 +3029,7 @@ https://us.api.capillarytech.com/v2/verticals
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td>/survey/responses?surveyId/extRefId={value}</td>
+<td>/survey/responses?{surveyId/extRefId}</td>
 </tr>
 <tr>
 <td>Authentication</td>
@@ -3126,11 +3045,9 @@ https://us.api.capillarytech.com/v2/verticals
 </tr>
 </tbody></table>
 
-<h3 id="request-url">Request URL</h3>
+<h3 id="sample-request">Sample Request</h3>
 
-<p><code class="prettyprint">http://&lt;cluster url&gt;/v2/survey/responses?surveyId={survey id}</code></p>
-
-<p><code class="prettyprint">http://&lt;cluster url&gt;/v2/survey/responses?extRefId={external reference id}</code></p>
+<p><code class="prettyprint">http://&lt;cluster url&gt;/v2/survey/responses?{surveyId/extRefId}</code></p>
 
 <h3 id="request-attributes">Request Attributes</h3>
 
@@ -3162,7 +3079,7 @@ https://us.api.capillarytech.com/v2/verticals
 </tr>
 <tr>
 <td>entityType</td>
-<td>Specify the entity type of the survey - transaction, complaint, or feedback</td>
+<td>Specify the entity type of the survey - checkBox/TextBox/SelectBox/TextArea/radiobutton</td>
 </tr>
 <tr>
 <td>entityId</td>
@@ -3170,21 +3087,13 @@ https://us.api.capillarytech.com/v2/verticals
 </tr>
 <tr>
 <td>responseChannel</td>
-<td>Specify the response channel - Email, Call Center, Social, or Instore</td>
+<td>Specify the response channel - online/ offline</td>
 </tr>
 </tbody></table>
 
 <h2 id="retrieve-details-of-a-survey">Retrieve Details of a Survey</h2>
-
-<blockquote>
-<p>Sample Request</p>
-</blockquote>
 <pre class="highlight html"><code>http://us.intouch.capillarytech.com/v2/survey?extRefId=123
-</code></pre>
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">101</span><span class="p">,</span><span class="w">
 </span><span class="nt">"brandLogo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://biz-colostate.files/starbucks-coffee.gif"</span><span class="p">,</span><span class="w">
 </span><span class="nt">"brandWebsite"</span><span class="p">:</span><span class="w"> </span><span class="s2">"www.samplebramd.com"</span><span class="p">,</span><span class="w">
@@ -3224,7 +3133,7 @@ https://us.api.capillarytech.com/v2/verticals
 </tr>
 </tbody></table>
 
-<h3 id="request-url">Request URL</h3>
+<h3 id="sample-request">Sample Request</h3>
 
 <p>http://<cluster url>/v2/survey?{surveyId/extRefId}</p>
 
@@ -3247,23 +3156,15 @@ https://us.api.capillarytech.com/v2/verticals
 </tbody></table>
 
 <h2 id="retrieve-all-questions-of-a-survey">Retrieve All Questions of a Survey</h2>
-
-<blockquote>
-<p>Sample Request</p>
-</blockquote>
 <pre class="highlight html"><code>http://us.intouch.capillarytech.com/v2/survey/questions?214
-</code></pre>
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">208</span><span class="p">,</span><span class="w">
             </span><span class="nt">"qxnExternalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Question01"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Question01"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"fieldOptions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{\r\n\"opt1\": \"product not available\",\r\n\"opt2\": \"price too high \",\r\n\"opt3 \": \"I just don’t like your store\"\r\n}"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"fieldType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Checkboxes"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"fieldType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nps"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
             </span><span class="nt">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-05"</span><span class="p">,</span><span class="w">
@@ -3275,7 +3176,7 @@ https://us.api.capillarytech.com/v2/verticals
             </span><span class="nt">"qxnExternalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Question02"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Question02"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"fieldOptions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{\r\n\"opt1\": \"product not available\",\r\n\"opt2\": \"price too high \",\r\n\"opt3 \": \"I just don’t like your store\"\r\n}"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"fieldType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Checkboxes"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"fieldType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nps"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
             </span><span class="nt">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-05"</span><span class="p">,</span><span class="w">
@@ -3287,7 +3188,7 @@ https://us.api.capillarytech.com/v2/verticals
             </span><span class="nt">"qxnExternalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Question01"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Question01"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"fieldOptions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{\r\n\"opt1\": \"product not available\",\r\n\"opt2\": \"price too high \",\r\n\"opt3 \": \"I just don’t like your store\"\r\n}"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"fieldType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Checkboxes"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"fieldType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nps"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
             </span><span class="nt">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-05"</span><span class="p">,</span><span class="w">
@@ -3299,7 +3200,7 @@ https://us.api.capillarytech.com/v2/verticals
             </span><span class="nt">"qxnExternalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Question01"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Question01"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"fieldOptions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{\r\n\"opt1\": \"product not available\",\r\n\"opt2\": \"price too high \",\r\n\"opt3 \": \"I just don’t like your store\"\r\n}"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"fieldType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Checkboxes"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"fieldType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nps"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
             </span><span class="nt">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-06"</span><span class="p">,</span><span class="w">
@@ -3311,7 +3212,7 @@ https://us.api.capillarytech.com/v2/verticals
             </span><span class="nt">"qxnExternalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Question01"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Question01"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"fieldOptions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{\r\n\"opt1\": \"product not available\",\r\n\"opt2\": \"price too high \",\r\n\"opt3 \": \"I just don’t like your store\"\r\n}"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"fieldType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Checkboxes"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"fieldType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nps"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
             </span><span class="nt">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-12-06"</span><span class="p">,</span><span class="w">
@@ -3337,7 +3238,7 @@ https://us.api.capillarytech.com/v2/verticals
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td>/survey/questions?surveyId/extRefId={value}</td>
+<td>/survey/questions?{surveyId/extRefId}</td>
 </tr>
 <tr>
 <td>Authentication</td>
@@ -3353,11 +3254,9 @@ https://us.api.capillarytech.com/v2/verticals
 </tr>
 </tbody></table>
 
-<h3 id="request-url">Request URL</h3>
+<h3 id="sample-request">Sample Request</h3>
 
-<p><code class="prettyprint">http://&lt;cluster url&gt;/v2/survey/questions/surveyId=&lt;survey id&gt;</code></p>
-
-<p><code class="prettyprint">http://&lt;cluster url&gt;/v2/survey/questions/extRefId=&lt;external reference id&gt;</code></p>
+<p>http://<cluster url>/v2/survey/questions/{surveyId/extRefId}</p>
 
 <h3 id="request-parameters">Request Parameters</h3>
 
@@ -3374,16 +3273,8 @@ https://us.api.capillarytech.com/v2/verticals
 </tbody></table>
 
 <h2 id="retrieve-details-of-a-specific-question">Retrieve Details of a Specific Question</h2>
-
-<blockquote>
-<p>Sample Request</p>
-</blockquote>
 <pre class="highlight html"><code>http://api.nightly.capillary.in/v2/survey/questions/214
-</code></pre>
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">214</span><span class="p">,</span><span class="w">
     </span><span class="nt">"qxnExternalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Question01"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Question01"</span><span class="p">,</span><span class="w">
@@ -3445,22 +3336,15 @@ https://us.api.capillarytech.com/v2/verticals
 </tbody></table>
 
 <h2 id="retrieve-the-id-of-a-specific-question">Retrieve the ID of a Specific Question</h2>
-
-<blockquote>
-<p>Sample Request</p>
-</blockquote>
 <pre class="highlight html"><code>http://us.intouch.capillarytech.com/v2/survey/questions/lookup/112
+
+```json
+{
+    "entity": 255,
+    "warnings": [
+    ]
+}
 </code></pre>
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="w">
-</span><span class="p">{</span><span class="w">
-    </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="mi">255</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-    </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
 <p>Retrieves the id of a specific survey question.</p>
 
 <h3 id="resource-information">Resource Information</h3>
@@ -3508,16 +3392,8 @@ https://us.api.capillarytech.com/v2/verticals
 </tbody></table>
 
 <h2 id="retrieve-details-of-a-specific-response">Retrieve Details of a Specific Response</h2>
-
-<blockquote>
-<p>Sample Request</p>
-</blockquote>
 <pre class="highlight html"><code>http://us.intouch.capillarytech.com/v2/survey/responses/118
-</code></pre>
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">118</span><span class="p">,</span><span class="w">
     </span><span class="nt">"surveyQuestionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">256</span><span class="p">,</span><span class="w">
     </span><span class="nt">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
