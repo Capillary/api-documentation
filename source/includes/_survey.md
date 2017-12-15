@@ -1,9 +1,14 @@
 # Survey
 
 ## Create a Survey
+
+> Sample Request
+
 ```html
 http://us.api.capillarytech.com/v2/survey/v2/survey
 ```
+
+> Sample POST Request
 
 ```json
 {
@@ -17,6 +22,16 @@ http://us.api.capillarytech.com/v2/survey/v2/survey
 
 ```
 
+> Sample Response
+
+```json
+{
+   "createdId": 328,
+   "warnings": [
+   ]
+}
+```
+
 Allows creating a new survey 
 
 ### Resource Information
@@ -27,7 +42,7 @@ Authentication | Yes
 HTTP Method | POST
 Batch Support | No
 
-### Sample Request
+### Request URL
 `http://<cluster url>/v2/survey`
 
 ### Request Attributes
@@ -36,7 +51,7 @@ Attribute | Description
 --------- | -----------
 title* | Specify the title of the survey form
 surveyType | product survey, store survey, cloud cherry
-source* | Source where the survey is hosted
+source* | Source where the survey is hosted - Cloudcherry/Capillary
 brandLogo | Provide the path of the brand logo
 brandWebsite | Provide the official web site link of the org
 externalRefId* | Unique reference id of the survey that comes from the vendor
@@ -44,9 +59,14 @@ externalRefId* | Unique reference id of the survey that comes from the vendor
 
 
 ## Add Questions to a Survey
+
+> Sample Request
+
 ```html
-http://us.api.capillarytech.com/v2/survey/questions?112
+http://us.api.capillarytech.com/v2/survey/questions?surveyId=112
 ```
+
+> Sample POST Request
 
 ```json
 [
@@ -63,6 +83,29 @@ http://us.api.capillarytech.com/v2/survey/questions?112
 
 ```
 
+> Sample Response
+
+```json
+{
+   "data": [
+       {
+           "id": 433,
+           "qxnExternalId": "102",
+           "question": "What is your feedback about the prooduct?",
+           "fieldOptions": "{\r\n\"opt1\": \"product not available\",\r\n\"opt2\": \"price too high \",\r\n\"opt3 \": \"I just don’t like your store\"\r\n}",
+           "fieldType": "Checkboxes",
+           "tag": "Nps",
+           "parentId": 0,
+           "params": ""
+       }
+   ],
+   "warnings": [
+   ],
+   "errors": [
+   ]
+}
+```
+
 Allows adding questions to the existing survey.
 
 ### Resource Information
@@ -73,14 +116,16 @@ Authentication | Yes
 HTTP Method | POST
 Batch Support | Yes
 
-### Sample Request
-`http://<cluster url>/v2/survey/questions?{surveyId/extRefId}`
+### Request URL
+`http://<cluster url>/v2/survey/questions?surveyId={survey id}`
+
+`http://<cluster url>/v2/survey/questions?extRefId={external reference id}`
 
 ### Request Attributes
 
 Attribute | Description
 --------- | -----------
-tag | 
+tag | Possible values: Nps, CSAT, Comments, or Feedback
 fieldType* | Specify the type of the field - TextBlock, TextAreaBlock, Multiple Choice, Checkboxes, Scale, Star Rating, multiquestion, Add Call us back question, and nps
 question* | Specify the survey question
 qxnExternalId* | Pass the external id of the question provided by the vendor  
@@ -91,9 +136,14 @@ params |
 
 
 ## Add Survey Responses
+
+> Sample Request
+
 ```html
 http://us.api.capillarytech.com/v2/survey/responses?112
 ```
+
+> Sample POST Request
 
 ```json
 [{
@@ -102,11 +152,36 @@ http://us.api.capillarytech.com/v2/survey/responses?112
   		"formId":123,
  		"tokenId":1,
   		"fieldValue":"Sample answer",
-		"entityType": "checkBox",
+		"entityType": "feedback",
 		"entityId": 222,
-		"responseChannel": "online"
+		"responseChannel": "Email"
 }]
 
+```
+
+> Sample Response
+
+```json
+{
+   "data": [
+       {
+           "id": 146,
+           "surveyQuestionId": 233,
+           "entityId": 222,
+           "entityType": "feedback",
+           "fieldValue": "Sample answer",
+           "formId": 123,
+           "responseChannel": "Email",
+           "userId": 134223,
+           "tokenId": 1,
+           "lastUpdatedOn": "2017-12-12T15:18:23+05:30"
+       }
+   ],
+   "warnings": [
+   ],
+   "errors": [
+   ]
+}
 ```
 
 Allows adding customer responses to a survey.
@@ -114,13 +189,15 @@ Allows adding customer responses to a survey.
 ### Resource Information
 Information | Value
 ----------- | -----
-URI | /survey/responses?{surveyId/extRefId}
+URI | /survey/responses?surveyId/extRefId={value}
 Authentication | Yes
 HTTP Method | POST
 Batch Support | Yes
 
-### Sample Request
-`http://<cluster url>/v2/survey/responses?{surveyId/extRefId}`
+### Request URL
+`http://<cluster url>/v2/survey/responses?surveyId={survey id}`
+
+`http://<cluster url>/v2/survey/responses?extRefId={external reference id}`
 
 ### Request Attributes
 
@@ -131,17 +208,21 @@ userId* | Provide the user id of the customer responded to the survey
 formId* | Provide the unique form id of the survey campaign 
 tokenId* | Provide the unique id assigned to a customer to submit a survey
 fieldValue* | Specify the value/answer chosen for the question
-entityType | Specify the entity type of the survey - checkBox/TextBox/SelectBox/TextArea/radiobutton
+entityType | Specify the entity type of the survey - transaction, complaint, or feedback
 entityId | Pass the id of the respective entity type
-responseChannel | Specify the response channel - online/ offline
+responseChannel | Specify the response channel - Email, Call Center, Social, or Instore
  
 
 
 ## Retrieve Details of a Survey
 
+> Sample Request
+
 ```html
 http://us.intouch.capillarytech.com/v2/survey?extRefId=123
 ```
+
+> Sample Response
 
 ```json
 {
@@ -166,7 +247,7 @@ Authentication | Yes
 HTTP Method | GET
 Batch Support | No
 
-### Sample Request
+### Request URL
 http://<cluster url>/v2/survey?{surveyId/extRefId}
 
 ### Request Attributes
@@ -180,9 +261,14 @@ extRefId | The unique id for the survey generated by the vendor
 
 
 ## Retrieve All Questions of a Survey
+
+> Sample Request
+
 ```html
 http://us.intouch.capillarytech.com/v2/survey/questions?214
 ```
+
+> Sample Response
 
 ```json
 {
@@ -192,7 +278,7 @@ http://us.intouch.capillarytech.com/v2/survey/questions?214
             "qxnExternalId": "Question01",
             "question": "Question01",
             "fieldOptions": "{\r\n\"opt1\": \"product not available\",\r\n\"opt2\": \"price too high \",\r\n\"opt3 \": \"I just don’t like your store\"\r\n}",
-            "fieldType": "text",
+            "fieldType": "Checkboxes",
             "tag": "Nps",
             "isActive": true,
             "lastUpdatedOn": "2017-12-05",
@@ -204,7 +290,7 @@ http://us.intouch.capillarytech.com/v2/survey/questions?214
             "qxnExternalId": "Question02",
             "question": "Question02",
             "fieldOptions": "{\r\n\"opt1\": \"product not available\",\r\n\"opt2\": \"price too high \",\r\n\"opt3 \": \"I just don’t like your store\"\r\n}",
-            "fieldType": "text",
+            "fieldType": "Checkboxes",
             "tag": "Nps",
             "isActive": true,
             "lastUpdatedOn": "2017-12-05",
@@ -216,7 +302,7 @@ http://us.intouch.capillarytech.com/v2/survey/questions?214
             "qxnExternalId": "Question01",
             "question": "Question01",
             "fieldOptions": "{\r\n\"opt1\": \"product not available\",\r\n\"opt2\": \"price too high \",\r\n\"opt3 \": \"I just don’t like your store\"\r\n}",
-            "fieldType": "text",
+            "fieldType": "Checkboxes",
             "tag": "Nps",
             "isActive": true,
             "lastUpdatedOn": "2017-12-05",
@@ -228,7 +314,7 @@ http://us.intouch.capillarytech.com/v2/survey/questions?214
             "qxnExternalId": "Question01",
             "question": "Question01",
             "fieldOptions": "{\r\n\"opt1\": \"product not available\",\r\n\"opt2\": \"price too high \",\r\n\"opt3 \": \"I just don’t like your store\"\r\n}",
-            "fieldType": "text",
+            "fieldType": "Checkboxes",
             "tag": "Nps",
             "isActive": true,
             "lastUpdatedOn": "2017-12-06",
@@ -240,7 +326,7 @@ http://us.intouch.capillarytech.com/v2/survey/questions?214
             "qxnExternalId": "Question01",
             "question": "Question01",
             "fieldOptions": "{\r\n\"opt1\": \"product not available\",\r\n\"opt2\": \"price too high \",\r\n\"opt3 \": \"I just don’t like your store\"\r\n}",
-            "fieldType": "text",
+            "fieldType": "Checkboxes",
             "tag": "Nps",
             "isActive": true,
             "lastUpdatedOn": "2017-12-06",
@@ -260,13 +346,15 @@ Retrieves all questions of a specific survey.
 ### Resource Information
 Information | Value
 ----------- | -----
-URI | /survey/questions?{surveyId/extRefId}
+URI | /survey/questions?surveyId/extRefId={value}
 Authentication | Yes
 HTTP Method | GET
 Batch Support | No
 
-### Sample Request
-http://<cluster url>/v2/survey/questions/{surveyId/extRefId}
+### Request URL
+`http://<cluster url>/v2/survey/questions/surveyId=<survey id>`
+
+`http://<cluster url>/v2/survey/questions/extRefId=<external reference id>`
 
 
 ### Request Parameters
@@ -277,9 +365,14 @@ surveyId/extRefId | Pass the survey id or external reference id of the survey fo
 
 
 ## Retrieve Details of a Specific Question
+
+> Sample Request
+
 ```html
 http://api.nightly.capillary.in/v2/survey/questions/214
 ```
+
+> Sample Response
 
 ```json
 {
@@ -319,13 +412,18 @@ Survey question id* | Pass the question id for which you want to see the details
 
 
 
-
-
 ## Retrieve the ID of a Specific Question
+
+> Sample Request
+
 ```html
 http://us.intouch.capillarytech.com/v2/survey/questions/lookup/112
+```
+
+> Sample Response
 
 ```json
+
 {
     "entity": 255,
     "warnings": [
@@ -353,14 +451,19 @@ Batch Support | No
 
 Parameter | Description
 --------- | -----------
-Question External ID |  Pass the unique external id of the question
+Question External ID | Pass the unique external id of the question
 
 
 
 ## Retrieve Details of a Specific Response
+
+> Sample Request
+
 ```html
 http://us.intouch.capillarytech.com/v2/survey/responses/118
 ```
+
+> Sample Response
 
 ```json
 {
