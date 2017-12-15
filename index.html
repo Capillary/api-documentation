@@ -3156,7 +3156,7 @@ https://us.api.capillarytech.com/v2/verticals
 </tbody></table>
 
 <h2 id="retrieve-all-questions-of-a-survey">Retrieve All Questions of a Survey</h2>
-<pre class="highlight html"><code>http://us.intouch.capillarytech.com/v2/survey/questions?214
+<pre class="highlight html"><code>http://us.intouch.capillarytech.com/v2/survey/questions/214
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
@@ -3238,7 +3238,7 @@ https://us.api.capillarytech.com/v2/verticals
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td>/survey/questions?{surveyId/extRefId}</td>
+<td>/survey/questions/{survey question id}</td>
 </tr>
 <tr>
 <td>Authentication</td>
@@ -3256,7 +3256,7 @@ https://us.api.capillarytech.com/v2/verticals
 
 <h3 id="sample-request">Sample Request</h3>
 
-<p>http://<cluster url>/v2/survey/questions/{surveyId/extRefId}</p>
+<p>http://<cluster url>/v2/survey/questions/{survey question id}</p>
 
 <h3 id="request-parameters">Request Parameters</h3>
 
@@ -3267,8 +3267,8 @@ https://us.api.capillarytech.com/v2/verticals
 </tr>
 </thead><tbody>
 <tr>
-<td>surveyId/extRefId</td>
-<td>Pass the survey id or external reference id of the survey for which you want to retrieve all the questions</td>
+<td>Survey question id</td>
+<td>Pass the primary key of the question id</td>
 </tr>
 </tbody></table>
 
@@ -3301,7 +3301,7 @@ https://us.api.capillarytech.com/v2/verticals
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td>/survey/questions/{survey question Id}</td>
+<td>/survey/questions/{question external id}</td>
 </tr>
 <tr>
 <td>Authentication</td>
@@ -3418,7 +3418,7 @@ https://us.api.capillarytech.com/v2/verticals
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td>/responses/{response id}</td>
+<td>/responses/{response id}?{surveyId/extRefId}</td>
 </tr>
 <tr>
 <td>Authentication</td>
@@ -3446,6 +3446,10 @@ https://us.api.capillarytech.com/v2/verticals
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>surveyId/extRefId*</td>
+<td>Provide the survey id or external reference id of the survey for which you want to fetch a specific response</td>
+</tr>
 <tr>
 <td>response id*</td>
 <td>Provide the response id that you want to fetch</td>
