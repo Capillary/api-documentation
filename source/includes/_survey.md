@@ -383,7 +383,7 @@ Retrieves the details of a specific survey response.
 ### Resource Information
 Information | Value
 ----------- | -----
-URI | /responses/{response id}?{surveyId/extRefId}
+URI | /responses/{response id}
 Authentication | Yes
 HTTP Method | GET
 Batch Support | No
@@ -395,7 +395,6 @@ Batch Support | No
 ### Request Parameters
 Parameters | Description
 ---------- | -----------
-surveyId/extRefId* | Provide the survey id or external reference id of the survey for which you want to fetch a specific response
 response id* | Provide the response id that you want to fetch
 
 
