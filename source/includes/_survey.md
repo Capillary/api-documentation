@@ -7,7 +7,7 @@ http://us.api.capillarytech.com/v2/survey/v2/survey
 
 ```json
 {
-		"title": ""
+		"title": "Product feedback survey"
 		"surveyType": "online",
 		"source": "Cloudcherry/Capillary",
 		"brandLogo": "http://biz-colostate.files/starbucks-coffee.gif",
@@ -109,7 +109,7 @@ http://us.api.capillarytech.com/v2/survey/responses?112
 
 ```
 
-
+Allows adding customer responses to a survey
 
 ### Resource Information
 Information | Value
@@ -156,7 +156,7 @@ http://us.intouch.capillarytech.com/v2/survey?extRefId=123
 "warnings":[]
 }
 ```
-
+Retrieves the details of a specific survey.
 
 ### Resource Information
 Information | Value
