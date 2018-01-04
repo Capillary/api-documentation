@@ -204,7 +204,7 @@ params |
 > Sample Request
 
 ```html
-http://us.api.capillarytech.com/v2/survey/questions?questionId=112
+http://us.api.capillarytech.com/v2/survey/question?questionId=112
 ```
 
 > Sample POST Request
@@ -236,13 +236,13 @@ Lets you update an existing question of a survey.
 ### Resource Information
 Information | Value
 ----------- | -----
-URI | `/survey/questions?questionId={value}`
+URI | `/survey/question?questionId={value}`
 Authentication | Yes
 HTTP Method | PUT
 Batch Support | No
 
 ### Request URL
-`http://<cluster url>/v2/survey/questions?questionId={value}`
+`http://<cluster url>/v2/survey/question?questionId={value}`
 
 
 ### Request Attributes
