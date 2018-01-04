@@ -272,7 +272,6 @@ https://us.api.capillarytech.com/v2/customers?source=WECHAT<span class="err">&am
 <li><p>Identifiers should be unique within a source for single account sources and unique within an account for multiple account sources. That is, an identifier once registered in a source or an account for a customer cannot be registered again for a different customer. </p></li>
 <li><p>Multiple identifiers of the same type can be registered per customer. Now, you can register multiple mobile numbers, email ids and external ids for a customer within a source.</p></li>
 <li><p>Customer details cannot be updated with this API. To update customer details, use customer update API; and to update identifiers, use Update Identifier API</p></li>
-<li><p>It is not required to pass communication channels for InStore registrations. Each type of identifier registered will be considered for communication channels automatically. For example, mobile number for SMS and email id for email</p></li>
 </ul>
 
 <h3 id="prerequisites">Prerequisites</h3>
@@ -299,8 +298,8 @@ https://us.api.capillarytech.com/v2/customers?source=WECHAT<span class="err">&am
 </thead><tbody>
 <tr>
 <td>source*</td>
-<td>INSTORE/WECHAT/MARTJACK/FACEBOOK/ALL</td>
-<td>Source in which you want to register a customer. Specify source=ALL to fetch details from all the available sources</td>
+<td>INSTORE/WECHAT/MARTJACK/FACEBOOK</td>
+<td>Source in which you want to register a customer</td>
 </tr>
 <tr>
 <td>accountId*</td>
@@ -1362,407 +1361,6 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 <tr>
 <td>id</td>
 <td>Pass the unique id of the customer to fetch the subscription details</td>
-</tr>
-</tbody></table>
-
-<h2 id="retrieve-customer-trackers">Retrieve Customer Trackers</h2>
-<pre class="highlight html"><code># Sample Request
-https://eu.api.capillarytech.com/v2/customers/17742/trackers
-</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
-
-</span><span class="p">{</span><span class="w">
-</span><span class="nt">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-</span><span class="nt">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-</span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-</span><span class="p">},</span><span class="w">
-</span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17270</span><span class="p">,</span><span class="w">
-</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TestBill"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"conditionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">210</span><span class="p">,</span><span class="w">
-</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BILL_AMOUNT"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-</span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-03T12:38:00+05:30"</span><span class="w">
-</span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16995</span><span class="p">,</span><span class="w">
-</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BA2400"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"conditionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">193</span><span class="p">,</span><span class="w">
-</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BILL_AMOUNT"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">6000</span><span class="p">,</span><span class="w">
-</span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-01T10:41:20+05:30"</span><span class="w">
-</span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16995</span><span class="p">,</span><span class="w">
-</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BA2400"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"conditionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">192</span><span class="p">,</span><span class="w">
-</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BILL_AMOUNT"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">6000</span><span class="p">,</span><span class="w">
-</span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-01T10:41:20+05:30"</span><span class="w">
-</span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">37651</span><span class="p">,</span><span class="w">
-</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BillInfinite"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"conditionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">7717</span><span class="p">,</span><span class="w">
-</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BILL_AMOUNT"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">6000</span><span class="p">,</span><span class="w">
-</span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-01T10:41:20+05:30"</span><span class="w">
-</span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">37651</span><span class="p">,</span><span class="w">
-</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BillInfinite"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"conditionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">7716</span><span class="p">,</span><span class="w">
-</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BILL_AMOUNT"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">6000</span><span class="p">,</span><span class="w">
-</span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-01T10:41:20+05:30"</span><span class="w">
-</span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20530</span><span class="p">,</span><span class="w">
-</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Testingbug"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"conditionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1094</span><span class="p">,</span><span class="w">
-</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BILL_AMOUNT"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-</span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03T12:38:00+05:30"</span><span class="w">
-</span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20531</span><span class="p">,</span><span class="w">
-</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testingbug2"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"conditionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1096</span><span class="p">,</span><span class="w">
-</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LINEITEM_AMOUNT"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-</span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-03T12:38:00+05:30"</span><span class="w">
-</span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20531</span><span class="p">,</span><span class="w">
-</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testingbug2"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"conditionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1095</span><span class="p">,</span><span class="w">
-</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LINEITEM_AMOUNT"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-</span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-03T12:38:00+05:30"</span><span class="w">
-</span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17018</span><span class="p">,</span><span class="w">
-</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LiAm2400"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"conditionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">195</span><span class="p">,</span><span class="w">
-</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LINEITEM_AMOUNT"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">6000</span><span class="p">,</span><span class="w">
-</span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-01T10:41:20+05:30"</span><span class="w">
-</span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17018</span><span class="p">,</span><span class="w">
-</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LiAm2400"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"conditionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">194</span><span class="p">,</span><span class="w">
-</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LINEITEM_AMOUNT"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-</span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-03T10:41:20+05:30"</span><span class="w">
-</span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17427</span><span class="p">,</span><span class="w">
-</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LineCount"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"conditionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">217</span><span class="p">,</span><span class="w">
-</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LINEITEM_COUNT"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-</span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-03T12:38:00+05:30"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span><span class="p">],</span><span class="w">
-</span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-</span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-</span><span class="err">}</span><span class="w">
-
-</span></code></pre>
-<p>Allows retrieving all the tracker events of a customer. Trackers are created in Loyalty Program to perform some actions on the tracker value for a specific duration. Trackers are created based on bill amount, number of bills, bill discount, bill gross amount, quantity of line items and customer visits.</p>
-
-<table><thead>
-<tr>
-<th>Entry</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URI</td>
-<td>/customers/<id>/trackers</td>
-</tr>
-<tr>
-<td>Rate Limited?</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>Content-Type</td>
-<td>application/json</td>
-</tr>
-<tr>
-<td>Accept</td>
-<td>application/json</td>
-</tr>
-<tr>
-<td>Authentication</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
-<td>HTTP Method</td>
-<td>GET</td>
-</tr>
-<tr>
-<td>Batch Support</td>
-<td>No</td>
-</tr>
-</tbody></table>
-
-<h3 id="request-url">Request URL</h3>
-
-<p><code class="prettyprint">https://&lt;Respective cluster URL&gt;/v2/customers/&lt;Customer ID&gt;/trackers</code></p>
-
-<h3 id="request-parameters">Request Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
-<td>Pass the unique id of the customer whose tracker details need to be fetched</td>
-</tr>
-</tbody></table>
-
-<h2 id="retrieve-change-identifiers-log">Retrieve Change Identifiers Log</h2>
-<pre class="highlight html"><code># Sample Request
-https://eu.api.capillarytech.com/v2/customers/17742/changeIdentifierLog
-</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
-</span><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">338886724</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"WECHAT"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"actionType"</span><span class="p">:</span><span class="s2">"ADD"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"WECHAT"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"wechat"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"WECHATwechat_406843"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">338886724</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"WECHAT"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"wechatautoemail7756406843@gmail.com"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">338886724</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"createdDate"</span><span class="p">:</span><span class="s2">"2017-07-25T22:15:02+08:00"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">
-
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">338886724</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"actionType"</span><span class="p">:</span><span class="s2">"ADD"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"wechatautoemail7756406843@gmail.com"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">338886724</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"917756406843"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">338886724</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"createdDate"</span><span class="p">:</span><span class="s2">"2017-07-25T22:15:05+08:00"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">
-
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">338886724</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"actionType"</span><span class="p">:</span><span class="s2">"COMBINE"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"wechatautoemail7756406843@gmail.com"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">338886724</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"wechatautoemail7756406843@gmail.com"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">338886724</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"917756406843"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">338886724</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"createdDate"</span><span class="p">:</span><span class="s2">"2017-07-25T22:15:05+08:00"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">
-
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">338886724</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"actionType"</span><span class="p">:</span><span class="s2">"ADD"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"wechatautoemail7756406843@gmail.com"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">338886724</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"externalId"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"          918989898007"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">338886724</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"createdDate"</span><span class="p">:</span><span class="s2">"2017-07-26T18:46:30+08:00"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">
-
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">338886724</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"actionType"</span><span class="p">:</span><span class="s2">"REMOVE"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"wechatautoemail7756406843@gmail.com"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">338886724</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"externalId"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"          918989898007"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">338886724</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"createdDate"</span><span class="p">:</span><span class="s2">"2017-07-26T18:47:00+08:00"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">
-
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">338886724</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"actionType"</span><span class="p">:</span><span class="s2">"ADD"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"wechatautoemail7756406843@gmail.com"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">338886724</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"externalId"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"          918989898008,918989898008"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">338886724</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"createdDate"</span><span class="p">:</span><span class="s2">"2017-07-26T18:47:41+08:00"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">
-
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">338886724</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"actionType"</span><span class="p">:</span><span class="s2">"REMOVE"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"wechatautoemail7756406843@gmail.com"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">338886724</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"externalId"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"          918989898008,918989898008"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">338886724</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"createdDate"</span><span class="p">:</span><span class="s2">"2017-07-26T18:48:12+08:00"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">
-
-    </span><span class="p">]</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-
-</span></code></pre>
-<p>Allows retrieving the history of identifier updates such as add, update, remove and merge. You can see only updates made through v2.0 APIs but not through v1.1.</p>
-
-<table><thead>
-<tr>
-<th>Entry</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URI</td>
-<td>/customers/<id>/changeIdentifierLog</td>
-</tr>
-<tr>
-<td>Rate Limited?</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>Content-Type</td>
-<td>application/json</td>
-</tr>
-<tr>
-<td>Accept</td>
-<td>application/json</td>
-</tr>
-<tr>
-<td>Authentication</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
-<td>HTTP Method</td>
-<td>GET</td>
-</tr>
-<tr>
-<td>Batch Support</td>
-<td>No</td>
-</tr>
-</tbody></table>
-
-<h3 id="request-url">Request URL</h3>
-
-<p><code class="prettyprint">https://&lt;Respective cluster URL&gt;/v2/customers/&lt;Customer ID&gt;/changeIdentifierLog</code></p>
-
-<h3 id="request-parameters">Request Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>id</td>
-<td>Pass the unique id of the customer to fetch the history of identifier updates</td>
 </tr>
 </tbody></table>
 
@@ -2935,6 +2533,89 @@ https://us.api.capillarytech.com/v2/verticals
 </tr>
 </tbody></table>
 
+<h2 id="update-survey-details">Update Survey Details</h2>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>http://us.api.capillarytech.com/v2/survey/v2/survey?extRefId=123
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+        </span><span class="nt">"brandLogo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://biz-google.files/starbucks-coffee.gif"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"brandWebsite"</span><span class="p">:</span><span class="w"> </span><span class="s2">"www.google.com"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Sample survey title"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"createdId"</span><span class="p">:</span><span class="w"> </span><span class="mi">98</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Lets you update an existing survey details.</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Information</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td>/survey?<extRefId/surveyId>=<value></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>PUT</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">http://&lt;cluster url&gt;/v2/survey?extRefId=&lt;value&gt;</code></p>
+
+<p><code class="prettyprint">http://&lt;cluster url&gt;/v2/survey?surveyId=&lt;value&gt;</code></p>
+
+<h3 id="request-attributes">Request Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>title</td>
+<td>Specify the new title of the survey form</td>
+</tr>
+<tr>
+<td>brandLogo</td>
+<td>Provide the new path of the brand logo</td>
+</tr>
+<tr>
+<td>brandWebsite</td>
+<td>Provide the new official website link of the org</td>
+</tr>
+</tbody></table>
+
 <h2 id="add-questions-to-a-survey">Add Questions to a Survey</h2>
 
 <blockquote>
@@ -3049,6 +2730,101 @@ https://us.api.capillarytech.com/v2/verticals
 <tr>
 <td>params</td>
 <td></td>
+</tr>
+</tbody></table>
+
+<h2 id="update-survey-questions">Update Survey Questions</h2>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>http://us.api.capillarytech.com/v2/survey/questions?questionId=112
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HOW do you rate your transaction?"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"isActive"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"params"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"fieldOptions"</span><span class="p">:</span><span class="s2">"Very Good"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"fieldType"</span><span class="p">:</span><span class="s2">"Radio"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"tag"</span><span class="p">:</span><span class="s2">"Feedback"</span><span class="w">  
+  </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"createdId"</span><span class="p">:</span><span class="w"> </span><span class="mi">233</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>Lets you update an existing question of a survey.</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Information</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/survey/questions?questionId={value}</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>PUT</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">http://&lt;cluster url&gt;/v2/survey/questions?questionId={value}</code></p>
+
+<h3 id="request-attributes">Request Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>tag</td>
+<td>Possible values: Nps, CSAT, Comments, or Feedback</td>
+</tr>
+<tr>
+<td>fieldType</td>
+<td>Specify the new field type - TextBlock, TextAreaBlock, Multiple Choice, Checkboxes, Scale, Star Rating, multiquestion, Add Call us back question, and nps</td>
+</tr>
+<tr>
+<td>question*</td>
+<td>Specify the updated survey question</td>
+</tr>
+<tr>
+<td>fieldOptions</td>
+<td>Specify the new options you want to have for the question. Not applicable for TextBlock, TextAreaBlock</td>
+</tr>
+<tr>
+<td>params</td>
+<td></td>
+</tr>
+<tr>
+<td>isActive</td>
+<td>Add or remove a question. Value: true/false</td>
 </tr>
 </tbody></table>
 
@@ -3171,6 +2947,75 @@ https://us.api.capillarytech.com/v2/verticals
 <tr>
 <td>responseChannel</td>
 <td>Specify the response channel - Email, Call Center, Social, or Instore</td>
+</tr>
+</tbody></table>
+
+<p>## Update Survey Responses</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>http://us.api.capillarytech.com/v2/survey/responses?responseId=173
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+        </span><span class="nt">"fieldValue"</span><span class="p">:</span><span class="s2">"Very happy with the after sales support"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"createdId"</span><span class="p">:</span><span class="w"> </span><span class="mi">173</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Lets you update an existing response of a survey.</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Information</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td>/survey/responses?responseId={value}</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>PUT</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">http://&lt;cluster url&gt;/v2/survey/responses?responseId={value}</code></p>
+
+<h3 id="request-attributes">Request Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>fieldValue*</td>
+<td>Specify the new response value for the question</td>
 </tr>
 </tbody></table>
 
