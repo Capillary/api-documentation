@@ -93,7 +93,7 @@ Lets you update an existing survey details.
 ### Resource Information
 Information | Value
 ----------- | -----
-URI | /survey?<extRefId/surveyId>=<value>
+URI | `/survey?{extRefId/surveyId}={value}`
 Authentication | Yes
 HTTP Method | PUT
 Batch Support | No
