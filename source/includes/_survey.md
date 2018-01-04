@@ -58,6 +58,70 @@ externalRefId* | Unique reference id of the survey that comes from the vendor
 
 
 
+## Update Survey Details
+
+> Sample Request
+
+```html
+http://us.api.capillarytech.com/v2/survey/v2/survey?extRefId=123
+```
+
+> Sample POST Request
+
+```json
+{
+		"brandLogo": "http://biz-google.files/starbucks-coffee.gif",
+		"brandWebsite": "www.google.com",
+   		"title":"Sample survey title"
+}
+
+
+```
+
+> Sample Response
+
+```json
+{
+    "createdId": 98,
+    "warnings": [
+    ]
+}
+```
+
+Lets you update an existing survey details.
+
+### Resource Information
+Information | Value
+----------- | -----
+URI | /survey?<extRefId/surveyId>=<value>
+Authentication | Yes
+HTTP Method | PUT
+Batch Support | No
+
+### Request URL
+`http://<cluster url>/v2/survey?extRefId=<value>`
+
+`http://<cluster url>/v2/survey?surveyId=<value>`
+
+### Request Attributes
+
+Attribute | Description
+--------- | -----------
+title | Specify the new title of the survey form 
+brandLogo | Provide the new path of the brand logo
+brandWebsite | Provide the new official website link of the org
+
+
+
+
+
+
+
+
+
+
+
+
 ## Add Questions to a Survey
 
 > Sample Request
@@ -132,6 +196,96 @@ qxnExternalId* | Pass the external id of the question provided by the vendor
 fieldOptions | Specify the options you want to provide for each question. Not applicable for TextBlock, TextAreaBlock
 parentId | Survey questions can have sub questions. Example: The value will be 0 by default. If it is a sub-question, parent id will a positive value
 params | 
+
+
+
+## Update Survey Questions
+
+> Sample Request
+
+```html
+http://us.api.capillarytech.com/v2/survey/questions?questionId=112
+```
+
+> Sample POST Request
+
+```json
+  {
+	"question": "HOW do you rate your transaction?",
+    "isActive":false,
+    "params":"",
+    "fieldOptions":"Very Good",
+    "fieldType":"Radio",
+    "tag":"Feedback"  
+  }
+```
+
+> Sample Response
+
+```json
+{
+    "createdId": 233,
+    "warnings": [
+    ]
+}
+
+```
+
+Lets you update an existing question of a survey.
+
+### Resource Information
+Information | Value
+----------- | -----
+URI | `/survey/questions?questionId={value}`
+Authentication | Yes
+HTTP Method | PUT
+Batch Support | No
+
+### Request URL
+`http://<cluster url>/v2/survey/questions?questionId={value}`
+
+
+### Request Attributes
+
+Attribute | Description
+--------- | -----------
+tag | Possible values: Nps, CSAT, Comments, or Feedback
+fieldType | Specify the new field type - TextBlock, TextAreaBlock, Multiple Choice, Checkboxes, Scale, Star Rating, multiquestion, Add Call us back question, and nps
+question* | Specify the updated survey question
+fieldOptions | Specify the new options you want to have for the question. Not applicable for TextBlock, TextAreaBlock
+params | 
+isActive | Add or remove a question. Value: true/false
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -211,6 +365,71 @@ fieldValue* | Specify the value/answer chosen for the question
 entityType | Specify the entity type of the survey - transaction, complaint, or feedback
 entityId | Pass the id of the respective entity type
 responseChannel | Specify the response channel - Email, Call Center, Social, or Instore
+ 
+ 
+ 
+ 
+ 
+ 
+ ## Update Survey Responses
+
+> Sample Request
+
+```html
+http://us.api.capillarytech.com/v2/survey/responses?responseId=173
+```
+
+> Sample POST Request
+
+```json
+{
+  		"fieldValue":"Very happy with the after sales support"
+}
+```
+
+> Sample Response
+
+```json
+{
+    "createdId": 173,
+    "warnings": [
+    ]
+}
+```
+
+Lets you update an existing response of a survey.
+
+### Resource Information
+Information | Value
+----------- | -----
+URI | /survey/responses?responseId={value}
+Authentication | Yes
+HTTP Method | PUT
+Batch Support | No
+
+### Request URL
+`http://<cluster url>/v2/survey/responses?responseId={value}`
+
+### Request Attributes
+
+Attribute | Description
+--------- | -----------
+fieldValue* | Specify the new response value for the question
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
 
 
