@@ -371,7 +371,7 @@ responseChannel | Specify the response channel - Email, Call Center, Social, or 
  
  
  
- ## Update Survey Responses
+## Update Survey Responses
 
 > Sample Request
 
