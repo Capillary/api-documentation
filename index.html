@@ -283,6 +283,32 @@ https://us.api.capillarytech.com/v2/customers?source=WECHAT<span class="err">&am
 <li><p>Account ids in which you want to register customers(for sources with multiple accounts such as WeChat and Facebook)</p></li>
 </ul>
 
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Information</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td>/customers?source={value}</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
 <h3 id="request-url">Request URL</h3>
 
 <p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/customers?source=&lt;Source Name&gt;&amp;accountId=&lt;account id&gt;</code></p>
@@ -360,7 +386,7 @@ https://us.api.capillarytech.com/v2/customers?source=WECHAT<span class="err">&am
 https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err">&amp;</span>accountId=22232
 </code></pre>
 <blockquote>
-<p>Following is the sample POST JSON for updating customer&rsquo;s profile</p>
+<p>Sample PUT request</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
  </span><span class="nt">"profiles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -435,6 +461,32 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <li>Source in which you want to modify the details</li>
 <li>Account id of the specific source in which you want to modify the customer details</li>
 </ul>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Information</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/customers/{customer id}</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>PUT</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
 
 <h3 id="request-url">Request URL</h3>
 
@@ -591,6 +643,32 @@ https://us.api.capillarytech.com/v2/customers/418/changeIdentifier?source=WECHAT
 <li>Valid customer identifier(s) that you want to add to the existing account</li>
 </ul>
 
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Information</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td>`/customers/{customer id}/changeIdentifier&rsquo;</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
 <h3 id="request-url">Request URL</h3>
 
 <p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/customers/&lt;Customer ID&gt;/changeIdentifier?source=&lt;Source Name&gt;&amp;accountId=&lt;account id&gt;</code></p>
@@ -715,7 +793,11 @@ https://us.api.capillarytech.com/v2/customers/418/changeIdentifier?source=WECHAT
 <pre class="highlight html"><code># Sample Request
 
 http://newapi.nightly.capillary.in/v2/customers/search?limit=10<span class="err">&amp;</span>offset=0<span class="err">&amp;</span>q=tom
-</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
     </span><span class="nt">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
@@ -804,6 +886,32 @@ http://newapi.nightly.capillary.in/v2/customers/search?limit=10<span class="err"
 
 <aside class="notice"> The keyword that you pass will be fetched automatically from all the sources. You do not need to explicitly specify the source type for this API.</aside>
 
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Information</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td>`/customers/search&rsquo;</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
 <h3 id="request-url">Request URL</h3>
 
 <p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/customers/search?q=&lt;Identifiers or name that starts with XXXX&gt;</code></p>
@@ -838,6 +946,32 @@ https://eu.api.capillarytech.com/v2/customers/lookup?identifierName=mobile<span 
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Allows fetching unique customer ids of registered customers. The unique id is required to fetch customer details, update customer details, manage subscription details and so on.</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Information</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td>`/customers/lookup&rsquo;</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
 
 <h3 id="request-url">Request URL</h3>
 
@@ -1036,6 +1170,32 @@ https://eu.api.capillarytech.com/v2/customers/17742?source=WECHAT<span class="er
 <li>loyalty information – loyalty status, registered date, purchases etc.</li>
 </ul>
 
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Information</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td>`/customers/<customer id>&rsquo;</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
 <h3 id="request-url">Request URL</h3>
 
 <p><code class="prettyprint">https://&lt;Respective cluster URL&gt;/v2/customers/&lt;Customer id&gt;?source=&lt;Source Name&gt;&amp;accountId=&lt;accountId&gt;</code></p>
@@ -1115,7 +1275,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 </span><span class="p">{</span><span class="w">
     </span><span class="nt">"communicationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"campaignId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LALALALA"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Example reason"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"scope"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USER"</span><span class="p">,</span><span class="w"> 
         </span><span class="nt">"subScope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NONE"</span><span class="w">
@@ -1192,7 +1352,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 </span></code></pre>
 <p>Subscription represents communication channels a customer has subscribed to. The communication channels can be email, sms, or WeChat.</p>
 
-<p>This API allows you update different subscription channels of a customer. You can either opt-in or opt-out a customer’s mobile number/email id/WeChat id from receiving transaction and/or bulk messages.</p>
+<p>This API allows updating different subscription channels of a customer. You can either opt-in or opt-out a customer’s mobile number/email id/WeChat id from receiving transaction and/or bulk messages.</p>
 
 <ul>
 <li><strong>Transaction Messages</strong>: These are personalized messages sent to the respective customer instantly when a new transaction is made, redeemed points/coupon, send birthday/anniversary wishes and so on</li>
@@ -1209,27 +1369,11 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td>/customers/&hellip;/subscriptions</td>
-</tr>
-<tr>
-<td>Rate Limited?</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>Content-Type</td>
-<td>application/json</td>
-</tr>
-<tr>
-<td>Accept</td>
-<td>application/json</td>
+<td><code class="prettyprint">/customers/{customer id}/subscriptions</code></td>
 </tr>
 <tr>
 <td>Authentication</td>
 <td>Yes</td>
-</tr>
-<tr>
-<td>Response Formats</td>
-<td>JSON</td>
 </tr>
 <tr>
 <td>HTTP Method</td>
@@ -1314,27 +1458,15 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td>/customers/&hellip;/subscriptions</td>
+<td><code class="prettyprint">/customers/{customer id}/subscriptions</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
 <td>Yes</td>
 </tr>
 <tr>
-<td>Content-Type</td>
-<td>application/json</td>
-</tr>
-<tr>
-<td>Accept</td>
-<td>application/json</td>
-</tr>
-<tr>
 <td>Authentication</td>
 <td>Yes</td>
-</tr>
-<tr>
-<td>Response Formats</td>
-<td>JSON</td>
 </tr>
 <tr>
 <td>HTTP Method</td>
@@ -1536,7 +1668,33 @@ https://us.api.capillarytech.com/v2/user_auth/register
 
 
 </span></code></pre>
-<p>Allows an org&rsquo;s InStore customers to register on their web page or mobile app. You need to use only the mobile number/email id that is registered on InStore.</p>
+<p>Allows the org&rsquo;s InStore customers to register on their web page or mobile app. You need to use only the mobile number/email id that is registered on InStore.</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Information</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td>`/user_auth/register&rsquo;</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
 
 <h3 id="request-url">Request URL</h3>
 
@@ -1586,6 +1744,32 @@ https://us.api.capillarytech.com/v2/user_auth/authorize_user
 </span></code></pre>
 <p>Validates whether the provided user credentials are valid or not.</p>
 
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Information</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td>`/user_auth/authorize_user&rsquo;</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
 <h3 id="request-url">Request URL</h3>
 
 <p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/user_auth/authorize_user</code></p>
@@ -1616,7 +1800,7 @@ https://us.api.capillarytech.com/v2/user_auth/authorize_user
 <pre class="highlight html"><code># Sample Request
 
 https://us.api.capillarytech.com/v2/user_auth/update
-</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">POST</span><span class="w"> </span><span class="err">Request</span><span class="w">
+</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">PUT</span><span class="w"> </span><span class="err">Request</span><span class="w">
 
 </span><span class="p">{</span><span class="w">
   </span><span class="nt">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"71000000000"</span><span class="p">,</span><span class="w">
@@ -1632,6 +1816,32 @@ https://us.api.capillarytech.com/v2/user_auth/update
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Allows updating password of an user account.</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Information</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td>`/user_auth/update&rsquo;</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>PUT</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
 
 <h3 id="request-url">Request URL</h3>
 
@@ -1655,7 +1865,7 @@ https://us.api.capillarytech.com/v2/user_auth/update
 </tr>
 <tr>
 <td>password</td>
-<td>Provice the new password in md5 hash form</td>
+<td>Provide the new password in md5 hash form</td>
 </tr>
 </tbody></table>
 
@@ -1729,6 +1939,32 @@ https://us.api.capillarytech.com/v2/customer/walkin?till_code=kn.003<span class=
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Triggers customer walkin notifications on InStore, i.e., when a customer walks in to the store, InStore triggers a desktop notification with the customer details. </p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Information</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td>`/customer/walkin&rsquo;</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
 
 <h3 id="request-url">Request URL</h3>
 
@@ -1878,7 +2114,7 @@ https://us.api.capillarytech.com/v2/org/9081/sources
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td>/org/<org id>/sources</td>
+<td><code class="prettyprint">/org/&lt;org id&gt;/sources</code></td>
 </tr>
 <tr>
 <td>HTTP Method</td>
@@ -2541,7 +2777,7 @@ https://us.api.capillarytech.com/v2/verticals
 <pre class="highlight html"><code>http://us.api.capillarytech.com/v2/survey/v2/survey?extRefId=123
 </code></pre>
 <blockquote>
-<p>Sample POST Request</p>
+<p>Sample PUT Request</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
         </span><span class="nt">"brandLogo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://biz-google.files/starbucks-coffee.gif"</span><span class="p">,</span><span class="w">
@@ -2741,7 +2977,7 @@ https://us.api.capillarytech.com/v2/verticals
 <pre class="highlight html"><code>http://us.api.capillarytech.com/v2/survey/question?questionId=112
 </code></pre>
 <blockquote>
-<p>Sample POST Request</p>
+<p>Sample PUT Request</p>
 </blockquote>
 <pre class="highlight json"><code><span class="w">  </span><span class="p">{</span><span class="w">
     </span><span class="nt">"question"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HOW do you rate your transaction?"</span><span class="p">,</span><span class="w">
