@@ -77,6 +77,17 @@ Following are the prerequisites to use customer registration API:
 
 * Account ids in which you want to register customers(for sources with multiple accounts such as WeChat and Facebook)
 
+
+### Resource Information
+Information | Value
+----------- | -----
+URI | /customers?source={value}
+Authentication | Yes
+HTTP Method | POST
+Batch Support | No
+
+
+
 ### Request URL
 
 `https://<Respective cluster’s API URL>/v2/customers?source=<Source Name>&accountId=<account id>`
@@ -108,7 +119,7 @@ attributionV2 | createDate | Time and date of registration in YYYY-MM-DDTHH:MM:S
 
 https://us.api.capillarytech.com/v2/customers/329?source=WECHAT&accountId=22232
 ```
-> Following is the sample POST JSON for updating customer's profile
+> Sample PUT request
 
 ```json
 {
@@ -180,6 +191,16 @@ The following are the prerequisites for updating customer details:
 * Unique customer id of the respective customer
 * Source in which you want to modify the details
 * Account id of the specific source in which you want to modify the customer details
+
+
+### Resource Information
+Information | Value
+----------- | -----
+URI | `/customers/{customer id}`
+Authentication | Yes
+HTTP Method | PUT
+Batch Support | No
+
 
 
 ### Request URL
@@ -265,6 +286,16 @@ Limitations of the customer identifier update API:
 * Valid customer identifier(s) that you want to add to the existing account
 
 
+### Resource Information
+Information | Value
+----------- | -----
+URI | `/customers/{customer id}/changeIdentifier'
+Authentication | Yes
+HTTP Method | POST
+Batch Support | No
+
+
+
 ### Request URL
 `https://<Respective cluster’s API URL>/v2/customers/<Customer ID>/changeIdentifier?source=<Source Name>&accountId=<account id>`
 
@@ -314,6 +345,9 @@ CODE | DESCRIPTION
 
 http://newapi.nightly.capillary.in/v2/customers/search?limit=10&offset=0&q=tom
 ```
+
+> Sample Response
+
 ```json
 {
   "pagination": {
@@ -405,6 +439,15 @@ Allows fetching customers from all sources using query string. For example, you 
 
 <aside class="notice"> The keyword that you pass will be fetched automatically from all the sources. You do not need to explicitly specify the source type for this API.</aside>
 
+### Resource Information
+Information | Value
+----------- | -----
+URI | `/customers/search'
+Authentication | Yes
+HTTP Method | GET
+Batch Support | No
+
+
 ### Request URL
 `https://<Respective cluster’s API URL>/v2/customers/search?q=<Identifiers or name that starts with XXXX>`
 
@@ -434,6 +477,17 @@ https://eu.api.capillarytech.com/v2/customers/lookup?identifierName=mobile&ident
 ```
 
 Allows fetching unique customer ids of registered customers. The unique id is required to fetch customer details, update customer details, manage subscription details and so on.
+
+
+### Resource Information
+Information | Value
+----------- | -----
+URI | `/customers/lookup'
+Authentication | Yes
+HTTP Method | GET
+Batch Support | No
+
+
 
 ### Request URL
 `https://<Respective cluster’s API URL>/v2/customers/lookup?source=<Source Name>&accountId=<account id>&identifierName=<Identifier>&identifierValue=<Identifier value>`
@@ -602,6 +656,16 @@ Allows fetching customer details such as:
 * registered identifiers, communication channels and
 * loyalty information – loyalty status, registered date, purchases etc.
 
+
+### Resource Information
+Information | Value
+----------- | -----
+URI | `/customers/<customer id>'
+Authentication | Yes
+HTTP Method | GET
+Batch Support | No
+
+
 ### Request URL
 `https://<Respective cluster URL>/v2/customers/<Customer id>?source=<Source Name>&accountId=<accountId>`
 
@@ -640,7 +704,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 {
     "communicationId": -1,
     "campaignId": -1,
-    "reason": "LALALALA",
+    "reason": "Example reason",
     "scope": {
         "scope": "USER", 
         "subScope": "NONE"
@@ -717,7 +781,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 ```
 Subscription represents communication channels a customer has subscribed to. The communication channels can be email, sms, or WeChat.
 
-This API allows you update different subscription channels of a customer. You can either opt-in or opt-out a customer’s mobile number/email id/WeChat id from receiving transaction and/or bulk messages.
+This API allows updating different subscription channels of a customer. You can either opt-in or opt-out a customer’s mobile number/email id/WeChat id from receiving transaction and/or bulk messages.
 
 * **Transaction Messages**: These are personalized messages sent to the respective customer instantly when a new transaction is made, redeemed points/coupon, send birthday/anniversary wishes and so on
 * **Bulk Messages**: These are promotion messages sent to a list of customers
@@ -726,12 +790,8 @@ This API allows you update different subscription channels of a customer. You ca
 
 Entry | Description
 ----- | -----------
-URI | /customers/.../subscriptions
-Rate Limited? | Yes
-Content-Type | application/json
-Accept | application/json
+URI | `/customers/{customer id}/subscriptions`
 Authentication | Yes
-Response Formats | JSON 
 HTTP Method | POST
 Batch Support | No
 
@@ -788,14 +848,12 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 
 Allows retrieving the subscription details of a customer to SMS, email and WeChat. The status will be OPTIN for subscribed and OPTOUT for unsubscribed.
 
+
 Entry | Description
 ----- | -----------
-URI | /customers/.../subscriptions
+URI | `/customers/{customer id}/subscriptions`
 Rate Limited? | Yes
-Content-Type | application/json
-Accept | application/json
 Authentication | Yes
-Response Formats | JSON 
 HTTP Method | GET
 Batch Support | No
 

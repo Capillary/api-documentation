@@ -21,6 +21,14 @@ https://us.api.capillarytech.com/v2/customer/walkin?till_code=kn.003&identifierN
 
 Triggers customer walkin notifications on InStore, i.e., when a customer walks in to the store, InStore triggers a desktop notification with the customer details. 
 
+### Resource Information
+Information | Value
+----------- | -----
+URI | `/customer/walkin'
+Authentication | Yes
+HTTP Method | GET
+Batch Support | No
+
 ### Request URL
 
 `https://<Respective cluster’s API URL>/v2/customer/walkin?till_code=<till code>&identifierName=<mobile/email/external_id>&identifierValue={{}}&source=<source>

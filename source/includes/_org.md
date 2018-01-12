@@ -71,7 +71,7 @@ Allows adding sources to the org. Currently, Capillary supports the following so
 ### Resource Information
 Attribute | Value
 --------- | -----
-URI | /org/<org id>/sources
+URI | `/org/<org id>/sources`
 HTTP Method | POST
 Batch Support | No
 

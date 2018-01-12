@@ -101,7 +101,18 @@ https://us.api.capillarytech.com/v2/user_auth/register
 
 ```
 
-Allows an org's InStore customers to register on their web page or mobile app. You need to use only the mobile number/email id that is registered on InStore.
+Allows the org's InStore customers to register on their web page or mobile app. You need to use only the mobile number/email id that is registered on InStore.
+
+
+
+### Resource Information
+Information | Value
+----------- | -----
+URI | `/user_auth/register'
+Authentication | Yes
+HTTP Method | POST
+Batch Support | No
+
 
 ### Request URL
 
@@ -148,6 +159,15 @@ https://us.api.capillarytech.com/v2/user_auth/authorize_user
 
 Validates whether the provided user credentials are valid or not.
 
+
+### Resource Information
+Information | Value
+----------- | -----
+URI | `/user_auth/authorize_user'
+Authentication | Yes
+HTTP Method | POST
+Batch Support | No
+
 ### Request URL
 
 `https://<Respective cluster’s API URL>/v2/user_auth/authorize_user`
@@ -174,7 +194,7 @@ https://us.api.capillarytech.com/v2/user_auth/update
 
 
 ```json
-# Sample POST Request
+# Sample PUT Request
 
 {
   "mobile": "71000000000",
@@ -195,6 +215,16 @@ https://us.api.capillarytech.com/v2/user_auth/update
 
 Allows updating password of an user account.
 
+
+### Resource Information
+Information | Value
+----------- | -----
+URI | `/user_auth/update'
+Authentication | Yes
+HTTP Method | PUT
+Batch Support | No
+
+
 ### Request URL
 
 `https://<Respective cluster’s API URL>/v2/user_auth/update`
@@ -205,7 +235,7 @@ Parameter | Description
 --------- | -----------
 mobile | Provide the registered mobile number of the user
 email | Provide the registered email id of the user
-password | Provice the new password in md5 hash form
+password | Provide the new password in md5 hash form
 
 
 

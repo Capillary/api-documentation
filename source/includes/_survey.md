@@ -66,7 +66,7 @@ externalRefId* | Unique reference id of the survey that comes from the vendor
 http://us.api.capillarytech.com/v2/survey/v2/survey?extRefId=123
 ```
 
-> Sample POST Request
+> Sample PUT Request
 
 ```json
 {
@@ -207,7 +207,7 @@ params |
 http://us.api.capillarytech.com/v2/survey/question?questionId=112
 ```
 
-> Sample POST Request
+> Sample PUT Request
 
 ```json
   {
