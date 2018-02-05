@@ -8,17 +8,18 @@ language_tabs:
 
 toc_footers:
   - <a href='#'>Capillary V2.0 API Documentation</a>
-  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
+  - <a href=''></a>
 
 includes:
   - customer
   - otp
+  - survey
   - userAuth
   - customerWalkin
-  - org
   - verticals
-  - survey
-  - extendedFields
+  - org
+  - OrganizationSource
+
 search: true
 ---
 
