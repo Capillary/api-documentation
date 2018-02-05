@@ -1783,6 +1783,16 @@ https://us.api.capillarytech.com/v2/otp/validate?format=json
 </tr>
 </tbody></table>
 
+<aside class="notice">
+If the email template is not specified, the validation code will be sent in the default email template format specified below:
+
+`&ldquo;emailTemplate&rdquo;:{
+      &ldquo;subject&rdquo;:&ldquo;Validation Code&rdquo;,
+      &ldquo;body&rdquo;:&ldquo;Dear Customer, The validation code for your request is: {{ validation_code }}. You will also receive the validation code by SMS on your registered mobile number shortly.&rdquo;
+   },`
+   
+</aside>
+
 <h2 id="validate-otp">Validate OTP</h2>
 
 <blockquote>
