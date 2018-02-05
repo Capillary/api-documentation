@@ -102,19 +102,6 @@ action |Choose the action for which the OTP has to be issued. Supported values: 
 channels | Specify the channels through which you want to issue OTP. Value: EMAIL and/or SMS
 
 
-<aside class="notice"
-If the email template is not defined, the validation code will be sent in the default email template format specified below:
-
-`"emailTemplate":{
-      "subject":"Validation Code",
-      "body":"Dear Customer, The validation code for your request is: {{ validation_code }}. You will also receive the validation code by SMS on your registered mobile number shortly."
-   },`
-   
-
-</aside>
-
-
-
 
 
 
