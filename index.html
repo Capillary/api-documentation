@@ -1657,8 +1657,9 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 
 <p>The functionality of OTPs depends on the configuration set on InTouch</p>
 
-<h2 id="generate-otp">Generate OTP</h2>
-<pre class="highlight html"><code># Sample Request
+<h2 id="issue-otp">Issue OTP</h2>
+<pre class="highlight html"><code>
+# Sample Request
 
 https://us.api.capillarytech.com/v2/otp/validate?format=json
 </code></pre>
@@ -1690,9 +1691,9 @@ https://us.api.capillarytech.com/v2/otp/validate?format=json
 <blockquote>
 <p>Sample Response</p>
 </blockquote>
-<pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Success</span><span class="w"> </span><span class="err">Response</span><span class="w">
+<pre class="highlight json"><code><span class="w">
+</span><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Success</span><span class="w"> </span><span class="err">Response</span><span class="w">
 
-</span><span class="err">Success:</span><span class="w">
 
 </span><span class="p">{</span><span class="w">
     </span><span class="nt">"createdId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
@@ -1798,9 +1799,7 @@ If the email template is not defined, the validation code will be sent in the de
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight html"><code>
-https://us.api.capillarytech.com/v2/otp/validate?format=json
-
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/otp/validate?format=json
 </code></pre>
 <blockquote>
 <p>Sample POST Request</p>
@@ -1815,7 +1814,8 @@ https://us.api.capillarytech.com/v2/otp/validate?format=json
 <blockquote>
 <p>Sample Success Response</p>
 </blockquote>
-<pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Success</span><span class="w"> </span><span class="err">Response</span><span class="w">
+<pre class="highlight json"><code><span class="w">
+</span><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Success</span><span class="w"> </span><span class="err">Response</span><span class="w">
 
 </span><span class="p">{</span><span class="w">
     </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
@@ -1828,13 +1828,10 @@ https://us.api.capillarytech.com/v2/otp/validate?format=json
 <p>Sample Failure Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="w">
-
 </span><span class="p">{</span><span class="w"> 
   </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> 
   </span><span class="nt">"warnings"</span><span class="p">:[]</span><span class="w"> 
 </span><span class="p">}</span><span class="w">
-
-
 
 </span></code></pre>
 <p>Lets you authenticate customer by validating the OTP sent to the customer through SMS or email and proceed with the necessary action such as redeeming points/coupons, and registering customer.</p>
@@ -4121,15 +4118,17 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 </tr>
 </tbody></table>
 
-          <p>@@ -0,0 +1,695 @@</p>
-
-<h1 id="other-apis-org-level">Other APIs (Org Level)</h1>
+          <h1 id="other-apis-org-level">Other APIs (Org Level)</h1>
 
 <h2 id="generate-external-ids">Generate External IDs</h2>
 <pre class="highlight html"><code># Sample Request
 
 https://us.api.capillarytech.com/v2/cardNumber
-</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
     </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000000010"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
