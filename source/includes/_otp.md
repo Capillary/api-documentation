@@ -5,9 +5,10 @@ This section consists of APIs related to OTPs that are used to validate customer
 The functionality of OTPs depends on the configuration set on InTouch
 
 
-## Generate OTP
+## Issue OTP
 
 ```html
+
 # Sample Request
 
 https://us.api.capillarytech.com/v2/otp/validate?format=json
@@ -42,9 +43,9 @@ https://us.api.capillarytech.com/v2/otp/validate?format=json
 > Sample Response
 
 ```json
+
 # Sample Success Response
 
-Success:
 
 {
 	"createdId": 10,
@@ -123,9 +124,7 @@ If the email template is not defined, the validation code will be sent in the de
 > Sample Request
 
 ```html
-
 https://us.api.capillarytech.com/v2/otp/validate?format=json
-
 ```
 
 > Sample POST Request
@@ -142,6 +141,7 @@ https://us.api.capillarytech.com/v2/otp/validate?format=json
 > Sample Success Response
 
 ```json
+
 # Sample Success Response
 
 {
@@ -158,13 +158,10 @@ https://us.api.capillarytech.com/v2/otp/validate?format=json
 
 ```json
 
-
 { 
   "entity": false, 
   "warnings":[] 
 }
-
-
 
 ```
 

@@ -1,4 +1,3 @@
-@@ -0,0 +1,695 @@
 # Other APIs (Org Level)
 
 
@@ -12,9 +11,10 @@
 https://us.api.capillarytech.com/v2/cardNumber
 ```
 
+> Sample Response
 
 ```json
-# Sample Response
+
 {
     "entity": "1000000010",
     "warnings": []
