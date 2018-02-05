@@ -339,11 +339,11 @@ CODE | DESCRIPTION
 
 
 
-## Fetch Customers (Advanced Customer Search)
+## Fetch Customers using Partial Strings (Advanced Customer Search)
 ```html
 # Sample Request
 
-http://eu.api.capillarytech.com/v2/customers/search?limit=10&offset=0&q=tom
+http://newapi.nightly.capillary.in/v2/customers/search?limit=10&offset=0&q=tom
 ```
 
 > Sample Response
@@ -591,10 +591,6 @@ https://eu.api.capillarytech.com/v2/customers/17742?source=WECHAT&accountId=2223
    },
    "segments": {
    },
-    "extendedFields": {
-       "ethnicity": "Bangalore",
-       "religion": "Hindu"
-   },
    "warnings": [
    ]
 }
@@ -621,108 +617,44 @@ https://eu.api.capillarytech.com/v2/customers/17742?source=WECHAT&accountId=2223
 }
 ```
 
-> When embed="subscriptions"
+> When embed="subscription"
 
 ```json
-...
-
 "subscriptionInfo": {
-        "subscriptions": [
-            {
-                "channel": "EMAIL",
-                "priority": "TRANS",
-                "type": "OPTIN"
-            },
-            {
-                "channel": "SMS",
-                "priority": "TRANS",
-                "type": "OPTIN"
-            },
-            {
-                "channel": "ANDROID",
-                "priority": "TRANS",
-                "type": "OPTIN"
-            },
-            {
-                "channel": "IOS",
-                "priority": "TRANS",
-                "type": "OPTIN"
-            },
-            {
-                "channel": "EMAIL",
-                "priority": "BULK",
-                "type": "OPTIN"
-            },
-            {
-                "channel": "SMS",
-                "priority": "BULK",
-                "type": "OPTIN"
-            },
-            {
-                "channel": "ANDROID",
-                "priority": "BULK",
-                "type": "OPTIN"
-            },
-            {
-                "channel": "IOS",
-                "priority": "BULK",
-                "type": "OPTIN"
-            }
-        ],
-...
-```
- 
- 
-> When embed=mlp, you will see each loyalty program details of the customer   
- 
-```json
-...
-"loyaltyProgramDetails": [
-        {
-            "redeemed": 8600,
-            "expired": 100,
-            "returned": 500,
-            "adjusted": 0,
-            "lifetimePoints": 10500,
-            "loyaltyPoints": 1000,
-            "cumulativePurchases": 103000,
-            "loyaltyId": 52350728,	
-            "currentSlab": "Silver",
-            "nextSlab": "Gold",
-            "nextSlabSerialNumber": 3,
-            "nextSlabDescription": "Gold tier",
-            "slabSNo": 2,
-            "slabExpiryDate": "2118-12-29T23:59:59+05:30",
-            "programId": 1219
-        },
-        {
-            "redeemed": 100,
-            "expired": 0,
-            "returned": 10,
-            "adjusted": 0,
-            "lifetimePoints": 400,
-            "loyaltyPoints": 300,
-            "cumulativePurchases": 8800,
-            "loyaltyId": 52350728,
-            "currentSlab": "Tier1",
-            "nextSlab": "Tier2",
-            "nextSlabSerialNumber": -1,
-            "nextSlabDescription": "",
-            "slabSNo": 1,
-            "slabExpiryDate": "2118-12-29T23:59:59+05:30",
-            "programId": 1223
-        }
-    ],
-...
+                    "campaignId": 0, 
+                    "communicationId": 0, 
+                    "subscriptions": [
+                              {
+                                        "channel": "EMAIL", 
+                                        "priority": "TRANS", 
+                                        "type": "OPTIN"
+                              }, 
+                              {
+                                        "channel": "SMS", 
+                                        "priority": "TRANS", 
+                                        "type": "OPTIN"
+                              }, 
+                              {
+                                        "channel": "EMAIL", 
+                                        "priority": "BULK", 
+                                        "type": "OPTIN"
+                              }, 
+                              {
+                                        "channel": "SMS", 
+                                        "priority": "BULK", 
+                                        "type": "OPTIN"
+                              }
+                    ]
+          }
+
 ```
 
-Retrieves details of a specific customer such as:
+Allows fetching customer details such as:
 
 * profile information – first name, last name, registered date, registered at TILL 
 * recent profile updated – details of the recent update in profile information
 * registered identifiers, communication channels and
 * loyalty information – loyalty status, registered date, purchases etc.
-* Multiple Loyalty Program Details: Program wise details if the org has multiple loyalty programs support
 
 
 ### Resource Information
@@ -745,7 +677,7 @@ Parameter | Description
 id | Unique identifier of the customer that you want to fetch
 source | Fetch the details of the customer on a specific source (INSTORE, MARTJACK, WECHAT, ALL). To fetch details of a customer from all sources, pass <code>/source=”ALL”</code>. For sources with multiple accounts, you also need to pass the specific accountId
 account_Id |  For sources with multiple accounts, you also need to pass the specific accountId
-embed | To get points, subscription, multiple loyalty program details of the customer (points, subscriptions, mlp). Usage: <code>https://<Cluster API URL>/v2/customers/<Customer id>/source=WECHAT&accountId=<Specific WeChat account’s id>&embed=”points”</code>
+embed | To get points and subscription details of the customer (points, subscription). Usage: <code>https://<Cluster API URL>/v2/customers/<Customer id>/source=WECHAT&accountId=<Specific WeChat account’s id>&embed=”points”</code>
 
 ### Error Codes
 Code | Description
@@ -753,84 +685,10 @@ Code | Description
 8069 | The customer is merged into another account
 8065 | No customer found in the given source with the given identifier 
 8015 | No customer found with the given identifier
-8063 | Unable to fetch segmentation details
+8063 | 
 8062 | Unable to fetch loyalty points
 8045 | Account id is not passed
 8012 | Source is invalid
-
-
-
-## Fetch customer's Loyalty Details
-
-```html
-http://eu.api.capillarytech.com/v2/customers/loyaltyDetails
-```
-
-```json
-{
-    "data": [
-        {
-            "redeemed": 200,
-            "expired": 0,
-            "returned": 1100.2139892578125,
-            "adjusted": 50,
-            "lifetimePoints": 500,
-            "loyaltyPoints": 350,
-            "cumulativePurchases": 8500,
-            "loyaltyId": 52350728,
-            "currentSlab": "Gold",
-            "nextSlab": "Platinum",
-            "nextSlabSerialNumber": 3,
-            "nextSlabDescription": "Platinum tier",
-            "slabSNo": 2,
-            "slabExpiryDate": "2117-12-29T23:59:59+05:30",
-            "programId": 1219
-        },
-        {
-            "redeemed": 2500,
-            "expired": 300,
-            "returned": 102.68399810791016,
-            "adjusted": 30,
-            "lifetimePoints": 5000,
-            "loyaltyPoints": 2200,
-            "cumulativePurchases": 43560,
-            "loyaltyId": 52350728,
-            "currentSlab": "Platinum",
-            "nextSlab": "Star",
-            "nextSlabSerialNumber": -1,
-            "nextSlabDescription": "Top level tier",
-            "slabSNo": 1,
-            "slabExpiryDate": "2117-12-29T23:59:59+05:30",
-            "programId": 1223
-        }
-    ],
-    "warnings": [],
-    "errors": []
-}
-```
-
-
-Retrieves the loyalty information of a customer across the org. If the customer is enrolled in multiple loyalty programs of an org, you will get the details of each loyalty program in a separate entity. You can also fetch a the customer's loyalty details of a specific program.
-
-
-
-### Resource Information
-Information | Value
------------ | -----
-URI | `/customers/<customer id>/loyaltyDetails'
-Authentication | Yes
-HTTP Method | GET
-Batch Support | No
-
-
-### Request URL
-`https://<cluster url>/v2/customers/<customer id>/loyaltyDetails`
-
-### Request Parameters
-Parameter | Description
---------- | -----------
-programId | Lets you fetch the details of a specific loyalty program. Pass the id of the program that you want to fetch
-
 
 
 ## Update Subscription Details
@@ -1006,6 +864,3 @@ Batch Support | No
 Parameter | Description
 --------- | -----------
 id | Pass the unique id of the customer to fetch the subscription details
-
-
-

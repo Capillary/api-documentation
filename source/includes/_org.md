@@ -1,7 +1,7 @@
-# Organization Sources
+# Org
 The `org` entity lets you fetch details of a specific org and sources configured for the org. This category provides the list of APIs related to adding and fetching sources and accounts of the org.
  
-## Add Source Account
+## Add a Source Account to the Org
 
 ```html
 # Sample Request
@@ -58,7 +58,7 @@ https://us.api.capillarytech.com/v2/org/9081/sources
 }
 ```
 
-Allows adding a source account to the org. Currently, the following sources are supported:
+Allows adding sources to the org. Currently, Capillary supports the following sources:
 * Facebook
 * WEB_ENGAGE
 * WECHAT 	
@@ -85,7 +85,7 @@ Parameter | Description
 org id* | Provide the org id to which you want to add a new source
 
 
-## Update Source Account Details
+## Update Account  Details
 
 ```html
 > Sample Request
@@ -144,7 +144,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 
 ```
 
-Allows updating all the details of a source account except UUID and source type. You can also activate or deactivate an account using isActive tag.
+Allows updating all the details of an account except UUID and source type. You can also activate or deactivate an account using isActive tag.
 
 ### Resource Information
 Attribute | Value
