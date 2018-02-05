@@ -111,7 +111,7 @@
       </div>
         <ul class="toc-footer">
             <li><a href='#'>Capillary V2.0 API Documentation</a></li>
-            <li><a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a></li>
+            <li><a href=''></a></li>
         </ul>
     </div>
     <div class="page-wrapper">
@@ -789,10 +789,10 @@ https://us.api.capillarytech.com/v2/customers/418/changeIdentifier?source=WECHAT
 </tr>
 </tbody></table>
 
-<h2 id="fetch-customers-using-partial-strings-advanced-customer-search">Fetch Customers using Partial Strings (Advanced Customer Search)</h2>
+<h2 id="fetch-customers-advanced-customer-search">Fetch Customers (Advanced Customer Search)</h2>
 <pre class="highlight html"><code># Sample Request
 
-http://newapi.nightly.capillary.in/v2/customers/search?limit=10<span class="err">&amp;</span>offset=0<span class="err">&amp;</span>q=tom
+http://eu.api.capillarytech.com/v2/customers/search?limit=10<span class="err">&amp;</span>offset=0<span class="err">&amp;</span>q=tom
 </code></pre>
 <blockquote>
 <p>Sample Response</p>
@@ -1106,6 +1106,10 @@ https://eu.api.capillarytech.com/v2/customers/17742?source=WECHAT<span class="er
    </span><span class="p">},</span><span class="w">
    </span><span class="nt">"segments"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+       </span><span class="nt">"ethnicity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bangalore"</span><span class="p">,</span><span class="w">
+       </span><span class="nt">"religion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hindu"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -1131,43 +1135,105 @@ https://eu.api.capillarytech.com/v2/customers/17742?source=WECHAT<span class="er
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
-<p>When embed=&ldquo;subscription&rdquo;</p>
+<p>When embed=&ldquo;subscriptions&rdquo;</p>
 </blockquote>
-<pre class="highlight json"><code><span class="s2">"subscriptionInfo"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="nt">"campaignId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> 
-                    </span><span class="nt">"communicationId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> 
-                    </span><span class="nt">"subscriptions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                              </span><span class="p">{</span><span class="w">
-                                        </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EMAIL"</span><span class="p">,</span><span class="w"> 
-                                        </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRANS"</span><span class="p">,</span><span class="w"> 
-                                        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="w">
-                              </span><span class="p">},</span><span class="w"> 
-                              </span><span class="p">{</span><span class="w">
-                                        </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SMS"</span><span class="p">,</span><span class="w"> 
-                                        </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRANS"</span><span class="p">,</span><span class="w"> 
-                                        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="w">
-                              </span><span class="p">},</span><span class="w"> 
-                              </span><span class="p">{</span><span class="w">
-                                        </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EMAIL"</span><span class="p">,</span><span class="w"> 
-                                        </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BULK"</span><span class="p">,</span><span class="w"> 
-                                        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="w">
-                              </span><span class="p">},</span><span class="w"> 
-                              </span><span class="p">{</span><span class="w">
-                                        </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SMS"</span><span class="p">,</span><span class="w"> 
-                                        </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BULK"</span><span class="p">,</span><span class="w"> 
-                                        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="w">
-                              </span><span class="p">}</span><span class="w">
-                    </span><span class="p">]</span><span class="w">
-          </span><span class="p">}</span><span class="w">
+<pre class="highlight json"><code><span class="err">...</span><span class="w">
 
+</span><span class="s2">"subscriptionInfo"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"subscriptions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EMAIL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRANS"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SMS"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRANS"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ANDROID"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRANS"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IOS"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRANS"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EMAIL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BULK"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SMS"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BULK"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ANDROID"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BULK"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IOS"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BULK"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+</span><span class="err">...</span><span class="w">
 </span></code></pre>
-<p>Allows fetching customer details such as:</p>
+<blockquote>
+<p>When embed=mlp, you will see each loyalty program details of the customer   </p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">...</span><span class="w">
+</span><span class="s2">"loyaltyProgramDetails"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"redeemed"</span><span class="p">:</span><span class="w"> </span><span class="mi">8600</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"expired"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returned"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"adjusted"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lifetimePoints"</span><span class="p">:</span><span class="w"> </span><span class="mi">10500</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"loyaltyPoints"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cumulativePurchases"</span><span class="p">:</span><span class="w"> </span><span class="mi">103000</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"loyaltyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">52350728</span><span class="p">,</span><span class="w">  
+            </span><span class="nt">"currentSlab"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Silver"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"nextSlab"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gold"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"nextSlabSerialNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"nextSlabDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gold tier"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"slabSNo"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"slabExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2118-12-29T23:59:59+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1219</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"redeemed"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"expired"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returned"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"adjusted"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lifetimePoints"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"loyaltyPoints"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cumulativePurchases"</span><span class="p">:</span><span class="w"> </span><span class="mi">8800</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"loyaltyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">52350728</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"currentSlab"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tier1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"nextSlab"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tier2"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"nextSlabSerialNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"nextSlabDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"slabSNo"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"slabExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2118-12-29T23:59:59+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1223</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="err">,</span><span class="w">
+</span><span class="err">...</span><span class="w">
+</span></code></pre>
+<p>Retrieves details of a specific customer such as:</p>
 
 <ul>
 <li>profile information – first name, last name, registered date, registered at TILL </li>
 <li>recent profile updated – details of the recent update in profile information</li>
 <li>registered identifiers, communication channels and</li>
 <li>loyalty information – loyalty status, registered date, purchases etc.</li>
+<li>Multiple Loyalty Program Details: Program wise details if the org has multiple loyalty programs support</li>
 </ul>
 
 <h3 id="resource-information">Resource Information</h3>
@@ -1224,7 +1290,7 @@ https://eu.api.capillarytech.com/v2/customers/17742?source=WECHAT<span class="er
 </tr>
 <tr>
 <td>embed</td>
-<td>To get points and subscription details of the customer (points, subscription). Usage: <code>https://<Cluster API URL>/v2/customers/<Customer id>/source=WECHAT&amp;accountId=<Specific WeChat account’s id>&amp;embed=”points”</code></td>
+<td>To get points, subscription, multiple loyalty program details of the customer (points, subscriptions, mlp). Usage: <code>https://<Cluster API URL>/v2/customers/<Customer id>/source=WECHAT&amp;accountId=<Specific WeChat account’s id>&amp;embed=”points”</code></td>
 </tr>
 </tbody></table>
 
@@ -1250,7 +1316,7 @@ https://eu.api.capillarytech.com/v2/customers/17742?source=WECHAT<span class="er
 </tr>
 <tr>
 <td>8063</td>
-<td></td>
+<td>Unable to fetch segmentation details</td>
 </tr>
 <tr>
 <td>8062</td>
@@ -1263,6 +1329,95 @@ https://eu.api.capillarytech.com/v2/customers/17742?source=WECHAT<span class="er
 <tr>
 <td>8012</td>
 <td>Source is invalid</td>
+</tr>
+</tbody></table>
+
+<h2 id="fetch-customer-39-s-loyalty-details">Fetch customer&rsquo;s Loyalty Details</h2>
+<pre class="highlight html"><code>http://eu.api.capillarytech.com/v2/customers/loyaltyDetails
+</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"redeemed"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"expired"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returned"</span><span class="p">:</span><span class="w"> </span><span class="mf">1100.2139892578125</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"adjusted"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lifetimePoints"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"loyaltyPoints"</span><span class="p">:</span><span class="w"> </span><span class="mi">350</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cumulativePurchases"</span><span class="p">:</span><span class="w"> </span><span class="mi">8500</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"loyaltyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">52350728</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"currentSlab"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gold"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"nextSlab"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Platinum"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"nextSlabSerialNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"nextSlabDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Platinum tier"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"slabSNo"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"slabExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2117-12-29T23:59:59+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1219</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"redeemed"</span><span class="p">:</span><span class="w"> </span><span class="mi">2500</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"expired"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returned"</span><span class="p">:</span><span class="w"> </span><span class="mf">102.68399810791016</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"adjusted"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lifetimePoints"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"loyaltyPoints"</span><span class="p">:</span><span class="w"> </span><span class="mi">2200</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cumulativePurchases"</span><span class="p">:</span><span class="w"> </span><span class="mi">43560</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"loyaltyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">52350728</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"currentSlab"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Platinum"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"nextSlab"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Star"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"nextSlabSerialNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"nextSlabDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Top level tier"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"slabSNo"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"slabExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2117-12-29T23:59:59+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1223</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Retrieves the loyalty information of a customer across the org. If the customer is enrolled in multiple loyalty programs of an org, you will get the details of each loyalty program in a separate entity. You can also fetch a the customer&rsquo;s loyalty details of a specific program.</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Information</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td>`/customers/<customer id>/loyaltyDetails&rsquo;</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;cluster url&gt;/v2/customers/&lt;customer id&gt;/loyaltyDetails</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>programId</td>
+<td>Lets you fetch the details of a specific loyalty program. Pass the id of the program that you want to fetch</td>
 </tr>
 </tbody></table>
 
@@ -1496,7 +1651,253 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 </tr>
 </tbody></table>
 
-          <h1 id="other-apis">Other APIs</h1>
+          <h1 id="otp">OTP</h1>
+
+<p>This section consists of APIs related to OTPs that are used to validate customers for registration or points/coupon redemption.</p>
+
+<p>The functionality of OTPs depends on the configuration set on InTouch</p>
+
+<h2 id="generate-otp">Generate OTP</h2>
+<pre class="highlight html"><code># Sample Request
+
+https://us.api.capillarytech.com/v2/otp/validate?format=json
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"entityType"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"entityValue"</span><span class="p">:</span><span class="s2">"tom.sawyer@example.com"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"action"</span><span class="p">:</span><span class="s2">"REGISTRATION"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"template"</span><span class="p">:</span><span class="s2">"Hi user.Your otp for validation is {{ validation_code }}.Enjoy"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"emailTemplate"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"subject"</span><span class="p">:</span><span class="s2">"Validation Code"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"body"</span><span class="p">:</span><span class="s2">"Dear Customer, The validation code for your request is: {{ validation_code }}. You will also receive the validation code by SMS on your registered mobile number shortly."</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"channels"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"SMS"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"9191919191"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"EMAIL"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"tom.sawyer@example.com"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Success</span><span class="w"> </span><span class="err">Response</span><span class="w">
+
+</span><span class="err">Success:</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+    </span><span class="nt">"createdId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><pre class="highlight json"><code><span class="w">
+</span><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Failure</span><span class="w"> </span><span class="err">Response</span><span class="w">
+
+</span><span class="err">Failure:</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">600</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"\"Invalid or Null action passed\""</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">602</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"\"Invalid or Null entity value passed\""</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+
+</span></code></pre>
+<p>Issues validation code (OTP) to the customer&rsquo;s mobile number and/or email id for redeeming points/coupons, and registration.</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td>otp/validate</td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;cluster URL&gt;/v2/otp/validate?format=json</code></p>
+
+<h3 id="request-attributes">Request Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>entityType</td>
+<td>Specify MOBILE to identify customer by mobile number or EMAIL to identify customer by email id</td>
+</tr>
+<tr>
+<td>entityValue</td>
+<td>Specify the registered  mobile number or email id of the customer based on the entityType passed</td>
+</tr>
+<tr>
+<td>action</td>
+<td>Choose the action for which the OTP has to be issued. Supported values: COUPON, POINTS, REGISTRATION, GENERIC</td>
+</tr>
+<tr>
+<td>channels</td>
+<td>Specify the channels through which you want to issue OTP. Value: EMAIL and/or SMS</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"
+If the email template is not defined, the validation code will be sent in the default email template format specified below:
+
+`"emailTemplate":{
+      "subject":"Validation Code",
+      "body":"Dear Customer, The validation code for your request is: {{ validation_code }}. You will also receive the validation code by SMS on your registered mobile number shortly."
+   },`
+   
+
+</aside>
+
+<h2 id="validate-otp">Validate OTP</h2>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>
+https://us.api.capillarytech.com/v2/otp/validate?format=json
+
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"entityType"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"entityValue"</span><span class="p">:</span><span class="s2">"tom.sawyer@example.com"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"A2WX11I"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"action"</span><span class="p">:</span><span class="s2">"GENERIC"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Success Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Success</span><span class="w"> </span><span class="err">Response</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+    </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+
+</span></code></pre>
+<blockquote>
+<p>Sample Failure Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+
+</span><span class="p">{</span><span class="w"> 
+  </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w"> 
+  </span><span class="nt">"warnings"</span><span class="p">:[]</span><span class="w"> 
+</span><span class="p">}</span><span class="w">
+
+
+
+</span></code></pre>
+<p>Lets you authenticate customer by validating the OTP sent to the customer through SMS or email and proceed with the necessary action such as redeeming points/coupons, and registering customer.</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td>otp/validate</td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;cluster URL&gt;/v2/otp/validate?format=json</code></p>
+
+<h3 id="request-attributes">Request Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>entityType</td>
+<td>Specify MOBILE to identify customer by mobile number or EMAIL to identify customer by email id</td>
+</tr>
+<tr>
+<td>entityValue</td>
+<td>Specify the registered  mobile number or email id of the customer based on the entityType passed</td>
+</tr>
+<tr>
+<td>code</td>
+<td>Pass the validation code received by the customer</td>
+</tr>
+<tr>
+<td>action</td>
+<td>Specify the action to be performed on successful validation. COUPON, POINTS, REGISTRATION, GENERIC</td>
+</tr>
+</tbody></table>
 
 <h2 id="fetch-otp">Fetch OTP</h2>
 <pre class="highlight html"><code># Sample Request
@@ -1504,15 +1905,47 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 https://us.api.capillarytech.com/v2/otp/source=WECHAT<span class="err">&amp;</span>accountId=WECHAT-API1<span class="err">&amp;</span>identifierName=mobile<span class="err">&amp;</span>identifierValue=8799361139<span class="err">&amp;</span>threshold=60<span class="err">&amp;</span>scope=POINTS
 </code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
 </span><span class="p">{</span><span class="w">
-</span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">966</span><span class="p">,</span><span class="w">
-</span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">313302314</span><span class="p">,</span><span class="w">
-</span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"538AD87"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"validUpto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-07T21:44:20+05:30"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"warnings"</span><span class="p">:[]</span><span class="w">
+   </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">966</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">313302314</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"538AD87"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"validUpto"</span><span class="p">:</span><span class="s2">"2017-08-07T21:44:20+05:30"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
-<p>Allows fetchng recent OTP issued to a customer. For now, OTP is issued for redeeming points. If there is more than one valid OTP available for the customer, this API fetches the recently issued OTP. </p>
+<p>Allows fetching recent OTP issued to a customer. For now, OTP is issued for redeeming points/coupons and customer registration. If there is more than one valid OTP available for the customer, this API fetches the recently issued OTP. </p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/otp</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
 
 <h3 id="request-url">Request URL</h3>
 
@@ -1549,1126 +1982,6 @@ https://us.api.capillarytech.com/v2/otp/source=WECHAT<span class="err">&amp;</sp
 <tr>
 <td>scope</td>
 <td>Specify the scope of the OTP issued. Values: POINTS/COUPONS</td>
-</tr>
-</tbody></table>
-
-<h2 id="generate-external-ids">Generate External IDs</h2>
-<pre class="highlight html"><code># Sample Request
-
-https://us.api.capillarytech.com/v2/cardNumber
-</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
-</span><span class="p">{</span><span class="w">
-    </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000000010"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This API lets you generate external ids manually which can be tagged to a customer while registering. A unique external id is generated every time you call this API. To generate external ids, the option CONF_CARD_NUMBER_GENERATION_ENABLED on InTouch &gt; Settings &gt; Miscellaneous&gt; Registration Configuration page should have enabled. When a customer is registered without an external id, this API is called in the backend and the unique external id is tagged to the customer automatically. However, it will not override external ids if entered manually.</p>
-
-<h3 id="prerequisites">Prerequisites</h3>
-
-<ul>
-<li>This API works only if CONF_CARD_NUMBER_GENERATION_ENABLED and CONF_CLIENT_V2_API_ENABLED are checked on the Registration Configuration page</li>
-<li>It is valid only for the account ids configured on the SOURCE_ACCOUNTS_EXTERNALID_ENABLED of the Registration Configuration page</li>
-</ul>
-
-<h3 id="request-url">Request URL</h3>
-
-<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/cardNumber</code></p>
-
-          <h1 id="user-authentication">User Authentication</h1>
-
-<p>The userAuth resource allows existing customers of InStore to register on the org&rsquo;s web page/mobile app, authenticate login credentials, and update user details.</p>
-
-<h2 id="register-users">Register Users</h2>
-<pre class="highlight html"><code># Sample Request
-
-https://us.api.capillarytech.com/v2/user_auth/register
-</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">POST</span><span class="w"> </span><span class="err">Request</span><span class="w">
-
-</span><span class="p">{</span><span class="w">
-  </span><span class="nt">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"71000000000"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom.sawyer@example.com"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom123"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
-
-</span><span class="p">{</span><span class="w">
-</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24335250</span><span class="p">,</span><span class="w">
-</span><span class="nt">"profiles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-</span><span class="nt">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="nt">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-22T00:00:00+05:30"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
-
-
-
-</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
-</span><span class="p">},</span><span class="w">
-</span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
-</span><span class="p">},</span><span class="w">
-</span><span class="nt">"modifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-12-05T13:04:22+05:30"</span><span class="w">
-</span><span class="p">},</span><span class="w">
-</span><span class="nt">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-</span><span class="nt">"identifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"autoemail734253194812111111@gmail.com"</span><span class="w">
-</span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"externalId"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ext_id7342531948111"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span><span class="p">],</span><span class="w">
-</span><span class="nt">"commChannels"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"autoemail734253194812111111@gmail.com"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"primary"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-</span><span class="nt">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-</span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="nt">"residence"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-</span><span class="nt">"office"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-</span><span class="p">},</span><span class="w">
-</span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span><span class="p">],</span><span class="w">
-</span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">24335250</span><span class="p">,</span><span class="w">
-</span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-</span><span class="nt">"conflictingProfileList"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-</span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-04T11:12:14+05:30"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span><span class="p">],</span><span class="w">
-</span><span class="nt">"loyaltyInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="nt">"loyaltyType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"loyalty"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"attributionV2"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="nt">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-22T00:00:00+05:30"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
-</span><span class="p">},</span><span class="w">
-</span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
-</span><span class="p">},</span><span class="w">
-</span><span class="nt">"modifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-12-05T13:04:22+05:30"</span><span class="w">
-</span><span class="p">},</span><span class="w">
-</span><span class="nt">"lifetimePurchases"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
-</span><span class="nt">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">97</span><span class="w">
-</span><span class="p">},</span><span class="w">
-</span><span class="nt">"segments"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-</span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-</span><span class="err">}</span><span class="w">
-
-
-</span></code></pre>
-<p>Allows the org&rsquo;s InStore customers to register on their web page or mobile app. You need to use only the mobile number/email id that is registered on InStore.</p>
-
-<h3 id="resource-information">Resource Information</h3>
-
-<table><thead>
-<tr>
-<th>Information</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URI</td>
-<td>`/user_auth/register&rsquo;</td>
-</tr>
-<tr>
-<td>Authentication</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>HTTP Method</td>
-<td>POST</td>
-</tr>
-<tr>
-<td>Batch Support</td>
-<td>No</td>
-</tr>
-</tbody></table>
-
-<h3 id="request-url">Request URL</h3>
-
-<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/user_auth/register</code></p>
-
-<h3 id="request-attributes">Request Attributes</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>mobile</td>
-<td>Specify a valid mobile number of the user that is already registered with your org (in any source)</td>
-</tr>
-<tr>
-<td>email</td>
-<td>Specify a valid email id of the user that is already registered with your org (in any source)</td>
-</tr>
-<tr>
-<td>password</td>
-<td>Specify a password for the user account as a MD5 hash</td>
-</tr>
-</tbody></table>
-
-<h2 id="user-authentication">User Authentication</h2>
-<pre class="highlight html"><code># Sample Request
-
-https://us.api.capillarytech.com/v2/user_auth/authorize_user
-</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">POST</span><span class="w"> </span><span class="err">Request</span><span class="w">
-
-</span><span class="p">{</span><span class="w">
-  </span><span class="nt">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"71000000000"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom.sawyer@example.com"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom1234"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
-
-</span><span class="p">{</span><span class="w">
-    </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre>
-<p>Validates whether the provided user credentials are valid or not.</p>
-
-<h3 id="resource-information">Resource Information</h3>
-
-<table><thead>
-<tr>
-<th>Information</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URI</td>
-<td>`/user_auth/authorize_user&rsquo;</td>
-</tr>
-<tr>
-<td>Authentication</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>HTTP Method</td>
-<td>POST</td>
-</tr>
-<tr>
-<td>Batch Support</td>
-<td>No</td>
-</tr>
-</tbody></table>
-
-<h3 id="request-url">Request URL</h3>
-
-<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/user_auth/authorize_user</code></p>
-
-<h3 id="request-attributes">Request Attributes</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>mobile</td>
-<td>Provide the registered mobile number of the user</td>
-</tr>
-<tr>
-<td>email</td>
-<td>Provide the registered email id of the user</td>
-</tr>
-<tr>
-<td>password</td>
-<td>Provice the password in md5 hash form</td>
-</tr>
-</tbody></table>
-
-<h2 id="update-password">Update Password</h2>
-<pre class="highlight html"><code># Sample Request
-
-https://us.api.capillarytech.com/v2/user_auth/update
-</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">PUT</span><span class="w"> </span><span class="err">Request</span><span class="w">
-
-</span><span class="p">{</span><span class="w">
-  </span><span class="nt">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"71000000000"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom.sawyer@example.com"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom12345"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
-
-</span><span class="p">{</span><span class="w">
-    </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>Allows updating password of an user account.</p>
-
-<h3 id="resource-information">Resource Information</h3>
-
-<table><thead>
-<tr>
-<th>Information</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URI</td>
-<td>`/user_auth/update&rsquo;</td>
-</tr>
-<tr>
-<td>Authentication</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>HTTP Method</td>
-<td>PUT</td>
-</tr>
-<tr>
-<td>Batch Support</td>
-<td>No</td>
-</tr>
-</tbody></table>
-
-<h3 id="request-url">Request URL</h3>
-
-<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/user_auth/update</code></p>
-
-<h3 id="request-attributes">Request Attributes</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>mobile</td>
-<td>Provide the registered mobile number of the user</td>
-</tr>
-<tr>
-<td>email</td>
-<td>Provide the registered email id of the user</td>
-</tr>
-<tr>
-<td>password</td>
-<td>Provide the new password in md5 hash form</td>
-</tr>
-</tbody></table>
-
-<h2 id="response-codes">Response Codes</h2>
-
-<h3 id="success-codes">Success Codes</h3>
-
-<table><thead>
-<tr>
-<th>Code</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>91025</td>
-<td>Password updated successfully</td>
-</tr>
-<tr>
-<td>91030</td>
-<td>User is registered successfully</td>
-</tr>
-</tbody></table>
-
-<h3 id="error-codes">Error Codes</h3>
-
-<table><thead>
-<tr>
-<th>Code</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>91024</td>
-<td>Authentation failed. Unable to authorize user with the given credentials</td>
-</tr>
-<tr>
-<td>91026</td>
-<td>Unable to update password</td>
-</tr>
-<tr>
-<td>91027</td>
-<td>Invalid username (mobile number/email id)</td>
-</tr>
-<tr>
-<td>91028</td>
-<td>Invalid password format. Pass the password in MD5 Hash format</td>
-</tr>
-<tr>
-<td>91029</td>
-<td>User is registered already</td>
-</tr>
-<tr>
-<td>91031</td>
-<td>Unable to register user</td>
-</tr>
-</tbody></table>
-
-          <h1 id="customer-walk-in">Customer Walk-in</h1>
-
-<h2 id="trigger-customer-walk-in-notifications-on-instore">Trigger Customer Walk-in Notifications on InStore</h2>
-<pre class="highlight html"><code># Sample Request
-
-https://us.api.capillarytech.com/v2/customer/walkin?till_code=kn.003<span class="err">&amp;</span>identifierName=mobile<span class="err">&amp;</span>identifierValue={{mobile1}}<span class="err">&amp;</span>source=INSTORE
-</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
-
-</span><span class="p">{</span><span class="w">
-   </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer check-in successful"</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-   </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-   </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>Triggers customer walkin notifications on InStore, i.e., when a customer walks in to the store, InStore triggers a desktop notification with the customer details. </p>
-
-<h3 id="resource-information">Resource Information</h3>
-
-<table><thead>
-<tr>
-<th>Information</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URI</td>
-<td>`/customer/walkin&rsquo;</td>
-</tr>
-<tr>
-<td>Authentication</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>HTTP Method</td>
-<td>GET</td>
-</tr>
-<tr>
-<td>Batch Support</td>
-<td>No</td>
-</tr>
-</tbody></table>
-
-<h3 id="request-url">Request URL</h3>
-
-<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/customer/walkin?till_code=&lt;till code&gt;&amp;identifierName=&lt;mobile/email/external_id&gt;&amp;identifierValue={{}}&amp;source=&lt;source&gt;
-&amp;accountId=&lt;account id&gt;</code></p>
-
-<h3 id="request-parameters">Request Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>till_code</td>
-<td>Destination TILL code that you want to push the notification</td>
-</tr>
-<tr>
-<td>identifierName</td>
-<td>Identifier tracked when the customer walked in. Values: MOBILE, EMAIL,</td>
-</tr>
-<tr>
-<td>identifierValue</td>
-<td>The respective identifier value</td>
-</tr>
-<tr>
-<td>source</td>
-<td>Source in which the customer is identified</td>
-</tr>
-<tr>
-<td>accountId</td>
-<td>account in which the customer is identified (for sources with multiple account ids)</td>
-</tr>
-</tbody></table>
-
-<h2 id="response-codes">Response Codes</h2>
-
-<h3 id="error-codes">Error Codes</h3>
-
-<table><thead>
-<tr>
-<th>Code</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>8099</td>
-<td>No identifier passed in the param</td>
-</tr>
-<tr>
-<td>8098</td>
-<td>Invalid Till</td>
-</tr>
-<tr>
-<td>8097</td>
-<td>SNS service not working</td>
-</tr>
-<tr>
-<td>8096</td>
-<td>Invalid Till code</td>
-</tr>
-<tr>
-<td>8095</td>
-<td>Invalid source passed</td>
-</tr>
-<tr>
-<td>8094</td>
-<td>No identifier value passed in the param</td>
-</tr>
-<tr>
-<td>8093</td>
-<td>Walkin failed from store network</td>
-</tr>
-</tbody></table>
-
-          <h1 id="org">Org</h1>
-
-<p>The <code class="prettyprint">org</code> entity lets you fetch details of a specific org and sources configured for the org. This category provides the list of APIs related to adding and fetching sources and accounts of the org.</p>
-
-<h2 id="add-a-source-account-to-the-org">Add a Source Account to the Org</h2>
-<pre class="highlight html"><code># Sample Request
-
-https://us.api.capillarytech.com/v2/org/9081/sources
-</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">POST</span><span class="w"> </span><span class="err">Request</span><span class="w">
-
-</span><span class="p">{</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUSH289-CM"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"sourceAccountIdentifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUSH289-CM"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"sourceTypeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEB_ENGAGE"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"toMirror"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"configs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"licenseCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"accessToken"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"android"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"ios"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"validTill"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cm.1"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"loginIdentifierType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"deeplink"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"wefwqfwqefw,"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-
-
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2421</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ca46ee9cc14b46d1837bd6e923d52775"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUSH289-CM"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"sourceAccountIdentifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUSH289-CM"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"toMirror"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"sourceTypeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"sourceTypeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEB_ENGAGE"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"commChannels"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"android"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"ios"</span><span class="w">
-
-
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-17"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"modifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-17"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>Allows adding sources to the org. Currently, Capillary supports the following sources:
-* Facebook
-* WEB_ENGAGE
-* WECHAT<br>
-* INSTORE<br>
-* MARTJACK<br>
-* TMALL<br>
-* TAOBAO<br>
-* JD</p>
-
-<h3 id="resource-information">Resource Information</h3>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URI</td>
-<td><code class="prettyprint">/org/&lt;org id&gt;/sources</code></td>
-</tr>
-<tr>
-<td>HTTP Method</td>
-<td>POST</td>
-</tr>
-<tr>
-<td>Batch Support</td>
-<td>No</td>
-</tr>
-</tbody></table>
-
-<h3 id="request-url">Request URL</h3>
-
-<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/org/&lt;org id&gt;/sources</code></p>
-
-<h3 id="request-parameters">Request Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>org id*</td>
-<td>Provide the org id to which you want to add a new source</td>
-</tr>
-</tbody></table>
-
-<h2 id="update-account-details">Update Account  Details</h2>
-<pre class="highlight html"><code>&gt; Sample Request
-https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d52775
-</code></pre><pre class="highlight json"><code><span class="err">&gt;</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">PUT</span><span class="w"> </span><span class="err">Request</span><span class="w">
-
-</span><span class="p">{</span><span class="w">
-
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUSH289-CM"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"sourceAccountIdentifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUSH289-CM"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"toMirror"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"sourceTypeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"sourceTypeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEB_ENGAGE"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-
-  </span><span class="nt">"configs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"accessToken"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"android"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"deeplink"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"ios"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"licenseCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"loginIdentifierType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"validTill"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cm.1"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre><pre class="highlight json"><code><span class="err">&gt;</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
-
-</span><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2421</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ca46ee9cc14b46d1837bd6e923d52775"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"sourceTypeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"configs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"accessToken"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"android"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"deeplink"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"ios"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"licenseCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"loginIdentifierType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"validTill"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cm.1"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-17T12:21:37+05:30"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-        </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-        </span><span class="nt">"modifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-17T12:21:37+05:30"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre>
-<p>Allows updating all the details of an account except UUID and source type. You can also activate or deactivate an account using isActive tag.</p>
-
-<h3 id="resource-information">Resource Information</h3>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URI</td>
-<td>/org/<org id>/sources</td>
-</tr>
-<tr>
-<td>HTTP Method</td>
-<td>PUT</td>
-</tr>
-<tr>
-<td>Batch Support</td>
-<td>No</td>
-</tr>
-</tbody></table>
-
-<h3 id="request-url">Request URL</h3>
-
-<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/org/org id&gt;&lt;/sources?&lt;account&#39;s UUID&gt;</code></p>
-
-<h3 id="request-parameters">Request Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>org id</td>
-<td>Provide the org id for which you want to update account</td>
-</tr>
-<tr>
-<td>UUID</td>
-<td>Specify the UUID of the account that you want to modify</td>
-</tr>
-</tbody></table>
-
-<h2 id="retrieve-all-source-accounts-of-an-org">Retrieve All Source Accounts of an Org</h2>
-<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/org/9081/sources?details=true
-
-</code></pre><pre class="highlight json"><code><span class="err">&gt;</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
-
-</span><span class="p">{</span><span class="w">
-  </span><span class="nt">"data"</span><span class="p">:[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">2408</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"uuid"</span><span class="p">:</span><span class="s2">"547c36977a2e49edbf22c04bd27b1303"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Facebook1-cm"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"sourceAccountIdentifier"</span><span class="p">:</span><span class="s2">"Facebook1-cm"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"toMirror"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"sourceTypeId"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"sourceTypeName"</span><span class="p">:</span><span class="s2">"Facebook"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"isActive"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"commChannels"</span><span class="p">:[</span><span class="w">
-        </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"mobile"</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"attribution"</span><span class="p">:{</span><span class="w">
-        </span><span class="nt">"createDate"</span><span class="p">:</span><span class="s2">"2017-08-14"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"modifiedDate"</span><span class="p">:</span><span class="s2">"2017-08-14"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">2380</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"uuid"</span><span class="p">:</span><span class="s2">"0ca36340e5144b2f9e206e5ebf090845"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"cc"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"sourceAccountIdentifier"</span><span class="p">:</span><span class="s2">"ccc"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"toMirror"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"sourceTypeId"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"sourceTypeName"</span><span class="p">:</span><span class="s2">"WEB_ENGAGE"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"isActive"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"commChannels"</span><span class="p">:[</span><span class="w">
-        </span><span class="s2">"android"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"ios"</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"attribution"</span><span class="p">:{</span><span class="w">
-        </span><span class="nt">"createDate"</span><span class="p">:</span><span class="s2">"2017-07-28"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"modifiedDate"</span><span class="p">:</span><span class="s2">"2017-07-28"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">185</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"uuid"</span><span class="p">:</span><span class="s2">"403743f59bce4e92b45fc98191684b7f"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"MT-CM"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"sourceAccountIdentifier"</span><span class="p">:</span><span class="s2">"MT-CM"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"toMirror"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"sourceTypeId"</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"sourceTypeName"</span><span class="p">:</span><span class="s2">"MARTJACK"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"isActive"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"attribution"</span><span class="p">:{</span><span class="w">
-        </span><span class="nt">"createDate"</span><span class="p">:</span><span class="s2">"2017-06-16"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"modifiedDate"</span><span class="p">:</span><span class="s2">"2017-06-16"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">
-
-  </span><span class="p">],</span><span class="w">
-  </span><span class="nt">"errors"</span><span class="p">:[</span><span class="w">
-
-  </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>Retrieves the list of all account accounts of an org.</p>
-
-<h3 id="resource-information">Resource Information</h3>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URI</td>
-<td>org/<org id>/sources?details=true</td>
-</tr>
-<tr>
-<td>HTTP Method</td>
-<td>GET</td>
-</tr>
-<tr>
-<td>Batch Support</td>
-<td>No</td>
-</tr>
-</tbody></table>
-
-<h3 id="request-url">Request URL</h3>
-
-<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/org/org id&gt;&lt;/sources?details=true</code></p>
-
-<h3 id="request-parameters">Request Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>org id*</td>
-<td>Provide the org id for which you want to retrieve source details</td>
-</tr>
-</tbody></table>
-
-<h2 id="retrieve-details-of-a-specific-source-account">Retrieve Details of a Specific Source Account</h2>
-<pre class="highlight html"><code>https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d52775
-</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2421</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ca46ee9cc14b46d1837bd6e923d52775"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUSH289-CM"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"sourceAccountIdentifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUSH289-CM"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"toMirror"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"sourceTypeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"sourceTypeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEB_ENGAGE"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"commChannels"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="s2">"android"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"ios"</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"configs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"accessToken"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"android"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"deeplink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wefwqfwqefw,"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"ios"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"licenseCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"loginIdentifierType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"validTill"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cm.1"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-17"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"modifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-17"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>Retrieves details of a specific account based on the UUID.</p>
-
-<h3 id="resource-information">Resource Information</h3>
-
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URI</td>
-<td>/org/<org id>/sources?<UUID></td>
-</tr>
-<tr>
-<td>HTTP Method</td>
-<td>GET</td>
-</tr>
-<tr>
-<td>Batch Support</td>
-<td>No</td>
-</tr>
-</tbody></table>
-
-<h3 id="request-url">Request URL</h3>
-
-<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/org/org id&gt;&lt;/sources?/&lt;account&#39;s UUID&gt;</code></p>
-
-<h3 id="request-parameters">Request Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>org id*</td>
-<td>Provide the org id for which you want to retrieve source details</td>
-</tr>
-<tr>
-<td>UUID*</td>
-<td>Pass the UUID of the account that you want to retrieve</td>
-</tr>
-</tbody></table>
-
-<h2 id="response-codes">Response Codes</h2>
-
-<h3 id="success-codes">Success Codes</h3>
-
-<table><thead>
-<tr>
-<th>Code</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
-
-<h3 id="error-codes">Error Codes</h3>
-
-<table><thead>
-<tr>
-<th>Code</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>3213</td>
-<td>Unable to find org source</td>
-</tr>
-<tr>
-<td>3214</td>
-<td>Unable to add org source</td>
-</tr>
-<tr>
-<td>3215</td>
-<td>No source types found</td>
-</tr>
-<tr>
-<td>3216</td>
-<td>Invalid source name</td>
-</tr>
-<tr>
-<td>3217</td>
-<td>Invalid account identifier of the source</td>
-</tr>
-<tr>
-<td>3218</td>
-<td>Invalid source type</td>
-</tr>
-<tr>
-<td>3219</td>
-<td>Unable to update source. Invalid UUID</td>
-</tr>
-<tr>
-<td>3220</td>
-<td>Org source already exists with the given values</td>
-</tr>
-<tr>
-<td>3221</td>
-<td>Unable to update org source / Invalid org id</td>
-</tr>
-<tr>
-<td>3222</td>
-<td>No configurations found for the provided source id</td>
-</tr>
-</tbody></table>
-
-          <h1 id="verticals">Verticals</h1>
-
-<h2 id="retrieve-all-verticals-available-for-the-org">Retrieve All Verticals Available for the Org</h2>
-<pre class="highlight html"><code># Sample Request
-https://us.api.capillarytech.com/v2/verticals/meta
-</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
-
-</span><span class="p">{</span><span class="w">
-    </span><span class="nt">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jewellery"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-commerce"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Electronics"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apparel"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"F&amp;B"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>Retrieves the list of all verticals available for the org. This include both active and inactive verticals.</p>
-
-<h3 id="resource-information">Resource Information</h3>
-
-<table><thead>
-<tr>
-<th>Information</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URI</td>
-<td>/verticals/meta</td>
-</tr>
-<tr>
-<td>Authentication</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>HTTP Method</td>
-<td>GET</td>
-</tr>
-<tr>
-<td>Batch Support</td>
-<td>NA</td>
-</tr>
-</tbody></table>
-
-<h3 id="request-url">Request URL</h3>
-
-<p><code class="prettyprint">htpps://&lt;Cluster URL&gt;/v2/verticals/meta</code></p>
-
-<h2 id="retrieve-verticals-enabled-for-the-org">Retrieve Verticals Enabled for the Org</h2>
-<pre class="highlight html"><code># Sample Request
-https://us.api.capillarytech.com/v2/verticals
-</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
-
-</span><span class="p">{</span><span class="w">
-    </span><span class="nt">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"verticalId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"verticalName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jewellery"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"verticalId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"verticalName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-commerce"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"verticalId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"verticalName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Electronics"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"verticalId"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"verticalName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apparel"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"verticalId"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"verticalName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Home Appliance"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre>
-<p>Retrieves the list of verticals enabled for the org (active verticals).</p>
-
-<h3 id="resource-information">Resource Information</h3>
-
-<table><thead>
-<tr>
-<th>Information</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URI</td>
-<td>/verticals</td>
-</tr>
-<tr>
-<td>Authentication</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>HTTP Method</td>
-<td>GET</td>
-</tr>
-<tr>
-<td>Batch Support</td>
-<td>NA</td>
-</tr>
-</tbody></table>
-
-<h3 id="request-url">Request URL</h3>
-
-<p><code class="prettyprint">htpps://&lt;Cluster URL&gt;/v2/verticals</code></p>
-
-<h2 id="response-codes">Response Codes</h2>
-
-<table><thead>
-<tr>
-<th>Code</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>91027</td>
-<td>Unable to find vertical</td>
-</tr>
-<tr>
-<td>91028</td>
-<td>Invalid vertical</td>
-</tr>
-<tr>
-<td>91029</td>
-<td>Unable to add vertical. Invalid vertical name passed</td>
-</tr>
-<tr>
-<td>91030</td>
-<td>Unable to add org vertical</td>
-</tr>
-<tr>
-<td>91031</td>
-<td>Unable to disable the vertical</td>
-</tr>
-<tr>
-<td>91032</td>
-<td>Org is already mapped to the specified vertical id</td>
 </tr>
 </tbody></table>
 
@@ -3711,9 +3024,1131 @@ https://us.api.capillarytech.com/v2/verticals
 </tr>
 </tbody></table>
 
-          <h1 id="extended-fields">Extended Fields</h1>
+          <h1 id="user-authentication">User Authentication</h1>
 
-<h2 id="retrieve-extended-fields-of-the-organization">Retrieve Extended Fields of the Organization</h2>
+<p>The userAuth resource allows existing customers of InStore to register on the org&rsquo;s web page/mobile app, authenticate login credentials, and update user details.</p>
+
+<h2 id="register-users">Register Users</h2>
+<pre class="highlight html"><code># Sample Request
+
+https://us.api.capillarytech.com/v2/user_auth/register
+</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">POST</span><span class="w"> </span><span class="err">Request</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"71000000000"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom.sawyer@example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom123"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+</span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24335250</span><span class="p">,</span><span class="w">
+</span><span class="nt">"profiles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+</span><span class="nt">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nt">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-22T00:00:00+05:30"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+
+
+
+</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"modifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-12-05T13:04:22+05:30"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+</span><span class="nt">"identifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"autoemail734253194812111111@gmail.com"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"externalId"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ext_id7342531948111"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">],</span><span class="w">
+</span><span class="nt">"commChannels"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"autoemail734253194812111111@gmail.com"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"primary"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+</span><span class="nt">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+</span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nt">"residence"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+</span><span class="nt">"office"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">],</span><span class="w">
+</span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">24335250</span><span class="p">,</span><span class="w">
+</span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+</span><span class="nt">"conflictingProfileList"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+</span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-04T11:12:14+05:30"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">],</span><span class="w">
+</span><span class="nt">"loyaltyInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nt">"loyaltyType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"loyalty"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"attributionV2"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nt">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-22T00:00:00+05:30"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"modifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-12-05T13:04:22+05:30"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"lifetimePurchases"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+</span><span class="nt">"score"</span><span class="p">:</span><span class="w"> </span><span class="mi">97</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"segments"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+</span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+</span><span class="err">}</span><span class="w">
+
+
+</span></code></pre>
+<p>Allows the org&rsquo;s InStore customers to register on their web page or mobile app. You need to use only the mobile number/email id that is registered on InStore.</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Information</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td>`/user_auth/register&rsquo;</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/user_auth/register</code></p>
+
+<h3 id="request-attributes">Request Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mobile</td>
+<td>Specify a valid mobile number of the user that is already registered with your org (in any source)</td>
+</tr>
+<tr>
+<td>email</td>
+<td>Specify a valid email id of the user that is already registered with your org (in any source)</td>
+</tr>
+<tr>
+<td>password</td>
+<td>Specify a password for the user account as a MD5 hash</td>
+</tr>
+</tbody></table>
+
+<h2 id="user-authentication">User Authentication</h2>
+<pre class="highlight html"><code># Sample Request
+
+https://us.api.capillarytech.com/v2/user_auth/authorize_user
+</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">POST</span><span class="w"> </span><span class="err">Request</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"71000000000"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom.sawyer@example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom1234"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+    </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>Validates whether the provided user credentials are valid or not.</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Information</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td>`/user_auth/authorize_user&rsquo;</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/user_auth/authorize_user</code></p>
+
+<h3 id="request-attributes">Request Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mobile</td>
+<td>Provide the registered mobile number of the user</td>
+</tr>
+<tr>
+<td>email</td>
+<td>Provide the registered email id of the user</td>
+</tr>
+<tr>
+<td>password</td>
+<td>Provice the password in md5 hash form</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-password">Update Password</h2>
+<pre class="highlight html"><code># Sample Request
+
+https://us.api.capillarytech.com/v2/user_auth/update
+</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">PUT</span><span class="w"> </span><span class="err">Request</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"71000000000"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom.sawyer@example.com"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom12345"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+    </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Allows updating password of an user account.</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Information</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td>`/user_auth/update&rsquo;</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>PUT</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/user_auth/update</code></p>
+
+<h3 id="request-attributes">Request Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mobile</td>
+<td>Provide the registered mobile number of the user</td>
+</tr>
+<tr>
+<td>email</td>
+<td>Provide the registered email id of the user</td>
+</tr>
+<tr>
+<td>password</td>
+<td>Provide the new password in md5 hash form</td>
+</tr>
+</tbody></table>
+
+<h2 id="response-codes">Response Codes</h2>
+
+<h3 id="success-codes">Success Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>91025</td>
+<td>Password updated successfully</td>
+</tr>
+<tr>
+<td>91030</td>
+<td>User is registered successfully</td>
+</tr>
+</tbody></table>
+
+<h3 id="error-codes">Error Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>91024</td>
+<td>Authentation failed. Unable to authorize user with the given credentials</td>
+</tr>
+<tr>
+<td>91026</td>
+<td>Unable to update password</td>
+</tr>
+<tr>
+<td>91027</td>
+<td>Invalid username (mobile number/email id)</td>
+</tr>
+<tr>
+<td>91028</td>
+<td>Invalid password format. Pass the password in MD5 Hash format</td>
+</tr>
+<tr>
+<td>91029</td>
+<td>User is registered already</td>
+</tr>
+<tr>
+<td>91031</td>
+<td>Unable to register user</td>
+</tr>
+</tbody></table>
+
+          <h1 id="customer-walk-in">Customer Walk-in</h1>
+
+<h2 id="trigger-customer-walk-in-notifications-on-instore">Trigger Customer Walk-in Notifications on InStore</h2>
+<pre class="highlight html"><code># Sample Request
+
+https://us.api.capillarytech.com/v2/customer/walkin?till_code=kn.003<span class="err">&amp;</span>identifierName=mobile<span class="err">&amp;</span>identifierValue={{mobile1}}<span class="err">&amp;</span>source=INSTORE
+</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+   </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer check-in successful"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+   </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+   </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Triggers customer walkin notifications on InStore, i.e., when a customer walks in to the store, InStore triggers a desktop notification with the customer details. </p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Information</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td>`/customer/walkin&rsquo;</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/customer/walkin?till_code=&lt;till code&gt;&amp;identifierName=&lt;mobile/email/external_id&gt;&amp;identifierValue={{}}&amp;source=&lt;source&gt;
+&amp;accountId=&lt;account id&gt;</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>till_code</td>
+<td>Destination TILL code that you want to push the notification</td>
+</tr>
+<tr>
+<td>identifierName</td>
+<td>Identifier tracked when the customer walked in. Values: MOBILE, EMAIL,</td>
+</tr>
+<tr>
+<td>identifierValue</td>
+<td>The respective identifier value</td>
+</tr>
+<tr>
+<td>source</td>
+<td>Source in which the customer is identified</td>
+</tr>
+<tr>
+<td>accountId</td>
+<td>account in which the customer is identified (for sources with multiple account ids)</td>
+</tr>
+</tbody></table>
+
+<h2 id="response-codes">Response Codes</h2>
+
+<h3 id="error-codes">Error Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>8099</td>
+<td>No identifier passed in the param</td>
+</tr>
+<tr>
+<td>8098</td>
+<td>Invalid Till</td>
+</tr>
+<tr>
+<td>8097</td>
+<td>SNS service not working</td>
+</tr>
+<tr>
+<td>8096</td>
+<td>Invalid Till code</td>
+</tr>
+<tr>
+<td>8095</td>
+<td>Invalid source passed</td>
+</tr>
+<tr>
+<td>8094</td>
+<td>No identifier value passed in the param</td>
+</tr>
+<tr>
+<td>8093</td>
+<td>Walkin failed from store network</td>
+</tr>
+</tbody></table>
+
+          <h1 id="verticals">Verticals</h1>
+
+<h2 id="retrieve-all-verticals-available-for-the-org">Retrieve All Verticals Available for the Org</h2>
+<pre class="highlight html"><code># Sample Request
+https://us.api.capillarytech.com/v2/verticals/meta
+</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+    </span><span class="nt">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jewellery"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-commerce"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Electronics"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apparel"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"F&amp;B"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Retrieves the list of all verticals available for the org. This include both active and inactive verticals.</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Information</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td>/verticals/meta</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>NA</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">htpps://&lt;Cluster URL&gt;/v2/verticals/meta</code></p>
+
+<h2 id="retrieve-verticals-enabled-for-the-org">Retrieve Verticals Enabled for the Org</h2>
+<pre class="highlight html"><code># Sample Request
+https://us.api.capillarytech.com/v2/verticals
+</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+    </span><span class="nt">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"verticalId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"verticalName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jewellery"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"verticalId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"verticalName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"E-commerce"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"verticalId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"verticalName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Electronics"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"verticalId"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"verticalName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apparel"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"verticalId"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"verticalName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Home Appliance"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>Retrieves the list of verticals enabled for the org (active verticals).</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Information</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td>/verticals</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>NA</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">htpps://&lt;Cluster URL&gt;/v2/verticals</code></p>
+
+<h2 id="response-codes">Response Codes</h2>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>91027</td>
+<td>Unable to find vertical</td>
+</tr>
+<tr>
+<td>91028</td>
+<td>Invalid vertical</td>
+</tr>
+<tr>
+<td>91029</td>
+<td>Unable to add vertical. Invalid vertical name passed</td>
+</tr>
+<tr>
+<td>91030</td>
+<td>Unable to add org vertical</td>
+</tr>
+<tr>
+<td>91031</td>
+<td>Unable to disable the vertical</td>
+</tr>
+<tr>
+<td>91032</td>
+<td>Org is already mapped to the specified vertical id</td>
+</tr>
+</tbody></table>
+
+          <h1 id="organization-sources">Organization Sources</h1>
+
+<p>The <code class="prettyprint">org</code> entity lets you fetch details of a specific org and sources configured for the org. This category provides the list of APIs related to adding and fetching sources and accounts of the org.</p>
+
+<h2 id="add-source-account">Add Source Account</h2>
+<pre class="highlight html"><code># Sample Request
+
+https://us.api.capillarytech.com/v2/org/9081/sources
+</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">POST</span><span class="w"> </span><span class="err">Request</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUSH289-CM"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"sourceAccountIdentifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUSH289-CM"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"sourceTypeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEB_ENGAGE"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"toMirror"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"configs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"licenseCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"accessToken"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"android"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"ios"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"validTill"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cm.1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"loginIdentifierType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"deeplink"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"wefwqfwqefw,"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+
+
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2421</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ca46ee9cc14b46d1837bd6e923d52775"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUSH289-CM"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sourceAccountIdentifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUSH289-CM"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"toMirror"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sourceTypeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sourceTypeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEB_ENGAGE"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"commChannels"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"android"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ios"</span><span class="w">
+
+
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-17"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"modifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-17"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Allows adding a source account to the org. Currently, the following sources are supported:
+* Facebook
+* WEB_ENGAGE
+* WECHAT<br>
+* INSTORE<br>
+* MARTJACK<br>
+* TMALL<br>
+* TAOBAO<br>
+* JD</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/org/&lt;org id&gt;/sources</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/org/&lt;org id&gt;/sources</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>org id*</td>
+<td>Provide the org id to which you want to add a new source</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-source-account-details">Update Source Account Details</h2>
+<pre class="highlight html"><code>&gt; Sample Request
+https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d52775
+</code></pre><pre class="highlight json"><code><span class="err">&gt;</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">PUT</span><span class="w"> </span><span class="err">Request</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUSH289-CM"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sourceAccountIdentifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUSH289-CM"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"toMirror"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sourceTypeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sourceTypeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEB_ENGAGE"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+
+  </span><span class="nt">"configs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"accessToken"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"android"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"deeplink"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"ios"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"licenseCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"loginIdentifierType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"validTill"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cm.1"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre><pre class="highlight json"><code><span class="err">&gt;</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2421</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ca46ee9cc14b46d1837bd6e923d52775"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sourceTypeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"configs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"accessToken"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"android"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"deeplink"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"ios"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"licenseCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"loginIdentifierType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"validTill"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cm.1"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-17T12:21:37+05:30"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="nt">"modifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-17T12:21:37+05:30"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>Allows updating all the details of a source account except UUID and source type. You can also activate or deactivate an account using isActive tag.</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td>/org/<org id>/sources</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>PUT</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/org/org id&gt;&lt;/sources?&lt;account&#39;s UUID&gt;</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>org id</td>
+<td>Provide the org id for which you want to update account</td>
+</tr>
+<tr>
+<td>UUID</td>
+<td>Specify the UUID of the account that you want to modify</td>
+</tr>
+</tbody></table>
+
+<h2 id="retrieve-all-source-accounts-of-an-org">Retrieve All Source Accounts of an Org</h2>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/org/9081/sources?details=true
+
+</code></pre><pre class="highlight json"><code><span class="err">&gt;</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">2408</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"uuid"</span><span class="p">:</span><span class="s2">"547c36977a2e49edbf22c04bd27b1303"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Facebook1-cm"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"sourceAccountIdentifier"</span><span class="p">:</span><span class="s2">"Facebook1-cm"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"toMirror"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"sourceTypeId"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"sourceTypeName"</span><span class="p">:</span><span class="s2">"Facebook"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"isActive"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"commChannels"</span><span class="p">:[</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mobile"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"attribution"</span><span class="p">:{</span><span class="w">
+        </span><span class="nt">"createDate"</span><span class="p">:</span><span class="s2">"2017-08-14"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"modifiedDate"</span><span class="p">:</span><span class="s2">"2017-08-14"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">2380</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"uuid"</span><span class="p">:</span><span class="s2">"0ca36340e5144b2f9e206e5ebf090845"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"cc"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"sourceAccountIdentifier"</span><span class="p">:</span><span class="s2">"ccc"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"toMirror"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"sourceTypeId"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"sourceTypeName"</span><span class="p">:</span><span class="s2">"WEB_ENGAGE"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"isActive"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"commChannels"</span><span class="p">:[</span><span class="w">
+        </span><span class="s2">"android"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ios"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"attribution"</span><span class="p">:{</span><span class="w">
+        </span><span class="nt">"createDate"</span><span class="p">:</span><span class="s2">"2017-07-28"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"modifiedDate"</span><span class="p">:</span><span class="s2">"2017-07-28"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">185</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"uuid"</span><span class="p">:</span><span class="s2">"403743f59bce4e92b45fc98191684b7f"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"MT-CM"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"sourceAccountIdentifier"</span><span class="p">:</span><span class="s2">"MT-CM"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"toMirror"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"sourceTypeId"</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"sourceTypeName"</span><span class="p">:</span><span class="s2">"MARTJACK"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"isActive"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"attribution"</span><span class="p">:{</span><span class="w">
+        </span><span class="nt">"createDate"</span><span class="p">:</span><span class="s2">"2017-06-16"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"modifiedDate"</span><span class="p">:</span><span class="s2">"2017-06-16"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">
+
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"errors"</span><span class="p">:[</span><span class="w">
+
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Retrieves the list of all account accounts of an org.</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td>org/<org id>/sources?details=true</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/org/org id&gt;&lt;/sources?details=true</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>org id*</td>
+<td>Provide the org id for which you want to retrieve source details</td>
+</tr>
+</tbody></table>
+
+<h2 id="retrieve-details-of-a-specific-source-account">Retrieve Details of a Specific Source Account</h2>
+<pre class="highlight html"><code>https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d52775
+</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2421</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"uuid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ca46ee9cc14b46d1837bd6e923d52775"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUSH289-CM"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sourceAccountIdentifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUSH289-CM"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"toMirror"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sourceTypeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sourceTypeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEB_ENGAGE"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"commChannels"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"android"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ios"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"configs"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"accessToken"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"android"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"deeplink"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wefwqfwqefw,"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"ios"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"licenseCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"loginIdentifierType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"validTill"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cm.1"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-17"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"modifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-08-17"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Retrieves details of a specific account based on the UUID.</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td>/org/<org id>/sources?<UUID></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/org/org id&gt;&lt;/sources?/&lt;account&#39;s UUID&gt;</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>org id*</td>
+<td>Provide the org id for which you want to retrieve source details</td>
+</tr>
+<tr>
+<td>UUID*</td>
+<td>Pass the UUID of the account that you want to retrieve</td>
+</tr>
+</tbody></table>
+
+<h2 id="response-codes">Response Codes</h2>
+
+<h3 id="success-codes">Success Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<h3 id="error-codes">Error Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>3213</td>
+<td>Unable to find org source</td>
+</tr>
+<tr>
+<td>3214</td>
+<td>Unable to add org source</td>
+</tr>
+<tr>
+<td>3215</td>
+<td>No source types found</td>
+</tr>
+<tr>
+<td>3216</td>
+<td>Invalid source name</td>
+</tr>
+<tr>
+<td>3217</td>
+<td>Invalid account identifier of the source</td>
+</tr>
+<tr>
+<td>3218</td>
+<td>Invalid source type</td>
+</tr>
+<tr>
+<td>3219</td>
+<td>Unable to update source. Invalid UUID</td>
+</tr>
+<tr>
+<td>3220</td>
+<td>Org source already exists with the given values</td>
+</tr>
+<tr>
+<td>3221</td>
+<td>Unable to update org source / Invalid org id</td>
+</tr>
+<tr>
+<td>3222</td>
+<td>No configurations found for the provided source id</td>
+</tr>
+</tbody></table>
+
+          <p>@@ -0,0 +1,695 @@</p>
+
+<h1 id="other-apis-org-level">Other APIs (Org Level)</h1>
+
+<h2 id="generate-external-ids">Generate External IDs</h2>
+<pre class="highlight html"><code># Sample Request
+
+https://us.api.capillarytech.com/v2/cardNumber
+</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1000000010"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This API lets you generate external ids manually which can be tagged to a customer while registering. A unique external id is generated every time you call this API. To generate external ids, the option CONF_CARD_NUMBER_GENERATION_ENABLED on InTouch &gt; Settings &gt; Miscellaneous&gt; Registration Configuration page should have enabled. When a customer is registered without an external id, this API is called in the back-end and the unique external id is tagged to the customer automatically. However, it will not ove&hellip;(line truncated)&hellip;</p>
+
+<h3 id="prerequisites">Prerequisites</h3>
+
+<ul>
+<li>This API works only if CONF_CARD_NUMBER_GENERATION_ENABLED and CONF_CLIENT_V2_API_ENABLED are checked on the Registration Configuration page</li>
+<li>It is valid only for the account ids configured on the SOURCE_ACCOUNTS_EXTERNALID_ENABLED of the Registration Configuration page</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/cardNumber</code></p>
+
+<h2 id="retrieve-org-extended-fields">Retrieve Org Extended Fields</h2>
 
 <blockquote>
 <p>Sample Request</p>
@@ -4341,6 +4776,60 @@ https://us.api.capillarytech.com/v2/verticals
 <td>No</td>
 </tr>
 </tbody></table>
+
+<h2 id="create-store-associates">Create Store Associates</h2>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/orgEntity/associate
+</code></pre>
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+ </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01099-james"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"William James "</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"storeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50007863</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"createdId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50011749</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Allows adding new associates to a store. Only admin users of the org can create associates.</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Information</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">orgEntity/associate</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;cluster url&gt;v2/orgEntity/associate</code></p>
 
       </div>
       <div class="dark-box">
