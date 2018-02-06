@@ -760,7 +760,7 @@ Code | Description
 
 
 
-## Fetch customer's Loyalty Details
+## Fetch Loyalty Details of a Customer
 
 ```html
 http://eu.api.capillarytech.com/v2/customers/loyaltyDetails

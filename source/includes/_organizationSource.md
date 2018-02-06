@@ -693,3 +693,48 @@ Batch Support | No
 ### Request URL
 `https://<cluster url>v2/orgEntity/associate`
 
+
+
+
+## Retrieve Org Loyalty Programs
+```html
+https://us.api.capillarytech.com/v2/organization/programs
+```
+
+```json
+{
+   "data": [
+       {
+           "programId": 1124,
+           "programName": "DefaultLoyaltyProgram",
+           "pointsToCurrencyRatio": 1,
+           "default": true
+       },
+       {
+           "programId": 1254,
+           "programName": "SouthLoyaltyProgram",
+           "pointsToCurrencyRatio": 1,
+           "default": false
+       }
+   ],
+   "warnings": [
+   ],
+   "errors": [
+   ]
+}
+```
+
+Retrieves all the active loyalty programs of the org.
+
+
+### Resource Information
+Information | Value
+----------- | -----
+URI | `organization/programs`
+Authentication | Yes
+HTTP Method | GET
+Batch Support | No
+
+
+### Request URL
+`https://<cluster url>v2/organization/programs`
