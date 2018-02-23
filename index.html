@@ -1661,7 +1661,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 <pre class="highlight html"><code>
 # Sample Request
 
-https://us.api.capillarytech.com/v2/otp/validate?format=json
+https://us.api.capillarytech.com/v2/otp/generate?format=json
 </code></pre>
 <blockquote>
 <p>Sample POST Request</p>
@@ -1670,7 +1670,7 @@ https://us.api.capillarytech.com/v2/otp/validate?format=json
    </span><span class="nt">"entityType"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"entityValue"</span><span class="p">:</span><span class="s2">"tom.sawyer@example.com"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"action"</span><span class="p">:</span><span class="s2">"REGISTRATION"</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"template"</span><span class="p">:</span><span class="s2">"Hi user.Your otp for validation is {{ validation_code }}.Enjoy"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"template"</span><span class="p">:</span><span class="s2">"Hi user.Your OTP for validation is {{ validation_code }}.Enjoy"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"emailTemplate"</span><span class="p">:{</span><span class="w">
       </span><span class="nt">"subject"</span><span class="p">:</span><span class="s2">"Validation Code"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"body"</span><span class="p">:</span><span class="s2">"Dear Customer, The validation code for your request is: {{ validation_code }}. You will also receive the validation code by SMS on your registered mobile number shortly."</span><span class="w">
@@ -1755,7 +1755,7 @@ https://us.api.capillarytech.com/v2/otp/validate?format=json
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://&lt;cluster URL&gt;/v2/otp/validate?format=json</code></p>
+<p><code class="prettyprint">https://&lt;cluster URL&gt;/v2/otp/generate?format=json</code></p>
 
 <h3 id="request-attributes">Request Attributes</h3>
 
