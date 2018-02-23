@@ -743,7 +743,7 @@ To fetch customer details from a specific account of a source (source with multi
 Parameter | Description
 --------- | -----------
 id | Unique identifier of the customer that you want to fetch
-source | Fetch the details of the customer on a specific source (INSTORE, MARTJACK, WECHAT, ALL). To fetch details of a customer from all sources, pass <code>/source=”ALL”</code>. For sources with multiple accounts, you also need to pass the specific accountId
+source* | Fetch the details of the customer on a specific source (INSTORE, MARTJACK, WECHAT, ALL). To fetch details of a customer from all sources, pass <code>/source=”ALL”</code>. For sources with multiple accounts, you also need to pass the specific accountId
 account_Id |  For sources with multiple accounts, you also need to pass the specific accountId
 embed | To get points, subscription, multiple loyalty program details of the customer (points, subscriptions, mlp). Usage: <code>https://<Cluster API URL>/v2/customers/<Customer id>/source=WECHAT&accountId=<Specific WeChat account’s id>&embed=”points”</code>
 
