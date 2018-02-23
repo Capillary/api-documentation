@@ -83,7 +83,7 @@ Issues validation code (OTP) to the customer's mobile number and/or email id for
 ### Resource Information
 Parameter | Description
 --------- | -----------
-URI	| otp/validate
+URI	| otp/generate
 Rate Limited? | Yes
 Authentication | Yes
 HTTP Method | POST
