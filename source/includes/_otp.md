@@ -11,7 +11,7 @@ The functionality of OTPs depends on the configuration set on InTouch
 
 # Sample Request
 
-https://us.api.capillarytech.com/v2/otp/validate?format=json
+https://us.api.capillarytech.com/v2/otp/generate?format=json
 ```
 
 > Sample POST Request
@@ -21,7 +21,7 @@ https://us.api.capillarytech.com/v2/otp/validate?format=json
    "entityType":"email",
    "entityValue":"tom.sawyer@example.com",
    "action":"REGISTRATION",
-   "template":"Hi user.Your otp for validation is {{ validation_code }}.Enjoy",
+   "template":"Hi user.Your OTP for validation is {{ validation_code }}.Enjoy",
    "emailTemplate":{
       "subject":"Validation Code",
       "body":"Dear Customer, The validation code for your request is: {{ validation_code }}. You will also receive the validation code by SMS on your registered mobile number shortly."
@@ -91,7 +91,7 @@ Batch Support | No
 
 
 ### Request URL
-`https://<cluster URL>/v2/otp/validate?format=json`
+`https://<cluster URL>/v2/otp/generate?format=json`
 
 ### Request Attributes
 Parameter | Description
