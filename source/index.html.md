@@ -25,7 +25,7 @@ search: true
 
 # Introduction
 
-This document describes the RESTful APIs provided by Capillary. These APIs can be consumed by Capillary or other brands that are registered with Capillary/MartJack to manage their CRM. Capillary V2 APIs support multiple sources such as InStore, MartJack, Facebook, and WeChat.
+Capillary RESTful APIs are be consumed by Capillary and other brands that are registered with Capillary/MartJack to manage their CRM. Capillary V2 APIs support multiple sources such as InStore, MartJack, Facebook, and WeChat.
 
 This document provides detailed information on all the APIs and guides in how to each API with the appropriate samples.
 
