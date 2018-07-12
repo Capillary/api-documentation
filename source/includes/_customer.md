@@ -36,7 +36,8 @@ https://us.api.capillarytech.com/v2/customers?source=WECHAT&accountId=22232
       }
    ],
    "loyaltyInfo":{  
-      "loyaltyType":"loyalty"
+      "loyaltyType":"loyalty",
+	  "_comment": "loyaltyType can be loyalty or non_loyalty"
    },
    "extendedFields":{  
       "gender":"Male",
