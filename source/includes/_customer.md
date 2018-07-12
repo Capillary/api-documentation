@@ -10,40 +10,38 @@ https://us.api.capillarytech.com/v2/customers?source=WECHAT&accountId=22232
 
 
 ```json
-{
- "profiles": 
- [
- {
- "firstName": "Tom",
- "lastName": "Sawyer",
- "fields": {
- "Favorite Color": "Green",
- "Favorite Sport": "Cricket"
- },
- "identifiers":
- [
- {
- "type": "email",
- "value": "tom.sayer@example.com"
- }
- ],
- "commChannels": 
- [
- {
- "type": "wechat",
- "value": "ojOPTwFOX-aBmdRlE9MHptPjt2w19",
- "primary": true,
- "verified": true
- }
- ]
- }
- ],
- "loyaltyInfo": {
-   "loyaltyType": "non_loyalty",
-   "attributionV2": {
-     "createDate": "2016-06-23T19:11:18+08:00"
+{  
+   "profiles":[  
+      {  
+         "firstName":"Tom",
+         "lastName":"Sawyer",
+         "fields":{  
+            "Favorite Color":"Green",
+            "Favorite Sport":"Cricket"
+         },
+         "identifiers":[  
+            {  
+               "type":"email",
+               "value":"tom.sayer@example.com"
+            }
+         ],
+         "commChannels":[  
+            {  
+               "type":"wechat",
+               "value":"ojOPTwFOX-aBmdRlE9MHptPjt2w19",
+               "primary":true,
+               "verified":true
+            }
+         ]
+      }
+   ],
+   "loyaltyInfo":{  
+      "loyaltyType":"loyalty"
+   },
+   "extendedFields":{  
+      "gender":"Male",
+      "city":"Bangalore"
    }
- }
 }
 ```
 
@@ -56,7 +54,15 @@ https://us.api.capillarytech.com/v2/customers?source=WECHAT&accountId=22232
 }
 ```
 
-This API allows registering customers in the org's loyalty program through different sources such as INSTORE,MARTJACK, WECHAT and FACEBOOK.  For sources with multiple accounts (such as WeChat and Facebook), you must specify the respective account id along with the source name.
+This API allows registering customers in the org's loyalty program through different sources such as INSTORE,MARTJACK, WECHAT and FACEBOOK.  For sources with multiple accounts (such as WeChat and Facebook), you must specify the respective account id along with the source name. You can also add customer level extended field details and custom field details of a customer.
+
+**Extended Fields**:
+Extended Fields are proposed fields to standardize input values and keys across organizations. These fields make easier for the Development and Analytics teams to get rid of the complex data that comes into the database through existing custom fields. Back-end team controls the field names, data types, enum values, and scopes for extended fields. Currently, Extended Fields are at customer level, transaction level, and transaction line-item level.
+
+Examples of customer level extended fields include age_group, preferred_store, gender, nationality and so on.
+
+Extended fields are associated to verticals or to a generic category (available for all orgs. To know the list of extended fields enabled for an org, use GET v2/extendedFields API.
+
 
 Following are the features and limitations of the customer registration API:
 
@@ -122,48 +128,62 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT&accountId=22232
 > Sample PUT request
 
 ```json
-{
- "profiles": [
-   {
-     "firstName": "Tom",
-     "lastName": "Sawyer",
-     "fields": {
-       "gender": "Male",
-       "city": "Bangalore"
-     },
-     "identifiers": [{
-            "type": "mobile",
-            "value": 919111111111
-        }, {
-            "type": "email",
-            "value": "tom.sawyer@example.com"
-        }, {
-            "type": "wechat",
-            "value": "wc_2"
-        }],
-        "commChannels": [{
-            "type": "email",
-            "value": "tom.sawyer@example.com",
-            "primary": "true",
-            "verified": "false",
-            "meta": {
-                "residence": true
+{  
+   "profiles":[  
+      {  
+         "firstName":"Tom",
+         "lastName":"Sawyer",
+         "fields":{  
+            "gender":"Male",
+            "city":"Bangalore"
+         },
+         "identifiers":[  
+            {  
+               "type":"mobile",
+               "value":919111111111
+            },
+            {  
+               "type":"email",
+               "value":"tom.sawyer@example.com"
+            },
+            {  
+               "type":"wechat",
+               "value":"wc_2"
             }
-        }, {
-            "type": "wechat",
-            "value": "wc_2",
-            "primary": "true",
-            "verified": "true",
-            "meta": {
-                "residence": true
+         ],
+         "commChannels":[  
+            {  
+               "type":"email",
+               "value":"tom.sawyer@example.com",
+               "primary":"true",
+               "verified":"false",
+               "meta":{  
+                  "residence":true
+               }
+            },
+            {  
+               "type":"wechat",
+               "value":"wc_2",
+               "primary":"true",
+               "verified":"true",
+               "meta":{  
+                  "residence":true
+               }
             }
-        }],
-        "source": "WECHAT",
-        "accountId": "1234"
-    }],
-    "loyaltyInfo": {
-        "loyaltyType": "loyalty"
-    }
+         ],
+         "source":"WECHAT",
+         "accountId":"1234"
+      }
+   ],
+   "loyaltyInfo":{  
+      "loyaltyType":"loyalty"
+   },
+   "extendedFields":  
+      {  
+         "gender":"MALE",
+         "city":"Bangalore"
+      }
+   
 }
 
 ```
@@ -177,7 +197,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT&accountId=22232
 
 ```
 
-Allows updating customer details on any source - INSTORE,MARTJACK, WECHAT or FACEBOOK. You can update profile information, communication details, custom field values, and loyalty status (only non loyalty to loyalty).
+Allows updating customer details on any source - INSTORE,MARTJACK, WECHAT or FACEBOOK. You can update profile information, extended field values, communication details, custom field values, and loyalty status (only non loyalty to loyalty).
 
 *Limitations of the customer update API*:
 
@@ -496,7 +516,7 @@ Batch Support | No
 ### Request Parameter
 Parameter | Description
 --------- | -----------
-source* | Specify the source in which the customer is registered
+source* | Specify the source from which you want to fetch the customer details. Values: INSTORE, MARTJACK, WECHAT, ALL
 accountId** | Specify the account id of the specific source if the source has multiple accounts
 identifierName* | Identifier based on which you want to fetch the customer id. **Values**: "mobile", "email", "externalId", "wechat","martjackId", or "fbId"
 identifierValue* | Pass the respective identifier value
