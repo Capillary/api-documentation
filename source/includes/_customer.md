@@ -616,6 +616,10 @@ https://eu.api.capillarytech.com/v2/customers/17742?source=WECHAT&accountId=2223
        "ethnicity": "Bangalore",
        "religion": "Hindu"
    },
+     "extendedFields": {
+        "city": "Bangalore",
+        "gender": "Male"
+    },
    "warnings": [
    ]
 }
