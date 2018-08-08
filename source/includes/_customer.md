@@ -5,44 +5,51 @@
 ```html
 # Sample Request
  
-https://us.api.capillarytech.com/v2/customers?source=WECHAT&accountId=22232
+https://us.api.capillarytech.com/v2/customers?source=LINE&accountId=1234
 ```
 
 
 ```json
-{  
-   "profiles":[  
-      {  
+{
+   "loyaltyInfo":{
+      "loyaltyType":"loyalty"
+   },
+   "profiles":[
+      {
          "firstName":"Tom",
          "lastName":"Sawyer",
-         "fields":{  
+         "fields":{
             "Favorite Color":"Green",
             "Favorite Sport":"Cricket"
          },
-         "identifiers":[  
-            {  
-               "type":"email",
-               "value":"tom.sayer@example.com"
+         "extendedFields":{
+            "gender":"Male",
+            "city":"Bangalore"
+         },
+         "identifiers":[
+            {
+               "type":"mobile",
+               "value":"928000000113"
+            },
+            {
+               "type":"line",
+               "value":"line12347"
             }
          ],
-         "commChannels":[  
-            {  
-               "type":"wechat",
-               "value":"ojOPTwFOX-aBmdRlE9MHptPjt2w19",
+         "commChannels":[
+            {
+               "type":"line",
+               "value":"line12345",
                "primary":true,
-               "verified":true
+               "verified":true,
+               "meta":{
+                  "residence":true,
+                  "office":false
+               }
             }
          ]
       }
-   ],
-   "loyaltyInfo":{  
-      "loyaltyType":"loyalty",
-	  "_comment": "loyaltyType can be loyalty or non_loyalty"
-   },
-   "extendedFields":{  
-      "gender":"Male",
-      "city":"Bangalore"
-   }
+   ]
 }
 ```
 
@@ -50,12 +57,13 @@ https://us.api.capillarytech.com/v2/customers?source=WECHAT&accountId=22232
 
 ```json
 {
-"createdId": 329,
-"warnings":[]
+    "createdId": 316452956,
+    "warnings": [],
+    "sideEffects": []
 }
 ```
 
-This API allows registering customers in the org's loyalty program through different sources such as INSTORE,MARTJACK, WECHAT and FACEBOOK.  For sources with multiple accounts (such as WeChat and Facebook), you must specify the respective account id along with the source name. You can also add customer level extended field details and custom field details of a customer.
+This API allows registering customers in the org's loyalty program through different sources such as INSTORE,MARTJACK, WECHAT and FACEBOOK.  For sources with multiple accounts (such as WeChat, Line and Facebook), you must specify the respective account id along with the source name. You can also add customer level extended field details and custom field details of a customer.
 
 **Extended Fields**:
 Extended Fields are proposed fields to standardize input values and keys across organizations. These fields make easier for the Development and Analytics teams to get rid of the complex data that comes into the database through existing custom fields. Back-end team controls the field names, data types, enum values, and scopes for extended fields. Currently, Extended Fields are at customer level, transaction level, and transaction line-item level.
@@ -80,9 +88,9 @@ Following are the features and limitations of the customer registration API:
 ### Prerequisites
 Following are the prerequisites to use customer registration API:
 
-* Different sources (InStore, MartJack, WeChat, Facebook etc) supported by your organization 
+* Different sources (InStore, MartJack, WeChat, Line, Facebook etc) supported by your organization 
 
-* Account ids in which you want to register customers(for sources with multiple accounts such as WeChat and Facebook)
+* Account ids in which you want to register customers(for sources with multiple accounts such as WeChat, Line and Facebook)
 
 
 ### Resource Information
@@ -102,7 +110,7 @@ Batch Support | No
 ### Request Parameters
 Parameter | Value | Description
 --------- | ----- | -----------
-source* | INSTORE/WECHAT/MARTJACK/FACEBOOK | Source in which you want to register a customer
+source* | INSTORE/WECHAT/MARTJACK/FACEBOOK/LINE | Source in which you want to register a customer
 accountId* | - | For sources with multiple accounts, pass the specific account id in which you want to register a customer
 
 
@@ -110,10 +118,10 @@ accountId* | - | For sources with multiple accounts, pass the specific account i
 Parameter | Value | Description
 --------- | ----- | -----------
 loyaltyinfo | loyaltyType | Loyalty status of the customer (“loyalty”, “non_loyalty”)
-profiles | commChannels | Different channels through which you want to communicate with the customer (“email”, “mobile”, “wechat”)
+profiles | commChannels | Different channels through which you want to communicate with the customer (“email”, “mobile”, “wechat”, “line”)
 profiles | Firstname | First name of the customer
 profiles | Lastname | Last name of the customer
-profiles | identifiers | Identifier used for registering customer in a specific source ("mobile", "email", "externalId", "wechat","martjackId", "fbId")
+profiles | identifiers | Identifier used for registering customer in a specific source ("mobile", "email", "externalId", "wechat","martjackId", "fbId", "line")
 profiles | fields | Custom fields configured for the current organization
 attributionV2 | createDate | Time and date of registration in YYYY-MM-DDTHH:MM:SS+HH:MM (Time Zone). Example: 2016-06-23T19:11:18+08:00
 
@@ -198,7 +206,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT&accountId=22232
 
 ```
 
-Allows updating customer details on any source - INSTORE,MARTJACK, WECHAT or FACEBOOK. You can update profile information, extended field values, communication details, custom field values, and loyalty status (only non loyalty to loyalty).
+Allows updating customer details on any source - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE or LINE. You can update profile information, extended field values, communication details, custom field values, and loyalty status (only non loyalty to loyalty).
 
 *Limitations of the customer update API*:
 
@@ -231,7 +239,7 @@ Batch Support | No
 Parameter | Description
 --------- | -----------
 customer_id* | Unique id of the customer whose details need to be updated
-source* | Specify the source in which you want to update the customer details - INSTORE, MARTJACK, WECHAT, FACEBOOK. If ‘source=WECHAT/FACEBOOK`, you also need to provide the respective account id.
+source* | Specify the source in which you want to update the customer details - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE. For sources with multiple accounts such as WECHAT, FACEBOOK, or LINE, you also need to provide the respective account id.
 account_Id** | Account in which you want to update the customer details (Required only for sources with multiple accounts)
 
 ### Request Attributes
@@ -239,7 +247,7 @@ account_Id** | Account in which you want to update the customer details (Require
 Parameter | Value | Description
 --------- | ----- | -----------
 loyaltyinfo | loyaltyType | Loyalty status of the customer (“loyalty”, “non_loyalty”)
-profiles | commChannels | Different channels through which you want to communicate with the customer (“email”, “mobile”, “wechat”)
+profiles | commChannels | Different channels through which you want to communicate with the customer (FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE)
 profiles | Firstname | First name of the customer
 profiles | Lastname | Last name of the customer
 profiles | identifiers | Identifier used for registering customer in a specific source ("mobile", "email", "externalId", "wechat","martjackId", "fbId")
@@ -327,7 +335,7 @@ Batch Support | No
 Parameter | Description
 --------- | -----------
 customer_id* | Unique id of the customer whose identifiers need to be updated
-source* | Specify the source in which you want to update customer identifier(s) - INSTORE, MARTJACK, WECHAT, FACEBOOK. If ‘source=WECHAT/FACEBOOK`, you also need to provide the respective account id.
+source* | Specify the source in which you want to update customer identifier(s) - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE. For sources that support multiple accounts, you also need to provide the associated account id.
 account_Id** | Account in which you want to update the customer identifier (Required only for sources with multiple accounts)
 
 

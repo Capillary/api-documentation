@@ -219,40 +219,39 @@
 <pre class="highlight html"><code># Sample Request
 
 https://us.api.capillarytech.com/v2/customers?source=WECHAT<span class="err">&amp;</span>accountId=22232
-</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
- </span><span class="nt">"profiles"</span><span class="p">:</span><span class="w"> 
- </span><span class="p">[</span><span class="w">
- </span><span class="p">{</span><span class="w">
- </span><span class="nt">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
- </span><span class="nt">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
- </span><span class="nt">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
- </span><span class="nt">"Favorite Color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Green"</span><span class="p">,</span><span class="w">
- </span><span class="nt">"Favorite Sport"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cricket"</span><span class="w">
- </span><span class="p">},</span><span class="w">
- </span><span class="nt">"identifiers"</span><span class="p">:</span><span class="w">
- </span><span class="p">[</span><span class="w">
- </span><span class="p">{</span><span class="w">
- </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
- </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom.sayer@example.com"</span><span class="w">
- </span><span class="p">}</span><span class="w">
- </span><span class="p">],</span><span class="w">
- </span><span class="nt">"commChannels"</span><span class="p">:</span><span class="w"> 
- </span><span class="p">[</span><span class="w">
- </span><span class="p">{</span><span class="w">
- </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wechat"</span><span class="p">,</span><span class="w">
- </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ojOPTwFOX-aBmdRlE9MHptPjt2w19"</span><span class="p">,</span><span class="w">
- </span><span class="nt">"primary"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
- </span><span class="nt">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
- </span><span class="p">}</span><span class="w">
- </span><span class="p">]</span><span class="w">
- </span><span class="p">}</span><span class="w">
- </span><span class="p">],</span><span class="w">
- </span><span class="nt">"loyaltyInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-   </span><span class="nt">"loyaltyType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"non_loyalty"</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"attributionV2"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-     </span><span class="nt">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-23T19:11:18+08:00"</span><span class="w">
+</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">  
+   </span><span class="nt">"profiles"</span><span class="p">:[</span><span class="w">  
+      </span><span class="p">{</span><span class="w">  
+         </span><span class="nt">"firstName"</span><span class="p">:</span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"lastName"</span><span class="p">:</span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"fields"</span><span class="p">:{</span><span class="w">  
+            </span><span class="nt">"Favorite Color"</span><span class="p">:</span><span class="s2">"Green"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"Favorite Sport"</span><span class="p">:</span><span class="s2">"Cricket"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w">  
+            </span><span class="p">{</span><span class="w">  
+               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"tom.sayer@example.com"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">],</span><span class="w">
+         </span><span class="nt">"commChannels"</span><span class="p">:[</span><span class="w">  
+            </span><span class="p">{</span><span class="w">  
+               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"wechat"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"ojOPTwFOX-aBmdRlE9MHptPjt2w19"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"primary"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"verified"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"loyaltyInfo"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"loyaltyType"</span><span class="p">:</span><span class="s2">"loyalty"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"_comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"loyaltyType can be loyalty or non_loyalty"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"extendedFields"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"gender"</span><span class="p">:</span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"city"</span><span class="p">:</span><span class="s2">"Bangalore"</span><span class="w">
    </span><span class="p">}</span><span class="w">
- </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -263,7 +262,14 @@ https://us.api.capillarytech.com/v2/customers?source=WECHAT<span class="err">&am
 </span><span class="nt">"warnings"</span><span class="p">:[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This API allows registering customers in the org&rsquo;s loyalty program through different sources such as INSTORE,MARTJACK, WECHAT and FACEBOOK.  For sources with multiple accounts (such as WeChat and Facebook), you must specify the respective account id along with the source name.</p>
+<p>This API allows registering customers in the org&rsquo;s loyalty program through different sources such as INSTORE,MARTJACK, WECHAT and FACEBOOK.  For sources with multiple accounts (such as WeChat and Facebook), you must specify the respective account id along with the source name. You can also add customer level extended field details and custom field details of a customer.</p>
+
+<p><strong>Extended Fields</strong>:
+Extended Fields are proposed fields to standardize input values and keys across organizations. These fields make easier for the Development and Analytics teams to get rid of the complex data that comes into the database through existing custom fields. Back-end team controls the field names, data types, enum values, and scopes for extended fields. Currently, Extended Fields are at customer level, transaction level, and transaction line-item level.</p>
+
+<p>Examples of customer level extended fields include age_group, preferred_store, gender, nationality and so on.</p>
+
+<p>Extended fields are associated to verticals or to a generic category (available for all orgs. To know the list of extended fields enabled for an org, use GET v2/extendedFields API.</p>
 
 <p>Following are the features and limitations of the customer registration API:</p>
 
@@ -388,48 +394,62 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <blockquote>
 <p>Sample PUT request</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
- </span><span class="nt">"profiles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-   </span><span class="p">{</span><span class="w">
-     </span><span class="nt">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
-     </span><span class="nt">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
-     </span><span class="nt">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-       </span><span class="nt">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
-       </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bangalore"</span><span class="w">
-     </span><span class="p">},</span><span class="w">
-     </span><span class="nt">"identifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">919111111111</span><span class="w">
-        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom.sawyer@example.com"</span><span class="w">
-        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wechat"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wc_2"</span><span class="w">
-        </span><span class="p">}],</span><span class="w">
-        </span><span class="nt">"commChannels"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom.sawyer@example.com"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"primary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"verified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"residence"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">  
+   </span><span class="nt">"profiles"</span><span class="p">:[</span><span class="w">  
+      </span><span class="p">{</span><span class="w">  
+         </span><span class="nt">"firstName"</span><span class="p">:</span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"lastName"</span><span class="p">:</span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"fields"</span><span class="p">:{</span><span class="w">  
+            </span><span class="nt">"gender"</span><span class="p">:</span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"city"</span><span class="p">:</span><span class="s2">"Bangalore"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w">  
+            </span><span class="p">{</span><span class="w">  
+               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"value"</span><span class="p">:</span><span class="mi">919111111111</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">  
+               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"tom.sawyer@example.com"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">  
+               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"wechat"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"wc_2"</span><span class="w">
             </span><span class="p">}</span><span class="w">
-        </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wechat"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wc_2"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"primary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"verified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"residence"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+         </span><span class="p">],</span><span class="w">
+         </span><span class="nt">"commChannels"</span><span class="p">:[</span><span class="w">  
+            </span><span class="p">{</span><span class="w">  
+               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"tom.sawyer@example.com"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"primary"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"verified"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"meta"</span><span class="p">:{</span><span class="w">  
+                  </span><span class="nt">"residence"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">  
+               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"wechat"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"wc_2"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"primary"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"verified"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"meta"</span><span class="p">:{</span><span class="w">  
+                  </span><span class="nt">"residence"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+               </span><span class="p">}</span><span class="w">
             </span><span class="p">}</span><span class="w">
-        </span><span class="p">}],</span><span class="w">
-        </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WECHAT"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1234"</span><span class="w">
-    </span><span class="p">}],</span><span class="w">
-    </span><span class="nt">"loyaltyInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"loyaltyType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"loyalty"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
+         </span><span class="p">],</span><span class="w">
+         </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"WECHAT"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"accountId"</span><span class="p">:</span><span class="s2">"1234"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"loyaltyInfo"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"loyaltyType"</span><span class="p">:</span><span class="s2">"loyalty"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w">  
+      </span><span class="p">{</span><span class="w">  
+         </span><span class="nt">"gender"</span><span class="p">:</span><span class="s2">"MALE"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"city"</span><span class="p">:</span><span class="s2">"Bangalore"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
@@ -442,7 +462,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
-<p>Allows updating customer details on any source - INSTORE,MARTJACK, WECHAT or FACEBOOK. You can update profile information, communication details, custom field values, and loyalty status (only non loyalty to loyalty).</p>
+<p>Allows updating customer details on any source - INSTORE,MARTJACK, WECHAT or FACEBOOK. You can update profile information, extended field values, communication details, custom field values, and loyalty status (only non loyalty to loyalty).</p>
 
 <p><em>Limitations of the customer update API</em>:</p>
 
@@ -987,7 +1007,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?identifierName=mobile<span 
 </thead><tbody>
 <tr>
 <td>source*</td>
-<td>Specify the source in which the customer is registered</td>
+<td>Specify the source from which you want to fetch the customer details. Values: INSTORE, MARTJACK, WECHAT, ALL</td>
 </tr>
 <tr>
 <td>accountId**</td>
@@ -1110,6 +1130,10 @@ https://eu.api.capillarytech.com/v2/customers/17742?source=WECHAT<span class="er
        </span><span class="nt">"ethnicity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bangalore"</span><span class="p">,</span><span class="w">
        </span><span class="nt">"religion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hindu"</span><span class="w">
    </span><span class="p">},</span><span class="w">
+     </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bangalore"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
