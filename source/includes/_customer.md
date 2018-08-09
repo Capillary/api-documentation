@@ -63,7 +63,7 @@ https://us.api.capillarytech.com/v2/customers?source=LINE&accountId=1234
 }
 ```
 
-This API allows registering customers in the org's loyalty program through different sources such as FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, and WEBSITE.  For sources with multiple accounts (such as WeChat, Line and Facebook), you must specify the respective account id along with the source name. You can also add customer level extended field details and custom field details of a customer.
+This API allows registering customers in the org's loyalty program through different sources such as FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, LINE, and WEBSITE.  For sources with multiple accounts (such as WeChat, Line and Facebook), you must specify the respective account id along with the source name. You can also add customer level extended field details and custom field details of a customer.
 
 **Extended Fields**:
 Extended Fields are proposed fields to standardize input values and keys across organizations. These fields make easier for the Development and Analytics teams to get rid of the complex data that comes into the database through existing custom fields. Back-end team controls the field names, data types, enum values, and scopes for extended fields. Currently, Extended Fields are at customer level, transaction level, and transaction line-item level.
@@ -88,7 +88,7 @@ Following are the features and limitations of the customer registration API:
 ### Prerequisites
 Following are the prerequisites to use customer registration API:
 
-* Different sources (FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE) supported by your organization 
+* Different sources (FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE) supported by your organization 
 
 * Account ids in which you want to register customers(for sources with multiple accounts such as WeChat, Line and Facebook)
 
@@ -110,7 +110,7 @@ Batch Support | No
 ### Request Parameters
 Parameter | Value | Description
 --------- | ----- | -----------
-source* | FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE | Source in which you want to register a customer
+source* | FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE | Source in which you want to register a customer
 accountId* | - | For sources with multiple accounts, pass the specific account id in which you want to register a customer
 
 
@@ -525,7 +525,7 @@ Batch Support | No
 ### Request Parameter
 Parameter | Description
 --------- | -----------
-source* | Specify the source from which you want to fetch the customer details. Values: FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, ALL
+source* | Specify the source from which you want to fetch the customer details. Values: FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, ALL
 accountId** | Specify the account id of the specific source if the source has multiple accounts
 identifierName* | Identifier based on which you want to fetch the customer id. **Values**: "mobile", "email", "externalId", "wechat","martjackId", or "fbId"
 identifierValue* | Pass the respective identifier value
