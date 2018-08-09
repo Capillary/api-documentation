@@ -270,7 +270,7 @@ https://us.api.capillarytech.com/v2/customers?source=LINE<span class="err">&amp;
     </span><span class="nt">"sideEffects"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This API allows registering customers in the org&rsquo;s loyalty program through different sources such as INSTORE,MARTJACK, WECHAT and FACEBOOK.  For sources with multiple accounts (such as WeChat, Line and Facebook), you must specify the respective account id along with the source name. You can also add customer level extended field details and custom field details of a customer.</p>
+<p>This API allows registering customers in the org&rsquo;s loyalty program through different sources such as FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, and WEBSITE.  For sources with multiple accounts (such as WeChat, Line and Facebook), you must specify the respective account id along with the source name. You can also add customer level extended field details and custom field details of a customer.</p>
 
 <p><strong>Extended Fields</strong>:
 Extended Fields are proposed fields to standardize input values and keys across organizations. These fields make easier for the Development and Analytics teams to get rid of the complex data that comes into the database through existing custom fields. Back-end team controls the field names, data types, enum values, and scopes for extended fields. Currently, Extended Fields are at customer level, transaction level, and transaction line-item level.</p>
@@ -293,7 +293,7 @@ Extended Fields are proposed fields to standardize input values and keys across 
 <p>Following are the prerequisites to use customer registration API:</p>
 
 <ul>
-<li><p>Different sources (InStore, MartJack, WeChat, Line, Facebook etc) supported by your organization </p></li>
+<li><p>Different sources (FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE) supported by your organization </p></li>
 <li><p>Account ids in which you want to register customers(for sources with multiple accounts such as WeChat, Line and Facebook)</p></li>
 </ul>
 
@@ -338,7 +338,7 @@ Extended Fields are proposed fields to standardize input values and keys across 
 </thead><tbody>
 <tr>
 <td>source*</td>
-<td>INSTORE/WECHAT/MARTJACK/FACEBOOK/LINE</td>
+<td>FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE</td>
 <td>Source in which you want to register a customer</td>
 </tr>
 <tr>
@@ -365,7 +365,7 @@ Extended Fields are proposed fields to standardize input values and keys across 
 <tr>
 <td>profiles</td>
 <td>commChannels</td>
-<td>Different channels through which you want to communicate with the customer (“email”, “mobile”, “wechat”, “line”)</td>
+<td>Different channels through which you want to communicate with the customer (“&quot;mobile&quot;, &ldquo;email&rdquo;, &ldquo;wechat&rdquo;, &ldquo;ios&rdquo;, &ldquo;android&rdquo;, &ldquo;line&rdquo;)</td>
 </tr>
 <tr>
 <td>profiles</td>
@@ -380,7 +380,7 @@ Extended Fields are proposed fields to standardize input values and keys across 
 <tr>
 <td>profiles</td>
 <td>identifiers</td>
-<td>Identifier used for registering customer in a specific source (&ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;externalId&rdquo;, &ldquo;wechat&rdquo;,&ldquo;martjackId&rdquo;, &ldquo;fbId&rdquo;, &ldquo;line&rdquo;)</td>
+<td>Identifier used for registering customer in a specific source (&ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;externalId&rdquo;, &ldquo;wechat&rdquo;,&ldquo;martjackId&rdquo;, &ldquo;fbId&rdquo; &ldquo;mobile&rdquo;, &ldquo;tmall_uname&rdquo;, &ldquo;cuid&rdquo;, &ldquo;ali_uname&rdquo;, &ldquo;jd_uname&rdquo;, &ldquo;vip_uname&rdquo;, &ldquo;line&rdquo;)</td>
 </tr>
 <tr>
 <td>profiles</td>
@@ -559,7 +559,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <tr>
 <td>profiles</td>
 <td>commChannels</td>
-<td>Different channels through which you want to communicate with the customer (FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE)</td>
+<td>Different channels through which you want to communicate with the customer (&ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;wechat&rdquo;, &ldquo;ios&rdquo;, &ldquo;android&rdquo;, &ldquo;line&rdquo;)</td>
 </tr>
 <tr>
 <td>profiles</td>
@@ -574,7 +574,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <tr>
 <td>profiles</td>
 <td>identifiers</td>
-<td>Identifier used for registering customer in a specific source (&ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;externalId&rdquo;, &ldquo;wechat&rdquo;,&ldquo;martjackId&rdquo;, &ldquo;fbId&rdquo;)</td>
+<td>Identifier used for registering customer in a specific source (&ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;externalId&rdquo;, &ldquo;wechat&rdquo;,&ldquo;martjackId&rdquo;, &ldquo;fbId&rdquo; &ldquo;mobile&rdquo;, &ldquo;tmall_uname&rdquo;, &ldquo;cuid&rdquo;, &ldquo;ali_uname&rdquo;, &ldquo;jd_uname&rdquo;, &ldquo;vip_uname&rdquo;, &ldquo;line&rdquo;)</td>
 </tr>
 <tr>
 <td>profiles</td>
@@ -658,7 +658,7 @@ https://us.api.capillarytech.com/v2/customers/418/changeIdentifier?source=WECHAT
 </span></code></pre>
 <p>Allows adding/removing identifiers of a customer in different sources, i.e., you can either add a new identifier or remove an existing identifier of a customer in a source.</p>
 
-<p><strong>Identifiers</strong>: &ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;externalId&rdquo;, &ldquo;wechat&rdquo;,&ldquo;martjackId&rdquo;, &ldquo;fbId&rdquo;</p>
+<p><strong>Identifiers</strong>: &ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;externalId&rdquo;, &ldquo;wechat&rdquo;,&ldquo;martjackId&rdquo;, &ldquo;fbId&rdquo; &ldquo;mobile&rdquo;, &ldquo;tmall_uname&rdquo;, &ldquo;cuid&rdquo;, &ldquo;ali_uname&rdquo;, &ldquo;jd_uname&rdquo;, &ldquo;vip_uname&rdquo;, &ldquo;line&rdquo; </p>
 
 <p>Limitations of the customer identifier update API:
 * Only identifiers can be updated using this API
@@ -1015,7 +1015,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?identifierName=mobile<span 
 </thead><tbody>
 <tr>
 <td>source*</td>
-<td>Specify the source from which you want to fetch the customer details. Values: INSTORE, MARTJACK, WECHAT, ALL</td>
+<td>Specify the source from which you want to fetch the customer details. Values: FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, ALL</td>
 </tr>
 <tr>
 <td>accountId**</td>
@@ -1263,7 +1263,7 @@ https://eu.api.capillarytech.com/v2/customers/17742?source=WECHAT<span class="er
 <ul>
 <li>profile information – first name, last name, registered date, registered at TILL </li>
 <li>recent profile updated – details of the recent update in profile information</li>
-<li>registered identifiers, communication channels and</li>
+<li>registered identifiers, communication channels</li>
 <li>loyalty information – loyalty status, registered date, purchases etc.</li>
 <li>Multiple Loyalty Program Details: Program wise details if the org has multiple loyalty programs support</li>
 </ul>
@@ -1537,9 +1537,9 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
   </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Subscription represents communication channels a customer has subscribed to. The communication channels can be email, sms, or WeChat.</p>
+<p>Subscription represents communication channels a customer has subscribed to. The communication channels can be &ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;wechat&rdquo;, &ldquo;ios&rdquo;, &ldquo;android&rdquo;, and &ldquo;line&rdquo;.</p>
 
-<p>This API allows updating different subscription channels of a customer. You can either opt-in or opt-out a customer’s mobile number/email id/WeChat id from receiving transaction and/or bulk messages.</p>
+<p>This API allows updating (opt-in or opt-out) subscription status for trans or bulk messaging services.</p>
 
 <ul>
 <li><strong>Transaction Messages</strong>: These are personalized messages sent to the respective customer instantly when a new transaction is made, redeemed points/coupon, send birthday/anniversary wishes and so on</li>
@@ -1590,7 +1590,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 </tr>
 <tr>
 <td>channel</td>
-<td>Pass the communication channel that you want to update. <strong>Value</strong>: SMS, EMAIL, WECHAT</td>
+<td>Pass the communication channel that you want to update. <strong>Value</strong>: &ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;wechat&rdquo;, &ldquo;ios&rdquo;, &ldquo;android&rdquo;, &ldquo;line&rdquo;</td>
 </tr>
 <tr>
 <td>priority</td>
