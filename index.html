@@ -270,7 +270,7 @@ https://us.api.capillarytech.com/v2/customers?source=LINE<span class="err">&amp;
     </span><span class="nt">"sideEffects"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This API allows registering customers in the org&rsquo;s loyalty program through different sources such as FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, and WEBSITE.  For sources with multiple accounts (such as WeChat, Line and Facebook), you must specify the respective account id along with the source name. You can also add customer level extended field details and custom field details of a customer.</p>
+<p>This API allows registering customers in the org&rsquo;s loyalty program through different sources such as FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, LINE, and WEBSITE.  For sources with multiple accounts (such as WeChat, Line and Facebook), you must specify the respective account id along with the source name. You can also add customer level extended field details and custom field details of a customer.</p>
 
 <p><strong>Extended Fields</strong>:
 Extended Fields are proposed fields to standardize input values and keys across organizations. These fields make easier for the Development and Analytics teams to get rid of the complex data that comes into the database through existing custom fields. Back-end team controls the field names, data types, enum values, and scopes for extended fields. Currently, Extended Fields are at customer level, transaction level, and transaction line-item level.</p>
@@ -293,7 +293,7 @@ Extended Fields are proposed fields to standardize input values and keys across 
 <p>Following are the prerequisites to use customer registration API:</p>
 
 <ul>
-<li><p>Different sources (FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE) supported by your organization </p></li>
+<li><p>Different sources (FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE) supported by your organization </p></li>
 <li><p>Account ids in which you want to register customers(for sources with multiple accounts such as WeChat, Line and Facebook)</p></li>
 </ul>
 
@@ -338,7 +338,7 @@ Extended Fields are proposed fields to standardize input values and keys across 
 </thead><tbody>
 <tr>
 <td>source*</td>
-<td>FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE</td>
+<td>FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE</td>
 <td>Source in which you want to register a customer</td>
 </tr>
 <tr>
@@ -1015,7 +1015,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?identifierName=mobile<span 
 </thead><tbody>
 <tr>
 <td>source*</td>
-<td>Specify the source from which you want to fetch the customer details. Values: FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, ALL</td>
+<td>Specify the source from which you want to fetch the customer details. Values: FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, ALL</td>
 </tr>
 <tr>
 <td>accountId**</td>
