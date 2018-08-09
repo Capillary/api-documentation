@@ -95,11 +95,11 @@
     <a href="#" id="nav-button">
       <span>
         NAV
-        <img src="images/navbar.png" alt="Navbar" />
+        <img src="images/navbar.png" />
       </span>
     </a>
     <div class="tocify-wrapper">
-      <img src="images/logo.png" alt="Logo" />
+      <img src="images/logo.png" />
         <div class="lang-selector">
               <a href="#" data-language-name="json">json</a>
         </div>
@@ -218,51 +218,59 @@
 <h2 id="register-customer">Register Customer</h2>
 <pre class="highlight html"><code># Sample Request
 
-https://us.api.capillarytech.com/v2/customers?source=WECHAT<span class="err">&amp;</span>accountId=22232
-</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">  
-   </span><span class="nt">"profiles"</span><span class="p">:[</span><span class="w">  
-      </span><span class="p">{</span><span class="w">  
+https://us.api.capillarytech.com/v2/customers?source=LINE<span class="err">&amp;</span>accountId=1234
+</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"loyaltyInfo"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"loyaltyType"</span><span class="p">:</span><span class="s2">"loyalty"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"profiles"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
          </span><span class="nt">"firstName"</span><span class="p">:</span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
          </span><span class="nt">"lastName"</span><span class="p">:</span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"fields"</span><span class="p">:{</span><span class="w">  
+         </span><span class="nt">"fields"</span><span class="p">:{</span><span class="w">
             </span><span class="nt">"Favorite Color"</span><span class="p">:</span><span class="s2">"Green"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"Favorite Sport"</span><span class="p">:</span><span class="s2">"Cricket"</span><span class="w">
          </span><span class="p">},</span><span class="w">
-         </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w">  
-            </span><span class="p">{</span><span class="w">  
-               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"tom.sayer@example.com"</span><span class="w">
+         </span><span class="nt">"extendedFields"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"gender"</span><span class="p">:</span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"city"</span><span class="p">:</span><span class="s2">"Bangalore"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"928000000113"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"line"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"line12347"</span><span class="w">
             </span><span class="p">}</span><span class="w">
          </span><span class="p">],</span><span class="w">
-         </span><span class="nt">"commChannels"</span><span class="p">:[</span><span class="w">  
-            </span><span class="p">{</span><span class="w">  
-               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"wechat"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"ojOPTwFOX-aBmdRlE9MHptPjt2w19"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"commChannels"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"line"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"line12345"</span><span class="p">,</span><span class="w">
                </span><span class="nt">"primary"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"verified"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+               </span><span class="nt">"verified"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"meta"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"residence"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"office"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+               </span><span class="p">}</span><span class="w">
             </span><span class="p">}</span><span class="w">
          </span><span class="p">]</span><span class="w">
       </span><span class="p">}</span><span class="w">
-   </span><span class="p">],</span><span class="w">
-   </span><span class="nt">"loyaltyInfo"</span><span class="p">:{</span><span class="w">  
-      </span><span class="nt">"loyaltyType"</span><span class="p">:</span><span class="s2">"loyalty"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"_comment"</span><span class="p">:</span><span class="w"> </span><span class="s2">"loyaltyType can be loyalty or non_loyalty"</span><span class="w">
-   </span><span class="p">},</span><span class="w">
-   </span><span class="nt">"extendedFields"</span><span class="p">:{</span><span class="w">  
-      </span><span class="nt">"gender"</span><span class="p">:</span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"city"</span><span class="p">:</span><span class="s2">"Bangalore"</span><span class="w">
-   </span><span class="p">}</span><span class="w">
+   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>The above API call returns the following response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-</span><span class="nt">"createdId"</span><span class="p">:</span><span class="w"> </span><span class="mi">329</span><span class="p">,</span><span class="w">
-</span><span class="nt">"warnings"</span><span class="p">:[]</span><span class="w">
+    </span><span class="nt">"createdId"</span><span class="p">:</span><span class="w"> </span><span class="mi">316452956</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"sideEffects"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This API allows registering customers in the org&rsquo;s loyalty program through different sources such as INSTORE,MARTJACK, WECHAT and FACEBOOK.  For sources with multiple accounts (such as WeChat and Facebook), you must specify the respective account id along with the source name. You can also add customer level extended field details and custom field details of a customer.</p>
+<p>This API allows registering customers in the org&rsquo;s loyalty program through different sources such as INSTORE,MARTJACK, WECHAT and FACEBOOK.  For sources with multiple accounts (such as WeChat, Line and Facebook), you must specify the respective account id along with the source name. You can also add customer level extended field details and custom field details of a customer.</p>
 
 <p><strong>Extended Fields</strong>:
 Extended Fields are proposed fields to standardize input values and keys across organizations. These fields make easier for the Development and Analytics teams to get rid of the complex data that comes into the database through existing custom fields. Back-end team controls the field names, data types, enum values, and scopes for extended fields. Currently, Extended Fields are at customer level, transaction level, and transaction line-item level.</p>
@@ -285,8 +293,8 @@ Extended Fields are proposed fields to standardize input values and keys across 
 <p>Following are the prerequisites to use customer registration API:</p>
 
 <ul>
-<li><p>Different sources (InStore, MartJack, WeChat, Facebook etc) supported by your organization </p></li>
-<li><p>Account ids in which you want to register customers(for sources with multiple accounts such as WeChat and Facebook)</p></li>
+<li><p>Different sources (InStore, MartJack, WeChat, Line, Facebook etc) supported by your organization </p></li>
+<li><p>Account ids in which you want to register customers(for sources with multiple accounts such as WeChat, Line and Facebook)</p></li>
 </ul>
 
 <h3 id="resource-information">Resource Information</h3>
@@ -330,7 +338,7 @@ Extended Fields are proposed fields to standardize input values and keys across 
 </thead><tbody>
 <tr>
 <td>source*</td>
-<td>INSTORE/WECHAT/MARTJACK/FACEBOOK</td>
+<td>INSTORE/WECHAT/MARTJACK/FACEBOOK/LINE</td>
 <td>Source in which you want to register a customer</td>
 </tr>
 <tr>
@@ -357,7 +365,7 @@ Extended Fields are proposed fields to standardize input values and keys across 
 <tr>
 <td>profiles</td>
 <td>commChannels</td>
-<td>Different channels through which you want to communicate with the customer (“email”, “mobile”, “wechat”)</td>
+<td>Different channels through which you want to communicate with the customer (“email”, “mobile”, “wechat”, “line”)</td>
 </tr>
 <tr>
 <td>profiles</td>
@@ -372,7 +380,7 @@ Extended Fields are proposed fields to standardize input values and keys across 
 <tr>
 <td>profiles</td>
 <td>identifiers</td>
-<td>Identifier used for registering customer in a specific source (&ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;externalId&rdquo;, &ldquo;wechat&rdquo;,&ldquo;martjackId&rdquo;, &ldquo;fbId&rdquo;)</td>
+<td>Identifier used for registering customer in a specific source (&ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;externalId&rdquo;, &ldquo;wechat&rdquo;,&ldquo;martjackId&rdquo;, &ldquo;fbId&rdquo;, &ldquo;line&rdquo;)</td>
 </tr>
 <tr>
 <td>profiles</td>
@@ -462,7 +470,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
-<p>Allows updating customer details on any source - INSTORE,MARTJACK, WECHAT or FACEBOOK. You can update profile information, extended field values, communication details, custom field values, and loyalty status (only non loyalty to loyalty).</p>
+<p>Allows updating customer details on any source - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE or LINE. You can update profile information, extended field values, communication details, custom field values, and loyalty status (only non loyalty to loyalty).</p>
 
 <p><em>Limitations of the customer update API</em>:</p>
 
@@ -526,7 +534,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 </tr>
 <tr>
 <td>source*</td>
-<td>Specify the source in which you want to update the customer details - INSTORE, MARTJACK, WECHAT, FACEBOOK. If ‘source=WECHAT/FACEBOOK`, you also need to provide the respective account id.</td>
+<td>Specify the source in which you want to update the customer details - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE. For sources with multiple accounts such as WECHAT, FACEBOOK, or LINE, you also need to provide the respective account id.</td>
 </tr>
 <tr>
 <td>account_Id**</td>
@@ -551,7 +559,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <tr>
 <td>profiles</td>
 <td>commChannels</td>
-<td>Different channels through which you want to communicate with the customer (“email”, “mobile”, “wechat”)</td>
+<td>Different channels through which you want to communicate with the customer (FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE)</td>
 </tr>
 <tr>
 <td>profiles</td>
@@ -709,7 +717,7 @@ https://us.api.capillarytech.com/v2/customers/418/changeIdentifier?source=WECHAT
 </tr>
 <tr>
 <td>source*</td>
-<td>Specify the source in which you want to update customer identifier(s) - INSTORE, MARTJACK, WECHAT, FACEBOOK. If ‘source=WECHAT/FACEBOOK`, you also need to provide the respective account id.</td>
+<td>Specify the source in which you want to update customer identifier(s) - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE. For sources that support multiple accounts, you also need to provide the associated account id.</td>
 </tr>
 <tr>
 <td>account_Id**</td>

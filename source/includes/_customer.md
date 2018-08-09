@@ -63,7 +63,7 @@ https://us.api.capillarytech.com/v2/customers?source=LINE&accountId=1234
 }
 ```
 
-This API allows registering customers in the org's loyalty program through different sources such as INSTORE,MARTJACK, WECHAT and FACEBOOK.  For sources with multiple accounts (such as WeChat, Line and Facebook), you must specify the respective account id along with the source name. You can also add customer level extended field details and custom field details of a customer.
+This API allows registering customers in the org's loyalty program through different sources such as FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, and WEBSITE.  For sources with multiple accounts (such as WeChat, Line and Facebook), you must specify the respective account id along with the source name. You can also add customer level extended field details and custom field details of a customer.
 
 **Extended Fields**:
 Extended Fields are proposed fields to standardize input values and keys across organizations. These fields make easier for the Development and Analytics teams to get rid of the complex data that comes into the database through existing custom fields. Back-end team controls the field names, data types, enum values, and scopes for extended fields. Currently, Extended Fields are at customer level, transaction level, and transaction line-item level.
@@ -88,7 +88,7 @@ Following are the features and limitations of the customer registration API:
 ### Prerequisites
 Following are the prerequisites to use customer registration API:
 
-* Different sources (InStore, MartJack, WeChat, Line, Facebook etc) supported by your organization 
+* Different sources (FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE) supported by your organization 
 
 * Account ids in which you want to register customers(for sources with multiple accounts such as WeChat, Line and Facebook)
 
@@ -110,7 +110,7 @@ Batch Support | No
 ### Request Parameters
 Parameter | Value | Description
 --------- | ----- | -----------
-source* | INSTORE/WECHAT/MARTJACK/FACEBOOK/LINE | Source in which you want to register a customer
+source* | FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE | Source in which you want to register a customer
 accountId* | - | For sources with multiple accounts, pass the specific account id in which you want to register a customer
 
 
@@ -118,10 +118,10 @@ accountId* | - | For sources with multiple accounts, pass the specific account i
 Parameter | Value | Description
 --------- | ----- | -----------
 loyaltyinfo | loyaltyType | Loyalty status of the customer (“loyalty”, “non_loyalty”)
-profiles | commChannels | Different channels through which you want to communicate with the customer (“email”, “mobile”, “wechat”, “line”)
+profiles | commChannels | Different channels through which you want to communicate with the customer (“"mobile", "email", "wechat", "ios", "android", "line")
 profiles | Firstname | First name of the customer
 profiles | Lastname | Last name of the customer
-profiles | identifiers | Identifier used for registering customer in a specific source ("mobile", "email", "externalId", "wechat","martjackId", "fbId", "line")
+profiles | identifiers | Identifier used for registering customer in a specific source ("mobile", "email", "externalId", "wechat","martjackId", "fbId" "mobile", "tmall_uname", "cuid", "ali_uname", "jd_uname", "vip_uname", "line")
 profiles | fields | Custom fields configured for the current organization
 attributionV2 | createDate | Time and date of registration in YYYY-MM-DDTHH:MM:SS+HH:MM (Time Zone). Example: 2016-06-23T19:11:18+08:00
 
@@ -247,10 +247,10 @@ account_Id** | Account in which you want to update the customer details (Require
 Parameter | Value | Description
 --------- | ----- | -----------
 loyaltyinfo | loyaltyType | Loyalty status of the customer (“loyalty”, “non_loyalty”)
-profiles | commChannels | Different channels through which you want to communicate with the customer (FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE)
+profiles | commChannels | Different channels through which you want to communicate with the customer ("mobile", "email", "wechat", "ios", "android", "line")
 profiles | Firstname | First name of the customer
 profiles | Lastname | Last name of the customer
-profiles | identifiers | Identifier used for registering customer in a specific source ("mobile", "email", "externalId", "wechat","martjackId", "fbId")
+profiles | identifiers | Identifier used for registering customer in a specific source ("mobile", "email", "externalId", "wechat","martjackId", "fbId" "mobile", "tmall_uname", "cuid", "ali_uname", "jd_uname", "vip_uname", "line")
 profiles | fields | Custom fields configured for the current organization
 
 ### Error Codes
@@ -303,7 +303,7 @@ https://us.api.capillarytech.com/v2/customers/418/changeIdentifier?source=WECHAT
 
 Allows adding/removing identifiers of a customer in different sources, i.e., you can either add a new identifier or remove an existing identifier of a customer in a source.
 
-**Identifiers**: "mobile", "email", "externalId", "wechat","martjackId", "fbId"
+**Identifiers**: "mobile", "email", "externalId", "wechat","martjackId", "fbId" "mobile", "tmall_uname", "cuid", "ali_uname", "jd_uname", "vip_uname", "line" 
 
 Limitations of the customer identifier update API:
 * Only identifiers can be updated using this API
@@ -525,7 +525,7 @@ Batch Support | No
 ### Request Parameter
 Parameter | Description
 --------- | -----------
-source* | Specify the source from which you want to fetch the customer details. Values: INSTORE, MARTJACK, WECHAT, ALL
+source* | Specify the source from which you want to fetch the customer details. Values: FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, ALL
 accountId** | Specify the account id of the specific source if the source has multiple accounts
 identifierName* | Identifier based on which you want to fetch the customer id. **Values**: "mobile", "email", "externalId", "wechat","martjackId", or "fbId"
 identifierValue* | Pass the respective identifier value
@@ -753,7 +753,7 @@ Retrieves details of a specific customer such as:
 
 * profile information – first name, last name, registered date, registered at TILL 
 * recent profile updated – details of the recent update in profile information
-* registered identifiers, communication channels and
+* registered identifiers, communication channels
 * loyalty information – loyalty status, registered date, purchases etc.
 * Multiple Loyalty Program Details: Program wise details if the org has multiple loyalty programs support
 
@@ -954,9 +954,9 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
   "warnings": []
 }
 ```
-Subscription represents communication channels a customer has subscribed to. The communication channels can be email, sms, or WeChat.
+Subscription represents communication channels a customer has subscribed to. The communication channels can be "mobile", "email", "wechat", "ios", "android", and "line".
 
-This API allows updating different subscription channels of a customer. You can either opt-in or opt-out a customer’s mobile number/email id/WeChat id from receiving transaction and/or bulk messages.
+This API allows updating (opt-in or opt-out) subscription status for trans or bulk messaging services.
 
 * **Transaction Messages**: These are personalized messages sent to the respective customer instantly when a new transaction is made, redeemed points/coupon, send birthday/anniversary wishes and so on
 * **Bulk Messages**: These are promotion messages sent to a list of customers
@@ -977,7 +977,7 @@ Batch Support | No
 Parameter | Description
 --------- | -----------
 id | Unique id of the customer for whom you want to modify the subscription details
-channel | Pass the communication channel that you want to update. **Value**: SMS, EMAIL, WECHAT
+channel | Pass the communication channel that you want to update. **Value**: "mobile", "email", "wechat", "ios", "android", "line"
 priority | Type of service for which you want to modify the subscription details.`TRANS` for personalized messages and `BULK` for campaign or bulk messages
 type | `OPTIN` to subscribe and `OPTOUT` to unsubscribe
 
