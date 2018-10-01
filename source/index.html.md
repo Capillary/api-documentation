@@ -19,6 +19,7 @@ includes:
   - verticals
   - org
   - OrganizationSource
+  - staffUser
 
 search: true
 ---

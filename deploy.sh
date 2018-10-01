@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 set -o errexit #abort if any command fails
 me=$(basename "$0")
-
 help_message="\
 Usage: $me [-c FILE] [<options>]
 Deploy generated files to a git branch.
@@ -59,7 +58,6 @@ parse_args() {
   #if no user identity is already set in the current git environment, use this:
   default_username=${GIT_DEPLOY_USERNAME:-deploy.sh}
   default_email=${GIT_DEPLOY_EMAIL:-}
-
   #repository to deploy to. must be readable and writable.
   repo=origin
 
