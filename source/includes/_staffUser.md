@@ -205,6 +205,7 @@ https://us.api.capillarytech.com/v2/staffuser/accessToken
 ```
 
 > Sample Response
+
 ```json
 {
    "entity":"6F0-ZTOYwp4P7b6ngXx5UkDDYXm2J82mP5xxYDQ_BCV_epool6uOif_xQ7IkMNhO",
