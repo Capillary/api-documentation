@@ -40,6 +40,7 @@ https://us.api.capillarytech.com/v2/staffuser
 Lets you create a staff user account for your organization.
 
 ### Resource Information
+
 | | |
 | -- | -- |
 URI | `v2/staffuser`
@@ -101,6 +102,7 @@ Issues OTP to to authenticate a user login, or validate mobile number/email id.
 
 
 ### Resource Information
+
 | | |
 | -- | -- |
 URI | `v2/staffuser/sendOtp?otp_type="<otp type>"`
