@@ -40,8 +40,8 @@ https://us.api.capillarytech.com/v2/staffuser
 Lets you create a staff user account for your organization.
 
 ### Resource Information
-Parameter | Description
---------- | -----------
+| | |
+|- | -|
 URI | `v2/staffuser`
 Rate Limited? | Yes
 Authentication | Yes
@@ -102,7 +102,7 @@ Issues OTP to to authenticate a user login, or validate mobile number/email id.
 
 ### Resource Information
 | | |
--- | - |
+| - | - |
 URI | `v2/staffuser/sendOtp?otp_type="<otp type>"`
 Rate Limited? | Yes
 Authentication | Yes
@@ -175,7 +175,7 @@ This API lets you validate the OTP sent to the user's registered mobile number/e
 
 ### Resource Information
  | | | 
---------- | -----------
+| --------- | ----------- |
 URI | `/staffuser/validate`
 Rate Limited? | Yes
 Authentication | Yes
@@ -221,7 +221,7 @@ Generates access token of the staff user. For this, the user account has to vali
 
 ### Resource Information
  | | |
---------- | -----------
+| --------- | ----------- |
 URI | `/staffuser/accessToken`
 Rate Limited? | Yes
 Authentication | Yes
@@ -322,7 +322,7 @@ Retrieves the details of a specific staff user.
 
 ### Resource Information
  | | |
---------- | -----------
+| --------- | ----------- |
 URI | `/staffuser/users
 Rate Limited? | Yes
 Authentication | Yes
