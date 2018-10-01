@@ -40,9 +40,8 @@ https://us.api.capillarytech.com/v2/staffuser
 Lets you create a staff user account for your organization.
 
 ### Resource Information
-
-| | |
-| -- | -- |
+Info | Value
+---- | ----- 
 URI | `v2/staffuser`
 Rate Limited? | Yes
 Authentication | Yes
@@ -103,8 +102,8 @@ Issues OTP to to authenticate a user login, or validate mobile number/email id.
 
 ### Resource Information
 
-| | |
-| -- | -- |
+Info | Value
+---- | ----- 
 URI | `v2/staffuser/sendOtp?otp_type="<otp type>"`
 Rate Limited? | Yes
 Authentication | Yes
@@ -176,8 +175,8 @@ When creating an account the registered mobile number/email id needs to be valid
 This API lets you validate the OTP sent to the user's registered mobile number/email id for a specific purpose.
 
 ### Resource Information
-| | |
-| -- | -- |
+Info | Value
+---- | ----- 
 URI | `/staffuser/validate`
 Rate Limited? | Yes
 Authentication | Yes
@@ -222,8 +221,8 @@ https://us.api.capillarytech.com/v2/staffuser/accessToken
 Generates access token of the staff user. For this, the user account has to validated and active. 
 
 ### Resource Information
-| | |
-| -- | -- |
+Info | Value
+---- | ----- 
 URI | `/staffuser/accessToken`
 Rate Limited? | Yes
 Authentication | Yes
@@ -270,8 +269,8 @@ https://us.api.capillarytech.com/v2/staffuser/changePassword/timpass45
 Lets you change the password of a staff user using his/her current password.
 
 ### Resource Information
-| | |
-| -- | -- |
+Info | Value
+---- | ----- 
 URI | `/staffuser/changePassword/<old_password>`
 Rate Limited? | Yes
 Authentication | Yes
@@ -323,8 +322,8 @@ https://us.api.capillarytech.com/v2/staffuser/users
 Retrieves the details of a specific staff user.
 
 ### Resource Information
-|  |  |
-| -- | -- |
+Info | Value
+---- | ----- 
 URI | `/staffuser/users
 Rate Limited? | Yes
 Authentication | Yes
