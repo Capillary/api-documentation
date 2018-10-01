@@ -5238,21 +5238,19 @@ This API lets you validate the OTP sent to the user&rsquo;s registered mobile nu
 <pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staffuser/accessToken
 </code></pre>
 <blockquote>
-<p>Sample Response
-&ldquo;`json
-{
-   &quot;entity&rdquo;:&ldquo;6F0-ZTOYwp4P7b6ngXx5UkDDYXm2J82mP5xxYDQ_BCV_epool6uOif_xQ7IkMNhO&rdquo;,
-   &ldquo;warnings&rdquo;:[</p>
+<p>Sample Response</p>
 </blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"entity"</span><span class="p">:</span><span class="s2">"6F0-ZTOYwp4P7b6ngXx5UkDDYXm2J82mP5xxYDQ_BCV_epool6uOif_xQ7IkMNhO"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">
 
-<p>],
-   &ldquo;errors&rdquo;:[</p>
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"errors"</span><span class="p">:[</span><span class="w">
 
-<p>],
-   &ldquo;success&rdquo;:true
-}
-&ldquo;`</p>
-
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>Generates access token of the staff user. For this, the user account has to validated and active. </p>
 
 <h3 id="resource-information">Resource Information</h3>
