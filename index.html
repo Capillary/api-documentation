@@ -4178,6 +4178,94 @@ https://us.api.capillarytech.com/v2/cardNumber
 
 <p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/cardNumber</code></p>
 
+<h2 id="show-hide-extended-fields-on-intouch">Show/Hide Extended Fields on InTouch</h2>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>http://us.intouch.capillarytech.com/v2/entity/extended_field_config
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">  
+   </span><span class="nt">"extendedFieldId"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"hideDisplay"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"mandatory"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"updatable"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"position"</span><span class="p">:</span><span class="mi">101</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">  
+   </span><span class="nt">"extendedFieldId"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="mi">-1</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="mi">-11</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"hideDisplay"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"position"</span><span class="p">:</span><span class="mi">101</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="s2">"2017-01-03 10:20:42"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="s2">"2018-01-03 10:20:42"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"mandatory"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"updatable"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">  
+
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This API lets you show or hide a specific extended field on your org&rsquo;s InTouch.</p>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/entity/extended_field_config</code></p>
+
+<h3 id="request-attributes">Request Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>extendedFieldId*</td>
+<td>Specify the unique id of the extended field that you want to show/hide</td>
+</tr>
+<tr>
+<td>createdOn</td>
+<td>Date on which the field is created</td>
+</tr>
+<tr>
+<td>createdBy</td>
+<td></td>
+</tr>
+<tr>
+<td>modifiedOn</td>
+<td></td>
+</tr>
+<tr>
+<td>modifiedBy</td>
+<td></td>
+</tr>
+<tr>
+<td>hideDisplay*</td>
+<td>Value: true, false</td>
+</tr>
+<tr>
+<td>mandatory</td>
+<td>Value: true, false</td>
+</tr>
+<tr>
+<td>updatable</td>
+<td>Specify To make the field values updatable. Value: true, false</td>
+</tr>
+<tr>
+<td>position</td>
+<td>Specify the position order of the extended field on the UI</td>
+</tr>
+</tbody></table>
+
 <h2 id="retrieve-org-extended-fields">Retrieve Org Extended Fields</h2>
 
 <blockquote>
@@ -4918,7 +5006,7 @@ https://us.api.capillarytech.com/v2/cardNumber
 
           <h1 id="staff-user">Staff User</h1>
 
-<p>A Staff User is a third party that sells products of an organization. This resource consists of APIs related to managing staff user accounts. The staff user will have the properties of both Admin and TILL user.</p>
+<p>A Staff User is an org user or a user associated to the org who deals with selling items to end-users. This concept is usually for B2B marketing. This resource consists of APIs related to managing staff user accounts. The staff user will have the properties of both Admin and TILL user.</p>
 
 <h2 id="create-a-staff-user">Create a Staff User</h2>
 
@@ -4953,8 +5041,8 @@ https://us.api.capillarytech.com/v2/cardNumber
 
 <table><thead>
 <tr>
-<th>Info</th>
-<th>Value</th>
+<th></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
@@ -5059,8 +5147,8 @@ https://us.api.capillarytech.com/v2/cardNumber
 
 <table><thead>
 <tr>
-<th>Info</th>
-<th>Value</th>
+<th></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
@@ -5164,8 +5252,8 @@ This API lets you validate the OTP sent to the user&rsquo;s registered mobile nu
 
 <table><thead>
 <tr>
-<th>Info</th>
-<th>Value</th>
+<th></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
@@ -5292,7 +5380,7 @@ This API lets you validate the OTP sent to the user&rsquo;s registered mobile nu
 <p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staffuser/accessToken</code></p>
 
 <h2 id="change-user-password">Change User Password</h2>
-<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staffuser/changePassword/timpass45
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staffuser/changePassword
 
 </code></pre>
 <blockquote>
@@ -5316,19 +5404,19 @@ This API lets you validate the OTP sent to the user&rsquo;s registered mobile nu
     </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Lets you change the password of a staff user using his/her current password.</p>
+<p>Lets you change the password of the staff user using the the Auth or AccessToken associated to him</p>
 
 <h3 id="resource-information">Resource Information</h3>
 
 <table><thead>
 <tr>
-<th>Info</th>
-<th>Value</th>
+<th></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/staffuser/changePassword/&lt;old_password&gt;</code></td>
+<td><code class="prettyprint">/staffuser/changePassword</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -5354,10 +5442,7 @@ This API lets you validate the OTP sent to the user&rsquo;s registered mobile nu
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staffuser/changePassword/timpass45</code></p>
-
-<p><strong>Additional Request Parameter in the URL</strong>
-old_password | Specify the current password of the user</p>
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staffuser/changePassword</code></p>
 
 <p>Request Attribute
 Attribute | Description
@@ -5365,7 +5450,7 @@ Attribute | Description
 password | Specify your preferred new password</p>
 
 <h2 id="get-staff-user-details">Get Staff User Details</h2>
-<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staffuser/users 
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staffuser/users?username=staff1
 
 </code></pre>
 <blockquote>
@@ -5394,13 +5479,13 @@ password | Specify your preferred new password</p>
 
 <table><thead>
 <tr>
-<th>Info</th>
-<th>Value</th>
+<th></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td>`/staffuser/users</td>
+<td><code class="prettyprint">/staffuser/users?&lt;identifier&gt;=&lt;value&gt;</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -5426,7 +5511,7 @@ password | Specify your preferred new password</p>
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staffuser/users</code></p>
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staffuser/users?&lt;identifier&gt;=&lt;value&gt;</code></p>
 
 <h3 id="request-parameter">Request Parameter</h3>
 
@@ -5438,7 +5523,7 @@ password | Specify your preferred new password</p>
 </thead><tbody>
 <tr>
 <td>user identifier</td>
-<td>Pass any identifier (username, mobile number, email id, or the unique id generated for the user (refId)) of the user to fetch details. <strong>Values</strong>: username, mobile, email, refId</td>
+<td>Pass any one identifier (username, mobile, email or the unique id generated for the user (refId)) of the user that you want to fetch in the format <identifier>=<value>. <strong>Identifiers</strong>: username, mobile, email, refId</td>
 </tr>
 </tbody></table>
 
