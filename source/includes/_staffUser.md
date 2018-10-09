@@ -1,14 +1,14 @@
 
-# Staff User
+# Staff
 
-A Staff User is a third party that sells products of an organization. This resource consists of APIs related to managing staff user accounts. The staff user will have the properties of both Admin and TILL user.
+A Staff is a member of the org or associated with the org who deals with selling items to end-users. This concept is introduced mainly for B2B marketing. This resource contains APIs related to managing staff accounts. The staff user will have the properties of both Admin and TILL user.
 
-## Create a Staff User
+## Create a Staff Account
 
 > Sample Request
 
 ```html
-https://us.api.capillarytech.com/v2/staffuser
+https://us.api.capillarytech.com/v2/staff
 
 ```
 
@@ -37,12 +37,12 @@ https://us.api.capillarytech.com/v2/staffuser
 }
 ```
 
-Lets you create a staff user account for your organization.
+Lets you create a staff account for your organization.
 
 ### Resource Information
-Info | Value
----- | ----- 
-URI | `v2/staffuser`
+|  | |
+---|---| 
+URI | `v2/staff`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
@@ -51,27 +51,27 @@ Batch Support | No
 
 
 ### Request URL
-`https://<Respective cluster’s API URL>/v2/staffuser`
+`https://<Respective cluster’s API URL>/v2/staff`
 
 ### Request Attributes
-Any one user identifier is mandatory.
+At least one staff identifier is mandatory.
 
 Attribute | Description
 --------- | -----------
-username | Specify the user name for the current staff user account
-mobile | Specify the mobile number of the staff user
-email | Specify the mobile number of the staff user
-password | Specify the password for the user account
-storeCode | Specify the store code to which you want to associate the user. If no store code is passed, the user is associated to the **InfluenceStore** by default store
-zoneCode | Specify the zone code to which you want to associate the user. If this is not passed, the zone will be associated according to to the store associated to the user
-ConceptCode | Specify the zone code to which you want to associate the user. If this is not passed, the concept will be associated according to to the store associated to the user
+username | Specify the username for the current staff account
+mobile | Specify the mobile number of the staff
+email | Specify the mobile number of the staff
+password | Specify the password for the account
+storeCode | Specify the store code to which you want to associate the staff. If no store code is passed, the user is associated to the **InfluenceStore** by default store
+zoneCode | Specify the zone code to which you want to associate the staff. If this is not passed, the zone will be associated according to to the store associated to the staff
+ConceptCode | Specify the zone code to which you want to associate the staff. If this is not passed, the concept will be associated according to to the store associated to the staff
 
 
 ## Send OTP
 > Sample Request 
 
 ```html
-https://us.api.capillarytech.com/v2/staffuser/sendOtp?otp_type="VALIDATE_EMAIL"
+https://us.api.capillarytech.com/v2/staff/sendOtp?otp_type="VALIDATE_EMAIL"
 
 ```
 
@@ -97,14 +97,14 @@ https://us.api.capillarytech.com/v2/staffuser/sendOtp?otp_type="VALIDATE_EMAIL"
 }
 ```
 
-Issues OTP to to authenticate a user login, or validate mobile number/email id.
+Issues OTP to to authenticate a staff login, or validate mobile number/email id.
 
 
 ### Resource Information
 
-Info | Value
----- | ----- 
-URI | `v2/staffuser/sendOtp?otp_type="<otp type>"`
+|  | |
+---|---| 
+URI | `v2/staff/sendOtp?otp_type="<otp type>"`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
@@ -114,7 +114,7 @@ Batch Support | No
 
 
 ### Request URL
-`https://<Respective cluster’s API URL>/v2/staffuser/sendOtp?otp_type="<otp type>"`
+`https://<Respective cluster’s API URL>/v2/staff/sendOtp?otp_type="<otp type>"`
 
 **Request Parameter**
 `otp_type` : The purpose for which you want to issue OTP - either to login, validate email id, or validate mobile number. **Values**: LOGIN, VALIDATE_EMAIL, VALIDATE_MOBILE respectively
@@ -123,10 +123,10 @@ Batch Support | No
 
 Attribute | Description
 --------- | -----------
-id* | The unique user id created for the staff
-username* | Registered username of the staff user
-mobile | Registered mobile number of the user to send OTP. You can use this to validate mobile number and also to authenticate login
-email | Registered email id of the user to send OTP. You can use this to validate email id and also to authenticate login
+id* | The unique id created for the staff
+username* | Registered username of the staff
+mobile | Registered mobile number of the staff to send OTP. You can use this to validate mobile number and also to authenticate login
+email | Registered email id of the staff to send OTP. You can use this to validate email id and also to authenticate login
 
 
 
@@ -138,7 +138,7 @@ email | Registered email id of the user to send OTP. You can use this to validat
 > Sample Request 
 
 ```html
-https://us.api.capillarytech.com/v2/staffuser/validate
+https://us.api.capillarytech.com/v2/staff/validate
 
 ```
 
@@ -171,13 +171,13 @@ https://us.api.capillarytech.com/v2/staffuser/validate
 }
 ```
 
-When creating an account the registered mobile number/email id needs to be validated through OTP to avoid the possibility of saving fake identifiers. Also, a user can login to his/her account through OTP.
-This API lets you validate the OTP sent to the user's registered mobile number/email id for a specific purpose.
+When creating an account the registered mobile number/email id needs to be validated through OTP to avoid the possibility of saving fake identifiers. Also, a staff can login to his/her account through OTP.
+This API lets you validate the OTP sent to the staff's registered mobile number/email id for a specific purpose.
 
 ### Resource Information
-Info | Value
----- | ----- 
-URI | `/staffuser/validate`
+|  | |
+---|---| 
+URI | `/staff/validate`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
@@ -186,22 +186,22 @@ Batch Support | No
 
 
 ### Request URL
-`https://<Respective cluster’s API URL>/v2/staffuser/validate`
+`https://<Respective cluster’s API URL>/v2/staff/validate`
 
 Parameter | Description
 --------- | -----------
-username | Specify the user name for the current staff user account
-mobile | Specify the mobile number of the staff user
-email | Specify the mobile number of the staff user
+username | Specify the user name for the current staff account
+mobile | Specify the mobile number of the staff 
+email | Specify the mobile number of the staff 
 id | Unique user id generated for the staff account
 identifierType | Specify `EMAIL` for email id validation and MOBILE for mobile number validation
-password | Specify the password of the user
+password | Specify the password of the staff account
 otp | Specify the one time password received on the specified identifierType
 
 
 ## Get Access Token
 ```html
-https://us.api.capillarytech.com/v2/staffuser/accessToken
+https://us.api.capillarytech.com/v2/staff/accessToken
 ```
 
 > Sample Response
@@ -219,12 +219,12 @@ https://us.api.capillarytech.com/v2/staffuser/accessToken
 }
 ```
 
-Generates access token of the staff user. For this, the user account has to validated and active. 
+Generates access token of the staff. For this, you need to validate and log in to the staff account. 
 
 ### Resource Information
 Info | Value
 ---- | ----- 
-URI | `/staffuser/accessToken`
+URI | `/staff/accessToken`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
@@ -233,14 +233,14 @@ Batch Support | No
 
 
 ### Request URL
-`https://<Respective cluster’s API URL>/v2/staffuser/accessToken`
+`https://<Respective cluster’s API URL>/v2/staff/accessToken`
 
 
 
 
-## Change User Password
+## Change Staff Account Password
 ```html
-https://us.api.capillarytech.com/v2/staffuser/changePassword/timpass45
+https://us.api.capillarytech.com/v2/staff/changePassword
 
 ```
 
@@ -267,12 +267,12 @@ https://us.api.capillarytech.com/v2/staffuser/changePassword/timpass45
 }
 ```
 
-Lets you change the password of a staff user using his/her current password.
+Lets you change the password of the staff using the the Auth or AccessToken associated to him
 
 ### Resource Information
-Info | Value
----- | ----- 
-URI | `/staffuser/changePassword/<old_password>`
+|  | |
+---|---| 
+URI | `/staff/changePassword`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
@@ -281,10 +281,9 @@ Batch Support | No
 
 
 ### Request URL
-`https://<Respective cluster’s API URL>/v2/staffuser/changePassword/timpass45`
+`https://<Respective cluster’s API URL>/v2/staff/changePassword`
 
-**Additional Request Parameter in the URL**
-old_password | Specify the current password of the user
+
 
 Request Attribute
 Attribute | Description
@@ -292,10 +291,10 @@ Attribute | Description
 password | Specify your preferred new password
 
 
-## Get Staff User Details 
+## Get Staff Details 
 
 ```html
-https://us.api.capillarytech.com/v2/staffuser/users 
+https://us.api.capillarytech.com/v2/staff/users?username=staff1
 
 ```
 
@@ -320,12 +319,12 @@ https://us.api.capillarytech.com/v2/staffuser/users
 }
 ```
 
-Retrieves the details of a specific staff user.
+Retrieves the details of a specific staff.
 
 ### Resource Information
-Info | Value
----- | ----- 
-URI | `/staffuser/users
+|  | |
+---|---| 
+URI | `/staff/users?<identifier>=<value>`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
@@ -334,12 +333,12 @@ Batch Support | No
 
 
 ### Request URL
-`https://<Respective cluster’s API URL>/v2/staffuser/users`
+`https://<Respective cluster’s API URL>/v2/staff/users?<identifier>=<value>`
 
 ### Request Parameter
 Parameter | Description
 --------- | -----------
-user identifier | Pass any identifier (username, mobile number, email id, or the unique id generated for the user (refId)) of the user to fetch details. **Values**: username, mobile, email, refId
+user identifier | Pass any one identifier (username, mobile, email or the unique id generated for the user (refId)) of the user that you want to fetch in the format <identifier>=<value>. **Identifiers**: username, mobile, email, refId
 
 
 

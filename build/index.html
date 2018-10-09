@@ -4178,6 +4178,94 @@ https://us.api.capillarytech.com/v2/cardNumber
 
 <p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/cardNumber</code></p>
 
+<h2 id="show-hide-extended-fields-on-intouch">Show/Hide Extended Fields on InTouch</h2>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>http://us.intouch.capillarytech.com/v2/entity/extended_field_config
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">  
+   </span><span class="nt">"extendedFieldId"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"hideDisplay"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"mandatory"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"updatable"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"position"</span><span class="p">:</span><span class="mi">101</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">  
+   </span><span class="nt">"extendedFieldId"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="mi">-1</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="mi">-11</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"hideDisplay"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"position"</span><span class="p">:</span><span class="mi">101</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="s2">"2017-01-03 10:20:42"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"modifiedOn"</span><span class="p">:</span><span class="s2">"2018-01-03 10:20:42"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"mandatory"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"updatable"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">  
+
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>This API lets you show or hide a specific extended field on your org&rsquo;s InTouch.</p>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/entity/extended_field_config</code></p>
+
+<h3 id="request-attributes">Request Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>extendedFieldId*</td>
+<td>Specify the unique id of the extended field that you want to show/hide</td>
+</tr>
+<tr>
+<td>createdOn</td>
+<td>Date on which the field is created</td>
+</tr>
+<tr>
+<td>createdBy</td>
+<td></td>
+</tr>
+<tr>
+<td>modifiedOn</td>
+<td></td>
+</tr>
+<tr>
+<td>modifiedBy</td>
+<td></td>
+</tr>
+<tr>
+<td>hideDisplay*</td>
+<td>Value: true, false</td>
+</tr>
+<tr>
+<td>mandatory</td>
+<td>Value: true, false</td>
+</tr>
+<tr>
+<td>updatable</td>
+<td>Specify To make the field values updatable. Value: true, false</td>
+</tr>
+<tr>
+<td>position</td>
+<td>Specify the position order of the extended field on the UI</td>
+</tr>
+</tbody></table>
+
 <h2 id="retrieve-org-extended-fields">Retrieve Org Extended Fields</h2>
 
 <blockquote>
@@ -4916,16 +5004,16 @@ https://us.api.capillarytech.com/v2/cardNumber
 
 <p><code class="prettyprint">https://&lt;cluster url&gt;v2/organization/programs</code></p>
 
-          <h1 id="staff-user">Staff User</h1>
+          <h1 id="staff">Staff</h1>
 
-<p>A Staff User is a third party that sells products of an organization. This resource consists of APIs related to managing staff user accounts. The staff user will have the properties of both Admin and TILL user.</p>
+<p>A Staff is a member of the org or associated with the org who deals with selling items to end-users. This concept is introduced mainly for B2B marketing. This resource contains APIs related to managing staff accounts. The staff user will have the properties of both Admin and TILL user.</p>
 
-<h2 id="create-a-staff-user">Create a Staff User</h2>
+<h2 id="create-a-staff-account">Create a Staff Account</h2>
 
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staffuser
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staff
 
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
    </span><span class="nt">"username"</span><span class="p">:</span><span class="s2">"tim.james"</span><span class="p">,</span><span class="w">
@@ -4947,19 +5035,19 @@ https://us.api.capillarytech.com/v2/cardNumber
    </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Lets you create a staff user account for your organization.</p>
+<p>Lets you create a staff account for your organization.</p>
 
 <h3 id="resource-information">Resource Information</h3>
 
 <table><thead>
 <tr>
-<th>Info</th>
-<th>Value</th>
+<th></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">v2/staffuser</code></td>
+<td><code class="prettyprint">v2/staff</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -4985,11 +5073,11 @@ https://us.api.capillarytech.com/v2/cardNumber
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staffuser</code></p>
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staff</code></p>
 
 <h3 id="request-attributes">Request Attributes</h3>
 
-<p>Any one user identifier is mandatory.</p>
+<p>At least one staff identifier is mandatory.</p>
 
 <table><thead>
 <tr>
@@ -4999,31 +5087,31 @@ https://us.api.capillarytech.com/v2/cardNumber
 </thead><tbody>
 <tr>
 <td>username</td>
-<td>Specify the user name for the current staff user account</td>
+<td>Specify the username for the current staff account</td>
 </tr>
 <tr>
 <td>mobile</td>
-<td>Specify the mobile number of the staff user</td>
+<td>Specify the mobile number of the staff</td>
 </tr>
 <tr>
 <td>email</td>
-<td>Specify the mobile number of the staff user</td>
+<td>Specify the mobile number of the staff</td>
 </tr>
 <tr>
 <td>password</td>
-<td>Specify the password for the user account</td>
+<td>Specify the password for the account</td>
 </tr>
 <tr>
 <td>storeCode</td>
-<td>Specify the store code to which you want to associate the user. If no store code is passed, the user is associated to the <strong>InfluenceStore</strong> by default store</td>
+<td>Specify the store code to which you want to associate the staff. If no store code is passed, the user is associated to the <strong>InfluenceStore</strong> by default store</td>
 </tr>
 <tr>
 <td>zoneCode</td>
-<td>Specify the zone code to which you want to associate the user. If this is not passed, the zone will be associated according to to the store associated to the user</td>
+<td>Specify the zone code to which you want to associate the staff. If this is not passed, the zone will be associated according to to the store associated to the staff</td>
 </tr>
 <tr>
 <td>ConceptCode</td>
-<td>Specify the zone code to which you want to associate the user. If this is not passed, the concept will be associated according to to the store associated to the user</td>
+<td>Specify the zone code to which you want to associate the staff. If this is not passed, the concept will be associated according to to the store associated to the staff</td>
 </tr>
 </tbody></table>
 
@@ -5032,7 +5120,7 @@ https://us.api.capillarytech.com/v2/cardNumber
 <blockquote>
 <p>Sample Request </p>
 </blockquote>
-<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staffuser/sendOtp?otp_type="VALIDATE_EMAIL"
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staff/sendOtp?otp_type="VALIDATE_EMAIL"
 
 </code></pre>
 <blockquote>
@@ -5053,19 +5141,19 @@ https://us.api.capillarytech.com/v2/cardNumber
     </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Issues OTP to to authenticate a user login, or validate mobile number/email id.</p>
+<p>Issues OTP to to authenticate a staff login, or validate mobile number/email id.</p>
 
 <h3 id="resource-information">Resource Information</h3>
 
 <table><thead>
 <tr>
-<th>Info</th>
-<th>Value</th>
+<th></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">v2/staffuser/sendOtp?otp_type=&quot;&lt;otp type&gt;&quot;</code></td>
+<td><code class="prettyprint">v2/staff/sendOtp?otp_type=&quot;&lt;otp type&gt;&quot;</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -5091,7 +5179,7 @@ https://us.api.capillarytech.com/v2/cardNumber
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staffuser/sendOtp?otp_type=&quot;&lt;otp type&gt;&quot;</code></p>
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staff/sendOtp?otp_type=&quot;&lt;otp type&gt;&quot;</code></p>
 
 <p><strong>Request Parameter</strong>
 <code class="prettyprint">otp_type</code> : The purpose for which you want to issue OTP - either to login, validate email id, or validate mobile number. <strong>Values</strong>: LOGIN, VALIDATE_EMAIL, VALIDATE_MOBILE respectively</p>
@@ -5106,19 +5194,19 @@ https://us.api.capillarytech.com/v2/cardNumber
 </thead><tbody>
 <tr>
 <td>id*</td>
-<td>The unique user id created for the staff</td>
+<td>The unique id created for the staff</td>
 </tr>
 <tr>
 <td>username*</td>
-<td>Registered username of the staff user</td>
+<td>Registered username of the staff</td>
 </tr>
 <tr>
 <td>mobile</td>
-<td>Registered mobile number of the user to send OTP. You can use this to validate mobile number and also to authenticate login</td>
+<td>Registered mobile number of the staff to send OTP. You can use this to validate mobile number and also to authenticate login</td>
 </tr>
 <tr>
 <td>email</td>
-<td>Registered email id of the user to send OTP. You can use this to validate email id and also to authenticate login</td>
+<td>Registered email id of the staff to send OTP. You can use this to validate email id and also to authenticate login</td>
 </tr>
 </tbody></table>
 
@@ -5127,7 +5215,7 @@ https://us.api.capillarytech.com/v2/cardNumber
 <blockquote>
 <p>Sample Request </p>
 </blockquote>
-<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staffuser/validate
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staff/validate
 
 </code></pre>
 <blockquote>
@@ -5157,20 +5245,20 @@ https://us.api.capillarytech.com/v2/cardNumber
    </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>When creating an account the registered mobile number/email id needs to be validated through OTP to avoid the possibility of saving fake identifiers. Also, a user can login to his/her account through OTP.
-This API lets you validate the OTP sent to the user&rsquo;s registered mobile number/email id for a specific purpose.</p>
+<p>When creating an account the registered mobile number/email id needs to be validated through OTP to avoid the possibility of saving fake identifiers. Also, a staff can login to his/her account through OTP.
+This API lets you validate the OTP sent to the staff&rsquo;s registered mobile number/email id for a specific purpose.</p>
 
 <h3 id="resource-information">Resource Information</h3>
 
 <table><thead>
 <tr>
-<th>Info</th>
-<th>Value</th>
+<th></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/staffuser/validate</code></td>
+<td><code class="prettyprint">/staff/validate</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -5196,7 +5284,7 @@ This API lets you validate the OTP sent to the user&rsquo;s registered mobile nu
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staffuser/validate</code></p>
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staff/validate</code></p>
 
 <table><thead>
 <tr>
@@ -5206,15 +5294,15 @@ This API lets you validate the OTP sent to the user&rsquo;s registered mobile nu
 </thead><tbody>
 <tr>
 <td>username</td>
-<td>Specify the user name for the current staff user account</td>
+<td>Specify the user name for the current staff account</td>
 </tr>
 <tr>
 <td>mobile</td>
-<td>Specify the mobile number of the staff user</td>
+<td>Specify the mobile number of the staff</td>
 </tr>
 <tr>
 <td>email</td>
-<td>Specify the mobile number of the staff user</td>
+<td>Specify the mobile number of the staff</td>
 </tr>
 <tr>
 <td>id</td>
@@ -5226,7 +5314,7 @@ This API lets you validate the OTP sent to the user&rsquo;s registered mobile nu
 </tr>
 <tr>
 <td>password</td>
-<td>Specify the password of the user</td>
+<td>Specify the password of the staff account</td>
 </tr>
 <tr>
 <td>otp</td>
@@ -5235,25 +5323,23 @@ This API lets you validate the OTP sent to the user&rsquo;s registered mobile nu
 </tbody></table>
 
 <h2 id="get-access-token">Get Access Token</h2>
-<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staffuser/accessToken
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staff/accessToken
 </code></pre>
 <blockquote>
-<p>Sample Response
-&ldquo;`json
-{
-   &quot;entity&rdquo;:&ldquo;6F0-ZTOYwp4P7b6ngXx5UkDDYXm2J82mP5xxYDQ_BCV_epool6uOif_xQ7IkMNhO&rdquo;,
-   &ldquo;warnings&rdquo;:[</p>
+<p>Sample Response</p>
 </blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"entity"</span><span class="p">:</span><span class="s2">"6F0-ZTOYwp4P7b6ngXx5UkDDYXm2J82mP5xxYDQ_BCV_epool6uOif_xQ7IkMNhO"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">
 
-<p>],
-   &ldquo;errors&rdquo;:[</p>
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"errors"</span><span class="p">:[</span><span class="w">
 
-<p>],
-   &ldquo;success&rdquo;:true
-}
-&ldquo;`</p>
-
-<p>Generates access token of the staff user. For this, the user account has to validated and active. </p>
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Generates access token of the staff. For this, you need to validate and log in to the staff account. </p>
 
 <h3 id="resource-information">Resource Information</h3>
 
@@ -5265,7 +5351,7 @@ This API lets you validate the OTP sent to the user&rsquo;s registered mobile nu
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/staffuser/accessToken</code></td>
+<td><code class="prettyprint">/staff/accessToken</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -5291,10 +5377,10 @@ This API lets you validate the OTP sent to the user&rsquo;s registered mobile nu
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staffuser/accessToken</code></p>
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staff/accessToken</code></p>
 
-<h2 id="change-user-password">Change User Password</h2>
-<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staffuser/changePassword/timpass45
+<h2 id="change-staff-account-password">Change Staff Account Password</h2>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staff/changePassword
 
 </code></pre>
 <blockquote>
@@ -5318,19 +5404,19 @@ This API lets you validate the OTP sent to the user&rsquo;s registered mobile nu
     </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Lets you change the password of a staff user using his/her current password.</p>
+<p>Lets you change the password of the staff using the the Auth or AccessToken associated to him</p>
 
 <h3 id="resource-information">Resource Information</h3>
 
 <table><thead>
 <tr>
-<th>Info</th>
-<th>Value</th>
+<th></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/staffuser/changePassword/&lt;old_password&gt;</code></td>
+<td><code class="prettyprint">/staff/changePassword</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -5356,18 +5442,15 @@ This API lets you validate the OTP sent to the user&rsquo;s registered mobile nu
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staffuser/changePassword/timpass45</code></p>
-
-<p><strong>Additional Request Parameter in the URL</strong>
-old_password | Specify the current password of the user</p>
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staff/changePassword</code></p>
 
 <p>Request Attribute
 Attribute | Description
 &mdash;&mdash;&mdash; | &mdash;&mdash;&mdash;&ndash;
 password | Specify your preferred new password</p>
 
-<h2 id="get-staff-user-details">Get Staff User Details</h2>
-<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staffuser/users 
+<h2 id="get-staff-details">Get Staff Details</h2>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staff/users?username=staff1
 
 </code></pre>
 <blockquote>
@@ -5390,19 +5473,19 @@ password | Specify your preferred new password</p>
     </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Retrieves the details of a specific staff user.</p>
+<p>Retrieves the details of a specific staff.</p>
 
 <h3 id="resource-information">Resource Information</h3>
 
 <table><thead>
 <tr>
-<th>Info</th>
-<th>Value</th>
+<th></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td>`/staffuser/users</td>
+<td><code class="prettyprint">/staff/users?&lt;identifier&gt;=&lt;value&gt;</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -5428,7 +5511,7 @@ password | Specify your preferred new password</p>
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staffuser/users</code></p>
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staff/users?&lt;identifier&gt;=&lt;value&gt;</code></p>
 
 <h3 id="request-parameter">Request Parameter</h3>
 
@@ -5440,7 +5523,7 @@ password | Specify your preferred new password</p>
 </thead><tbody>
 <tr>
 <td>user identifier</td>
-<td>Pass any identifier (username, mobile number, email id, or the unique id generated for the user (refId)) of the user to fetch details. <strong>Values</strong>: username, mobile, email, refId</td>
+<td>Pass any one identifier (username, mobile, email or the unique id generated for the user (refId)) of the user that you want to fetch in the format <identifier>=<value>. <strong>Identifiers</strong>: username, mobile, email, refId</td>
 </tr>
 </tbody></table>
 

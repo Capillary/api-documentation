@@ -34,6 +34,66 @@ This API lets you generate external ids manually which can be tagged to a custom
 `https://<Respective cluster’s API URL>/v2/cardNumber`
 
 
+## Show/Hide Extended Fields on InTouch
+
+> Sample Request
+
+```html
+http://us.intouch.capillarytech.com/v2/entity/extended_field_config
+```
+
+> Sample POST Request
+
+```json
+{  
+   "extendedFieldId":10,
+   "hideDisplay":false,
+   "mandatory":false,
+   "updatable":true,
+   "position":101
+}
+```
+
+> Sample Response
+
+```json
+{  
+   "extendedFieldId":10,
+   "createdBy":-1,
+   "modifiedBy":-11,
+   "hideDisplay":false,
+   "position":101,
+   "createdOn":"2017-01-03 10:20:42",
+   "modifiedOn":"2018-01-03 10:20:42",
+   "mandatory":false,
+   "updatable":true,
+   "warnings":[  
+
+   ]
+}
+```
+
+This API lets you show or hide a specific extended field on your org's InTouch.
+
+
+### Request URL
+
+`https://<Respective cluster’s API URL>/v2/entity/extended_field_config`
+
+### Request Attributes
+Attribute | Description
+--------- | -----------
+extendedFieldId* | Specify the unique id of the extended field that you want to show/hide
+createdOn | Date on which the field is created
+createdBy | 
+modifiedOn | 
+modifiedBy | 
+hideDisplay* | Value: true, false
+mandatory | Value: true, false
+updatable | Specify To make the field values updatable. Value: true, false
+position |Specify the position order of the extended field on the UI
+
+
 
 ## Retrieve Org Extended Fields
 
