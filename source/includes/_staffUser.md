@@ -699,7 +699,7 @@ https://us.api.capillarytech.com/v2/staff/edit
 
        "lastname":"Sawyer",
 
-       "title":"Manager",
+       "title":"Manager",s
 
         "id": 50007774
 
@@ -790,24 +790,4 @@ Batch Support | No
 `https://<Respective cluster’s API URL>/v2/staff/logout`
 
 
-
-## Response Codes
-
-
-Staff User Validate:-
-
-
-SendOtp :-
-"code": 
-
-Staff User Get & Get User List:-
- "" 
-
-Delete Staff User:-
-"
-
-Transfer Staff:-
-
-
-Edit Staff User:-
 
