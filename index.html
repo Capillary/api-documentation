@@ -5145,28 +5145,28 @@ https://us.api.capillarytech.com/v2/cardNumber
 </tr>
 </thead><tbody>
 <tr>
-<td>code:   1001</td>
-<td>message:   &ldquo;password not set&rdquo;</td>
+<td>1001</td>
+<td>Password not set</td>
 </tr>
 <tr>
-<td>code: 1007</td>
-<td>message: &ldquo;username-identifier not set&rdquo;</td>
+<td>1007</td>
+<td>username or identifier not set</td>
 </tr>
 <tr>
-<td>code: 1215</td>
-<td>message:  &ldquo;Invalid ParentZoneId specified, setting to default&rdquo; / &ldquo;Invalid External Ids specified, setting to default&rdquo; /  &ldquo;Invalid ParentConceptId root not found specified, setting to default&rdquo;</td>
+<td>1215</td>
+<td>Invalid ParentZoneId/External Id/ParentConceptId specified. The the specific id will be set to the default values</td>
 </tr>
 <tr>
-<td>code: 1005</td>
-<td>message: &ldquo;ABC-identifier already exits&rdquo;</td>
+<td>1005</td>
+<td>The identifier already exits</td>
 </tr>
 <tr>
-<td>code: 1009</td>
-<td>message: &ldquo;12-invalid identifier details passed&rdquo;</td>
+<td>1009</td>
+<td>Invalid identifier details passed</td>
 </tr>
 <tr>
-<td>code: 1007</td>
-<td>message: &ldquo;email/mobile-identifier not set&rdquo;</td>
+<td>1007</td>
+<td>email/mobile-identifier not set</td>
 </tr>
 </tbody></table>
 
@@ -5270,6 +5270,28 @@ https://us.api.capillarytech.com/v2/cardNumber
 <tr>
 <td>email</td>
 <td>Registered email id of the staff to send OTP. You can use this to validate email id and also to authenticate login</td>
+</tr>
+</tbody></table>
+
+<h3 id="response-codes">Response Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1007</td>
+<td>EMAIL or Mobile identifier is not set</td>
+</tr>
+<tr>
+<td>1010</td>
+<td>Invalid otp type passed</td>
+</tr>
+<tr>
+<td>1009</td>
+<td>Invalid identifier details passed</td>
 </tr>
 </tbody></table>
 
@@ -5390,6 +5412,28 @@ https://us.api.capillarytech.com/v2/cardNumber
 </tr>
 </tbody></table>
 
+<h3 id="response-codes">Response Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1700</td>
+<td>Authentication service error. Invalid otp</td>
+</tr>
+<tr>
+<td>1009</td>
+<td>Invalid identifier details passed</td>
+</tr>
+<tr>
+<td>1008</td>
+<td>Invalid identifier type passed</td>
+</tr>
+</tbody></table>
+
 <h2 id="change-a-staff-39-s-store-id">Change a Staff&rsquo;s Store ID</h2>
 
 <blockquote>
@@ -5490,7 +5534,25 @@ https://us.api.capillarytech.com/v2/cardNumber
 </tr>
 </tbody></table>
 
-<h2 id="get-staff-users-list">Get Staff Users List</h2>
+<h3 id="response-codes">Response Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1009</td>
+<td>Invalid identifier details passed</td>
+</tr>
+<tr>
+<td>1215</td>
+<td>Invalid ParentZoneId/External Ids/ParentConceptId specified. The corresponding value is to the default value</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-staff-users-of-a-store-zone">Get Staff Users of a Store/Zone</h2>
 
 <blockquote>
 <p>Sample Request</p>
@@ -5628,6 +5690,20 @@ https://us.api.capillarytech.com/v2/cardNumber
 </tr>
 </tbody></table>
 
+<h3 id="error-code">Error Code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1009</td>
+<td>Invalid identifier details passed</td>
+</tr>
+</tbody></table>
+
 <h2 id="deactivate-a-staff-account">Deactivate a Staff Account</h2>
 
 <blockquote>
@@ -5710,6 +5786,24 @@ https://us.api.capillarytech.com/v2/cardNumber
 <tr>
 <td>username/email/mobile/refId*</td>
 <td>Pass any one of these identifiers. refId is the unique id generated for the staff account</td>
+</tr>
+</tbody></table>
+
+<h3 id="response-codes">Response Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1011</td>
+<td>inactive user passed</td>
+</tr>
+<tr>
+<td>1009</td>
+<td>Invalid identifier details passed</td>
 </tr>
 </tbody></table>
 
@@ -5930,6 +6024,20 @@ password* | Specify your preferred new password</p>
 </tr>
 </tbody></table>
 
+<h3 id="error-code">Error Code</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1009</td>
+<td>Invalid identifier details passed</td>
+</tr>
+</tbody></table>
+
 <h2 id="edit-staff-user-details">Edit Staff User Details</h2>
 
 <blockquote>
@@ -6049,6 +6157,24 @@ password* | Specify your preferred new password</p>
 </tr>
 </tbody></table>
 
+<h3 id="response-codes">Response Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1009</td>
+<td>Invalid identifier details passed</td>
+</tr>
+<tr>
+<td>1011</td>
+<td>Inactive user passed</td>
+</tr>
+</tbody></table>
+
 <h2 id="logout">Logout</h2>
 
 <blockquote>
@@ -6111,39 +6237,20 @@ password* | Specify your preferred new password</p>
 
 <h2 id="response-codes">Response Codes</h2>
 
-<p>Staff User Create:-
-code:   1001 | message:   &ldquo;password not set&rdquo;<br>
-code: 1007 | message: &ldquo;username-identifier not set&rdquo;
-code: 1215 | message:  &ldquo;Invalid ParentZoneId specified, setting to default&rdquo; / &ldquo;Invalid External Ids specified, setting to default&rdquo; /  &ldquo;Invalid ParentConceptId root not found specified, setting to default&rdquo;
-code: 1005 | message: &ldquo;ABC-identifier already exits&rdquo; 
-code: 1009 | message: &ldquo;12-invalid identifier details passed&rdquo;
-code: 1007 |message: &ldquo;email/mobile-identifier not set&rdquo;
-code:   </p>
-
-<p>Staff User Validate:-
-code:   1700  | message: &ldquo;authentication service error-invalid otp!&rdquo; / &ldquo;authentication service error-invalid otp!&rdquo; 
-&ldquo;code&rdquo;: 1009 |  &ldquo;-invalid identifier details passed&rdquo;
-&ldquo;code&rdquo;: 1008 |  &ldquo;message&rdquo;: &ldquo;invalid identifier type passed&rdquo;</p>
+<p>Staff User Validate:-</p>
 
 <p>SendOtp :-
-&ldquo;code&rdquo;: 1007 | &ldquo;message&rdquo;: &ldquo;EMAIL-identifier not set&rdquo; / &ldquo;MOBILE-identifier not set&rdquo;
-&ldquo;code&rdquo;: 1010 | &ldquo;message&rdquo;: &ldquo;invalid otp type passed&rdquo;
-&ldquo;code&rdquo;: 1009 |  &ldquo;-invalid identifier details passed&rdquo; </p>
+&ldquo;code&rdquo;: </p>
 
 <p>Staff User Get &amp; Get User List:-
- &ldquo;code&rdquo;: 1009 |  &ldquo;message&rdquo;: &ldquo;-invalid identifier details passed&rdquo; </p>
+ &ldquo;&rdquo; </p>
 
 <p>Delete Staff User:-
-&ldquo;code&rdquo;: 1011 |  &ldquo;message&rdquo;: &ldquo;inactive user passed&rdquo;
- &ldquo;code&rdquo;: 1009 |  &ldquo;message&rdquo;: &ldquo;-invalid identifier details passed&rdquo; </p>
+&ldquo;</p>
 
-<p>Transfer Staff:-
- &ldquo;code&rdquo;: 1009 |  &ldquo;message&rdquo;: &ldquo;-invalid identifier details passed&rdquo;<br>
-code: 1215 | message:  &ldquo;Invalid ParentZoneId specified, setting to default&rdquo; / &ldquo;Invalid External Ids specified, setting to default&rdquo; /  &ldquo;Invalid ParentConceptId root not found specified, setting to default&rdquo; </p>
+<p>Transfer Staff:-</p>
 
-<p>Edit Staff User:-
- &ldquo;code&rdquo;: 1009 |  &ldquo;message&rdquo;: &ldquo;-invalid identifier details passed&rdquo;
-&ldquo;code&rdquo;: 1011 |  &ldquo;message&rdquo;: &ldquo;inactive user passed&rdquo;</p>
+<p>Edit Staff User:-</p>
 
       </div>
       <div class="dark-box">
