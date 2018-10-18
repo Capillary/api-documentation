@@ -14,13 +14,16 @@ https://us.api.capillarytech.com/v2/staff
 
 ```json
 {
-   "username":"tim.james",
+   "username":"timjames",
    "mobile":"9800500000",
    "email":"tim.james@example.com",
+   "firstname":"Tim",
+   "lastname":"James",
+   "title":"Manager"
    "password":"timpass45",
    "storeCode":"east_store",
    "zoneCode":"north346",
-   "ConceptCode":"mobiles3458"
+   "conceptCode":"mobiles3458"
 }
 ```
 
@@ -37,7 +40,7 @@ https://us.api.capillarytech.com/v2/staff
 }
 ```
 
-Lets you create a staff account for your organization.
+Lets admin users create a staff account for your organization.
 
 ### Resource Information
 |  | |
@@ -53,25 +56,34 @@ Batch Support | No
 ### Request URL
 `https://<Respective cluster’s API URL>/v2/staff`
 
+**Additional Headers Required**
+
+`X-CAP-API-AUTH-KEY` : Authentication key of the admin user
+
+`X-CAP-API-AUTH-ORG-ID` : The org id to which you want to associate the staff user
+
 ### Request Attributes
 At least one staff identifier is mandatory.
 
 Attribute | Description
 --------- | -----------
-username | Specify the username for the current staff account
+username | Specify the username for the current staff account. No special characters are allowed
 mobile | Specify the mobile number of the staff
 email | Specify the mobile number of the staff
 password | Specify the password for the account
 storeCode | Specify the store code to which you want to associate the staff. If no store code is passed, the user is associated to the **InfluenceStore** by default store
-zoneCode | Specify the zone code to which you want to associate the staff. If this is not passed, the zone will be associated according to to the store associated to the staff
-ConceptCode | Specify the zone code to which you want to associate the staff. If this is not passed, the concept will be associated according to to the store associated to the staff
+zoneCode | Specify a valid zone code associated to the store. If this is not passed, the zone will be associated according to the store code
+ConceptCode | Specify the concept code associated to the store. If this is not passed, the concept will be associated according to to the store code
+firstname | First name of the staff user
+lastname | Last name of the staff user
+title  | Role of the staff user
 
 
 ## Send OTP
 > Sample Request 
 
 ```html
-https://us.api.capillarytech.com/v2/staff/sendOtp?otp_type="VALIDATE_EMAIL"
+https://us.api.capillarytech.com/v2/staff/sendOtp?otp_type=VALIDATE_EMAIL
 
 ```
 
@@ -82,7 +94,7 @@ https://us.api.capillarytech.com/v2/staff/sendOtp?otp_type="VALIDATE_EMAIL"
    "id":"12",
    "mobile":"9800500000",
    "email":"tim.james@example.com",
-   "username":"tim.james"
+   "username":"timjames"
 }
 ```
 
@@ -97,7 +109,9 @@ https://us.api.capillarytech.com/v2/staff/sendOtp?otp_type="VALIDATE_EMAIL"
 }
 ```
 
-Issues OTP to to authenticate a staff login, or validate mobile number/email id.
+To complete a staff account creation, you (admin users) need to validate the mobile number and email id through OTP sent to the registered identifiers to complete the account creation.
+
+This API issues OTP to validate mobile number/email id. This is also used to authenticate login through OTP.
 
 
 ### Resource Information
@@ -114,10 +128,17 @@ Batch Support | No
 
 
 ### Request URL
-`https://<Respective cluster’s API URL>/v2/staff/sendOtp?otp_type="<otp type>"`
+`https://<Respective cluster’s API URL>/v2/staff/sendOtp?otp_type=<otp type>`
 
 **Request Parameter**
 `otp_type` : The purpose for which you want to issue OTP - either to login, validate email id, or validate mobile number. **Values**: LOGIN, VALIDATE_EMAIL, VALIDATE_MOBILE respectively
+
+
+**Additional Headers Required**
+
+`X-CAP-API-AUTH-KEY` : Authentication key of the admin user
+
+`X-CAP-API-AUTH-ORG-ID` : The org id to which you want to associate the staff user
 
 ### Request Attributes
 
@@ -146,7 +167,7 @@ https://us.api.capillarytech.com/v2/staff/validate
 
 ```json
 {
-   "username":"tim.james",
+   "username":"timjames",
    "mobile":"9800500000",
    "email":"tim.james@example.com",
    "id":18,
@@ -171,8 +192,7 @@ https://us.api.capillarytech.com/v2/staff/validate
 }
 ```
 
-When creating an account the registered mobile number/email id needs to be validated through OTP to avoid the possibility of saving fake identifiers. Also, a staff can login to his/her account through OTP.
-This API lets you validate the OTP sent to the staff's registered mobile number/email id for a specific purpose.
+Lets admin users validate OTP sent to the staff's registered mobile number or email id through the `staff/sendOtp` API.
 
 ### Resource Information
 |  | |
@@ -188,6 +208,12 @@ Batch Support | No
 ### Request URL
 `https://<Respective cluster’s API URL>/v2/staff/validate`
 
+**Additional Headers Required**
+
+`X-CAP-API-AUTH-KEY` : Authentication key of the admin user
+
+`X-CAP-API-AUTH-ORG-ID` : The org id to which you want to associate the staff user
+
 Parameter | Description
 --------- | -----------
 username | Specify the user name for the current staff account
@@ -199,7 +225,243 @@ password | Specify the password of the staff account
 otp | Specify the one time password received on the specified identifierType
 
 
+
+
+## Change a Staff's Store ID
+
+> Sample Request
+
+```html
+https://us.api.capillarytech.com/v2/staff/transfer
+```
+
+> Sample POST Request
+
+```json
+{
+
+  "id":18,
+
+  "username":"timjames",
+
+  "mobile":"9800500000",
+
+  "email":"tim.james@example.com",
+
+  "storeCode":"stb23"
+
+}
+```
+
+
+> Sample Response
+
+```json
+{
+    "entity": 50007782,
+    "warnings": [
+    ],
+    "errors": [
+    ],
+    "success": true
+}
+```
+
+Lets admin user change the store id associated to a staff user. 
+
+### Resource Information
+Info | Value
+---- | ----- 
+URI | `/staff/transfer`
+Rate Limited? | Yes
+Authentication | Yes
+Response Formats | JSON
+HTTP Methods | POST
+Batch Support | No
+
+
+### Request URL
+`https://<Respective cluster’s API URL>/v2/staff/transfer`
+
+**Additional Headers Required**
+
+`X-CAP-API-AUTH-KEY` : Authentication key of the admin user
+
+`X-CAP-API-AUTH-ORG-ID` : The org id to which you want to associate the staff user
+
+
+### Request Attributes
+Attribute | Description
+--------- | -----------
+id/username/mobile/email* | Pass any one identifier of the staff user. Id is the unique id generated for the staff account.
+storeCode* | The new store code to which you want to transfer the current staff
+
+
+## Get Staff Users List
+> Sample Request
+
+```html
+https://us.api.capillarytech.com/v2/staff/getUsersList?storeCode=st123
+```
+
+> Sample Response
+
+```json
+{
+
+    "entity": [
+
+        {
+
+            "username": "timjames",
+
+            "mobile": "91841400000",
+
+            "storeCode": "store1",
+
+            "zoneCode": "root",
+
+            "id": 50007775
+
+        },
+
+        {
+
+            "username": "tomsawyer",
+
+            "mobile": "91939511111",
+
+            "storeCode": "store1",
+
+            "zoneCode": "root",
+
+            "id": 50007777
+
+        },
+
+        {
+
+            "username": "sivaru",
+
+            "mobile": "919395222222",
+
+            "email": "abc4@gmail.com",
+
+            "storeCode": "store1",
+
+            "zoneCode": "root",
+
+            "id": 50007782
+
+        }
+
+    ],
+
+    "warnings": [
+
+    ],
+
+    "errors": [
+
+    ],
+
+    "success": true
+
+}
+```
+
+Retrieve registered staff users of a specific store or zone. Accessible only to admin users.
+
+### Resource Information
+Info | Value
+---- | ----- 
+URI | `/staff/getUsersList?<Request param>=<values>`
+Rate Limited? | Yes
+Authentication | Yes
+Response Formats | JSON
+HTTP Methods | GET
+Batch Support | No
+
+
+### Request URL
+`https://<Respective cluster’s API URL>/v2/staff/getUsersList?<Request Param>=<value>`
+
+**Additional Headers Required**
+
+`X-CAP-API-AUTH-KEY` : Authentication key of the admin user
+
+`X-CAP-API-AUTH-ORG-ID` : The org id to which you want to associate the staff user
+
+### Request Parameters
+
+Any one among the following parameters is mandatory.
+
+Parameter | Description
+--------- | -----------
+zoneCode | Fetch registered users of a specific zone. Pass the respective zone code 
+storeCode | Fetch registered users of a specific store. Pass the respective store code
+
+
+## Deactivate a Staff Account
+
+> Sample Request
+
+```html
+https://us.api.capillarytech.com/v2/staff/delete
+```
+
+> Sample POST Request
+
+```json
+{
+
+"username":"staff28",
+
+"email":"staff.28@example.com",
+
+"refId":222
+
+}
+```
+
+> Sample Response
+
+```json
+
+```
+
+Deactivates an existing staff user account.
+
+### Resource Information
+Info | Value
+---- | ----- 
+URI | `/staff/delete`
+Rate Limited? | Yes
+Authentication | Yes
+Response Formats | JSON
+HTTP Methods | POST
+Batch Support | No
+
+
+### Request URL
+`https://<Respective cluster’s API URL>/v2/staff/delete`
+
+**Additional Headers Required**
+
+`X-CAP-API-AUTH-KEY` : Authentication key of the admin user
+
+`X-CAP-API-AUTH-ORG-ID` : The org id to which you want to associate the staff user
+
+### Request Attributes
+
+Attribute | Description
+--------- | -----------
+username/email/mobile/refId* | Pass any one of these identifiers. refId is the unique id generated for the staff account
+
+
 ## Get Access Token
+> Sample Request
+
 ```html
 https://us.api.capillarytech.com/v2/staff/accessToken
 ```
@@ -219,7 +481,7 @@ https://us.api.capillarytech.com/v2/staff/accessToken
 }
 ```
 
-Generates access token of the staff. For this, you need to validate and log in to the staff account. 
+Generates access token of the current staff. Use the staff login credentials to authenticate. 
 
 ### Resource Information
 Info | Value
@@ -234,6 +496,9 @@ Batch Support | No
 
 ### Request URL
 `https://<Respective cluster’s API URL>/v2/staff/accessToken`
+
+
+
 
 
 
@@ -267,7 +532,7 @@ https://us.api.capillarytech.com/v2/staff/changePassword
 }
 ```
 
-Lets you change the password of the staff using the the Auth or AccessToken associated to him
+Lets you change the password of the staff using the associated Auth or AccessToken. Either you can use the auth or the login credentials.
 
 ### Resource Information
 |  | |
@@ -283,18 +548,23 @@ Batch Support | No
 ### Request URL
 `https://<Respective cluster’s API URL>/v2/staff/changePassword`
 
+**Additional Header required for access token based authentication**
+
+`X-CAP-API-ACCESS-TOKEN` : The access token of the staff user
 
 
 Request Attribute
 Attribute | Description
 --------- | -----------
-password | Specify your preferred new password
+password* | Specify your preferred new password
 
 
 ## Get Staff Details 
 
+> Sample Request
+
 ```html
-https://us.api.capillarytech.com/v2/staff/users?username=staff1
+https://us.api.capillarytech.com/v2/staff/users?username=timjames
 
 ```
 
@@ -303,7 +573,7 @@ https://us.api.capillarytech.com/v2/staff/users?username=staff1
 ```json
 {
     "entity": {
-        "username": "staff1",
+        "username": "timjames",
         "email": "tim.james@example.com",
         "storeCode": "eu.store1",
         "zoneCode": "root",
@@ -338,7 +608,127 @@ Batch Support | No
 ### Request Parameter
 Parameter | Description
 --------- | -----------
-user identifier | Pass any one identifier (username, mobile, email or the unique id generated for the user (refId)) of the user that you want to fetch in the format <identifier>=<value>. **Identifiers**: username, mobile, email, refId
+user identifier* | Pass any one identifier (username, mobile, email or the unique id generated for the user (refId)) of the user that you want to fetch in the format <identifier>=<value>. **Identifiers**: username, mobile, email, refId
+
+
+## Edit Staff User Details
+
+> Sample Request
+
+```html
+https://us.api.capillarytech.com/v2/staff/edit
+
+```
+
+> Sample POST Request
+
+```json
+{
+
+  "firstname":"Tom",
+
+  "id":50007774,
+
+  "lastname":"Sawyer",
+
+  "title":"Manager"
+
+}
+```
+
+
+> Sample Response
+
+```json
+{
+
+    "entity": {
+
+        "firstname": "Tom",
+
+       "lastname":"Sawyer",
+
+       "title":"Manager"
+
+        "id": 50007774
+
+    },
+
+    "warnings": [
+
+    ],
+
+    "errors": [
+
+    ],
+
+    "success": true
+
+}
+```
+
+Updates profile information of the respective staff user. You can use direct login or token based login. You need a new header
+`X-CAP-API-ACCESS-TOKEN` for token based authentication.
 
 
 
+### Resource Information
+|  | |
+---|---| 
+URI | `/staff/edit`
+Rate Limited? | Yes
+Authentication | Yes
+Response Formats | JSON
+HTTP Methods | POST
+Batch Support | No
+
+### Request URL
+`https://<Respective cluster’s API URL>/v2/staff/edit`
+
+### Request Attributes
+Attribute | Description
+-------- | -----------
+id/username/mobile/email | Pass any of the staff identifier. Id is the unique id generated for the staff user
+firstname | First name of the user
+lastname | Last name of the user
+title | Role or Designation of the user
+
+
+
+## Logout
+
+> Sample Request
+
+```html
+https://us.api.capillarytech.com/v2/staff/logout
+
+```
+
+> Sample Response
+
+```json
+{
+    "warnings": [
+    ],
+    "errors": [
+    ],
+    "success": true
+}
+```
+
+Logs out the current staff user's access token (only for token based authentication). You need to pass the new header
+`X-CAP-API-ACCESS-TOKEN` which is the user's access token.
+
+### Resource Information
+|  | |
+---|---| 
+URI | `/staff/logout`
+Rate Limited? | Yes
+Authentication | Yes
+Response Formats | JSON
+HTTP Methods | GET
+Batch Support | No
+
+
+### Request URL
+`https://<Respective cluster’s API URL>/v2/staff/logout`
