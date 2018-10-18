@@ -19,7 +19,7 @@ https://us.api.capillarytech.com/v2/staff
    "email":"tim.james@example.com",
    "firstname":"Tim",
    "lastname":"James",
-   "title":"Manager"
+   "title":"Manager",
    "password":"timpass45",
    "storeCode":"east_store",
    "zoneCode":"north346",
@@ -699,7 +699,7 @@ https://us.api.capillarytech.com/v2/staff/edit
 
        "lastname":"Sawyer",
 
-       "title":"Manager"
+       "title":"Manager",
 
         "id": 50007774
 
