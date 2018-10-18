@@ -250,7 +250,7 @@ Code | Description
 1008 |  Invalid identifier type passed
 
 
-## Change a Staff's Store ID
+## Transfer Staff User
 
 > Sample Request
 
