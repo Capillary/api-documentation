@@ -5016,13 +5016,16 @@ https://us.api.capillarytech.com/v2/cardNumber
 <pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staff
 
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
-   </span><span class="nt">"username"</span><span class="p">:</span><span class="s2">"tim.james"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"username"</span><span class="p">:</span><span class="s2">"timjames"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"mobile"</span><span class="p">:</span><span class="s2">"9800500000"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">"tim.james@example.com"</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"password"</span><span class="p">:</span><span class="s2">"timpass45"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"firstname"</span><span class="p">:</span><span class="s2">"Tim"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"lastname"</span><span class="p">:</span><span class="s2">"James"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Manager"</span><span class="w">
+   </span><span class="s2">"password"</span><span class="err">:</span><span class="s2">"timpass45"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"storeCode"</span><span class="p">:</span><span class="s2">"east_store"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"zoneCode"</span><span class="p">:</span><span class="s2">"north346"</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"ConceptCode"</span><span class="p">:</span><span class="s2">"mobiles3458"</span><span class="w">
+   </span><span class="nt">"conceptCode"</span><span class="p">:</span><span class="s2">"mobiles3458"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
    </span><span class="nt">"entity"</span><span class="p">:</span><span class="mi">75025585</span><span class="p">,</span><span class="w">
@@ -5035,7 +5038,7 @@ https://us.api.capillarytech.com/v2/cardNumber
    </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Lets you create a staff account for your organization.</p>
+<p>Lets admin users create a staff account for your organization.</p>
 
 <h3 id="resource-information">Resource Information</h3>
 
@@ -5075,6 +5078,12 @@ https://us.api.capillarytech.com/v2/cardNumber
 
 <p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staff</code></p>
 
+<p><strong>Additional Headers Required</strong></p>
+
+<p><code class="prettyprint">X-CAP-API-AUTH-KEY</code> : Authentication key of the admin user</p>
+
+<p><code class="prettyprint">X-CAP-API-AUTH-ORG-ID</code> : The org id to which you want to associate the staff user</p>
+
 <h3 id="request-attributes">Request Attributes</h3>
 
 <p>At least one staff identifier is mandatory.</p>
@@ -5087,7 +5096,7 @@ https://us.api.capillarytech.com/v2/cardNumber
 </thead><tbody>
 <tr>
 <td>username</td>
-<td>Specify the username for the current staff account</td>
+<td>Specify the username for the current staff account. No special characters are allowed</td>
 </tr>
 <tr>
 <td>mobile</td>
@@ -5107,11 +5116,23 @@ https://us.api.capillarytech.com/v2/cardNumber
 </tr>
 <tr>
 <td>zoneCode</td>
-<td>Specify the zone code to which you want to associate the staff. If this is not passed, the zone will be associated according to to the store associated to the staff</td>
+<td>Specify a valid zone code associated to the store. If this is not passed, the zone will be associated according to the store code</td>
 </tr>
 <tr>
 <td>ConceptCode</td>
-<td>Specify the zone code to which you want to associate the staff. If this is not passed, the concept will be associated according to to the store associated to the staff</td>
+<td>Specify the concept code associated to the store. If this is not passed, the concept will be associated according to to the store code</td>
+</tr>
+<tr>
+<td>firstname</td>
+<td>First name of the staff user</td>
+</tr>
+<tr>
+<td>lastname</td>
+<td>Last name of the staff user</td>
+</tr>
+<tr>
+<td>title</td>
+<td>Role of the staff user</td>
 </tr>
 </tbody></table>
 
@@ -5120,7 +5141,7 @@ https://us.api.capillarytech.com/v2/cardNumber
 <blockquote>
 <p>Sample Request </p>
 </blockquote>
-<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staff/sendOtp?otp_type="VALIDATE_EMAIL"
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staff/sendOtp?otp_type=VALIDATE_EMAIL
 
 </code></pre>
 <blockquote>
@@ -5130,7 +5151,7 @@ https://us.api.capillarytech.com/v2/cardNumber
    </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"12"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"mobile"</span><span class="p">:</span><span class="s2">"9800500000"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">"tim.james@example.com"</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"username"</span><span class="p">:</span><span class="s2">"tim.james"</span><span class="w">
+   </span><span class="nt">"username"</span><span class="p">:</span><span class="s2">"timjames"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="mi">75025586</span><span class="p">,</span><span class="w">
@@ -5141,7 +5162,9 @@ https://us.api.capillarytech.com/v2/cardNumber
     </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Issues OTP to to authenticate a staff login, or validate mobile number/email id.</p>
+<p>To complete a staff account creation, you (admin users) need to validate the mobile number and email id through OTP sent to the registered identifiers to complete the account creation.</p>
+
+<p>This API issues OTP to validate mobile number/email id. This is also used to authenticate login through OTP.</p>
 
 <h3 id="resource-information">Resource Information</h3>
 
@@ -5179,10 +5202,16 @@ https://us.api.capillarytech.com/v2/cardNumber
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staff/sendOtp?otp_type=&quot;&lt;otp type&gt;&quot;</code></p>
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staff/sendOtp?otp_type=&lt;otp type&gt;</code></p>
 
 <p><strong>Request Parameter</strong>
 <code class="prettyprint">otp_type</code> : The purpose for which you want to issue OTP - either to login, validate email id, or validate mobile number. <strong>Values</strong>: LOGIN, VALIDATE_EMAIL, VALIDATE_MOBILE respectively</p>
+
+<p><strong>Additional Headers Required</strong></p>
+
+<p><code class="prettyprint">X-CAP-API-AUTH-KEY</code> : Authentication key of the admin user</p>
+
+<p><code class="prettyprint">X-CAP-API-AUTH-ORG-ID</code> : The org id to which you want to associate the staff user</p>
 
 <h3 id="request-attributes">Request Attributes</h3>
 
@@ -5222,7 +5251,7 @@ https://us.api.capillarytech.com/v2/cardNumber
 <p>Sample POST Request</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-   </span><span class="nt">"username"</span><span class="p">:</span><span class="s2">"tim.james"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"username"</span><span class="p">:</span><span class="s2">"timjames"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"mobile"</span><span class="p">:</span><span class="s2">"9800500000"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">"tim.james@example.com"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span><span class="w">
@@ -5245,8 +5274,7 @@ https://us.api.capillarytech.com/v2/cardNumber
    </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>When creating an account the registered mobile number/email id needs to be validated through OTP to avoid the possibility of saving fake identifiers. Also, a staff can login to his/her account through OTP.
-This API lets you validate the OTP sent to the staff&rsquo;s registered mobile number/email id for a specific purpose.</p>
+<p>Lets admin users validate OTP sent to the staff&rsquo;s registered mobile number or email id through the <code class="prettyprint">staff/sendOtp</code> API.</p>
 
 <h3 id="resource-information">Resource Information</h3>
 
@@ -5286,6 +5314,12 @@ This API lets you validate the OTP sent to the staff&rsquo;s registered mobile n
 
 <p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staff/validate</code></p>
 
+<p><strong>Additional Headers Required</strong></p>
+
+<p><code class="prettyprint">X-CAP-API-AUTH-KEY</code> : Authentication key of the admin user</p>
+
+<p><code class="prettyprint">X-CAP-API-AUTH-ORG-ID</code> : The org id to which you want to associate the staff user</p>
+
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -5322,7 +5356,334 @@ This API lets you validate the OTP sent to the staff&rsquo;s registered mobile n
 </tr>
 </tbody></table>
 
+<h2 id="change-a-staff-39-s-store-id">Change a Staff&rsquo;s Store ID</h2>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staff/transfer
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span><span class="w">
+
+  </span><span class="nt">"username"</span><span class="p">:</span><span class="s2">"timjames"</span><span class="p">,</span><span class="w">
+
+  </span><span class="nt">"mobile"</span><span class="p">:</span><span class="s2">"9800500000"</span><span class="p">,</span><span class="w">
+
+  </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">"tim.james@example.com"</span><span class="p">,</span><span class="w">
+
+  </span><span class="nt">"storeCode"</span><span class="p">:</span><span class="s2">"stb23"</span><span class="w">
+
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="mi">50007782</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Lets admin user change the store id associated to a staff user. </p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Info</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/staff/transfer</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staff/transfer</code></p>
+
+<p><strong>Additional Headers Required</strong></p>
+
+<p><code class="prettyprint">X-CAP-API-AUTH-KEY</code> : Authentication key of the admin user</p>
+
+<p><code class="prettyprint">X-CAP-API-AUTH-ORG-ID</code> : The org id to which you want to associate the staff user</p>
+
+<h3 id="request-attributes">Request Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id/username/mobile/email*</td>
+<td>Pass any one identifier of the staff user. Id is the unique id generated for the staff account.</td>
+</tr>
+<tr>
+<td>storeCode*</td>
+<td>The new store code to which you want to transfer the current staff</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-staff-users-list">Get Staff Users List</h2>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staff/getUsersList?storeCode=st123
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+
+    </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+
+        </span><span class="p">{</span><span class="w">
+
+            </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"timjames"</span><span class="p">,</span><span class="w">
+
+            </span><span class="nt">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91841400000"</span><span class="p">,</span><span class="w">
+
+            </span><span class="nt">"storeCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"store1"</span><span class="p">,</span><span class="w">
+
+            </span><span class="nt">"zoneCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"root"</span><span class="p">,</span><span class="w">
+
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50007775</span><span class="w">
+
+        </span><span class="p">},</span><span class="w">
+
+        </span><span class="p">{</span><span class="w">
+
+            </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tomsawyer"</span><span class="p">,</span><span class="w">
+
+            </span><span class="nt">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91939511111"</span><span class="p">,</span><span class="w">
+
+            </span><span class="nt">"storeCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"store1"</span><span class="p">,</span><span class="w">
+
+            </span><span class="nt">"zoneCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"root"</span><span class="p">,</span><span class="w">
+
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50007777</span><span class="w">
+
+        </span><span class="p">},</span><span class="w">
+
+        </span><span class="p">{</span><span class="w">
+
+            </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sivaru"</span><span class="p">,</span><span class="w">
+
+            </span><span class="nt">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"919395222222"</span><span class="p">,</span><span class="w">
+
+            </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc4@gmail.com"</span><span class="p">,</span><span class="w">
+
+            </span><span class="nt">"storeCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"store1"</span><span class="p">,</span><span class="w">
+
+            </span><span class="nt">"zoneCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"root"</span><span class="p">,</span><span class="w">
+
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50007782</span><span class="w">
+
+        </span><span class="p">}</span><span class="w">
+
+    </span><span class="p">],</span><span class="w">
+
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+
+    </span><span class="p">],</span><span class="w">
+
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+
+    </span><span class="p">],</span><span class="w">
+
+    </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Retrieve registered staff users of a specific store or zone. Accessible only to admin users.</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Info</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/staff/getUsersList?&lt;Request param&gt;=&lt;values&gt;</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staff/getUsersList?&lt;Request Param&gt;=&lt;value&gt;</code></p>
+
+<p><strong>Additional Headers Required</strong></p>
+
+<p><code class="prettyprint">X-CAP-API-AUTH-KEY</code> : Authentication key of the admin user</p>
+
+<p><code class="prettyprint">X-CAP-API-AUTH-ORG-ID</code> : The org id to which you want to associate the staff user</p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<p>Any one among the following parameters is mandatory.</p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>zoneCode</td>
+<td>Fetch registered users of a specific zone. Pass the respective zone code</td>
+</tr>
+<tr>
+<td>storeCode</td>
+<td>Fetch registered users of a specific store. Pass the respective store code</td>
+</tr>
+</tbody></table>
+
+<h2 id="deactivate-a-staff-account">Deactivate a Staff Account</h2>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staff/delete
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+
+</span><span class="nt">"username"</span><span class="p">:</span><span class="s2">"staff28"</span><span class="p">,</span><span class="w">
+
+</span><span class="nt">"email"</span><span class="p">:</span><span class="s2">"staff.28@example.com"</span><span class="p">,</span><span class="w">
+
+</span><span class="nt">"refId"</span><span class="p">:</span><span class="mi">222</span><span class="w">
+
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<p>Deactivates an existing staff user account.</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Info</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/staff/delete</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staff/delete</code></p>
+
+<p><strong>Additional Headers Required</strong></p>
+
+<p><code class="prettyprint">X-CAP-API-AUTH-KEY</code> : Authentication key of the admin user</p>
+
+<p><code class="prettyprint">X-CAP-API-AUTH-ORG-ID</code> : The org id to which you want to associate the staff user</p>
+
+<h3 id="request-attributes">Request Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>username/email/mobile/refId*</td>
+<td>Pass any one of these identifiers. refId is the unique id generated for the staff account</td>
+</tr>
+</tbody></table>
+
 <h2 id="get-access-token">Get Access Token</h2>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
 <pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staff/accessToken
 </code></pre>
 <blockquote>
@@ -5339,7 +5700,7 @@ This API lets you validate the OTP sent to the staff&rsquo;s registered mobile n
    </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Generates access token of the staff. For this, you need to validate and log in to the staff account. </p>
+<p>Generates access token of the current staff. Use the staff login credentials to authenticate. </p>
 
 <h3 id="resource-information">Resource Information</h3>
 
@@ -5404,7 +5765,7 @@ This API lets you validate the OTP sent to the staff&rsquo;s registered mobile n
     </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Lets you change the password of the staff using the the Auth or AccessToken associated to him</p>
+<p>Lets you change the password of the staff using the associated Auth or AccessToken. Either you can use the auth or the login credentials.</p>
 
 <h3 id="resource-information">Resource Information</h3>
 
@@ -5444,13 +5805,21 @@ This API lets you validate the OTP sent to the staff&rsquo;s registered mobile n
 
 <p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staff/changePassword</code></p>
 
+<p><strong>Additional Header required for access token based authentication</strong></p>
+
+<p><code class="prettyprint">X-CAP-API-ACCESS-TOKEN</code> : The access token of the staff user</p>
+
 <p>Request Attribute
 Attribute | Description
 &mdash;&mdash;&mdash; | &mdash;&mdash;&mdash;&ndash;
-password | Specify your preferred new password</p>
+password* | Specify your preferred new password</p>
 
 <h2 id="get-staff-details">Get Staff Details</h2>
-<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staff/users?username=staff1
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staff/users?username=timjames
 
 </code></pre>
 <blockquote>
@@ -5458,7 +5827,7 @@ password | Specify your preferred new password</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"staff1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"username"</span><span class="p">:</span><span class="w"> </span><span class="s2">"timjames"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tim.james@example.com"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"storeCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eu.store1"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"zoneCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"root"</span><span class="p">,</span><span class="w">
@@ -5522,10 +5891,189 @@ password | Specify your preferred new password</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>user identifier</td>
+<td>user identifier*</td>
 <td>Pass any one identifier (username, mobile, email or the unique id generated for the user (refId)) of the user that you want to fetch in the format <identifier>=<value>. <strong>Identifiers</strong>: username, mobile, email, refId</td>
 </tr>
 </tbody></table>
+
+<h2 id="edit-staff-user-details">Edit Staff User Details</h2>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staff/edit
+
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+
+  </span><span class="nt">"firstname"</span><span class="p">:</span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
+
+  </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">50007774</span><span class="p">,</span><span class="w">
+
+  </span><span class="nt">"lastname"</span><span class="p">:</span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
+
+  </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Manager"</span><span class="w">
+
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+
+    </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+
+        </span><span class="nt">"firstname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
+
+       </span><span class="nt">"lastname"</span><span class="p">:</span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
+
+       </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"Manager"</span><span class="w">
+
+        </span><span class="s2">"id"</span><span class="err">:</span><span class="w"> </span><span class="mi">50007774</span><span class="w">
+
+    </span><span class="p">},</span><span class="w">
+
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+
+    </span><span class="p">],</span><span class="w">
+
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+
+    </span><span class="p">],</span><span class="w">
+
+    </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Updates profile information of the respective staff user. You can use direct login or token based login. You need a new header
+<code class="prettyprint">X-CAP-API-ACCESS-TOKEN</code> for token based authentication.</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/staff/edit</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staff/edit</code></p>
+
+<h3 id="request-attributes">Request Attributes</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id/username/mobile/email</td>
+<td>Pass any of the staff identifier. Id is the unique id generated for the staff user</td>
+</tr>
+<tr>
+<td>firstname</td>
+<td>First name of the user</td>
+</tr>
+<tr>
+<td>lastname</td>
+<td>Last name of the user</td>
+</tr>
+<tr>
+<td>title</td>
+<td>Role or Designation of the user</td>
+</tr>
+</tbody></table>
+
+<h2 id="logout">Logout</h2>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staff/logout
+
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Logs out the current staff user&rsquo;s access token (only for token based authentication). You need to pass the new header
+<code class="prettyprint">X-CAP-API-ACCESS-TOKEN</code> which is the user&rsquo;s access token.</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/staff/logout</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staff/logout</code></p>
 
       </div>
       <div class="dark-box">
