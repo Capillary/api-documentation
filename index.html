@@ -5136,6 +5136,40 @@ https://us.api.capillarytech.com/v2/cardNumber
 </tr>
 </tbody></table>
 
+<h3 id="response-codes">Response Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code:   1001</td>
+<td>message:   &ldquo;password not set&rdquo;</td>
+</tr>
+<tr>
+<td>code: 1007</td>
+<td>message: &ldquo;username-identifier not set&rdquo;</td>
+</tr>
+<tr>
+<td>code: 1215</td>
+<td>message:  &ldquo;Invalid ParentZoneId specified, setting to default&rdquo; / &ldquo;Invalid External Ids specified, setting to default&rdquo; /  &ldquo;Invalid ParentConceptId root not found specified, setting to default&rdquo;</td>
+</tr>
+<tr>
+<td>code: 1005</td>
+<td>message: &ldquo;ABC-identifier already exits&rdquo;</td>
+</tr>
+<tr>
+<td>code: 1009</td>
+<td>message: &ldquo;12-invalid identifier details passed&rdquo;</td>
+</tr>
+<tr>
+<td>code: 1007</td>
+<td>message: &ldquo;email/mobile-identifier not set&rdquo;</td>
+</tr>
+</tbody></table>
+
 <h2 id="send-otp">Send OTP</h2>
 
 <blockquote>
@@ -6074,6 +6108,42 @@ password* | Specify your preferred new password</p>
 <h3 id="request-url">Request URL</h3>
 
 <p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staff/logout</code></p>
+
+<h2 id="response-codes">Response Codes</h2>
+
+<p>Staff User Create:-
+code:   1001 | message:   &ldquo;password not set&rdquo;<br>
+code: 1007 | message: &ldquo;username-identifier not set&rdquo;
+code: 1215 | message:  &ldquo;Invalid ParentZoneId specified, setting to default&rdquo; / &ldquo;Invalid External Ids specified, setting to default&rdquo; /  &ldquo;Invalid ParentConceptId root not found specified, setting to default&rdquo;
+code: 1005 | message: &ldquo;ABC-identifier already exits&rdquo; 
+code: 1009 | message: &ldquo;12-invalid identifier details passed&rdquo;
+code: 1007 |message: &ldquo;email/mobile-identifier not set&rdquo;
+code:   </p>
+
+<p>Staff User Validate:-
+code:   1700  | message: &ldquo;authentication service error-invalid otp!&rdquo; / &ldquo;authentication service error-invalid otp!&rdquo; 
+&ldquo;code&rdquo;: 1009 |  &ldquo;-invalid identifier details passed&rdquo;
+&ldquo;code&rdquo;: 1008 |  &ldquo;message&rdquo;: &ldquo;invalid identifier type passed&rdquo;</p>
+
+<p>SendOtp :-
+&ldquo;code&rdquo;: 1007 | &ldquo;message&rdquo;: &ldquo;EMAIL-identifier not set&rdquo; / &ldquo;MOBILE-identifier not set&rdquo;
+&ldquo;code&rdquo;: 1010 | &ldquo;message&rdquo;: &ldquo;invalid otp type passed&rdquo;
+&ldquo;code&rdquo;: 1009 |  &ldquo;-invalid identifier details passed&rdquo; </p>
+
+<p>Staff User Get &amp; Get User List:-
+ &ldquo;code&rdquo;: 1009 |  &ldquo;message&rdquo;: &ldquo;-invalid identifier details passed&rdquo; </p>
+
+<p>Delete Staff User:-
+&ldquo;code&rdquo;: 1011 |  &ldquo;message&rdquo;: &ldquo;inactive user passed&rdquo;
+ &ldquo;code&rdquo;: 1009 |  &ldquo;message&rdquo;: &ldquo;-invalid identifier details passed&rdquo; </p>
+
+<p>Transfer Staff:-
+ &ldquo;code&rdquo;: 1009 |  &ldquo;message&rdquo;: &ldquo;-invalid identifier details passed&rdquo;<br>
+code: 1215 | message:  &ldquo;Invalid ParentZoneId specified, setting to default&rdquo; / &ldquo;Invalid External Ids specified, setting to default&rdquo; /  &ldquo;Invalid ParentConceptId root not found specified, setting to default&rdquo; </p>
+
+<p>Edit Staff User:-
+ &ldquo;code&rdquo;: 1009 |  &ldquo;message&rdquo;: &ldquo;-invalid identifier details passed&rdquo;
+&ldquo;code&rdquo;: 1011 |  &ldquo;message&rdquo;: &ldquo;inactive user passed&rdquo;</p>
 
       </div>
       <div class="dark-box">
