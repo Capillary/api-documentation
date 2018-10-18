@@ -78,6 +78,16 @@ firstname | First name of the staff user
 lastname | Last name of the staff user
 title  | Role of the staff user
 
+### Response Codes
+Code | Description
+---- | -----------
+1001 | Password not set 
+1007 | username or identifier not set
+1215 | Invalid ParentZoneId/External Id/ParentConceptId specified. The the specific id will be set to the default values
+1005 | The identifier already exits 
+1009 | Invalid identifier details passed
+1007 | email/mobile-identifier not set
+
 
 ## Send OTP
 > Sample Request 
@@ -150,7 +160,13 @@ mobile | Registered mobile number of the staff to send OTP. You can use this to 
 email | Registered email id of the staff to send OTP. You can use this to validate email id and also to authenticate login
 
 
+### Response Codes
 
+Code | Description
+---- | ----------
+1007 | EMAIL or Mobile identifier is not set
+1010 | Invalid otp type passed
+1009 | Invalid identifier details passed
 
 
 
@@ -225,6 +241,13 @@ password | Specify the password of the staff account
 otp | Specify the one time password received on the specified identifierType
 
 
+### Response Codes
+
+Code | Description
+---- | -----------
+1700  | Authentication service error. Invalid otp 
+1009 |  Invalid identifier details passed
+1008 |  Invalid identifier type passed
 
 
 ## Change a Staff's Store ID
@@ -297,7 +320,15 @@ id/username/mobile/email* | Pass any one identifier of the staff user. Id is the
 storeCode* | The new store code to which you want to transfer the current staff
 
 
-## Get Staff Users List
+### Response Codes
+
+Code | Description
+---- | -----------
+1009 |  Invalid identifier details passed
+1215 | Invalid ParentZoneId/External Ids/ParentConceptId specified. The corresponding value is to the default value
+
+
+## Get Staff Users of a Store/Zone
 > Sample Request
 
 ```html
@@ -401,6 +432,12 @@ Parameter | Description
 zoneCode | Fetch registered users of a specific zone. Pass the respective zone code 
 storeCode | Fetch registered users of a specific store. Pass the respective store code
 
+### Error Code
+
+Code | Description
+---- | -----------
+1009 | Invalid identifier details passed
+
 
 ## Deactivate a Staff Account
 
@@ -457,6 +494,13 @@ Batch Support | No
 Attribute | Description
 --------- | -----------
 username/email/mobile/refId* | Pass any one of these identifiers. refId is the unique id generated for the staff account
+
+### Response Codes
+
+Code | Description
+---- | ----------
+1011 |  inactive user passed
+1009 |  Invalid identifier details passed 
 
 
 ## Get Access Token
@@ -611,6 +655,13 @@ Parameter | Description
 user identifier* | Pass any one identifier (username, mobile, email or the unique id generated for the user (refId)) of the user that you want to fetch in the format <identifier>=<value>. **Identifiers**: username, mobile, email, refId
 
 
+### Error Code
+
+Code | Description
+---- | -----------
+1009 | Invalid identifier details passed
+
+
 ## Edit Staff User Details
 
 > Sample Request
@@ -693,7 +744,12 @@ firstname | First name of the user
 lastname | Last name of the user
 title | Role or Designation of the user
 
+### Response Codes
 
+Code | Description
+---- | -----------
+1009 |  Invalid identifier details passed
+1011 |  Inactive user passed
 
 ## Logout
 
@@ -732,3 +788,26 @@ Batch Support | No
 
 ### Request URL
 `https://<Respective cluster’s API URL>/v2/staff/logout`
+
+
+
+## Response Codes
+
+
+Staff User Validate:-
+
+
+SendOtp :-
+"code": 
+
+Staff User Get & Get User List:-
+ "" 
+
+Delete Staff User:-
+"
+
+Transfer Staff:-
+
+
+Edit Staff User:-
+
