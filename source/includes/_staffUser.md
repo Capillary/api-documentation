@@ -12,6 +12,8 @@ https://us.api.capillarytech.com/v2/staff
 
 ```
 
+> Sample POST Request
+
 ```json
 {
    "username":"timjames",
@@ -26,6 +28,8 @@ https://us.api.capillarytech.com/v2/staff
    "conceptCode":"mobiles3458"
 }
 ```
+
+> Sample Response
 
 ```json
 {
@@ -107,6 +111,8 @@ https://us.api.capillarytech.com/v2/staff/sendOtp?otp_type=VALIDATE_EMAIL
    "username":"timjames"
 }
 ```
+
+> Sample Response
 
 ```json
 {
@@ -329,6 +335,7 @@ Code | Description
 
 
 ## Get Staff Users of a Store/Zone
+
 > Sample Request
 
 ```html
@@ -548,6 +555,9 @@ Batch Support | No
 
 
 ## Change Staff Account Password
+
+> Sample Request
+
 ```html
 https://us.api.capillarytech.com/v2/staff/changePassword
 
