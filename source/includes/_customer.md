@@ -10,46 +10,46 @@ https://us.api.capillarytech.com/v2/customers?source=LINE&accountId=1234
 
 
 ```json
-{
-   "loyaltyInfo":{
+{  
+   "loyaltyInfo":{  
       "loyaltyType":"loyalty"
    },
-   "profiles":[
-      {
+   "profiles":[  
+      {  
          "firstName":"Tom",
          "lastName":"Sawyer",
-         "fields":{
+         "fields":{  
             "Favorite Color":"Green",
             "Favorite Sport":"Cricket"
          },
-         "extendedFields":{
-            "gender":"Male",
-            "city":"Bangalore"
-         },
-         "identifiers":[
-            {
+         "identifiers":[  
+            {  
                "type":"mobile",
                "value":"928000000113"
             },
-            {
+            {  
                "type":"line",
                "value":"line12347"
             }
          ],
-         "commChannels":[
-            {
+         "commChannels":[  
+            {  
                "type":"line",
                "value":"line12345",
                "primary":true,
                "verified":true,
-               "meta":{
+               "meta":{  
                   "residence":true,
                   "office":false
                }
             }
          ]
       }
-   ]
+   ],
+   "extendedFields":{  
+      "gender":"Male",
+      "city":"Bangalore"
+   }
 }
 ```
 
