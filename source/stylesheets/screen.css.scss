@@ -631,7 +631,7 @@ html, body {
 
 
 // This is the logo at the top of the ToC
-  &>img {
+  .tocify-wrapper > img {
     display: block;
     max-width: 200px;
 	height: 30px;
