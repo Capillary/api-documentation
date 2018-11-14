@@ -20,6 +20,7 @@ includes:
   - org
   - OrganizationSource
   - staffUser
+  - leads
 
 search: true
 ---

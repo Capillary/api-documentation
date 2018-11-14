@@ -256,6 +256,98 @@ Code | Description
 1008 |  Invalid identifier type passed
 
 
+
+## Change Identifier
+
+> Sample Request (Send OTP)
+
+```html
+https://us.api.capillarytech.com/v2/staff/changeidentifier/sendotp
+```
+
+> Sample POST Request (Send OTP)
+
+```json
+{ 
+  "identifier":"tom1.sawyer@example.com",
+ "type":"email", 
+ "notes":"changing email"
+}
+
+```
+
+> Sample Request (Validate OTP)
+
+```html
+https://us.api.capillarytech.com/v2/staff/changeidentifier
+```
+
+> Sample POST Request (Validate OTP)
+
+```json
+{ 
+  "identifier":"tom1.sawyer@example.com",
+ "type":"email", 
+ "notes":"changing email",
+"otp":"13482"
+} 
+
+```
+
+
+
+> Sample Response
+
+```json
+{
+   "entity": 75027185,
+   "warnings": [
+   ],
+   "errors": [
+   ],
+   "success": true
+}
+```
+
+
+
+Lets you update the mobile number/email id of the current staff user through OTP. This is a two step process - 1. Send OTP to the new identifier 2. Validate the OTP received to the new identifier.
+
+
+### Resource Information
+Info | Value
+---- | ----- 
+URI | `/staff/changeidentifier/sendotp`, `/staff/changeidentifier/`
+Rate Limited? | Yes
+Authentication | Yes
+Response Formats | JSON
+HTTP Methods | POST
+Batch Support | No
+
+
+### Request URL
+1. `https://<Respective cluster’s API URL>/v2/staff/changeidentifier/sendotp`
+
+2. `https://<Respective cluster’s API URL>/v2/staff/changeidentifier`
+
+
+
+### Response Codes
+
+Code | Description
+---- | -----------
+1009 | Invalid identifier passed
+1010 | Invalid otp type passed (identifier type)
+1005 | Identifier already exits
+1012 | Unable to send OTP to the new identifier
+1007 | No identifier (email/mobile) passed to validate OTP
+1700 | Invalid OTP or OTP expired
+401 | Invalid authentication. Please check your username,password or authentication token
+ 
+
+
+
+
 ## Transfer Staff User
 
 > Sample Request

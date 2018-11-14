@@ -14,6 +14,7 @@ https://us.api.capillarytech.com/v2/customers?source=LINE&accountId=1234
    "loyaltyInfo":{  
       "loyaltyType":"loyalty"
    },
+   "associatedWith":"westTill",
    "profiles":[  
       {  
          "firstName":"Tom",
@@ -124,7 +125,7 @@ profiles | Lastname | Last name of the customer
 profiles | identifiers | Identifier used for registering customer in a specific source ("mobile", "email", "externalId", "wechat","martjackId", "fbId" "mobile", "tmall_uname", "cuid", "ali_uname", "jd_uname", "vip_uname", "line")
 profiles | fields | Custom fields configured for the current organization
 attributionV2 | createDate | Time and date of registration in YYYY-MM-DDTHH:MM:SS+HH:MM (Time Zone). Example: 2016-06-23T19:11:18+08:00
-
+associatedWith | The TILL to which you want to associate the customer
 
 
 ## Update Customer Details
