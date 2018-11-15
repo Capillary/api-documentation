@@ -1,6 +1,6 @@
 # Leads (LMS)
 
-A lead is an individual interested in buying a product. This resource provides you the apis to create, manage deals and fetch lead details.
+A lead is an individual interested in buying a product. Leads can be created for both loyalty and non-loyalty customers. This resource provides you the APIs to create, manage and fetch leads.
 
 Following are the predefined enum values for `type` and `status` respectively.
 
@@ -135,7 +135,7 @@ Batch Support | No
 
 > Sample Request URL
 
-```json
+```html
 http://us.api.capillarytech.com/v2/leads
 ```
 
