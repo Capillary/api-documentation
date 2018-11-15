@@ -86,7 +86,7 @@ Batch Support | No
 http://us.api.capillarytech.com/v2/leads/reasons
 ```
 
-> Sample POST Request
+> Sample Request
 
 ```json
 {
@@ -275,7 +275,7 @@ Batch Support | No
 http://us.api.capillarytech.com/v2/leads/21/status
 ```
 
-> Sample POST Request
+> Sample PUT Request
 
 ```json
 {
