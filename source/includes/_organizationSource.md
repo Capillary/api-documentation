@@ -798,3 +798,99 @@ Batch Support | No
 
 ### Request URL
 `https://<cluster url>v2/organization/programs`
+
+
+
+
+
+## Feed (Scan Event)
+
+```html
+https://us.api.capillarytech.com/v2/feed?source=INSTORE
+```
+
+> Sample POST Request
+
+```json
+{  
+   "eventName":"GetPromotion",
+   "openId":"",
+   "eventTime":"2018-09-28T15:26:45+05:30",
+   "scanId":"scanId_571910",
+   "details":"details_571910",
+   "customer":{  
+      "id":"293653070",
+      "mobile":"917799497290",
+      "email":"2245@gmail.com",
+      "externalId":"ext_i9422176957"
+   },
+   "sku":"Levis-001",
+   "promotionCode":""
+}
+```
+
+> Sample Response
+
+```json
+{  
+   "orgId":50210,
+   "openId":"",
+   "eventTime":"2018-09-28T15:26:45+05:30",
+   "eventName":"GETPROMOTION",
+   "scanId":"scanId_571910",
+   "details":"details_571910",
+   "source":"INSTORE",
+   "accountId":"",
+   "attributes":{  
+
+   },
+   "autoUpdateTime":"2018-10-03T15:44:49+05:30",
+   "eventMode":0,
+   "customerId":316749198,
+   "sku":"Levis-001",
+   "sideEffects":[  
+      {  
+         "id":29800985,
+         "couponType":"DVS",
+         "couponCode":"60XQGEHW",
+         "validTill":"2018-10-31T23:59:59+05:30",
+         "description":"1",
+         "discountCode":"1perc",
+         "discountValue":1,
+         "discountType":"PERC",
+         "type":"coupon",
+         "trimmedCouponCode":"60XQGEHW"
+      }
+   ],
+   "warnings":[  
+
+   ]
+}
+```
+
+Captures details of an events based on qrcodes ,menuclick, and getpromotion.
+
+### Resource Information
+Information | Value
+----------- | -----
+URI | `feed?source=INSTORE`
+Authentication | Yes
+HTTP Method | GET
+Batch Support | No
+
+
+### Request URL
+`https://<cluster url>v2/feed?source=INSTORE`
+
+### Request Body Parameters
+
+Parameter | Description
+-------- | ------------
+eventName | Pass the name of the scan event to capture - Values: GetPromotion, QR_CODES, MENUCLICK
+openId | 
+eventTime | Time of the event
+scanId | ID of the scan item that you want to capture(*Mandatory when `eventName` is `QR_CODES`)
+sku | SKU of the scan item  
+promotionCode | Promotion code of the event that you want to capture (*Mandatory when `eventName` is `GetPromotion`)
+details | Details of the event item
+id/mobile/email/externalId* | Pass any one of the customer's unique identifier 
