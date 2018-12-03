@@ -875,7 +875,7 @@ Information | Value
 ----------- | -----
 URI | `feed?source=INSTORE`
 Authentication | Yes
-HTTP Method | GET
+HTTP Method | POST
 Batch Support | No
 
 
