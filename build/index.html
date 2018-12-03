@@ -5011,6 +5011,140 @@ https://us.api.capillarytech.com/v2/cardNumber
 
 <p><code class="prettyprint">https://&lt;cluster url&gt;v2/organization/programs</code></p>
 
+<h2 id="feed-scan-event">Feed (Scan Event)</h2>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/feed?source=INSTORE
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">  
+   </span><span class="nt">"eventName"</span><span class="p">:</span><span class="s2">"GetPromotion"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"openId"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"eventTime"</span><span class="p">:</span><span class="s2">"2018-09-28T15:26:45+05:30"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"scanId"</span><span class="p">:</span><span class="s2">"scanId_571910"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"details"</span><span class="p">:</span><span class="s2">"details_571910"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"customer"</span><span class="p">:{</span><span class="w">  
+      </span><span class="nt">"id"</span><span class="p">:</span><span class="s2">"293653070"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"mobile"</span><span class="p">:</span><span class="s2">"917799497290"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"email"</span><span class="p">:</span><span class="s2">"2245@gmail.com"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"externalId"</span><span class="p">:</span><span class="s2">"ext_i9422176957"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"sku"</span><span class="p">:</span><span class="s2">"Levis-001"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"promotionCode"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">  
+   </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">50210</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"openId"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"eventTime"</span><span class="p">:</span><span class="s2">"2018-09-28T15:26:45+05:30"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"eventName"</span><span class="p">:</span><span class="s2">"GETPROMOTION"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"scanId"</span><span class="p">:</span><span class="s2">"scanId_571910"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"details"</span><span class="p">:</span><span class="s2">"details_571910"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"accountId"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">  
+
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="s2">"2018-10-03T15:44:49+05:30"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"eventMode"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"customerId"</span><span class="p">:</span><span class="mi">316749198</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"sku"</span><span class="p">:</span><span class="s2">"Levis-001"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"sideEffects"</span><span class="p">:[</span><span class="w">  
+      </span><span class="p">{</span><span class="w">  
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">29800985</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"couponType"</span><span class="p">:</span><span class="s2">"DVS"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"couponCode"</span><span class="p">:</span><span class="s2">"60XQGEHW"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"validTill"</span><span class="p">:</span><span class="s2">"2018-10-31T23:59:59+05:30"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"discountCode"</span><span class="p">:</span><span class="s2">"1perc"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"discountValue"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"discountType"</span><span class="p">:</span><span class="s2">"PERC"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"coupon"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"trimmedCouponCode"</span><span class="p">:</span><span class="s2">"60XQGEHW"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">  
+
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Captures details of an events based on qrcodes ,menuclick, and getpromotion.</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th>Information</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">feed?source=INSTORE</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;cluster url&gt;v2/feed?source=INSTORE</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>eventName</td>
+<td>Pass the name of the scan event to capture - Values: GetPromotion, QR_CODES, MENUCLICK</td>
+</tr>
+<tr>
+<td>openId</td>
+<td></td>
+</tr>
+<tr>
+<td>eventTime</td>
+<td>Time of the event</td>
+</tr>
+<tr>
+<td>scanId</td>
+<td>ID of the scan item that you want to capture(*Mandatory when <code class="prettyprint">eventName</code> is <code class="prettyprint">QR_CODES</code>)</td>
+</tr>
+<tr>
+<td>sku</td>
+<td>SKU of the scan item</td>
+</tr>
+<tr>
+<td>promotionCode</td>
+<td>Promotion code of the event that you want to capture (*Mandatory when <code class="prettyprint">eventName</code> is <code class="prettyprint">GetPromotion</code>)</td>
+</tr>
+<tr>
+<td>details</td>
+<td>Details of the event item</td>
+</tr>
+<tr>
+<td>id/mobile/email/externalId*</td>
+<td>Pass any one of the customer&rsquo;s unique identifier</td>
+</tr>
+</tbody></table>
+
           <h1 id="staff">Staff</h1>
 
 <p>A Staff is a member of the org or associated with the org who deals with selling items to end-users. This concept is introduced mainly for B2B marketing. This resource contains APIs related to managing staff accounts. The staff user will have the properties of both Admin and TILL user.</p>
@@ -6580,6 +6714,10 @@ password* | Specify your preferred new password</p>
          </span><span class="nt">"nextFollowUp"</span><span class="p">:</span><span class="s2">"2018-10-04T13:15:00+05:30"</span><span class="w">
       </span><span class="p">}</span><span class="w">
    </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"trial_status"</span><span class="p">:</span><span class="s2">"Not Done"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+
    </span><span class="nt">"statusLogDetails"</span><span class="p">:[</span><span class="w">  
       </span><span class="p">{</span><span class="w">  
          </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"OPEN"</span><span class="p">,</span><span class="w">
@@ -6633,6 +6771,10 @@ password* | Specify your preferred new password</p>
             </span><span class="nt">"scheduledFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:30:00+05:30"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"trial_status"</span><span class="p">:</span><span class="s2">"Not Done"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
     </span><span class="nt">"statusLogDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -6712,8 +6854,11 @@ password* | Specify your preferred new password</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WON"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">28812689</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="w">
-</span><span class="p">}</span><span class="w">
+  </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"trial_status"</span><span class="p">:</span><span class="s2">"Not Done"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+</span><span class="err">}</span><span class="w">
 
 </span></code></pre>
 <blockquote>
@@ -6754,6 +6899,9 @@ password* | Specify your preferred new password</p>
             </span><span class="nt">"scheduledFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:30:00+05:30"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"trial_status"</span><span class="p">:</span><span class="s2">"Not Done"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
     </span><span class="nt">"statusLogDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -6877,6 +7025,7 @@ password* | Specify your preferred new password</p>
                     </span><span class="nt">"scheduledFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:30:00+05:30"</span><span class="w">
                 </span><span class="p">}</span><span class="w">
             </span><span class="p">],</span><span class="w">
+
             </span><span class="nt">"statusLogDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="p">{</span><span class="w">
                     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">

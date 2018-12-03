@@ -167,6 +167,10 @@ http://us.api.capillarytech.com/v2/leads
          "nextFollowUp":"2018-10-04T13:15:00+05:30"
       }
    ],
+   "extendedFields": {
+    "trial_status":"Not Done"
+  },
+
    "statusLogDetails":[  
       {  
          "status":"OPEN",
@@ -221,6 +225,10 @@ http://us.api.capillarytech.com/v2/leads
             "scheduledFollowUp": "2018-10-04T12:30:00+05:30"
         }
     ],
+	"extendedFields":
+  {
+    "trial_status":"Not Done"
+  },
     "statusLogDetails": [
         {
             "id": 1,
@@ -281,7 +289,10 @@ http://us.api.capillarytech.com/v2/leads/21/status
 {
   "status": "WON",
   "createdBy": 28812689,
-  "reasonId": 6
+  "reasonId": 6,
+  "extendedFields": {
+    "trial_status":"Not Done"
+  },
 }
 
 ```
@@ -324,6 +335,9 @@ http://us.api.capillarytech.com/v2/leads/21/status
             "scheduledFollowUp": "2018-10-04T12:30:00+05:30"
         }
     ],
+	"extendedFields": {
+    "trial_status":"Not Done"
+  },
     "statusLogDetails": [
         {
             "id": 1,
@@ -428,6 +442,7 @@ http://us.api.capillarytech.com/v2/leads?sortOrder=DESC&type=ALL&limit=10&orgSou
                     "scheduledFollowUp": "2018-10-04T12:30:00+05:30"
                 }
             ],
+			
             "statusLogDetails": [
                 {
                     "id": 1,
