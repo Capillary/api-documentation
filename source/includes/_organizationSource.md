@@ -886,11 +886,10 @@ Batch Support | No
 
 Parameter | Description
 -------- | ------------
-eventName | Pass the name of the scan event to capture - Values: GetPromotion, QR_CODES, MENUCLICK
-openId | 
+eventName* | Pass the name of the scan event to capture - Value: GetPromotion (for scan event)
 eventTime | Time of the event
-scanId | ID of the scan item that you want to capture(*Mandatory when `eventName` is `QR_CODES`)
-sku | SKU of the scan item  
-promotionCode | Promotion code of the event that you want to capture (*Mandatory when `eventName` is `GetPromotion`)
+scanId | ID of the scanned code
+sku | SKU of the scanned item
+promotionCode | The coupon code of the promotion (Place holder for future use case. Not implemented yet)
 details | Details of the event item
 id/mobile/email/externalId* | Pass any one of the customer's unique identifier 

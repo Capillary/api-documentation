@@ -275,6 +275,115 @@ Batch Support | No
 `http://{Cluster URL}/v2/leads`
 
 
+## Update Extended Fields
+
+Updates extended fields for an existing lead
+
+> Sample Request URL
+
+```html
+http://us.api.capillarytech.com/v2/leads/19
+```
+
+> Sample PUT Request
+
+```json
+{
+"extendedFields":
+  {
+    "trial_status":"Not Done"
+  }
+
+}
+```
+
+> Sample Response
+
+```json
+{
+    "id": 19,
+    "userId": 316804150,
+    "type": "SKU",
+    "leadFor": "item001",
+    "status": "ON_HOLD",
+    "nextFollowUp": "2018-10-05T08:00:00+05:30",
+    "createdOn": "2018-10-04T13:30:00+05:30",
+    "createdBy": 28812689,
+    "lastUpdatedOn": "2018-11-28T10:31:19+05:30",
+    "lastUpdatedBy": 15147364,
+    "followUpDetails": [
+        {
+            "id": 37,
+            "userId": 316804150,
+            "leadId": 19,
+            "notes": "notes 1",
+            "createdBy": 15147364,
+            "createdOn": "2018-11-28T10:31:19+05:30",
+            "followedUpBy": 28812689,
+            "followedUpOn": "2018-10-04T12:45:00+05:30",
+            "scheduledFollowUp": "2018-10-04T12:30:00+05:30"
+        },
+        {
+            "id": 38,
+            "userId": 316804150,
+            "leadId": 19,
+            "notes": "notes 2",
+            "createdBy": 15147364,
+            "createdOn": "2018-11-28T10:31:19+05:30",
+            "followedUpBy": 28812689,
+            "followedUpOn": "2018-10-04T12:45:00+05:30",
+            "scheduledFollowUp": "2018-10-04T12:30:00+05:30"
+        }
+    ],
+    "statusLogDetails": [
+        {
+            "id": 39,
+            "userId": 316804150,
+            "leadId": 19,
+            "status": "OPEN",
+            "createdBy": 15147364,
+            "createdOn": "2018-11-28T10:31:19+05:30",
+            "reasonId": 1,
+            "reason": "not available"
+        },
+        {
+            "id": 40,
+            "userId": 316804150,
+            "leadId": 19,
+            "status": "ON_HOLD",
+            "createdBy": 15147364,
+            "createdOn": "2018-11-28T10:31:19+05:30",
+            "reasonId": 2,
+            "reason": "phone not working"
+        }
+    ],
+    "orgSourceId": -1,
+    "extendedFields": {
+        "trial_status": "Not Done"
+    },
+    "warnings": [
+    ]
+}
+```
+
+
+### Resource Information
+
+| | |
+--------- | ----------- |
+URI | `/leads/{leadId}`
+Rate Limited? | Yes
+Authentication | Yes
+Response Formats | JSON
+HTTP Methods | PUT
+Batch Support | No
+
+### Request URL
+`http://{Cluster URL}/v2/leads/{leadId}`
+
+
+
+
 ## Update Lead Status
 
 > Sample Request URL
@@ -335,9 +444,7 @@ http://us.api.capillarytech.com/v2/leads/21/status
             "scheduledFollowUp": "2018-10-04T12:30:00+05:30"
         }
     ],
-	"extendedFields": {
-    "trial_status":"Not Done"
-  },
+	
     "statusLogDetails": [
         {
             "id": 1,
