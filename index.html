@@ -5112,12 +5112,8 @@ https://us.api.capillarytech.com/v2/cardNumber
 </tr>
 </thead><tbody>
 <tr>
-<td>eventName</td>
-<td>Pass the name of the scan event to capture - Values: GetPromotion, QR_CODES, MENUCLICK</td>
-</tr>
-<tr>
-<td>openId</td>
-<td></td>
+<td>eventName*</td>
+<td>Pass the name of the scan event to capture - Value: GetPromotion (for scan event)</td>
 </tr>
 <tr>
 <td>eventTime</td>
@@ -5125,15 +5121,15 @@ https://us.api.capillarytech.com/v2/cardNumber
 </tr>
 <tr>
 <td>scanId</td>
-<td>ID of the scan item that you want to capture(*Mandatory when <code class="prettyprint">eventName</code> is <code class="prettyprint">QR_CODES</code>)</td>
+<td>ID of the scanned code</td>
 </tr>
 <tr>
 <td>sku</td>
-<td>SKU of the scan item</td>
+<td>SKU of the scanned item</td>
 </tr>
 <tr>
 <td>promotionCode</td>
-<td>Promotion code of the event that you want to capture (*Mandatory when <code class="prettyprint">eventName</code> is <code class="prettyprint">GetPromotion</code>)</td>
+<td>The coupon code of the promotion (Place holder for future use case. Not implemented yet)</td>
 </tr>
 <tr>
 <td>details</td>
@@ -6841,6 +6837,132 @@ password* | Specify your preferred new password</p>
 
 <p><code class="prettyprint">http://{Cluster URL}/v2/leads</code></p>
 
+<h2 id="update-extended-fields">Update Extended Fields</h2>
+
+<p>Updates extended fields for an existing lead</p>
+
+<blockquote>
+<p>Sample Request URL</p>
+</blockquote>
+<pre class="highlight html"><code>http://us.api.capillarytech.com/v2/leads/19
+</code></pre>
+<blockquote>
+<p>Sample PUT Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"trial_status"</span><span class="p">:</span><span class="s2">"Not Done"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">316804150</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SKU"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"leadFor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"item001"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ON_HOLD"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"nextFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-05T08:00:00+05:30"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T13:30:00+05:30"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">28812689</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-28T10:31:19+05:30"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15147364</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"followUpDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">37</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">316804150</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes 1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15147364</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-28T10:31:19+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"followedUpBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">28812689</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"followedUpOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:45:00+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"scheduledFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:30:00+05:30"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">38</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">316804150</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes 2"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15147364</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-28T10:31:19+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"followedUpBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">28812689</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"followedUpOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:45:00+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"scheduledFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:30:00+05:30"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"statusLogDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">39</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">316804150</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPEN"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15147364</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-28T10:31:19+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"not available"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">316804150</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ON_HOLD"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15147364</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-28T10:31:19+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"phone not working"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"orgSourceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"trial_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Not Done"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/leads/{leadId}</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>PUT</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">http://{Cluster URL}/v2/leads/{leadId}</code></p>
+
 <h2 id="update-lead-status">Update Lead Status</h2>
 
 <blockquote>
@@ -6899,9 +7021,7 @@ password* | Specify your preferred new password</p>
             </span><span class="nt">"scheduledFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:30:00+05:30"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"trial_status"</span><span class="p">:</span><span class="s2">"Not Done"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
+
     </span><span class="nt">"statusLogDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
