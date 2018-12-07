@@ -6540,7 +6540,7 @@ password* | Specify your preferred new password</p>
     </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Item not available in store"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Best price availabe at another store"</span><span class="w">
+    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Best price available at another store"</span><span class="w">
   </span><span class="p">},</span><span class="w">
   </span><span class="p">{</span><span class="w">
     </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Interested in our brand products"</span><span class="w">  </span><span class="p">}</span><span class="w">
@@ -6568,7 +6568,7 @@ password* | Specify your preferred new password</p>
     </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Lets you add your preferred reasons that are required while adding or updating a lead.</p>
+<p>Lets you add your preferred reasons for adding or updating leads. This API returns reason ids which are required while creating or updating leads.</p>
 
 <p>Reasons are used to add or update a lead status. Lead reasons are org specific. You can create reasons of your own and use the respective reason ids to add or update a lead status.</p>
 
@@ -6602,7 +6602,7 @@ password* | Specify your preferred new password</p>
 </tr>
 <tr>
 <td>Batch Support</td>
-<td>No</td>
+<td>Yes</td>
 </tr>
 </tbody></table>
 
@@ -6780,7 +6780,7 @@ password* | Specify your preferred new password</p>
             </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
             </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-14T15:38:04+05:30"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Best price availabe at another store"</span><span class="w">
+            </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Best price available at another store"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
@@ -6836,6 +6836,48 @@ password* | Specify your preferred new password</p>
 <h3 id="request-url">Request URL</h3>
 
 <p><code class="prettyprint">http://{Cluster URL}/v2/leads</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>Item type for which you want to create lead. Value: SKU, CATEGORY, BRAND, CUSTOM (for any other types)</td>
+</tr>
+<tr>
+<td>leadFor</td>
+<td>Specify the respective code. For example, for type SKU it is SKU code, for CATEGORY it is category code and so on</td>
+</tr>
+<tr>
+<td>idType</td>
+<td>Customer identifier type Value: MOBILE, EMAIL</td>
+</tr>
+<tr>
+<td>identifier</td>
+<td>Specified identifier value</td>
+</tr>
+<tr>
+<td>status</td>
+<td>Current status of the lead. Value: OPEN, ON_HOLD, WON, LOST, DELETED</td>
+</tr>
+<tr>
+<td>nextFollowUp</td>
+<td>Next follow up date for the lead in <code class="prettyprint">YYYY-MM-DDTHH:MM:SS</code> GMT. For example: 2018-10-05T08:00:00+05:30</td>
+</tr>
+<tr>
+<td>createdOn</td>
+<td>Lead creation date in <code class="prettyprint">YYYY-MM-DDTHH:MM:SS</code> GMT. For example: 2018-10-04T13:30:00+05:30</td>
+</tr>
+<tr>
+<td>createdBy</td>
+<td>User ID or TILL ID who created the lead. If no value is passed, it considers TILL id by default</td>
+</tr>
+</tbody></table>
 
 <h2 id="update-extended-fields">Update Extended Fields</h2>
 
@@ -7255,7 +7297,7 @@ password* | Specify your preferred new password</p>
 </tr>
 <tr>
 <td>offset</td>
-<td>Fetches leads &gt; the offset number. Offset is the position of the lead in the db record. The value is assigned based on the sequence of creation. . For example, offset=10 retrieves all the leads from record number 11.</td>
+<td>Fetches leads &gt; the offset number. Offset is the position of the lead in the db record. The value is assigned based on the sequence of creation. . For example, offset=10 retrieves all the leads from record number 11</td>
 </tr>
 <tr>
 <td>sortBy</td>
