@@ -352,6 +352,7 @@ name | Name of the user group
 
 Lets you update the admin user of a user group through OTP validation. For this API `v2/otp/generate` is called internally. You need to make `v2/otp/validate` to validate OTP to modify user admin of a group. This is applicable only if OTP based authentication is enabled.
 
+
 > Sample Request
 
 ```html
@@ -433,7 +434,7 @@ Parameter | Description
 --------- | -----------
 groupId* | Unique id the user group that you want to fetch
 primaryUserId* | User id of the new admin
-name | Name of the user group 
+name | Name of the user group
 
 
 
