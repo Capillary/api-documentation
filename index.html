@@ -970,7 +970,7 @@ http://eu.api.capillarytech.com/v2/customers/search?limit=10<span class="err">&a
 <h2 id="fetch-customer-id">Fetch Customer ID</h2>
 <pre class="highlight html"><code># Sample Request
 
-https://eu.api.capillarytech.com/v2/customers/lookup?identifierName=mobile<span class="err">&amp;</span>identifierValue=919111111111
+https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="err">&amp;</span>identifierName=mobile<span class="err">&amp;</span>identifierValue=919111111111
 </code></pre>
 <blockquote>
 <p>The entity field shows the unique customer id</p>
@@ -7380,10 +7380,6 @@ password* | Specify your preferred new password</p>
 
 <p>Adds user to an existing group.</p>
 
-<h2 id="create-user-group">Create User Group</h2>
-
-<p>Lets you create a new user group.</p>
-
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
@@ -7408,7 +7404,7 @@ password* | Specify your preferred new password</p>
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/v2/usergroups/{groupId}/members/userId</code></td>
+<td><code class="prettyprint">/v2/usergroups/{groupId}/members/{userId}</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -7439,7 +7435,7 @@ password* | Specify your preferred new password</p>
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/usergroups/{groupId}/members/userId</code></p>
+<p><code class="prettyprint">https://{host}/v2/usergroups/{groupId}/members/{userId}</code></p>
 
 <h3 id="request-body-parameters">Request Body Parameters</h3>
 
@@ -7458,6 +7454,67 @@ password* | Specify your preferred new password</p>
 <td>Unique id of the user who wants to join the group</td>
 </tr>
 </tbody></table>
+
+<h2 id="join-user-group-otp-based">Join User Group (OTP Based)</h2>
+
+<p>Lets you add user to an existing group upon OTP validation. This works if OTP is enabled for the organization. For this <code class="prettyprint">v2/otp/generate</code> will be made internally. You also need to call the <code class="prettyprint">v2/otp/validate</code> to validate the OTP.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>http://us.api.capillarytech.com/v2/usergroups/1/members/313099450
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/v2/usergroups/{groupId}/members/{userId}</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>PUT</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/usergroups/{groupId}/members/{userId}</code></p>
 
 <h2 id="get-user-group-details">Get User Group Details</h2>
 
@@ -7570,7 +7627,7 @@ password* | Specify your preferred new password</p>
 </tr>
 </tbody></table>
 
-<h2 id="update-user-group-change-admin">Update User Group (Change Admin)</h2>
+<h2 id="update-group-admin">Update Group Admin</h2>
 
 <p>Lets you update the admin user for a specific user group.</p>
 
@@ -7693,6 +7750,129 @@ password* | Specify your preferred new password</p>
 </tr>
 </tbody></table>
 
+<h2 id="update-group-admin-otp-based">Update Group Admin (OTP Based)</h2>
+
+<p>Lets you update the admin user of a user group through OTP validation. For this API <code class="prettyprint">v2/otp/generate</code> is called internally. You need to make <code class="prettyprint">v2/otp/validate</code> to validate OTP to modify user admin of a group. This is applicable only if OTP based authentication is enabled.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/usergroups/1/primaryuser/368881003
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harsh"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"primaryUserId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368881003</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-31T12:59:30+05:30"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-31T12:59:30+05:30"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"members"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"groupId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">281348774</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SECONDARY"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"joinedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-31T12:59:30+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"addedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-31T15:59:18+05:30"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"groupId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">313099450</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SECONDARY"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"joinedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-31T13:13:52+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"addedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-31T13:13:52+05:30"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"groupId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368881003</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRIMARY"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"joinedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-31T13:18:42+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"addedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-31T15:59:18+05:30"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"groupId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368881005</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SECONDARY"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"joinedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-31T13:21:05+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"addedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-31T13:21:05+05:30"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"lifetimePurchases"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/v2/usergroups/{groupId}/primaryuser/{userId}</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>PUT</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/usergroups/{groupId}/primaryuser/{userId}</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>groupId*</td>
+<td>Unique id the user group that you want to fetch</td>
+</tr>
+<tr>
+<td>primaryUserId*</td>
+<td>User id of the new admin</td>
+</tr>
+<tr>
+<td>name</td>
+<td>Name of the user group</td>
+</tr>
+</tbody></table>
+
 <h2 id="exit-user-group">Exit User Group</h2>
 
 <p>Exits a user from a user group.</p>
@@ -7785,7 +7965,372 @@ password* | Specify your preferred new password</p>
 <blockquote>
 <p>Sample Response</p>
 </blockquote>
-<pre class="highlight json"><code><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">  
+   </span><span class="nt">"data"</span><span class="p">:[</span><span class="w">  
+      </span><span class="p">{</span><span class="w">  
+         </span><span class="nt">"attribution"</span><span class="p">:{</span><span class="w">  
+            </span><span class="nt">"createDate"</span><span class="p">:</span><span class="s2">"2018-12-17T00:00:00+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdBy"</span><span class="p">:{</span><span class="w">  
+               </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">15147364</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"hyd_2"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"hyd_2"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"adminType"</span><span class="p">:</span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"isActive"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"isOuEnabled"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"languageId"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"modifiedBy"</span><span class="p">:{</span><span class="w">  
+
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"modifiedDate"</span><span class="p">:</span><span class="s2">"2018-12-17"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"billDetails"</span><span class="p">:{</span><span class="w">  
+            </span><span class="nt">"amount"</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"billingStore"</span><span class="p">:{</span><span class="w">  
+               </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">15147363</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"hyd_2"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"HYD2"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"STORE"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"adminType"</span><span class="p">:</span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"isActive"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"isOuEnabled"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="mi">-1</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"languageId"</span><span class="p">:</span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"billNumber"</span><span class="p">:</span><span class="s2">"de0000049"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"billingTime"</span><span class="p">:</span><span class="s2">"2018-12-17T00:00:00+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"discount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"grossAmount"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"note"</span><span class="p">:</span><span class="s2">"2 line items"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnDetails"</span><span class="p">:{</span><span class="w">  
+               </span><span class="nt">"canceled"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"niReturnDetails"</span><span class="p">:{</span><span class="w">  
+
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"invalidBill"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"customFields"</span><span class="p">:{</span><span class="w">  
+
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"addWithLocalCurrency"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"customerId"</span><span class="p">:</span><span class="mi">28812689</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"deliveryStatus"</span><span class="p">:</span><span class="s2">"DELIVERED"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">33572481</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"lineItems"</span><span class="p">:[</span><span class="w">  
+            </span><span class="p">{</span><span class="w">  
+               </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">82713570</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"customerId"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"details"</span><span class="p">:{</span><span class="w">  
+                  </span><span class="nt">"amount"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"skip"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"discount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="s2">"number0-1"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"qty"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"rate"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"serial"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"value"</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">  
+
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="nt">"extendedFields"</span><span class="p">:{</span><span class="w">  
+
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="nt">"extendedFieldsSet"</span><span class="p">:[</span><span class="w">  
+
+                  </span><span class="p">],</span><span class="w">
+                  </span><span class="nt">"discountSupportingNull"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"qtySupportingNull"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"rateSupportingNull"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"valueSupportingNull"</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributesSet"</span><span class="p">:[</span><span class="w">  
+
+                  </span><span class="p">]</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"outlierStatus"</span><span class="p">:</span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"returnDetails"</span><span class="p">:{</span><span class="w">  
+
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"valid"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"returnLineItemsDtos"</span><span class="p">:[</span><span class="w">  
+
+               </span><span class="p">],</span><span class="w">
+               </span><span class="nt">"niReturnLineItemsDtos"</span><span class="p">:[</span><span class="w">  
+
+               </span><span class="p">],</span><span class="w">
+               </span><span class="nt">"addonDetails"</span><span class="p">:[</span><span class="w">  
+
+               </span><span class="p">],</span><span class="w">
+               </span><span class="nt">"splitItemsDetails"</span><span class="p">:[</span><span class="w">  
+
+               </span><span class="p">],</span><span class="w">
+               </span><span class="nt">"niReturn"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">  
+               </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">82713571</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"customerId"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"details"</span><span class="p">:{</span><span class="w">  
+                  </span><span class="nt">"amount"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"skip"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"discount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="s2">"number0-2"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"qty"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"rate"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"serial"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"value"</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">  
+
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="nt">"extendedFields"</span><span class="p">:{</span><span class="w">  
+
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="nt">"extendedFieldsSet"</span><span class="p">:[</span><span class="w">  
+
+                  </span><span class="p">],</span><span class="w">
+                  </span><span class="nt">"discountSupportingNull"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"qtySupportingNull"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"rateSupportingNull"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"valueSupportingNull"</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributesSet"</span><span class="p">:[</span><span class="w">  
+
+                  </span><span class="p">]</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"outlierStatus"</span><span class="p">:</span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"returnDetails"</span><span class="p">:{</span><span class="w">  
+
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"valid"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"returnLineItemsDtos"</span><span class="p">:[</span><span class="w">  
+
+               </span><span class="p">],</span><span class="w">
+               </span><span class="nt">"niReturnLineItemsDtos"</span><span class="p">:[</span><span class="w">  
+
+               </span><span class="p">],</span><span class="w">
+               </span><span class="nt">"addonDetails"</span><span class="p">:[</span><span class="w">  
+
+               </span><span class="p">],</span><span class="w">
+               </span><span class="nt">"splitItemsDetails"</span><span class="p">:[</span><span class="w">  
+
+               </span><span class="p">],</span><span class="w">
+               </span><span class="nt">"niReturn"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">],</span><span class="w">
+         </span><span class="nt">"outlierStatus"</span><span class="p">:</span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"REGULAR"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">  
+
+         </span><span class="p">],</span><span class="w">
+         </span><span class="nt">"lifeTimePurchases"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"ignorePoints"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"extendedFields"</span><span class="p">:{</span><span class="w">  
+
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"returnDetails"</span><span class="p">:{</span><span class="w">  
+            </span><span class="nt">"canceled"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"basketSize"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"customFieldsSet"</span><span class="p">:[</span><span class="w">  
+
+         </span><span class="p">],</span><span class="w">
+         </span><span class="nt">"niReturnDetails"</span><span class="p">:{</span><span class="w">  
+
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"extendedFieldsSet"</span><span class="p">:[</span><span class="w">  
+
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">  
+         </span><span class="nt">"attribution"</span><span class="p">:{</span><span class="w">  
+            </span><span class="nt">"createDate"</span><span class="p">:</span><span class="s2">"2018-12-17T00:00:00+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdBy"</span><span class="p">:{</span><span class="w">  
+               </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">15147364</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"hyd_2"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"hyd_2"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"adminType"</span><span class="p">:</span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"isActive"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"isOuEnabled"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"languageId"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"modifiedBy"</span><span class="p">:{</span><span class="w">  
+
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"modifiedDate"</span><span class="p">:</span><span class="s2">"2018-12-17"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"billDetails"</span><span class="p">:{</span><span class="w">  
+            </span><span class="nt">"amount"</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"billingStore"</span><span class="p">:{</span><span class="w">  
+               </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">15147363</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"hyd_2"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"HYD2"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"STORE"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"adminType"</span><span class="p">:</span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"isActive"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"isOuEnabled"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="mi">-1</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"languageId"</span><span class="p">:</span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"billNumber"</span><span class="p">:</span><span class="s2">"de0049"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"billingTime"</span><span class="p">:</span><span class="s2">"2018-12-17T00:00:00+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"discount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"grossAmount"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"note"</span><span class="p">:</span><span class="s2">"2 line items"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnDetails"</span><span class="p">:{</span><span class="w">  
+               </span><span class="nt">"canceled"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"niReturnDetails"</span><span class="p">:{</span><span class="w">  
+
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"invalidBill"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"customFields"</span><span class="p">:{</span><span class="w">  
+
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"addWithLocalCurrency"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"customerId"</span><span class="p">:</span><span class="mi">28812689</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"deliveryStatus"</span><span class="p">:</span><span class="s2">"DELIVERED"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">33572483</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"lineItems"</span><span class="p">:[</span><span class="w">  
+            </span><span class="p">{</span><span class="w">  
+               </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">82713577</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"customerId"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"details"</span><span class="p">:{</span><span class="w">  
+                  </span><span class="nt">"amount"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"skip"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"discount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="s2">"number0-1"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"qty"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"rate"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"serial"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"value"</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">  
+
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="nt">"extendedFields"</span><span class="p">:{</span><span class="w">  
+
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="nt">"extendedFieldsSet"</span><span class="p">:[</span><span class="w">  
+
+                  </span><span class="p">],</span><span class="w">
+                  </span><span class="nt">"discountSupportingNull"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"qtySupportingNull"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"rateSupportingNull"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"valueSupportingNull"</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributesSet"</span><span class="p">:[</span><span class="w">  
+
+                  </span><span class="p">]</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"outlierStatus"</span><span class="p">:</span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"returnDetails"</span><span class="p">:{</span><span class="w">  
+
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"valid"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"returnLineItemsDtos"</span><span class="p">:[</span><span class="w">  
+
+               </span><span class="p">],</span><span class="w">
+               </span><span class="nt">"niReturnLineItemsDtos"</span><span class="p">:[</span><span class="w">  
+
+               </span><span class="p">],</span><span class="w">
+               </span><span class="nt">"addonDetails"</span><span class="p">:[</span><span class="w">  
+
+               </span><span class="p">],</span><span class="w">
+               </span><span class="nt">"splitItemsDetails"</span><span class="p">:[</span><span class="w">  
+
+               </span><span class="p">],</span><span class="w">
+               </span><span class="nt">"niReturn"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">  
+               </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">82713578</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"customerId"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"details"</span><span class="p">:{</span><span class="w">  
+                  </span><span class="nt">"amount"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"skip"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"discount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="s2">"number0-2"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"qty"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"rate"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"serial"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"value"</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">  
+
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="nt">"extendedFields"</span><span class="p">:{</span><span class="w">  
+
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="nt">"extendedFieldsSet"</span><span class="p">:[</span><span class="w">  
+
+                  </span><span class="p">],</span><span class="w">
+                  </span><span class="nt">"discountSupportingNull"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"qtySupportingNull"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"rateSupportingNull"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"valueSupportingNull"</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributesSet"</span><span class="p">:[</span><span class="w">  
+
+                  </span><span class="p">]</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"outlierStatus"</span><span class="p">:</span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"returnDetails"</span><span class="p">:{</span><span class="w">  
+
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"valid"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"returnLineItemsDtos"</span><span class="p">:[</span><span class="w">  
+
+               </span><span class="p">],</span><span class="w">
+               </span><span class="nt">"niReturnLineItemsDtos"</span><span class="p">:[</span><span class="w">  
+
+               </span><span class="p">],</span><span class="w">
+               </span><span class="nt">"addonDetails"</span><span class="p">:[</span><span class="w">  
+
+               </span><span class="p">],</span><span class="w">
+               </span><span class="nt">"splitItemsDetails"</span><span class="p">:[</span><span class="w">  
+
+               </span><span class="p">],</span><span class="w">
+               </span><span class="nt">"niReturn"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">],</span><span class="w">
+         </span><span class="nt">"outlierStatus"</span><span class="p">:</span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"REGULAR"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">  
+
+         </span><span class="p">],</span><span class="w">
+         </span><span class="nt">"lifeTimePurchases"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"ignorePoints"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"extendedFields"</span><span class="p">:{</span><span class="w">  
+
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"returnDetails"</span><span class="p">:{</span><span class="w">  
+            </span><span class="nt">"canceled"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"basketSize"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"customFieldsSet"</span><span class="p">:[</span><span class="w">  
+
+         </span><span class="p">],</span><span class="w">
+         </span><span class="nt">"niReturnDetails"</span><span class="p">:{</span><span class="w">  
+
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"extendedFieldsSet"</span><span class="p">:[</span><span class="w">  
+
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">  
+
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"errors"</span><span class="p">:[</span><span class="w">  
+
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <h3 id="resource-information">Resource Information</h3>
 
