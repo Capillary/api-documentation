@@ -1,4 +1,4 @@
-# User Group
+# User Groups
 
 It is a customer group of containing friends, family members, colleagues, or relatives of a customer. A user group will have an admin user and group members.
 
