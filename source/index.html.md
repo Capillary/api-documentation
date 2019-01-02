@@ -21,6 +21,7 @@ includes:
   - OrganizationSource
   - staffUser
   - leads
+  - userGroup
 
 search: true
 ---
