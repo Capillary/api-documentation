@@ -495,7 +495,7 @@ q |  Parameter based on which you want to fetch customers. It will fetch the cus
 ```html
 # Sample Request
 
-https://eu.api.capillarytech.com/v2/customers/lookup?identifierName=mobile&identifierValue=919111111111
+https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE&identifierName=mobile&identifierValue=919111111111
 ```
 > The entity field shows the unique customer id
 
