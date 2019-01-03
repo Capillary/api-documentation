@@ -128,7 +128,13 @@ userId* | Unique id of the user who wants to join the group
 
 ## Join User Group (OTP Based)
 
-Lets you add user to an existing group upon OTP validation. For this, you need to issue OTP through `v2/otp/generate` and validate it using `v2/otp/validate` APIs. Once the OTP is validated, the user join will be confirmed.
+Lets you add user to an existing group upon OTP validation. This API issues OTP to the customer and you need to validate it using `v2/otp/validate` API. Once the OTP is validated, the user join will be confirmed.
+
+To use OTP based calls, the following three options should have been enabled for the organization. You can enable these through `organization/configs` v1.1 API.
+
+* CONF_USER_GROUP_OTP_ENABLE
+* CONF_USER_GROUP_PRIMARY_USER_OTP_ENABLE
+* CONF_USER_GROUP_SIZE
 
 > Sample Request
 
@@ -350,7 +356,13 @@ name | Name of the user group
 
 ## Update Group Admin (OTP Based)
 
-Lets you update the admin user of a user group through OTP validation. For this, you need to issue OTP through `v2/otp/generate` and validate it using `v2/otp/validate` APIs. Once the OTP is validated, the group admin will be updated accordingly.
+Lets you update the admin user of a user group through OTP validation. When this API is called, a OTP will be issued to the customer. You need to validate the OTP using `v2/otp/validate` API. 
+
+To use OTP based calls, the following three options should have been enabled for the organization. You can enable these through `organization/configs` v1.1 API.
+
+* CONF_USER_GROUP_OTP_ENABLE
+* CONF_USER_GROUP_PRIMARY_USER_OTP_ENABLE
+* CONF_USER_GROUP_SIZE
 
 This is applicable only if OTP based authentication is enabled.
 
