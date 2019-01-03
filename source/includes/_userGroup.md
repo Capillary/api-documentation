@@ -1,6 +1,7 @@
-# User Group
+# User Groups
 
-It is a customer group of containing friends, family members, colleagues, or relatives of a customer. A user group will have an admin user and group members.
+A User Group is a customer group that could contain friends, family members, colleagues, or relatives of a customer. A user group consists of an admin user and group members. The `usergroups` resource provides APIs to manage user groups .
+
 
 ## Create User Group
 
