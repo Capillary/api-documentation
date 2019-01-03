@@ -1,4 +1,4 @@
-# User Groups
+# User Group
 
 It is a customer group of containing friends, family members, colleagues, or relatives of a customer. A user group will have an admin user and group members.
 
@@ -128,7 +128,7 @@ userId* | Unique id of the user who wants to join the group
 
 ## Join User Group (OTP Based)
 
-Lets you add user to an existing group upon OTP validation. This works if OTP is enabled for the organization. For this `v2/otp/generate` will be made internally. You also need to call the `v2/otp/validate` to validate the OTP.
+Lets you add user to an existing group upon OTP validation. For this, you need to issue OTP through `v2/otp/generate` and validate it using `v2/otp/validate` APIs. Once the OTP is validated, the user join will be confirmed.
 
 > Sample Request
 
@@ -350,7 +350,9 @@ name | Name of the user group
 
 ## Update Group Admin (OTP Based)
 
-Lets you update the admin user of a user group through OTP validation. For this API `v2/otp/generate` is called internally. You need to make `v2/otp/validate` to validate OTP to modify user admin of a group. This is applicable only if OTP based authentication is enabled.
+Lets you update the admin user of a user group through OTP validation. For this, you need to issue OTP through `v2/otp/generate` and validate it using `v2/otp/validate` APIs. Once the OTP is validated, the group admin will be updated accordingly.
+
+This is applicable only if OTP based authentication is enabled.
 
 
 > Sample Request
