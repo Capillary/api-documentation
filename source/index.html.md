@@ -18,10 +18,10 @@ includes:
   - customerWalkin
   - verticals
   - org
-  - OrganizationSource
   - staffUser
   - leads
   - userGroup
+  - OrganizationSource
 
 search: true
 ---
