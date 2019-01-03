@@ -1331,6 +1331,10 @@ https://eu.api.capillarytech.com/v2/customers/17742?source=WECHAT<span class="er
 <td>embed</td>
 <td>To get points, subscription, multiple loyalty program details of the customer (points, subscriptions, mlp). Usage: <code>https://<Cluster API URL>/v2/customers/<Customer id>/source=WECHAT&amp;accountId=<Specific WeChat account’s id>&amp;embed=”points”</code></td>
 </tr>
+<tr>
+<td>embed=usergroup</td>
+<td>Retrieves user group details if the customer is in a user group</td>
+</tr>
 </tbody></table>
 
 <h3 id="error-codes">Error Codes</h3>
@@ -7267,7 +7271,7 @@ password* | Specify your preferred new password</p>
 </tr>
 </tbody></table>
 
-          <h1 id="user-groups">User Groups</h1>
+          <h1 id="user-group">User Group</h1>
 
 <p>It is a customer group of containing friends, family members, colleagues, or relatives of a customer. A user group will have an admin user and group members.</p>
 
@@ -7457,7 +7461,15 @@ password* | Specify your preferred new password</p>
 
 <h2 id="join-user-group-otp-based">Join User Group (OTP Based)</h2>
 
-<p>Lets you add user to an existing group upon OTP validation. This works if OTP is enabled for the organization. For this <code class="prettyprint">v2/otp/generate</code> will be made internally. You also need to call the <code class="prettyprint">v2/otp/validate</code> to validate the OTP.</p>
+<p>Lets you add user to an existing group upon OTP validation. This API issues OTP to the customer and you need to validate it using <code class="prettyprint">v2/otp/validate</code> API. Once the OTP is validated, the user join will be confirmed.</p>
+
+<p>To use OTP based calls, the following three options should have been enabled for the organization. You can enable these through <code class="prettyprint">organization/configs</code> v1.1 API.</p>
+
+<ul>
+<li>CONF_USER_GROUP_OTP_ENABLE</li>
+<li>CONF_USER_GROUP_PRIMARY_USER_OTP_ENABLE</li>
+<li>CONF_USER_GROUP_SIZE</li>
+</ul>
 
 <blockquote>
 <p>Sample Request</p>
@@ -7752,7 +7764,17 @@ password* | Specify your preferred new password</p>
 
 <h2 id="update-group-admin-otp-based">Update Group Admin (OTP Based)</h2>
 
-<p>Lets you update the admin user of a user group through OTP validation. For this API <code class="prettyprint">v2/otp/generate</code> is called internally. You need to make <code class="prettyprint">v2/otp/validate</code> to validate OTP to modify user admin of a group. This is applicable only if OTP based authentication is enabled.</p>
+<p>Lets you update the admin user of a user group through OTP validation. When this API is called, a OTP will be issued to the customer. You need to validate the OTP using <code class="prettyprint">v2/otp/validate</code> API. </p>
+
+<p>To use OTP based calls, the following three options should have been enabled for the organization. You can enable these through <code class="prettyprint">organization/configs</code> v1.1 API.</p>
+
+<ul>
+<li>CONF_USER_GROUP_OTP_ENABLE</li>
+<li>CONF_USER_GROUP_PRIMARY_USER_OTP_ENABLE</li>
+<li>CONF_USER_GROUP_SIZE</li>
+</ul>
+
+<p>This is applicable only if OTP based authentication is enabled.</p>
 
 <blockquote>
 <p>Sample Request</p>
