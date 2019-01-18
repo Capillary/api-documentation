@@ -7,8 +7,9 @@ language_tabs:
   
 
 toc_footers:
+  - <a href="https://capillary.github.io/v1.1-API-Documentation/">Capillary CRM API Documentation v1.1</a>
+  - <a href="https://capillary.github.io/ecom-api-document/">Capillary Anywhere Commerce API Documentation</a>
   - <a href='#'>Capillary V2.0 API Documentation</a>
-  - <a href=''></a>
 
 includes:
   - customer
