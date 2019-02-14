@@ -8428,6 +8428,1802 @@ https://us.api.capillarytech.com/v2/cardNumber
 </tr>
 </tbody></table>
 
+          <h1 id="ffc">FFC</h1>
+
+<p>This contains the list of APIs required to post and fetch footfall details such as visitors count, group count, heat map details and device heartbeat. The host address of FFC is different from the other v 2.0 APIs. </p>
+
+<p>The following are the host addresses of different clusters:  </p>
+
+<ul>
+<li><strong>NIGHTLY</strong>: storecare.nightly.capillary.in:8002</li>
+<li><strong>APAC</strong>: storecare.capillarytech.com</li>
+<li><strong>APAC2</strong>: sg.storecare.capillarytech.com</li>
+<li><strong>EU</strong>: eu.storecare.capillarytech.com</li>
+<li><strong>US</strong>: us.storecare.capillarytech.com</li>
+<li><strong>CN</strong>: storecare.capillarytech.cn.com</li>
+</ul>
+
+<h2 id="add-ffc-details-hourly">Add FFC Details (Hourly)</h2>
+
+<p>Saves hourly data of visitors and staff count to the Capillary database. The data include both in count and out count.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://sg.storecare.capillarytech.com/pages/ffcDetails
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+   </span><span class="nt">"org_id"</span><span class="p">:</span><span class="s2">"781"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"till_id"</span><span class="p">:</span><span class="s2">"15000323"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"zone_id"</span><span class="p">:</span><span class="s2">"15000398"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"store_id"</span><span class="p">:</span><span class="s2">"15001761"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"till"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"store_server_id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"store_server_name"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"till_name"</span><span class="p">:</span><span class="s2">"demo_till"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"store_name"</span><span class="p">:</span><span class="s2">"KNIGHT_STOER_SERVER"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="mi">1549564200</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="mi">202481590706864</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"counterDetails"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"outCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"inCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"startDate"</span><span class="p">:</span><span class="mi">1549564200</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"endDate"</span><span class="p">:</span><span class="mi">1549567799</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"outCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"inCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"startDate"</span><span class="p">:</span><span class="mi">1549567800</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"endDate"</span><span class="p">:</span><span class="mi">1549571399</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"outCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"inCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"startDate"</span><span class="p">:</span><span class="mi">1549571400</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"endDate"</span><span class="p">:</span><span class="mi">1549574999</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"outCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"inCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"startDate"</span><span class="p">:</span><span class="mi">1549575000</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"endDate"</span><span class="p">:</span><span class="mi">1549578599</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"outCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"inCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"startDate"</span><span class="p">:</span><span class="mi">1549614600</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"endDate"</span><span class="p">:</span><span class="mi">1549618199</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"outCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"inCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"startDate"</span><span class="p">:</span><span class="mi">1549618200</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"endDate"</span><span class="p">:</span><span class="mi">1549621799</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"outCount"</span><span class="p">:</span><span class="mi">223</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"inCount"</span><span class="p">:</span><span class="mi">222</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"startDate"</span><span class="p">:</span><span class="mi">1549621800</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"endDate"</span><span class="p">:</span><span class="mi">1549625399</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"outCount"</span><span class="p">:</span><span class="mi">274</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"inCount"</span><span class="p">:</span><span class="mi">275</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"startDate"</span><span class="p">:</span><span class="mi">1549625400</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"endDate"</span><span class="p">:</span><span class="mi">1549628999</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"outCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"inCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"startDate"</span><span class="p">:</span><span class="mi">1549629000</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"endDate"</span><span class="p">:</span><span class="mi">1549632599</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"outCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"inCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"startDate"</span><span class="p">:</span><span class="mi">1549632600</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"endDate"</span><span class="p">:</span><span class="mi">1549636199</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"outCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"inCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"startDate"</span><span class="p">:</span><span class="mi">1549636200</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"endDate"</span><span class="p">:</span><span class="mi">1549639799</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"outCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"inCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"startDate"</span><span class="p">:</span><span class="mi">1549639800</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"endDate"</span><span class="p">:</span><span class="mi">1549643399</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"outCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"inCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"startDate"</span><span class="p">:</span><span class="mi">1549643400</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"endDate"</span><span class="p">:</span><span class="mi">1549646999</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"outCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"inCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"startDate"</span><span class="p">:</span><span class="mi">1549647000</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"endDate"</span><span class="p">:</span><span class="mi">1549650599</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"response"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:{</span><span class="w">
+         </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"200"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"message"</span><span class="p">:</span><span class="s2">"Success"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/pages/ffcDetails?eventType={0/1}</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/pages/ffcDetails?eventType={0/1}</code></p>
+
+<p>** To post only in count,specify <code class="prettyprint">eventType=1</code> 
+** To post only out count,specify <code class="prettyprint">eventType=0</code> </p>
+
+<h2 id="fetch-ffc-details-hourly">Fetch FFC Details (Hourly)</h2>
+
+<p>Retrieves hourly count of visitors and staff which includes both in count and out count separately.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://sg.storecare.capillarytech.com/pages/ffcDetails?org_id=781<span class="err">&amp;</span>date=2019/02/12<span class="err">&amp;</span>timezone=UTC+0530<span class="err">&amp;</span>deviceId=201807070301
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"get_ffc_details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"applications"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"application"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"store_servers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"store_server"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"thin_clients"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"thin_client"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"tills"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"till"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">201807070301</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"eventType"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"org_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"781"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"store_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50013131"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"store_server_id"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"till_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50013136"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"zone_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"15098817"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"store_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KoramangalaStore1"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"store_server_name"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"till_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DemoTill"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"counterDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nt">"outCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549913400</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"inCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549909800</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nt">"outCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549917000</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"inCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549913400</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nt">"outCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549920600</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"inCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549917000</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nt">"outCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549924200</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"inCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549920600</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nt">"outCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549927800</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"inCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549924200</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nt">"outCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549931400</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"inCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549927800</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nt">"outCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549935000</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"inCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549931400</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nt">"outCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549938600</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"inCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549935000</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nt">"outCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549942200</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"inCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549938600</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nt">"outCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549945800</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"inCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549942200</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nt">"outCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549949400</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"inCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549945800</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nt">"outCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549953000</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"inCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549949400</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nt">"outCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549956600</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"inCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549953000</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nt">"outCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549985400</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"inCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549981800</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nt">"outCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549989000</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"inCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549985400</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nt">"outCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549992600</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"inCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549989000</span><span class="w">
+                            </span><span class="p">},</span><span class="w">
+                            </span><span class="p">{</span><span class="w">
+                                </span><span class="nt">"outCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549996200</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"inCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                                </span><span class="nt">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549992600</span><span class="w">
+                            </span><span class="p">}</span><span class="w">
+                        </span><span class="p">],</span><span class="w">
+                        </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="w"> </span><span class="mi">1549935001</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"auto_update_time"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-12T01:33:58.930Z"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/pages/ffcDetails</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/pages/ffcDetails</code></p>
+
+<h3 id="request-path-parameters">Request Path Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>org_id</td>
+<td>int</td>
+<td>Retrieves org level in and out count of visitors on a hourly basis</td>
+</tr>
+<tr>
+<td>date</td>
+<td>date</td>
+<td>Retrieves hourly data of in and out count for a specific date ( <code class="prettyprint">YYYY/MM/DD</code> format)</td>
+</tr>
+<tr>
+<td>timezone</td>
+<td>string</td>
+<td>UTC timezone of the device</td>
+</tr>
+<tr>
+<td>deviceId</td>
+<td>string</td>
+<td>Specify the device id for which you want to fetch the data</td>
+</tr>
+</tbody></table>
+
+<h2 id="add-ffc-details-v2">Add FFC Details (V2)</h2>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>
+https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"org_id"</span><span class="p">:</span><span class="s2">"781"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"till_id"</span><span class="p">:</span><span class="s2">"15000375"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"zone_id"</span><span class="p">:</span><span class="s2">"15000372"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"store_id"</span><span class="p">:</span><span class="s2">"15001861"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"till"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"store_server_id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"store_server_name"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"till_name"</span><span class="p">:</span><span class="s2">"kn.003"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"store_name"</span><span class="p">:</span><span class="s2">"KNIGHT_STOER_SERVER"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="mi">1549883986</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="mi">202481585925581</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"counterDetails"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"inCountTimeStamps"</span><span class="p">:[</span><span class="w">
+            </span><span class="mi">1549712713</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712717</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712721</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712725</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712729</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712733</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712737</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712741</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712745</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712749</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712753</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712757</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712761</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712765</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712769</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712773</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712777</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712781</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712785</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712789</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712793</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712797</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712801</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712805</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712809</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712813</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712817</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712821</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712825</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712829</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712833</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712837</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712841</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712845</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712849</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712853</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712857</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712861</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712865</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712869</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712873</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712877</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712881</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712885</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712889</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712893</span><span class="w">
+         </span><span class="p">],</span><span class="w">
+         </span><span class="nt">"outCountTimeStamps"</span><span class="p">:[</span><span class="w">
+            </span><span class="mi">1549712715</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712719</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712723</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712727</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712731</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712735</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712739</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712743</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712747</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712751</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712755</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712759</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712763</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712767</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712771</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712775</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712779</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712783</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712787</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712791</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712795</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712799</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712803</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712807</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712811</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712815</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712819</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712823</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712827</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712831</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712835</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712839</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712843</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712847</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712851</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712855</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712859</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712863</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712867</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712871</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712875</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712879</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712883</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712887</span><span class="p">,</span><span class="w">
+            </span><span class="mi">1549712891</span><span class="w">
+         </span><span class="p">],</span><span class="w">
+         </span><span class="nt">"outCount"</span><span class="p">:</span><span class="mi">45</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"inCount"</span><span class="p">:</span><span class="mi">46</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"startDate"</span><span class="p">:</span><span class="mi">1549712711</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"endDate"</span><span class="p">:</span><span class="mi">1549713611</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"response"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:{</span><span class="w">
+         </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"200"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"message"</span><span class="p">:</span><span class="s2">"Success"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/add/ffcDetails?eventType={0/1}</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/add/ffcDetails?eventType={0/1}</code></p>
+
+<ul>
+<li>Specify <code class="prettyprint">eventType=0</code> for out count and <code class="prettyprint">eventType=1</code> for in count</li>
+</ul>
+
+<h2 id="get-ffc-details-v2">Get FFC Details (V2)</h2>
+
+<p>Retrieves in and out count of both visitors and staff separately at event level providing more granular level details compared to v1.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://sg.storecare.capillarytech.com/pages/v2/ffcDetails?orgId=781<span class="err">&amp;</span>date=2019/02/12<span class="err">&amp;</span>timezone=UTC+0530<span class="err">&amp;</span>storeId=15001861 
+
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"response"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:{</span><span class="w">
+         </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"200"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"message"</span><span class="p">:</span><span class="s2">"Success"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"get_ffc_v2_details"</span><span class="p">:{</span><span class="w">
+         </span><span class="nt">"thin_clients"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"thin_client"</span><span class="p">:[</span><span class="w">
+
+            </span><span class="p">]</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"store_servers"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"store_server"</span><span class="p">:[</span><span class="w">
+
+            </span><span class="p">]</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"applications"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"application"</span><span class="p">:[</span><span class="w">
+
+            </span><span class="p">]</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"tills"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"till"</span><span class="p">:[</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="mi">202481586113930</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"direction"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"eventTime"</span><span class="p">:</span><span class="s2">"2019-02-12T09:24:50.000Z"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"eventType"</span><span class="p">:</span><span class="s2">"CUSTOMER"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">781</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"till"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeId"</span><span class="p">:</span><span class="mi">15001861</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeServerId"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"tillId"</span><span class="p">:</span><span class="mi">15000375</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"zoneId"</span><span class="p">:</span><span class="mi">15000372</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="mi">1549963805</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"tillName"</span><span class="p">:</span><span class="s2">"kn.003"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeServerName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeName"</span><span class="p">:</span><span class="s2">"KNIGHT_STOER_SERVER"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"count"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"inCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"outCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="s2">"2019-02-12T09:34:24.086Z"</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="mi">202481586113930</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"direction"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"eventTime"</span><span class="p">:</span><span class="s2">"2019-02-12T09:22:00.000Z"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"eventType"</span><span class="p">:</span><span class="s2">"CUSTOMER"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">781</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"till"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeId"</span><span class="p">:</span><span class="mi">15001861</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeServerId"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"tillId"</span><span class="p">:</span><span class="mi">15000375</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"zoneId"</span><span class="p">:</span><span class="mi">15000372</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="mi">1549963805</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"tillName"</span><span class="p">:</span><span class="s2">"kn.003"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeServerName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeName"</span><span class="p">:</span><span class="s2">"KNIGHT_STOER_SERVER"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"count"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"inCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"outCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="s2">"2019-02-12T09:34:24.082Z"</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="mi">202481586113930</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"direction"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"eventTime"</span><span class="p">:</span><span class="s2">"2019-02-12T09:24:57.000Z"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"eventType"</span><span class="p">:</span><span class="s2">"CUSTOMER"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">781</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"till"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeId"</span><span class="p">:</span><span class="mi">15001861</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeServerId"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"tillId"</span><span class="p">:</span><span class="mi">15000375</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"zoneId"</span><span class="p">:</span><span class="mi">15000372</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="mi">1549963805</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"tillName"</span><span class="p">:</span><span class="s2">"kn.003"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeServerName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeName"</span><span class="p">:</span><span class="s2">"KNIGHT_STOER_SERVER"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"count"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"inCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"outCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="s2">"2019-02-12T09:34:24.086Z"</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="mi">202481586113930</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"direction"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"eventTime"</span><span class="p">:</span><span class="s2">"2019-02-12T07:08:17.000Z"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"eventType"</span><span class="p">:</span><span class="s2">"CUSTOMER"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">781</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"till"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeId"</span><span class="p">:</span><span class="mi">15001861</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeServerId"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"tillId"</span><span class="p">:</span><span class="mi">15000375</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"zoneId"</span><span class="p">:</span><span class="mi">15000372</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="mi">1549955703</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"tillName"</span><span class="p">:</span><span class="s2">"kn.003"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeServerName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeName"</span><span class="p">:</span><span class="s2">"KNIGHT_STOER_SERVER"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"count"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"inCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"outCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="s2">"2019-02-12T07:19:22.088Z"</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="mi">202481586113930</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"direction"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"eventTime"</span><span class="p">:</span><span class="s2">"2019-02-12T07:13:43.000Z"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"eventType"</span><span class="p">:</span><span class="s2">"CUSTOMER"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">781</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"till"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeId"</span><span class="p">:</span><span class="mi">15001861</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeServerId"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"tillId"</span><span class="p">:</span><span class="mi">15000375</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"zoneId"</span><span class="p">:</span><span class="mi">15000372</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="mi">1549955703</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"tillName"</span><span class="p">:</span><span class="s2">"kn.003"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeServerName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeName"</span><span class="p">:</span><span class="s2">"KNIGHT_STOER_SERVER"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"count"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"inCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"outCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="s2">"2019-02-12T07:19:22.089Z"</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/pages/v2/ffcDetails?{param}={param_value}</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/pages/v2/ffcDetails?{param}={param_value}</code></p>
+
+<h3 id="request-path-parameters">Request Path Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orgId</td>
+<td>int</td>
+<td>Specify the org id for which you want to fetch the data</td>
+</tr>
+<tr>
+<td>date</td>
+<td>date</td>
+<td>Specify the date in YYYY/MM/DD` format to fetch the data of that specific date</td>
+</tr>
+<tr>
+<td>timezone</td>
+<td>string</td>
+<td>Specify the UTC timezone of the device</td>
+</tr>
+<tr>
+<td>deviceId</td>
+<td>string</td>
+<td>Specify the device id for which you want to fetch the data</td>
+</tr>
+</tbody></table>
+
+<h2 id="add-ffc-group-count-v2">Add FFC Group Count (V2)</h2>
+
+<p>Saves in and out count of visitor groups to the Capillary database at the event level.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://sg.storecare.capillarytech.com/pages/v2/ffcGroupCount
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">pages/v2/ffcGroupCount?{param}={param_value}</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/pages/v2/ffcGroupCount?{param}={param_value}</code></p>
+
+<h3 id="request-path-parameters">Request Path Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<h2 id="get-group-count-v2">Get Group Count (V2)</h2>
+
+<p>Retrieves the group count at event level. The groups have the buckets with size 1, 2, 3, 4 or more.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>
+https://sg.storecare.capillarytech.com/pages/v2/ffcDetails?orgId=781<span class="err">&amp;</span>date=2019/02/12<span class="err">&amp;</span>timezone=UTC+0530<span class="err">&amp;</span>storeId=15001861 
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"response"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:{</span><span class="w">
+         </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"200"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"message"</span><span class="p">:</span><span class="s2">"Success"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"get_ffc_v2_details"</span><span class="p">:{</span><span class="w">
+         </span><span class="nt">"thin_clients"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"thin_client"</span><span class="p">:[</span><span class="w">
+
+            </span><span class="p">]</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"store_servers"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"store_server"</span><span class="p">:[</span><span class="w">
+
+            </span><span class="p">]</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"applications"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"application"</span><span class="p">:[</span><span class="w">
+
+            </span><span class="p">]</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"tills"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"till"</span><span class="p">:[</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="mi">202481586113930</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"direction"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"eventTime"</span><span class="p">:</span><span class="s2">"2019-02-12T09:24:50.000Z"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"eventType"</span><span class="p">:</span><span class="s2">"CUSTOMER"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">781</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"till"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeId"</span><span class="p">:</span><span class="mi">15001861</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeServerId"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"tillId"</span><span class="p">:</span><span class="mi">15000375</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"zoneId"</span><span class="p">:</span><span class="mi">15000372</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="mi">1549963805</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"tillName"</span><span class="p">:</span><span class="s2">"kn.003"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeServerName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeName"</span><span class="p">:</span><span class="s2">"KNIGHT_STOER_SERVER"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"count"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"inCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"outCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="s2">"2019-02-12T09:34:24.086Z"</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="mi">202481586113930</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"direction"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"eventTime"</span><span class="p">:</span><span class="s2">"2019-02-12T09:22:00.000Z"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"eventType"</span><span class="p">:</span><span class="s2">"CUSTOMER"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">781</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"till"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeId"</span><span class="p">:</span><span class="mi">15001861</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeServerId"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"tillId"</span><span class="p">:</span><span class="mi">15000375</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"zoneId"</span><span class="p">:</span><span class="mi">15000372</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="mi">1549963805</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"tillName"</span><span class="p">:</span><span class="s2">"kn.003"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeServerName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeName"</span><span class="p">:</span><span class="s2">"KNIGHT_STOER_SERVER"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"count"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"inCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"outCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="s2">"2019-02-12T09:34:24.082Z"</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="mi">202481586113930</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"direction"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"eventTime"</span><span class="p">:</span><span class="s2">"2019-02-12T09:24:57.000Z"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"eventType"</span><span class="p">:</span><span class="s2">"CUSTOMER"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">781</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"till"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeId"</span><span class="p">:</span><span class="mi">15001861</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeServerId"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"tillId"</span><span class="p">:</span><span class="mi">15000375</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"zoneId"</span><span class="p">:</span><span class="mi">15000372</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="mi">1549963805</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"tillName"</span><span class="p">:</span><span class="s2">"kn.003"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeServerName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeName"</span><span class="p">:</span><span class="s2">"KNIGHT_STOER_SERVER"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"count"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"inCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"outCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="s2">"2019-02-12T09:34:24.086Z"</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="mi">202481586113930</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"direction"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"eventTime"</span><span class="p">:</span><span class="s2">"2019-02-12T09:25:15.000Z"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"eventType"</span><span class="p">:</span><span class="s2">"CUSTOMER"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">781</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"till"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeId"</span><span class="p">:</span><span class="mi">15001861</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeServerId"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"tillId"</span><span class="p">:</span><span class="mi">15000375</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"zoneId"</span><span class="p">:</span><span class="mi">15000372</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="mi">1549963805</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"tillName"</span><span class="p">:</span><span class="s2">"kn.003"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeServerName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeName"</span><span class="p">:</span><span class="s2">"KNIGHT_STOER_SERVER"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"count"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"inCount"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"outCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="s2">"2019-02-12T09:34:24.086Z"</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="mi">202481586113930</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"direction"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"eventTime"</span><span class="p">:</span><span class="s2">"2019-02-12T09:21:10.000Z"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"eventType"</span><span class="p">:</span><span class="s2">"CUSTOMER"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">781</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"till"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeId"</span><span class="p">:</span><span class="mi">15001861</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeServerId"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"tillId"</span><span class="p">:</span><span class="mi">15000375</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"zoneId"</span><span class="p">:</span><span class="mi">15000372</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="mi">1549963805</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"tillName"</span><span class="p">:</span><span class="s2">"kn.003"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeServerName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeName"</span><span class="p">:</span><span class="s2">"KNIGHT_STOER_SERVER"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"count"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"inCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"outCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="s2">"2019-02-12T09:34:24.087Z"</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="mi">202481586113930</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"direction"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"eventTime"</span><span class="p">:</span><span class="s2">"2019-02-12T09:19:18.000Z"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"eventType"</span><span class="p">:</span><span class="s2">"CUSTOMER"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">781</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"till"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeId"</span><span class="p">:</span><span class="mi">15001861</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeServerId"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"tillId"</span><span class="p">:</span><span class="mi">15000375</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"zoneId"</span><span class="p">:</span><span class="mi">15000372</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="mi">1549963805</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"tillName"</span><span class="p">:</span><span class="s2">"kn.003"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeServerName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeName"</span><span class="p">:</span><span class="s2">"KNIGHT_STOER_SERVER"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"count"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"inCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"outCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="s2">"2019-02-12T09:34:24.086Z"</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="mi">202481586113930</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"direction"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"eventTime"</span><span class="p">:</span><span class="s2">"2019-02-12T09:15:16.000Z"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"eventType"</span><span class="p">:</span><span class="s2">"CUSTOMER"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">781</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"till"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeId"</span><span class="p">:</span><span class="mi">15001861</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeServerId"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"tillId"</span><span class="p">:</span><span class="mi">15000375</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"zoneId"</span><span class="p">:</span><span class="mi">15000372</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="mi">1549963804</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"tillName"</span><span class="p">:</span><span class="s2">"kn.003"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeServerName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeName"</span><span class="p">:</span><span class="s2">"KNIGHT_STOER_SERVER"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"count"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"inCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"outCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="s2">"2019-02-12T09:34:23.250Z"</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="mi">202481586113930</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"direction"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"eventTime"</span><span class="p">:</span><span class="s2">"2019-02-12T07:13:43.000Z"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"eventType"</span><span class="p">:</span><span class="s2">"CUSTOMER"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">781</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"till"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeId"</span><span class="p">:</span><span class="mi">15001861</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeServerId"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"tillId"</span><span class="p">:</span><span class="mi">15000375</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"zoneId"</span><span class="p">:</span><span class="mi">15000372</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="mi">1549955703</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"tillName"</span><span class="p">:</span><span class="s2">"kn.003"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeServerName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeName"</span><span class="p">:</span><span class="s2">"KNIGHT_STOER_SERVER"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"count"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"inCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"outCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="s2">"2019-02-12T07:19:22.089Z"</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/pages/v2/ffcDetails?{param}={param_value}</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/pages/v2/ffcDetails?{param}={param_value}</code></p>
+
+<h3 id="request-path-parameters">Request Path Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orgId</td>
+<td>int</td>
+<td>Specify the org id for which you want to fetch the data</td>
+</tr>
+<tr>
+<td>date</td>
+<td>date</td>
+<td>Specify the date in YYYY/MM/DD` format to fetch the data of that specific date</td>
+</tr>
+<tr>
+<td>timezone</td>
+<td>string</td>
+<td>Specify the UTC time zone of the device</td>
+</tr>
+<tr>
+<td>deviceId</td>
+<td>string</td>
+<td>Specify the device id for which you want to fetch the data</td>
+</tr>
+</tbody></table>
+
+<h2 id="add-group-count-v2">Add Group Count (V2)</h2>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://sg.storecare.capillarytech.com/v2/add/ffcGroupCount
+
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+
+
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/v2/add/ffcGroupCount</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/add/ffcGroupCount</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<h2 id="add-group-count-hourly">Add Group Count (Hourly)</h2>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://sg.storecare.capillarytech.com/add/ffcGroupCount
+
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+
+
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/add/ffcGroupCount</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/add/ffcGroupCount</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
+<h2 id="get-group-count-event-level">Get Group Count (Event Level)</h2>
+
+<p>Retrieves both in and out count of groups at an event level. The groups have the buckets with size 1, 2, 3, 4 or more.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://sg.storecare.capillarytech.com/pages/v2/ffcGroupCount??orgId=7221<span class="err">&amp;</span>date=2019/02/12<span class="err">&amp;</span>timezone=UTC+0530<span class="err">&amp;</span>storeId=15001861 
+
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"response"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:{</span><span class="w">
+         </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"200"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"message"</span><span class="p">:</span><span class="s2">"Success"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"get_ffc_v2_groupCount"</span><span class="p">:{</span><span class="w">
+         </span><span class="nt">"tills"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"till"</span><span class="p">:[</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="mi">202481586113930</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"direction"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"eventTime"</span><span class="p">:</span><span class="s2">"2019-02-12T09:27:55.000Z"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">781</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"size"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"till"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeId"</span><span class="p">:</span><span class="mi">15001861</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeServerId"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"tillId"</span><span class="p">:</span><span class="mi">15000375</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"zoneId"</span><span class="p">:</span><span class="mi">15000372</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="mi">1549963810</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"tillName"</span><span class="p">:</span><span class="s2">"kn.003"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeServerName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeName"</span><span class="p">:</span><span class="s2">"KNIGHT_STOER_SERVER"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"eventType"</span><span class="p">:</span><span class="s2">"CUSTOMER"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"count"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="s2">"2019-02-12T09:34:29.157Z"</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="mi">202481586113930</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"direction"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"eventTime"</span><span class="p">:</span><span class="s2">"2019-02-12T09:23:14.000Z"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">781</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"size"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"till"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeId"</span><span class="p">:</span><span class="mi">15001861</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeServerId"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"tillId"</span><span class="p">:</span><span class="mi">15000375</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"zoneId"</span><span class="p">:</span><span class="mi">15000372</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="mi">1549963810</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"tillName"</span><span class="p">:</span><span class="s2">"kn.003"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeServerName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeName"</span><span class="p">:</span><span class="s2">"KNIGHT_STOER_SERVER"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"eventType"</span><span class="p">:</span><span class="s2">"CUSTOMER"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"count"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="s2">"2019-02-12T09:34:29.156Z"</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"store_servers"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"store_server"</span><span class="p">:[</span><span class="w">
+
+            </span><span class="p">]</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"applications"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"application"</span><span class="p">:[</span><span class="w">
+
+            </span><span class="p">]</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"thin_clients"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"thin_client"</span><span class="p">:[</span><span class="w">
+
+            </span><span class="p">]</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/pages/v2/ffcGroupCount?{param}={param_value}</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}//pages/v2/ffcGroupCount?{param}={param_value}</code></p>
+
+<h3 id="request-path-parameters">Request Path Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orgId</td>
+<td>int</td>
+<td>Specify the org id for which you want to fetch the data</td>
+</tr>
+<tr>
+<td>date</td>
+<td>date</td>
+<td>Specify the date in YYYY/MM/DD` format to fetch the data of that specific date</td>
+</tr>
+<tr>
+<td>timezone</td>
+<td>string</td>
+<td>Specify the UTC time zone of the device</td>
+</tr>
+<tr>
+<td>deviceId</td>
+<td>string</td>
+<td>Specify the device id for which you want to fetch the data</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-group-count-hourly">Get Group Count (Hourly)</h2>
+
+<p>Retrieves the group count of a VM device on a hourly basis. The groups have the buckets with size 1, 2, 3, 4 or more.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://sg.storecare.capillarytech.com/pages/ffcGroupCount?org_Id=1543<span class="err">&amp;</span>date=2019/2/10<span class="err">&amp;</span>timezone=UTC+0530<span class="err">&amp;</span>deviceId=202481601722905 
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"response"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:{</span><span class="w">
+         </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"200"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"message"</span><span class="p">:</span><span class="s2">"Success"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"get_ffc_groupCount"</span><span class="p">:{</span><span class="w">
+         </span><span class="nt">"applications"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"application"</span><span class="p">:[</span><span class="w">
+
+            </span><span class="p">]</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"thin_clients"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"thin_client"</span><span class="p">:[</span><span class="w">
+
+            </span><span class="p">]</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"tills"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"till"</span><span class="p">:[</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="mi">202481601722905</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"org_id"</span><span class="p">:</span><span class="s2">"1199"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"till"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"store_id"</span><span class="p">:</span><span class="s2">"12845453"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"store_server_id"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"till_id"</span><span class="p">:</span><span class="s2">"12845454"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"zone_id"</span><span class="p">:</span><span class="s2">"12839781"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"store_server_name"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"till_name"</span><span class="p">:</span><span class="s2">"lee.goa.panaji.1010803.1"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"store_name"</span><span class="p">:</span><span class="s2">"Lee VVC LIFESTYLE Goa"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"timestamp"</span><span class="p">:</span><span class="mi">1549737000</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"groupCountDetails"</span><span class="p">:[</span><span class="w">
+                     </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"inCountDuo"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"inCountUno"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"inCountMore"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"inCountTriple"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"outCountDuo"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"outCountUno"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"outCountTriple"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"outCountMore"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"startDate"</span><span class="p">:</span><span class="mi">1549737000</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"endDate"</span><span class="p">:</span><span class="mi">1549740599</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"inCountDuo"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"inCountUno"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"inCountMore"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"inCountTriple"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"outCountDuo"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"outCountUno"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"outCountTriple"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"outCountMore"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"startDate"</span><span class="p">:</span><span class="mi">1549740600</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"endDate"</span><span class="p">:</span><span class="mi">1549744199</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"inCountDuo"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"inCountUno"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"inCountMore"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"inCountTriple"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"outCountDuo"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"outCountUno"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"outCountTriple"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"outCountMore"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"startDate"</span><span class="p">:</span><span class="mi">1549744200</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"endDate"</span><span class="p">:</span><span class="mi">1549747799</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"inCountDuo"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"inCountUno"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"inCountMore"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"inCountTriple"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"outCountDuo"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"outCountUno"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"outCountTriple"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"outCountMore"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"startDate"</span><span class="p">:</span><span class="mi">1549747800</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"endDate"</span><span class="p">:</span><span class="mi">1549751399</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"inCountDuo"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"inCountUno"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"inCountMore"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"inCountTriple"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"outCountDuo"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"outCountUno"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"outCountTriple"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"outCountMore"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"startDate"</span><span class="p">:</span><span class="mi">1549819800</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"endDate"</span><span class="p">:</span><span class="mi">1549823399</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">],</span><span class="w">
+                  </span><span class="nt">"eventType"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"auto_update_time"</span><span class="p">:</span><span class="s2">"2019-02-11T02:10:35.858Z"</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"store_servers"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"store_server"</span><span class="p">:[</span><span class="w">
+
+            </span><span class="p">]</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/pages/ffcDetails?{param}={param_value}</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/pages/ffcDetails?{param}={param_value}</code></p>
+
+<h3 id="request-path-parameters">Request Path Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orgId</td>
+<td>int</td>
+<td>Specify the org id for which you want to fetch the data</td>
+</tr>
+<tr>
+<td>date</td>
+<td>date</td>
+<td>Specify the date in YYYY/MM/DD` format to fetch the data of that specific date</td>
+</tr>
+<tr>
+<td>timezone</td>
+<td>string</td>
+<td>Specify the UTC time zone of the device</td>
+</tr>
+<tr>
+<td>deviceId</td>
+<td>string</td>
+<td>Specify the device id for which you want to fetch the data</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-notes">Get Notes</h2>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://sg.storecare.capillarytech.com/pages/notes
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"response"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"status"</span><span class="p">:{</span><span class="w">
+         </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"200"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"message"</span><span class="p">:</span><span class="s2">"Success"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"get_notes"</span><span class="p">:{</span><span class="w">
+         </span><span class="nt">"store_servers"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"store_server"</span><span class="p">:[</span><span class="w">
+
+            </span><span class="p">]</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"applications"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"application"</span><span class="p">:[</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"_id"</span><span class="p">:</span><span class="s2">"57ee62bfb5ae5f642762a331"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="s2">"987"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"notes_id"</span><span class="p">:</span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"org_id"</span><span class="p">:</span><span class="s2">"905"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"jar1"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"till_id"</span><span class="p">:</span><span class="s2">"12773786"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Demo store"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"zone_id"</span><span class="p">:</span><span class="s2">"12773779"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"store_id"</span><span class="p">:</span><span class="s2">"15000584"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"criticality"</span><span class="p">:</span><span class="s2">"FATAL"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"time"</span><span class="p">:</span><span class="s2">"1472541586"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"storeName"</span><span class="p">:</span><span class="s2">"JamesBond"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"entityIUN"</span><span class="p">:</span><span class="s2">"till.demo"</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"thin_clients"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"thin_client"</span><span class="p">:[</span><span class="w">
+
+            </span><span class="p">]</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"tills"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"till"</span><span class="p">:[</span><span class="w">
+
+            </span><span class="p">]</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/pages/notes</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/pages/notes</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
       </div>
       <div class="dark-box">
           <div class="lang-selector">
