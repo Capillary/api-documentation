@@ -23,6 +23,7 @@ includes:
   - leads
   - userGroup
   - OrganizationSource
+  - storeCare
 
 search: true
 ---
