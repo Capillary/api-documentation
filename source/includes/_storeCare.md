@@ -720,53 +720,6 @@ deviceId | string | Specify the device id for which you want to fetch the data
 
 
 
-## Add FFC Group Count (V2)
-
-Saves in and out count of visitor groups to the Capillary database at the event level.
-
-> Sample Request
-
-```html
-https://sg.storecare.capillarytech.com/pages/v2/ffcGroupCount
-```
-
-> Sample POST Request
-
-```json
-
-```
-
-> Sample Response
-
-```json
-
-
-```
-
-
-### Resource Information
-| | |
---------- | ----------- |
-URI | `pages/v2/ffcGroupCount?{param}={param_value}`
-Rate Limited? | No
-Authentication | Yes
-Response Formats | JSON
-HTTP Methods | GET
-Batch Support | No
-
-* **Rate limiter** controls the number of incoming and outgoing traffic of a network
-* **Authentication** verifies the identity of the current user or integration. See Introduction > Authentication (Merchant Setup on Admin Portal) for more details
-
-### Request URL
-
-`https://{host}/pages/v2/ffcGroupCount?{param}={param_value}`
-
-
-### Request Path Parameters
-
-Parameter | Type | Description
---------- | ---- | -----------
-
 
 
 
