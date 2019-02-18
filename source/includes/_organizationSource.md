@@ -3,6 +3,74 @@
 
 
 
+## Update Org Currency Ratio
+
+Lets you update currency ratio of the org.
+
+> Sample Request
+
+## Generate External IDs
+
+```html
+# Sample Request
+ 
+https://us.api.capillarytech.com/v2/currencyratio
+```
+
+
+> Sample POST Request
+
+```json
+{ 
+	"ratioInr":10, 
+	"currencyCode":"INR" 
+}
+
+```
+
+
+
+> Sample Response
+
+```json
+{
+   "entity":{
+      "currencyCode":"INR",
+      "ratioInr":10.0
+   },
+   "errors":[
+
+   ],
+   "success":true,
+   "warnings":[
+
+   ]
+}
+
+```
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/v2/currencyratio`
+Rate Limited? | No
+Authentication | Yes
+Response Formats | JSON
+HTTP Methods | POST
+Batch Support | No
+
+* **Rate limiter** controls the number of incoming and outgoing traffic of a network
+* **Authentication** verifies the identity of the current user or integration. See Introduction > Authentication (Merchant Setup on Admin Portal) for more details
+
+
+### Request URL
+
+`https://<Respective cluster’s API URL>/v2/currencyratio`
+
+
+
+
+
 ## Generate External IDs
 
 ```html
@@ -74,6 +142,21 @@ http://us.intouch.capillarytech.com/v2/entity/extended_field_config
 ```
 
 This API lets you show or hide a specific extended field on your org's InTouch.
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `v2/entity/extended_field_config`
+Rate Limited? | No
+Authentication | Yes
+Response Formats | JSON
+HTTP Methods | POST
+Batch Support | No
+
+* **Rate limiter** controls the number of incoming and outgoing traffic of a network
+* **Authentication** verifies the identity of the current user or integration. See Introduction > Authentication (Merchant Setup on Admin Portal) for more details
+
+
 
 
 ### Request URL
