@@ -167,7 +167,7 @@ Batch Support | No
 
 
 
-## Fetch FFC Details (Hourly)
+## Get FFC Details (Hourly)
 
 Retrieves hourly count of visitors and staff which includes both in count and out count separately.
 
@@ -722,56 +722,6 @@ deviceId | string | Specify the device id for which you want to fetch the data
 
 
 
-## Add Group Count (V2)
-
-> Sample Request
-
-```html
-https://sg.storecare.capillarytech.com/v2/add/ffcGroupCount
-
-```
-
-
-> Sample POST Request
-
-```json
-
-
-
-```
-
-> Sample Response
-
-```json
-
-
-```
-
-
-
-### Resource Information
-| | |
---------- | ----------- |
-URI | `/v2/add/ffcGroupCount`
-Rate Limited? | No
-Authentication | Yes
-Response Formats | JSON
-HTTP Methods | POST
-Batch Support | No
-
-* **Rate limiter** controls the number of incoming and outgoing traffic of a network
-* **Authentication** verifies the identity of the current user or integration. See Introduction > Authentication (Merchant Setup on Admin Portal) for more details
-
-### Request URL
-
-`https://{host}/v2/add/ffcGroupCount`
-
-
-### Request Body Parameters
-
-Parameter | Type | Description
--------- | ----- | -----------
-
 
 
 
@@ -803,14 +753,132 @@ https://sg.storecare.capillarytech.com/add/ffcGroupCount
 
 ```json
 
-
+{
+   "org_id":"781",
+   "till_id":"15000375",
+   "zone_id":"15000372",
+   "store_id":"15001861",
+   "source":"till",
+   "store_server_id":null,
+   "store_server_name":null,
+   "till_name":"kn.003",
+   "store_name":"KNIGHT_STOER_SERVER",
+   "timestamp":1541874600,
+   "deviceId":202481588574972,
+   "groupCountDetails":[
+      {
+         "outCountTriple":0,
+         "inCountMore":0,
+         "outCountDuo":0,
+         "inCountUno":0,
+         "inCountTriple":0,
+         "outCountMore":0,
+         "inCountDuo":0,
+         "outCountUno":0,
+         "startDate":1541874600,
+         "endDate":1541878199
+      },
+      {
+         "outCountTriple":0,
+         "inCountMore":0,
+         "outCountDuo":0,
+         "inCountUno":0,
+         "inCountTriple":0,
+         "outCountMore":0,
+         "inCountDuo":0,
+         "outCountUno":0,
+         "startDate":1541878200,
+         "endDate":1541881799
+      },
+      {
+         "outCountTriple":0,
+         "inCountMore":0,
+         "outCountDuo":0,
+         "inCountUno":0,
+         "inCountTriple":0,
+         "outCountMore":0,
+         "inCountDuo":0,
+         "outCountUno":0,
+         "startDate":1541881800,
+         "endDate":1541885399
+      },
+      {
+         "outCountTriple":0,
+         "inCountMore":0,
+         "outCountDuo":0,
+         "inCountUno":0,
+         "inCountTriple":0,
+         "outCountMore":0,
+         "inCountDuo":0,
+         "outCountUno":0,
+         "startDate":1541885400,
+         "endDate":1541888999
+      },
+      {
+         "outCountTriple":0,
+         "inCountMore":0,
+         "outCountDuo":0,
+         "inCountUno":0,
+         "inCountTriple":0,
+         "outCountMore":0,
+         "inCountDuo":0,
+         "outCountUno":0,
+         "startDate":1541889000,
+         "endDate":1541892599
+      },
+      {
+         "outCountTriple":0,
+         "inCountMore":0,
+         "outCountDuo":0,
+         "inCountUno":0,
+         "inCountTriple":0,
+         "outCountMore":0,
+         "inCountDuo":0,
+         "outCountUno":0,
+         "startDate":1541892600,
+         "endDate":1541896199
+      },
+      {
+         "outCountTriple":0,
+         "inCountMore":0,
+         "outCountDuo":0,
+         "inCountUno":0,
+         "inCountTriple":0,
+         "outCountMore":0,
+         "inCountDuo":0,
+         "outCountUno":0,
+         "startDate":1541896200,
+         "endDate":1541899799
+      },
+      {
+         "outCountTriple":0,
+         "inCountMore":0,
+         "outCountDuo":0,
+         "inCountUno":0,
+         "inCountTriple":0,
+         "outCountMore":0,
+         "inCountDuo":0,
+         "outCountUno":0,
+         "startDate":1541957400,
+         "endDate":1541960999
+      }
+   ]
+}
 
 ```
 
 > Sample Response
 
 ```json
-
+{
+   "response":{
+      "status":{
+         "success":true,
+         "code":"200",
+         "message":"Success"
+      }
+   }
+}
 
 ```
 
@@ -838,140 +906,27 @@ Batch Support | No
 
 Parameter | Type | Description
 -------- | ----- | -----------
-
-
-
-
-
-
-
-
-## Get Group Count (Event Level)
-
-Retrieves both in and out count of groups at an event level. The groups have the buckets with size 1, 2, 3, 4 or more.
-
-> Sample Request
-
-```html
-https://sg.storecare.capillarytech.com/pages/v2/ffcGroupCount??orgId=7221&date=2019/02/12&timezone=UTC+0530&storeId=15001861 
- 
-```
-
-
-> Sample Response
-
-```json
-{
-   "response":{
-      "status":{
-         "success":true,
-         "code":"200",
-         "message":"Success"
-      },
-      "get_ffc_v2_groupCount":{
-         "tills":{
-            "till":[
-               {
-                  "deviceId":202481586113930,
-                  "direction":0,
-                  "eventTime":"2019-02-12T09:27:55.000Z",
-                  "orgId":781,
-                  "size":"1",
-                  "source":"till",
-                  "storeId":15001861,
-                  "storeServerId":null,
-                  "tillId":15000375,
-                  "zoneId":15000372,
-                  "timestamp":1549963810,
-                  "tillName":"kn.003",
-                  "storeServerName":null,
-                  "storeName":"KNIGHT_STOER_SERVER",
-                  "eventType":"CUSTOMER",
-                  "count":1,
-                  "autoUpdateTime":"2019-02-12T09:34:29.157Z"
-               },
-               {
-                  "deviceId":202481586113930,
-                  "direction":0,
-                  "eventTime":"2019-02-12T09:23:14.000Z",
-                  "orgId":781,
-                  "size":"1",
-                  "source":"till",
-                  "storeId":15001861,
-                  "storeServerId":null,
-                  "tillId":15000375,
-                  "zoneId":15000372,
-                  "timestamp":1549963810,
-                  "tillName":"kn.003",
-                  "storeServerName":null,
-                  "storeName":"KNIGHT_STOER_SERVER",
-                  "eventType":"CUSTOMER",
-                  "count":1,
-                  "autoUpdateTime":"2019-02-12T09:34:29.156Z"
-               }
-            ]
-         },
-         "store_servers":{
-            "store_server":[
-
-            ]
-         },
-         "applications":{
-            "application":[
-
-            ]
-         },
-         "thin_clients":{
-            "thin_client":[
-
-            ]
-         }
-      }
-   }
-}
-```
-
-
-
-### Resource Information
-| | |
---------- | ----------- |
-URI | `/pages/v2/ffcGroupCount?{param}={param_value}`
-Rate Limited? | No
-Authentication | Yes
-Response Formats | JSON
-HTTP Methods | GET
-Batch Support | No
-
-* **Rate limiter** controls the number of incoming and outgoing traffic of a network
-* **Authentication** verifies the identity of the current user or integration. See Introduction > Authentication (Merchant Setup on Admin Portal) for more details
-
-### Request URL
-
-`https://{host}//pages/v2/ffcGroupCount?{param}={param_value}`
-
-
-### Request Path Parameters
-
-Parameter | Type | Description
--------- | ----- | -----------
-orgId | int | Specify the org id for which you want to fetch the data
-date | date | Specify the date in YYYY/MM/DD` format to fetch the data of that specific date
-timezone | string | Specify the UTC time zone of the device
-deviceId | string | Specify the device id for which you want to fetch the data
-
-
-
-
-
-
-
-
-
-
-
-
-
+org_id* | int | Unique id of the org for which you want to add group count
+till_id | int | Unique id of the TILL where the device is installed
+zone_id | int | Zone id associated to the TILL
+store_id | int | Store id associated to the TILL
+source | 
+store_server_id | string | Store server id if applicable
+store_server_name | string | Name of the store server
+till_name | string | Name of the TILL associated to the device
+store_name | string |Name of the store in which the device is installed
+timestamp | string | Timestamp as on the Current system
+deviceId* | long | Unique id of the device
+outCountTriple | int | Out count of group size 3
+inCountTriple | int | In count of group size 3
+inCountMore |  int | In count of group size more than 3
+outCountMore |  int | Out count of group size more than 3
+inCountDuo |  int | In count of group size 2
+outCountDuo |  int | Out count of group size 2
+inCountUno |  int | In count of group size 1
+outCountUno |  int | Out count of group size 1
+startDate* | date-time |Date and time of the respective hour for which you want to update the data (between startDate - endDate)
+endDate* | date-time | Date and time of the respective hour for which you want to update the data (between startDate - endDate)
 
 
 
@@ -1126,6 +1081,314 @@ orgId | int | Specify the org id for which you want to fetch the data
 date | date | Specify the date in YYYY/MM/DD` format to fetch the data of that specific date
 timezone | string | Specify the UTC time zone of the device
 deviceId | string | Specify the device id for which you want to fetch the data
+
+
+
+
+
+## Add Group Count (Event Level)
+
+> Sample Request
+
+```html
+https://sg.storecare.capillarytech.com/v2/add/ffcGroupCount
+
+```
+
+
+> Sample POST Request
+
+```json
+{
+   "org_id":"781",
+   "till_id":"15000375",
+   "zone_id":"15000372",
+   "store_id":"15001861",
+   "source":"till",
+   "store_server_id":null,
+   "store_server_name":null,
+   "till_name":"kn.003",
+   "store_name":"KNIGHT_STOER_SERVER",
+   "timestamp":1550561898,
+   "deviceId":202481588574972,
+   "groupCountDetails":[
+      {
+         "inCountUnoTimeStamps":[
+            1540800006,
+            1540800011,
+            1540800045,
+            1540800048,
+            1540800051,
+            1540800122,
+            1540800129,
+            1540800179,
+            1540800447,
+            1540800519,
+            1540800526,
+            1540800541,
+            1540800597
+         ],
+         "inCountDuoTimeStamps":[
+
+         ],
+         "inCountTripleTimeStamps":[
+
+         ],
+         "inCountMoreTimeStamps":[
+
+         ],
+         "outCountUnoTimeStamps":[
+            1540800058,
+            1540800073,
+            1540800092,
+            1540800200,
+            1540800225,
+            1540800254,
+            1540800281,
+            1540800318,
+            1540800347,
+            1540800391,
+            1540800468,
+            1540800525,
+            1540800529,
+            1540800562,
+            1540800630,
+            1540800761,
+            1540800821
+         ],
+         "outCountDuoTimeStamps":[
+            1540800258,
+            1540800589
+         ],
+         "outCountTripleTimeStamps":[
+            1540800328
+         ],
+         "outCountMoreTimeStamps":[
+
+         ],
+         "outCountTriple":1,
+         "inCountMore":0,
+         "outCountDuo":2,
+         "inCountUno":13,
+         "inCountTriple":0,
+         "outCountMore":0,
+         "inCountDuo":0,
+         "outCountUno":17,
+         "startDate":1540800002,
+         "endDate":1540800902
+      }
+   ]
+}
+
+
+```
+
+> Sample Response
+
+```json
+{
+   "response":{
+      "status":{
+         "success":true,
+         "code":"200",
+         "message":"Success"
+      }
+   }
+}
+
+```
+
+
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/v2/add/ffcGroupCount`
+Rate Limited? | No
+Authentication | Yes
+Response Formats | JSON
+HTTP Methods | POST
+Batch Support | No
+
+* **Rate limiter** controls the number of incoming and outgoing traffic of a network
+* **Authentication** verifies the identity of the current user or integration. See Introduction > Authentication (Merchant Setup on Admin Portal) for more details
+
+### Request URL
+
+`https://{host}/v2/add/ffcGroupCount`
+
+
+### Request Body Parameters
+
+Parameter | Type | Description
+-------- | ----- | -----------
+org_id* | int | Unique id of the org for which you want to add group count
+till_id | int | Unique id of the TILL where the device is installed
+zone_id | int | Zone id associated to the TILL
+store_id | int | Store id associated to the TILL
+source | 
+store_server_id | string | Store server id if applicable
+store_server_name | string | Name of the store server
+till_name | string | Name of the TILL associated to the device
+store_name | string |Name of the store in which the device is installed
+inCountUnoTimeStamps | timestamp | Timestamps of the all in count events with group size 1
+inCountDuoTimeStamps | timestamp | Timestamps of the all in count events with group size 2
+inCountTripleTimeStamps | timestamp | Timestamps of the all in count events with group size 3
+inCountMoreTimeStamps | timestamp | Timestamps of the all in count events with group size more than 3
+outCountUnoTimeStamps | timestamp | Timestamps of the all out count events with group size more 1
+outCountDuoTimeStamps | timestamp | Timestamps of the all out count events with group size 2
+outCountTripleTimeStamps | timestamp | Timestamps of the all out count events with group size 3
+outCountMoreTimeStamps | timestamp | Timestamps of the all out count events with group size more than 3
+deviceId* | long | Unique id of the device
+outCountTriple | int | Out count of group size 3
+inCountTriple | int | In count of group size 3
+inCountMore |  int | In count of group size more than 3
+outCountMore |  int | Out count of group size more than 3
+inCountDuo |  int | In count of group size 2
+outCountDuo |  int | Out count of group size 2
+inCountUno |  int | In count of group size 1
+outCountUno |  int | Out count of group size 1
+startDate* | date-time | Duration of the current data (between startDate - endDate)
+endDate* | date-time | Duration of the current data (between startDate - endDate)
+
+
+
+
+
+
+
+
+
+## Get Group Count (Event Level)
+
+Retrieves both in and out count of groups at an event level. The groups have the buckets with size 1, 2, 3, 4 or more.
+
+> Sample Request
+
+```html
+https://sg.storecare.capillarytech.com/pages/v2/ffcGroupCount??orgId=7221&date=2019/02/12&timezone=UTC+0530&storeId=15001861 
+ 
+```
+
+
+> Sample Response
+
+```json
+{
+   "response":{
+      "status":{
+         "success":true,
+         "code":"200",
+         "message":"Success"
+      },
+      "get_ffc_v2_groupCount":{
+         "tills":{
+            "till":[
+               {
+                  "deviceId":202481586113930,
+                  "direction":0,
+                  "eventTime":"2019-02-12T09:27:55.000Z",
+                  "orgId":781,
+                  "size":"1",
+                  "source":"till",
+                  "storeId":15001861,
+                  "storeServerId":null,
+                  "tillId":15000375,
+                  "zoneId":15000372,
+                  "timestamp":1549963810,
+                  "tillName":"kn.003",
+                  "storeServerName":null,
+                  "storeName":"KNIGHT_STOER_SERVER",
+                  "eventType":"CUSTOMER",
+                  "count":1,
+                  "autoUpdateTime":"2019-02-12T09:34:29.157Z"
+               },
+               {
+                  "deviceId":202481586113930,
+                  "direction":0,
+                  "eventTime":"2019-02-12T09:23:14.000Z",
+                  "orgId":781,
+                  "size":"1",
+                  "source":"till",
+                  "storeId":15001861,
+                  "storeServerId":null,
+                  "tillId":15000375,
+                  "zoneId":15000372,
+                  "timestamp":1549963810,
+                  "tillName":"kn.003",
+                  "storeServerName":null,
+                  "storeName":"KNIGHT_STOER_SERVER",
+                  "eventType":"CUSTOMER",
+                  "count":1,
+                  "autoUpdateTime":"2019-02-12T09:34:29.156Z"
+               }
+            ]
+         },
+         "store_servers":{
+            "store_server":[
+
+            ]
+         },
+         "applications":{
+            "application":[
+
+            ]
+         },
+         "thin_clients":{
+            "thin_client":[
+
+            ]
+         }
+      }
+   }
+}
+```
+
+
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/pages/v2/ffcGroupCount?{param}={param_value}`
+Rate Limited? | No
+Authentication | Yes
+Response Formats | JSON
+HTTP Methods | GET
+Batch Support | No
+
+* **Rate limiter** controls the number of incoming and outgoing traffic of a network
+* **Authentication** verifies the identity of the current user or integration. See Introduction > Authentication (Merchant Setup on Admin Portal) for more details
+
+### Request URL
+
+`https://{host}//pages/v2/ffcGroupCount?{param}={param_value}`
+
+
+### Request Path Parameters
+
+Parameter | Type | Description
+-------- | ----- | -----------
+orgId | int | Specify the org id for which you want to fetch the data
+date | date | Specify the date in YYYY/MM/DD` format to fetch the data of that specific date
+timezone | string | Specify the UTC time zone of the device
+deviceId | string | Specify the device id for which you want to fetch the data
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
