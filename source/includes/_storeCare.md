@@ -910,7 +910,7 @@ org_id* | int | Unique id of the org for which you want to add group count
 till_id | int | Unique id of the TILL where the device is installed
 zone_id | int | Zone id associated to the TILL
 store_id | int | Store id associated to the TILL
-source | 
+source | string |  Source from which the Data is coming to the system. Value: `till`
 store_server_id | string | Store server id if applicable
 store_server_name | string | Name of the store server
 till_name | string | Name of the TILL associated to the device
@@ -1226,7 +1226,7 @@ org_id* | int | Unique id of the org for which you want to add group count
 till_id | int | Unique id of the TILL where the device is installed
 zone_id | int | Zone id associated to the TILL
 store_id | int | Store id associated to the TILL
-source | 
+source | string |  Source from which the Data is coming to the system. Value: `till`
 store_server_id | string | Store server id if applicable
 store_server_name | string | Name of the store server
 till_name | string | Name of the TILL associated to the device
@@ -1475,8 +1475,4 @@ Batch Support | No
 `https://{host}/pages/notes`
 
 
-### Request Body Parameters
-
-Parameter | Type | Description
--------- | ----- | -----------
 
