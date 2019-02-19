@@ -7445,6 +7445,89 @@ password* | Specify your preferred new password</p>
 
           <h1 id="other-apis-org-level">Other APIs (Org Level)</h1>
 
+<h2 id="update-org-currency-ratio">Update Org Currency Ratio</h2>
+
+<p>Lets you update currency ratio of the org.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+
+<h2 id="generate-external-ids">Generate External IDs</h2>
+<pre class="highlight html"><code># Sample Request
+
+https://us.api.capillarytech.com/v2/currencyratio
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w"> 
+    </span><span class="nt">"ratioInr"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w"> 
+    </span><span class="nt">"currencyCode"</span><span class="p">:</span><span class="s2">"INR"</span><span class="w"> 
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"entity"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"currencyCode"</span><span class="p">:</span><span class="s2">"INR"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"ratioInr"</span><span class="p">:</span><span class="mf">10.0</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"errors"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/v2/currencyratio</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/currencyratio</code></p>
+
 <h2 id="generate-external-ids">Generate External IDs</h2>
 <pre class="highlight html"><code># Sample Request
 
@@ -7509,6 +7592,45 @@ https://us.api.capillarytech.com/v2/cardNumber
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This API lets you show or hide a specific extended field on your org&rsquo;s InTouch.</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/entity/extended_field_config</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
 
 <h3 id="request-url">Request URL</h3>
 

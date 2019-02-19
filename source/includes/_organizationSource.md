@@ -168,9 +168,9 @@ Attribute | Description
 --------- | -----------
 extendedFieldId* | Specify the unique id of the extended field that you want to show/hide
 createdOn | Date on which the field is created
-createdBy | 
-modifiedOn | 
-modifiedBy | 
+createdBy | User id who created the extended field
+modifiedOn | Current date 
+modifiedBy | User id who is 
 hideDisplay* | Value: true, false
 mandatory | Value: true, false
 updatable | Specify To make the field values updatable. Value: true, false

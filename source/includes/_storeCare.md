@@ -365,7 +365,7 @@ deviceId | string | Specify the device id for which you want to fetch the data
 
 
 
-## Add FFC Details (V2)
+## Add FFC Details (Event Level)
 
 > Sample Request
 
@@ -541,7 +541,7 @@ Batch Support | No
 
 
 
-## Get FFC Details (V2)
+## Get FFC Details (Event Level)
 
 Retrieves in and out count of both visitors and staff separately at event level providing more granular level details compared to v1.
 
@@ -722,253 +722,6 @@ deviceId | string | Specify the device id for which you want to fetch the data
 
 
 
-
-
-
-
-
-
-
-## Get Group Count (V2)
-
-Retrieves the group count at event level. The groups have the buckets with size 1, 2, 3, 4 or more.
-
-> Sample Request
-
-```html
-
-https://sg.storecare.capillarytech.com/pages/v2/ffcDetails?orgId=781&date=2019/02/12&timezone=UTC+0530&storeId=15001861 
-```
-
-
-> Sample Response
-
-```json
-{
-   "response":{
-      "status":{
-         "success":true,
-         "code":"200",
-         "message":"Success"
-      },
-      "get_ffc_v2_details":{
-         "thin_clients":{
-            "thin_client":[
-
-            ]
-         },
-         "store_servers":{
-            "store_server":[
-
-            ]
-         },
-         "applications":{
-            "application":[
-
-            ]
-         },
-         "tills":{
-            "till":[
-               {
-                  "deviceId":202481586113930,
-                  "direction":1,
-                  "eventTime":"2019-02-12T09:24:50.000Z",
-                  "eventType":"CUSTOMER",
-                  "orgId":781,
-                  "source":"till",
-                  "storeId":15001861,
-                  "storeServerId":null,
-                  "tillId":15000375,
-                  "zoneId":15000372,
-                  "timestamp":1549963805,
-                  "tillName":"kn.003",
-                  "storeServerName":null,
-                  "storeName":"KNIGHT_STOER_SERVER",
-                  "count":1,
-                  "inCount":1,
-                  "outCount":0,
-                  "autoUpdateTime":"2019-02-12T09:34:24.086Z"
-               },
-               {
-                  "deviceId":202481586113930,
-                  "direction":1,
-                  "eventTime":"2019-02-12T09:22:00.000Z",
-                  "eventType":"CUSTOMER",
-                  "orgId":781,
-                  "source":"till",
-                  "storeId":15001861,
-                  "storeServerId":null,
-                  "tillId":15000375,
-                  "zoneId":15000372,
-                  "timestamp":1549963805,
-                  "tillName":"kn.003",
-                  "storeServerName":null,
-                  "storeName":"KNIGHT_STOER_SERVER",
-                  "count":1,
-                  "inCount":1,
-                  "outCount":0,
-                  "autoUpdateTime":"2019-02-12T09:34:24.082Z"
-               },
-               {
-                  "deviceId":202481586113930,
-                  "direction":1,
-                  "eventTime":"2019-02-12T09:24:57.000Z",
-                  "eventType":"CUSTOMER",
-                  "orgId":781,
-                  "source":"till",
-                  "storeId":15001861,
-                  "storeServerId":null,
-                  "tillId":15000375,
-                  "zoneId":15000372,
-                  "timestamp":1549963805,
-                  "tillName":"kn.003",
-                  "storeServerName":null,
-                  "storeName":"KNIGHT_STOER_SERVER",
-                  "count":1,
-                  "inCount":1,
-                  "outCount":0,
-                  "autoUpdateTime":"2019-02-12T09:34:24.086Z"
-               },
-               {
-                  "deviceId":202481586113930,
-                  "direction":1,
-                  "eventTime":"2019-02-12T09:25:15.000Z",
-                  "eventType":"CUSTOMER",
-                  "orgId":781,
-                  "source":"till",
-                  "storeId":15001861,
-                  "storeServerId":null,
-                  "tillId":15000375,
-                  "zoneId":15000372,
-                  "timestamp":1549963805,
-                  "tillName":"kn.003",
-                  "storeServerName":null,
-                  "storeName":"KNIGHT_STOER_SERVER",
-                  "count":2,
-                  "inCount":2,
-                  "outCount":0,
-                  "autoUpdateTime":"2019-02-12T09:34:24.086Z"
-               },
-               {
-                  "deviceId":202481586113930,
-                  "direction":0,
-                  "eventTime":"2019-02-12T09:21:10.000Z",
-                  "eventType":"CUSTOMER",
-                  "orgId":781,
-                  "source":"till",
-                  "storeId":15001861,
-                  "storeServerId":null,
-                  "tillId":15000375,
-                  "zoneId":15000372,
-                  "timestamp":1549963805,
-                  "tillName":"kn.003",
-                  "storeServerName":null,
-                  "storeName":"KNIGHT_STOER_SERVER",
-                  "count":1,
-                  "inCount":0,
-                  "outCount":1,
-                  "autoUpdateTime":"2019-02-12T09:34:24.087Z"
-               },
-               {
-                  "deviceId":202481586113930,
-                  "direction":0,
-                  "eventTime":"2019-02-12T09:19:18.000Z",
-                  "eventType":"CUSTOMER",
-                  "orgId":781,
-                  "source":"till",
-                  "storeId":15001861,
-                  "storeServerId":null,
-                  "tillId":15000375,
-                  "zoneId":15000372,
-                  "timestamp":1549963805,
-                  "tillName":"kn.003",
-                  "storeServerName":null,
-                  "storeName":"KNIGHT_STOER_SERVER",
-                  "count":1,
-                  "inCount":0,
-                  "outCount":1,
-                  "autoUpdateTime":"2019-02-12T09:34:24.086Z"
-               },
-                             
-               {
-                  "deviceId":202481586113930,
-                  "direction":1,
-                  "eventTime":"2019-02-12T09:15:16.000Z",
-                  "eventType":"CUSTOMER",
-                  "orgId":781,
-                  "source":"till",
-                  "storeId":15001861,
-                  "storeServerId":null,
-                  "tillId":15000375,
-                  "zoneId":15000372,
-                  "timestamp":1549963804,
-                  "tillName":"kn.003",
-                  "storeServerName":null,
-                  "storeName":"KNIGHT_STOER_SERVER",
-                  "count":1,
-                  "inCount":1,
-                  "outCount":0,
-                  "autoUpdateTime":"2019-02-12T09:34:23.250Z"
-               },
-              
-               {
-                  "deviceId":202481586113930,
-                  "direction":0,
-                  "eventTime":"2019-02-12T07:13:43.000Z",
-                  "eventType":"CUSTOMER",
-                  "orgId":781,
-                  "source":"till",
-                  "storeId":15001861,
-                  "storeServerId":null,
-                  "tillId":15000375,
-                  "zoneId":15000372,
-                  "timestamp":1549955703,
-                  "tillName":"kn.003",
-                  "storeServerName":null,
-                  "storeName":"KNIGHT_STOER_SERVER",
-                  "count":1,
-                  "inCount":0,
-                  "outCount":1,
-                  "autoUpdateTime":"2019-02-12T07:19:22.089Z"
-               }
-            ]
-         }
-      }
-   }
-}
-```
-
-
-### Resource Information
-| | |
---------- | ----------- |
-URI | `/pages/v2/ffcDetails?{param}={param_value}`
-Rate Limited? | No
-Authentication | Yes
-Response Formats | JSON
-HTTP Methods | GET
-Batch Support | No
-
-* **Rate limiter** controls the number of incoming and outgoing traffic of a network
-* **Authentication** verifies the identity of the current user or integration. See Introduction > Authentication (Merchant Setup on Admin Portal) for more details
-
-### Request URL
-
-`https://{host}/pages/v2/ffcDetails?{param}={param_value}`
-
-
-### Request Path Parameters
-
-Parameter | Type | Description
---------- | ---- | -----------
-orgId | int | Specify the org id for which you want to fetch the data
-date | date | Specify the date in YYYY/MM/DD` format to fetch the data of that specific date
-timezone | string | Specify the UTC time zone of the device
-deviceId | string | Specify the device id for which you want to fetch the data
-
-
-
-
 ## Add Group Count (V2)
 
 > Sample Request
@@ -1018,6 +771,21 @@ Batch Support | No
 
 Parameter | Type | Description
 -------- | ----- | -----------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
