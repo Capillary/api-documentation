@@ -4,7 +4,6 @@ This contains the list of APIs required to post and fetch footfall details such 
 
 The following are the host addresses of different clusters:  
 
-* **NIGHTLY**: storecare.nightly.capillary.in:8002
 * **APAC**: storecare.capillarytech.com
 * **APAC2**: sg.storecare.capillarytech.com
 * **EU**: eu.storecare.capillarytech.com
@@ -162,6 +161,37 @@ Batch Support | No
 
 * Specify `eventType=0` for customer walkin
 * Specify `eventType=1` for staff walkin 
+
+
+
+
+### Request Body Parameters
+
+
+Parameter | Type | Description
+--------- | ---- | -----------
+org_id* | int | Unique id of the org for which you want to add group count
+till_id* | int | Unique id of the TILL where the device is installed
+zone_id | int | Zone id associated to the TILL
+store_id | int | Store id associated to the TILL
+source | string |  Source from which the Data is coming to the system. Value: `till`
+store_server_id | string | Store server id if applicable
+store_server_name | string | Name of the store server
+till_name | string | Name of the TILL associated to the device
+store_name | string |Name of the store in which the device is installed
+timestamp* | timestamp | Timestamp of the device
+deviceId* | long | Unique id of the device
+outCount | int | Out count during the specific hour
+inCount | int | In count during the specific hour
+startDate* | date-time | Hourly duration of the current count (between startDate - endDate)
+endDate* | date-time | Hourly duration of the current count (between startDate - endDate)
+
+
+
+
+
+
+
 
 
 
@@ -365,7 +395,7 @@ deviceId | string | Specify the device id for which you want to fetch the data
 
 
 
-## Add FFC Details (Event Level)
+## Add FFC Details V2 (Event Level)
 
 > Sample Request
 
@@ -535,13 +565,35 @@ Batch Support | No
 
 
 
+### Request Body Parameters
+
+### Request Body Parameters
+
+
+Parameter | Type | Description
+--------- | ---- | -----------
+org_id* | int | Unique id of the org for which you want to add group count
+till_id* | int | Unique id of the TILL where the device is installed
+zone_id | int | Zone id associated to the TILL
+store_id | int | Store id associated to the TILL
+source | string |  Source from which the Data is coming to the system. Value: `till`
+store_server_id | string | Store server id if applicable
+store_server_name | string | Name of the store server
+till_name | string | Name of the TILL associated to the device
+store_name | string |Name of the store in which the device is installed
+inCountTimeStamps* | timestamp | Timestamps of each in count event
+outCountTimeStamps* | timestamp | Timestamps of each out count event
+deviceId* | long | Unique id of the device
+outCount | int | Total out count recorded
+inCount | int | Total in count recorded
+startDate* | date-time | Hourly duration of the current count (between startDate - endDate)
+endDate* | date-time | Hourly duration of the current count (between startDate - endDate)
 
 
 
 
 
-
-## Get FFC Details (Event Level)
+## Get V2 FFC Details (Event Level)
 
 Retrieves in and out count of both visitors and staff separately at event level providing more granular level details compared to v1.
 
@@ -744,7 +796,7 @@ deviceId | string | Specify the device id for which you want to fetch the data
 > Sample Request
 
 ```html
-https://sg.storecare.capillarytech.com/add/ffcGroupCount
+https://sg.storecare.capillarytech.com/add/ffcGroupCount?eventType=0
 
 ```
 
@@ -887,7 +939,7 @@ https://sg.storecare.capillarytech.com/add/ffcGroupCount
 ### Resource Information
 | | |
 --------- | ----------- |
-URI | `/add/ffcGroupCount`
+URI | `/add/ffcGroupCount?eventType=0`
 Rate Limited? | No
 Authentication | Yes
 Response Formats | JSON
@@ -899,7 +951,7 @@ Batch Support | No
 
 ### Request URL
 
-`https://{host}/add/ffcGroupCount`
+`https://{host}/add/ffcGroupCount?eventType=0`
 
 
 ### Request Body Parameters
@@ -1077,21 +1129,22 @@ Batch Support | No
 
 Parameter | Type | Description
 --------- | ---- | -----------
-orgId | int | Specify the org id for which you want to fetch the data
-date | date | Specify the date in YYYY/MM/DD` format to fetch the data of that specific date
-timezone | string | Specify the UTC time zone of the device
-deviceId | string | Specify the device id for which you want to fetch the data
+orgId* | int | Specify the org id for which you want to fetch the data
+date* | date | Specify the date in YYYY/MM/DD` format to fetch the data of that specific date
+timezone* | string | Specify the UTC time zone of the device
+deviceId* | string | Specify the device id for which you want to fetch the data
+
+<aside class="notice">All parameters marked by * are mandatory.</aside>
 
 
 
 
-
-## Add Group Count (Event Level)
+## Add Group Count V2 (Event Level)
 
 > Sample Request
 
 ```html
-https://sg.storecare.capillarytech.com/v2/add/ffcGroupCount
+https://sg.storecare.capillarytech.com/v2/add/ffcGroupCount?eventType=0
 
 ```
 
@@ -1203,7 +1256,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcGroupCount
 ### Resource Information
 | | |
 --------- | ----------- |
-URI | `/v2/add/ffcGroupCount`
+URI | `/v2/add/ffcGroupCount?eventType=0`
 Rate Limited? | No
 Authentication | Yes
 Response Formats | JSON
@@ -1215,7 +1268,7 @@ Batch Support | No
 
 ### Request URL
 
-`https://{host}/v2/add/ffcGroupCount`
+`https://{host}/v2/add/ffcGroupCount?eventType=0`
 
 
 ### Request Body Parameters
