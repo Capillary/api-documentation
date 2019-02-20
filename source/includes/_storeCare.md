@@ -160,8 +160,8 @@ Batch Support | No
 
 `https://{host}/pages/ffcDetails?eventType={0/1}`
 
-** To post only in count,specify `eventType=1` 
-** To post only out count,specify `eventType=0` 
+** Specify `eventType=0` for customer walkin 
+** Specify `eventType=1` for staff walkin 
 
 
 
@@ -531,7 +531,7 @@ Batch Support | No
 
 `https://{host}/v2/add/ffcDetails?eventType={0/1}`
 
-* Specify `eventType=0` for out count and `eventType=1` for in count
+* Specify `eventType=0` for customer walkin and `eventType=1` for staff walkin.
 
 
 
