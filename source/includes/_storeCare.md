@@ -160,8 +160,8 @@ Batch Support | No
 
 `https://{host}/pages/ffcDetails?eventType={0/1}`
 
-** Specify `eventType=0` for customer walkin 
-** Specify `eventType=1` for staff walkin 
+* Specify `eventType=0` for customer walkin
+* Specify `eventType=1` for staff walkin 
 
 
 
