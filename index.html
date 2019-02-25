@@ -9248,8 +9248,6 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h3 id="request-body-parameters">Request Body Parameters</h3>
 
-<h3 id="request-body-parameters">Request Body Parameters</h3>
-
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -9527,7 +9525,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/pages/v2/ffcDetails?{param}={param_value}</code></p>
+<p><code class="prettyprint">https://{host}/pages/v2/ffcDetails?{param1}={param_value1}&amp;{param2}={param_value2}</code></p>
 
 <h3 id="request-path-parameters">Request Path Parameters</h3>
 
@@ -9539,9 +9537,14 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </tr>
 </thead><tbody>
 <tr>
-<td>orgId</td>
+<td>orgId*</td>
 <td>int</td>
 <td>Specify the org id for which you want to fetch the data</td>
+</tr>
+<tr>
+<td>storeId*</td>
+<td>int</td>
+<td>Store id for which you want to fetch data</td>
 </tr>
 <tr>
 <td>date</td>
@@ -9558,7 +9561,24 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>string</td>
 <td>Specify the device id for which you want to fetch the data</td>
 </tr>
+<tr>
+<td>syncTimeFrom</td>
+<td>timestamp</td>
+<td>The duration (in UTC timestamp) for which the data is synced to the server (between syncTimeFrom and syncTimeTo)</td>
+</tr>
+<tr>
+<td>syncTimeTo</td>
+<td>timestamp</td>
+<td>The period (in UTC timestamp) for which the data is synced to the server (between syncTimeFrom and syncTimeTo)</td>
+</tr>
+<tr>
+<td>syncDate</td>
+<td>timestamp</td>
+<td>The data  synced on a specific date. Specify the date in <code class="prettyprint">YYYY-MM-DD</code> format. For example, if you pass <code class="prettyprint">timezone</code> is UTC+5:30 and syncDate is 2019-02-24, you will the entire data synced on 24th Feb 2019 of India timezone</td>
+</tr>
 </tbody></table>
+
+<aside class="notice">All parameters marked by * are mandatory.</aside>
 
 <h2 id="add-group-count-hourly">Add Group Count (Hourly)</h2>
 
@@ -10480,7 +10500,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}//pages/v2/ffcGroupCount?{param}={param_value}</code></p>
+<p><code class="prettyprint">https://{host}//pages/v2/ffcGroupCount?{param1}={param_value1}&amp;{param2}={param_value2}...</code></p>
 
 <h3 id="request-path-parameters">Request Path Parameters</h3>
 
@@ -10492,9 +10512,14 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </tr>
 </thead><tbody>
 <tr>
-<td>orgId</td>
+<td>orgId*</td>
 <td>int</td>
 <td>Specify the org id for which you want to fetch the data</td>
+</tr>
+<tr>
+<td>storeId*</td>
+<td>int</td>
+<td>Specify the store id for which you want to fetch the data</td>
 </tr>
 <tr>
 <td>date</td>
@@ -10511,7 +10536,24 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>string</td>
 <td>Specify the device id for which you want to fetch the data</td>
 </tr>
+<tr>
+<td>syncTimeFrom</td>
+<td>timestamp</td>
+<td>The duration (in UTC timestamp) for which the data is synced to the server (between syncTimeFrom and syncTimeTo)</td>
+</tr>
+<tr>
+<td>syncTimeTo</td>
+<td>timestamp</td>
+<td>The period (in UTC timestamp) for which the data is synced to the server (between syncTimeFrom and syncTimeTo)</td>
+</tr>
+<tr>
+<td>syncDate</td>
+<td>timestamp</td>
+<td>The data  synced on a specific date. Specify the date in <code class="prettyprint">YYYY-MM-DD</code> format. For example, if you pass <code class="prettyprint">timezone</code> is UTC+5:30 and syncDate is 2019-02-24, you will the entire data synced on 24th Feb 2019 of India timezone.</td>
+</tr>
 </tbody></table>
+
+<aside class="notice">All parameters marked by * are mandatory.</aside>
 
 <h2 id="get-notes">Get Notes</h2>
 
