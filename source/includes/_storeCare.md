@@ -565,7 +565,6 @@ Batch Support | No
 
 
 
-### Request Body Parameters
 
 ### Request Body Parameters
 
@@ -758,19 +757,23 @@ Batch Support | No
 
 ### Request URL
 
-`https://{host}/pages/v2/ffcDetails?{param}={param_value}`
+`https://{host}/pages/v2/ffcDetails?{param1}={param_value1}&{param2}={param_value2}`
 
 
 ### Request Path Parameters
 
 Parameter | Type | Description
 --------- | ---- | -----------
-orgId | int | Specify the org id for which you want to fetch the data
+orgId* | int | Specify the org id for which you want to fetch the data
+storeId* | int | Store id for which you want to fetch data
 date | date | Specify the date in YYYY/MM/DD` format to fetch the data of that specific date
 timezone | string | Specify the UTC timezone of the device
 deviceId | string | Specify the device id for which you want to fetch the data
+syncTimeFrom | timestamp | The duration (in UTC timestamp) for which the data is synced to the server (between syncTimeFrom and syncTimeTo) 
+syncTimeTo | timestamp | The period (in UTC timestamp) for which the data is synced to the server (between syncTimeFrom and syncTimeTo)
+syncDate | timestamp | The data  synced on a specific date. Specify the date in `YYYY-MM-DD` format. For example, if you pass `timezone` is UTC+5:30 and syncDate is 2019-02-24, you will the entire data synced on 24th Feb 2019 of India timezone
 
-
+<aside class="notice">All parameters marked by * are mandatory.</aside>
 
 
 
@@ -1414,20 +1417,23 @@ Batch Support | No
 
 ### Request URL
 
-`https://{host}//pages/v2/ffcGroupCount?{param}={param_value}`
+`https://{host}//pages/v2/ffcGroupCount?{param1}={param_value1}&{param2}={param_value2}...`
 
 
 ### Request Path Parameters
 
 Parameter | Type | Description
 -------- | ----- | -----------
-orgId | int | Specify the org id for which you want to fetch the data
+orgId* | int | Specify the org id for which you want to fetch the data
+storeId* | int | Specify the store id for which you want to fetch the data
 date | date | Specify the date in YYYY/MM/DD` format to fetch the data of that specific date
 timezone | string | Specify the UTC time zone of the device
 deviceId | string | Specify the device id for which you want to fetch the data
+syncTimeFrom | timestamp | The duration (in UTC timestamp) for which the data is synced to the server (between syncTimeFrom and syncTimeTo) 
+syncTimeTo | timestamp | The period (in UTC timestamp) for which the data is synced to the server (between syncTimeFrom and syncTimeTo)
+syncDate | timestamp | The data  synced on a specific date. Specify the date in `YYYY-MM-DD` format. For example, if you pass `timezone` is UTC+5:30 and syncDate is 2019-02-24, you will the entire data synced on 24th Feb 2019 of India timezone.
 
-
-
+<aside class="notice">All parameters marked by * are mandatory.</aside>
 
 
 

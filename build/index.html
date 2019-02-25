@@ -8557,7 +8557,6 @@ https://us.api.capillarytech.com/v2/cardNumber
 <p>The following are the host addresses of different clusters:  </p>
 
 <ul>
-<li><strong>NIGHTLY</strong>: storecare.nightly.capillary.in:8002</li>
 <li><strong>APAC</strong>: storecare.capillarytech.com</li>
 <li><strong>APAC2</strong>: sg.storecare.capillarytech.com</li>
 <li><strong>EU</strong>: eu.storecare.capillarytech.com</li>
@@ -8739,6 +8738,92 @@ https://us.api.capillarytech.com/v2/cardNumber
 <li>Specify <code class="prettyprint">eventType=0</code> for customer walkin</li>
 <li>Specify <code class="prettyprint">eventType=1</code> for staff walkin </li>
 </ul>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>org_id*</td>
+<td>int</td>
+<td>Unique id of the org for which you want to add group count</td>
+</tr>
+<tr>
+<td>till_id*</td>
+<td>int</td>
+<td>Unique id of the TILL where the device is installed</td>
+</tr>
+<tr>
+<td>zone_id</td>
+<td>int</td>
+<td>Zone id associated to the TILL</td>
+</tr>
+<tr>
+<td>store_id</td>
+<td>int</td>
+<td>Store id associated to the TILL</td>
+</tr>
+<tr>
+<td>source</td>
+<td>string</td>
+<td>Source from which the Data is coming to the system. Value: <code class="prettyprint">till</code></td>
+</tr>
+<tr>
+<td>store_server_id</td>
+<td>string</td>
+<td>Store server id if applicable</td>
+</tr>
+<tr>
+<td>store_server_name</td>
+<td>string</td>
+<td>Name of the store server</td>
+</tr>
+<tr>
+<td>till_name</td>
+<td>string</td>
+<td>Name of the TILL associated to the device</td>
+</tr>
+<tr>
+<td>store_name</td>
+<td>string</td>
+<td>Name of the store in which the device is installed</td>
+</tr>
+<tr>
+<td>timestamp*</td>
+<td>timestamp</td>
+<td>Timestamp of the device</td>
+</tr>
+<tr>
+<td>deviceId*</td>
+<td>long</td>
+<td>Unique id of the device</td>
+</tr>
+<tr>
+<td>outCount</td>
+<td>int</td>
+<td>Out count during the specific hour</td>
+</tr>
+<tr>
+<td>inCount</td>
+<td>int</td>
+<td>In count during the specific hour</td>
+</tr>
+<tr>
+<td>startDate*</td>
+<td>date-time</td>
+<td>Hourly duration of the current count (between startDate - endDate)</td>
+</tr>
+<tr>
+<td>endDate*</td>
+<td>date-time</td>
+<td>Hourly duration of the current count (between startDate - endDate)</td>
+</tr>
+</tbody></table>
 
 <h2 id="get-ffc-details-hourly">Get FFC Details (Hourly)</h2>
 
@@ -8972,7 +9057,7 @@ https://us.api.capillarytech.com/v2/cardNumber
 </tr>
 </tbody></table>
 
-<h2 id="add-ffc-details-event-level">Add FFC Details (Event Level)</h2>
+<h2 id="add-ffc-details-v2-event-level">Add FFC Details V2 (Event Level)</h2>
 
 <blockquote>
 <p>Sample Request</p>
@@ -9161,7 +9246,100 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <li>Specify <code class="prettyprint">eventType=0</code> for customer walkin and <code class="prettyprint">eventType=1</code> for staff walkin.</li>
 </ul>
 
-<h2 id="get-ffc-details-event-level">Get FFC Details (Event Level)</h2>
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>org_id*</td>
+<td>int</td>
+<td>Unique id of the org for which you want to add group count</td>
+</tr>
+<tr>
+<td>till_id*</td>
+<td>int</td>
+<td>Unique id of the TILL where the device is installed</td>
+</tr>
+<tr>
+<td>zone_id</td>
+<td>int</td>
+<td>Zone id associated to the TILL</td>
+</tr>
+<tr>
+<td>store_id</td>
+<td>int</td>
+<td>Store id associated to the TILL</td>
+</tr>
+<tr>
+<td>source</td>
+<td>string</td>
+<td>Source from which the Data is coming to the system. Value: <code class="prettyprint">till</code></td>
+</tr>
+<tr>
+<td>store_server_id</td>
+<td>string</td>
+<td>Store server id if applicable</td>
+</tr>
+<tr>
+<td>store_server_name</td>
+<td>string</td>
+<td>Name of the store server</td>
+</tr>
+<tr>
+<td>till_name</td>
+<td>string</td>
+<td>Name of the TILL associated to the device</td>
+</tr>
+<tr>
+<td>store_name</td>
+<td>string</td>
+<td>Name of the store in which the device is installed</td>
+</tr>
+<tr>
+<td>inCountTimeStamps*</td>
+<td>timestamp</td>
+<td>Timestamps of each in count event</td>
+</tr>
+<tr>
+<td>outCountTimeStamps*</td>
+<td>timestamp</td>
+<td>Timestamps of each out count event</td>
+</tr>
+<tr>
+<td>deviceId*</td>
+<td>long</td>
+<td>Unique id of the device</td>
+</tr>
+<tr>
+<td>outCount</td>
+<td>int</td>
+<td>Total out count recorded</td>
+</tr>
+<tr>
+<td>inCount</td>
+<td>int</td>
+<td>Total in count recorded</td>
+</tr>
+<tr>
+<td>startDate*</td>
+<td>date-time</td>
+<td>Hourly duration of the current count (between startDate - endDate)</td>
+</tr>
+<tr>
+<td>endDate*</td>
+<td>date-time</td>
+<td>Hourly duration of the current count (between startDate - endDate)</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-v2-ffc-details-event-level">Get V2 FFC Details (Event Level)</h2>
 
 <p>Retrieves in and out count of both visitors and staff separately at event level providing more granular level details compared to v1.</p>
 
@@ -9387,7 +9565,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight html"><code>https://sg.storecare.capillarytech.com/add/ffcGroupCount
+<pre class="highlight html"><code>https://sg.storecare.capillarytech.com/add/ffcGroupCount?eventType=0
 
 </code></pre>
 <blockquote>
@@ -9531,7 +9709,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/add/ffcGroupCount</code></td>
+<td><code class="prettyprint">/add/ffcGroupCount?eventType=0</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -9562,7 +9740,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/add/ffcGroupCount</code></p>
+<p><code class="prettyprint">https://{host}/add/ffcGroupCount?eventType=0</code></p>
 
 <h3 id="request-body-parameters">Request Body Parameters</h3>
 
@@ -9854,33 +10032,35 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </tr>
 </thead><tbody>
 <tr>
-<td>orgId</td>
+<td>orgId*</td>
 <td>int</td>
 <td>Specify the org id for which you want to fetch the data</td>
 </tr>
 <tr>
-<td>date</td>
+<td>date*</td>
 <td>date</td>
 <td>Specify the date in YYYY/MM/DD` format to fetch the data of that specific date</td>
 </tr>
 <tr>
-<td>timezone</td>
+<td>timezone*</td>
 <td>string</td>
 <td>Specify the UTC time zone of the device</td>
 </tr>
 <tr>
-<td>deviceId</td>
+<td>deviceId*</td>
 <td>string</td>
 <td>Specify the device id for which you want to fetch the data</td>
 </tr>
 </tbody></table>
 
-<h2 id="add-group-count-event-level">Add Group Count (Event Level)</h2>
+<aside class="notice">All parameters marked by * are mandatory.</aside>
+
+<h2 id="add-group-count-v2-event-level">Add Group Count V2 (Event Level)</h2>
 
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight html"><code>https://sg.storecare.capillarytech.com/v2/add/ffcGroupCount
+<pre class="highlight html"><code>https://sg.storecare.capillarytech.com/v2/add/ffcGroupCount?eventType=0
 
 </code></pre>
 <blockquote>
@@ -9993,7 +10173,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/v2/add/ffcGroupCount</code></td>
+<td><code class="prettyprint">/v2/add/ffcGroupCount?eventType=0</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -10024,7 +10204,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/add/ffcGroupCount</code></p>
+<p><code class="prettyprint">https://{host}/v2/add/ffcGroupCount?eventType=0</code></p>
 
 <h3 id="request-body-parameters">Request Body Parameters</h3>
 
