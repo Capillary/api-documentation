@@ -7,12 +7,11 @@
 
 Lets you update currency ratio of the org.
 
-> Sample Request
 
-## Generate External IDs
 
 ```html
 # Sample Request
+
  
 https://us.api.capillarytech.com/v2/currencyratio
 ```
