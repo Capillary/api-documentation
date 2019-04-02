@@ -7,7 +7,7 @@ language_tabs:
   
 
 toc_footers:
-  - Other API Documents:
+  - <b>Other API Documents</b>
   - <a href="https://capillary.github.io/v1.1-API-Documentation/">CRM API Documentation v1.1</a>
   - <a href="https://capillary.github.io/ecom-api-document/">AnywhereCommerce API Documentation</a>
 
