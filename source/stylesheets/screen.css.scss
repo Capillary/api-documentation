@@ -638,3 +638,238 @@ html, body {
     margin: 0 auto;
     padding: 10px 0 0 0;
   }
+  
+////////////////////////////////////////////////////////////////////////////////
+// CUSTOM CSS
+////////////////////////////////////////////////////////////////////////////////
+/* Custom CSS */
+/* 2 April 2019 */
+/* TO BE REPLACED IN MAIN CSS SOURCE */
+
+.tocify-wrapper {
+    background: #EEF1F5;
+}
+
+.tocify-wrapper .tocify-item > a,
+.tocify-wrapper .toc-footer li {
+    color: #091E42;
+    padding: 6px 10px;
+	font-weight: 500;
+}
+
+.tocify-wrapper > .search input {
+    background: #FFF;
+    border-radius: 4px;
+    padding: 10px 6px;
+    border: 1px solid #B1B9C8;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    color: #091E42;
+}
+
+.toc-footer li a {
+    color: #091E42 !important;
+}
+
+.tocify-wrapper .tocify-focus {
+    background: #D5D9E0;
+    background-color: #D5D9E0 !important;
+}
+
+.tocify-subheader .tocify-wrapper li {
+    background: red;
+}
+
+.tocify-wrapper .tocify-subheader {
+    background: #EEF1F5;
+    background-color: #EEF1F5;
+}
+
+.tocify-wrapper .tocify-focus {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.page-wrapper .dark-box {
+    background: #14283C;
+}
+
+.content pre,
+.content blockquote {
+    background: #14283C;
+}
+
+.content blockquote > p {
+    background: #121E29;
+    border: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.lang-selector {
+    background-color: #14283C;
+}
+
+.page-wrapper .lang-selector {
+    border-bottom: 0;
+}
+
+.lang-selector a.active {
+    background: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: .9rem;
+    border-bottom: 2px solid #066CC1;
+    margin: 10px 22px;
+}
+
+.lang-selector a {
+    background: none;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-size: .9rem;
+    margin: 10px 22px;
+}
+
+.highlight,
+.highlight .w {
+    background: #14283C;
+}
+
+.tocify-wrapper > .search:before {
+    display: none;
+}
+
+.page-wrapper {
+    background: #FFF;
+}
+
+.content table th {
+    border-bottom: 1px solid transparent !important;
+    background-color: #75869C !important;
+    color: #FFF !important;
+    text-shadow: none;
+}
+
+.content code.prettyprint, .content table code {
+    background-color: #EEE;
+    padding: 3px;
+    border-radius: 3px;
+    color: #444;
+    text-shadow: none;
+	font-family; monospace;
+}
+
+.highlight .kc {
+    color: #FF8932;
+}
+
+.highlight .s,
+.highlight .sb,
+.highlight .sc,
+.highlight .sd,
+.highlight .s2,
+.highlight .sh,
+.highlight .sx,
+.highlight .s1 {
+    color: #4696E5;
+}
+
+.highlight .nt {
+    color: #1CD694;
+}
+
+.highlight .err {
+    padding: 2px 4px;
+    color: #FFF;
+    text-shadow: none;
+    border-radius: 4px;
+}
+
+.content aside.notice {
+    background: #0a60ab;
+    color: #FFF;
+    text-shadow: none;
+}
+
+.tocify-wrapper .search-results.visible li {
+    color: #091E42;
+    font-weight: 600;
+}
+
+.tocify-wrapper .search-results.visible {
+    background: #D5D9E0;
+}
+
+.content > h1,
+.content > h2,
+.content > h3,
+.content > h4,
+.content > h5,
+.content > h6,
+.content > p,
+.content > table,
+.content > ul,
+.content > ol,
+.content > aside,
+.content > dl {
+    color: #3A4B68;
+}
+
+.content > h1,
+.content > h2,
+.content > h3,
+.content > h4,
+.content > h5,
+.content > h6 {
+    color: #091E42;
+	font-weight: 500;
+}
+
+html,
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif !important;
+}
+
+.content blockquote > p {
+    color: #D4E5F5;
+}
+
+.content pre.highlight.html {
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+}
+
+.content .search-highlight {
+    border: 0;
+    text-shadow: none;
+    background: #F1D32F;
+}
+
+.tocify-wrapper .search-results.visible li a {
+    color: #2c323c;
+    font-weight: 400;
+}
+
+li.tocify-item {
+    -webkit-transition: .2s linear;
+    transition: .2s linear;
+}
+
+li.tocify-item:hover {
+    opacity: 0.8;
+    background: #D5D9E0;
+}
+
+.tocify-wrapper .search-results a {
+    -webkit-transition: .2s linear;
+    transition: .2s linear;
+}
+
+.tocify-wrapper .search-results a:hover {
+    text-decoration: none;
+    opacity: 0.6;
+}
