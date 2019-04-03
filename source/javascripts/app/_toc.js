@@ -55,3 +55,8 @@
   });
 })(window);
 
+
+/* CUSTOM JS */
+$('.tocify-subheader li.tocify-item a').each(function() {
+   $(this).attr('title', $(this).text())
+});
