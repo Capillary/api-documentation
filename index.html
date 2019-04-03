@@ -218,10 +218,18 @@
           <h1 id="customer">Customer</h1>
 
 <h2 id="register-customer">Register Customer</h2>
-<pre class="highlight html"><code># Sample Request
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>
 
 https://us.api.capillarytech.com/v2/customers?source=LINE<span class="err">&amp;</span>accountId=1234
-</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">  
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">  
    </span><span class="nt">"loyaltyInfo"</span><span class="p">:{</span><span class="w">  
       </span><span class="nt">"loyaltyType"</span><span class="p">:</span><span class="s2">"loyalty"</span><span class="w">
    </span><span class="p">},</span><span class="w">
@@ -265,7 +273,7 @@ https://us.api.capillarytech.com/v2/customers?source=LINE<span class="err">&amp;
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
-<p>The above API call returns the following response</p>
+<p>Sample Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"createdId"</span><span class="p">:</span><span class="w"> </span><span class="mi">316452956</span><span class="p">,</span><span class="w">
@@ -403,8 +411,11 @@ Extended Fields are proposed fields to standardize input values and keys across 
 </tbody></table>
 
 <h2 id="update-customer-details">Update Customer Details</h2>
-<pre class="highlight html"><code># Sample Request
 
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>
 https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err">&amp;</span>accountId=22232
 </code></pre>
 <blockquote>
@@ -1096,8 +1107,8 @@ https://eu.api.capillarytech.com/v2/customers/17742?source=WECHAT<span class="er
                </span><span class="nt">"modifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-12T18:50:23+08:00"</span><span class="w">
            </span><span class="p">},</span><span class="w">
            </span><span class="nt">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-               </span><span class="nt">"Gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="w">
-               </span><span class="s2">"Favorite Color"</span><span class="err">:</span><span class="w"> </span><span class="s2">"Green"</span><span class="w">
+               </span><span class="nt">"Gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"Favorite Color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Green"</span><span class="w">
            </span><span class="p">},</span><span class="w">
            </span><span class="nt">"identifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                </span><span class="p">{</span><span class="w">
@@ -1508,9 +1519,9 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
-<p>Following is the sample response generated for the above request </p>
+<p>Sample Response</p>
 </blockquote>
-<pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
+<pre class="highlight json"><code><span class="w">
 
 </span><span class="p">{</span><span class="w">
   </span><span class="nt">"scope"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -1615,9 +1626,17 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 </tbody></table>
 
 <h2 id="retrieve-subscription-details">Retrieve Subscription Details</h2>
-<pre class="highlight html"><code># Sample Request
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>
 https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
-</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
    </span><span class="nt">"subscriptions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
        </span><span class="p">{</span><span class="w">
