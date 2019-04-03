@@ -10,10 +10,6 @@
     $("#nav-button").removeClass('open');
   };
  
-  $('.tocify-subheader li.tocify-item a').each(function() {
-    $(this).attr('title', $(this).text())
-  });
-
   var makeToc = function() {
     global.toc = $("#toc").tocify({
       selectors: 'h1, h2',
@@ -58,3 +54,9 @@
     });
   });
 })(window);
+
+$(document).ready(function () {
+   $('.tocify-subheader li.tocify-item a').each(function () {
+       $(this).attr('title', $(this).text());
+   });
+});
