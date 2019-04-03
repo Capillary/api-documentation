@@ -9,6 +9,10 @@
     $(".tocify-wrapper").removeClass('open');
     $("#nav-button").removeClass('open');
   };
+ 
+  $('.tocify-subheader li.tocify-item a').each(function() {
+    $(this).attr('title', $(this).text())
+  });
 
   var makeToc = function() {
     global.toc = $("#toc").tocify({
@@ -54,5 +58,3 @@
     });
   });
 })(window);
-
-
