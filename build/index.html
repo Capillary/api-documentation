@@ -218,10 +218,18 @@
           <h1 id="customer">Customer</h1>
 
 <h2 id="register-customer">Register Customer</h2>
-<pre class="highlight html"><code># Sample Request
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>
 
 https://us.api.capillarytech.com/v2/customers?source=LINE<span class="err">&amp;</span>accountId=1234
-</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">  
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">  
    </span><span class="nt">"loyaltyInfo"</span><span class="p">:{</span><span class="w">  
       </span><span class="nt">"loyaltyType"</span><span class="p">:</span><span class="s2">"loyalty"</span><span class="w">
    </span><span class="p">},</span><span class="w">
@@ -265,7 +273,7 @@ https://us.api.capillarytech.com/v2/customers?source=LINE<span class="err">&amp;
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
-<p>The above API call returns the following response</p>
+<p>Sample Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"createdId"</span><span class="p">:</span><span class="w"> </span><span class="mi">316452956</span><span class="p">,</span><span class="w">
@@ -403,8 +411,11 @@ Extended Fields are proposed fields to standardize input values and keys across 
 </tbody></table>
 
 <h2 id="update-customer-details">Update Customer Details</h2>
-<pre class="highlight html"><code># Sample Request
 
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>
 https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err">&amp;</span>accountId=22232
 </code></pre>
 <blockquote>
@@ -1096,8 +1107,8 @@ https://eu.api.capillarytech.com/v2/customers/17742?source=WECHAT<span class="er
                </span><span class="nt">"modifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-12T18:50:23+08:00"</span><span class="w">
            </span><span class="p">},</span><span class="w">
            </span><span class="nt">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-               </span><span class="nt">"Gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="w">
-               </span><span class="s2">"Favorite Color"</span><span class="err">:</span><span class="w"> </span><span class="s2">"Green"</span><span class="w">
+               </span><span class="nt">"Gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"Favorite Color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Green"</span><span class="w">
            </span><span class="p">},</span><span class="w">
            </span><span class="nt">"identifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                </span><span class="p">{</span><span class="w">
@@ -1508,9 +1519,9 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
-<p>Following is the sample response generated for the above request </p>
+<p>Sample Response</p>
 </blockquote>
-<pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
+<pre class="highlight json"><code><span class="w">
 
 </span><span class="p">{</span><span class="w">
   </span><span class="nt">"scope"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -1615,9 +1626,17 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 </tbody></table>
 
 <h2 id="retrieve-subscription-details">Retrieve Subscription Details</h2>
-<pre class="highlight html"><code># Sample Request
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>
 https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
-</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
    </span><span class="nt">"subscriptions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
        </span><span class="p">{</span><span class="w">
@@ -1747,7 +1766,7 @@ https://us.api.capillarytech.com/v2/otp/generate?format=json
 </span></code></pre><pre class="highlight json"><code><span class="w">
 </span><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Failure</span><span class="w"> </span><span class="err">Response</span><span class="w">
 
-</span><span class="err">Failure:</span><span class="w">
+
 </span><span class="p">{</span><span class="w">
     </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
@@ -1858,8 +1877,6 @@ If the email template is not specified, the validation code will be sent in the 
 <p>Sample Success Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="w">
-</span><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Success</span><span class="w"> </span><span class="err">Response</span><span class="w">
-
 </span><span class="p">{</span><span class="w">
     </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
@@ -1940,10 +1957,18 @@ If the email template is not specified, the validation code will be sent in the 
 </tbody></table>
 
 <h2 id="fetch-otp">Fetch OTP</h2>
-<pre class="highlight html"><code># Sample Request
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>
 
 https://us.api.capillarytech.com/v2/otp/source=WECHAT<span class="err">&amp;</span>accountId=WECHAT-API1<span class="err">&amp;</span>identifierName=mobile<span class="err">&amp;</span>identifierValue=8799361139<span class="err">&amp;</span>threshold=60<span class="err">&amp;</span>scope=POINTS
-</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
    </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">966</span><span class="p">,</span><span class="w">
    </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">313302314</span><span class="p">,</span><span class="w">
@@ -3069,18 +3094,29 @@ https://us.api.capillarytech.com/v2/otp/source=WECHAT<span class="err">&amp;</sp
 <p>The userAuth resource allows existing customers of InStore to register on the org&rsquo;s web page/mobile app, authenticate login credentials, and update user details.</p>
 
 <h2 id="register-users">Register Users</h2>
-<pre class="highlight html"><code># Sample Request
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>
 
 https://us.api.capillarytech.com/v2/user_auth/register
-</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">POST</span><span class="w"> </span><span class="err">Request</span><span class="w">
-
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="nt">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"71000000000"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom.sawyer@example.com"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom123"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
 
 </span><span class="p">{</span><span class="w">
 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24335250</span><span class="p">,</span><span class="w">
@@ -3212,20 +3248,28 @@ https://us.api.capillarytech.com/v2/user_auth/register
 </tbody></table>
 
 <h2 id="user-authentication">User Authentication</h2>
-<pre class="highlight html"><code># Sample Request
 
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>
 https://us.api.capillarytech.com/v2/user_auth/authorize_user
-</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">POST</span><span class="w"> </span><span class="err">Request</span><span class="w">
-
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="nt">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"71000000000"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom.sawyer@example.com"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom1234"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
-
-</span><span class="p">{</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -3286,20 +3330,27 @@ https://us.api.capillarytech.com/v2/user_auth/authorize_user
 </tbody></table>
 
 <h2 id="update-password">Update Password</h2>
-<pre class="highlight html"><code># Sample Request
 
-https://us.api.capillarytech.com/v2/user_auth/update
-</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">PUT</span><span class="w"> </span><span class="err">Request</span><span class="w">
-
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/user_auth/update
+</code></pre>
+<blockquote>
+<p>Sample PUT Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
   </span><span class="nt">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"71000000000"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom.sawyer@example.com"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"password"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom12345"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-</span></code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
-
-</span><span class="p">{</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">

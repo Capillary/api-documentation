@@ -2,12 +2,17 @@
 
 ## Register Customer
 
+
+> Sample Request
+
 ```html
-# Sample Request
+
  
 https://us.api.capillarytech.com/v2/customers?source=LINE&accountId=1234
 ```
 
+
+> Sample POST Request
 
 ```json
 {  
@@ -54,7 +59,7 @@ https://us.api.capillarytech.com/v2/customers?source=LINE&accountId=1234
 }
 ```
 
-> The above API call returns the following response
+> Sample Response
 
 ```json
 {
@@ -130,8 +135,9 @@ associatedWith | The TILL to which you want to associate the customer
 
 ## Update Customer Details
 
+> Sample Request
+
 ```html
-# Sample Request
 
 https://us.api.capillarytech.com/v2/customers/329?source=WECHAT&accountId=22232
 ```
@@ -197,6 +203,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT&accountId=22232
 }
 
 ```
+
 > Sample Response
 
 ```json
@@ -575,7 +582,7 @@ https://eu.api.capillarytech.com/v2/customers/17742?source=WECHAT&accountId=2223
                "modifiedDate": "2016-08-12T18:50:23+08:00"
            },
            "fields": {
-               "Gender": "Male"
+               "Gender": "Male",
                "Favorite Color": "Green"
            },
            "identifiers": [
@@ -914,10 +921,11 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
     ]
 }
 ```
-> Following is the sample response generated for the above request 
+
+> Sample Response
 
 ```json
-# Sample Response
+
 
 {
   "scope": {
@@ -985,13 +993,18 @@ type | `OPTIN` to subscribe and `OPTOUT` to unsubscribe
 
 
 ## Retrieve Subscription Details
+
+> Sample Request
+
 ```html
-# Sample Request
+
 https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 ```
 
+> Sample Response
+
 ```json
-# Sample Response
+
 {
    "subscriptions": [
        {
