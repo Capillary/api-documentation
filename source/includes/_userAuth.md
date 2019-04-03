@@ -4,15 +4,17 @@ The userAuth resource allows existing customers of InStore to register on the or
 
 ## Register Users
 
+> Sample Request
+
 ```html
-# Sample Request
+
  
 https://us.api.capillarytech.com/v2/user_auth/register
 ```
 
+> Sample POST Request
 
 ```json
-# Sample POST Request
 
 {
   "mobile": "71000000000",
@@ -22,8 +24,10 @@ https://us.api.capillarytech.com/v2/user_auth/register
 
 ```
 
+> Sample Response
+
 ```json
-# Sample Response
+
 
 {
 "id": 24335250,
@@ -129,15 +133,17 @@ password | Specify a password for the user account as a MD5 hash
 
 ## User Authentication
 
+> Sample Request
+
 ```html
-# Sample Request
  
 https://us.api.capillarytech.com/v2/user_auth/authorize_user
 ```
 
+> Sample POST Request
+
 
 ```json
-# Sample POST Request
 
 {
   "mobile": "71000000000",
@@ -147,9 +153,10 @@ https://us.api.capillarytech.com/v2/user_auth/authorize_user
 
 ```
 
-```json
-# Sample Response
+> Sample Response
 
+
+```json
 {
     "entity": true,
     "warnings": []
@@ -186,15 +193,17 @@ password | Provice the password in md5 hash form
 
 ## Update Password
 
-```html
-# Sample Request
- 
+> Sample Request
+
+
+```html 
 https://us.api.capillarytech.com/v2/user_auth/update
 ```
 
+> Sample PUT Request
+
 
 ```json
-# Sample PUT Request
 
 {
   "mobile": "71000000000",
@@ -204,9 +213,10 @@ https://us.api.capillarytech.com/v2/user_auth/update
 
 ```
 
-```json
-# Sample Response
+> Sample Response
 
+
+```json
 {
     "entity": true,
     "warnings": []

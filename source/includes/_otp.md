@@ -58,7 +58,7 @@ https://us.api.capillarytech.com/v2/otp/generate?format=json
 
 # Sample Failure Response
 
-Failure:
+
 {
 	"errors": [
     	{
@@ -139,8 +139,6 @@ https://us.api.capillarytech.com/v2/otp/validate?format=json
 
 ```json
 
-# Sample Success Response
-
 {
 	"entity": true,
 	"warnings": []
@@ -189,15 +187,18 @@ action | Specify the action to be performed on successful validation. COUPON, PO
 
 ## Fetch OTP
 
+> Sample Request
+
 ```html
-# Sample Request
+
  
 https://us.api.capillarytech.com/v2/otp/source=WECHAT&accountId=WECHAT-API1&identifierName=mobile&identifierValue=8799361139&threshold=60&scope=POINTS
 ```
 
+> Sample Response
 
 ```json
-# Sample Response
+
 {
    "orgId":966,
    "userId":313302314,
