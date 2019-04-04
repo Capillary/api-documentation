@@ -976,3 +976,33 @@ li.tocify-item:hover {
 .content blockquote {
     width: 42%;
 }
+
+
+.tocify-wrapper > .search input {
+    width: 220px;
+}
+
+.tocify-wrapper .tocify-item > a,
+.tocify-wrapper .toc-footer li {
+    padding: 6px 20px;
+}
+
+.tocify-wrapper .tocify-subheader .tocify-item > a {
+    padding-left: 35px;
+}
+
+::-moz-selection {
+    background: #C1D1E2;
+}
+
+::selection {
+    background: #D8E3EF;
+}
+
+pre ::-moz-selection {
+    background: #BDBDBD;
+}
+
+pre ::selection {
+    background: #BDBDBD;
+}
