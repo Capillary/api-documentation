@@ -136,12 +136,12 @@ Batch Support  | Yes
 ### Request Parameters
 Parameter | Description
 --------- | -----------
-Customer identifier* | Unique identifier of the customer whose coupon needs to be redeemed
-id | Coupon id that needs to be redeemed
-code | Coupon code that need to be redeemed
-validation_code | Validation code is required for the orgs that use validation based redemption
-number | Transaction number against which the coupon needs to be redeemed
-amount | Transaction amount against which the coupon is redeemed
+billAmount | Amount of the transaction for which you want to redeem coupons
+transactionNumber | Transaction number against which the coupon needs to be redeemed
+user | Specify any identifier of the user who wants to redeem coupons. Values: mobile, email, externalId
+redemptionTime | Date and time when the coupon has to be redeemed
+redemptionRequestList | Pass the list of each coupon code that you want  to redeem for the transaction
+code | Coupon code to be redeemed
 
 <aside class="warning"> You need to pass either code or id as applicable </aside>
 
