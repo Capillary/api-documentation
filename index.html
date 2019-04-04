@@ -2217,28 +2217,28 @@ http://api.capillary.co.in/v2/coupon/redeem
 </tr>
 </thead><tbody>
 <tr>
-<td>Customer identifier*</td>
-<td>Unique identifier of the customer whose coupon needs to be redeemed</td>
+<td>billAmount</td>
+<td>Amount of the transaction for which you want to redeem coupons</td>
 </tr>
 <tr>
-<td>id</td>
-<td>Coupon id that needs to be redeemed</td>
-</tr>
-<tr>
-<td>code</td>
-<td>Coupon code that need to be redeemed</td>
-</tr>
-<tr>
-<td>validation_code</td>
-<td>Validation code is required for the orgs that use validation based redemption</td>
-</tr>
-<tr>
-<td>number</td>
+<td>transactionNumber</td>
 <td>Transaction number against which the coupon needs to be redeemed</td>
 </tr>
 <tr>
-<td>amount</td>
-<td>Transaction amount against which the coupon is redeemed</td>
+<td>user</td>
+<td>Specify any identifier of the user who wants to redeem coupons. Values: mobile, email, externalId</td>
+</tr>
+<tr>
+<td>redemptionTime</td>
+<td>Date and time when the coupon has to be redeemed</td>
+</tr>
+<tr>
+<td>redemptionRequestList</td>
+<td>Pass the list of each coupon code that you want  to redeem for the transaction</td>
+</tr>
+<tr>
+<td>code</td>
+<td>Coupon code to be redeemed</td>
 </tr>
 </tbody></table>
 
