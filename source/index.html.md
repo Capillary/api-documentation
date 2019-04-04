@@ -14,6 +14,7 @@ toc_footers:
 includes:
   - customer
   - otp
+  - coupon
   - survey
   - userAuth
   - customerWalkin
