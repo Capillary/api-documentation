@@ -13,6 +13,7 @@ toc_footers:
 
 includes:
   - customer
+  - customerLabels
   - otp
   - coupon
   - survey
