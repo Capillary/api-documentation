@@ -1714,6 +1714,384 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 </tr>
 </tbody></table>
 
+          <h1 id="customer-labels">Customer Labels</h1>
+
+<p>Customer labels are used for tagging customers based on their activities or loyalty histories. Tags are used in loyalty, campaigns and Essential Insights. This resource lets you create new tags and tag customers to a tag.</p>
+
+<h2 id="add-labels">Add Labels</h2>
+
+<p>Lets you add a new customer tag to the organization. You cannot add tags beyond the limit set for the org. </p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://api.us.capillarytech.com/v2/organization/labels
+
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"orgLabels"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Premium"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customers whose purchase value is more than $4000"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GadgetFreak"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Interested in gadgets and new technology"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">organization/labels</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{Cluster URL}/v2/organization/labels</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name*</td>
+<td>Name of the tag or labels</td>
+</tr>
+<tr>
+<td>description*</td>
+<td>Short description about the tag</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-org-labels">Get Org Labels</h2>
+
+<p>Retrieves all customers labels created for that specific org.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/organization/labels
+
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1779</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Loves new trends and collections in fashion"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15000449</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fashion"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1779</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"High loyal customer with spending more than $13000"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15000449</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Premium"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1779</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Loves new gadgets and technology"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15000449</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GadgetFreak"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1779</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"汉语"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15000449</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"汉语"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">organization/labels</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{Cluster API URL}/v2/organization/labels</code></p>
+
+<h2 id="tag-customers-to-labels">Tag Customers (to Labels)</h2>
+
+<p>Lets you tag a customer to one or more customer labels.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/customers/249598560/changeLabels
+
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"add"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+     </span><span class="p">{</span><span class="w">
+       </span><span class="nt">"labelName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GadgetFreak"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+       </span><span class="nt">"labelName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Premium"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="mi">249598560</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">customers/{userId}/changeLabels</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{cluster URL}/v2/customers/{userId}/changeLabels</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>userId*</td>
+<td>Path</td>
+<td>Unique id of the  user that you want to add customer label</td>
+</tr>
+<tr>
+<td>labelName*</td>
+<td>Body</td>
+<td>Label name that you want to tag to the customer</td>
+</tr>
+</tbody></table>
+
+<h2 id="fetch-customer-labels">Fetch Customer Labels</h2>
+
+<p>Retrieves the list of labels tagged to a customer.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/customers/249598560/labels
+
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"addedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15147364</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"labelId"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">249598560</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"labelName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GadgetFreak"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"deleted"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/customers/{userId}/labels</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{Cluster URL}/v2/customers/{userId}/labels</code></p>
+
+<h3 id="request-path-parameters">Request Path Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>userId*</td>
+<td>Unique id of the customer for which you want to fetch tagged labels</td>
+</tr>
+</tbody></table>
+
           <h1 id="otp">OTP</h1>
 
 <p>This section consists of APIs related to OTPs that are used to validate customers for registration or points/coupon redemption.</p>

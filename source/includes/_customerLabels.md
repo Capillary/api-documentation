@@ -10,6 +10,9 @@ Customer labels are used for tagging customers based on their activities or loya
 Lets you add a new customer tag to the organization. You cannot add tags beyond the limit set for the org. 
 
 
+<aside class="notice"> You can set the label limit at the org level using the API `POST organization/configs` in the parameter `ORG_MAX_LABEL_COUNT` </aside>
+
+
 
 
 > Sample Request
