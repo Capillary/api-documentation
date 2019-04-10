@@ -1,6 +1,6 @@
 # Customer Labels
 
-Customer labels are used for tagging customers based on their activities or loyalty histories. Tags are used in loyalty, campaigns and Essential Insights. This resource lets you create new tags and tag customers to a tag.
+Customer labels are used for tagging customers based on their activities or loyalty histories. Tags are used in loyalty, campaigns and Essential Insights. You can add new labels and tag labels to customers using APIs of organization and customers mentioned here.
 
 
 
@@ -44,7 +44,10 @@ https://api.us.capillarytech.com/v2/organization/labels
 > Sample Response
 
 ```json
-
+{
+    "entity": 1779,
+    "warnings": []
+}
 
 ```
 
@@ -235,7 +238,7 @@ labelName* | Body | Label name that you want to tag to the customer
 
 
 
-## Fetch Customer Labels
+## Fetch Labels of a Customer
 
 Retrieves the list of labels tagged to a customer.
 
@@ -296,3 +299,84 @@ Batch Support | No
 Parameter | Description
 -------- | -----------
 userId* | Unique id of the customer for which you want to fetch tagged labels
+
+
+## Search Customers by Labels
+
+Retrieves the list of customers who are tagged to a specific label. You can also search by partial label name. By default you will see a maximum of 10 records.
+
+
+> Sample Request
+
+```html
+v2/customers/labels/search?q=premium
+
+```
+
+
+
+
+> Sample Response
+
+```json
+{
+    "pagination": {
+        "limit": 10,
+        "offset": 0,
+        "total": 2
+    },
+    "data": [
+        {
+            "userId": 316481804,
+            "customerLabels": [
+                {
+                    "orgId": 0,
+                    "labelId": 3,
+                    "userId": 316481804,
+                    "labelName": "book"
+                }
+            ]
+        },
+        {
+            "userId": 249598560,
+            "customerLabels": [
+                {
+                    "orgId": 0,
+                    "labelId": 3,
+                    "userId": 249598560,
+                    "labelName": "book"
+                }
+            ]
+        }
+    ],
+    "warnings": [],
+    "errors": []
+}
+
+```
+
+
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/customers/labels/search?q={LabelName}`
+Rate Limited? | No
+Authentication | Yes
+Response Formats | JSON
+HTTP Methods | GET
+Batch Support | No
+
+* **Rate limiter** controls the number of incoming and outgoing traffic of a network
+* **Authentication** verifies the identity of the current user or integration. See Introduction > Authentication (Merchant Setup on Admin Portal) for more details
+
+### Request URL
+
+`https://{Cluster URL}/v2/customers/labels/search?q={LabelName}`
+
+
+### Request Path Parameters
+
+Parameter | Description
+-------- | -----------
+q* | Specify the label name by which you want to fetch customers. You can also pass partial string. For example `pre` to fetch customers in all labels that starts with pre
