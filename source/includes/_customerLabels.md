@@ -169,7 +169,7 @@ Batch Support | No
 ## Tag Customers (to Labels)
 
 
-Lets you tag a customer to one or more customer labels.
+Lets you tag a customer to one or more customer labels or remove an existing label.
 
 
 > Sample Request
@@ -190,7 +190,12 @@ https://eu.api.capillarytech.com/v2/customers/249598560/changeLabels
 	{
        "labelName": "Premium"
     }
-  ]
+  ],
+  "remove":[
+  {
+      "labelName": "book"
+   }
+ ]
 }
 
 ```

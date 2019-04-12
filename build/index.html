@@ -1716,7 +1716,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 
           <h1 id="customer-labels">Customer Labels</h1>
 
-<p>Customer labels are used for tagging customers based on their activities or loyalty histories. Tags are used in loyalty, campaigns and Essential Insights. This resource lets you create new tags and tag customers to a tag.</p>
+<p>Customer labels are used for tagging customers based on their activities or loyalty histories. Tags are used in loyalty, campaigns and Essential Insights. You can add new labels and tag labels to customers using APIs of organization and customers mentioned here.</p>
 
 <h2 id="add-labels">Add Labels</h2>
 
@@ -1749,7 +1749,10 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 <blockquote>
 <p>Sample Response</p>
 </blockquote>
-<pre class="highlight json"><code><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="mi">1779</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
 </span></code></pre>
 <h3 id="resource-information">Resource Information</h3>
@@ -2007,7 +2010,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 </tr>
 </tbody></table>
 
-<h2 id="fetch-customer-labels">Fetch Customer Labels</h2>
+<h2 id="fetch-labels-of-a-customer">Fetch Labels of a Customer</h2>
 
 <p>Retrieves the list of labels tagged to a customer.</p>
 
@@ -2091,6 +2094,111 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 <tr>
 <td>userId*</td>
 <td>Unique id of the customer for which you want to fetch tagged labels</td>
+</tr>
+</tbody></table>
+
+<h2 id="search-customers-by-labels">Search Customers by Labels</h2>
+
+<p>Retrieves the list of customers who are tagged to a specific label. You can also search by partial label name. By default you will see a maximum of 10 records.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>v2/customers/labels/search?q=premium
+
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">316481804</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"customerLabels"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"labelId"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">316481804</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"labelName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"book"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">249598560</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"customerLabels"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"labelId"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">249598560</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"labelName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"book"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/customers/labels/search?q={LabelName}</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{Cluster URL}/v2/customers/labels/search?q={LabelName}</code></p>
+
+<h3 id="request-path-parameters">Request Path Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>q*</td>
+<td>Specify the label name by which you want to fetch customers. You can also pass partial string. For example <code class="prettyprint">pre</code> to fetch customers in all labels that starts with pre</td>
 </tr>
 </tbody></table>
 
