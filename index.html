@@ -1914,7 +1914,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 
 <h2 id="tag-customers-to-labels">Tag Customers (to Labels)</h2>
 
-<p>Lets you tag a customer to one or more customer labels.</p>
+<p>Lets you tag a customer to one or more customer labels or remove an existing label.</p>
 
 <blockquote>
 <p>Sample Request</p>
@@ -1933,7 +1933,12 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
     </span><span class="p">{</span><span class="w">
        </span><span class="nt">"labelName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Premium"</span><span class="w">
     </span><span class="p">}</span><span class="w">
-  </span><span class="p">]</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"remove"</span><span class="p">:[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"labelName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"book"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+ </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre>
