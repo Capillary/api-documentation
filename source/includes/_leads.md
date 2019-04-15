@@ -275,6 +275,31 @@ Batch Support | No
 `http://{Cluster URL}/v2/leads`
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## Update Extended Fields
 
 Updates extended fields for an existing lead
@@ -383,6 +408,113 @@ Batch Support | No
 
 
 
+## Add Lead Substatus
+
+Lets you add sub-status to a lead status.
+
+
+> Sample Request
+
+```html
+http://us.api.capillarytech.com/v2/leads/substatus
+```
+
+> Sample POST Request
+
+```json
+
+```
+
+> Sample Response
+
+```json
+{
+    "status": "LOST",
+    "subStatus": "InvalidPhoneNumber",
+    "warnings": []
+}
+
+```
+
+
+
+
+
+
+
+
+### Resource Information
+
+| | |
+--------- | ----------- |
+URI | `/leads/substatus`
+Rate Limited? | Yes
+Authentication | Yes
+Response Formats | JSON
+HTTP Methods | POST
+Batch Support | No
+
+### Request URL
+`http://{Cluster URL}/v2/leads/substatus`
+
+
+
+
+
+
+## Get Lead Substatus
+
+Retrieves all the sub-statuses added (for each status) to the organization.
+
+> Sample Request
+
+```html
+http://us.api.capillarytech.com/v2/leads/substatuses
+```
+
+
+> Sample Response
+
+```json
+{
+    "data": [
+        {
+            "status": "LOST",
+            "subStatus": "InvalidPhoneNumber"
+        },
+        {
+            "status": "ON_HOLD",
+            "subStatus": "YetToDecide"
+        }
+    ],
+    "warnings": [],
+    "errors": []
+}
+```
+
+
+
+
+### Resource Information
+
+| | |
+--------- | ----------- |
+URI | `/leads/substatuses`
+Rate Limited? | Yes
+Authentication | Yes
+Response Formats | JSON
+HTTP Methods | GET
+Batch Support | No
+
+### Request URL
+`http://{Cluster URL}/v2/leads/substatuses`
+
+
+
+
+
+
+
 
 ## Update Lead Status
 
@@ -396,99 +528,110 @@ http://us.api.capillarytech.com/v2/leads/21/status
 
 ```json
 {
-  "status": "WON",
-  "createdBy": 28812689,
-  "reasonId": 6,
-  "extendedFields": {
-    "trial_status":"Not Done"
-  },
+    "status": "ON_HOLD",
+    "subStatus": "YetToDecide",
+    "createdBy": 28812689,
+    "reasonId": 2
 }
-
 ```
 
 > Sample Response
 
 ```json
 {
-    "id": 1,
+    "id": 2,
     "userId": 368754334,
     "type": "SKU",
     "leadFor": "item001",
-    "status": "WON",
+    "status": "ON_HOLD",
     "nextFollowUp": "2018-10-05T08:00:00+05:30",
     "createdOn": "2018-10-04T13:30:00+05:30",
     "createdBy": 28812689,
-    "lastUpdatedOn": "2018-11-14T15:44:26+05:30",
+    "lastUpdatedOn": "2019-04-15T14:58:39+05:30",
     "lastUpdatedBy": 15002926,
     "followUpDetails": [
         {
-            "id": 1,
+            "id": 3,
             "userId": 368754334,
-            "leadId": 1,
+            "leadId": 2,
             "notes": "notes 1",
             "createdBy": 15002926,
-            "createdOn": "2018-11-14T15:38:04+05:30",
+            "createdOn": "2018-12-06T17:36:28+05:30",
             "followedUpBy": 28812689,
             "followedUpOn": "2018-10-04T12:45:00+05:30",
             "scheduledFollowUp": "2018-10-04T12:30:00+05:30"
         },
         {
-            "id": 2,
+            "id": 4,
             "userId": 368754334,
-            "leadId": 1,
+            "leadId": 2,
             "notes": "notes 2",
             "createdBy": 15002926,
-            "createdOn": "2018-11-14T15:38:04+05:30",
+            "createdOn": "2018-12-06T17:36:28+05:30",
             "followedUpBy": 28812689,
             "followedUpOn": "2018-10-04T12:45:00+05:30",
             "scheduledFollowUp": "2018-10-04T12:30:00+05:30"
         }
     ],
-	
     "statusLogDetails": [
         {
-            "id": 1,
+            "id": 4,
             "userId": 368754334,
-            "leadId": 1,
+            "leadId": 2,
             "status": "OPEN",
             "createdBy": 15002926,
-            "createdOn": "2018-11-14T15:38:04+05:30",
-            "reasonId": 5,
-            "reason": "Best price availabe at another store"
-        },
-        {
-            "id": 2,
-            "userId": 368754334,
-            "leadId": 1,
-            "status": "ON_HOLD",
-            "createdBy": 15002926,
-            "createdOn": "2018-11-14T15:38:04+05:30",
-            "reasonId": 4,
+            "createdOn": "2018-12-06T17:36:28+05:30",
+            "reasonId": 1,
             "reason": "Item not available in store"
         },
         {
-            "id": 3,
+            "id": 5,
             "userId": 368754334,
-            "leadId": 1,
-            "status": "WON",
+            "leadId": 2,
+            "status": "ON_HOLD",
             "createdBy": 15002926,
-            "createdOn": "2018-11-14T15:44:27+05:30",
-            "reasonId": 6,
-            "reason": "Deal closed"
+            "createdOn": "2018-12-06T17:36:28+05:30",
+            "reasonId": 2,
+            "reason": "Best price availabe at another store"
+        },
+        {
+            "id": 16,
+            "userId": 368754334,
+            "leadId": 2,
+            "status": "LOST",
+            "createdBy": -1,
+            "createdOn": "2019-01-28T14:34:46+05:30",
+            "reasonId": 11,
+            "reason": "AUTO_CLOSE"
+        },
+        {
+            "id": 23,
+            "userId": 368754334,
+            "leadId": 2,
+            "status": "ON_HOLD",
+            "createdBy": 28812689,
+            "createdOn": "2019-04-15T14:58:39+05:30",
+            "reasonId": 2,
+            "reason": "Best price availabe at another store",
+            "subStatus": "YetToDecide"
         }
     ],
     "orgSourceId": -1,
+    "extendedFields": {
+        "trial_status": "Not Done"
+    },
+    "subStatus": "YetToDecide",
     "warnings": []
 }
 ```
 
-Updates the status of an existing lead. You can have status as OPEN (for new lead), WON (for a successful purchase lead), LOST (for unreverted lead), ON_HOLD, DELETED.
+Updates the status and substatus of an existing lead. You can have status as OPEN (for new lead), WON (for a successful purchase lead), LOST (for unreverted lead), ON_HOLD, DELETED.
 
 ### Resource Information
 
 | | |
 --------- | ----------- |
-URI | `/leads/{leadid}/status`
+URI | `/leads/{leadId}/status`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
@@ -496,7 +639,7 @@ HTTP Methods | PUT
 Batch Support | No
 
 ### Request URL
-`http://{Cluster URL}/v2/leads/{leadid}/status`
+`http://{Cluster URL}/v2/leads/{leadId}/status`
 
 
 
@@ -591,6 +734,8 @@ http://us.api.capillarytech.com/v2/leads?sortOrder=DESC&type=ALL&limit=10&orgSou
 ```
 
 Retrieves leads based on the input parameters
+
+
 
 ### Resource Information
 
