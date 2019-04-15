@@ -6867,6 +6867,133 @@ password* | Specify your preferred new password</p>
 
 <p><code class="prettyprint">http://{Cluster URL}/v2/leads/{leadId}</code></p>
 
+<h2 id="add-lead-substatus">Add Lead Substatus</h2>
+
+<p>Lets you add sub-status to a lead status.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>http://us.api.capillarytech.com/v2/leads/substatus
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LOST"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"subStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"InvalidPhoneNumber"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/leads/substatus</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">http://{Cluster URL}/v2/leads/substatus</code></p>
+
+<h2 id="get-lead-substatus">Get Lead Substatus</h2>
+
+<p>Retrieves all the sub-statuses added (for each status) to the organization.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>http://us.api.capillarytech.com/v2/leads/substatuses
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LOST"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"subStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"InvalidPhoneNumber"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ON_HOLD"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"subStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YetToDecide"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/leads/substatuses</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">http://{Cluster URL}/v2/leads/substatuses</code></p>
+
 <h2 id="update-lead-status">Update Lead Status</h2>
 
 <blockquote>
@@ -6878,91 +7005,102 @@ password* | Specify your preferred new password</p>
 <p>Sample PUT Request</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WON"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">28812689</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"trial_status"</span><span class="p">:</span><span class="s2">"Not Done"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-</span><span class="err">}</span><span class="w">
-
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ON_HOLD"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"subStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YetToDecide"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">28812689</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>Sample Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
     </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SKU"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"leadFor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"item001"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WON"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ON_HOLD"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"nextFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-05T08:00:00+05:30"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T13:30:00+05:30"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">28812689</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-14T15:44:26+05:30"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-15T14:58:39+05:30"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
     </span><span class="nt">"followUpDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
             </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
             </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes 1"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-14T15:38:04+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-06T17:36:28+05:30"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"followedUpBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">28812689</span><span class="p">,</span><span class="w">
             </span><span class="nt">"followedUpOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:45:00+05:30"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"scheduledFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:30:00+05:30"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
             </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
             </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes 2"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-14T15:38:04+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-06T17:36:28+05:30"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"followedUpBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">28812689</span><span class="p">,</span><span class="w">
             </span><span class="nt">"followedUpOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:45:00+05:30"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"scheduledFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:30:00+05:30"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
-
     </span><span class="nt">"statusLogDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
             </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
             </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPEN"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-14T15:38:04+05:30"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Best price availabe at another store"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ON_HOLD"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-14T15:38:04+05:30"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-06T17:36:28+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
             </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Item not available in store"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
             </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WON"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ON_HOLD"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-14T15:44:27+05:30"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deal closed"</span><span class="w">
+            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-06T17:36:28+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Best price availabe at another store"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LOST"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-28T14:34:46+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUTO_CLOSE"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ON_HOLD"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">28812689</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-15T14:58:39+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Best price availabe at another store"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"subStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YetToDecide"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="nt">"orgSourceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"trial_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Not Done"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"subStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YetToDecide"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Updates the status of an existing lead. You can have status as OPEN (for new lead), WON (for a successful purchase lead), LOST (for unreverted lead), ON_HOLD, DELETED.</p>
+<p>Updates the status and substatus of an existing lead. You can have status as OPEN (for new lead), WON (for a successful purchase lead), LOST (for unreverted lead), ON_HOLD, DELETED.</p>
 
 <h3 id="resource-information">Resource Information</h3>
 
@@ -6974,7 +7112,7 @@ password* | Specify your preferred new password</p>
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/leads/{leadid}/status</code></td>
+<td><code class="prettyprint">/leads/{leadId}/status</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -7000,7 +7138,7 @@ password* | Specify your preferred new password</p>
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://{Cluster URL}/v2/leads/{leadid}/status</code></p>
+<p><code class="prettyprint">http://{Cluster URL}/v2/leads/{leadId}/status</code></p>
 
 <h2 id="search-lead">Search Lead</h2>
 

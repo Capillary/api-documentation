@@ -422,15 +422,18 @@ http://us.api.capillarytech.com/v2/leads/substatus
 > Sample POST Request
 
 ```json
-
+{
+    "status": "ON_HOLD",
+    "subStatus": "YetToDecide"
+}
 ```
 
 > Sample Response
 
 ```json
 {
-    "status": "LOST",
-    "subStatus": "InvalidPhoneNumber",
+    "status": "ON_HOLD",
+    "subStatus": "YetToDecide",
     "warnings": []
 }
 
@@ -760,6 +763,7 @@ limit | Limit the number of results to be fetched
 orgSourceId | Specify the source account id from which you want to fetch the leads. Sources can be FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, LINE, and WEBSITE. For example, -1 for INSTORE.
 userId | Fetch the leads of a specific user
 status | Fetch leads by status. Values: OPEN, WON, LOST, ON_HOLD, DELETED
+substatus | Fetch leads with a specific sub-status
 offset | Fetches leads > the offset number. Offset is the position of the lead in the db record. The value is assigned based on the sequence of creation. . For example, offset=10 retrieves all the leads from record number 11.
 sortBy | Lets you sort the list by `createdon` or `lastUpdatedOn`
 sortOrder | Sort the results in ascending (ASC) or descending (`DESC`) order
