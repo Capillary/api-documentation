@@ -308,13 +308,13 @@ userId* | Unique id of the customer for which you want to fetch tagged labels
 
 ## Search Customers by Labels
 
-Retrieves the list of customers who are tagged to a specific label. You can also search by a partial label name. You will get a maximum of 10 records by default.
+Retrieves the list of customers who are tagged to a specific label. You can also search by partial label name. By default you will see a maximum of 10 records.
 
 
 > Sample Request
 
 ```html
-https://api.us.capillarytech.com/v2/customers/labels/search?q=premium
+v2/customers/labels/search?q=premium
 
 ```
 
