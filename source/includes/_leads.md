@@ -646,130 +646,6 @@ Batch Support | No
 
 
 
-## Update Lead Followup 
-
-Lets you update the recent follow up date and till id of a lead.
-
-> Sample Request
-
-```html
-http://us.api.capillarytech.com/v2/leads/63/followup
-
-```
-
-> Sample POST Request
-
-```json
-{
- "followedUpOn": "2018-10-05T08:00:00+05:30",
- "createdBy": 124
-}
-
-```
-
-> Sample Response
-
-```json
-{
-          "createdBy": 124, 
-          "createdOn": "2019-04-16T05:19:06Z", 
-          "extendedFields": {
-                    "trial_status": "Not Done"
-          }, 
-          "followUpDetails": [
-                    {
-                              "createdBy": 124, 
-                              "createdOn": "2019-04-16T05:19:06Z", 
-                              "followedUpBy": 124, 
-                              "followedUpOn": "2019-04-17T05:19:06Z", 
-                              "id": 122, 
-                              "leadId": 63, 
-                              "notes": "notes 1", 
-                              "scheduledFollowUp": "2019-04-17T05:19:06Z", 
-                              "userId": 340417059
-                    }, 
-                    {
-                              "createdBy": 124, 
-                              "createdOn": "2019-04-16T05:19:06Z", 
-                              "followedUpBy": 124, 
-                              "followedUpOn": "2019-04-18T05:19:06Z", 
-                              "id": 123, 
-                              "leadId": 63, 
-                              "notes": "notes 2", 
-                              "scheduledFollowUp": "2019-04-18T05:19:06Z", 
-                              "userId": 340417059
-                    }, 
-                    {
-                              "createdBy": 124, 
-                              "createdOn": "2019-04-16T05:19:06Z", 
-                              "followedUpBy": 124, 
-                              "followedUpOn": "2019-04-17T05:19:06Z", 
-                              "id": 124, 
-                              "leadId": 63, 
-                              "scheduledFollowUp": "2019-04-17T05:19:06Z", 
-                              "userId": 340417059
-                    }
-          ], 
-          "id": 63, 
-          "lastFollowUp": "2019-04-17T05:19:06Z", 
-          "lastUpdatedBy": 124, 
-          "lastUpdatedOn": "2019-04-16T05:19:06Z", 
-          "leadFor": "sku_902307", 
-          "orgSourceId": -1, 
-          "status": "OPEN", 
-          "statusLogDetails": [
-                    {
-                              "createdBy": 124, 
-                              "createdOn": "2019-04-16T05:19:06Z", 
-                              "id": 137, 
-                              "leadId": 63, 
-                              "reason": "Reason1", 
-                              "reasonId": 2, 
-                              "status": "OPEN", 
-                              "userId": 340417059
-                    }, 
-                    {
-                              "createdBy": 124, 
-                              "createdOn": "2019-04-16T05:19:06Z", 
-                              "id": 138, 
-                              "leadId": 63, 
-                              "reason": "AUTO_CLOSE", 
-                              "reasonId": 3, 
-                              "status": "OPEN", 
-                              "userId": 340417059
-                    }
-          ], 
-          "type": "SKU", 
-          "userId": 340417059, 
-          "warnings": []
-}
-```
-
-
-
-### Resource Information
-
-| | |
---------- | ----------- |
-URI | `/leads/{leadId}/followup`
-Rate Limited? | Yes
-Authentication | Yes
-Response Formats | JSON
-HTTP Methods | POST
-Batch Support | No
-
-### Request URL
-`http://{Cluster URL}/v2/leads/{leadId}/followup`
-
-
-
-
-
-
-
-
-
-
 
 ## Search Lead
 
@@ -829,7 +705,7 @@ http://us.api.capillarytech.com/v2/leads?sortOrder=DESC&type=ALL&limit=10&orgSou
                     "createdBy": 15002926,
                     "createdOn": "2018-11-14T15:38:04+05:30",
                     "reasonId": 5,
-                    "reason": "Best price available at another store"
+                    "reason": "Best price availabe at another store"
                 },
                 {
                     "id": 2,

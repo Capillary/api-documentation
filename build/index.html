@@ -6879,17 +6879,14 @@ password* | Specify your preferred new password</p>
 <blockquote>
 <p>Sample POST Request</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ON_HOLD"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"subStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YetToDecide"</span><span class="w">
-</span><span class="p">}</span><span class="w">
+<pre class="highlight json"><code><span class="w">
 </span></code></pre>
 <blockquote>
 <p>Sample Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ON_HOLD"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"subStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YetToDecide"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LOST"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"subStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"InvalidPhoneNumber"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
@@ -7297,10 +7294,6 @@ password* | Specify your preferred new password</p>
 <tr>
 <td>status</td>
 <td>Fetch leads by status. Values: OPEN, WON, LOST, ON_HOLD, DELETED</td>
-</tr>
-<tr>
-<td>substatus</td>
-<td>Fetch leads with a specific sub-status</td>
 </tr>
 <tr>
 <td>offset</td>
