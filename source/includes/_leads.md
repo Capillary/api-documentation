@@ -763,15 +763,9 @@ Batch Support | No
 
 
 
-### Request Parameters
 
-Parameter | Type | Description
---------- | ---- | -----------
-leadId* | path | Unique id of the lead
-followedUpOn* | body | Recent followup date in `YYYY-MM-DDTHH:MM:SS+TZD`
-createdBy* | body | Till id that updated the followup
 
-<aside class="notice">All parameters marked by * are mandatory.</aside>
+
 
 
 
