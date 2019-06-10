@@ -6429,91 +6429,6 @@ password* | Specify your preferred new password</p>
 <li><p>Enums for status :  OPEN, WON, LOST, ON_HOLD, DELETED</p></li>
 </ul>
 
-<h2 id="generate-reasons">Generate Reasons</h2>
-
-<blockquote>
-<p>Sample Request</p>
-</blockquote>
-<pre class="highlight html"><code>http://us.api.capillarytech.com/v2/leads/reasons
-</code></pre>
-<blockquote>
-<p>Sample POST Request</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Item not available in store"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Best price availabe at another store"</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Interested in our brand products"</span><span class="w">  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Item not available in store"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Best price availabe at another store"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Interested in our brand products"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>Lets you add your preferred reasons that are required while adding or updating a lead.</p>
-
-<p>Reasons are used to add or update a lead status. Lead reasons are org specific. You can create reasons of your own and use the respective reason ids to add or update a lead status.</p>
-
-<h3 id="resource-information">Resource Information</h3>
-
-<table><thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URI</td>
-<td><code class="prettyprint">/leads/reasons</code></td>
-</tr>
-<tr>
-<td>Rate Limited?</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>Authentication</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
-<td>HTTP Methods</td>
-<td>POST</td>
-</tr>
-<tr>
-<td>Batch Support</td>
-<td>No</td>
-</tr>
-</tbody></table>
-
-<h3 id="request-url">Request URL</h3>
-
-<p><code class="prettyprint">http://{Cluster URL}/v2/leads/reasons</code></p>
-
 <h2 id="get-reasons">Get Reasons</h2>
 <pre class="highlight html"><code>http://us.api.capillarytech.com/v2/leads/reasons
 </code></pre>
@@ -6741,7 +6656,93 @@ password* | Specify your preferred new password</p>
 
 <p><code class="prettyprint">http://{Cluster URL}/v2/leads</code></p>
 
-<h2 id="update-extended-fields">Update Extended Fields</h2>
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Data type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>enum</td>
+<td>Item or hierarchy for which the lead is generated. Values: <code class="prettyprint">SKU</code>, <code class="prettyprint">BRAND</code>, <code class="prettyprint">CATEGORY</code>, or <code class="prettyprint">CUSTOM</code>. Default value is SKU</td>
+</tr>
+<tr>
+<td>leadFor*</td>
+<td>string</td>
+<td>Name of sku, brand or category based on the <code class="prettyprint">type</code> specified</td>
+</tr>
+<tr>
+<td>userId</td>
+<td>int</td>
+<td>Unique id of the customer associated to the lead. If this is left blank, then you need to pass idType and identifier as mandatory parameters</td>
+</tr>
+<tr>
+<td>idType</td>
+<td>enum</td>
+<td>Specified identifier type either <code class="prettyprint">EMAIL</code> or <code class="prettyprint">MOBILE</code></td>
+</tr>
+<tr>
+<td>identifier</td>
+<td>string</td>
+<td>Value of the specified <code class="prettyprint">idType</code></td>
+</tr>
+<tr>
+<td>nextFollowUp</td>
+<td>date</td>
+<td>Next follow up date of the lead</td>
+</tr>
+<tr>
+<td>createdOn</td>
+<td>date-time</td>
+<td>Date and time of lead creation in <code class="prettyprint">YYYY-MM-DDThh:mm:ssTZD</code> format. Example: 2018-10-05T08:00:00+05:30</td>
+</tr>
+<tr>
+<td>createdBy</td>
+<td>int</td>
+<td>Entity id of the staff who creates the lead. <br> Default value is the id of the entity from which the request has come</td>
+</tr>
+<tr>
+<td>lastUpdatedOn</td>
+<td>date-time</td>
+<td>Date and time when the lead is recently updated in <code class="prettyprint">YYYY-MM-DDThh:mm:ssTZD</code> format</td>
+</tr>
+<tr>
+<td>lastUpdatedBy</td>
+<td>int</td>
+<td>Entity id of the staff who recently updated the lead</td>
+</tr>
+<tr>
+<td>extendedFields</td>
+<td>obj</td>
+<td>Key-value pairs of extended fields and its values</td>
+</tr>
+<tr>
+<td>orgSourceId</td>
+<td>enum</td>
+<td>Unique id of the org channel account. Default value is -1 for InStore account</td>
+</tr>
+<tr>
+<td>lastFollowUp</td>
+<td></td>
+<td>Date and time of recent follow up of the lead in <code class="prettyprint">YYYY-MM-DDThh:mm:ssTZD</code> format</td>
+</tr>
+<tr>
+<td>owner</td>
+<td>string</td>
+<td>Username of the staff user who is assigned to the lead</td>
+</tr>
+<tr>
+<td>subStatus</td>
+<td>enum</td>
+<td>Current sub-status of the lead. Use only names that are created using <code class="prettyprint">leads/substatus</code> API</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-lead">Update Lead</h2>
 
 <p>Updates extended fields for an existing lead</p>
 
@@ -6867,9 +6868,30 @@ password* | Specify your preferred new password</p>
 
 <p><code class="prettyprint">http://{Cluster URL}/v2/leads/{leadId}</code></p>
 
-<h2 id="add-lead-substatus">Add Lead Substatus</h2>
+<h3 id="request-body-parameters">Request Body Parameters</h3>
 
-<p>Lets you add sub-status to a lead status.</p>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>extendedFields</td>
+<td>obj</td>
+<td>Key-value pairs of extended fields and its values</td>
+</tr>
+<tr>
+<td>owner</td>
+<td>string</td>
+<td>Username of the owner (staff) of the lead</td>
+</tr>
+</tbody></table>
+
+<h2 id="create-lead-substatus">Create Lead Substatus</h2>
+
+<p>Lets you create a new sub-status to a lead status.</p>
 
 <blockquote>
 <p>Sample Request</p>
@@ -6931,6 +6953,27 @@ password* | Specify your preferred new password</p>
 <h3 id="request-url">Request URL</h3>
 
 <p><code class="prettyprint">http://{Cluster URL}/v2/leads/substatus</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status*</td>
+<td>enum</td>
+<td>Status for which you want to add sub-status. Values: <code class="prettyprint">OPEN</code>, <code class="prettyprint">WON</code>, <code class="prettyprint">LOST</code>, <code class="prettyprint">ON_HOLD</code>, <code class="prettyprint">DELETED</code></td>
+</tr>
+<tr>
+<td>subStatus*</td>
+<td>string</td>
+<td>Name of the new sub-status that you want to create</td>
+</tr>
+</tbody></table>
 
 <h2 id="get-lead-substatus">Get Lead Substatus</h2>
 
@@ -7143,6 +7186,224 @@ password* | Specify your preferred new password</p>
 
 <p><code class="prettyprint">http://{Cluster URL}/v2/leads/{leadId}/status</code></p>
 
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>status*</td>
+<td>enum</td>
+<td>Current status of the lead. Values: OPEN<code class="prettyprint">,</code>WON<code class="prettyprint">,</code>LOST<code class="prettyprint">,</code>ON_HOLD<code class="prettyprint">,</code>DELETED`</td>
+</tr>
+<tr>
+<td>reasonId*</td>
+<td>int</td>
+<td>Reason id that you want to associate to the lead</td>
+</tr>
+<tr>
+<td>subStatus</td>
+<td>string</td>
+<td>Current sub-status of the lead</td>
+</tr>
+<tr>
+<td>createdBy</td>
+<td>int</td>
+<td>Entity id of the staff who created the lead</td>
+</tr>
+<tr>
+<td>createdOn</td>
+<td>ate-time</td>
+<td>Date and time of lead creation in <code class="prettyprint">YYYY-MM-DDThh:mm:ssTZD</code> format. Example: 2018-10-05T08:00:00+05:30</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-lead-followup">Update Lead Followup</h2>
+
+<p>Lets you update the recent follow up date and till id of a lead.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>http://us.api.capillarytech.com/v2/leads/63/followup
+
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+ </span><span class="nt">"followedUpOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-05T08:00:00+05:30"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">124</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+          </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">124</span><span class="p">,</span><span class="w"> 
+          </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-16T05:19:06Z"</span><span class="p">,</span><span class="w"> 
+          </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"trial_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Not Done"</span><span class="w">
+          </span><span class="p">},</span><span class="w"> 
+          </span><span class="nt">"followUpDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                              </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">124</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-16T05:19:06Z"</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"followedUpBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">124</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"followedUpOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-17T05:19:06Z"</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">122</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">63</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes 1"</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"scheduledFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-17T05:19:06Z"</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">340417059</span><span class="w">
+                    </span><span class="p">},</span><span class="w"> 
+                    </span><span class="p">{</span><span class="w">
+                              </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">124</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-16T05:19:06Z"</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"followedUpBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">124</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"followedUpOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-18T05:19:06Z"</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">123</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">63</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes 2"</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"scheduledFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-18T05:19:06Z"</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">340417059</span><span class="w">
+                    </span><span class="p">},</span><span class="w"> 
+                    </span><span class="p">{</span><span class="w">
+                              </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">124</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-16T05:19:06Z"</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"followedUpBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">124</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"followedUpOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-17T05:19:06Z"</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">124</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">63</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"scheduledFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-17T05:19:06Z"</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">340417059</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+          </span><span class="p">],</span><span class="w"> 
+          </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">63</span><span class="p">,</span><span class="w"> 
+          </span><span class="nt">"lastFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-17T05:19:06Z"</span><span class="p">,</span><span class="w"> 
+          </span><span class="nt">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">124</span><span class="p">,</span><span class="w"> 
+          </span><span class="nt">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-16T05:19:06Z"</span><span class="p">,</span><span class="w"> 
+          </span><span class="nt">"leadFor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_902307"</span><span class="p">,</span><span class="w"> 
+          </span><span class="nt">"orgSourceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w"> 
+          </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPEN"</span><span class="p">,</span><span class="w"> 
+          </span><span class="nt">"statusLogDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                              </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">124</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-16T05:19:06Z"</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">137</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">63</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Reason1"</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPEN"</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">340417059</span><span class="w">
+                    </span><span class="p">},</span><span class="w"> 
+                    </span><span class="p">{</span><span class="w">
+                              </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">124</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-16T05:19:06Z"</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">138</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">63</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUTO_CLOSE"</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPEN"</span><span class="p">,</span><span class="w"> 
+                              </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">340417059</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+          </span><span class="p">],</span><span class="w"> 
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SKU"</span><span class="p">,</span><span class="w"> 
+          </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">340417059</span><span class="p">,</span><span class="w"> 
+          </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/leads/{leadId}/followup</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">http://{Cluster URL}/v2/leads/{leadId}/followup</code></p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>leadId*</td>
+<td>path</td>
+<td>Unique id of the lead</td>
+</tr>
+<tr>
+<td>followedUpOn*</td>
+<td>date-time</td>
+<td>Date of recent follow up discussion with the customer in <code class="prettyprint">YYYY-MM-DDTHH:MM:SS+TZD</code></td>
+</tr>
+<tr>
+<td>followedUpBy</td>
+<td>int</td>
+<td>Entity id of the staff who followed up with the customer</td>
+</tr>
+<tr>
+<td>createdBy*</td>
+<td>int</td>
+<td>Till id that updated the follow up</td>
+</tr>
+<tr>
+<td>nextFollowUp</td>
+<td>date-time</td>
+<td>Date and time of the next follow up discussion with the customer in <code class="prettyprint">YYYY-MM-DDTHH:MM:SS+TZD</code></td>
+</tr>
+<tr>
+<td>notes</td>
+<td>string</td>
+<td>Brief follow up notes</td>
+</tr>
+<tr>
+<td>scheduledFollowUp</td>
+<td>date-time</td>
+<td>Actual scheduled date and time of the current follow up discussion with the customer in <code class="prettyprint">YYYY-MM-DDTHH:MM:SS+TZD</code></td>
+</tr>
+</tbody></table>
+
+<aside class="notice">All parameters marked by * are mandatory.</aside>
+
 <h2 id="search-lead">Search Lead</h2>
 
 <blockquote>
@@ -7200,7 +7461,7 @@ password* | Specify your preferred new password</p>
                     </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
                     </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-14T15:38:04+05:30"</span><span class="p">,</span><span class="w">
                     </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Best price availabe at another store"</span><span class="w">
+                    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Best price available at another store"</span><span class="w">
                 </span><span class="p">},</span><span class="w">
                 </span><span class="p">{</span><span class="w">
                     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
@@ -7220,7 +7481,7 @@ password* | Specify your preferred new password</p>
                     </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
                     </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-14T15:44:27+05:30"</span><span class="p">,</span><span class="w">
                     </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Best price availabe at another store"</span><span class="w">
+                    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Best price available at another store"</span><span class="w">
                 </span><span class="p">}</span><span class="w">
             </span><span class="p">],</span><span class="w">
             </span><span class="nt">"orgSourceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
@@ -7296,7 +7557,7 @@ password* | Specify your preferred new password</p>
 </tr>
 <tr>
 <td>status</td>
-<td>Fetch leads by status. Values: OPEN, WON, LOST, ON_HOLD, DELETED</td>
+<td>Fetch leads by status. Values: <code class="prettyprint">OPEN</code>, <code class="prettyprint">WON</code>, <code class="prettyprint">LOST</code>, <code class="prettyprint">ON_HOLD</code>, <code class="prettyprint">DELETED</code></td>
 </tr>
 <tr>
 <td>substatus</td>
@@ -7313,6 +7574,107 @@ password* | Specify your preferred new password</p>
 <tr>
 <td>sortOrder</td>
 <td>Sort the results in ascending (ASC) or descending (<code class="prettyprint">DESC</code>) order</td>
+</tr>
+</tbody></table>
+
+<h2 id="configure-lead-reasons">Configure Lead Reasons</h2>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>http://us.api.capillarytech.com/v2/leads/reasons
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Item not available in store"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Best price availabe at another store"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Interested in our brand products"</span><span class="w">  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Item not available in store"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Best price availabe at another store"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Interested in our brand products"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Lets you add your preferred reasons that are required while adding or updating a lead at the organization level. </p>
+
+<p>Reasons are used to add or update a lead status. Lead reasons are org specific. You can create reasons of your own and use the respective reason ids to add or update a lead status.</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/leads/reasons</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">http://{Cluster URL}/v2/leads/reasons</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>reason*</td>
+<td>string</td>
+<td>Specify a meaningful reason that you want to add to the organization</td>
 </tr>
 </tbody></table>
 
