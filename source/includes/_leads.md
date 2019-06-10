@@ -10,73 +10,7 @@ Following are the predefined enum values for `type` and `status` respectively.
 
 
 
-## Generate Reasons
 
-> Sample Request
-
-```html
-http://us.api.capillarytech.com/v2/leads/reasons
-```
-
-> Sample POST Request
-
-```json
-[
-  {
-    "reason": "Item not available in store"
-  },
-  {
-    "reason": "Best price availabe at another store"
-  },
-  {
-    "reason": "Interested in our brand products"  }
-]
-```
-
-> Sample Response
-
-```json
-{
-    "data": [
-        {
-            "id": 1,
-            "reason": "Item not available in store"
-        },
-        {
-            "id": 2,
-            "reason": "Best price availabe at another store"
-        },
-        {
-            "id": 3,
-            "reason": "Interested in our brand products"
-        }
-    ],
-    "warnings": [],
-    "errors": []
-}
-```
-
-Lets you add your preferred reasons that are required while adding or updating a lead.
-
-Reasons are used to add or update a lead status. Lead reasons are org specific. You can create reasons of your own and use the respective reason ids to add or update a lead status.
-
-
-
-### Resource Information
-
-| | |
---------- | ----------- |
-URI | `/leads/reasons`
-Rate Limited? | Yes
-Authentication | Yes
-Response Formats | JSON
-HTTP Methods | POST
-Batch Support | No
-
-
-### Request URL
-
-`http://{Cluster URL}/v2/leads/reasons`
 
 
 
@@ -275,6 +209,25 @@ Batch Support | No
 `http://{Cluster URL}/v2/leads`
 
 
+### Request Body Parameters
+
+Parameter | Data type | Description
+--------- | -------- | -----------
+type | enum | Item or hierarchy for which the lead is generated. Values: `SKU`, `BRAND`, `CATEGORY`, or `CUSTOM`. Default value is SKU
+leadFor* | string | Name of sku, brand or category based on the `type` specified
+userId | int | Unique id of the customer associated to the lead. If this is left blank, then you need to pass idType and identifier as mandatory parameters
+idType | enum | Specified identifier type either `EMAIL` or `MOBILE`
+identifier | string | Value of the specified `idType`
+nextFollowUp | date | Next follow up date of the lead
+createdOn | date-time | Date and time of lead creation in `YYYY-MM-DDThh:mm:ssTZD` format. Example: 2018-10-05T08:00:00+05:30
+createdBy | int | Entity id of the staff who creates the lead. <br> Default value is the id of the entity from which the request has come
+lastUpdatedOn | date-time | Date and time when the lead is recently updated in `YYYY-MM-DDThh:mm:ssTZD` format
+lastUpdatedBy | int | Entity id of the staff who recently updated the lead
+extendedFields | obj | Key-value pairs of extended fields and its values
+orgSourceId | enum | Unique id of the org channel account. Default value is -1 for InStore account
+lastFollowUp | | Date and time of recent follow up of the lead in `YYYY-MM-DDThh:mm:ssTZD` format
+owner | string | Username of the staff user who is assigned to the lead
+subStatus | enum | Current sub-status of the lead. Use only names that are created using `leads/substatus` API
 
 
 
@@ -298,9 +251,7 @@ Batch Support | No
 
 
 
-
-
-## Update Extended Fields
+## Update Lead 
 
 Updates extended fields for an existing lead
 
@@ -407,10 +358,18 @@ Batch Support | No
 `http://{Cluster URL}/v2/leads/{leadId}`
 
 
+### Request Body Parameters
 
-## Add Lead Substatus
+Parameter | Type | Description
+--------- | ---- | -----------
+extendedFields | obj | Key-value pairs of extended fields and its values
+owner | string | Username of the owner (staff) of the lead
 
-Lets you add sub-status to a lead status.
+
+
+## Create Lead Substatus
+
+Lets you create a new sub-status to a lead status.
 
 
 > Sample Request
@@ -461,6 +420,12 @@ Batch Support | No
 `http://{Cluster URL}/v2/leads/substatus`
 
 
+### Request Body Parameters
+
+Parameter | Type | Description
+--------- | ---- | -----------
+status* | enum | Status for which you want to add sub-status. Values: `OPEN`, `WON`, `LOST`, `ON_HOLD`, `DELETED`
+subStatus* | string | Name of the new sub-status that you want to create
 
 
 
@@ -645,6 +610,152 @@ Batch Support | No
 `http://{Cluster URL}/v2/leads/{leadId}/status`
 
 
+### Request Body Parameters
+
+Parameter | Type | Description
+--------- | ---- | -----------
+status* | enum | Current status of the lead. Values: OPEN`, `WON`, `LOST`, `ON_HOLD`, `DELETED`
+reasonId* | int | Reason id that you want to associate to the lead
+subStatus | string | Current sub-status of the lead
+createdBy | int | Entity id of the staff who created the lead
+createdOn | ate-time | Date and time of lead creation in `YYYY-MM-DDThh:mm:ssTZD` format. Example: 2018-10-05T08:00:00+05:30
+
+
+
+
+## Update Lead Followup 
+
+Lets you update the recent follow up date and till id of a lead.
+
+> Sample Request
+
+```html
+http://us.api.capillarytech.com/v2/leads/63/followup
+
+```
+
+> Sample POST Request
+
+```json
+{
+ "followedUpOn": "2018-10-05T08:00:00+05:30",
+ "createdBy": 124
+}
+
+```
+
+> Sample Response
+
+```json
+{
+          "createdBy": 124, 
+          "createdOn": "2019-04-16T05:19:06Z", 
+          "extendedFields": {
+                    "trial_status": "Not Done"
+          }, 
+          "followUpDetails": [
+                    {
+                              "createdBy": 124, 
+                              "createdOn": "2019-04-16T05:19:06Z", 
+                              "followedUpBy": 124, 
+                              "followedUpOn": "2019-04-17T05:19:06Z", 
+                              "id": 122, 
+                              "leadId": 63, 
+                              "notes": "notes 1", 
+                              "scheduledFollowUp": "2019-04-17T05:19:06Z", 
+                              "userId": 340417059
+                    }, 
+                    {
+                              "createdBy": 124, 
+                              "createdOn": "2019-04-16T05:19:06Z", 
+                              "followedUpBy": 124, 
+                              "followedUpOn": "2019-04-18T05:19:06Z", 
+                              "id": 123, 
+                              "leadId": 63, 
+                              "notes": "notes 2", 
+                              "scheduledFollowUp": "2019-04-18T05:19:06Z", 
+                              "userId": 340417059
+                    }, 
+                    {
+                              "createdBy": 124, 
+                              "createdOn": "2019-04-16T05:19:06Z", 
+                              "followedUpBy": 124, 
+                              "followedUpOn": "2019-04-17T05:19:06Z", 
+                              "id": 124, 
+                              "leadId": 63, 
+                              "scheduledFollowUp": "2019-04-17T05:19:06Z", 
+                              "userId": 340417059
+                    }
+          ], 
+          "id": 63, 
+          "lastFollowUp": "2019-04-17T05:19:06Z", 
+          "lastUpdatedBy": 124, 
+          "lastUpdatedOn": "2019-04-16T05:19:06Z", 
+          "leadFor": "sku_902307", 
+          "orgSourceId": -1, 
+          "status": "OPEN", 
+          "statusLogDetails": [
+                    {
+                              "createdBy": 124, 
+                              "createdOn": "2019-04-16T05:19:06Z", 
+                              "id": 137, 
+                              "leadId": 63, 
+                              "reason": "Reason1", 
+                              "reasonId": 2, 
+                              "status": "OPEN", 
+                              "userId": 340417059
+                    }, 
+                    {
+                              "createdBy": 124, 
+                              "createdOn": "2019-04-16T05:19:06Z", 
+                              "id": 138, 
+                              "leadId": 63, 
+                              "reason": "AUTO_CLOSE", 
+                              "reasonId": 3, 
+                              "status": "OPEN", 
+                              "userId": 340417059
+                    }
+          ], 
+          "type": "SKU", 
+          "userId": 340417059, 
+          "warnings": []
+}
+```
+
+
+
+### Resource Information
+
+| | |
+--------- | ----------- |
+URI | `/leads/{leadId}/followup`
+Rate Limited? | Yes
+Authentication | Yes
+Response Formats | JSON
+HTTP Methods | POST
+Batch Support | No
+
+### Request URL
+`http://{Cluster URL}/v2/leads/{leadId}/followup`
+
+
+
+### Request Parameters
+
+Parameter | Type | Description
+--------- | ---- | -----------
+leadId* | path | Unique id of the lead
+followedUpOn* | date-time | Date of recent follow up discussion with the customer in `YYYY-MM-DDTHH:MM:SS+TZD`
+followedUpBy | int | Entity id of the staff who followed up with the customer
+createdBy* | int | Till id that updated the follow up
+nextFollowUp | date-time | Date and time of the next follow up discussion with the customer in `YYYY-MM-DDTHH:MM:SS+TZD`
+notes | string | Brief follow up notes 
+scheduledFollowUp | date-time | Actual scheduled date and time of the current follow up discussion with the customer in `YYYY-MM-DDTHH:MM:SS+TZD`  
+
+<aside class="notice">All parameters marked by * are mandatory.</aside>
+
+
+
 
 
 ## Search Lead
@@ -705,7 +816,7 @@ http://us.api.capillarytech.com/v2/leads?sortOrder=DESC&type=ALL&limit=10&orgSou
                     "createdBy": 15002926,
                     "createdOn": "2018-11-14T15:38:04+05:30",
                     "reasonId": 5,
-                    "reason": "Best price availabe at another store"
+                    "reason": "Best price available at another store"
                 },
                 {
                     "id": 2,
@@ -725,7 +836,7 @@ http://us.api.capillarytech.com/v2/leads?sortOrder=DESC&type=ALL&limit=10&orgSou
                     "createdBy": 15002926,
                     "createdOn": "2018-11-14T15:44:27+05:30",
                     "reasonId": 5,
-                    "reason": "Best price availabe at another store"
+                    "reason": "Best price available at another store"
                 }
             ],
             "orgSourceId": -1
@@ -762,9 +873,86 @@ type | Fetch by lead type. Values: `SKU`, `CATEGORY`, `BRAND`, `CUSTOM` (for any
 limit | Limit the number of results to be fetched
 orgSourceId | Specify the source account id from which you want to fetch the leads. Sources can be FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, LINE, and WEBSITE. For example, -1 for INSTORE.
 userId | Fetch the leads of a specific user
-status | Fetch leads by status. Values: OPEN, WON, LOST, ON_HOLD, DELETED
+status | Fetch leads by status. Values: `OPEN`, `WON`, `LOST`, `ON_HOLD`, `DELETED`
 substatus | Fetch leads with a specific sub-status
 offset | Fetches leads > the offset number. Offset is the position of the lead in the db record. The value is assigned based on the sequence of creation. . For example, offset=10 retrieves all the leads from record number 11.
 sortBy | Lets you sort the list by `createdon` or `lastUpdatedOn`
 sortOrder | Sort the results in ascending (ASC) or descending (`DESC`) order
+
+
+
+## Configure Lead Reasons
+
+> Sample Request
+
+```html
+http://us.api.capillarytech.com/v2/leads/reasons
+```
+
+> Sample POST Request
+
+```json
+[
+  {
+    "reason": "Item not available in store"
+  },
+  {
+    "reason": "Best price availabe at another store"
+  },
+  {
+    "reason": "Interested in our brand products"  }
+]
+```
+
+> Sample Response
+
+```json
+{
+    "data": [
+        {
+            "id": 1,
+            "reason": "Item not available in store"
+        },
+        {
+            "id": 2,
+            "reason": "Best price availabe at another store"
+        },
+        {
+            "id": 3,
+            "reason": "Interested in our brand products"
+        }
+    ],
+    "warnings": [],
+    "errors": []
+}
+```
+
+Lets you add your preferred reasons that are required while adding or updating a lead at the organization level. 
+
+Reasons are used to add or update a lead status. Lead reasons are org specific. You can create reasons of your own and use the respective reason ids to add or update a lead status.
+
+
+
+### Resource Information
+
+| | |
+--------- | ----------- |
+URI | `/leads/reasons`
+Rate Limited? | Yes
+Authentication | Yes
+Response Formats | JSON
+HTTP Methods | POST
+Batch Support | No
+
+
+### Request URL
+
+`http://{Cluster URL}/v2/leads/reasons`
+
+
+### Request Body Parameters
+
+Parameter | Type | Description
+--------- | ---- | -----------
+reason* | string | Specify a meaningful reason that you want to add to the organization
 
