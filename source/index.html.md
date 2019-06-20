@@ -26,6 +26,7 @@ includes:
   - userGroup
   - OrganizationSource
   - storeCare
+  - events
 
 search: true
 ---
