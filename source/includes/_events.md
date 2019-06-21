@@ -354,8 +354,9 @@ eventName* | string | Specify the event name that you want to enable
 
 
 
-## Get Metadata
+## Get All Event Attributes (Metadata)
 
+Retrieves meta details of event attributes.
 
 
 > Sample Request
@@ -566,846 +567,6 @@ Batch Support | No
 ### Request URL
 
 `http://{Cluster URL}/v2/events/fields_meta`
-
-
-
-## Disable a Custom Event
-
-Disables a specific custom event from the current organization.
-
-> Sample Request
-
-```html
-http://us.api.capillarytech.com/v2/events/disable?event_name=CustomerEvent1
-```
-
-
-
-
-> Sample Response
-
-```json
-{
-    "warnings": [],
-    "errors": []
-}
-```
-
-### Resource Information
-
-| | |
---------- | ----------- |
-URI | `/events/disable?event_name={EventName}`
-Rate Limited? | Yes
-Authentication | Yes
-Response Formats | JSON
-HTTP Methods | PUT
-Batch Support | No
-
-
-### Request URL
-
-`http://{Cluster URL}/v2/events/disable?event_name={EventName}`
-
-
-
-### Request Body Parameters
-
-Parameter | Type | Description
---------- | ---- | -----------
-EventName* | string | Pass the exact name of the event that you want to disable
-
-
-## Get Org Events
-
-Retrieves all events configured for the org. This includes both standard and custom events.
-
-
-
-> Sample Request
-
-```html
-http://us.api.capillarytech.com/v2/events
-```
-
-
-
-> Sample Response
-
-```json
-{
-    "data": [
-        {
-            "clickEventsMeta": {
-                "eventId": "87c8b0fb-b825-4b7e-b336-b24e7c389f70",
-                "eventName": "CustomerEvent",
-                "actions": [
-                    "EIConsumer",
-                    "EMFConsumer"
-                ],
-                "fields": [
-                    {
-                        "name": "customer",
-                        "type": "customer",
-                        "attributes": {
-                            "accountId": {
-                                "valueType": "ENUM"
-                            },
-                            "addCustomerIfNotExists": {
-                                "value": "true",
-                                "valueType": "Boolean"
-                            },
-                            "identifierType": {
-                                "value": "MOBILE",
-                                "valueType": "ENUM"
-                            },
-                            "isRequired": {
-                                "value": "true",
-                                "valueType": "BOOLEAN"
-                            },
-                            "source": {
-                                "value": "INSTORE",
-                                "valueType": "ENUM"
-                            }
-                        }
-                    },
-                    {
-                        "name": "string",
-                        "type": "string",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "false",
-                                "valueType": "Boolean"
-                            },
-                            "regex": {
-                                "valueType": "STRING"
-                            }
-                        }
-                    },
-                    {
-                        "name": "tillCode",
-                        "type": "tillCode",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "false",
-                                "valueType": "Boolean"
-                            }
-                        }
-                    },
-                    {
-                        "name": "productSku",
-                        "type": "productSku",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "false",
-                                "valueType": "Boolean"
-                            }
-                        }
-                    },
-                    {
-                        "name": "productBrand",
-                        "type": "productBrand",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "false",
-                                "valueType": "Boolean"
-                            }
-                        }
-                    },
-                    {
-                        "name": "productCategory",
-                        "type": "productCategory",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "false",
-                                "valueType": "Boolean"
-                            }
-                        }
-                    },
-                    {
-                        "name": "double",
-                        "type": "double",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "false",
-                                "valueType": "Boolean"
-                            }
-                        }
-                    }
-                ],
-                "status": "UNPUBLISHED",
-                "testStatus": "NOT_VERIFIED",
-                "description": "fngjbjfghjbndfbj",
-                "date": 1560941666471,
-                "standardEvent": false
-            },
-            "defaultTransformerMappping": false
-        },
-        {
-            "clickEventsMeta": {
-                "eventId": "02ec3c76-5c47-4983-b0df-f0ab29bf227c",
-                "eventName": "sagaEvent",
-                "eventType": "USEREVENT",
-                "actions": [
-                    "EIConsumer"
-                ],
-                "fields": [
-                    {
-                        "name": "ID",
-                        "type": "customer",
-                        "attributes": {
-                            "accountId": {
-                                "valueType": "ENUM"
-                            },
-                            "addCustomerIfNotExists": {
-                                "value": "false",
-                                "valueType": "BOOLEAN"
-                            },
-                            "identifierType": {
-                                "valueType": "ENUM"
-                            },
-                            "isRequired": {
-                                "value": "false",
-                                "valueType": "BOOLEAN"
-                            },
-                            "source": {
-                                "valueType": "ENUM"
-                            }
-                        }
-                    }
-                ],
-                "status": "UNPUBLISHED",
-                "testStatus": "NOT_VERIFIED",
-                "label": "saga event",
-                "description": "description",
-                "date": 1560941666471,
-                "standardEvent": false
-            },
-            "defaultTransformerMappping": false
-        },
-        {
-            "clickEventsMeta": {
-                "eventId": "dd531667-c17d-4886-a89b-87d6a1d2ad1a",
-                "eventName": "ProductRemovedFromCart",
-                "eventType": "PRODUCTEVENT",
-                "actions": [
-                    "EIConsumer",
-                    "EMFConsumer"
-                ],
-                "fields": [
-                    {
-                        "name": "customer",
-                        "type": "customer",
-                        "attributes": {
-                            "accountId": {
-                                "valueType": "ENUM"
-                            },
-                            "addCustomerIfNotExists": {
-                                "value": "false",
-                                "valueType": "BOOLEAN"
-                            },
-                            "identifierType": {
-                                "value": "MOBILE",
-                                "valueType": "ENUM"
-                            },
-                            "isRequired": {
-                                "value": "true",
-                                "valueType": "BOOLEAN"
-                            },
-                            "source": {
-                                "value": "INSTORE",
-                                "valueType": "ENUM"
-                            }
-                        },
-                        "standardField": true
-                    },
-                    {
-                        "name": "cartId",
-                        "type": "string",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "false",
-                                "valueType": "BOOLEAN"
-                            },
-                            "regex": {
-                                "valueType": "STRING"
-                            }
-                        },
-                        "standardField": true
-                    },
-                    {
-                        "name": "productSku",
-                        "type": "productSku",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "true",
-                                "valueType": "BOOLEAN"
-                            }
-                        },
-                        "standardField": true
-                    },
-                    {
-                        "name": "productBrand",
-                        "type": "productBrand",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "false",
-                                "valueType": "BOOLEAN"
-                            }
-                        },
-                        "standardField": true
-                    },
-                    {
-                        "name": "productCategory",
-                        "type": "productCategory",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "false",
-                                "valueType": "BOOLEAN"
-                            }
-                        },
-                        "standardField": true
-                    },
-                    {
-                        "name": "productQuantity",
-                        "type": "double",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "false",
-                                "valueType": "BOOLEAN"
-                            }
-                        },
-                        "standardField": true
-                    },
-                    {
-                        "name": "productPrice",
-                        "type": "double",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "false",
-                                "valueType": "BOOLEAN"
-                            }
-                        },
-                        "standardField": true
-                    },
-                    {
-                        "name": "productName",
-                        "type": "string",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "false",
-                                "valueType": "BOOLEAN"
-                            },
-                            "regex": {
-                                "valueType": "STRING"
-                            }
-                        },
-                        "standardField": true
-                    },
-                    {
-                        "name": "productType",
-                        "type": "string",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "false",
-                                "valueType": "BOOLEAN"
-                            },
-                            "regex": {
-                                "valueType": "STRING"
-                            }
-                        },
-                        "standardField": true
-                    }
-                ],
-                "status": "UNPUBLISHED",
-                "testStatus": "NOT_VERIFIED",
-                "label": "Product Removed From Cart",
-                "description": "Product Removed From Cart",
-                "date": 1560941666471,
-                "standardEvent": true
-            },
-            "defaultTransformerMappping": true
-        },
-        {
-            "clickEventsMeta": {
-                "eventId": "2449602c-4221-4741-a935-dd4dccf65032",
-                "eventName": "EMFEvent",
-                "eventType": "PRODUCTEVENT",
-                "actions": [
-                    "EIConsumer",
-                    "EMFConsumer"
-                ],
-                "fields": [
-                    {
-                        "name": "customer",
-                        "type": "customer",
-                        "attributes": {
-                            "accountId": {
-                                "valueType": "ENUM"
-                            },
-                            "addCustomerIfNotExists": {
-                                "value": "true",
-                                "valueType": "Boolean"
-                            },
-                            "identifierType": {
-                                "value": "MOBILE",
-                                "valueType": "ENUM"
-                            },
-                            "isRequired": {
-                                "value": "true",
-                                "valueType": "BOOLEAN"
-                            },
-                            "source": {
-                                "value": "INSTORE",
-                                "valueType": "ENUM"
-                            }
-                        }
-                    },
-                    {
-                        "name": "string",
-                        "type": "string",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "true",
-                                "valueType": "BOOLEAN"
-                            },
-                            "regex": {
-                                "valueType": "STRING"
-                            }
-                        }
-                    },
-                    {
-                        "name": "tillCode",
-                        "type": "tillCode",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "true",
-                                "valueType": "BOOLEAN"
-                            }
-                        }
-                    },
-                    {
-                        "name": "productSku",
-                        "type": "productSku",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "true",
-                                "valueType": "BOOLEAN"
-                            }
-                        }
-                    },
-                    {
-                        "name": "productBrand",
-                        "type": "productBrand",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "true",
-                                "valueType": "BOOLEAN"
-                            }
-                        }
-                    },
-                    {
-                        "name": "productCategory",
-                        "type": "productCategory",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "true",
-                                "valueType": "BOOLEAN"
-                            }
-                        }
-                    },
-                    {
-                        "name": "double",
-                        "type": "double",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "true",
-                                "valueType": "BOOLEAN"
-                            }
-                        }
-                    }
-                ],
-                "status": "UNPUBLISHED",
-                "testStatus": "NOT_VERIFIED",
-                "description": "Sample Event",
-                "date": 1560941666471,
-                "standardEvent": false
-            },
-            "defaultTransformerMappping": false
-        },
-        {
-            "clickEventsMeta": {
-                "eventId": "71d86bdc-738c-4741-800c-bdadec2d7860",
-                "eventName": "eventdemo4",
-                "eventType": "USEREVENT",
-                "actions": [
-                    "EIConsumer",
-                    "EMFConsumer"
-                ],
-                "fields": [
-                    {
-                        "name": "customer",
-                        "type": "customer",
-                        "attributes": {
-                            "accountId": {
-                                "valueType": "ENUM"
-                            },
-                            "addCustomerIfNotExists": {
-                                "value": "false",
-                                "valueType": "BOOLEAN"
-                            },
-                            "identifierType": {
-                                "value": "MOBILE",
-                                "valueType": "ENUM"
-                            },
-                            "isRequired": {
-                                "value": "true",
-                                "valueType": "BOOLEAN"
-                            },
-                            "source": {
-                                "value": "INSTORE",
-                                "valueType": "ENUM"
-                            }
-                        }
-                    },
-                    {
-                        "name": "name",
-                        "type": "string",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "true",
-                                "valueType": "BOOLEAN"
-                            },
-                            "regex": {
-                                "valueType": "STRING"
-                            }
-                        }
-                    }
-                ],
-                "status": "PUBLISHED",
-                "testStatus": "VERIFIED",
-                "description": "fngjbjfghjbndfbj",
-                "date": 1560941666471,
-                "standardEvent": false
-            },
-            "webEngageTransformerMapping": {
-                "eventNameMapping": {
-                    "webEngageFieldName": "event_name",
-                    "valueMap": {
-                        "Product Added To Cart": "ProductAddedToCart"
-                    }
-                },
-                "eventFieldMappings": [
-                    {
-                        "eventFieldName": "customer",
-                        "webEngageFieldName": "customer"
-                    },
-                    {
-                        "eventFieldName": "name",
-                        "webEngageFieldName": "name"
-                    }
-                ]
-            },
-            "defaultTransformerMappping": false
-        },
-        {
-            "clickEventsMeta": {
-                "eventId": "f640fda0-0318-4a53-a631-4f005a199bad",
-                "eventName": "eventdemo3",
-                "eventType": "USEREVENT",
-                "actions": [
-                    "EIConsumer",
-                    "EMFConsumer"
-                ],
-                "fields": [
-                    {
-                        "name": "customer",
-                        "type": "customer",
-                        "attributes": {
-                            "accountId": {
-                                "valueType": "ENUM"
-                            },
-                            "addCustomerIfNotExists": {
-                                "value": "true",
-                                "valueType": "Boolean"
-                            },
-                            "identifierType": {
-                                "value": "MOBILE",
-                                "valueType": "ENUM"
-                            },
-                            "isRequired": {
-                                "value": "true",
-                                "valueType": "BOOLEAN"
-                            },
-                            "source": {
-                                "value": "INSTORE",
-                                "valueType": "ENUM"
-                            }
-                        }
-                    }
-                ],
-                "status": "PUBLISHED",
-                "testStatus": "VERIFIED",
-                "description": "fngjbjfghjbndfbj",
-                "date": 1560941666471,
-                "standardEvent": false
-            },
-            "defaultTransformerMappping": true
-        },
-        {
-            "clickEventsMeta": {
-                "eventId": "d678d41c-65be-4a2c-8295-7548478c1099",
-                "eventName": "EMFEVENT1",
-                "eventType": "PRODUCTEVENT",
-                "actions": [
-                    "EIConsumer",
-                    "EMFConsumer"
-                ],
-                "fields": [
-                    {
-                        "name": "customer",
-                        "type": "customer",
-                        "attributes": {
-                            "accountId": {
-                                "valueType": "ENUM"
-                            },
-                            "addCustomerIfNotExists": {
-                                "value": "true",
-                                "valueType": "Boolean"
-                            },
-                            "identifierType": {
-                                "value": "MOBILE",
-                                "valueType": "ENUM"
-                            },
-                            "isRequired": {
-                                "value": "true",
-                                "valueType": "BOOLEAN"
-                            },
-                            "source": {
-                                "value": "INSTORE",
-                                "valueType": "ENUM"
-                            }
-                        }
-                    },
-                    {
-                        "name": "string",
-                        "type": "string",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "true",
-                                "valueType": "BOOLEAN"
-                            },
-                            "regex": {
-                                "valueType": "STRING"
-                            }
-                        }
-                    },
-                    {
-                        "name": "tillCode",
-                        "type": "tillCode",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "true",
-                                "valueType": "BOOLEAN"
-                            }
-                        }
-                    },
-                    {
-                        "name": "productSku",
-                        "type": "productSku",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "true",
-                                "valueType": "BOOLEAN"
-                            }
-                        }
-                    },
-                    {
-                        "name": "productBrand",
-                        "type": "productBrand",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "true",
-                                "valueType": "BOOLEAN"
-                            }
-                        }
-                    },
-                    {
-                        "name": "productCategory",
-                        "type": "productCategory",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "true",
-                                "valueType": "BOOLEAN"
-                            }
-                        }
-                    },
-                    {
-                        "name": "double",
-                        "type": "double",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "true",
-                                "valueType": "BOOLEAN"
-                            }
-                        }
-                    }
-                ],
-                "status": "UNPUBLISHED",
-                "testStatus": "NOT_VERIFIED",
-                "description": "Sample Event",
-                "date": 1560941666471,
-                "standardEvent": false
-            },
-            "defaultTransformerMappping": false
-        },
-        {
-            "clickEventsMeta": {
-                "eventId": "314dadac-51e4-4044-b685-306e44bf8be0",
-                "eventName": "SampleEvent",
-                "eventType": "USEREVENT",
-                "actions": [
-                    "EIConsumer"
-                ],
-                "fields": [
-                    {
-                        "name": "CustomerIdentifier",
-                        "type": "customer",
-                        "attributes": {
-                            "accountId": {
-                                "valueType": "ENUM"
-                            },
-                            "addCustomerIfNotExists": {
-                                "value": "true",
-                                "valueType": "BOOLEAN"
-                            },
-                            "identifierType": {
-                                "valueType": "ENUM"
-                            },
-                            "isRequired": {
-                                "value": "false",
-                                "valueType": "BOOLEAN"
-                            },
-                            "source": {
-                                "valueType": "ENUM"
-                            }
-                        }
-                    }
-                ],
-                "status": "UNPUBLISHED",
-                "testStatus": "NOT_VERIFIED",
-                "label": "Sample Event",
-                "description": "Sample Description",
-                "date": 1560941666471,
-                "standardEvent": false
-            },
-            "defaultTransformerMappping": false
-        },
-        {
-            "clickEventsMeta": {
-                "eventId": "d85f2a26-4536-439b-b666-d6f518912c17",
-                "eventName": "Testing",
-                "eventType": "USEREVENT",
-                "actions": [
-                    "EMFConsumer"
-                ],
-                "fields": [
-                    {
-                        "name": "Name",
-                        "type": "customer",
-                        "attributes": {
-                            "accountId": {
-                                "valueType": "ENUM"
-                            },
-                            "addCustomerIfNotExists": {
-                                "value": "true",
-                                "valueType": "BOOLEAN"
-                            },
-                            "identifierType": {
-                                "valueType": "ENUM"
-                            },
-                            "isRequired": {
-                                "value": "true",
-                                "valueType": "BOOLEAN"
-                            },
-                            "source": {
-                                "valueType": "ENUM"
-                            }
-                        }
-                    }
-                ],
-                "status": "UNPUBLISHED",
-                "testStatus": "NOT_VERIFIED",
-                "label": "Testing",
-                "date": 1560941666471,
-                "standardEvent": false
-            },
-            "defaultTransformerMappping": false
-        },
-        {
-            "clickEventsMeta": {
-                "eventId": "acae5097-5ebf-4600-b511-023f05e91bf1",
-                "eventName": "NewEvent",
-                "eventType": "USEREVENT",
-                "actions": [
-                    "EIConsumer"
-                ],
-                "fields": [
-                    {
-                        "name": "Name",
-                        "type": "customer",
-                        "attributes": {
-                            "accountId": {
-                                "valueType": "ENUM"
-                            },
-                            "addCustomerIfNotExists": {
-                                "value": "false",
-                                "valueType": "BOOLEAN"
-                            },
-                            "identifierType": {
-                                "valueType": "ENUM"
-                            },
-                            "isRequired": {
-                                "value": "false",
-                                "valueType": "BOOLEAN"
-                            },
-                            "source": {
-                                "valueType": "ENUM"
-                            }
-                        }
-                    }
-                ],
-                "status": "UNPUBLISHED",
-                "testStatus": "NOT_VERIFIED",
-                "label": "new event",
-                "description": "description of new event.",
-                "date": 1560941666471,
-                "standardEvent": false
-            },
-            "defaultTransformerMappping": false
-        }
-    ],
-    "warnings": [],
-    "errors": []
-}
-```
-
-### Resource Information
-
-| | |
---------- | ----------- |
-URI | `/events`
-Rate Limited? | Yes
-Authentication | Yes
-Response Formats | JSON
-HTTP Methods | GET
-Batch Support | No
-
-
-### Request URL
-
-`http://{Cluster URL}/v2/events`
-
 
 
 ## Get Metadata of Standard Events
@@ -2002,7 +1163,7 @@ http://us.api.capillarytech.com/v2/events/standard_events_meta
                     },
                     {
                         "eventFieldName": "productCateogry",
-                        "webEngageFieldName": "Cateogry"
+                        "webEngageFieldName": "Category"
                     },
                     {
                         "eventFieldName": "productQuantity",
@@ -3016,6 +2177,804 @@ Batch Support | No
 
 
 
+## Get Org Events
+
+Retrieves all events configured for the org. This includes both standard and custom events.
+
+
+
+> Sample Request
+
+```html
+http://us.api.capillarytech.com/v2/events
+```
+
+
+
+> Sample Response
+
+```json
+{
+    "data": [
+        {
+            "clickEventsMeta": {
+                "eventId": "87c8b0fb-b825-4b7e-b336-b24e7c389f70",
+                "eventName": "CustomerEvent",
+                "actions": [
+                    "EIConsumer",
+                    "EMFConsumer"
+                ],
+                "fields": [
+                    {
+                        "name": "customer",
+                        "type": "customer",
+                        "attributes": {
+                            "accountId": {
+                                "valueType": "ENUM"
+                            },
+                            "addCustomerIfNotExists": {
+                                "value": "true",
+                                "valueType": "Boolean"
+                            },
+                            "identifierType": {
+                                "value": "MOBILE",
+                                "valueType": "ENUM"
+                            },
+                            "isRequired": {
+                                "value": "true",
+                                "valueType": "BOOLEAN"
+                            },
+                            "source": {
+                                "value": "INSTORE",
+                                "valueType": "ENUM"
+                            }
+                        }
+                    },
+                    {
+                        "name": "string",
+                        "type": "string",
+                        "attributes": {
+                            "isRequired": {
+                                "value": "false",
+                                "valueType": "Boolean"
+                            },
+                            "regex": {
+                                "valueType": "STRING"
+                            }
+                        }
+                    },
+                    {
+                        "name": "tillCode",
+                        "type": "tillCode",
+                        "attributes": {
+                            "isRequired": {
+                                "value": "false",
+                                "valueType": "Boolean"
+                            }
+                        }
+                    },
+                    {
+                        "name": "productSku",
+                        "type": "productSku",
+                        "attributes": {
+                            "isRequired": {
+                                "value": "false",
+                                "valueType": "Boolean"
+                            }
+                        }
+                    },
+                    {
+                        "name": "productBrand",
+                        "type": "productBrand",
+                        "attributes": {
+                            "isRequired": {
+                                "value": "false",
+                                "valueType": "Boolean"
+                            }
+                        }
+                    },
+                    {
+                        "name": "productCategory",
+                        "type": "productCategory",
+                        "attributes": {
+                            "isRequired": {
+                                "value": "false",
+                                "valueType": "Boolean"
+                            }
+                        }
+                    },
+                    {
+                        "name": "double",
+                        "type": "double",
+                        "attributes": {
+                            "isRequired": {
+                                "value": "false",
+                                "valueType": "Boolean"
+                            }
+                        }
+                    }
+                ],
+                "status": "UNPUBLISHED",
+                "testStatus": "NOT_VERIFIED",
+                "description": "fngjbjfghjbndfbj",
+                "date": 1560941666471,
+                "standardEvent": false
+            },
+            "defaultTransformerMappping": false
+        },
+        {
+            "clickEventsMeta": {
+                "eventId": "02ec3c76-5c47-4983-b0df-f0ab29bf227c",
+                "eventName": "sagaEvent",
+                "eventType": "USEREVENT",
+                "actions": [
+                    "EIConsumer"
+                ],
+                "fields": [
+                    {
+                        "name": "ID",
+                        "type": "customer",
+                        "attributes": {
+                            "accountId": {
+                                "valueType": "ENUM"
+                            },
+                            "addCustomerIfNotExists": {
+                                "value": "false",
+                                "valueType": "BOOLEAN"
+                            },
+                            "identifierType": {
+                                "valueType": "ENUM"
+                            },
+                            "isRequired": {
+                                "value": "false",
+                                "valueType": "BOOLEAN"
+                            },
+                            "source": {
+                                "valueType": "ENUM"
+                            }
+                        }
+                    }
+                ],
+                "status": "UNPUBLISHED",
+                "testStatus": "NOT_VERIFIED",
+                "label": "saga event",
+                "description": "description",
+                "date": 1560941666471,
+                "standardEvent": false
+            },
+            "defaultTransformerMappping": false
+        },
+        {
+            "clickEventsMeta": {
+                "eventId": "dd531667-c17d-4886-a89b-87d6a1d2ad1a",
+                "eventName": "ProductRemovedFromCart",
+                "eventType": "PRODUCTEVENT",
+                "actions": [
+                    "EIConsumer",
+                    "EMFConsumer"
+                ],
+                "fields": [
+                    {
+                        "name": "customer",
+                        "type": "customer",
+                        "attributes": {
+                            "accountId": {
+                                "valueType": "ENUM"
+                            },
+                            "addCustomerIfNotExists": {
+                                "value": "false",
+                                "valueType": "BOOLEAN"
+                            },
+                            "identifierType": {
+                                "value": "MOBILE",
+                                "valueType": "ENUM"
+                            },
+                            "isRequired": {
+                                "value": "true",
+                                "valueType": "BOOLEAN"
+                            },
+                            "source": {
+                                "value": "INSTORE",
+                                "valueType": "ENUM"
+                            }
+                        },
+                        "standardField": true
+                    },
+                    {
+                        "name": "cartId",
+                        "type": "string",
+                        "attributes": {
+                            "isRequired": {
+                                "value": "false",
+                                "valueType": "BOOLEAN"
+                            },
+                            "regex": {
+                                "valueType": "STRING"
+                            }
+                        },
+                        "standardField": true
+                    },
+                    {
+                        "name": "productSku",
+                        "type": "productSku",
+                        "attributes": {
+                            "isRequired": {
+                                "value": "true",
+                                "valueType": "BOOLEAN"
+                            }
+                        },
+                        "standardField": true
+                    },
+                    {
+                        "name": "productBrand",
+                        "type": "productBrand",
+                        "attributes": {
+                            "isRequired": {
+                                "value": "false",
+                                "valueType": "BOOLEAN"
+                            }
+                        },
+                        "standardField": true
+                    },
+                    {
+                        "name": "productCategory",
+                        "type": "productCategory",
+                        "attributes": {
+                            "isRequired": {
+                                "value": "false",
+                                "valueType": "BOOLEAN"
+                            }
+                        },
+                        "standardField": true
+                    },
+                    {
+                        "name": "productQuantity",
+                        "type": "double",
+                        "attributes": {
+                            "isRequired": {
+                                "value": "false",
+                                "valueType": "BOOLEAN"
+                            }
+                        },
+                        "standardField": true
+                    },
+                    {
+                        "name": "productPrice",
+                        "type": "double",
+                        "attributes": {
+                            "isRequired": {
+                                "value": "false",
+                                "valueType": "BOOLEAN"
+                            }
+                        },
+                        "standardField": true
+                    },
+                    {
+                        "name": "productName",
+                        "type": "string",
+                        "attributes": {
+                            "isRequired": {
+                                "value": "false",
+                                "valueType": "BOOLEAN"
+                            },
+                            "regex": {
+                                "valueType": "STRING"
+                            }
+                        },
+                        "standardField": true
+                    },
+                    {
+                        "name": "productType",
+                        "type": "string",
+                        "attributes": {
+                            "isRequired": {
+                                "value": "false",
+                                "valueType": "BOOLEAN"
+                            },
+                            "regex": {
+                                "valueType": "STRING"
+                            }
+                        },
+                        "standardField": true
+                    }
+                ],
+                "status": "UNPUBLISHED",
+                "testStatus": "NOT_VERIFIED",
+                "label": "Product Removed From Cart",
+                "description": "Product Removed From Cart",
+                "date": 1560941666471,
+                "standardEvent": true
+            },
+            "defaultTransformerMappping": true
+        },
+        {
+            "clickEventsMeta": {
+                "eventId": "2449602c-4221-4741-a935-dd4dccf65032",
+                "eventName": "EMFEvent",
+                "eventType": "PRODUCTEVENT",
+                "actions": [
+                    "EIConsumer",
+                    "EMFConsumer"
+                ],
+                "fields": [
+                    {
+                        "name": "customer",
+                        "type": "customer",
+                        "attributes": {
+                            "accountId": {
+                                "valueType": "ENUM"
+                            },
+                            "addCustomerIfNotExists": {
+                                "value": "true",
+                                "valueType": "Boolean"
+                            },
+                            "identifierType": {
+                                "value": "MOBILE",
+                                "valueType": "ENUM"
+                            },
+                            "isRequired": {
+                                "value": "true",
+                                "valueType": "BOOLEAN"
+                            },
+                            "source": {
+                                "value": "INSTORE",
+                                "valueType": "ENUM"
+                            }
+                        }
+                    },
+                    {
+                        "name": "string",
+                        "type": "string",
+                        "attributes": {
+                            "isRequired": {
+                                "value": "true",
+                                "valueType": "BOOLEAN"
+                            },
+                            "regex": {
+                                "valueType": "STRING"
+                            }
+                        }
+                    },
+                    {
+                        "name": "tillCode",
+                        "type": "tillCode",
+                        "attributes": {
+                            "isRequired": {
+                                "value": "true",
+                                "valueType": "BOOLEAN"
+                            }
+                        }
+                    },
+                    {
+                        "name": "productSku",
+                        "type": "productSku",
+                        "attributes": {
+                            "isRequired": {
+                                "value": "true",
+                                "valueType": "BOOLEAN"
+                            }
+                        }
+                    },
+                    {
+                        "name": "productBrand",
+                        "type": "productBrand",
+                        "attributes": {
+                            "isRequired": {
+                                "value": "true",
+                                "valueType": "BOOLEAN"
+                            }
+                        }
+                    },
+                    {
+                        "name": "productCategory",
+                        "type": "productCategory",
+                        "attributes": {
+                            "isRequired": {
+                                "value": "true",
+                                "valueType": "BOOLEAN"
+                            }
+                        }
+                    },
+                    {
+                        "name": "double",
+                        "type": "double",
+                        "attributes": {
+                            "isRequired": {
+                                "value": "true",
+                                "valueType": "BOOLEAN"
+                            }
+                        }
+                    }
+                ],
+                "status": "UNPUBLISHED",
+                "testStatus": "NOT_VERIFIED",
+                "description": "Sample Event",
+                "date": 1560941666471,
+                "standardEvent": false
+            },
+            "defaultTransformerMappping": false
+        },
+        {
+            "clickEventsMeta": {
+                "eventId": "71d86bdc-738c-4741-800c-bdadec2d7860",
+                "eventName": "eventdemo4",
+                "eventType": "USEREVENT",
+                "actions": [
+                    "EIConsumer",
+                    "EMFConsumer"
+                ],
+                "fields": [
+                    {
+                        "name": "customer",
+                        "type": "customer",
+                        "attributes": {
+                            "accountId": {
+                                "valueType": "ENUM"
+                            },
+                            "addCustomerIfNotExists": {
+                                "value": "false",
+                                "valueType": "BOOLEAN"
+                            },
+                            "identifierType": {
+                                "value": "MOBILE",
+                                "valueType": "ENUM"
+                            },
+                            "isRequired": {
+                                "value": "true",
+                                "valueType": "BOOLEAN"
+                            },
+                            "source": {
+                                "value": "INSTORE",
+                                "valueType": "ENUM"
+                            }
+                        }
+                    },
+                    {
+                        "name": "name",
+                        "type": "string",
+                        "attributes": {
+                            "isRequired": {
+                                "value": "true",
+                                "valueType": "BOOLEAN"
+                            },
+                            "regex": {
+                                "valueType": "STRING"
+                            }
+                        }
+                    }
+                ],
+                "status": "PUBLISHED",
+                "testStatus": "VERIFIED",
+                "description": "fngjbjfghjbndfbj",
+                "date": 1560941666471,
+                "standardEvent": false
+            },
+            "webEngageTransformerMapping": {
+                "eventNameMapping": {
+                    "webEngageFieldName": "event_name",
+                    "valueMap": {
+                        "Product Added To Cart": "ProductAddedToCart"
+                    }
+                },
+                "eventFieldMappings": [
+                    {
+                        "eventFieldName": "customer",
+                        "webEngageFieldName": "customer"
+                    },
+                    {
+                        "eventFieldName": "name",
+                        "webEngageFieldName": "name"
+                    }
+                ]
+            },
+            "defaultTransformerMappping": false
+        },
+        {
+            "clickEventsMeta": {
+                "eventId": "f640fda0-0318-4a53-a631-4f005a199bad",
+                "eventName": "eventdemo3",
+                "eventType": "USEREVENT",
+                "actions": [
+                    "EIConsumer",
+                    "EMFConsumer"
+                ],
+                "fields": [
+                    {
+                        "name": "customer",
+                        "type": "customer",
+                        "attributes": {
+                            "accountId": {
+                                "valueType": "ENUM"
+                            },
+                            "addCustomerIfNotExists": {
+                                "value": "true",
+                                "valueType": "Boolean"
+                            },
+                            "identifierType": {
+                                "value": "MOBILE",
+                                "valueType": "ENUM"
+                            },
+                            "isRequired": {
+                                "value": "true",
+                                "valueType": "BOOLEAN"
+                            },
+                            "source": {
+                                "value": "INSTORE",
+                                "valueType": "ENUM"
+                            }
+                        }
+                    }
+                ],
+                "status": "PUBLISHED",
+                "testStatus": "VERIFIED",
+                "description": "fngjbjfghjbndfbj",
+                "date": 1560941666471,
+                "standardEvent": false
+            },
+            "defaultTransformerMappping": true
+        },
+        {
+            "clickEventsMeta": {
+                "eventId": "d678d41c-65be-4a2c-8295-7548478c1099",
+                "eventName": "EMFEVENT1",
+                "eventType": "PRODUCTEVENT",
+                "actions": [
+                    "EIConsumer",
+                    "EMFConsumer"
+                ],
+                "fields": [
+                    {
+                        "name": "customer",
+                        "type": "customer",
+                        "attributes": {
+                            "accountId": {
+                                "valueType": "ENUM"
+                            },
+                            "addCustomerIfNotExists": {
+                                "value": "true",
+                                "valueType": "Boolean"
+                            },
+                            "identifierType": {
+                                "value": "MOBILE",
+                                "valueType": "ENUM"
+                            },
+                            "isRequired": {
+                                "value": "true",
+                                "valueType": "BOOLEAN"
+                            },
+                            "source": {
+                                "value": "INSTORE",
+                                "valueType": "ENUM"
+                            }
+                        }
+                    },
+                    {
+                        "name": "string",
+                        "type": "string",
+                        "attributes": {
+                            "isRequired": {
+                                "value": "true",
+                                "valueType": "BOOLEAN"
+                            },
+                            "regex": {
+                                "valueType": "STRING"
+                            }
+                        }
+                    },
+                    {
+                        "name": "tillCode",
+                        "type": "tillCode",
+                        "attributes": {
+                            "isRequired": {
+                                "value": "true",
+                                "valueType": "BOOLEAN"
+                            }
+                        }
+                    },
+                    {
+                        "name": "productSku",
+                        "type": "productSku",
+                        "attributes": {
+                            "isRequired": {
+                                "value": "true",
+                                "valueType": "BOOLEAN"
+                            }
+                        }
+                    },
+                    {
+                        "name": "productBrand",
+                        "type": "productBrand",
+                        "attributes": {
+                            "isRequired": {
+                                "value": "true",
+                                "valueType": "BOOLEAN"
+                            }
+                        }
+                    },
+                    {
+                        "name": "productCategory",
+                        "type": "productCategory",
+                        "attributes": {
+                            "isRequired": {
+                                "value": "true",
+                                "valueType": "BOOLEAN"
+                            }
+                        }
+                    },
+                    {
+                        "name": "double",
+                        "type": "double",
+                        "attributes": {
+                            "isRequired": {
+                                "value": "true",
+                                "valueType": "BOOLEAN"
+                            }
+                        }
+                    }
+                ],
+                "status": "UNPUBLISHED",
+                "testStatus": "NOT_VERIFIED",
+                "description": "Sample Event",
+                "date": 1560941666471,
+                "standardEvent": false
+            },
+            "defaultTransformerMappping": false
+        },
+        {
+            "clickEventsMeta": {
+                "eventId": "314dadac-51e4-4044-b685-306e44bf8be0",
+                "eventName": "SampleEvent",
+                "eventType": "USEREVENT",
+                "actions": [
+                    "EIConsumer"
+                ],
+                "fields": [
+                    {
+                        "name": "CustomerIdentifier",
+                        "type": "customer",
+                        "attributes": {
+                            "accountId": {
+                                "valueType": "ENUM"
+                            },
+                            "addCustomerIfNotExists": {
+                                "value": "true",
+                                "valueType": "BOOLEAN"
+                            },
+                            "identifierType": {
+                                "valueType": "ENUM"
+                            },
+                            "isRequired": {
+                                "value": "false",
+                                "valueType": "BOOLEAN"
+                            },
+                            "source": {
+                                "valueType": "ENUM"
+                            }
+                        }
+                    }
+                ],
+                "status": "UNPUBLISHED",
+                "testStatus": "NOT_VERIFIED",
+                "label": "Sample Event",
+                "description": "Sample Description",
+                "date": 1560941666471,
+                "standardEvent": false
+            },
+            "defaultTransformerMappping": false
+        },
+        {
+            "clickEventsMeta": {
+                "eventId": "d85f2a26-4536-439b-b666-d6f518912c17",
+                "eventName": "Testing",
+                "eventType": "USEREVENT",
+                "actions": [
+                    "EMFConsumer"
+                ],
+                "fields": [
+                    {
+                        "name": "Name",
+                        "type": "customer",
+                        "attributes": {
+                            "accountId": {
+                                "valueType": "ENUM"
+                            },
+                            "addCustomerIfNotExists": {
+                                "value": "true",
+                                "valueType": "BOOLEAN"
+                            },
+                            "identifierType": {
+                                "valueType": "ENUM"
+                            },
+                            "isRequired": {
+                                "value": "true",
+                                "valueType": "BOOLEAN"
+                            },
+                            "source": {
+                                "valueType": "ENUM"
+                            }
+                        }
+                    }
+                ],
+                "status": "UNPUBLISHED",
+                "testStatus": "NOT_VERIFIED",
+                "label": "Testing",
+                "date": 1560941666471,
+                "standardEvent": false
+            },
+            "defaultTransformerMappping": false
+        },
+        {
+            "clickEventsMeta": {
+                "eventId": "acae5097-5ebf-4600-b511-023f05e91bf1",
+                "eventName": "NewEvent",
+                "eventType": "USEREVENT",
+                "actions": [
+                    "EIConsumer"
+                ],
+                "fields": [
+                    {
+                        "name": "Name",
+                        "type": "customer",
+                        "attributes": {
+                            "accountId": {
+                                "valueType": "ENUM"
+                            },
+                            "addCustomerIfNotExists": {
+                                "value": "false",
+                                "valueType": "BOOLEAN"
+                            },
+                            "identifierType": {
+                                "valueType": "ENUM"
+                            },
+                            "isRequired": {
+                                "value": "false",
+                                "valueType": "BOOLEAN"
+                            },
+                            "source": {
+                                "valueType": "ENUM"
+                            }
+                        }
+                    }
+                ],
+                "status": "UNPUBLISHED",
+                "testStatus": "NOT_VERIFIED",
+                "label": "new event",
+                "description": "description of new event.",
+                "date": 1560941666471,
+                "standardEvent": false
+            },
+            "defaultTransformerMappping": false
+        }
+    ],
+    "warnings": [],
+    "errors": []
+}
+```
+
+### Resource Information
+
+| | |
+--------- | ----------- |
+URI | `/events`
+Rate Limited? | Yes
+Authentication | Yes
+Response Formats | JSON
+HTTP Methods | GET
+Batch Support | No
+
+
+### Request URL
+
+`http://{Cluster URL}/v2/events`
+
+
+
+
+
+
+
+
+
 
 
 
@@ -3087,40 +3046,62 @@ eventsMapped* | array | Specify the event names that you want to map to the `tra
 
 
 
-
-
-
-
-
-## Publish Events
+## Event Fields Mapping
 
 
 
 > Sample Request
 
 ```html
-http://us.api.capillarytech.com/v2/events/standard_events/enable
+http://us.api.capillarytech.com/v2/events/adapter_mapping
 ```
 
 > Sample POST Request
 
 ```json
-
+{
+  "transformerType":"webEngageTransformer",
+	"webEngageTransformerData": {
+		"eventMapper": {
+			"eventFieldName": "event_name",
+			"eventDataType": "",
+			"fieldName": "event_name",
+			"valueMap": {
+			}
+		},
+		"eventFieldMapper": {
+			"CustomerEvent": [{
+					"eventFieldName": "customer",
+					"eventDataType": "",
+					"fieldName": "customer"
+               },
+                {
+                    "eventFieldName": "string",
+					"eventDataType": "",
+					"fieldName": "string"
+                  
+                }
+			]
+		}
+	}
+}
 ```
 
 
 > Sample Response
 
 ```json
-
+{
+    "warnings": [],
+    "errors": []
+}
 ```
-
 
 ### Resource Information
 
 | | |
 --------- | ----------- |
-URI | `/events/standard_events/enable`
+URI | `/events/adapter_mapping`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
@@ -3130,7 +3111,7 @@ Batch Support | No
 
 ### Request URL
 
-`http://{Cluster URL}/v2/events/standard_events/enable`
+`http://{Cluster URL}/v2/events/adapter_mapping`
 
 
 
@@ -3138,6 +3119,21 @@ Batch Support | No
 
 Parameter | Type | Description
 --------- | ---- | -----------
+transformerType | enum | 
+webEngageTransformerData | obj | 
+eventMapper | obj | 
+eventFieldName | | 
+eventDataType | | 
+fieldName | |
+valueMap | | 
+eventFieldMapper | obj | Match event field name with the fields for each event. In the Sample POST Request provided, `CustomerEvent` is the event name for which the field mapping is done 
+eventFieldName | string | 
+eventDataType | enum | Data type of the event
+fieldName | string | 
+valueMap | obj | 
+
+
+
 
 
 ## Get Webhook Account Details
@@ -5282,6 +5278,8 @@ http://us.api.capillarytech.com/v2/events/standard_events_meta
 ```
 
 
+### Resource Information
+
 | | |
 --------- | ----------- |
 URI | `/events/standard_events_meta`
@@ -5389,7 +5387,7 @@ https://1dzb567pwd.execute-api.us-east-2.amazonaws.com/nightly/webhooks/34b94vf9
 }
 ```
 
-## Resource Information
+### Resource Information
 
 | | |
 --------- | ----------- |
@@ -5521,46 +5519,62 @@ webHookId* | string | Specify the GUID of the webhook account that you want to d
 <aside class="notice"> Parameter marked by * is mandatory. </aside>
 
 
-## Webengage Transformer Mapping
 
+
+
+## Publish Events
 
 
 > Sample Request
 
 ```html
-http://us.api.capillarytech.com/v2/events/adapter_mapping
+http://us.api.capillarytech.com/v2/events/standard_events/enable
 ```
 
 > Sample POST Request
 
 ```json
-{
-  "transformerType":"webEngageTransformer",
-	"webEngageTransformerData": {
-		"eventMapper": {
-			"eventFieldName": "event_name",
-			"eventDataType": "",
-			"fieldName": "event_name",
-			"valueMap": {
-			}
-		},
-		"eventFieldMapper": {
-			"CustomerEvent": [{
-					"eventFieldName": "customer",
-					"eventDataType": "",
-					"fieldName": "customer"
-               },
-                {
-                    "eventFieldName": "string",
-					"eventDataType": "",
-					"fieldName": "string"
-                  
-                }
-			]
-		}
-	}
-}
+
 ```
+
+
+> Sample Response
+
+```json
+
+```
+
+
+### Resource Information
+
+| | |
+--------- | ----------- |
+URI | `/events/standard_events/enable`
+Rate Limited? | Yes
+Authentication | Yes
+Response Formats | JSON
+HTTP Methods | POST
+Batch Support | No
+
+
+### Request URL
+
+`http://{Cluster URL}/v2/events/standard_events/enable`
+
+
+
+
+## Disable a Custom Event
+
+Disables a specific custom event from the current organization.
+
+> Sample Request
+
+```html
+http://us.api.capillarytech.com/v2/events/disable?event_name=CustomerEvent1
+```
+
+
 
 
 > Sample Response
@@ -5576,17 +5590,17 @@ http://us.api.capillarytech.com/v2/events/adapter_mapping
 
 | | |
 --------- | ----------- |
-URI | `/events/adapter_mapping`
+URI | `/events/disable?event_name={EventName}`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
-HTTP Methods | POST
+HTTP Methods | PUT
 Batch Support | No
 
 
 ### Request URL
 
-`http://{Cluster URL}/v2/events/adapter_mapping`
+`http://{Cluster URL}/v2/events/disable?event_name={EventName}`
 
 
 
@@ -5594,15 +5608,4 @@ Batch Support | No
 
 Parameter | Type | Description
 --------- | ---- | -----------
-transformerType | enum | 
-webEngageTransformerData | obj | 
-eventMapper | obj | 
-eventFieldName | | 
-eventDataType | | 
-fieldName | |
-valueMap | | 
-eventFieldMapper | obj | Match event field name with the fields for each event. In the Sample POST Request provided, `CustomerEvent` is the event name for which the field mapping is done 
-eventFieldName | string | 
-eventDataType | enum | Data type of the event
-fieldName | string | 
-valueMap | obj | 
+EventName* | string | Pass the exact name of the event that you want to disable
