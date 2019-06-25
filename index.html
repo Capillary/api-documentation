@@ -12453,136 +12453,6 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h2 id="enable-standard-event">Enable Standard Event</h2>
 
-<p>Lets you enable a standard event for the organization.</p>
-
-<blockquote>
-<p>Sample Request</p>
-</blockquote>
-<pre class="highlight html"><code>http://us.api.capillarytech.com/v2/events/standard_events/enable?event_name=ProductRemovedFromCart
-</code></pre>
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<h3 id="request-information">Request Information</h3>
-
-<table><thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URI</td>
-<td><code class="prettyprint">/events/standard_events/enable?event_name={eventName}</code></td>
-</tr>
-<tr>
-<td>Rate Limited?</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>Authentication</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>Response Format</td>
-<td>JSON</td>
-</tr>
-<tr>
-<td>HTTP Method</td>
-<td>POST</td>
-</tr>
-<tr>
-<td>Batch Support</td>
-<td>No</td>
-</tr>
-</tbody></table>
-
-<h3 id="request-url">Request URL</h3>
-
-<p><code class="prettyprint">http://{Cluster URL}/v2/events/standard_events/enable?event_name={eventName}</code></p>
-
-<h2 id="get-adapters-metadata">Get Adapters Metadata</h2>
-
-<p>Retrieves the details of predefined transformers (field mappings).</p>
-<pre class="highlight html"><code>http://us.api.capillarytech.com/v2/events/adapters_meta
-</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DefaultTransformer"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default Transformer Mapping"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WebEngageTransformer"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WebEngage Transformer"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<h3 id="request-information">Request Information</h3>
-
-<table><thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URI</td>
-<td><code class="prettyprint">/events/adapters_meta</code></td>
-</tr>
-<tr>
-<td>Rate Limited?</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>Authentication</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
-<td>HTTP Method</td>
-<td>GET</td>
-</tr>
-<tr>
-<td>Batch Support</td>
-<td>No</td>
-</tr>
-</tbody></table>
-
-<h3 id="request-url">Request URL</h3>
-
-<p><code class="prettyprint">http://{Cluster URL}/v2/events/adapters_meta</code></p>
-
-<h3 id="response-parameters">Response Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>DefaultTransformer</td>
-<td>Used if no mapping is required</td>
-</tr>
-<tr>
-<td>WebEngageTransformer</td>
-<td>Used for Webengage or Webhook mapping</td>
-</tr>
-</tbody></table>
-
-<h2 id="enable-standard-event">Enable Standard Event</h2>
-
 <p>Lets you enable a standard event for the current org.</p>
 
 <blockquote>
@@ -15533,6 +15403,81 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </tbody></table>
 
 <aside class="notice">All parameters marked by * are mandatory.</aside>
+
+<h2 id="get-adapters-metadata">Get Adapters Metadata</h2>
+
+<p>Retrieves the details of predefined transformers (field mappings).</p>
+<pre class="highlight html"><code>http://us.api.capillarytech.com/v2/events/adapters_meta
+</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DefaultTransformer"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default Transformer Mapping"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WebEngageTransformer"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WebEngage Transformer"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="request-information">Request Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/events/adapters_meta</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">http://{Cluster URL}/v2/events/adapters_meta</code></p>
+
+<h3 id="response-parameters">Response Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>DefaultTransformer</td>
+<td>Used if no mapping is required</td>
+</tr>
+<tr>
+<td>WebEngageTransformer</td>
+<td>Used for Webengage or Webhook mapping</td>
+</tr>
+</tbody></table>
 
 <h2 id="get-webhook-account-details">Get Webhook Account Details</h2>
 
