@@ -109,7 +109,7 @@ http://us.api.capillarytech.com/v2/events
 
 
 
-### Resource Information
+### Request Information
 
 | | |
 --------- | ----------- |
@@ -117,7 +117,7 @@ URI | `/events`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
-HTTP Methods | POST
+HTTP Method | POST
 Batch Support | No
 
 ### Request URL
@@ -139,12 +139,12 @@ addCustomerIfNotExists | obj | Set this value to `true` to allow registering new
 valueType | enum | Data-type of the attribute. Example: Boolean, Enum, String
 value | string | Value of the attribute based on its `valueType`.For example, if valueType is Boolean, either `true` or `false` is supported as value
 
-
+<aside class="notice">All parameters marked by * are mandatory. </aside>
 
 
 ## Update Custom Event
 
-Lets you add or remove fields and customers for an event.
+Lets you add or remove fields and customers for an event. You need to pass the entire payload of the event.
 
 
 
@@ -257,7 +257,7 @@ http://us.api.capillarytech.com/v2/events
 ```
 
 
-### Resource Information
+### Request Information
 
 | | |
 --------- | ----------- |
@@ -265,7 +265,7 @@ URI | `/events`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
-HTTP Methods | PUT
+HTTP Method | PUT
 Batch Support | No
 
 
@@ -279,8 +279,8 @@ Batch Support | No
 
 Parameter | Type | Description
 --------- | ---- | -----------
-eventName | string | Name of the event that you want to update. No space or special character is allowed
-actions | enum | Dues: `EIConsumer` for DVS, Loyalty, and communication related events, `EMFConsumer` for EMF
+eventName* | string | Name of the event that you want to update. No space or special character is allowed
+actions* | enum | Dues: `EIConsumer` for DVS, Loyalty, and communication related events, `EMFConsumer` for EMF
 description | string | Modify the description if required
 fields | obj | Add or update details of each field with 
 name | string | Specify a name for the current event field
@@ -290,49 +290,53 @@ addCustomerIfNotExists | obj | Pass `"valueType": "Boolean",	"value": "true"`
 valueType | enum | Specify the input type of the attribute. Values: `Boolean`, `String`, `ENUM`
 value | string | Specify the field values based on the valueType selected
 
+<aside class="notice">All parameters marked by * are mandatory. You need to pass all the parameters that you want to update or remain for the event. Fields that you do not pass in the API will be removed automatically.</aside> 
+
+
+
 
 ## Enable Standard Event
 
-
+Lets you enable a standard event for the organization.
 
 > Sample Request
 
 ```html
-http://us.api.capillarytech.com/v2/events/standard_events/enable
+http://us.api.capillarytech.com/v2/events/standard_events/enable?event_name=ProductRemovedFromCart
 ```
 
-> Sample POST Request
-
-```json
-
-```
 
 
 > Sample Response
 
 ```json
-
+{
+    "warnings": [],
+    "errors": []
+}
 ```
 
-### Resource Information
+### Request Information
 
 | | |
 --------- | ----------- |
-URI | `/events/standard_events/enable`
+URI | `/events/standard_events/enable?event_name={eventName}`
 Rate Limited? | Yes
 Authentication | Yes
-Response Formats | JSON
-HTTP Methods | POST
+Response Format | JSON
+HTTP Method | POST
 Batch Support | No
 
 
 ### Request URL
 
-`http://{Cluster URL}/v2/events/standard_events/enable`
+`http://{Cluster URL}/v2/events/standard_events/enable?event_name={eventName}`
 
 
 
 ## Get Adapters Metadata
+
+Retrieves the details of predefined transformers (field mappings).
 
 ```html
 http://us.api.capillarytech.com/v2/events/adapters_meta
@@ -356,13 +360,15 @@ http://us.api.capillarytech.com/v2/events/adapters_meta
 ```
 
 
+### Request Information
+
 | | |
 --------- | ----------- |
 URI | `/events/adapters_meta`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
-HTTP Methods | GET
+HTTP Method | GET
 Batch Support | No
 
 ### Request URL
@@ -370,6 +376,12 @@ Batch Support | No
 `http://{Cluster URL}/v2/events/adapters_meta`
 
 
+### Response Parameters
+
+Parameter | Description
+--------- | -----------
+DefaultTransformer | Used if no mapping is required
+WebEngageTransformer | Used for Webengage or Webhook mapping
 
 
 ## Enable Standard Event
@@ -395,7 +407,7 @@ http://us.api.capillarytech.com/v2/events/standard_events/enable?event_name=Prod
 }
 ```
 
-### Resource Information
+### Request Information
 
 | | |
 --------- | ----------- |
@@ -403,7 +415,7 @@ URI | `/events/standard_events/enable?event_name={eventName}`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
-HTTP Methods | POST (No POST body required)
+HTTP Method | POST (No POST body required)
 Batch Support | No
 
 
@@ -417,15 +429,15 @@ Batch Support | No
 
 Parameter | Type | Description
 --------- | ---- | -----------
-eventName* | string | Specify the event name that you want to enable
+eventName* | string | Specify the name of the standard event that you want to enable
 
 <aside class="notice">Parameter marked by * is mandatory. </aside>
 
 
 
-## Get All Event Attributes (Metadata)
+## Get All Event Fields (Metadata)
 
-Retrieves meta details of event attributes.
+Retrieves meta details of all event Fields configured for the organization.
 
 
 > Sample Request
@@ -622,7 +634,7 @@ http://us.api.capillarytech.com/v2/events/meta_fields
 ```
 
 
-### Resource Information
+### Request Information
 
 | | |
 --------- | ----------- |
@@ -630,7 +642,7 @@ URI | `/events/meta_fields`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
-HTTP Methods | GET
+HTTP Method | GET
 Batch Support | No
 
 ### Request URL
@@ -638,8 +650,10 @@ Batch Support | No
 `http://{Cluster URL}/v2/events/meta_fields`
 
 
-## Get Metadata of Standard Events
 
+## Get Details of Standard Events (Metadata)
+
+Retrieves details of all standard events that are available in Capillary. 
 
 
 > Sample Request
@@ -2227,6 +2241,7 @@ http://us.api.capillarytech.com/v2/events/standard_events_meta
 }
 ```
 
+### Request Information
 
 | | |
 --------- | ----------- |
@@ -2234,7 +2249,7 @@ URI | `/events/standard_events_meta`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
-HTTP Methods | GET
+HTTP Method | GET
 Batch Support | No
 
 
@@ -2776,7 +2791,7 @@ http://us.api.capillarytech.com/v2/events
                 ],
                 "status": "PUBLISHED",
                 "testStatus": "VERIFIED",
-                "description": "fngjbjfghjbndfbj",
+                "description": "Sample description",
                 "date": 1560941666471,
                 "standardEvent": false
             },
@@ -3020,7 +3035,7 @@ http://us.api.capillarytech.com/v2/events
 }
 ```
 
-### Resource Information
+### Request Information
 
 | | |
 --------- | ----------- |
@@ -3028,7 +3043,7 @@ URI | `/events`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
-HTTP Methods | GET
+HTTP Method | GET
 Batch Support | No
 
 
@@ -3045,10 +3060,7 @@ Batch Support | No
 
 
 
-
-
-
-## Adapter Mapping to Standard Event
+## Events Mapping (to Standard Event)
 
 Lets you map a custom event to a standard event.
 
@@ -3074,18 +3086,12 @@ http://us.api.capillarytech.com/v2/events/adapter_mapping
 ```json
 {
     "warnings": [],
-    "errors": [
-        {
-            "status": false,
-            "message": "{0} event doesnt exist",
-            "code": 1816
-        }
-    ]
+    "errors": []
 }
 ```
 
 
-### Response Information
+### Request Information
 
 | | |
 --------- | ----------- |
@@ -3093,7 +3099,7 @@ URI | `/events/adapter_mapping`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
-HTTP Methods | POST
+HTTP Method | POST
 Batch Support | No
 
 
@@ -3108,7 +3114,7 @@ Batch Support | No
 
 Parameter | Type | Description
 --------- | ---- | -----------
-transformerType* | |
+transformerType* | enum | Specify `defaultTransformer` to map the custom event to the default transformer, `WebEngageTransformer` for Webhook transformer mapping
 eventsMapped* | array | Specify the event names that you want to map to the `transformerType`
 
 <aside class="notice">All parameters marked by * are mandatory.</aside>
@@ -3166,7 +3172,7 @@ http://us.api.capillarytech.com/v2/events/adapter_mapping
 }
 ```
 
-### Resource Information
+### Request Information
 
 | | |
 --------- | ----------- |
@@ -3174,7 +3180,7 @@ URI | `/events/adapter_mapping`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
-HTTP Methods | POST
+HTTP Method | POST
 Batch Support | No
 
 
@@ -3188,26 +3194,21 @@ Batch Support | No
 
 Parameter | Type | Description
 --------- | ---- | -----------
-transformerType | enum | DefaultTransformer, WebEngageTransformer
-webEngageTransformerData | obj | 
-eventMapper | obj | 
-eventFieldName | | 
-eventDataType | | 
-fieldName | |
-valueMap | | 
-eventFieldMapper | obj | Match event field name with the fields for each event. In the Sample POST Request provided, `CustomerEvent` is the event name for which the field mapping is done 
-eventFieldName | string | 
-eventDataType | enum | Data type of the event
-fieldName | string | 
-valueMap | obj | 
+transformerType* | enum | DefaultTransformer, WebEngageTransformer
+webEngageTransformerData | obj | Details of a specific to Webhook Transformer that you want to map with a custom event
+eventMapper* | obj | mapping details of third party events with our events
+eventFieldName* | string | Name of the event field (destination - always Capillary)
+eventDataType* | enum | Data-type of the event field
+fieldName* | string | Name of the adapter field name (source - third party)
+valueMap* | string | adapter field value to field value map
+eventFieldMapper | obj | Match event field name with the fields for each event. In the Sample POST Request provided, `CustomerEvent` is the event for which the field mapping is done 
 
-
-
+<aside class="notice">All parameters marked by * are mandatory.</aside>
 
 
 ## Get Webhook Account Details
 
-
+Retrieves details of all Webhook accounts created for the organization. An org can have one Webhook account per transformer. 
 
 > Sample Request
 
@@ -3234,6 +3235,7 @@ http://us.api.capillarytech.com/v2/events/webhooks
 }
 ```
 
+### Request Information
 
 | | |
 --------- | ----------- |
@@ -3241,7 +3243,7 @@ URI | `/events/webhooks`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
-HTTP Methods | GET
+HTTP Method | GET
 Batch Support | No
 
 
@@ -3253,41 +3255,77 @@ Batch Support | No
 
 ## Get Event Running Status
 
+Retrieves the current status of an event.
 
 
 > Sample Request
 
 ```html
-http://us.api.capillarytech.com/v2/events/
-```
-
-> Sample POST Request
-
-```json
-
+http://us.api.capillarytech.com/v2/events/running_status?eventId=0d3f5a7f-2432-4c88-8045-37127615d8e8
 ```
 
 
 > Sample Response
 
 ```json
+{
+	"id": "0d3f5a7f-2432-4c88-8045-37127615d8e8",
+	"orgId": 1115,
+	"stateList": [{
+		"message": "Event864",
+		"date": "2019-06-25T14:52:53+05:30",
+		"status": "EVENT_PROCESSING_STARTED"
+	}, {
+		"message": "customer",
+		"date": "2019-06-25T14:52:53+05:30",
+		"status": "EVENT_FIELD_VALIDATION_STARTED"
+	}, {
+		"message": "customer",
+		"date": "2019-06-25T14:53:03+05:30",
+		"status": "EVENT_FIELD_VALIDATION_FINISHED"
+	}, {
+		"message": "till",
+		"date": "2019-06-25T14:53:03+05:30",
+		"status": "EVENT_FIELD_VALIDATION_STARTED"
+	}, {
+		"message": "till",
+		"date": "2019-06-25T14:53:03+05:30",
+		"status": "EVENT_FIELD_VALIDATION_FINISHED"
+	}, {
+		"message": "Event864",
+		"date": "2019-06-25T14:53:03+05:30",
+		"status": "EVENT_VALIDATION_FINISHED"
+	}, {
+		"message": "EIConsumer",
+		"date": "2019-06-25T14:53:03+05:30",
+		"status": "EVENT_CONSUMER_STARTED"
+	}, {
+		"message": "EIConsumer null",
+		"date": "2019-06-25T14:53:03+05:30",
+		"status": "EVENT_CONSUMER_FAILED"
+	}],
+	"eventName": "Event864",
+	"warnings": []
+} 3:56 PM
 
 ```
+
+### Request Information
 
 
 | | |
 --------- | ----------- |
-URI | `/events/`
+URI | `/events/running_status?eventId={eventId}`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
-HTTP Methods | 
+HTTP Method | Get
 Batch Support | No
 
 
 ### Request URL
 
-`http://{Cluster URL}/v2/events/`
+`http://{Cluster URL}/v2/events/running_status?eventId={eventId}`
 
 
 
@@ -3295,12 +3333,14 @@ Batch Support | No
 
 Parameter | Type | Description
 --------- | ---- | -----------
+eventId* |  string | Unique id of the event that is generated (in x-cap-hydra-request-id) when you push data to Webhook. 
 
+<aside class="notice">Parameter marked by * is mandatory.</aside>
 
 
 ## Disable Event
 
-
+Lets you disable an existing event.
 
 > Sample Request
 
@@ -3308,19 +3348,26 @@ Parameter | Type | Description
 http://us.api.capillarytech.com/v2/events
 ```
 
-> Sample POST Request
-
-```json
+> Sample PUT Request
 
 ```
+{
+  "webHookId":"34b94aa9-ae09-4784-9993-4936d92a7447"
+}
+```
+
 
 
 > Sample Response
 
 ```json
-
+{
+    "warnings": [],
+    "errors": []
+}
 ```
 
+### Request Information
 
 | | |
 --------- | ----------- |
@@ -3328,7 +3375,7 @@ URI | `/events/disable`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
-HTTP Methods | PUT
+HTTP Method | PUT
 Batch Support | No
 
 
@@ -3337,11 +3384,13 @@ Batch Support | No
 `http://{Cluster URL}/v2/events/disable`
 
 
-
 ### Request Body Parameters
 
 Parameter | Type | Description
 --------- | ---- | -----------
+webHookId | string | Unique id of the Webhook account. You can see Webhook id in `x-cap-hydra-request-id` in Webhook data push API 
+
+
 
 
 ## Get Org Events
@@ -3715,13 +3764,15 @@ http://us.api.capillarytech.com/v2/events
 Retrieves all events configured for the organization (associated to the TILL used for authorization).
 
 
+### Request Information
+
 | | |
 --------- | ----------- |
 URI | `/events`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
-HTTP Methods | GET
+HTTP Method | GET
 Batch Support | No
 
 
@@ -5308,7 +5359,7 @@ http://us.api.capillarytech.com/v2/events/standard_events_meta
 ```
 
 
-### Resource Information
+### Request Information
 
 | | |
 --------- | ----------- |
@@ -5316,7 +5367,7 @@ URI | `/events/standard_events_meta`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
-HTTP Methods | GET
+HTTP Method | GET
 Batch Support | No
 
 
@@ -5359,7 +5410,7 @@ http://us.api.capillarytech.com/v2/events/webhook
 }
 ```
 
-### Resource Information
+### Request Information
 
 | | |
 --------- | ----------- |
@@ -5367,7 +5418,7 @@ URI | `/events/webhook`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
-HTTP Methods | POST
+HTTP Method | POST
 Batch Support | No
 
 
@@ -5417,7 +5468,7 @@ https://1dzb567pwd.execute-api.us-east-2.amazonaws.com/nightly/webhooks/34b94vf9
 }
 ```
 
-### Resource Information
+### Request Information
 
 | | |
 --------- | ----------- |
@@ -5425,7 +5476,7 @@ URI | `{webhookURL}`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
-HTTP Methods | POST
+HTTP Method | POST
 Batch Support | No
 
 
@@ -5486,7 +5537,7 @@ URI | `/events/webhooks`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
-HTTP Methods | GET
+HTTP Method | GET
 Batch Support | No
 
 
@@ -5530,7 +5581,7 @@ URI | `/events/webhook/disable`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
-HTTP Methods | PUT
+HTTP Method | PUT
 Batch Support | No
 
 
@@ -5575,7 +5626,7 @@ http://us.api.capillarytech.com/v2/events/standard_events/enable
 ```
 
 
-### Resource Information
+### Request Information
 
 | | |
 --------- | ----------- |
@@ -5583,7 +5634,7 @@ URI | `/events/standard_events/enable`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
-HTTP Methods | POST
+HTTP Method | POST
 Batch Support | No
 
 
@@ -5616,7 +5667,7 @@ http://us.api.capillarytech.com/v2/events/disable?event_name=CustomerEvent1
 }
 ```
 
-### Resource Information
+### Request Information
 
 | | |
 --------- | ----------- |
@@ -5624,7 +5675,7 @@ URI | `/events/disable?event_name={EventName}`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
-HTTP Methods | PUT
+HTTP Method | PUT
 Batch Support | No
 
 
@@ -5639,3 +5690,6 @@ Batch Support | No
 Parameter | Type | Description
 --------- | ---- | -----------
 EventName* | string | Pass the exact name of the event that you want to disable
+
+
+<aside class="notice">Parameter marked by * is mandatory.</aside>
