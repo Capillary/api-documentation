@@ -1,6 +1,6 @@
 # Events
 
-Behavioral events help capture customer activities such as registration, forgot password, and cart abandonment. There are standard events that are predefined and also facilitates an option to create custom reports for an organization. The `events` resource lets you create events, Webhook and map meta information of events.
+Behavioral events help capture customer activities such as registration, forgot password, and cart abandonment. There are standard events that are predefined with name, id, and attributes. The `events` resource lets you create custom events and Webhook account, enable standard events for an org, and map event fields.
 
 
 ## Create Custom Event
@@ -17,57 +17,84 @@ http://us.api.capillarytech.com/v2/events
 
 ```json
 {
-	"eventName": "CustomerEvent",
-	"actions": ["EIConsumer","EMFConsumer"],
-  "description":"Sample Event",
-	"fields": [{
-			"name": "customer",
-			"type": "customer",
-			"attributes": {
-            	"addCustomerIfNotExists": {
-					"valueType": "Boolean",
-					"value": "true"
-				}
-            }
-		},
-		{
-			"name": "string",
-			"type": "string",
-			"attributes": {}
-		},
-		{
-			"name": "tillCode",
-			"type": "tillCode",
-			"attributes": {}
-		},
-
-		{
-			"name": "productSku",
-			"type": "productSku",
-			"attributes": {}
-
-		},
-		{
-			"name": "productBrand",
-			"type": "productBrand",
-			"attributes": {}
-
-		},
-
-		{
-			"name": "productCategory",
-			"type": "productCategory",
-			"attributes": {}
-
-		},
-		{
-			"name": "double",
-			"type": "double",
-			"attributes": {}
-
-		}
-	]
+  "eventName": "PointsEvent1",
+  "actions": [
+    "EMFConsumer"
+  ],
+  "fields": [
+	{
+      "attributes": {
+        "addCustomerIfNotExists": {
+          "valueType": "Boolean",
+          "value": "true"
+    	}
+  	},
+      "type": "customer",
+      "name": "customer"
+	},
+	{
+      "attributes": {
+        "isRequired": {
+          "valueType": "Boolean",
+          "value": "true"
+    	}
+  	},
+      "type": "tillCode",
+      "name": "till"
+	},
+	{
+      "attributes": {
+        "isRequired": {
+          "value": "false",
+          "valueType": "BOOLEAN"
+    	}
+  	},
+      "type": "productSku",
+      "name": "sku"
+	},
+	{
+      "attributes": {
+        "isRequired": {
+          "value": "false",
+          "valueType": "BOOLEAN"
+    	}
+  	},
+      "type": "double",
+      "name": "Sparkles"
+	},
+	{
+      "attributes": {
+        "isRequired": {
+          "value": "false",
+          "valueType": "BOOLEAN"
+    	}
+  	},
+      "type": "double",
+      "name": "Bricks"
+	},
+	{
+      "attributes": {
+        "isRequired": {
+          "value": "false",
+          "valueType": "BOOLEAN"
+    	}
+  	},
+      "type": "double",
+      "name": "Cement"
+	},
+	{
+      "attributes": {
+        "isRequired": {
+          "value": "false",
+          "valueType": "BOOLEAN"
+   	 }
+  	},
+      "type": "string",
+      "name": "Names"
+	}
+  ]
 }
+
 
 ```
 
@@ -82,13 +109,15 @@ http://us.api.capillarytech.com/v2/events
 
 
 
+### Resource Information
+
 | | |
 --------- | ----------- |
 URI | `/events`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
-HTTP Methods | PUT
+HTTP Methods | POST
 Batch Support | No
 
 ### Request URL
@@ -101,14 +130,16 @@ Batch Support | No
 Parameter | Type | Description
 --------- | ---- | -----------
 eventName | string | Specify a name of the event
-actions | enum | 
+actions | enum | Specify the destination of the event. Values: `EMFConsumer` for EMF related events: Loyalty, DVS, and Communication, EIConsumer for Essential Insights
 description | string | Specify a short description for the event
-fields | obj | 
-name | string | 
-type | enum | 
-addCustomerIfNotExists | obj | 
-valueType | | 
-value | | 
+fields | obj | Configure fields for the current event with attributes: name, type, and value
+name | string | Specify the name of the field
+type | enum | Specify the type of the attribute. Value: `tillCode`, `couponCode`, `customer`, `productSku`, `productBrand`, `productCategory`, `string`, `double`,
+addCustomerIfNotExists | obj | Set this value to `true` to allow registering new customers in to the loyalty program automatically
+valueType | enum | Data-type of the attribute. Example: Boolean, Enum, String
+value | string | Value of the attribute based on its `valueType`.For example, if valueType is Boolean, either `true` or `false` is supported as value
+
+
 
 
 ## Update Custom Event
@@ -249,9 +280,9 @@ Batch Support | No
 Parameter | Type | Description
 --------- | ---- | -----------
 eventName | string | Name of the event that you want to update. No space or special character is allowed
-actions | enum | Specify the event destination. Values: `EIConsumer` for DVS, Loyalty, and communication related events, `EMFConsumer` for EMF
+actions | enum | Dues: `EIConsumer` for DVS, Loyalty, and communication related events, `EMFConsumer` for EMF
 description | string | Modify the description if required
-fields | obj | Provide details of each field of the event
+fields | obj | Add or update details of each field with 
 name | string | Specify a name for the current event field
 type | enum | Specify the entity type of the fields added. Values: CouponCode, CustomerIdentifier, ProductSku, ProductBrand, productCategory, String, double	
 attributes | obj | Provide the event attributes
@@ -260,6 +291,44 @@ valueType | enum | Specify the input type of the attribute. Values: `Boolean`, `
 value | string | Specify the field values based on the valueType selected
 
 
+## Enable Standard Event
+
+
+
+> Sample Request
+
+```html
+http://us.api.capillarytech.com/v2/events/standard_events/enable
+```
+
+> Sample POST Request
+
+```json
+
+```
+
+
+> Sample Response
+
+```json
+
+```
+
+### Resource Information
+
+| | |
+--------- | ----------- |
+URI | `/events/standard_events/enable`
+Rate Limited? | Yes
+Authentication | Yes
+Response Formats | JSON
+HTTP Methods | POST
+Batch Support | No
+
+
+### Request URL
+
+`http://{Cluster URL}/v2/events/standard_events/enable`
 
 
 
@@ -362,7 +431,7 @@ Retrieves meta details of event attributes.
 > Sample Request
 
 ```html
-http://us.api.capillarytech.com/v2/events/fields_meta
+http://us.api.capillarytech.com/v2/events/meta_fields
 ```
 
 
@@ -557,7 +626,7 @@ http://us.api.capillarytech.com/v2/events/fields_meta
 
 | | |
 --------- | ----------- |
-URI | `/events/fields_meta`
+URI | `/events/meta_fields`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
@@ -566,7 +635,7 @@ Batch Support | No
 
 ### Request URL
 
-`http://{Cluster URL}/v2/events/fields_meta`
+`http://{Cluster URL}/v2/events/meta_fields`
 
 
 ## Get Metadata of Standard Events
@@ -3119,7 +3188,7 @@ Batch Support | No
 
 Parameter | Type | Description
 --------- | ---- | -----------
-transformerType | enum | 
+transformerType | enum | DefaultTransformer, WebEngageTransformer
 webEngageTransformerData | obj | 
 eventMapper | obj | 
 eventFieldName | | 
@@ -3660,45 +3729,6 @@ Batch Support | No
 
 `http://{Cluster URL}/v2/events`
 
-
-
-## Enable Standard Event
-
-
-
-> Sample Request
-
-```html
-http://us.api.capillarytech.com/v2/events/standard_events/enable
-```
-
-> Sample POST Request
-
-```json
-
-```
-
-
-> Sample Response
-
-```json
-
-```
-
-
-| | |
---------- | ----------- |
-URI | `/events/standard_events/enable`
-Rate Limited? | Yes
-Authentication | Yes
-Response Formats | JSON
-HTTP Methods | POST
-Batch Support | No
-
-
-### Request URL
-
-`http://{Cluster URL}/v2/events/standard_events/enable`
 
 
 
