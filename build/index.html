@@ -12146,7 +12146,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
     </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id="resource-information">Resource Information</h3>
+<h3 id="request-information">Request Information</h3>
 
 <table><thead>
 <tr>
@@ -12171,7 +12171,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>JSON</td>
 </tr>
 <tr>
-<td>HTTP Methods</td>
+<td>HTTP Method</td>
 <td>POST</td>
 </tr>
 <tr>
@@ -12240,9 +12240,11 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </tr>
 </tbody></table>
 
+<aside class="notice">All parameters marked by * are mandatory. </aside>
+
 <h2 id="update-custom-event">Update Custom Event</h2>
 
-<p>Lets you add or remove fields and customers for an event.</p>
+<p>Lets you add or remove fields and customers for an event. You need to pass the entire payload of the event.</p>
 
 <blockquote>
 <p>Sample Request</p>
@@ -12348,7 +12350,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
     </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id="resource-information">Resource Information</h3>
+<h3 id="request-information">Request Information</h3>
 
 <table><thead>
 <tr>
@@ -12373,7 +12375,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>JSON</td>
 </tr>
 <tr>
-<td>HTTP Methods</td>
+<td>HTTP Method</td>
 <td>PUT</td>
 </tr>
 <tr>
@@ -12396,12 +12398,12 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </tr>
 </thead><tbody>
 <tr>
-<td>eventName</td>
+<td>eventName*</td>
 <td>string</td>
 <td>Name of the event that you want to update. No space or special character is allowed</td>
 </tr>
 <tr>
-<td>actions</td>
+<td>actions*</td>
 <td>enum</td>
 <td>Dues: <code class="prettyprint">EIConsumer</code> for DVS, Loyalty, and communication related events, <code class="prettyprint">EMFConsumer</code> for EMF</td>
 </tr>
@@ -12447,24 +12449,26 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </tr>
 </tbody></table>
 
+<aside class="notice">All parameters marked by * are mandatory. You need to pass all the parameters that you want to update or remain for the event. Fields that you do not pass in the API will be removed automatically.</aside> 
+
 <h2 id="enable-standard-event">Enable Standard Event</h2>
+
+<p>Lets you enable a standard event for the organization.</p>
 
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight html"><code>http://us.api.capillarytech.com/v2/events/standard_events/enable
+<pre class="highlight html"><code>http://us.api.capillarytech.com/v2/events/standard_events/enable?event_name=ProductRemovedFromCart
 </code></pre>
-<blockquote>
-<p>Sample POST Request</p>
-</blockquote>
-<pre class="highlight json"><code><span class="w">
-</span></code></pre>
 <blockquote>
 <p>Sample Response</p>
 </blockquote>
-<pre class="highlight json"><code><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id="resource-information">Resource Information</h3>
+<h3 id="request-information">Request Information</h3>
 
 <table><thead>
 <tr>
@@ -12474,7 +12478,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/events/standard_events/enable</code></td>
+<td><code class="prettyprint">/events/standard_events/enable?event_name={eventName}</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -12485,11 +12489,11 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
+<td>Response Format</td>
 <td>JSON</td>
 </tr>
 <tr>
-<td>HTTP Methods</td>
+<td>HTTP Method</td>
 <td>POST</td>
 </tr>
 <tr>
@@ -12500,9 +12504,11 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://{Cluster URL}/v2/events/standard_events/enable</code></p>
+<p><code class="prettyprint">http://{Cluster URL}/v2/events/standard_events/enable?event_name={eventName}</code></p>
 
 <h2 id="get-adapters-metadata">Get Adapters Metadata</h2>
+
+<p>Retrieves the details of predefined transformers (field mappings).</p>
 <pre class="highlight html"><code>http://us.api.capillarytech.com/v2/events/adapters_meta
 </code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -12519,6 +12525,8 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
     </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<h3 id="request-information">Request Information</h3>
+
 <table><thead>
 <tr>
 <th></th>
@@ -12542,7 +12550,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>JSON</td>
 </tr>
 <tr>
-<td>HTTP Methods</td>
+<td>HTTP Method</td>
 <td>GET</td>
 </tr>
 <tr>
@@ -12554,6 +12562,24 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <h3 id="request-url">Request URL</h3>
 
 <p><code class="prettyprint">http://{Cluster URL}/v2/events/adapters_meta</code></p>
+
+<h3 id="response-parameters">Response Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>DefaultTransformer</td>
+<td>Used if no mapping is required</td>
+</tr>
+<tr>
+<td>WebEngageTransformer</td>
+<td>Used for Webengage or Webhook mapping</td>
+</tr>
+</tbody></table>
 
 <h2 id="enable-standard-event">Enable Standard Event</h2>
 
@@ -12572,7 +12598,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
     </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id="resource-information">Resource Information</h3>
+<h3 id="request-information">Request Information</h3>
 
 <table><thead>
 <tr>
@@ -12597,7 +12623,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>JSON</td>
 </tr>
 <tr>
-<td>HTTP Methods</td>
+<td>HTTP Method</td>
 <td>POST (No POST body required)</td>
 </tr>
 <tr>
@@ -12622,15 +12648,15 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <tr>
 <td>eventName*</td>
 <td>string</td>
-<td>Specify the event name that you want to enable</td>
+<td>Specify the name of the standard event that you want to enable</td>
 </tr>
 </tbody></table>
 
 <aside class="notice">Parameter marked by * is mandatory. </aside>
 
-<h2 id="get-all-event-attributes-metadata">Get All Event Attributes (Metadata)</h2>
+<h2 id="get-all-event-fields-metadata">Get All Event Fields (Metadata)</h2>
 
-<p>Retrieves meta details of event attributes.</p>
+<p>Retrieves meta details of all event Fields configured for the organization.</p>
 
 <blockquote>
 <p>Sample Request</p>
@@ -12820,7 +12846,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
     </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id="resource-information">Resource Information</h3>
+<h3 id="request-information">Request Information</h3>
 
 <table><thead>
 <tr>
@@ -12845,7 +12871,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>JSON</td>
 </tr>
 <tr>
-<td>HTTP Methods</td>
+<td>HTTP Method</td>
 <td>GET</td>
 </tr>
 <tr>
@@ -12858,7 +12884,9 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <p><code class="prettyprint">http://{Cluster URL}/v2/events/meta_fields</code></p>
 
-<h2 id="get-metadata-of-standard-events">Get Metadata of Standard Events</h2>
+<h2 id="get-details-of-standard-events-metadata">Get Details of Standard Events (Metadata)</h2>
+
+<p>Retrieves details of all standard events that are available in Capillary. </p>
 
 <blockquote>
 <p>Sample Request</p>
@@ -14440,6 +14468,8 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
     </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<h3 id="request-information">Request Information</h3>
+
 <table><thead>
 <tr>
 <th></th>
@@ -14463,7 +14493,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>JSON</td>
 </tr>
 <tr>
-<td>HTTP Methods</td>
+<td>HTTP Method</td>
 <td>GET</td>
 </tr>
 <tr>
@@ -15001,7 +15031,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
                 </span><span class="p">],</span><span class="w">
                 </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUBLISHED"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"testStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VERIFIED"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fngjbjfghjbndfbj"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sample description"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1560941666471</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"standardEvent"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
             </span><span class="p">},</span><span class="w">
@@ -15244,7 +15274,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
     </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id="resource-information">Resource Information</h3>
+<h3 id="request-information">Request Information</h3>
 
 <table><thead>
 <tr>
@@ -15269,7 +15299,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>JSON</td>
 </tr>
 <tr>
-<td>HTTP Methods</td>
+<td>HTTP Method</td>
 <td>GET</td>
 </tr>
 <tr>
@@ -15282,7 +15312,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <p><code class="prettyprint">http://{Cluster URL}/v2/events</code></p>
 
-<h2 id="adapter-mapping-to-standard-event">Adapter Mapping to Standard Event</h2>
+<h2 id="events-mapping-to-standard-event">Events Mapping (to Standard Event)</h2>
 
 <p>Lets you map a custom event to a standard event.</p>
 
@@ -15304,16 +15334,10 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{0} event doesnt exist"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1816</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id="response-information">Response Information</h3>
+<h3 id="request-information">Request Information</h3>
 
 <table><thead>
 <tr>
@@ -15338,7 +15362,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>JSON</td>
 </tr>
 <tr>
-<td>HTTP Methods</td>
+<td>HTTP Method</td>
 <td>POST</td>
 </tr>
 <tr>
@@ -15362,8 +15386,8 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </thead><tbody>
 <tr>
 <td>transformerType*</td>
-<td></td>
-<td></td>
+<td>enum</td>
+<td>Specify <code class="prettyprint">defaultTransformer</code> to map the custom event to the default transformer, <code class="prettyprint">WebEngageTransformer</code> for Webhook transformer mapping</td>
 </tr>
 <tr>
 <td>eventsMapped*</td>
@@ -15419,7 +15443,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
     </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id="resource-information">Resource Information</h3>
+<h3 id="request-information">Request Information</h3>
 
 <table><thead>
 <tr>
@@ -15444,7 +15468,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>JSON</td>
 </tr>
 <tr>
-<td>HTTP Methods</td>
+<td>HTTP Method</td>
 <td>POST</td>
 </tr>
 <tr>
@@ -15467,68 +15491,52 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </tr>
 </thead><tbody>
 <tr>
-<td>transformerType</td>
+<td>transformerType*</td>
 <td>enum</td>
 <td>DefaultTransformer, WebEngageTransformer</td>
 </tr>
 <tr>
 <td>webEngageTransformerData</td>
 <td>obj</td>
-<td></td>
+<td>Details of a specific to Webhook Transformer that you want to map with a custom event</td>
 </tr>
 <tr>
-<td>eventMapper</td>
+<td>eventMapper*</td>
 <td>obj</td>
-<td></td>
+<td>mapping details of third party events with our events</td>
 </tr>
 <tr>
-<td>eventFieldName</td>
-<td></td>
-<td></td>
+<td>eventFieldName*</td>
+<td>string</td>
+<td>Name of the event field (destination - always Capillary)</td>
 </tr>
 <tr>
-<td>eventDataType</td>
-<td></td>
-<td></td>
+<td>eventDataType*</td>
+<td>enum</td>
+<td>Data-type of the event field</td>
 </tr>
 <tr>
-<td>fieldName</td>
-<td></td>
-<td></td>
+<td>fieldName*</td>
+<td>string</td>
+<td>Name of the adapter field name (source - third party)</td>
 </tr>
 <tr>
-<td>valueMap</td>
-<td></td>
-<td></td>
+<td>valueMap*</td>
+<td>string</td>
+<td>adapter field value to field value map</td>
 </tr>
 <tr>
 <td>eventFieldMapper</td>
 <td>obj</td>
-<td>Match event field name with the fields for each event. In the Sample POST Request provided, <code class="prettyprint">CustomerEvent</code> is the event name for which the field mapping is done</td>
-</tr>
-<tr>
-<td>eventFieldName</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>eventDataType</td>
-<td>enum</td>
-<td>Data type of the event</td>
-</tr>
-<tr>
-<td>fieldName</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>valueMap</td>
-<td>obj</td>
-<td></td>
+<td>Match event field name with the fields for each event. In the Sample POST Request provided, <code class="prettyprint">CustomerEvent</code> is the event for which the field mapping is done</td>
 </tr>
 </tbody></table>
 
+<aside class="notice">All parameters marked by * are mandatory.</aside>
+
 <h2 id="get-webhook-account-details">Get Webhook Account Details</h2>
+
+<p>Retrieves details of all Webhook accounts created for the organization. An org can have one Webhook account per transformer. </p>
 
 <blockquote>
 <p>Sample Request</p>
@@ -15551,6 +15559,8 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
     </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<h3 id="request-information">Request Information</h3>
+
 <table><thead>
 <tr>
 <th></th>
@@ -15574,7 +15584,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>JSON</td>
 </tr>
 <tr>
-<td>HTTP Methods</td>
+<td>HTTP Method</td>
 <td>GET</td>
 </tr>
 <tr>
@@ -15589,21 +15599,59 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h2 id="get-event-running-status">Get Event Running Status</h2>
 
+<p>Retrieves the current status of an event.</p>
+
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight html"><code>http://us.api.capillarytech.com/v2/events/
+<pre class="highlight html"><code>http://us.api.capillarytech.com/v2/events/running_status?eventId=0d3f5a7f-2432-4c88-8045-37127615d8e8
 </code></pre>
-<blockquote>
-<p>Sample POST Request</p>
-</blockquote>
-<pre class="highlight json"><code><span class="w">
-</span></code></pre>
 <blockquote>
 <p>Sample Response</p>
 </blockquote>
-<pre class="highlight json"><code><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0d3f5a7f-2432-4c88-8045-37127615d8e8"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1115</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"stateList"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Event864"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-25T14:52:53+05:30"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EVENT_PROCESSING_STARTED"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customer"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-25T14:52:53+05:30"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EVENT_FIELD_VALIDATION_STARTED"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customer"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-25T14:53:03+05:30"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EVENT_FIELD_VALIDATION_FINISHED"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-25T14:53:03+05:30"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EVENT_FIELD_VALIDATION_STARTED"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-25T14:53:03+05:30"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EVENT_FIELD_VALIDATION_FINISHED"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Event864"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-25T14:53:03+05:30"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EVENT_VALIDATION_FINISHED"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EIConsumer"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-25T14:53:03+05:30"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EVENT_CONSUMER_STARTED"</span><span class="w">
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EIConsumer null"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-06-25T14:53:03+05:30"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EVENT_CONSUMER_FAILED"</span><span class="w">
+    </span><span class="p">}],</span><span class="w">
+    </span><span class="nt">"eventName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Event864"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w"> </span><span class="mi">3</span><span class="err">:</span><span class="mi">56</span><span class="w"> </span><span class="err">PM</span><span class="w">
+
 </span></code></pre>
+<h3 id="request-information">Request Information</h3>
+
 <table><thead>
 <tr>
 <th></th>
@@ -15612,7 +15660,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/events/</code></td>
+<td><code class="prettyprint">/events/running_status?eventId={eventId}</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -15627,8 +15675,8 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>JSON</td>
 </tr>
 <tr>
-<td>HTTP Methods</td>
-<td></td>
+<td>HTTP Method</td>
+<td>Get</td>
 </tr>
 <tr>
 <td>Batch Support</td>
@@ -15638,7 +15686,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://{Cluster URL}/v2/events/</code></p>
+<p><code class="prettyprint">http://{Cluster URL}/v2/events/running_status?eventId={eventId}</code></p>
 
 <h3 id="request-body-parameters">Request Body Parameters</h3>
 
@@ -15649,9 +15697,18 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>eventId*</td>
+<td>string</td>
+<td>Unique id of the event that is generated (in x-cap-hydra-request-id) when you push data to Webhook.</td>
+</tr>
 </tbody></table>
 
+<aside class="notice">Parameter marked by * is mandatory.</aside>
+
 <h2 id="disable-event">Disable Event</h2>
+
+<p>Lets you disable an existing event.</p>
 
 <blockquote>
 <p>Sample Request</p>
@@ -15659,15 +15716,22 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <pre class="highlight html"><code>http://us.api.capillarytech.com/v2/events
 </code></pre>
 <blockquote>
-<p>Sample POST Request</p>
+<p>Sample PUT Request</p>
 </blockquote>
-<pre class="highlight json"><code><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"webHookId"</span><span class="p">:</span><span class="s2">"34b94aa9-ae09-4784-9993-4936d92a7447"</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>Sample Response</p>
 </blockquote>
-<pre class="highlight json"><code><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
+<h3 id="request-information">Request Information</h3>
+
 <table><thead>
 <tr>
 <th></th>
@@ -15691,7 +15755,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>JSON</td>
 </tr>
 <tr>
-<td>HTTP Methods</td>
+<td>HTTP Method</td>
 <td>PUT</td>
 </tr>
 <tr>
@@ -15713,6 +15777,11 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>webHookId</td>
+<td>string</td>
+<td>Unique id of the Webhook account. You can see Webhook id in <code class="prettyprint">x-cap-hydra-request-id</code> in Webhook data push API</td>
+</tr>
 </tbody></table>
 
 <h2 id="get-org-events">Get Org Events</h2>
@@ -16079,6 +16148,8 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </span></code></pre>
 <p>Retrieves all events configured for the organization (associated to the TILL used for authorization).</p>
 
+<h3 id="request-information">Request Information</h3>
+
 <table><thead>
 <tr>
 <th></th>
@@ -16102,7 +16173,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>JSON</td>
 </tr>
 <tr>
-<td>HTTP Methods</td>
+<td>HTTP Method</td>
 <td>GET</td>
 </tr>
 <tr>
@@ -17679,7 +17750,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
     </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id="resource-information">Resource Information</h3>
+<h3 id="request-information">Request Information</h3>
 
 <table><thead>
 <tr>
@@ -17704,7 +17775,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>JSON</td>
 </tr>
 <tr>
-<td>HTTP Methods</td>
+<td>HTTP Method</td>
 <td>GET</td>
 </tr>
 <tr>
@@ -17744,7 +17815,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
     </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id="resource-information">Resource Information</h3>
+<h3 id="request-information">Request Information</h3>
 
 <table><thead>
 <tr>
@@ -17769,7 +17840,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>JSON</td>
 </tr>
 <tr>
-<td>HTTP Methods</td>
+<td>HTTP Method</td>
 <td>POST</td>
 </tr>
 <tr>
@@ -17831,7 +17902,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id="resource-information">Resource Information</h3>
+<h3 id="request-information">Request Information</h3>
 
 <table><thead>
 <tr>
@@ -17856,7 +17927,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>JSON</td>
 </tr>
 <tr>
-<td>HTTP Methods</td>
+<td>HTTP Method</td>
 <td>POST</td>
 </tr>
 <tr>
@@ -17943,7 +18014,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>JSON</td>
 </tr>
 <tr>
-<td>HTTP Methods</td>
+<td>HTTP Method</td>
 <td>GET</td>
 </tr>
 <tr>
@@ -18000,7 +18071,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>JSON</td>
 </tr>
 <tr>
-<td>HTTP Methods</td>
+<td>HTTP Method</td>
 <td>PUT</td>
 </tr>
 <tr>
@@ -18048,7 +18119,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </blockquote>
 <pre class="highlight json"><code><span class="w">
 </span></code></pre>
-<h3 id="resource-information">Resource Information</h3>
+<h3 id="request-information">Request Information</h3>
 
 <table><thead>
 <tr>
@@ -18073,7 +18144,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>JSON</td>
 </tr>
 <tr>
-<td>HTTP Methods</td>
+<td>HTTP Method</td>
 <td>POST</td>
 </tr>
 <tr>
@@ -18103,7 +18174,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
     </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<h3 id="resource-information">Resource Information</h3>
+<h3 id="request-information">Request Information</h3>
 
 <table><thead>
 <tr>
@@ -18128,7 +18199,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>JSON</td>
 </tr>
 <tr>
-<td>HTTP Methods</td>
+<td>HTTP Method</td>
 <td>PUT</td>
 </tr>
 <tr>
@@ -18156,6 +18227,8 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>Pass the exact name of the event that you want to disable</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">Parameter marked by * is mandatory.</aside>
 
       </div>
       <div class="dark-box">

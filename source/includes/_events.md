@@ -295,93 +295,7 @@ value | string | Specify the field values based on the valueType selected
 
 
 
-## Enable Standard Event
 
-Lets you enable a standard event for the organization.
-
-> Sample Request
-
-```html
-http://us.api.capillarytech.com/v2/events/standard_events/enable?event_name=ProductRemovedFromCart
-```
-
-
-
-> Sample Response
-
-```json
-{
-    "warnings": [],
-    "errors": []
-}
-```
-
-### Request Information
-
-| | |
---------- | ----------- |
-URI | `/events/standard_events/enable?event_name={eventName}`
-Rate Limited? | Yes
-Authentication | Yes
-Response Format | JSON
-HTTP Method | POST
-Batch Support | No
-
-
-### Request URL
-
-`http://{Cluster URL}/v2/events/standard_events/enable?event_name={eventName}`
-
-
-
-## Get Adapters Metadata
-
-Retrieves the details of predefined transformers (field mappings).
-
-```html
-http://us.api.capillarytech.com/v2/events/adapters_meta
-```
-
-```json
-{
-    "data": [
-        {
-            "name": "DefaultTransformer",
-            "label": "Default Transformer Mapping"
-        },
-        {
-            "name": "WebEngageTransformer",
-            "label": "WebEngage Transformer"
-        }
-    ],
-    "warnings": [],
-    "errors": []
-}
-```
-
-
-### Request Information
-
-| | |
---------- | ----------- |
-URI | `/events/adapters_meta`
-Rate Limited? | Yes
-Authentication | Yes
-Response Formats | JSON
-HTTP Method | GET
-Batch Support | No
-
-### Request URL
-
-`http://{Cluster URL}/v2/events/adapters_meta`
-
-
-### Response Parameters
-
-Parameter | Description
---------- | -----------
-DefaultTransformer | Used if no mapping is required
-WebEngageTransformer | Used for Webengage or Webhook mapping
 
 
 ## Enable Standard Event
@@ -3204,6 +3118,62 @@ valueMap* | string | adapter field value to field value map
 eventFieldMapper | obj | Match event field name with the fields for each event. In the Sample POST Request provided, `CustomerEvent` is the event for which the field mapping is done 
 
 <aside class="notice">All parameters marked by * are mandatory.</aside>
+
+
+
+## Get Adapters Metadata
+
+Retrieves the details of predefined transformers (field mappings).
+
+```html
+http://us.api.capillarytech.com/v2/events/adapters_meta
+```
+
+```json
+{
+    "data": [
+        {
+            "name": "DefaultTransformer",
+            "label": "Default Transformer Mapping"
+        },
+        {
+            "name": "WebEngageTransformer",
+            "label": "WebEngage Transformer"
+        }
+    ],
+    "warnings": [],
+    "errors": []
+}
+```
+
+
+### Request Information
+
+| | |
+--------- | ----------- |
+URI | `/events/adapters_meta`
+Rate Limited? | Yes
+Authentication | Yes
+Response Formats | JSON
+HTTP Method | GET
+Batch Support | No
+
+### Request URL
+
+`http://{Cluster URL}/v2/events/adapters_meta`
+
+
+### Response Parameters
+
+Parameter | Description
+--------- | -----------
+DefaultTransformer | Used if no mapping is required
+WebEngageTransformer | Used for Webengage or Webhook mapping
+
+
+
+
+
 
 
 ## Get Webhook Account Details
