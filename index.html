@@ -12043,7 +12043,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
           <h1 id="events">Events</h1>
 
-<p>Behavioral events help capture customer activities such as registration, forgot password, and cart abandonment. There are standard events that are predefined and also facilitates an option to create custom reports for an organization. The <code class="prettyprint">events</code> resource lets you create events, Webhook and map meta information of events.</p>
+<p>Behavioral events help capture customer activities such as registration, forgot password, and cart abandonment. There are standard events that are predefined with name, id, and attributes. The <code class="prettyprint">events</code> resource lets you create custom events and Webhook account, enable standard events for an org, and map event fields.</p>
 
 <h2 id="create-custom-event">Create Custom Event</h2>
 
@@ -12058,57 +12058,84 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <p>Sample POST Request</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"eventName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CustomerEvent"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"EIConsumer"</span><span class="p">,</span><span class="s2">"EMFConsumer"</span><span class="p">],</span><span class="w">
-  </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Sample Event"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customer"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customer"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"addCustomerIfNotExists"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="nt">"valueType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boolean"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tillCode"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tillCode"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"productSku"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"productSku"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
-
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"productBrand"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"productBrand"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
-
-        </span><span class="p">},</span><span class="w">
-
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"productCategory"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"productCategory"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
-
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"double"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"double"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
-
+  </span><span class="nt">"eventName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PointsEvent1"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="s2">"EMFConsumer"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"addCustomerIfNotExists"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"valueType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boolean"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
         </span><span class="p">}</span><span class="w">
-    </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customer"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customer"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"isRequired"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"valueType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boolean"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tillCode"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"isRequired"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"valueType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOOLEAN"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"productSku"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"isRequired"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"valueType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOOLEAN"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"double"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sparkles"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"isRequired"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"valueType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOOLEAN"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"double"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bricks"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"isRequired"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"valueType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOOLEAN"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"double"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cement"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"isRequired"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"valueType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BOOLEAN"</span><span class="w">
+     </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Names"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
+
 
 </span></code></pre>
 <blockquote>
@@ -12119,6 +12146,8 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
     </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
 <table><thead>
 <tr>
 <th></th>
@@ -12143,7 +12172,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </tr>
 <tr>
 <td>HTTP Methods</td>
-<td>PUT</td>
+<td>POST</td>
 </tr>
 <tr>
 <td>Batch Support</td>
@@ -12172,7 +12201,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <tr>
 <td>actions</td>
 <td>enum</td>
-<td></td>
+<td>Specify the destination of the event. Values: <code class="prettyprint">EMFConsumer</code> for EMF related events: Loyalty, DVS, and Communication, EIConsumer for Essential Insights</td>
 </tr>
 <tr>
 <td>description</td>
@@ -12182,32 +12211,32 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <tr>
 <td>fields</td>
 <td>obj</td>
-<td></td>
+<td>Configure fields for the current event with attributes: name, type, and value</td>
 </tr>
 <tr>
 <td>name</td>
 <td>string</td>
-<td></td>
+<td>Specify the name of the field</td>
 </tr>
 <tr>
 <td>type</td>
 <td>enum</td>
-<td></td>
+<td>Specify the type of the attribute. Value: <code class="prettyprint">tillCode</code>, <code class="prettyprint">couponCode</code>, <code class="prettyprint">customer</code>, <code class="prettyprint">productSku</code>, <code class="prettyprint">productBrand</code>, <code class="prettyprint">productCategory</code>, <code class="prettyprint">string</code>, <code class="prettyprint">double</code>,</td>
 </tr>
 <tr>
 <td>addCustomerIfNotExists</td>
 <td>obj</td>
-<td></td>
+<td>Set this value to <code class="prettyprint">true</code> to allow registering new customers in to the loyalty program automatically</td>
 </tr>
 <tr>
 <td>valueType</td>
-<td></td>
-<td></td>
+<td>enum</td>
+<td>Data-type of the attribute. Example: Boolean, Enum, String</td>
 </tr>
 <tr>
 <td>value</td>
-<td></td>
-<td></td>
+<td>string</td>
+<td>Value of the attribute based on its <code class="prettyprint">valueType</code>.For example, if valueType is Boolean, either <code class="prettyprint">true</code> or <code class="prettyprint">false</code> is supported as value</td>
 </tr>
 </tbody></table>
 
@@ -12374,7 +12403,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <tr>
 <td>actions</td>
 <td>enum</td>
-<td>Specify the event destination. Values: <code class="prettyprint">EIConsumer</code> for DVS, Loyalty, and communication related events, <code class="prettyprint">EMFConsumer</code> for EMF</td>
+<td>Dues: <code class="prettyprint">EIConsumer</code> for DVS, Loyalty, and communication related events, <code class="prettyprint">EMFConsumer</code> for EMF</td>
 </tr>
 <tr>
 <td>description</td>
@@ -12384,7 +12413,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <tr>
 <td>fields</td>
 <td>obj</td>
-<td>Provide details of each field of the event</td>
+<td>Add or update details of each field with</td>
 </tr>
 <tr>
 <td>name</td>
@@ -12606,7 +12635,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight html"><code>http://us.api.capillarytech.com/v2/events/fields_meta
+<pre class="highlight html"><code>http://us.api.capillarytech.com/v2/events/meta_fields
 </code></pre>
 <blockquote>
 <p>Sample Response</p>
@@ -12801,7 +12830,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/events/fields_meta</code></td>
+<td><code class="prettyprint">/events/meta_fields</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -12827,7 +12856,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://{Cluster URL}/v2/events/fields_meta</code></p>
+<p><code class="prettyprint">http://{Cluster URL}/v2/events/meta_fields</code></p>
 
 <h2 id="get-metadata-of-standard-events">Get Metadata of Standard Events</h2>
 
@@ -15440,7 +15469,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <tr>
 <td>transformerType</td>
 <td>enum</td>
-<td></td>
+<td>DefaultTransformer, WebEngageTransformer</td>
 </tr>
 <tr>
 <td>webEngageTransformerData</td>
