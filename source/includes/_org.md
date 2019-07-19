@@ -25,7 +25,7 @@ https://us.api.capillarytech.com/v2/org/9081/sources
     "ios": "1",
     "validTill": "cm.1",
     "loginIdentifierType": "email",
-    "deeplink" : "wefwqfwqefw,"
+    "deeplink" : "open.my.app"
   }
 
 
@@ -71,13 +71,13 @@ Allows adding a source account to the org. Currently, the following sources are 
 ### Resource Information
 Attribute | Value
 --------- | -----
-URI | `/org/<org id>/sources`
+URI | `/org/{orgId}/sources`
 HTTP Method | POST
 Batch Support | No
 
 ### Request URL
 
-`https://<Respective cluster’s API URL>/v2/org/<org id>/sources`
+`https://{host}/v2/org/{orgId}/sources`
 
 ### Request Parameters
 Parameter | Description
@@ -149,13 +149,13 @@ Allows updating all the details of a source account except UUID and source type.
 ### Resource Information
 Attribute | Value
 --------- | -----
-URI | /org/<org id>/sources
+URI | /org/{orgId}/sources
 HTTP Method | PUT
 Batch Support | No
 
 ### Request URL
 
-`https://<Respective cluster’s API URL>/v2/org/org id></sources?<account's UUID>`
+`https://{host}/v2/org/{orgId}/sources?<account's UUID>`
 
 ### Request Parameters
 Parameter | Description
@@ -242,13 +242,13 @@ Retrieves the list of all account accounts of an org.
 ### Resource Information
 Attribute | Value
 --------- | -----
-URI | org/<org id>/sources?details=true
+URI | org/{orgId}/sources?details=true
 HTTP Method | GET
 Batch Support | No
 
 ### Request URL
 
-`https://<Respective cluster’s API URL>/v2/org/org id></sources?details=true`
+`https://{host}/v2/org/{orgId}</sources?details=true`
 
 ### Request Parameters
 Parameter | Description
@@ -296,24 +296,24 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 ```
 
 
-Retrieves details of a specific account based on the UUID.
+Retrieves details of a specific account based on the UUID (universally unique identifier).
 
 ### Resource Information
 Attribute | Value
 --------- | -----
-URI | /org/<org id>/sources?<UUID>
+URI | /org/{orgId}/sources?{UUID}
 HTTP Method | GET
 Batch Support | No
 
 ### Request URL
 
-`https://<Respective cluster’s API URL>/v2/org/org id></sources?/<account's UUID>`
+`https://{host}/v2/org/{orgId}/sources?/{account's UUID}`
 
 ### Request Parameters
 Parameter | Description
 --------- | -----------
 org id* | Provide the org id for which you want to retrieve source details
-UUID* | Pass the UUID of the account that you want to retrieve
+UUID* | Pass the UUID (universally unique identifier) of the account that you want to retrieve
 
 
 ## Response Codes

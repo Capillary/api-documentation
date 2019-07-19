@@ -92,15 +92,15 @@ To submit requests on behalf of other TILLs, include the following code along wi
 ## Resource Information
 
 ### Request URL Format	
-`https://<host>/v2/<entity>/...`
+`https://{host}/v2/{resource}/{endpoint}?{query params}`
 
 Entry | Description
 ----- | -----------
-Host | The server to which the API calls are made. This should be the URL of the respective cluster from where the calls are made. * India: apac.intouch.capillary.co.in * APAC2: apac2.intouch.capillarytech.com * EU: eu.intouch.capillarytech.com * US: us.intouch.capillarytech.com * CN: intouch.capillarytech.cn.com
-API Version Number | v2
-Entity | Provide the appropriate entity based on the action to be performed. **Supported entities**: customers, communications, coupon, organization, points, product, store, transaction, goodwill requests, add events, integration resources, referral and request
-HTTP Methods | The Capillary Cloud REST APIs support the standard HTTP methods GET, PUT, DELETE and POST
-Response Format | v2.0 APIs return information only in json
+Host | The server to which the API calls are made, usually the cluster URL. <br> * India: apac.intouch.capillary.co.in<br> * APAC2: apac2.intouch.capillarytech.com<br> * EU: eu.intouch.capillarytech.com<br> * US: us.intouch.capillarytech.com<br> * CN: intouch.capillarytech.cn.com
+BasePath | v2 (API version)
+Resource | Provide the appropriate entity based on the action to be performed. **Supported Resources**: customers, communications, coupon, organization, points, product, store, transaction, goodwill requests, add events, integration resources, referral, request and other resources.
+HTTP Methods | The Capillary Cloud REST APIs support the standard HTTP methods GET, PUT, DELETE and POST.
+Response Format | JSON. All V2 APIs support only JSON response.
 
 
 

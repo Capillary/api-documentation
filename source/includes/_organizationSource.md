@@ -64,7 +64,7 @@ Batch Support | No
 
 ### Request URL
 
-`https://<Respective cluster’s API URL>/v2/currencyratio`
+`https://{host}/v2/currencyratio`
 
 
 
@@ -98,7 +98,7 @@ This API lets you generate external ids manually which can be tagged to a custom
 
 ### Request URL
 
-`https://<Respective cluster’s API URL>/v2/cardNumber`
+`https://{host}/v2/cardNumber`
 
 
 ## Show/Hide Extended Fields on InTouch
@@ -140,7 +140,7 @@ http://us.intouch.capillarytech.com/v2/entity/extended_field_config
 }
 ```
 
-This API lets you show or hide a specific extended field on your org's InTouch.
+This API lets you show or hide a specific extended field on your org's InTouch account.
 
 ### Resource Information
 | | |
@@ -160,7 +160,7 @@ Batch Support | No
 
 ### Request URL
 
-`https://<Respective cluster’s API URL>/v2/entity/extended_field_config`
+`https://{host}/v2/entity/extended_field_config`
 
 ### Request Attributes
 Attribute | Description
@@ -172,7 +172,7 @@ modifiedOn | Current date
 modifiedBy | User id who is 
 hideDisplay* | Value: true, false
 mandatory | Value: true, false
-updatable | Specify To make the field values updatable. Value: true, false
+updatable | Specify `true` to allow updating extended field values, `false` to disable updating extended field values
 position |Specify the position order of the extended field on the UI
 
 
@@ -781,7 +781,7 @@ Retrieves the details of all extended fields configured for the organization.
 
 ### Request URL
 
-`https://<Cluster URL>/v2/extendedFields`
+`https://{host}/v2/extendedFields`
 
 ### Resource Information
 Information | Value
@@ -791,7 +791,13 @@ Authentication | Yes
 HTTP Method | GET
 Batch Support | No
 
+### Additional Header
 
+Header | Description
+------ | -----------
+language | Specify the ISO code of a language to get extended field values in your preferred language. For example, `zh` for Chinese, `id` for Indonesian, `ar` for Arabic. English is the default language.
+
+<aside class="notice">To enable a specific language support for an org, contact the Platforms team to get the translations added to the database and activate translations for the org. </aside>
 
 
 ## Create Store Associates

@@ -59,7 +59,7 @@ Batch Support | No
 
 ### Request URL
 
-`http://{Cluster URL}/v2/leads/reasons`
+`http://{host}/v2/leads/reasons`
 
 
 
@@ -172,7 +172,7 @@ http://us.api.capillarytech.com/v2/leads
             "createdBy": 15002926,
             "createdOn": "2018-11-14T15:38:04+05:30",
             "reasonId": 5,
-            "reason": "Best price availabe at another store"
+            "reason": "Best price available at another store"
         },
         {
             "id": 2,
@@ -206,7 +206,7 @@ HTTP Methods | POST
 Batch Support | No
 
 ### Request URL
-`http://{Cluster URL}/v2/leads`
+`http://{host}/v2/leads`
 
 
 ### Request Body Parameters
@@ -214,7 +214,7 @@ Batch Support | No
 Parameter | Data type | Description
 --------- | -------- | -----------
 type | enum | Item or hierarchy for which the lead is generated. Values: `SKU`, `BRAND`, `CATEGORY`, or `CUSTOM`. Default value is SKU
-leadFor* | string | Name of sku, brand or category based on the `type` specified
+leadFor* | string | Name of SKU, brand or category based on the `type` specified
 userId | int | Unique id of the customer associated to the lead. If this is left blank, then you need to pass idType and identifier as mandatory parameters
 idType | enum | Specified identifier type either `EMAIL` or `MOBILE`
 identifier | string | Value of the specified `idType`
@@ -228,6 +228,426 @@ orgSourceId | enum | Unique id of the org channel account. Default value is -1 f
 lastFollowUp | | Date and time of recent follow up of the lead in `YYYY-MM-DDThh:mm:ssTZD` format
 owner | string | Username of the staff user who is assigned to the lead
 subStatus | enum | Current sub-status of the lead. Use only names that are created using `leads/substatus` API
+
+
+
+## Get Lead Details
+
+Retrieves the details of all leads of an org or a specific lead based on the lead ID passed.
+
+
+
+
+
+
+> Sample Request
+
+```html
+https://us.api.capillarytech.com/v2/leads
+
+```
+
+
+
+
+> Sample Response
+
+```json
+{
+    "data": [
+        {
+            "id": 1,
+            "userId": 368754334,
+            "type": "SKU",
+            "leadFor": "item001",
+            "status": "ON_HOLD",
+            "lastFollowUp": "2018-10-04T12:45:00+05:30",
+            "nextFollowUp": "2018-10-04T13:15:00+05:30",
+            "createdOn": "2018-10-04T13:30:00+05:30",
+            "createdBy": 28812689,
+            "lastUpdatedOn": "2019-04-15T14:54:32+05:30",
+            "lastUpdatedBy": 15002926,
+            "followUpDetails": [
+                {
+                    "id": 1,
+                    "userId": 368754334,
+                    "leadId": 1,
+                    "notes": "notes 1",
+                    "createdBy": 15002926,
+                    "createdOn": "2018-11-14T15:38:04+05:30",
+                    "followedUpBy": 28812689,
+                    "followedUpOn": "2018-10-04T12:45:00+05:30",
+                    "scheduledFollowUp": "2018-10-04T12:30:00+05:30"
+                },
+                {
+                    "id": 2,
+                    "userId": 368754334,
+                    "leadId": 1,
+                    "notes": "notes 2",
+                    "createdBy": 15002926,
+                    "createdOn": "2018-11-14T15:38:04+05:30",
+                    "followedUpBy": 28812689,
+                    "followedUpOn": "2018-10-04T12:45:00+05:30",
+                    "scheduledFollowUp": "2018-10-04T12:30:00+05:30"
+                },
+                {
+                    "id": 15,
+                    "userId": 368754334,
+                    "leadId": 1,
+                    "createdBy": 15002926,
+                    "createdOn": "2019-02-07T17:26:02+05:30",
+                    "followedUpBy": 12348,
+                    "followedUpOn": "2018-10-04T12:45:00+05:30",
+                    "scheduledFollowUp": "2018-10-05T08:00:00+05:30"
+                }
+            ],
+            "statusLogDetails": [
+                {
+                    "id": 1,
+                    "userId": 368754334,
+                    "leadId": 1,
+                    "status": "OPEN",
+                    "createdBy": 15002926,
+                    "createdOn": "2018-11-14T15:38:04+05:30",
+                    "reasonId": 5,
+                    "reason": "Best price available at another store"
+                },
+                {
+                    "id": 2,
+                    "userId": 368754334,
+                    "leadId": 1,
+                    "status": "ON_HOLD",
+                    "createdBy": 15002926,
+                    "createdOn": "2018-11-14T15:38:04+05:30",
+                    "reasonId": 4,
+                    "reason": "Item not available in store"
+                }
+            ],
+            "orgSourceId": -1,
+            "extendedFields": {},
+            "subStatus": "YetToDecide"
+        },
+        {
+            "id": 2,
+            "userId": 368754334,
+            "type": "SKU",
+            "leadFor": "item001",
+            "status": "ON_HOLD",
+            "nextFollowUp": "2018-10-05T08:00:00+05:30",
+            "createdOn": "2018-10-04T13:30:00+05:30",
+            "createdBy": 28812689,
+            "lastUpdatedOn": "2019-04-15T14:58:39+05:30",
+            "lastUpdatedBy": 15002926,
+            "followUpDetails": [
+                {
+                    "id": 3,
+                    "userId": 368754334,
+                    "leadId": 2,
+                    "notes": "notes 1",
+                    "createdBy": 15002926,
+                    "createdOn": "2018-12-06T17:36:28+05:30",
+                    "followedUpBy": 28812689,
+                    "followedUpOn": "2018-10-04T12:45:00+05:30",
+                    "scheduledFollowUp": "2018-10-04T12:30:00+05:30"
+                },
+                {
+                    "id": 4,
+                    "userId": 368754334,
+                    "leadId": 2,
+                    "notes": "notes 2",
+                    "createdBy": 15002926,
+                    "createdOn": "2018-12-06T17:36:28+05:30",
+                    "followedUpBy": 28812689,
+                    "followedUpOn": "2018-10-04T12:45:00+05:30",
+                    "scheduledFollowUp": "2018-10-04T12:30:00+05:30"
+                }
+            ],
+            "statusLogDetails": [
+                {
+                    "id": 4,
+                    "userId": 368754334,
+                    "leadId": 2,
+                    "status": "OPEN",
+                    "createdBy": 15002926,
+                    "createdOn": "2018-12-06T17:36:28+05:30",
+                    "reasonId": 1,
+                    "reason": "Item not available in store"
+                },
+                {
+                    "id": 5,
+                    "userId": 368754334,
+                    "leadId": 2,
+                    "status": "ON_HOLD",
+                    "createdBy": 15002926,
+                    "createdOn": "2018-12-06T17:36:28+05:30",
+                    "reasonId": 2,
+                    "reason": "Best price available at another store"
+                },
+                {
+                    "id": 16,
+                    "userId": 368754334,
+                    "leadId": 2,
+                    "status": "LOST",
+                    "createdBy": -1,
+                    "createdOn": "2019-01-28T14:34:46+05:30",
+                    "reasonId": 11,
+                    "reason": "AUTO_CLOSE"
+                },
+                {
+                    "id": 23,
+                    "userId": 368754334,
+                    "leadId": 2,
+                    "status": "ON_HOLD",
+                    "createdBy": 28812689,
+                    "createdOn": "2019-04-15T14:58:39+05:30",
+                    "reasonId": 2,
+                    "reason": "Best price available at another store",
+                    "subStatus": "YetToDecide"
+                }
+            ],
+            "orgSourceId": -1,
+            "extendedFields": {
+                "trial_status": "Not Done"
+            },
+            "subStatus": "YetToDecide"
+        },
+        {
+            "id": 3,
+            "userId": 368754334,
+            "type": "SKU",
+            "leadFor": "item001",
+            "status": "LOST",
+            "nextFollowUp": "2018-10-05T08:00:00+05:30",
+            "createdOn": "2018-10-04T13:30:00+05:30",
+            "createdBy": 28812689,
+            "lastUpdatedOn": "2019-01-28T14:34:46+05:30",
+            "lastUpdatedBy": -1,
+            "followUpDetails": [
+                {
+                    "id": 7,
+                    "userId": 368754334,
+                    "leadId": 4,
+                    "notes": "notes 1",
+                    "createdBy": 15002926,
+                    "createdOn": "2018-12-06T18:14:26+05:30",
+                    "followedUpBy": 28812689,
+                    "followedUpOn": "2018-10-04T12:45:00+05:30",
+                    "scheduledFollowUp": "2018-10-04T12:30:00+05:30"
+                },
+                {
+                    "id": 8,
+                    "userId": 368754334,
+                    "leadId": 4,
+                    "notes": "notes 2",
+                    "createdBy": 15002926,
+                    "createdOn": "2018-12-06T18:14:26+05:30",
+                    "followedUpBy": 28812689,
+                    "followedUpOn": "2018-10-04T12:45:00+05:30",
+                    "scheduledFollowUp": "2018-10-04T12:30:00+05:30"
+                }
+            ],
+            "statusLogDetails": [
+                {
+                    "id": 8,
+                    "userId": 368754334,
+                    "leadId": 4,
+                    "status": "OPEN",
+                    "createdBy": 15002926,
+                    "createdOn": "2018-12-06T18:14:26+05:30",
+                    "reasonId": 1,
+                    "reason": "Item not available in store"
+                },
+                {
+                    "id": 9,
+                    "userId": 368754334,
+                    "leadId": 4,
+                    "status": "ON_HOLD",
+                    "createdBy": 15002926,
+                    "createdOn": "2018-12-06T18:14:26+05:30",
+                    "reasonId": 2,
+                    "reason": "Best price available at another store"
+                },
+                {
+                    "id": 18,
+                    "userId": 368754334,
+                    "leadId": 4,
+                    "status": "LOST",
+                    "createdBy": -1,
+                    "createdOn": "2019-01-28T14:34:46+05:30",
+                    "reasonId": 11,
+                    "reason": "AUTO_CLOSE"
+                }
+            ],
+            "orgSourceId": -1,
+            "extendedFields": {
+                "trial_status": "Not Done"
+            }
+        },
+        {
+            "id": 6,
+            "userId": 368754334,
+            "type": "SKU",
+            "leadFor": "item001",
+            "status": "LOST",
+            "nextFollowUp": "2018-10-05T08:00:00+05:30",
+            "createdOn": "2018-10-04T13:30:00+05:30",
+            "createdBy": 28812689,
+            "lastUpdatedOn": "2019-01-28T14:34:46+05:30",
+            "lastUpdatedBy": -1,
+            "followUpDetails": [
+                {
+                    "id": 11,
+                    "userId": 368754334,
+                    "leadId": 6,
+                    "notes": "notes 1",
+                    "createdBy": 15002926,
+                    "createdOn": "2018-12-06T18:18:28+05:30",
+                    "followedUpBy": 28812689,
+                    "followedUpOn": "2018-10-04T12:45:00+05:30",
+                    "scheduledFollowUp": "2018-10-04T12:30:00+05:30"
+                },
+                {
+                    "id": 12,
+                    "userId": 368754334,
+                    "leadId": 6,
+                    "notes": "notes 2",
+                    "createdBy": 15002926,
+                    "createdOn": "2018-12-06T18:18:28+05:30",
+                    "followedUpBy": 28812689,
+                    "followedUpOn": "2018-10-04T12:45:00+05:30",
+                    "scheduledFollowUp": "2018-10-04T12:30:00+05:30"
+                }
+            ],
+            "statusLogDetails": [
+                {
+                    "id": 12,
+                    "userId": 368754334,
+                    "leadId": 6,
+                    "status": "OPEN",
+                    "createdBy": 15002926,
+                    "createdOn": "2018-12-06T18:18:28+05:30",
+                    "reasonId": 1,
+                    "reason": "Item not available in store"
+                },
+                {
+                    "id": 20,
+                    "userId": 368754334,
+                    "leadId": 6,
+                    "status": "LOST",
+                    "createdBy": -1,
+                    "createdOn": "2019-01-28T14:34:46+05:30",
+                    "reasonId": 11,
+                    "reason": "AUTO_CLOSE"
+                }
+            ],
+            "orgSourceId": -1,
+            "extendedFields": {
+                "trial_status": "Not Done"
+            }
+        },
+        {
+            "id": 7,
+            "userId": 368754334,
+            "type": "SKU",
+            "leadFor": "item001",
+            "status": "LOST",
+            "nextFollowUp": "2018-10-05T08:00:00+05:30",
+            "createdOn": "2018-10-04T13:30:00+05:30",
+            "createdBy": 876,
+            "lastUpdatedOn": "2019-01-28T14:34:46+05:30",
+            "lastUpdatedBy": -1,
+            "followUpDetails": [
+                {
+                    "id": 13,
+                    "userId": 368754334,
+                    "leadId": 7,
+                    "notes": "notes 1",
+                    "createdBy": 15002926,
+                    "createdOn": "2018-12-06T18:45:29+05:30",
+                    "followedUpBy": 28812689,
+                    "followedUpOn": "2018-10-04T12:45:00+05:30",
+                    "scheduledFollowUp": "2018-10-04T12:30:00+05:30"
+                },
+                {
+                    "id": 14,
+                    "userId": 368754334,
+                    "leadId": 7,
+                    "notes": "notes 2",
+                    "createdBy": 15002926,
+                    "createdOn": "2018-12-06T18:45:29+05:30",
+                    "followedUpBy": 28812689,
+                    "followedUpOn": "2018-10-04T12:45:00+05:30",
+                    "scheduledFollowUp": "2018-10-04T12:30:00+05:30"
+                }
+            ],
+            "statusLogDetails": [
+                {
+                    "id": 14,
+                    "userId": 368754334,
+                    "leadId": 7,
+                    "status": "OPEN",
+                    "createdBy": 15002926,
+                    "createdOn": "2018-12-06T18:45:29+05:30",
+                    "reasonId": 1,
+                    "reason": "Item not available in store"
+                },
+                {
+                    "id": 15,
+                    "userId": 368754334,
+                    "leadId": 7,
+                    "status": "ON_HOLD",
+                    "createdBy": 15002926,
+                    "createdOn": "2018-12-06T18:45:29+05:30",
+                    "reasonId": 2,
+                    "reason": "Best price available at another store"
+                }
+            ],
+            "orgSourceId": -1,
+            "extendedFields": {
+                "trial_status": "Not Done"
+            }
+        }
+    ],
+    "warnings": [],
+    "errors": []
+}
+
+```
+
+
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `v2/leads`
+Rate Limited? | No
+Authentication | Yes
+Response Formats | JSON
+HTTP Methods | GET
+Batch Support | No
+
+
+### Request URL
+
+`http://{host}/v2/leads/{leadId}`
+
+### Additional Header
+
+Header | Description
+------ | -----------
+language | Specify the ISO code of a language to get extended field values in your preferred language. For example, `zh` for Chinese, `id` for Indonesian, `ar` for Arabic. English is the default language.
+
+<aside class="notice">To enable a specific language support for an org, contact the Platforms team to get the translations added to the database and activate translations for the org. </aside>
+
+### Request Path Parameters
+
+Parameter | Data Type | Description
+-------- | ---------- | -----------
+leadId | int | Specify the lead id to get details of a specific lead
+
+
+<aside class="notice"> Parameters marked with * are mandatory. </aside>
+
 
 
 
@@ -355,7 +775,7 @@ HTTP Methods | PUT
 Batch Support | No
 
 ### Request URL
-`http://{Cluster URL}/v2/leads/{leadId}`
+`http://{host}/v2/leads/{leadId}`
 
 
 ### Request Body Parameters
@@ -417,7 +837,7 @@ HTTP Methods | POST
 Batch Support | No
 
 ### Request URL
-`http://{Cluster URL}/v2/leads/substatus`
+`http://{host}/v2/leads/substatus`
 
 
 ### Request Body Parameters
@@ -475,7 +895,7 @@ HTTP Methods | GET
 Batch Support | No
 
 ### Request URL
-`http://{Cluster URL}/v2/leads/substatuses`
+`http://{host}/v2/leads/substatuses`
 
 
 
@@ -607,7 +1027,7 @@ HTTP Methods | PUT
 Batch Support | No
 
 ### Request URL
-`http://{Cluster URL}/v2/leads/{leadId}/status`
+`http://{host}/v2/leads/{leadId}/status`
 
 
 ### Request Body Parameters
@@ -736,7 +1156,7 @@ HTTP Methods | POST
 Batch Support | No
 
 ### Request URL
-`http://{Cluster URL}/v2/leads/{leadId}/followup`
+`http://{host}/v2/leads/{leadId}/followup`
 
 
 
@@ -847,7 +1267,7 @@ http://us.api.capillarytech.com/v2/leads?sortOrder=DESC&type=ALL&limit=10&orgSou
 }
 ```
 
-Retrieves leads based on the input parameters
+Retrieves leads based on the input parameters.
 
 
 
@@ -863,7 +1283,7 @@ HTTP Methods | GET
 Batch Support | No
 
 ### Request URL
-`http://{Cluster URL}/v2/leads?{input params}={param values}`
+`http://{host}/v2/leads?{input params}={param values}`
 
 ### Input Parameters
 
@@ -878,6 +1298,7 @@ substatus | Fetch leads with a specific sub-status
 offset | Fetches leads > the offset number. Offset is the position of the lead in the db record. The value is assigned based on the sequence of creation. . For example, offset=10 retrieves all the leads from record number 11.
 sortBy | Lets you sort the list by `createdon` or `lastUpdatedOn`
 sortOrder | Sort the results in ascending (ASC) or descending (`DESC`) order
+
 
 
 
@@ -947,7 +1368,7 @@ Batch Support | No
 
 ### Request URL
 
-`http://{Cluster URL}/v2/leads/reasons`
+`http://{host}/v2/leads/reasons`
 
 
 ### Request Body Parameters

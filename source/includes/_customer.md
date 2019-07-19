@@ -102,7 +102,7 @@ Following are the prerequisites to use customer registration API:
 ### Resource Information
 Information | Value
 ----------- | -----
-URI | /customers?source={value}
+URI | `/customers?source={Source Name}&accountId={account id}`
 Authentication | Yes
 HTTP Method | POST
 Batch Support | No
@@ -111,7 +111,7 @@ Batch Support | No
 
 ### Request URL
 
-`https://<Respective cluster’s API URL>/v2/customers?source=<Source Name>&accountId=<account id>`
+`https://{host}/v2/customers?source={SourceName}&accountId={accountId}`
 
 ### Request Parameters
 Parameter | Value | Description
@@ -233,7 +233,7 @@ The following are the prerequisites for updating customer details:
 ### Resource Information
 Information | Value
 ----------- | -----
-URI | `/customers/{customer id}`
+URI | `/customers/{customerId}`
 Authentication | Yes
 HTTP Method | PUT
 Batch Support | No
@@ -241,7 +241,7 @@ Batch Support | No
 
 
 ### Request URL
-`https://<Respective cluster’s API URL>/v2/customers/<Customer ID>?source=<Source Name>&accountId=<account id>`
+`https://{host}/v2/customers/{customerId}?source={sourceName}&accountId={accountId}`
 
 ### Request Parameters
 Parameter | Description
@@ -326,7 +326,7 @@ Limitations of the customer identifier update API:
 ### Resource Information
 Information | Value
 ----------- | -----
-URI | `/customers/{customer id}/changeIdentifier'
+URI | `/customers/{customerId}/changeIdentifier?{query parameters}'
 Authentication | Yes
 HTTP Method | POST
 Batch Support | No
@@ -334,7 +334,7 @@ Batch Support | No
 
 
 ### Request URL
-`https://<Respective cluster’s API URL>/v2/customers/<Customer ID>/changeIdentifier?source=<Source Name>&accountId=<account id>`
+`https://{host}/v2/customers/{customerId}/changeIdentifier?source={sourceName}&accountId={accountId}`
 
 <aside class="notice">The new identifier that you want to update should be unique across the source (for sources with single accounts) and unique across the account (for sources with multiple accounts).</aside>
 
@@ -479,14 +479,14 @@ Allows fetching customers from all sources using query string. For example, you 
 ### Resource Information
 Information | Value
 ----------- | -----
-URI | `/customers/search'
+URI | `/customers/search?q={search keyword}'
 Authentication | Yes
 HTTP Method | GET
 Batch Support | No
 
 
 ### Request URL
-`https://<Respective cluster’s API URL>/v2/customers/search?q=<Identifiers or name that starts with XXXX>`
+`https://{host}/v2/customers/search?q={search keyword}`
 
 To fetch customer from a specific account of a source (with multiple accounts), you need to provide the respective account id.
 
@@ -519,7 +519,7 @@ Allows fetching unique customer ids of registered customers. The unique id is re
 ### Resource Information
 Information | Value
 ----------- | -----
-URI | `/customers/lookup'
+URI | `/customers/lookup?{query parameters}'
 Authentication | Yes
 HTTP Method | GET
 Batch Support | No
@@ -527,7 +527,7 @@ Batch Support | No
 
 
 ### Request URL
-`https://<Respective cluster’s API URL>/v2/customers/lookup?source=<Source Name>&accountId=<account id>&identifierName=<Identifier>&identifierValue=<Identifier value>`
+`https://{host}/v2/customers/lookup?source={SourceName}&accountId={accountId}&identifierName={IdentifierName}&identifierValue={IdentifierValue}`
 
 
 ### Request Parameter
@@ -552,11 +552,14 @@ CODE | DESCRIPTION
 
 ## Fetch Customer Details
 
-```html
-# Sample Request
 
+> Sample Request
+
+```html
 https://eu.api.capillarytech.com/v2/customers/17742?source=WECHAT&accountId=22232
 ```
+
+> Sample Response
 
 ```json
 {
@@ -769,25 +772,38 @@ Retrieves details of a specific customer such as:
 ### Resource Information
 Information | Value
 ----------- | -----
-URI | `/customers/<customer id>'
+URI | `/customers/{customerId}'
 Authentication | Yes
 HTTP Method | GET
 Batch Support | No
 
 
 ### Request URL
-`https://<Respective cluster URL>/v2/customers/<Customer id>?source=<Source Name>&accountId=<accountId>`
+`https://{host}/v2/customers/{customerId}?source={sourceName}&accountId={accountId}`
 
 To fetch customer details from a specific account of a source (source with multiple accounts), you need to provide the respective account id.
+
+### Additional Header
+
+Header | Description
+------ | -----------
+language | Specify the ISO language code to get customer level extended field details in your preferred language. For example, `zh` for Chinese, `id` for Indonesian, `ar` for Arabic. English is the default language.
+
+<aside class="notice">To enable a specific language support for an org, contact the Platforms team to get the translations added to the database and activate translations for the org. </aside>
 
 ### Request Parameters
 Parameter | Description
 --------- | -----------
-id | Unique identifier of the customer that you want to fetch
+id* | Unique identifier of the customer that you want to fetch
 source* | Fetch the details of the customer on a specific source (INSTORE, MARTJACK, WECHAT, ALL). To fetch details of a customer from all sources, pass <code>/source=”ALL”</code>. For sources with multiple accounts, you also need to pass the specific accountId
 account_Id |  For sources with multiple accounts, you also need to pass the specific accountId
-embed | To get points, subscription, multiple loyalty program details of the customer (points, subscriptions, mlp). Usage: <code>https://<Cluster API URL>/v2/customers/<Customer id>/source=WECHAT&accountId=<Specific WeChat account’s id>&embed=”points”</code>
+embed | To get points, subscription, multiple loyalty program details of the customer (points, subscriptions, mlp). Usage: <code>https://{ClusterURL}/v2/customers/{CustomerId}/source=WECHAT&accountId={WeChat account id}&embed=”points”</code>
 embed=usergroup | Retrieves user group details if the customer is in a user group
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
+
+
+
 
 ### Error Codes
 Code | Description
@@ -802,7 +818,7 @@ Code | Description
 
 
 
-## Fetch Loyalty Details of a Customer
+## Fetch Customer Loyalty Details
 
 ```html
 http://eu.api.capillarytech.com/v2/customers/loyaltyDetails
@@ -859,20 +875,22 @@ Retrieves the loyalty information of a customer across the org. If the customer 
 ### Resource Information
 Information | Value
 ----------- | -----
-URI | `/customers/<customer id>/loyaltyDetails'
+URI | `/customers/{customerId}/loyaltyDetails'
 Authentication | Yes
 HTTP Method | GET
 Batch Support | No
 
 
 ### Request URL
-`https://<cluster url>/v2/customers/<customer id>/loyaltyDetails`
+`https://{host}/v2/customers/{customerId}/loyaltyDetails`
 
 ### Request Parameters
 Parameter | Description
 --------- | -----------
-programId | Lets you fetch the details of a specific loyalty program. Pass the id of the program that you want to fetch
+customerId* | It is the unique id that is generated internally for a customer. Pass the unique id of a customer whose loyalty details you want to fetch 
+programId | Lets you fetch the details of a specific loyalty program if the org has multiple loyalty programs. Pass the id of the program that you want to fetch.
 
+<aside class="notice"> Parameters marked with * are mandatory.</aside>
 
 
 ## Update Subscription Details
@@ -975,13 +993,13 @@ This API allows updating (opt-in or opt-out) subscription status for trans or bu
 
 Entry | Description
 ----- | -----------
-URI | `/customers/{customer id}/subscriptions`
+URI | `/customers/{customerId}/subscriptions`
 Authentication | Yes
 HTTP Method | POST
 Batch Support | No
 
 ### Request URL
-`https://<Respective cluster URL>/v2/customers/<Customer ID>/subscriptions`
+`https://{host}/v2/customers/{customerId}/subscriptions`
 
 ### Request Parameters
 Parameter | Description
@@ -1041,14 +1059,14 @@ Allows retrieving the subscription details of a customer to SMS, email and WeCha
 
 Entry | Description
 ----- | -----------
-URI | `/customers/{customer id}/subscriptions`
+URI | `/customers/{customerId}/subscriptions`
 Rate Limited? | Yes
 Authentication | Yes
 HTTP Method | GET
 Batch Support | No
 
 ### Request URL
-`https://<Respective cluster URL>/v2/customers/<Customer ID>/subscriptions`
+`https://{host}/v2/customers/{customerId}/subscriptions`
 
 ### Request Parameters
 Parameter | Description
@@ -1056,4 +1074,38 @@ Parameter | Description
 id | Pass the unique id of the customer to fetch the subscription details
 
 
+## Retro Transaction
 
+Retro transaction lets you can convert a non-member transaction to a loyalty transaction by tagging a previous transaction of a customer after registering.
+
+To enable Retro Transaction for an org, you need to enable CONF_RETRO_TRANSACTION_ENABLE on the Billing configuration page. That is, InTouch > Settings > Systems & Deployment > InTouch PoS Configuration > Billing page.
+
+Also, check the following configurations for maximum days allowed and minimum time limit required after customer registration to tag a not-interested transaction to that customer.
+
+* CONF_CLIENT_RETRO_MAX_ALLOWED_AGE_DAYS
+* CONF_CLIENT_RETRO_DELAY_SINCE_REGISTRATION_HOURS
+
+```html
+http://us.api.capillarytech.com/v2/leads/19
+```
+
+
+
+> Sample Response
+
+```json
+
+```
+
+| | |
+--------- | ----------- |
+URI | `/customers/{customerId}/retroRequest`
+Rate Limited? | Yes
+Authentication | Yes
+Response Formats | JSON
+HTTP Method | GET
+Batch Support | No
+
+### Request URL
+
+`https://{host}/v2/customers/{customerId}/retroRequest`
