@@ -31,7 +31,7 @@ Batch Support | No
 
 ### Request URL
 
-`https://<Respective cluster’s API URL>/v2/customer/walkin?till_code=<till code>&identifierName=<mobile/email/external_id>&identifierValue={{}}&source=<source>
+`https://{host}/v2/customer/walkin?till_code={till code}&identifierName={mobile/email/external_id}&identifierValue={value}&source={sourceName}
 &accountId=<account id>`
 
 ### Request Parameters

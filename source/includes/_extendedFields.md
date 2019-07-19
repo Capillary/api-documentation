@@ -1,6 +1,9 @@
 # Extended Fields
+Extended Fields are proposed fields introduced to standardise input values and keys across organisations. Developers control extended field names, data types, enum values, and scopes. These are used to capture additional details of a customer, transaction, or transaction line item for incentivising and analysing data.
 
-## Retrieve Extended Fields of the Organization
+An extended field is a predefined field with an id, name, entity type, label name, and data type.  Example: GUID, IMEI, making charge and so on. Extended fields are used in customer registration, customer profile update, transactions (bill level and line item level).
+
+## Retrieve Extended Fields of the Org
 
 
 > Sample Request
@@ -600,11 +603,11 @@ https://us.api.capillarytech.com/v2/extendedFields
 
 ```
 
-Retrieves the details of all extended fields configured for the organization.
+Retrieves the details of all extended fields configured for the organisation.
 
 ### Request URL
 
-`https://<Cluster URL>/v2/extendedFields`
+`https://{host}/v2/extendedFields`
 
 ### Resource Information
 Information | Value

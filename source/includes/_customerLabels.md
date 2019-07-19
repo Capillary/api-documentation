@@ -68,7 +68,7 @@ Batch Support | No
 
 ### Request URL
 
-`https://{Cluster URL}/v2/organization/labels`
+`https://{host}/v2/organization/labels`
 
 
 ### Request Body Parameters
@@ -296,7 +296,7 @@ Batch Support | No
 
 ### Request URL
 
-`https://{Cluster URL}/v2/customers/{userId}/labels`
+`https://{host}/v2/customers/{userId}/labels`
 
 
 ### Request Path Parameters
@@ -377,10 +377,10 @@ Batch Support | No
 
 ### Request URL
 
-`https://{Cluster URL}/v2/customers/labels/search?q={LabelName}`
+`https://{host}/v2/customers/labels/search?q={LabelName}`
 
 
-### Request Path Parameters
+### Request Query Parameters
 
 Parameter | Description
 -------- | -----------

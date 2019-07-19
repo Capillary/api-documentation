@@ -1,5 +1,5 @@
 # Organization Sources
-The `org` entity lets you fetch details of a specific org and sources configured for the org. This category provides the list of APIs related to adding and fetching sources and accounts of the org.
+The `org` entity lets you fetch details of a specific org including sources configured for the org. This category provides the list of APIs related to adding and fetching sources and accounts of the org.
  
 ## Add Source Account
 
@@ -82,7 +82,7 @@ Batch Support | No
 ### Request Parameters
 Parameter | Description
 --------- | -----------
-org id* | Provide the org id to which you want to add a new source
+org id* | Provide the org id to which you want to add a new source.
 
 
 ## Update Source Account Details
@@ -281,7 +281,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
     "configs": {
         "accessToken": "1",
         "android": "0",
-        "deeplink": "wefwqfwqefw,",
+        "deeplink": "my.app",
         "ios": "1",
         "licenseCode": "0",
         "loginIdentifierType": "email",
@@ -315,11 +315,8 @@ Parameter | Description
 org id* | Provide the org id for which you want to retrieve source details
 UUID* | Pass the UUID (universally unique identifier) of the account that you want to retrieve
 
+<aside class="notice">Parameters marked with * are mandatory.</aside>
 
-## Response Codes
-### Success Codes
-Code | Description
----- | -----------
 
 
 ### Error Codes

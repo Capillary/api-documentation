@@ -113,14 +113,15 @@ Batch Support | No
 
 `https://{host}/v2/customers?source={SourceName}&accountId={accountId}`
 
-### Request Parameters
+### Request Query Parameters
 Parameter | Value | Description
 --------- | ----- | -----------
 source* | FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE | Source in which you want to register a customer
-accountId* | - | For sources with multiple accounts, pass the specific account id in which you want to register a customer
+accountId | - | For sources with multiple accounts, pass the specific account id in which you want to register a customer
 
+<aside class="notice">Parameter marked with * is mandatory.</aside>
 
-### Request Attributes
+### Request Body Parameters
 Parameter | Value | Description
 --------- | ----- | -----------
 loyaltyinfo | loyaltyType | Loyalty status of the customer (“loyalty”, “non_loyalty”)
@@ -243,14 +244,16 @@ Batch Support | No
 ### Request URL
 `https://{host}/v2/customers/{customerId}?source={sourceName}&accountId={accountId}`
 
-### Request Parameters
+### Request Query Parameters
 Parameter | Description
 --------- | -----------
 customer_id* | Unique id of the customer whose details need to be updated
 source* | Specify the source in which you want to update the customer details - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE. For sources with multiple accounts such as WECHAT, FACEBOOK, or LINE, you also need to provide the respective account id.
-account_Id** | Account in which you want to update the customer details (Required only for sources with multiple accounts)
+account_Id | Account in which you want to update the customer details (Required only for sources with multiple accounts)
 
-### Request Attributes
+<aside class="notice">Parameters marked with * are mandatory.</aside>
+
+### Request Body Parameters
 
 Parameter | Value | Description
 --------- | ----- | -----------
@@ -279,12 +282,12 @@ CODE | DESCRIPTION
 
 ## Update Customer Identifiers
 
-```html
-# Sample Request
+> Sample Request
 
+```html
 https://us.api.capillarytech.com/v2/customers/418/changeIdentifier?source=WECHAT&accountId=22232
 ```
-> In the POST json, pass the identifier(s) that you want to add and/or remove separately as shown below
+> Sample POST Request
 
 ```json
 {
@@ -299,7 +302,7 @@ https://us.api.capillarytech.com/v2/customers/418/changeIdentifier?source=WECHAT
 }
 ```
 
-> Following is the sample response generated for the above sample call
+> Sample Response
 
 ```json
 {
@@ -339,19 +342,24 @@ Batch Support | No
 <aside class="notice">The new identifier that you want to update should be unique across the source (for sources with single accounts) and unique across the account (for sources with multiple accounts).</aside>
 
 
-### Request Parameters
+### Request Query Parameters
 Parameter | Description
 --------- | -----------
 customer_id* | Unique id of the customer whose identifiers need to be updated
 source* | Specify the source in which you want to update customer identifier(s) - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE. For sources that support multiple accounts, you also need to provide the associated account id.
-account_Id** | Account in which you want to update the customer identifier (Required only for sources with multiple accounts)
+account_Id | Account in which you want to update the customer identifier (Required only for sources with multiple accounts)
 
+<aside class="notice">Parameters marked with * are mandatory.</aside>
 
-### Request Attributes
+### Request Body Parameters
 Attributes | Description
 ---------- | -----------
-add | New identifier that you want to add to the existing account. Pass the identifiers as a key value pair.<code>{“type": "wechat", "value": "TS11"}</code>
-remove | Existing Identifier that you want to remove from the specified account. <code>{"type": "email", "value": "tom.sawyer@example.com"}</code>
+add** | New identifier that you want to add to the existing account. Pass the identifiers as a key value pair.<code>{“type": "wechat", "value": "TS11"}</code>
+remove** | Existing Identifier that you want to remove from the specified account. <code>{"type": "email", "value": "tom.sawyer@example.com"}</code>
+type* | Type of the identifier that you want to add or remove. For example, email, mobile, and wechat.
+value* | Value of the specified `type`. For example, if `type` is email, then pass the email id that you want to add or remove in `value`
+
+<aside class="notice">Parameters marked with * are mandatory and any one among the parameters marked with ** is required.</aside>
 
 
 ### Error Codes
@@ -377,9 +385,10 @@ CODE | DESCRIPTION
 
 
 ## Fetch Customers (Advanced Customer Search)
-```html
-# Sample Request
 
+> Sample Request
+
+```html
 http://eu.api.capillarytech.com/v2/customers/search?limit=10&offset=0&q=tom
 ```
 
@@ -493,20 +502,24 @@ To fetch customer from a specific account of a source (with multiple accounts), 
 ### Request Parameter
 Parameter | Description
 --------- | -----------
-q |  Parameter based on which you want to fetch customers. It will fetch the customers whose first name/last name/identifiers start with the keyword specified in q=””
+q |  Parameter based on which you want to fetch customers. It will fetch the customers whose first name/last name/identifiers start with the keyword specified in `q={}`
 
 
 
 
 ## Fetch Customer ID
+
+> Sample Request
+
 ```html
-# Sample Request
 
 https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE&identifierName=mobile&identifierValue=919111111111
 ```
-> The entity field shows the unique customer id
+> Sample Response
 
 ```json
+# The entity field shows the unique customer id
+
 {
 "entity": 306,
 "warnings":[]
@@ -534,10 +547,12 @@ Batch Support | No
 Parameter | Description
 --------- | -----------
 source* | Specify the source from which you want to fetch the customer details. Values: FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, ALL
-accountId** | Specify the account id of the specific source if the source has multiple accounts
+accountId | Specify the account id of the specific source if the source has multiple accounts. `accountId` is required for sources with multiple accounts such as WeChat or Facebook
 identifierName* | Identifier based on which you want to fetch the customer id. **Values**: "mobile", "email", "externalId", "wechat","martjackId", or "fbId"
 identifierValue* | Pass the respective identifier value
 
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
 
 ### Error Codes
 CODE | DESCRIPTION
@@ -820,9 +835,13 @@ Code | Description
 
 ## Fetch Customer Loyalty Details
 
+> Sample Request
+
 ```html
 http://eu.api.capillarytech.com/v2/customers/loyaltyDetails
 ```
+
+> Sample Response
 
 ```json
 {
@@ -890,18 +909,21 @@ Parameter | Description
 customerId* | It is the unique id that is generated internally for a customer. Pass the unique id of a customer whose loyalty details you want to fetch 
 programId | Lets you fetch the details of a specific loyalty program if the org has multiple loyalty programs. Pass the id of the program that you want to fetch.
 
-<aside class="notice"> Parameters marked with * are mandatory.</aside>
+<aside class="notice"> Parameter marked with * is mandatory.</aside>
 
 
 ## Update Subscription Details
+
+> Sample Request
+
 ```html
-# Sample Request
 
 https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 ```
 
+> Sample POST Request
+
 ```json
-# Sample POST Request
 
 {
     "communicationId": -1,
@@ -1004,11 +1026,12 @@ Batch Support | No
 ### Request Parameters
 Parameter | Description
 --------- | -----------
-id | Unique id of the customer for whom you want to modify the subscription details
+id* | Unique id of the customer whose subscription details you want to modify
 channel | Pass the communication channel that you want to update. **Value**: "mobile", "email", "wechat", "ios", "android", "line"
 priority | Type of service for which you want to modify the subscription details.`TRANS` for personalized messages and `BULK` for campaign or bulk messages
 type | `OPTIN` to subscribe and `OPTOUT` to unsubscribe
 
+<aside class="notice">Parameter marked by * is mandatory and also pass other dependent required for the specific action. </aside> 
 
 ## Retrieve Subscription Details
 
@@ -1068,11 +1091,12 @@ Batch Support | No
 ### Request URL
 `https://{host}/v2/customers/{customerId}/subscriptions`
 
-### Request Parameters
+### Request Query Parameters
 Parameter | Description
 --------- | -----------
-id | Pass the unique id of the customer to fetch the subscription details
+id* | Pass the unique id of the customer to fetch the subscription details
 
+<aside class="notice">Parameter marked by * is mandatory.</aside>
 
 ## Retro Transaction
 
@@ -1085,10 +1109,11 @@ Also, check the following configurations for maximum days allowed and minimum ti
 * CONF_CLIENT_RETRO_MAX_ALLOWED_AGE_DAYS
 * CONF_CLIENT_RETRO_DELAY_SINCE_REGISTRATION_HOURS
 
-```html
-http://us.api.capillarytech.com/v2/leads/19
-```
+> Sample Request
 
+```html
+http://us.api.capillarytech.com/v2/customers/368881003/retroRequest
+```
 
 
 > Sample Response
@@ -1099,7 +1124,7 @@ http://us.api.capillarytech.com/v2/leads/19
 
 | | |
 --------- | ----------- |
-URI | `/customers/{customerId}/retroRequest`
+URI | `/customers/{customerId}/retroRequest?{query parameters}`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
@@ -1108,4 +1133,7 @@ Batch Support | No
 
 ### Request URL
 
-`https://{host}/v2/customers/{customerId}/retroRequest`
+`https://{host}/v2/customers/{customerId}/retroRequest?{query parameters}`
+
+
+
