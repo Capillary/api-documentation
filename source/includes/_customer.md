@@ -1098,42 +1098,9 @@ id* | Pass the unique id of the customer to fetch the subscription details
 
 <aside class="notice">Parameter marked by * is mandatory.</aside>
 
-## Retro Transaction
-
-Retro transaction lets you can convert a non-member transaction to a loyalty transaction by tagging a previous transaction of a customer after registering.
-
-To enable Retro Transaction for an org, you need to enable CONF_RETRO_TRANSACTION_ENABLE on the Billing configuration page. That is, InTouch > Settings > Systems & Deployment > InTouch PoS Configuration > Billing page.
-
-Also, check the following configurations for maximum days allowed and minimum time limit required after customer registration to tag a not-interested transaction to that customer.
-
-* CONF_CLIENT_RETRO_MAX_ALLOWED_AGE_DAYS
-* CONF_CLIENT_RETRO_DELAY_SINCE_REGISTRATION_HOURS
-
-> Sample Request
-
-```html
-http://us.api.capillarytech.com/v2/customers/368881003/retroRequest
-```
 
 
-> Sample Response
 
-```json
-
-```
-
-| | |
---------- | ----------- |
-URI | `/customers/{customerId}/retroRequest?{query parameters}`
-Rate Limited? | Yes
-Authentication | Yes
-Response Formats | JSON
-HTTP Method | GET
-Batch Support | No
-
-### Request URL
-
-`https://{host}/v2/customers/{customerId}/retroRequest?{query parameters}`
 
 
 

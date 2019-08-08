@@ -34,6 +34,10 @@ https://us.api.capillarytech.com/v2/otp/generate?format=json
       {
          "type":"EMAIL",
          "value":"tom.sawyer@example.com"
+      },
+	  {
+         "type":"PHONE",
+         "value":"9191919191"
       }
    ]
 }
@@ -99,9 +103,7 @@ Parameter | Description
 entityType | Specify MOBILE to identify customer by mobile number or EMAIL to identify customer by email id
 entityValue | Specify the registered  mobile number or email id of the customer based on the entityType passed
 action |Choose the action for which the OTP has to be issued. Supported values: COUPON, POINTS, REGISTRATION, GENERIC
-channels | Specify the channels through which you want to issue OTP. Value: EMAIL and/or SMS
-
-
+channels | Specify the channels through which you want to issue OTP for redemption or registration. Value: EMAIL, SMS, PHONE. You can use Phone to generate OTP through a voice call to the specified number.
 
 <aside class="notice">
 If the email template is not specified, the validation code will be sent in the default email template format specified below:
