@@ -1789,65 +1789,6 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 
 <aside class="notice">Parameter marked by * is mandatory.</aside>
 
-<h2 id="retro-transaction">Retro Transaction</h2>
-
-<p>Retro transaction lets you can convert a non-member transaction to a loyalty transaction by tagging a previous transaction of a customer after registering.</p>
-
-<p>To enable Retro Transaction for an org, you need to enable CONF_RETRO_TRANSACTION_ENABLE on the Billing configuration page. That is, InTouch &gt; Settings &gt; Systems &amp; Deployment &gt; InTouch PoS Configuration &gt; Billing page.</p>
-
-<p>Also, check the following configurations for maximum days allowed and minimum time limit required after customer registration to tag a not-interested transaction to that customer.</p>
-
-<ul>
-<li>CONF_CLIENT_RETRO_MAX_ALLOWED_AGE_DAYS</li>
-<li>CONF_CLIENT_RETRO_DELAY_SINCE_REGISTRATION_HOURS</li>
-</ul>
-
-<blockquote>
-<p>Sample Request</p>
-</blockquote>
-<pre class="highlight html"><code>http://us.api.capillarytech.com/v2/customers/368881003/retroRequest
-</code></pre>
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="w">
-</span></code></pre>
-<table><thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URI</td>
-<td><code class="prettyprint">/customers/{customerId}/retroRequest?{query parameters}</code></td>
-</tr>
-<tr>
-<td>Rate Limited?</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>Authentication</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
-<td>HTTP Method</td>
-<td>GET</td>
-</tr>
-<tr>
-<td>Batch Support</td>
-<td>No</td>
-</tr>
-</tbody></table>
-
-<h3 id="request-url">Request URL</h3>
-
-<p><code class="prettyprint">https://{host}/v2/customers/{customerId}/retroRequest?{query parameters}</code></p>
-
           <h1 id="customer-labels">Customer Labels</h1>
 
 <p>Customer labels are used for tagging customers based on their activities or loyalty histories. Tags are used in loyalty, campaigns and Essential Insights. You can add new labels and tag labels to customers using APIs of organization and customers mentioned here.</p>
@@ -2373,6 +2314,10 @@ https://us.api.capillarytech.com/v2/otp/generate?format=json
       </span><span class="p">{</span><span class="w">
          </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"EMAIL"</span><span class="p">,</span><span class="w">
          </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"tom.sawyer@example.com"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"PHONE"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"9191919191"</span><span class="w">
       </span><span class="p">}</span><span class="w">
    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -2469,7 +2414,7 @@ https://us.api.capillarytech.com/v2/otp/generate?format=json
 </tr>
 <tr>
 <td>channels</td>
-<td>Specify the channels through which you want to issue OTP. Value: EMAIL and/or SMS</td>
+<td>Specify the channels through which you want to issue OTP for redemption or registration. Value: EMAIL, SMS, PHONE. You can use Phone to generate OTP through a voice call to the specified number.</td>
 </tr>
 </tbody></table>
 

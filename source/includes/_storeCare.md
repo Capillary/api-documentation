@@ -599,7 +599,7 @@ Retrieves in and out count of both visitors and staff separately at event level 
 > Sample Request
 
 ```html
-https://sg.storecare.capillarytech.com/pages/v2/ffcDetails?orgId=781&date=2019/02/12&timezone=UTC+0530&storeId=15001861 
+https://sg.storecare.capillarytech.com/pages/v2/ffcDetails?orgId=781&date=2019/02/12&timezone=UTC+0530&storeId=15001861&begin=0&size=5
 
 ```
 
@@ -772,6 +772,8 @@ deviceId | string | Specify the device id for which you want to fetch the data
 syncTimeFrom | timestamp | The duration (in UTC timestamp) for which the data is synced to the server (between syncTimeFrom and syncTimeTo) 
 syncTimeTo | timestamp | The period (in UTC timestamp) for which the data is synced to the server (between syncTimeFrom and syncTimeTo)
 syncDate | timestamp | The data  synced on a specific date. Specify the date in `YYYY-MM-DD` format. For example, if you pass `timezone` is UTC+5:30 and syncDate is 2019-02-24, you will the entire data synced on 24th Feb 2019 of India timezone
+size | int | Number of results to be retrieved per page
+begin | int | Record number to start from. Supported values: 0- any number. For example, if you specify 10, you will get records starting from 10 until the end.
 
 <aside class="notice">All parameters marked by * are mandatory.</aside>
 
@@ -1322,7 +1324,7 @@ Retrieves both in and out count of groups at an event level. The groups have the
 > Sample Request
 
 ```html
-https://sg.storecare.capillarytech.com/pages/v2/ffcGroupCount??orgId=7221&date=2019/02/12&timezone=UTC+0530&storeId=15001861 
+https://sg.storecare.capillarytech.com/pages/v2/ffcGroupCount??orgId=7221&date=2019/02/12&timezone=UTC+0530&storeId=15001861&begin=0&size=5
  
 ```
 
@@ -1432,6 +1434,8 @@ deviceId | string | Specify the device id for which you want to fetch the data
 syncTimeFrom | timestamp | The duration (in UTC timestamp) for which the data is synced to the server (between syncTimeFrom and syncTimeTo) 
 syncTimeTo | timestamp | The period (in UTC timestamp) for which the data is synced to the server (between syncTimeFrom and syncTimeTo)
 syncDate | timestamp | The data  synced on a specific date. Specify the date in `YYYY-MM-DD` format. For example, if you pass `timezone` is UTC+5:30 and syncDate is 2019-02-24, you will the entire data synced on 24th Feb 2019 of India timezone.
+size | int | Number of results to be retrieved per page
+begin | int | Record number to start from. Supported values: 0- any number. For example, if you specify 10, you will get records starting from 10 until the end.
 
 <aside class="notice">All parameters marked by * are mandatory.</aside>
 
