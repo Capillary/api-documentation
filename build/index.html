@@ -281,6 +281,21 @@ https://us.api.capillarytech.com/v2/customers?source=LINE<span class="err">&amp;
     </span><span class="nt">"sideEffects"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<blockquote>
+<p>If the customer is registered in a different source</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"createdId"</span><span class="p">:</span><span class="w"> </span><span class="mi">342963216</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">8050</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Same Customer found in other sources,Combining"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"sideEffects"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <p>This API allows registering customers in the org&rsquo;s loyalty program through different sources such as FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, LINE, and WEBSITE.  For sources with multiple accounts (such as WeChat, Line and Facebook), you must specify the respective account id along with the source name. You can also add customer level extended field details and custom field details of a customer.</p>
 
 <p><strong>Extended Fields</strong>:
@@ -359,7 +374,7 @@ Extended Fields are proposed fields to standardize input values and keys across 
 </tr>
 </tbody></table>
 
-<aside class="notice">Parameter marked with * is mandatory.</aside>
+<aside class="notice">Parameter marked with * is mandatory.<br> If you try to register a customer that exists in a different source, the accounts will merge automatically.</aside>
 
 <h3 id="request-body-parameters">Request Body Parameters</h3>
 
@@ -1569,7 +1584,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
             </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTOUT"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SMS"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MOBILE"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
             </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BULK"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTOUT"</span><span class="w">
@@ -1581,7 +1596,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
             </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SMS"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MOBILE"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRANS"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="w">
@@ -1788,6 +1803,981 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 </tbody></table>
 
 <aside class="notice">Parameter marked by * is mandatory.</aside>
+
+<h2 id="retro-transaction">Retro Transaction</h2>
+
+<p>Retro transaction lets you can convert a non-member transaction to a loyalty transaction by tagging a previous transaction of a customer after registering.</p>
+
+<p>To enable Retro Transaction for an org, you need to enable CONF_RETRO_TRANSACTION_ENABLE on the Billing configuration page. That is, InTouch &gt; Settings &gt; Systems &amp; Deployment &gt; InTouch PoS Configuration &gt; Billing page.</p>
+
+<p>Also, check the following configurations for maximum days allowed and minimum time limit required after customer registration to tag a not-interested transaction to that customer.</p>
+
+<ul>
+<li>CONF_CLIENT_RETRO_MAX_ALLOWED_AGE_DAYS</li>
+<li>CONF_CLIENT_RETRO_DELAY_SINCE_REGISTRATION_HOURS</li>
+</ul>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>http://us.api.capillarytech.com/v2/customers/368881003/retroRequest
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/customers/{customerId}/retroRequest?{query parameters}</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/customers/{customerId}/retroRequest?{query parameters}</code></p>
+
+<h2 id="check-if-points-transferrable">Check if Points Transferrable</h2>
+
+<p>Checks if specific points of a customer can be transferred to an other customer.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/customers/isPointsTransferrable
+
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</span><span class="nt">"pointsTobeTransferred"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
+</span><span class="nt">"fromCustomerIdentifier"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"MOBILE"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"7799497290"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+</span><span class="nt">"toCustomerIdentifier"</span><span class="p">:{</span><span class="w">
+</span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"ID"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"342953257"</span><span class="w">
+</span><span class="p">},</span><span class="w">
+
+</span><span class="nt">"issueOtp"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w"> 
+   </span><span class="nt">"data"</span><span class="p">:[</span><span class="w"> 
+      </span><span class="p">{</span><span class="w"> 
+         </span><span class="nt">"pointsTobeTransferred"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"transferFrom"</span><span class="p">:{</span><span class="w"> 
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">32429961</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"profiles"</span><span class="p">:[</span><span class="w"> 
+               </span><span class="p">{</span><span class="w"> 
+                  </span><span class="nt">"firstName"</span><span class="p">:</span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"lastName"</span><span class="p">:</span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attribution"</span><span class="p">:{</span><span class="w"> 
+                     </span><span class="nt">"createDate"</span><span class="p">:</span><span class="s2">"2018-03-05T15:52:47+05:30"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"createdBy"</span><span class="p">:{</span><span class="w"> 
+                        </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">15041276</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"modifiedBy"</span><span class="p">:{</span><span class="w"> 
+                        </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">15041276</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"modifiedDate"</span><span class="p">:</span><span class="s2">"2019-08-14T12:48:31+05:30"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="nt">"fields"</span><span class="p">:{</span><span class="w"> 
+
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w"> 
+                     </span><span class="p">{</span><span class="w"> 
+                        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"919111111111"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">],</span><span class="w">
+                  </span><span class="nt">"commChannels"</span><span class="p">:[</span><span class="w"> 
+                     </span><span class="p">{</span><span class="w"> 
+                        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"919111111111"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"primary"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"verified"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"meta"</span><span class="p">:{</span><span class="w"> 
+                           </span><span class="nt">"residence"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"office"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w"> 
+
+                        </span><span class="p">}</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">],</span><span class="w">
+                  </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">32429961</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"accountId"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"conflictingProfileList"</span><span class="p">:[</span><span class="w"> 
+
+                  </span><span class="p">],</span><span class="w">
+                  </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="s2">"2019-09-24T02:29:31+05:30"</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"loyaltyInfo"</span><span class="p">:{</span><span class="w"> 
+               </span><span class="nt">"loyaltyType"</span><span class="p">:</span><span class="s2">"loyalty"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"attributionV2"</span><span class="p">:{</span><span class="w"> 
+                  </span><span class="nt">"createDate"</span><span class="p">:</span><span class="s2">"2018-03-05T15:52:47+05:30"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"createdBy"</span><span class="p">:{</span><span class="w"> 
+                     </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">15041276</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="nt">"modifiedBy"</span><span class="p">:{</span><span class="w"> 
+                     </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">15041276</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="nt">"modifiedDate"</span><span class="p">:</span><span class="s2">"2019-08-14T12:48:31+05:30"</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"segments"</span><span class="p">:{</span><span class="w"> 
+
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"extendedFields"</span><span class="p">:{</span><span class="w"> 
+
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"transferTo"</span><span class="p">:{</span><span class="w"> 
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">342953257</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"profiles"</span><span class="p">:[</span><span class="w"> 
+               </span><span class="p">{</span><span class="w"> 
+                  </span><span class="nt">"firstName"</span><span class="p">:</span><span class="s2">"autofn_9294476894"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"lastName"</span><span class="p">:</span><span class="s2">"autoln_9294476894"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attribution"</span><span class="p">:{</span><span class="w"> 
+                     </span><span class="nt">"createDate"</span><span class="p">:</span><span class="s2">"2019-09-18T16:40:10+05:30"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"createdBy"</span><span class="p">:{</span><span class="w"> 
+                        </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">15041276</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"modifiedBy"</span><span class="p">:{</span><span class="w"> 
+                        </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">15041276</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"modifiedDate"</span><span class="p">:</span><span class="s2">"2019-09-18T16:40:10+05:30"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="nt">"fields"</span><span class="p">:{</span><span class="w"> 
+
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w"> 
+                     </span><span class="p">{</span><span class="w"> 
+                        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"james.f@example.com"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="p">{</span><span class="w"> 
+                        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"919294111111"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="p">{</span><span class="w"> 
+                        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"externalId"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"ext_id92944768"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">],</span><span class="w">
+                  </span><span class="nt">"commChannels"</span><span class="p">:[</span><span class="w"> 
+                     </span><span class="p">{</span><span class="w"> 
+                        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"james.f@example.com"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"primary"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"verified"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"meta"</span><span class="p">:{</span><span class="w"> 
+                           </span><span class="nt">"residence"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"office"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w"> 
+
+                        </span><span class="p">}</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="p">{</span><span class="w"> 
+                        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"919294476894"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"primary"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"verified"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"meta"</span><span class="p">:{</span><span class="w"> 
+                           </span><span class="nt">"residence"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"office"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w"> 
+
+                        </span><span class="p">}</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">],</span><span class="w">
+                  </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">342953257</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"accountId"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"conflictingProfileList"</span><span class="p">:[</span><span class="w"> 
+
+                  </span><span class="p">],</span><span class="w">
+                  </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="s2">"2019-09-24T02:29:31+05:30"</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"loyaltyInfo"</span><span class="p">:{</span><span class="w"> 
+               </span><span class="nt">"loyaltyType"</span><span class="p">:</span><span class="s2">"loyalty"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"attributionV2"</span><span class="p">:{</span><span class="w"> 
+                  </span><span class="nt">"createDate"</span><span class="p">:</span><span class="s2">"2019-09-18T16:40:10+05:30"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"createdBy"</span><span class="p">:{</span><span class="w"> 
+                     </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">15041276</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="nt">"modifiedBy"</span><span class="p">:{</span><span class="w"> 
+                     </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">15041276</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="nt">"modifiedDate"</span><span class="p">:</span><span class="s2">"2019-09-18T16:40:10+05:30"</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"segments"</span><span class="p">:{</span><span class="w"> 
+
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"extendedFields"</span><span class="p">:{</span><span class="w"> 
+
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"transferrable"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w"> 
+
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"errors"</span><span class="p">:[</span><span class="w"> 
+
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/isPointsTransferrable</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/customers/isPointsTransferrable</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pointsTobeTransferred*</td>
+<td>int</td>
+<td>Number of points that customer wants to transfer.</td>
+</tr>
+<tr>
+<td>fromCustomerIdentifier*</td>
+<td>obj</td>
+<td>Details of source customer - customer that wants to transfer points.</td>
+</tr>
+<tr>
+<td>toCustomerIdentifier*</td>
+<td>obj</td>
+<td>Details of destination customer - customer to whom the points have to be transferred.</td>
+</tr>
+<tr>
+<td>type*</td>
+<td>enum</td>
+<td>Customer identifier type. Values: <code class="prettyprint">ID</code> (user id of the customer), <code class="prettyprint">MOBILE</code>, <code class="prettyprint">EXTERNAL_ID</code>, <code class="prettyprint">EMAIL</code>.</td>
+</tr>
+<tr>
+<td>value*</td>
+<td>string</td>
+<td>The value of the specified identifier.</td>
+</tr>
+<tr>
+<td>issueOtp</td>
+<td>Boolean</td>
+<td>Sends OTP to the fromCustomer if the specified points are transferrable to the d. Specify <code class="prettyprint">true</code> to issue OTP to the from customer. The default value is <code class="prettyprint">false</code>.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> All parameters marked by * are mandatory. </aside>
+
+<h2 id="issue-otp-for-points-transferrable">Issue OTP for Points Transferrable</h2>
+
+<p>Issues OTP to the source customer&rsquo;s registered mobile number to transfer points (if the points specified are transferrable). This is used to validate the authenticity of the customer that wants to transfer points. </p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/customers/issuePointsTransferOtp
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w"> 
+   </span><span class="nt">"pointsTobeTransferred"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"fromCustomerIdentifier"</span><span class="p">:{</span><span class="w"> 
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"MOBILE"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"919111111111"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"toCustomerIdentifier"</span><span class="p">:{</span><span class="w"> 
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"ID"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"342953257"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w"> 
+   </span><span class="nt">"data"</span><span class="p">:[</span><span class="w"> 
+      </span><span class="p">{</span><span class="w"> 
+         </span><span class="nt">"pointsTobeTransferred"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"transferFrom"</span><span class="p">:{</span><span class="w"> 
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">32429961</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"profiles"</span><span class="p">:[</span><span class="w"> 
+               </span><span class="p">{</span><span class="w"> 
+                  </span><span class="nt">"firstName"</span><span class="p">:</span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"lastName"</span><span class="p">:</span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attribution"</span><span class="p">:{</span><span class="w"> 
+                     </span><span class="nt">"createDate"</span><span class="p">:</span><span class="s2">"2018-03-05T15:52:47+05:30"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"createdBy"</span><span class="p">:{</span><span class="w"> 
+                        </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">15041276</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"modifiedBy"</span><span class="p">:{</span><span class="w"> 
+                        </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">15041276</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"modifiedDate"</span><span class="p">:</span><span class="s2">"2019-08-14T12:48:31+05:30"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="nt">"fields"</span><span class="p">:{</span><span class="w"> 
+
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w"> 
+                     </span><span class="p">{</span><span class="w"> 
+                        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"919111111111"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">],</span><span class="w">
+                  </span><span class="nt">"commChannels"</span><span class="p">:[</span><span class="w"> 
+                     </span><span class="p">{</span><span class="w"> 
+                        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"919111111111"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"primary"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"verified"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"meta"</span><span class="p">:{</span><span class="w"> 
+                           </span><span class="nt">"residence"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"office"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w"> 
+
+                        </span><span class="p">}</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">],</span><span class="w">
+                  </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">32429961</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"accountId"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"conflictingProfileList"</span><span class="p">:[</span><span class="w"> 
+
+                  </span><span class="p">],</span><span class="w">
+                  </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="s2">"2019-09-24T03:51:07+05:30"</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"loyaltyInfo"</span><span class="p">:{</span><span class="w"> 
+               </span><span class="nt">"loyaltyType"</span><span class="p">:</span><span class="s2">"loyalty"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"attributionV2"</span><span class="p">:{</span><span class="w"> 
+                  </span><span class="nt">"createDate"</span><span class="p">:</span><span class="s2">"2018-03-05T15:52:47+05:30"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"createdBy"</span><span class="p">:{</span><span class="w"> 
+                     </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">15041276</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="nt">"modifiedBy"</span><span class="p">:{</span><span class="w"> 
+                     </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">15041276</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="nt">"modifiedDate"</span><span class="p">:</span><span class="s2">"2019-08-14T12:48:31+05:30"</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"segments"</span><span class="p">:{</span><span class="w"> 
+
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"extendedFields"</span><span class="p">:{</span><span class="w"> 
+
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"transferTo"</span><span class="p">:{</span><span class="w"> 
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">342953257</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"profiles"</span><span class="p">:[</span><span class="w"> 
+               </span><span class="p">{</span><span class="w"> 
+                  </span><span class="nt">"firstName"</span><span class="p">:</span><span class="s2">"James"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"lastName"</span><span class="p">:</span><span class="s2">"Thomas"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attribution"</span><span class="p">:{</span><span class="w"> 
+                     </span><span class="nt">"createDate"</span><span class="p">:</span><span class="s2">"2019-09-18T16:40:10+05:30"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"createdBy"</span><span class="p">:{</span><span class="w"> 
+                        </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">15041276</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"modifiedBy"</span><span class="p">:{</span><span class="w"> 
+                        </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">15041276</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"modifiedDate"</span><span class="p">:</span><span class="s2">"2019-09-18T16:40:10+05:30"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="nt">"fields"</span><span class="p">:{</span><span class="w"> 
+
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w"> 
+                     </span><span class="p">{</span><span class="w"> 
+                        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"james.t@example.com"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="p">{</span><span class="w"> 
+                        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"919290000000"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="p">{</span><span class="w"> 
+                        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"externalId"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"ext_id9294476894"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">],</span><span class="w">
+                  </span><span class="nt">"commChannels"</span><span class="p">:[</span><span class="w"> 
+                     </span><span class="p">{</span><span class="w"> 
+                        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"james.t@example.com"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"primary"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"verified"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"meta"</span><span class="p">:{</span><span class="w"> 
+                           </span><span class="nt">"residence"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"office"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w"> 
+
+                        </span><span class="p">}</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="p">{</span><span class="w"> 
+                        </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"919290000000"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"primary"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"verified"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"meta"</span><span class="p">:{</span><span class="w"> 
+                           </span><span class="nt">"residence"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+                           </span><span class="nt">"office"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w"> 
+
+                        </span><span class="p">}</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">],</span><span class="w">
+                  </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">342953257</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"accountId"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"conflictingProfileList"</span><span class="p">:[</span><span class="w"> 
+
+                  </span><span class="p">],</span><span class="w">
+                  </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="s2">"2019-09-24T03:51:07+05:30"</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"loyaltyInfo"</span><span class="p">:{</span><span class="w"> 
+               </span><span class="nt">"loyaltyType"</span><span class="p">:</span><span class="s2">"loyalty"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"attributionV2"</span><span class="p">:{</span><span class="w"> 
+                  </span><span class="nt">"createDate"</span><span class="p">:</span><span class="s2">"2019-09-18T16:40:10+05:30"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"createdBy"</span><span class="p">:{</span><span class="w"> 
+                     </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">15041276</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="nt">"modifiedBy"</span><span class="p">:{</span><span class="w"> 
+                     </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">15041276</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="nt">"modifiedDate"</span><span class="p">:</span><span class="s2">"2019-09-18T16:40:10+05:30"</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"segments"</span><span class="p">:{</span><span class="w"> 
+
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"extendedFields"</span><span class="p">:{</span><span class="w"> 
+
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"transferrable"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w"> 
+
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"errors"</span><span class="p">:[</span><span class="w"> 
+
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/issuePointsTransferOtp</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/customers/issuePointsTransferOtp</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pointsTobeTransferred*</td>
+<td>int</td>
+<td>Number of points to be transferred.</td>
+</tr>
+<tr>
+<td>fromCustomerIdentifier*</td>
+<td>obj</td>
+<td>Details of source customer - customer that wants to transfer points.</td>
+</tr>
+<tr>
+<td>toCustomerIdentifier*</td>
+<td>obj</td>
+<td>Details of destination customer - customer to whom the points have to be transferred.</td>
+</tr>
+<tr>
+<td>type*</td>
+<td>enum</td>
+<td>Customer identifier type. Values: <code class="prettyprint">ID</code> (user id of the customer), <code class="prettyprint">MOBILE</code>, <code class="prettyprint">EXTERNAL_ID</code>, <code class="prettyprint">EMAIL</code>.</td>
+</tr>
+<tr>
+<td>value*</td>
+<td>string</td>
+<td>The value of the specified identifier.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> All parameters marked by * are mandatory. </aside>
+
+<h2 id="transfer-points">Transfer Points</h2>
+
+<p>Transfers points from one customer account to another customer account by validating the OTP issued for the points transfer.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/customers/pointsTransfer
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w"> 
+   </span><span class="nt">"pointsTobeTransferred"</span><span class="p">:</span><span class="mi">123</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"fromCustomerIdentifier"</span><span class="p">:{</span><span class="w"> 
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"MOBILE"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"7799497290"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"toCustomerIdentifier"</span><span class="p">:{</span><span class="w"> 
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"ID"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"342953257"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"notes"</span><span class="p">:</span><span class="s2">"1234"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"X12Y3Z"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w"> 
+   </span><span class="nt">"data"</span><span class="p">:[</span><span class="w"> 
+      </span><span class="p">{</span><span class="w"> 
+         </span><span class="nt">"pointsTransferDate"</span><span class="p">:</span><span class="s2">"2019-09-23 11:01:54"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"pointsTransferred"</span><span class="p">:</span><span class="mi">21</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"transferId"</span><span class="p">:</span><span class="mi">27</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"transferType"</span><span class="p">:</span><span class="s2">"DEDUCTION"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"transferredFrom"</span><span class="p">:</span><span class="mi">32429961</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"transferredTo"</span><span class="p">:</span><span class="mi">342953257</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"notes"</span><span class="p">:</span><span class="s2">"1234"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"programName"</span><span class="p">:</span><span class="s2">"Nightly_ApiAutoDefaultProgram"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"transfeeredFromName"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"tansfeeredToName"</span><span class="p">:</span><span class="s2">"autofn_9294476894"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w"> 
+
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"errors"</span><span class="p">:[</span><span class="w"> 
+
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/pointsTransfer</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/customers/pointsTransfer</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pointsTobeTransferred*</td>
+<td>int</td>
+<td>Number of points to be transferred.</td>
+</tr>
+<tr>
+<td>fromCustomerIdentifier*</td>
+<td>obj</td>
+<td>Details of source customer - customer that wants to transfer points.</td>
+</tr>
+<tr>
+<td>toCustomerIdentifier*</td>
+<td>obj</td>
+<td>Details of destination customer - customer to whom the points have to be transferred.</td>
+</tr>
+<tr>
+<td>type*</td>
+<td>enum</td>
+<td>Customer identifier type. Values: <code class="prettyprint">ID</code> (user id of the customer), <code class="prettyprint">MOBILE</code>, <code class="prettyprint">EXTERNAL_ID</code>, <code class="prettyprint">EMAIL</code>.</td>
+</tr>
+<tr>
+<td>value*</td>
+<td>string</td>
+<td>The value of the specified identifier.</td>
+</tr>
+<tr>
+<td>notes</td>
+<td>string</td>
+<td>Specify the reason or any notes for this points transfer.</td>
+</tr>
+<tr>
+<td>code*</td>
+<td>string</td>
+<td>Pass the OTP received by the <code class="prettyprint">fromCustomer</code> for the current points transfer. To issue OTP, use either <code class="prettyprint">/isPointsTransferrable</code> or <code class="prettyprint">/issuePointsTransferOtp</code>.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">All parameters marked by * are mandatory. </aside>
+
+<h2 id="get-customer-39-s-points-transfer-summary">Get Customer&rsquo;s Points Transfer Summary</h2>
+
+<p>Retrieves the points transfer history of a customer.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/customers/32429961/pointsTransferSummary
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w"> 
+   </span><span class="nt">"data"</span><span class="p">:[</span><span class="w"> 
+      </span><span class="p">{</span><span class="w"> 
+         </span><span class="nt">"pointsTransferDate"</span><span class="p">:</span><span class="s2">"2019-09-20 11:01:54"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"pointsTransferred"</span><span class="p">:</span><span class="mi">50</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"transferId"</span><span class="p">:</span><span class="mi">27</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"transferType"</span><span class="p">:</span><span class="s2">"DEDUCTION"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"transferredFrom"</span><span class="p">:</span><span class="mi">32429961</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"transferredTo"</span><span class="p">:</span><span class="mi">342953257</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"notes"</span><span class="p">:</span><span class="s2">"Gifted 50 points to James."</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"programName"</span><span class="p">:</span><span class="s2">"ApiAutoDefaultProgram"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"transfeeredFromName"</span><span class="p">:</span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"tansfeeredToName"</span><span class="p">:</span><span class="s2">"James"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w"> 
+         </span><span class="nt">"pointsTransferDate"</span><span class="p">:</span><span class="s2">"2019-09-23 10:51:22"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"pointsTransferred"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"transferId"</span><span class="p">:</span><span class="mi">26</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"transferType"</span><span class="p">:</span><span class="s2">"ADDITION"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"transferredFrom"</span><span class="p">:</span><span class="mi">342953257</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"transferredTo"</span><span class="p">:</span><span class="mi">32429961</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"notes"</span><span class="p">:</span><span class="s2">"To redeem for a transaction."</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"programName"</span><span class="p">:</span><span class="s2">"ApiAutoDefaultProgram"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"transfeeredFromName"</span><span class="p">:</span><span class="s2">"James"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"tansfeeredToName"</span><span class="p">:</span><span class="s2">"Tom"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w"> 
+
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"errors"</span><span class="p">:[</span><span class="w"> 
+
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/{userId}/pointsTransferSummary</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/customers/{userId}/pointsTransferSummary</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>userId*</td>
+<td>int</td>
+<td>Unique id of the customer whose points transfer summary needs to fetch.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">All parameters marked by * are mandatory.</aside>
+
+<h2 id="error-codes">Error Codes</h2>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>412</td>
+<td>Configuration key <code class="prettyprint">CONF_FRAUD_STATUS_CHECK_POINTS_TRANSFER</code>in the <code class="prettyprint">config_keys</code> table is not set properly.</td>
+</tr>
+<tr>
+<td>413</td>
+<td>Problem fetching the configuration key <code class="prettyprint">CONF_FRAUD_STATUS_CHECK_POINTS_TRANSFER</code></td>
+</tr>
+<tr>
+<td>414</td>
+<td>Destination customer status is fraud. Points cannot be transferred to customers with fraud status.</td>
+</tr>
+<tr>
+<td>415</td>
+<td>Source customer status is fraud. Points cannot be transferred by customers with fraud status.</td>
+</tr>
+<tr>
+<td>416</td>
+<td>Points related validation failed from Thrift.</td>
+</tr>
+<tr>
+<td>417</td>
+<td>Customer with fraud status exists.</td>
+</tr>
+<tr>
+<td>418</td>
+<td>From and To customers are same.</td>
+</tr>
+<tr>
+<td>419</td>
+<td>Merged customer found with id: {x}, where x is the user id of the customer.</td>
+</tr>
+</tbody></table>
 
           <h1 id="customer-labels">Customer Labels</h1>
 
@@ -11260,7 +12250,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight html"><code>https://sg.storecare.capillarytech.com/pages/v2/ffcDetails?orgId=781<span class="err">&amp;</span>date=2019/02/12<span class="err">&amp;</span>timezone=UTC+0530<span class="err">&amp;</span>storeId=15001861 
+<pre class="highlight html"><code>https://sg.storecare.capillarytech.com/pages/v2/ffcDetails?orgId=781<span class="err">&amp;</span>date=2019/02/12<span class="err">&amp;</span>timezone=UTC+0530<span class="err">&amp;</span>storeId=15001861<span class="err">&amp;</span>begin=0<span class="err">&amp;</span>size=5
 
 </code></pre>
 <blockquote>
@@ -11491,6 +12481,16 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>syncDate</td>
 <td>timestamp</td>
 <td>The data  synced on a specific date. Specify the date in <code class="prettyprint">YYYY-MM-DD</code> format. For example, if you pass <code class="prettyprint">timezone</code> is UTC+5:30 and syncDate is 2019-02-24, you will the entire data synced on 24th Feb 2019 of India timezone</td>
+</tr>
+<tr>
+<td>size</td>
+<td>int</td>
+<td>Number of results to be retrieved per page</td>
+</tr>
+<tr>
+<td>begin</td>
+<td>int</td>
+<td>Record number to start from. Supported values: 0- any number. For example, if you specify 10, you will get records starting from 10 until the end.</td>
 </tr>
 </tbody></table>
 
@@ -12300,7 +13300,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight html"><code>https://sg.storecare.capillarytech.com/pages/v2/ffcGroupCount??orgId=7221<span class="err">&amp;</span>date=2019/02/12<span class="err">&amp;</span>timezone=UTC+0530<span class="err">&amp;</span>storeId=15001861 
+<pre class="highlight html"><code>https://sg.storecare.capillarytech.com/pages/v2/ffcGroupCount??orgId=7221<span class="err">&amp;</span>date=2019/02/12<span class="err">&amp;</span>timezone=UTC+0530<span class="err">&amp;</span>storeId=15001861<span class="err">&amp;</span>begin=0<span class="err">&amp;</span>size=5
 
 </code></pre>
 <blockquote>
@@ -12466,6 +13466,16 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>syncDate</td>
 <td>timestamp</td>
 <td>The data  synced on a specific date. Specify the date in <code class="prettyprint">YYYY-MM-DD</code> format. For example, if you pass <code class="prettyprint">timezone</code> is UTC+5:30 and syncDate is 2019-02-24, you will the entire data synced on 24th Feb 2019 of India timezone.</td>
+</tr>
+<tr>
+<td>size</td>
+<td>int</td>
+<td>Number of results to be retrieved per page</td>
+</tr>
+<tr>
+<td>begin</td>
+<td>int</td>
+<td>Record number to start from. Supported values: 0- any number. For example, if you specify 10, you will get records starting from 10 until the end.</td>
 </tr>
 </tbody></table>
 
