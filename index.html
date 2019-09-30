@@ -1865,7 +1865,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 
 <h2 id="check-if-points-transferrable">Check if Points Transferrable</h2>
 
-<p>Checks if specific points of a customer can be transferred to an other customer.</p>
+<p>Checks if specific points of a customer can be transferred to an other customer. You can also issue OTP that is used to authenticate customer to transfer points (<code class="prettyprint">pointsTransfer</code> API).</p>
 
 <blockquote>
 <p>Sample Request</p>
@@ -1877,19 +1877,17 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 <p>Sample POST Request</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-</span><span class="nt">"pointsTobeTransferred"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
-</span><span class="nt">"fromCustomerIdentifier"</span><span class="p">:{</span><span class="w">
-</span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"MOBILE"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"7799497290"</span><span class="w">
-</span><span class="p">},</span><span class="w">
-</span><span class="nt">"toCustomerIdentifier"</span><span class="p">:{</span><span class="w">
-</span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"ID"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"342953257"</span><span class="w">
-</span><span class="p">},</span><span class="w">
-
-</span><span class="nt">"issueOtp"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+  </span><span class="nt">"pointsTobeTransferred"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"fromCustomerIdentifier"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MOBILE"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7799497290"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"toCustomerIdentifier"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ID"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"342953257"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"issueOtp"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
 </span></code></pre>
 <blockquote>
 <p>Sample Response</p>
@@ -2173,7 +2171,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 <tr>
 <td>issueOtp</td>
 <td>Boolean</td>
-<td>Sends OTP to the fromCustomer if the specified points are transferrable to the d. Specify <code class="prettyprint">true</code> to issue OTP to the from customer. The default value is <code class="prettyprint">false</code>.</td>
+<td>Sends OTP to the fromCustomer if the specified points are transferrable. Use this to issue OTP (used to authenticate <code class="prettyprint">fromCustomer</code> to transfer points) if <code class="prettyprint">isPointsTransferrable</code> is successful. The default value is <code class="prettyprint">false</code>.</td>
 </tr>
 </tbody></table>
 
@@ -2484,11 +2482,13 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 </tr>
 </tbody></table>
 
-<aside class="notice"> All parameters marked by * are mandatory. </aside>
+<aside class="notice"> All parameters marked by * are mandatory.</aside>
 
 <h2 id="transfer-points">Transfer Points</h2>
 
 <p>Transfers points from one customer account to another customer account by validating the OTP issued for the points transfer.</p>
+
+<aside class="notice">Only &lsquo;fromCustomer&rsquo; and points are validated currently. `toCustomer` validation will be fixed in the next release.</aside>
 
 <blockquote>
 <p>Sample Request</p>
@@ -2629,7 +2629,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 
 <aside class="notice">All parameters marked by * are mandatory. </aside>
 
-<h2 id="get-customer-39-s-points-transfer-summary">Get Customer&rsquo;s Points Transfer Summary</h2>
+<h2 id="get-points-transfer-summary-of-customer">Get Points Transfer Summary of Customer</h2>
 
 <p>Retrieves the points transfer history of a customer.</p>
 
