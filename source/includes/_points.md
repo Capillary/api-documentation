@@ -291,13 +291,13 @@ https://eu.api.capillarytech.com/v2/points/transfer
    "pointsTobeTransferred":123,
    "fromCustomerIdentifier":{ 
       "type":"MOBILE",
-      "value":"7799497290"
+      "value":"7799000000"
    },
    "toCustomerIdentifier":{ 
       "type":"ID",
       "value":"342953257"
    },
-   "notes":"1234",
+   "notes":"Transfer points to James",
    "code":"X12Y3Z"
 }
 ```
@@ -308,25 +308,26 @@ https://eu.api.capillarytech.com/v2/points/transfer
 { 
    "data":[ 
       { 
-         "pointsTransferDate":"2019-09-23 11:01:54",
-         "pointsTransferred":21,
-         "transferId":27,
+         "pointsTransferDate":"2019-10-16 15:53:42",
+         "pointsTransferred":15.0,
+         "transferId":100,
          "transferType":"DEDUCTION",
-         "transferredFrom":32429961,
-         "transferredTo":342953257,
-         "notes":"1234",
-         "programName":"Nightly_ApiAutoDefaultProgram",
-         "transfeeredFromName":"",
-         "tansfeeredToName":"autofn_9294476894"
+         "transferredFrom":{ 
+            "userId":343015431,
+            "firstName":"Tom",
+            "lastName":"Sawyer"
+         },
+         "transferredTo":{ 
+            "userId":342953257,
+            "firstName":"James",
+            "lastName":"Thomas"
+         },
+         "notes":"Transfer points to James",
+         "programName":"Nightly_ApiAutoDefaultProgram"
       }
-   ],
-   "warnings":[ 
-
-   ],
-   "errors":[ 
-
-   ]
+	  ]
 }
+	  
 ```
 
 
