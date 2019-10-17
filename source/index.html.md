@@ -16,6 +16,7 @@ includes:
   - customerLabels
   - otp
   - coupon
+  - points
   - survey
   - userAuth
   - customerWalkin
