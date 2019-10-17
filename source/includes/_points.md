@@ -252,7 +252,7 @@ Batch Support | No
 
 ### Request URL
 
-`https://{host}/v2/customers/isTransferrable`
+`https://{host}/v2/points/isTransferrable`
 
 
 ### Request Body Parameters
@@ -361,9 +361,6 @@ notes | string | Specify the reason or any notes for this points transfer.
 code* | string | Pass the OTP received by the `fromCustomer` for the current points transfer. To issue OTP, use either `/isPointsTransferrable` or `/issuePointsTransferOtp`.
 
 <aside class="notice">All parameters marked by * are mandatory. </aside>
-
-
-
 
 
 
