@@ -215,7 +215,81 @@
 </tr>
 </tbody></table>
 
+<h2 id="response-codes">Response Codes</h2>
+
+<p>The following are global success and error codes. The response codes of each resource are provided in the respective sections.</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>Global request success.</td>
+</tr>
+<tr>
+<td>201</td>
+<td>One or more requests have failed due to errors.</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Invalid input. Please check request body parameters or input xml/json. <br> Invalid path parameter. <br>Invalid X-CAP-API-ATTRIBUTION-LOOKUP-TYPE specified.<br> Error with range passed or array in indexing.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Authentication failed. Please check username and password.</td>
+</tr>
+<tr>
+<td>403</td>
+<td>V2 is not enabled for the org. <br> Mandatory field is missing. Field {x} is mandatory.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Incorrect resource or resource not found.</td>
+</tr>
+<tr>
+<td>405</td>
+<td>The operation is not supported for the resource.</td>
+</tr>
+<tr>
+<td>415</td>
+<td>Unsupported media type.</td>
+</tr>
+<tr>
+<td>461</td>
+<td>Search Engine is busy or unable to respond. Please try after some time.</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Requests have failed due to errors.</td>
+</tr>
+<tr>
+<td>521</td>
+<td>Multiple actions are running for the same customer. Please try after some time.</td>
+</tr>
+<tr>
+<td>1060</td>
+<td>Batch limit size exceeded.</td>
+</tr>
+<tr>
+<td>1061</td>
+<td>X-CAP-API-ATTRIBUTION-LOOKUP-TYPE header required with X-CAP-API-ATTRIBUTION-LOOKUP header.</td>
+</tr>
+<tr>
+<td>1062</td>
+<td>Invalid test and control status.</td>
+</tr>
+<tr>
+<td>1064</td>
+<td>Invalid org ID passed.</td>
+</tr>
+</tbody></table>
+
           <h1 id="customer">Customer</h1>
+
+<p>A customer is an individual that either buys goods, services, or subscribes to the org’s newsletters. An org could be any business firm that is registered with Capillary. It could be a retail store, hospital, pharmacy, restaurant, or any other firm.</p>
 
 <h2 id="register-customer">Register Customer</h2>
 
@@ -298,20 +372,22 @@ https://us.api.capillarytech.com/v2/customers?source=LINE<span class="err">&amp;
 </span></code></pre>
 <p>Registers customers in the org&rsquo;s loyalty program on different source accounts such as FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, LINE, and WEBSITE. You can also add customer-level extended fields and custom fields.</p>
 
-<p><strong>Extended Fields</strong>:
-Extended Fields are proposed fields to standardize input values and keys across organizations. These fields make easier for the Development and Analytics teams to get rid of the complex data that comes into the database through existing custom fields. Back-end team controls the field names, data types, enum values, and scopes for extended fields. Currently, Extended Fields are at customer level, transaction level, and transaction line-item level.</p>
+<aside class="notice">
 
-<p>Examples of customer level extended fields are age_group, preferred_store, gender, and nationality.</p>
+**Extended Fields**:
+Extended Fields are proposed fields used to standardize input values and keys across organizations (unlike custom fields that have no control in input values). Platforms back-end team controls the field names, data-types, enum values, and scopes of extended fields. Extended Fields are created at customer level, transaction level, and transaction line-item level.
 
-<p>Extended fields are either associated to verticals or to a generic category (available for all orgs). To know the list of extended fields enabled for an org, use GET v2/extendedFields API.</p>
+Examples of customer level extended fields are age_group, preferred_store, gender, and nationality.
 
-<p>Following are the features and limitations of the customer registration API:</p>
+Extended fields are either associated to verticals or to a generic category (available for all orgs). To know the list of extended fields enabled for an org, use GET v2/extendedFields API.
+</aside>
+
+<p>The Customer Register API functions as follows.</p>
 
 <ul>
-<li><p>If an identifier of a customer that you try to register is identified in a different source, the source details will be added to the existing account as a new source. Details of each source account will be maintained separately.</p></li>
-<li><p>Identifiers should be unique within a source account. That is, in a source account no two customers can have a same identifier. </p></li>
-<li><p>A customer can have Multiple identifiers - mobile numbers, email ids and external ids - for each source account.</p></li>
-<li><p>Customer details cannot be updated with this API. To update customer details, use customer update API; and to update identifiers, use Update Identifier API</p></li>
+<li><p>If you try registering an identifier that exists in a different source, a new source account is added to the existing account. Details of each source account will be maintained separately.</p></li>
+<li><p>In a source account, identifiers should be unique - no two customers can have a same identifier. </p></li>
+<li><p>You cannot update existing customer details with this API. To update customer details, use customer update API; and to update identifiers, use the Update Identifier API.</p></li>
 </ul>
 
 <h3 id="prerequisites">Prerequisites</h3>
@@ -327,8 +403,8 @@ Extended Fields are proposed fields to standardize input values and keys across 
 
 <table><thead>
 <tr>
-<th>Information</th>
-<th>Value</th>
+<th></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
@@ -381,49 +457,59 @@ Extended Fields are proposed fields to standardize input values and keys across 
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Value</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>loyaltyinfo</td>
 <td>loyaltyType</td>
-<td>Loyalty status of the customer (“loyalty”, “non_loyalty”)</td>
+<td>enum</td>
+<td>Loyalty status of the customer. Value: <code class="prettyprint">loyalty</code>, <code class="prettyprint">non_loyalty</code>.</td>
 </tr>
 <tr>
 <td>profiles</td>
 <td>commChannels</td>
-<td>Different channels through which you want to communicate with the customer (“&quot;mobile&quot;, &ldquo;email&rdquo;, &ldquo;wechat&rdquo;, &ldquo;ios&rdquo;, &ldquo;android&rdquo;, &ldquo;line&rdquo;)</td>
+<td>Available communication channels of the customer. Value: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">wechat</code>, <code class="prettyprint">ios</code>, <code class="prettyprint">android</code>, <code class="prettyprint">line</code>.</td>
 </tr>
 <tr>
 <td>profiles</td>
+<td>obj</td>
+<td>Profile information of the customer.</td>
+</tr>
+<tr>
 <td>Firstname</td>
-<td>First name of the customer</td>
+<td>string</td>
+<td>First name of the customer.</td>
 </tr>
 <tr>
-<td>profiles</td>
 <td>Lastname</td>
-<td>Last name of the customer</td>
+<td>string</td>
+<td>Last name of the customer.</td>
 </tr>
 <tr>
-<td>profiles</td>
 <td>identifiers</td>
-<td>Identifier used for registering customer in a specific source (&ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;externalId&rdquo;, &ldquo;wechat&rdquo;,&ldquo;martjackId&rdquo;, &ldquo;fbId&rdquo; &ldquo;mobile&rdquo;, &ldquo;tmall_uname&rdquo;, &ldquo;cuid&rdquo;, &ldquo;ali_uname&rdquo;, &ldquo;jd_uname&rdquo;, &ldquo;vip_uname&rdquo;, &ldquo;line&rdquo;)</td>
+<td>obj</td>
+<td>Identifiers of the customer in type and value. Supported types: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>, <code class="prettyprint">fbId</code> <code class="prettyprint">mobile</code>, <code class="prettyprint">tmall_uname</code>, <code class="prettyprint">cuid</code>, <code class="prettyprint">ali_uname</code>, <code class="prettyprint">jd_uname</code>, <code class="prettyprint">vip_uname</code>, and <code class="prettyprint">line</code>.</td>
 </tr>
 <tr>
 <td>profiles</td>
 <td>fields</td>
-<td>Custom fields configured for the current organization</td>
+<td>Custom field details (only that configured for the organization)</td>
 </tr>
 <tr>
 <td>attributionV2</td>
 <td>createDate</td>
-<td>Time and date of registration in YYYY-MM-DDTHH:MM:SS+HH:MM (Time Zone). Example: 2016-06-23T19:11:18+08:00</td>
+<td>Time and date of registration in <code class="prettyprint">YYYY-MM-DDTHH:MM:SS+HH:MM</code> format. Example: 2016-06-23T19:11:18+08:00</td>
 </tr>
 <tr>
 <td>associatedWith</td>
 <td></td>
-<td>The TILL to which you want to associate the customer</td>
+<td>The TILL code to which you want to associate the customer</td>
+</tr>
+<tr>
+<td>extendedFields</td>
+<td>obj</td>
+<td>Extended field details of the customer in key:value pairs. You can only pass extended fields that are enabled for your org with the respective datatypes for values.</td>
 </tr>
 </tbody></table>
 
@@ -530,8 +616,8 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 
 <table><thead>
 <tr>
-<th>Information</th>
-<th>Value</th>
+<th></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
@@ -566,7 +652,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 </thead><tbody>
 <tr>
 <td>customer_id*</td>
-<td>Unique id of the customer whose details need to be updated</td>
+<td>Unique ID of the customer whose details need to be updated</td>
 </tr>
 <tr>
 <td>source*</td>
@@ -585,85 +671,74 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Value</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>loyaltyinfo</td>
 <td>loyaltyType</td>
-<td>Loyalty status of the customer (“loyalty”, “non_loyalty”)</td>
+<td>enum</td>
+<td>Loyalty status of the customer. Value: <code class="prettyprint">loyalty</code>, <code class="prettyprint">non_loyalty</code>.</td>
 </tr>
 <tr>
-<td>profiles</td>
 <td>commChannels</td>
-<td>Different channels through which you want to communicate with the customer (&ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;wechat&rdquo;, &ldquo;ios&rdquo;, &ldquo;android&rdquo;, &ldquo;line&rdquo;)</td>
+<td>obj</td>
+<td>Communication channels of the customer.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>enum</td>
+<td>Type of the communication channel. Value: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">wechat</code>, <code class="prettyprint">ios</code>, <code class="prettyprint">android</code>, <code class="prettyprint">line</code>.</td>
+</tr>
+<tr>
+<td>value</td>
+<td>string</td>
+<td>Based on the channel <code class="prettyprint">type</code> enter the channel value. For example, if <code class="prettyprint">type</code> is &ldquo;mobile&rdquo;, value will be mobile number.</td>
+</tr>
+<tr>
+<td>primary</td>
+<td>boolean</td>
+<td>Whether the current identifier is the primary identifier of the customer (primary identifier as per the org&rsquo;s configuration).</td>
+</tr>
+<tr>
+<td>verified</td>
+<td>boolean</td>
+<td>Whether the current identifier is verified or not. For example, through OTP.</td>
 </tr>
 <tr>
 <td>profiles</td>
+<td>obj</td>
+<td>Profile information of the customer.</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>obj</td>
+<td>Additional information of the identifier.</td>
+</tr>
+<tr>
 <td>Firstname</td>
-<td>First name of the customer</td>
+<td>string</td>
+<td>First name of the customer.</td>
 </tr>
 <tr>
-<td>profiles</td>
 <td>Lastname</td>
-<td>Last name of the customer</td>
+<td>string</td>
+<td>Last name of the customer.</td>
 </tr>
 <tr>
-<td>profiles</td>
 <td>identifiers</td>
-<td>Identifier used for registering customer in a specific source (&ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;externalId&rdquo;, &ldquo;wechat&rdquo;,&ldquo;martjackId&rdquo;, &ldquo;fbId&rdquo; &ldquo;mobile&rdquo;, &ldquo;tmall_uname&rdquo;, &ldquo;cuid&rdquo;, &ldquo;ali_uname&rdquo;, &ldquo;jd_uname&rdquo;, &ldquo;vip_uname&rdquo;, &ldquo;line&rdquo;)</td>
+<td>obj</td>
+<td>Identifiers of the customer in type and value. Supported types: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>, <code class="prettyprint">fbId</code> <code class="prettyprint">mobile</code>, <code class="prettyprint">tmall_uname</code>, <code class="prettyprint">cuid</code>, <code class="prettyprint">ali_uname</code>, <code class="prettyprint">jd_uname</code>, <code class="prettyprint">vip_uname</code>, and <code class="prettyprint">line</code>.</td>
 </tr>
 <tr>
 <td>profiles</td>
 <td>fields</td>
-<td>Custom fields configured for the current organization</td>
-</tr>
-</tbody></table>
-
-<h3 id="error-codes">Error Codes</h3>
-
-<table><thead>
-<tr>
-<th>CODE</th>
-<th>DESCRIPTION</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>8008</td>
-<td>Update failed. Different profiles are identified in the same source</td>
+<td>Custom field details (only that configured for the organization)</td>
 </tr>
 <tr>
-<td>8009</td>
-<td>Update failed. No customer found with the given identifier</td>
-</tr>
-<tr>
-<td>8010</td>
-<td>Communication channel is invalid</td>
-</tr>
-<tr>
-<td>8018</td>
-<td>A loyalty customer cannot be converted to a non-loyalty customer</td>
-</tr>
-<tr>
-<td>8067</td>
-<td></td>
-</tr>
-<tr>
-<td>8059</td>
-<td>Unable to push customer to solr</td>
-</tr>
-<tr>
-<td>8058</td>
-<td>Invalid mobile number passed in the comm channel</td>
-</tr>
-<tr>
-<td>8057</td>
-<td>Invalid email id passed in the comm channel</td>
-</tr>
-<tr>
-<td>8045</td>
-<td>No account id is passed</td>
+<td>extendedFields</td>
+<td>obj</td>
+<td>Extended field details of the customer in key:value pairs. You can only pass extended fields that are enabled for your org with the respective datatypes for values.</td>
 </tr>
 </tbody></table>
 
@@ -715,8 +790,8 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 
 <table><thead>
 <tr>
-<th>Information</th>
-<th>Value</th>
+<th></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
@@ -748,19 +823,23 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>customer_id*</td>
-<td>Unique id of the customer whose identifiers need to be updated</td>
+<td>int</td>
+<td>Unique ID of the customer whose identifiers need to be updated</td>
 </tr>
 <tr>
 <td>source*</td>
-<td>Specify the source in which you want to update customer identifier(s) - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE. For sources that support multiple accounts, you also need to provide the associated account id.</td>
+<td>enum</td>
+<td>Source in which you want to update customer identifier(s) - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE. For sources that support multiple accounts, you also need to provide the associated account id.</td>
 </tr>
 <tr>
 <td>account_Id</td>
+<td>string</td>
 <td>Account in which you want to update the customer identifier (Required only for sources with multiple accounts)</td>
 </tr>
 </tbody></table>
@@ -772,24 +851,29 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <table><thead>
 <tr>
 <th>Attributes</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>add**</td>
-<td>New identifier that you want to add to the existing account. Pass the identifiers as a key value pair.<code>{“type&quot;: &quot;wechat&quot;, &quot;value&quot;: &quot;TS11&quot;}</code></td>
+<td>obj</td>
+<td>New identifier that you want to add to the existing account. Pass the identifiers as a key value pair.<br><code>{“type&quot;: &quot;wechat&quot;, &quot;value&quot;: &quot;TS11&quot;}</code></td>
 </tr>
 <tr>
 <td>remove**</td>
+<td>obj</td>
 <td>Existing Identifier that you want to remove from the specified account. <code>{&quot;type&quot;: &quot;email&quot;, &quot;value&quot;: &quot;tom.sawyer@example.com&quot;}</code></td>
 </tr>
 <tr>
 <td>type*</td>
+<td>enum</td>
 <td>Type of the identifier that you want to add or remove. For example, email, mobile, and wechat.</td>
 </tr>
 <tr>
 <td>value*</td>
-<td>Value of the specified <code class="prettyprint">type</code>. For example, if <code class="prettyprint">type</code> is email, then pass the email id that you want to add or remove in <code class="prettyprint">value</code></td>
+<td>string</td>
+<td>Value of the specified <code class="prettyprint">type</code>. For example, if <code class="prettyprint">type</code> is email, then pass the email id that you want to add or remove in <code class="prettyprint">value</code>.</td>
 </tr>
 </tbody></table>
 
@@ -805,67 +889,67 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 </thead><tbody>
 <tr>
 <td>8007</td>
-<td>Unable to update. The identifier is already registered in the same source</td>
+<td>Unable to update. The identifier is already registered in the same source.</td>
 </tr>
 <tr>
 <td>8008</td>
-<td>The new identifier already exists in the same source</td>
+<td>The new identifier already exists in the same source.</td>
 </tr>
 <tr>
 <td>8009</td>
-<td>Unable to identify the customer. Customer id is invalid</td>
+<td>Unable to identify the customer. Customer id is invalid.</td>
 </tr>
 <tr>
 <td>8051</td>
-<td>Same identifier found in other source. Merging into the account with user id X</td>
+<td>Same identifier found in other source. Merging into the account with user id X.</td>
 </tr>
 <tr>
 <td>8053</td>
-<td>Each identifier is registered with a different customer in other source. Unable to merge accounts</td>
+<td>Each identifier is registered with a different customer in other source. Unable to merge accounts.</td>
 </tr>
 <tr>
 <td>8053</td>
-<td>Same identifier is registered on other source. The account is already merged with user id X</td>
+<td>Same identifier is registered on other source. The account is already merged with user id X.</td>
 </tr>
 <tr>
 <td>8064</td>
-<td>External id validation failed</td>
+<td>External id validation failed.</td>
 </tr>
 <tr>
 <td>8066</td>
-<td></td>
+<td>Unable to combine,User id already used in same source.</td>
 </tr>
 <tr>
 <td>8067</td>
-<td></td>
+<td>Same customer found in other source. The account is already merged with user id X.</td>
 </tr>
 <tr>
 <td>8059</td>
-<td>Unable to push customer to solr</td>
+<td>Unable to push customer to solr.</td>
 </tr>
 <tr>
 <td>8058</td>
-<td>Invalid mobile number passed in the comm channel</td>
+<td>Invalid mobile number passed in the communication channel.</td>
 </tr>
 <tr>
 <td>8057</td>
-<td>Invalid email id passed in the comm channel</td>
+<td>Invalid email id passed in the communication channel.</td>
 </tr>
 <tr>
 <td>8056</td>
-<td>Invalid mobile number</td>
+<td>Invalid mobile number.</td>
 </tr>
 <tr>
 <td>8055</td>
-<td>Invalid email id</td>
+<td>Invalid email id.</td>
 </tr>
 <tr>
 <td>8045</td>
-<td>Account id is not passed</td>
+<td>Account id is not passed.</td>
 </tr>
 <tr>
 <td>8010</td>
-<td>Comm channel is invalid</td>
+<td>communication channel is invalid.</td>
 </tr>
 </tbody></table>
 
@@ -972,8 +1056,8 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 
 <table><thead>
 <tr>
-<th>Information</th>
-<th>Value</th>
+<th></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
@@ -998,8 +1082,6 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 
 <p><code class="prettyprint">https://{host}/v2/customers/search?q={search keyword}</code></p>
 
-<p>To fetch customer from a specific account of a source (with multiple accounts), you need to provide the respective account id.</p>
-
 <h3 id="request-parameter">Request Parameter</h3>
 
 <table><thead>
@@ -1010,7 +1092,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 </thead><tbody>
 <tr>
 <td>q</td>
-<td>Parameter based on which you want to fetch customers. It will fetch the customers whose first name/last name/identifiers start with the keyword specified in <code class="prettyprint">q={}</code></td>
+<td>Enter the keyword based on which you want to fetch customers. It will fetch customers whose first name, last name, or registered identifiers start with keyword that you pass.</td>
 </tr>
 </tbody></table>
 
@@ -1025,21 +1107,21 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <blockquote>
 <p>Sample Response</p>
 </blockquote>
-<pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">The</span><span class="w"> </span><span class="err">entity</span><span class="w"> </span><span class="err">field</span><span class="w"> </span><span class="err">shows</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">unique</span><span class="w"> </span><span class="err">customer</span><span class="w"> </span><span class="err">id</span><span class="w">
+<pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Entity</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">unique</span><span class="w"> </span><span class="err">id</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">customer</span><span class="w">
 
 </span><span class="p">{</span><span class="w">
 </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="mi">306</span><span class="p">,</span><span class="w">
 </span><span class="nt">"warnings"</span><span class="p">:[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Allows fetching unique customer ids of registered customers. The unique id is required to fetch customer details, update customer details, manage subscription details and so on.</p>
+<p>Lets you fetch unique customer id of a customer which is required to fetch customer details, update customer details, manage subscription details and other activities.</p>
 
 <h3 id="resource-information">Resource Information</h3>
 
 <table><thead>
 <tr>
-<th>Information</th>
-<th>Value</th>
+<th></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
@@ -1069,24 +1151,29 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Datatype</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>source*</td>
+<td>enum</td>
 <td>Specify the source from which you want to fetch the customer details. Values: FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, ALL</td>
 </tr>
 <tr>
 <td>accountId</td>
-<td>Specify the account id of the specific source if the source has multiple accounts. <code class="prettyprint">accountId</code> is required for sources with multiple accounts such as WeChat or Facebook</td>
+<td>string</td>
+<td>Specify the account id of the specific source if the source has multiple accounts. <code class="prettyprint">accountId</code> is required for sources with multiple accounts such as WeChat or Facebook.</td>
 </tr>
 <tr>
 <td>identifierName*</td>
+<td>enum</td>
 <td>Identifier based on which you want to fetch the customer id. <strong>Values</strong>: &ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;externalId&rdquo;, &ldquo;wechat&rdquo;,&ldquo;martjackId&rdquo;, or &ldquo;fbId&rdquo;</td>
 </tr>
 <tr>
 <td>identifierValue*</td>
-<td>Pass the respective identifier value</td>
+<td>string</td>
+<td>Pass the respective identifier value.</td>
 </tr>
 </tbody></table>
 
@@ -1102,23 +1189,23 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 </thead><tbody>
 <tr>
 <td>8015</td>
-<td>No customer found with the given identifier</td>
+<td>No customer found with the given identifier.</td>
 </tr>
 <tr>
 <td>8065</td>
-<td>No customer found in the given source with the given identifier</td>
+<td>No customer found in the given source with the given identifier.</td>
 </tr>
 <tr>
 <td>8045</td>
-<td>Account id is not passed</td>
+<td>Account id is not passed.</td>
 </tr>
 <tr>
 <td>8013</td>
-<td>Customer identifier is invalid. Also check if the parameter identifierName is passed correctly</td>
+<td>Customer identifier is invalid. Also check if the parameter identifierName is passed correctly.</td>
 </tr>
 <tr>
 <td>8011</td>
-<td>Source is invalid</td>
+<td>Invalid source account passed.</td>
 </tr>
 </tbody></table>
 
@@ -1284,7 +1371,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 </span><span class="err">...</span><span class="w">
 </span></code></pre>
 <blockquote>
-<p>When embed=mlp, you will see each loyalty program details of the customer   </p>
+<p>When embed=mlp, you will see each loyalty program details of the customer.</p>
 </blockquote>
 <pre class="highlight json"><code><span class="err">...</span><span class="w">
 </span><span class="s2">"loyaltyProgramDetails"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -1339,8 +1426,8 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 
 <table><thead>
 <tr>
-<th>Information</th>
-<th>Value</th>
+<th></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
@@ -1381,35 +1468,41 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 </tr>
 </tbody></table>
 
-<aside class="notice">To enable a specific language support for an org, contact the Platforms team to get the translations added to the database and activate translations for the org. </aside>
+<aside class="notice">If you need a specific language support for an org, contact the Platforms team and get the translations added to the database and activate it. </aside>
 
-<h3 id="request-parameters">Request Parameters</h3>
+<h3 id="request-query-parameters">Request Query Parameters</h3>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Datatype</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>id*</td>
-<td>Unique identifier of the customer that you want to fetch</td>
+<td>int</td>
+<td>Unique identifier of the customer that you want to fetch.</td>
 </tr>
 <tr>
 <td>source*</td>
-<td>Fetch the details of the customer on a specific source (INSTORE, MARTJACK, WECHAT, ALL). To fetch details of a customer from all sources, pass <code>/source=”ALL”</code>. For sources with multiple accounts, you also need to pass the specific accountId</td>
+<td>enum</td>
+<td>Pass the source from which you want to fetch details. Value: INSTORE, MARTJACK, WECHAT, ALL ( to fetch details from all sources. For sources with multiple accounts, you also need to pass the specific accountId.</td>
 </tr>
 <tr>
 <td>account_Id</td>
-<td>For sources with multiple accounts, you also need to pass the specific accountId</td>
+<td>string</td>
+<td>For sources with multiple accounts, pass the specific accountId.</td>
 </tr>
 <tr>
 <td>embed</td>
-<td>To get points, subscription, multiple loyalty program details of the customer (points, subscriptions, mlp). Usage: <code>https://{ClusterURL}/v2/customers/{CustomerId}/source=WECHAT&amp;accountId={WeChat account id}&amp;embed=”points”</code></td>
+<td>enum</td>
+<td>To get details of loyalty points, subscription, multiple loyalty program details of the customer. Value: <code class="prettyprint">points</code>, <code class="prettyprint">subscriptions</code>, <code class="prettyprint">mlp</code>. Usage: <code>https://{ClusterURL}/v2/customers/{CustomerId}/source=WECHAT&amp;accountId={WeChat account id}&amp;embed=”points”</code></td>
 </tr>
 <tr>
 <td>embed=usergroup</td>
-<td>Retrieves user group details if the customer is in a user group</td>
+<td>Retrieves user group details if the customer is in a user group.</td>
+<td></td>
 </tr>
 </tbody></table>
 
@@ -1425,31 +1518,31 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 </thead><tbody>
 <tr>
 <td>8069</td>
-<td>The customer is merged into another account</td>
+<td>The customer is merged into another account.</td>
 </tr>
 <tr>
 <td>8065</td>
-<td>No customer found in the given source with the given identifier</td>
+<td>No customer found in the given source with the given identifier.</td>
 </tr>
 <tr>
 <td>8015</td>
-<td>No customer found with the given identifier</td>
+<td>No customer found with the given identifier.</td>
 </tr>
 <tr>
 <td>8063</td>
-<td>Unable to fetch segmentation details</td>
+<td>Unable to fetch segmentation details.</td>
 </tr>
 <tr>
 <td>8062</td>
-<td>Unable to fetch loyalty points</td>
+<td>Unable to fetch loyalty points.</td>
 </tr>
 <tr>
 <td>8045</td>
-<td>Account id is not passed</td>
+<td>Account id is not passed.</td>
 </tr>
 <tr>
 <td>8012</td>
-<td>Source is invalid</td>
+<td>Invalid source passed.</td>
 </tr>
 </tbody></table>
 
@@ -1458,7 +1551,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight html"><code>http://eu.api.capillarytech.com/v2/customers/loyaltyDetails
+<pre class="highlight html"><code>http://eu.api.capillarytech.com/v2/customers/29372667/loyaltyDetails
 </code></pre>
 <blockquote>
 <p>Sample Response</p>
@@ -1504,14 +1597,14 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
     </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Retrieves the loyalty information of a customer across the org. If the customer is enrolled in multiple loyalty programs of an org, you will get the details of each loyalty program in a separate entity. You can also fetch a the customer&rsquo;s loyalty details of a specific program.</p>
+<p>Retrieves the loyalty information of a customer across all loyalty programs of the org . You can also fetch details of a specific loyalty program.</p>
 
 <h3 id="resource-information">Resource Information</h3>
 
 <table><thead>
 <tr>
-<th>Information</th>
-<th>Value</th>
+<th></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
@@ -1546,11 +1639,11 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 </thead><tbody>
 <tr>
 <td>customerId*</td>
-<td>It is the unique id that is generated internally for a customer. Pass the unique id of a customer whose loyalty details you want to fetch</td>
+<td>It is the unique ID that is generated internally for a customer. Pass the unique id of a customer whose loyalty details you want to fetch</td>
 </tr>
 <tr>
 <td>programId</td>
-<td>Lets you fetch the details of a specific loyalty program if the org has multiple loyalty programs. Pass the id of the program that you want to fetch.</td>
+<td>Pass the loyalty program ID to get details of that particular program (Applicable only if the org has multiple loyalty programs). Pass the id of the program that you want to fetch.</td>
 </tr>
 </tbody></table>
 
@@ -1607,9 +1700,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 <blockquote>
 <p>Sample Response</p>
 </blockquote>
-<pre class="highlight json"><code><span class="w">
-
-</span><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"scope"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"scopeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
     </span><span class="nt">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USER"</span><span class="p">,</span><span class="w">
@@ -1646,21 +1737,21 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
   </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Subscription represents communication channels a customer has subscribed to. The communication channels can be &ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;wechat&rdquo;, &ldquo;ios&rdquo;, &ldquo;android&rdquo;, and &ldquo;line&rdquo;.</p>
+<p>Subscription represents communication channels to which a customer has subscribed. That could be &ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;wechat&rdquo;, &ldquo;ios&rdquo;, &ldquo;android&rdquo;, and &ldquo;line&rdquo;.</p>
 
-<p>This API allows updating (opt-in or opt-out) subscription status for trans or bulk messaging services.</p>
+<p>This API allows updating (opt-in or opt-out) subscription status of transactional and bulk messaging services for a customer.</p>
 
 <ul>
-<li><strong>Transaction Messages</strong>: These are personalized messages sent to the respective customer instantly when a new transaction is made, redeemed points/coupon, send birthday/anniversary wishes and so on</li>
-<li><strong>Bulk Messages</strong>: These are promotion messages sent to a list of customers</li>
+<li><strong>Transaction Messages</strong>: These are personalized messages sent to a customer instantly. For example, a new transaction details, points or coupon redeemed, send birthday or anniversary wishes and so on.</li>
+<li><strong>Bulk Messages</strong>: These are promotion messages sent to a list of customers. For example, through campaigns.</li>
 </ul>
 
 <h3 id="resource-information">Resource Information</h3>
 
 <table><thead>
 <tr>
-<th>Entry</th>
-<th>Description</th>
+<th></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
@@ -1695,7 +1786,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 </thead><tbody>
 <tr>
 <td>id*</td>
-<td>Unique id of the customer whose subscription details you want to modify</td>
+<td>Unique ID of the customer whose subscription details you want to modify</td>
 </tr>
 <tr>
 <td>channel</td>
@@ -1711,7 +1802,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 </tr>
 </tbody></table>
 
-<aside class="notice">Parameter marked by * is mandatory and also pass other dependent required for the specific action. </aside> 
+<aside class="notice">Parameter marked with * is mandatory and also pass other dependent required for the specific action. </aside> 
 
 <h2 id="retrieve-subscription-details">Retrieve Subscription Details</h2>
 
@@ -1798,15 +1889,15 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 </thead><tbody>
 <tr>
 <td>id*</td>
-<td>Pass the unique id of the customer to fetch the subscription details</td>
+<td>Pass the unique ID of the customer to fetch the subscription details</td>
 </tr>
 </tbody></table>
 
-<aside class="notice">Parameter marked by * is mandatory.</aside>
+<aside class="notice">Parameter marked with * is mandatory.</aside>
 
 <h2 id="get-points-transfer-summary-of-customer">Get Points Transfer Summary of Customer</h2>
 
-<p>Retrieves the points transfer history of a customer.</p>
+<p>Retrieves points transfer summary of a customer. Points transfer summary consists of points that are transferred from the customer account to another customer&rsquo;s account (Deduction) or points that are received from another customer&rsquo;s account (Addition).</p>
 
 <blockquote>
 <p>Sample Request</p>
@@ -1918,24 +2009,27 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 <tr>
 <td>userId*</td>
 <td>int</td>
-<td>Unique id of the customer whose points transfer summary needs to fetch.</td>
+<td>Unique ID of the customer whose points transfer summary needs to fetch.</td>
 </tr>
 </tbody></table>
 
-<aside class="notice">All parameters marked by * are mandatory.</aside>
+<aside class="notice">Parameters marked with * are mandatory.</aside>
 
-<h2 id="retro-transaction">Retro Transaction</h2>
+<h2 id="get-change-requests">Get Change Requests</h2>
 
-<p>Retro transaction lets you can convert a non-member transaction to a loyalty transaction by tagging a previous transaction of a customer after registering.</p>
+<p>Retrieves the summary of change in identifiers and other details such as email ID, mobile number, external ID, account merge, address change, mobile number reallocation, tier, and retro transactions.</p>
 
-<p>To enable Retro Transaction for an org, you need to enable CONF_RETRO_TRANSACTION_ENABLE on the Billing configuration page. That is, InTouch &gt; Settings &gt; Systems &amp; Deployment &gt; InTouch PoS Configuration &gt; Billing page.</p>
+<aside class="notice">
+Retro transaction is conversion of non-member transactions to a loyalty transaction by tagging a previous transaction of a customer (once registered).
 
-<p>Also, check the following configurations for maximum days allowed and minimum time limit required after customer registration to tag a not-interested transaction to that customer.</p>
+To enable Retro Transaction for an org, you need to enable CONF_RETRO_TRANSACTION_ENABLE on the Billing configuration page. That is, InTouch > Settings > Systems & Deployment > InTouch PoS Configuration > Billing page.
 
-<ul>
-<li>CONF_CLIENT_RETRO_MAX_ALLOWED_AGE_DAYS</li>
-<li>CONF_CLIENT_RETRO_DELAY_SINCE_REGISTRATION_HOURS</li>
-</ul>
+Also, check the following configurations for maximum days allowed and minimum time limit required after customer registration to tag a not-interested transaction to that customer.
+
+* CONF_CLIENT_RETRO_MAX_ALLOWED_AGE_DAYS
+* CONF_CLIENT_RETRO_DELAY_SINCE_REGISTRATION_HOURS
+
+</aside>
 
 <blockquote>
 <p>Sample Request</p>
@@ -1945,8 +2039,290 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 <blockquote>
 <p>Sample Response</p>
 </blockquote>
-<pre class="highlight json"><code><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REJECTED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"addedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091433</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.india1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.india1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isOuEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"addedByParent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091431</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"store_india"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"StoreIndia"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STORE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isOuEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">148</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8730028</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Patel"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nayan Kumar"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADMIN_USER"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isOuEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"addedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-22T15:48:15+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-13T16:04:38+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">9113108</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="mi">116681</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"baseType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RETRO"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"_memcare(\"Insufficient validation from requestor d"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"操作已失败于服务器。错误讯"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"transactionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2866</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"reqAdd"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"oneStep"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"APPROVED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"addedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091433</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.india1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.india1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isOuEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"addedByParent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091431</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"store_india"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"StoreIndia"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STORE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isOuEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">148</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8730028</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Patel"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nayan Kumar"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADMIN_USER"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isOuEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"addedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-22T15:47:22+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-13T16:12:54+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">9113108</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="mi">116679</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"baseType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RETRO"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"transactionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2865</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"reqAdd"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"oneStep"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REJECTED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"addedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091433</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.india1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.india1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isOuEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"addedByParent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091431</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"store_india"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"StoreIndia"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STORE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isOuEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">148</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091437</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.sg"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.sg"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isOuEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">148</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"addedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-22T14:30:23+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-22T14:31:56+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">9113108</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="mi">116669</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"baseType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RETRO"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"transactionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2863</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"reqAdd"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"oneStep"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"APPROVED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"addedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091433</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.india1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.india1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isOuEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"addedByParent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091431</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"store_india"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"StoreIndia"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STORE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isOuEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">148</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091437</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.sg"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.sg"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isOuEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">148</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"addedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-22T14:20:56+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-22T14:27:20+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">9113108</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="mi">116668</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"baseType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RETRO"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"transactionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2862</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"reqAdd"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"oneStep"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REJECTED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"addedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091433</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.india1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.india1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isOuEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"addedByParent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091431</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"store_india"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"StoreIndia"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STORE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isOuEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">148</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8730028</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Patel"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nayan Kumar"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADMIN_USER"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isOuEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"addedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-22T14:06:14+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-13T16:12:43+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">9113108</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="mi">116663</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"baseType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RETRO"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"_memcare(\"Insufficient validation from requestor d"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sample comments;"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"transactionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2861</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"reqAdd"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"oneStep"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
 <table><thead>
 <tr>
 <th></th>
@@ -1983,7 +2359,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 
 <p><code class="prettyprint">https://{host}/v2/customers/{customerId}/retroRequest?{query parameters}</code></p>
 
-<h3 id="request-body-parameters">Request Body Parameters</h3>
+<h3 id="request-query-parameters">Request Query Parameters</h3>
 
 <table><thead>
 <tr>
@@ -1993,38 +2369,234 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 </tr>
 </thead><tbody>
 <tr>
-<td>Status</td>
+<td>changeType</td>
 <td>enum</td>
-<td>APPROVED, PENDING, REJECTED, CUSTOM</td>
-</tr>
-<tr>
-<td>Type</td>
-<td>enum</td>
-<td>CHANGE_IDENTIFIER, GOODWILL, TRANSACTION_UPDATE</td>
+<td>Lets you filter requests by type. Value: <code class="prettyprint">EMAIL</code> (for email id changes), <code class="prettyprint">MOBILE</code> (for mobile number change history), <code class="prettyprint">EXTERNAL_ID</code> (for external ID change history), <code class="prettyprint">MERGE</code> (for account merge history), <code class="prettyprint">ADDRESS</code> (for address change history), <code class="prettyprint">MOBILE_REALLOC</code> (for mobile reallocations), <code class="prettyprint">COUPON</code>, <code class="prettyprint">POINTS</code>, <code class="prettyprint">TIER</code> (for tier change history), and <code class="prettyprint">RETRO</code> (for retro transactions).</td>
 </tr>
 <tr>
 <td>startDate</td>
 <td>string</td>
-<td></td>
+<td>Filter results by date-range. Pass the start date in <code class="prettyprint">YYYY-MM-DD</code> format.</td>
 </tr>
 <tr>
 <td>endDate</td>
 <td>string</td>
-<td></td>
+<td>Filter results by date-range. Pass the  end date in <code class="prettyprint">YYYY-MM-DD</code> format.</td>
 </tr>
 <tr>
 <td>startId</td>
 <td>long</td>
-<td></td>
+<td>Filter results by sequence ID (sequence in which a change happened). For example, get lists from startId 200</td>
 </tr>
 <tr>
 <td>endId</td>
 <td>long</td>
-<td></td>
+<td>Filter results by sequence ID (sequence in which a change happened). For example, get lists from startId 200 until endId 400.</td>
 </tr>
 <tr>
 <td>offset</td>
 <td>long</td>
+<td>Number of rows that you want omit from showing.</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>int</td>
+<td>Pass the number of results that you want to see.</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-customer-goodwill-requests">Get Customer Goodwill Requests</h2>
+
+<p>Retrieves the history of goodwill points of a customer.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>http://api.capillary.co.in/v2/customers/343040815/goodwillRequest
+</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">43114</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"addedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15000449</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1371622280_919866643044"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1371622280_Ashish"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADMIN_USER"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isOuEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15000449</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1371622280_919866643044"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1371622280_Ashish"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADMIN_USER"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isOuEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"addedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-04T15:18:23+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-04T15:18:23+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">343040815</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="mi">770197</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"goodwillType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POINTS"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"goodwillStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"APPROVED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">" "</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"approvedValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"450"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"updatedComments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample; AUTO_APPROVED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"oneStep"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">43113</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"addedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15000449</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1371622280_919866643044"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1371622280_Ashish"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADMIN_USER"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isOuEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15000449</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1371622280_919866643044"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1371622280_Ashish"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADMIN_USER"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isOuEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"addedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-04T15:17:55+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-04T15:17:55+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">343040815</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="mi">770196</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"goodwillType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POINTS"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"goodwillStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PENDING"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">" "</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"oneStep"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/{customerId}/goodwillRequest</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/customers/{customerId}/goodwillRequest</code></p>
+
+<h2 id="get-customer-coupons">Get Customer Coupons</h2>
+
+<p>Retrieves coupon history of a customer.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>http://api.capillary.co.in/v2/customers/343040815/coupons
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/{customerId}/coupons</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/customers/{customerId}/coupons</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>customerId</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>mobile</td>
+<td></td>
 <td></td>
 </tr>
 </tbody></table>
@@ -2880,8 +3452,11 @@ https://us.api.capillarytech.com/v2/otp/source=WECHAT<span class="err">&amp;</sp
 <p>For any other coupon related APIs, please use v1.1 APIs. </p>
 
 <h2 id="redeem-coupons">Redeem Coupons</h2>
-<pre class="highlight html"><code># Sample Request
-http://api.capillary.co.in/v2/coupon/redeem 
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>http://api.capillary.co.in/v2/coupon/redeem 
 
 </code></pre>
 <blockquote>
@@ -2897,9 +3472,6 @@ http://api.capillary.co.in/v2/coupon/redeem
    </span><span class="nt">"redemptionRequestList"</span><span class="p">:[</span><span class="w">
       </span><span class="p">{</span><span class="w">
          </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"9NUF8THR"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-         </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"AFZDT2F6"</span><span class="w">
       </span><span class="p">}</span><span class="w">
    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -2908,72 +3480,44 @@ http://api.capillary.co.in/v2/coupon/redeem
 <p>Sample Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-   </span><span class="nt">"customer"</span><span class="p">:{</span><span class="w">
-      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">325666376</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"profiles"</span><span class="p">:[</span><span class="w">
-         </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"accountId"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="s2">"2019-04-04T11:51:05+05:30"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"commChannels"</span><span class="p">:[</span><span class="w">
-
-            </span><span class="p">],</span><span class="w">
-            </span><span class="nt">"fields"</span><span class="p">:{</span><span class="w">
-
-            </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"firstName"</span><span class="p">:</span><span class="s2">"firstName_813014"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w">
-               </span><span class="p">{</span><span class="w">
-                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"autoemail7543813014@gmail.com"</span><span class="w">
-               </span><span class="p">},</span><span class="w">
-               </span><span class="p">{</span><span class="w">
-                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"externalId"</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"ext_id7543813014"</span><span class="w">
-               </span><span class="p">},</span><span class="w">
-               </span><span class="p">{</span><span class="w">
-                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"917543813014"</span><span class="w">
-               </span><span class="p">}</span><span class="w">
-            </span><span class="p">],</span><span class="w">
-            </span><span class="nt">"lastName"</span><span class="p">:</span><span class="s2">"lastName_813014"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">325666376</span><span class="w">
-         </span><span class="p">}</span><span class="w">
-      </span><span class="p">]</span><span class="w">
-   </span><span class="p">},</span><span class="w">
-   </span><span class="nt">"redemption"</span><span class="p">:[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-         </span><span class="nt">"appendedErrorMessage"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"E1HX7Q34"</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"couponValue"</span><span class="p">:</span><span class="mf">10.0</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"discountCode"</span><span class="p">:</span><span class="s2">"XYZ123"</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">33021115</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"isAbsolute"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"seriesCode"</span><span class="p">:</span><span class="mi">9069</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">
-
-         </span><span class="p">]</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-         </span><span class="nt">"appendedErrorMessage"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"UN7CZPQ3"</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"couponValue"</span><span class="p">:</span><span class="mf">10.0</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"discountCode"</span><span class="p">:</span><span class="s2">"XYZ123"</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">33021116</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"isAbsolute"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"seriesCode"</span><span class="p">:</span><span class="mi">9240</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">
-
-         </span><span class="p">]</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-   </span><span class="p">],</span><span class="w">
-   </span><span class="nt">"redemptionStatus"</span><span class="p">:{</span><span class="w">
-      </span><span class="nt">"code"</span><span class="p">:</span><span class="mi">700</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"message"</span><span class="p">:</span><span class="s2">"Coupon processing successful"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"status"</span><span class="p">:</span><span class="kc">true</span><span class="w">
-   </span><span class="p">},</span><span class="w">
-   </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">
-
-   </span><span class="p">]</span><span class="w">
+    </span><span class="nt">"redemption"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">33138363</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"appendedErrorMessage"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"JL07UAZ3"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"discountCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MobilePush"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"seriesCode"</span><span class="p">:</span><span class="w"> </span><span class="mi">14162</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"isAbsolute"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"couponValue"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.0</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"redemptionStatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">700</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Coupon processing successful"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">342963216</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"profiles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                </span><span class="nt">"identifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"919999000000"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="nt">"commChannels"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">342963216</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-31T17:41:25+05:30"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>This API allows you to redeem active coupons of a loyalty customer. You can pass multiple coupons at once.</p>
@@ -2982,43 +3526,31 @@ http://api.capillary.co.in/v2/coupon/redeem
 
 <table><thead>
 <tr>
-<th>Entry</th>
-<th>Description</th>
+<th></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td>coupon/redeem</td>
-</tr>
-<tr>
-<td>Rate Limited?</td>
-<td>Yes</td>
+<td><code class="prettyprint">/redeem</code></td>
 </tr>
 <tr>
 <td>Authentication</td>
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
 <td>HTTP Method</td>
 <td>POST</td>
 </tr>
 <tr>
-<td>API Version</td>
-<td>v2</td>
-</tr>
-<tr>
 <td>Batch Support</td>
-<td>Yes</td>
+<td>No</td>
 </tr>
 </tbody></table>
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://api.capillary.co.in/v2/coupon/redeem</code></p>
+<p><code class="prettyprint">http://{host}/v2/coupon/redeem</code></p>
 
 <h3 id="request-parameters">Request Parameters</h3>
 
@@ -3029,28 +3561,24 @@ http://api.capillary.co.in/v2/coupon/redeem
 </tr>
 </thead><tbody>
 <tr>
-<td>billAmount</td>
-<td>Amount of the transaction for which you want to redeem coupons</td>
+<td>billAmount*</td>
+<td>float</td>
 </tr>
 <tr>
-<td>transactionNumber</td>
-<td>Transaction number against which the coupon needs to be redeemed</td>
+<td>transactionNumber*</td>
+<td>string</td>
 </tr>
 <tr>
-<td>user</td>
-<td>Specify any identifier of the user who wants to redeem coupons. Values: mobile, email, externalId</td>
+<td>user*</td>
+<td>enum</td>
 </tr>
 <tr>
 <td>redemptionTime</td>
-<td>Date and time when the coupon has to be redeemed</td>
+<td>Date and time when the coupon has to be redeemed.</td>
 </tr>
 <tr>
-<td>redemptionRequestList</td>
-<td>Pass the list of each coupon code that you want  to redeem for the transaction</td>
-</tr>
-<tr>
-<td>code</td>
-<td>Coupon code to be redeemed</td>
+<td>code*</td>
+<td>Coupon code to be redeemed.</td>
 </tr>
 </tbody></table>
 
@@ -3136,33 +3664,21 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
 
 <table><thead>
 <tr>
-<th>Entry</th>
-<th>Description</th>
+<th></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td>v2/coupon/is_redeemable?{customerIdentifier}&amp;code={value1},{value2}&hellip;&amp;details={true/extended}</td>
-</tr>
-<tr>
-<td>Rate Limited?</td>
-<td>Yes</td>
+<td><code class="prettyprint">/is_redeemable?{customerIdentifier}&amp;code={value1},{value2}...&amp;details={true/extended}</code></td>
 </tr>
 <tr>
 <td>Authentication</td>
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
 <td>HTTP Method</td>
 <td>GET</td>
-</tr>
-<tr>
-<td>API Version</td>
-<td>v2</td>
 </tr>
 <tr>
 <td>Batch Support</td>
@@ -3172,7 +3688,7 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://&lt;cluster url&gt;/v2/coupon/is_redeemable?{customerIdentifier}&amp;code={value1},{value2}...&amp;details={true/extended}</code></p>
+<p><code class="prettyprint">http://{host}/v2/coupon/is_redeemable?{customerIdentifier}&amp;code={value1},{value2}...&amp;details={true/extended}</code></p>
 
 <h3 id="request-parameters">Request Parameters</h3>
 
@@ -3187,7 +3703,7 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
 <td>Pass the identifier of the customer for whom you want to check whether the coupon is redeemable</td>
 </tr>
 <tr>
-<td>code</td>
+<td>code*</td>
 <td>Pass the coupon codes that you want to check separating each with a comma (,)</td>
 </tr>
 <tr>
