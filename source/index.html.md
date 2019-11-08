@@ -105,6 +105,31 @@ Response Format | JSON. All V2 APIs support only JSON response.
 
 
 
+## Response Codes
+The following are global success and error codes. The response codes of each resource are provided in the respective sections.
+
+Code | Description
+---- | -----------
+200 | Global request success.
+201 | One or more requests have failed due to errors.
+400 | Invalid input. Please check request body parameters or input xml/json. <br> Invalid path parameter. <br>Invalid X-CAP-API-ATTRIBUTION-LOOKUP-TYPE specified.<br> Error with range passed or array in indexing.
+401 | Authentication failed. Please check username and password.
+403 | V2 is not enabled for the org. <br> Mandatory field is missing. Field {x} is mandatory.
+404 | Incorrect resource or resource not found.
+405 | The operation is not supported for the resource.
+415 | Unsupported media type.
+461 | Search Engine is busy or unable to respond. Please try after some time.
+500 | Requests have failed due to errors. 
+521 | Multiple actions are running for the same customer. Please try after some time.
+1060 | Batch limit size exceeded.
+1061 | X-CAP-API-ATTRIBUTION-LOOKUP-TYPE header required with X-CAP-API-ATTRIBUTION-LOOKUP header.
+1062 | Invalid test and control status.
+1064 | Invalid org ID passed.
+
+
+
+
+
 
 
 

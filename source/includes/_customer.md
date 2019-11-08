@@ -1,4 +1,6 @@
 # Customer
+A customer is an individual that either buys goods, services, or subscribes to the org’s newsletters. An org could be any business firm that is registered with Capillary. It could be a retail store, hospital, pharmacy, restaurant, or any other firm.
+
 
 ## Register Customer
 
@@ -87,25 +89,26 @@ https://us.api.capillarytech.com/v2/customers?source=LINE&accountId=1234
 
 Registers customers in the org's loyalty program on different source accounts such as FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, LINE, and WEBSITE. You can also add customer-level extended fields and custom fields.
 
+<aside class="notice">
+
 **Extended Fields**:
-Extended Fields are proposed fields to standardize input values and keys across organizations. These fields make easier for the Development and Analytics teams to get rid of the complex data that comes into the database through existing custom fields. Back-end team controls the field names, data types, enum values, and scopes for extended fields. Currently, Extended Fields are at customer level, transaction level, and transaction line-item level.
+Extended Fields are proposed fields used to standardize input values and keys across organizations (unlike custom fields that have no control in input values). Platforms back-end team controls the field names, data-types, enum values, and scopes of extended fields. Extended Fields are created at customer level, transaction level, and transaction line-item level.
 
 Examples of customer level extended fields are age_group, preferred_store, gender, and nationality.
 
 Extended fields are either associated to verticals or to a generic category (available for all orgs). To know the list of extended fields enabled for an org, use GET v2/extendedFields API.
+</aside>
 
 
-Following are the features and limitations of the customer registration API:
+The Customer Register API functions as follows.
 
-* If an identifier of a customer that you try to register is identified in a different source, the source details will be added to the existing account as a new source. Details of each source account will be maintained separately.
+* If you try registering an identifier that exists in a different source, a new source account is added to the existing account. Details of each source account will be maintained separately.
 
-* Identifiers should be unique within a source account. That is, in a source account no two customers can have a same identifier. 
+* In a source account, identifiers should be unique - no two customers can have a same identifier. 
 
-* A customer can have Multiple identifiers - mobile numbers, email ids and external ids - for each source account.
+* You cannot update existing customer details with this API. To update customer details, use customer update API; and to update identifiers, use the Update Identifier API.
 
-* Customer details cannot be updated with this API. To update customer details, use customer update API; and to update identifiers, use Update Identifier API
-
-
+	
 
 ### Prerequisites
 Following are the prerequisites to use customer registration API:
@@ -116,8 +119,8 @@ Following are the prerequisites to use customer registration API:
 
 
 ### Resource Information
-Information | Value
------------ | -----
+| | |
+--------- | ----------- |
 URI | `?source={Source Name}&accountId={account id}`
 Authentication | Yes
 HTTP Method | POST
@@ -138,17 +141,18 @@ accountId | string | For sources with multiple accounts, pass the specific accou
 <aside class="notice">Parameter marked with * is mandatory.<br> If you try to register a customer that exists in a different source, the accounts will merge automatically.</aside>
 
 ### Request Body Parameters
-Parameter | Value | Description
+Parameter | Type | Description
 --------- | ----- | -----------
-loyaltyinfo | loyaltyType | Loyalty status of the customer (“loyalty”, “non_loyalty”)
-profiles | commChannels | Different channels through which you want to communicate with the customer (“"mobile", "email", "wechat", "ios", "android", "line")
-profiles | Firstname | First name of the customer
-profiles | Lastname | Last name of the customer
-profiles | identifiers | Identifier used for registering customer in a specific source ("mobile", "email", "externalId", "wechat","martjackId", "fbId" "mobile", "tmall_uname", "cuid", "ali_uname", "jd_uname", "vip_uname", "line")
-profiles | fields | Custom fields configured for the current organization
-attributionV2 | createDate | Time and date of registration in YYYY-MM-DDTHH:MM:SS+HH:MM (Time Zone). Example: 2016-06-23T19:11:18+08:00
-associatedWith |  | The TILL to which you want to associate the customer
-
+loyaltyType | enum | Loyalty status of the customer. Value: `loyalty`, `non_loyalty`.
+profiles | commChannels | Available communication channels of the customer. Value: `mobile`, `email`, `wechat`, `ios`, `android`, `line`.
+profiles | obj | Profile information of the customer.
+Firstname | string | First name of the customer.
+Lastname | string | Last name of the customer.
+identifiers | obj | Identifiers of the customer in type and value. Supported types: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, `fbId` `mobile`, `tmall_uname`, `cuid`, `ali_uname`, `jd_uname`, `vip_uname`, and `line`.
+profiles | fields | Custom field details (only that configured for the organization)
+attributionV2 | createDate | Time and date of registration in `YYYY-MM-DDTHH:MM:SS+HH:MM` format. Example: 2016-06-23T19:11:18+08:00
+associatedWith |  | The TILL code to which you want to associate the customer
+extendedFields | obj | Extended field details of the customer in key:value pairs. You can only pass extended fields that are enabled for your org with the respective datatypes for values.
 
 ## Update Customer Details
 
@@ -248,8 +252,8 @@ The following are the prerequisites for updating customer details:
 
 
 ### Resource Information
-Information | Value
------------ | -----
+| | |
+--------- | ----------- |
 URI | `/{customerId}?{query_param}={param_value}`
 Authentication | Yes
 HTTP Method | PUT
@@ -263,7 +267,7 @@ Batch Support | No
 ### Request Query Parameters
 Parameter | Description
 --------- | -----------
-customer_id* | Unique id of the customer whose details need to be updated
+customer_id* | Unique ID of the customer whose details need to be updated
 source* | Specify the source in which you want to update the customer details - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE. For sources with multiple accounts such as WECHAT, FACEBOOK, or LINE, you also need to provide the respective account id.
 account_Id | Account in which you want to update the customer details (Required only for sources with multiple accounts)
 
@@ -271,27 +275,26 @@ account_Id | Account in which you want to update the customer details (Required 
 
 ### Request Body Parameters
 
-Parameter | Value | Description
+Parameter | Type | Description
 --------- | ----- | -----------
-loyaltyinfo | loyaltyType | Loyalty status of the customer (“loyalty”, “non_loyalty”)
-profiles | commChannels | Different channels through which you want to communicate with the customer ("mobile", "email", "wechat", "ios", "android", "line")
-profiles | Firstname | First name of the customer
-profiles | Lastname | Last name of the customer
-profiles | identifiers | Identifier used for registering customer in a specific source ("mobile", "email", "externalId", "wechat","martjackId", "fbId" "mobile", "tmall_uname", "cuid", "ali_uname", "jd_uname", "vip_uname", "line")
-profiles | fields | Custom fields configured for the current organization
+loyaltyType | enum | Loyalty status of the customer. Value: `loyalty`, `non_loyalty`.
+commChannels | obj | Communication channels of the customer. 
+type | enum | Type of the communication channel. Value: `mobile`, `email`, `wechat`, `ios`, `android`, `line`.
+value | string |Based on the channel `type` enter the channel value. For example, if `type` is "mobile", value will be mobile number.
+primary | boolean | Whether the current identifier is the primary identifier of the customer (primary identifier as per the org's configuration).
+verified | boolean | Whether the current identifier is verified or not. For example, through OTP.
+profiles | obj | Profile information of the customer.
+meta | obj | Additional information of the identifier.
+Firstname | string | First name of the customer.
+Lastname | string | Last name of the customer.
+identifiers | obj | Identifiers of the customer in type and value. Supported types: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, `fbId` `mobile`, `tmall_uname`, `cuid`, `ali_uname`, `jd_uname`, `vip_uname`, and `line`.
+profiles | fields | Custom field details (only that configured for the organization)
+extendedFields | obj | Extended field details of the customer in key:value pairs. You can only pass extended fields that are enabled for your org with the respective datatypes for values.
 
-### Error Codes
-CODE | DESCRIPTION
------| -----------
-8008 | Update failed. Different profiles are identified in the same source 
-8009 | Update failed. No customer found with the given identifier
-8010 | Communication channel is invalid
-8018 | A loyalty customer cannot be converted to a non-loyalty customer
-8067 | 
-8059 | Unable to push customer to solr
-8058 | Invalid mobile number passed in the comm channel
-8057 | Invalid email id passed in the comm channel
-8045 | No account id is passed
+
+
+
+
 
 
 
@@ -343,8 +346,8 @@ Limitations of the customer identifier update API:
 
 
 ### Resource Information
-Information | Value
------------ | -----
+| | |
+--------- | ----------- |
 URI | `/{customerId}/changeIdentifier?{query parameters}'
 Authentication | Yes
 HTTP Method | POST
@@ -359,21 +362,21 @@ Batch Support | No
 
 
 ### Request Query Parameters
-Parameter | Description
---------- | -----------
-customer_id* | Unique id of the customer whose identifiers need to be updated
-source* | Specify the source in which you want to update customer identifier(s) - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE. For sources that support multiple accounts, you also need to provide the associated account id.
-account_Id | Account in which you want to update the customer identifier (Required only for sources with multiple accounts)
+Parameter | Type | Description
+--------- | ---- | -----------
+customer_id* | int | Unique ID of the customer whose identifiers need to be updated
+source* | enum | Source in which you want to update customer identifier(s) - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE. For sources that support multiple accounts, you also need to provide the associated account id.
+account_Id | string | Account in which you want to update the customer identifier (Required only for sources with multiple accounts)
 
 <aside class="notice">Parameters marked with * are mandatory.</aside>
 
 ### Request Body Parameters
-Attributes | Description
----------- | -----------
-add** | New identifier that you want to add to the existing account. Pass the identifiers as a key value pair.<code>{“type": "wechat", "value": "TS11"}</code>
-remove** | Existing Identifier that you want to remove from the specified account. <code>{"type": "email", "value": "tom.sawyer@example.com"}</code>
-type* | Type of the identifier that you want to add or remove. For example, email, mobile, and wechat.
-value* | Value of the specified `type`. For example, if `type` is email, then pass the email id that you want to add or remove in `value`
+Attributes | Type | Description
+---------- | ---- | -----------
+add** | obj | New identifier that you want to add to the existing account. Pass the identifiers as a key value pair.<br><code>{“type": "wechat", "value": "TS11"}</code>
+remove** | obj | Existing Identifier that you want to remove from the specified account. <code>{"type": "email", "value": "tom.sawyer@example.com"}</code>
+type* | enum | Type of the identifier that you want to add or remove. For example, email, mobile, and wechat.
+value* | string | Value of the specified `type`. For example, if `type` is email, then pass the email id that you want to add or remove in `value`.
 
 <aside class="notice">Parameters marked with * are mandatory and any one among the parameters marked with ** is required.</aside>
 
@@ -381,22 +384,22 @@ value* | Value of the specified `type`. For example, if `type` is email, then pa
 ### Error Codes
 CODE | DESCRIPTION
 ---- | -----------
-8007 | Unable to update. The identifier is already registered in the same source
-8008 | The new identifier already exists in the same source
-8009 | Unable to identify the customer. Customer id is invalid
-8051 | Same identifier found in other source. Merging into the account with user id X  
-8053 | Each identifier is registered with a different customer in other source. Unable to merge accounts
-8053 | Same identifier is registered on other source. The account is already merged with user id X
-8064 | External id validation failed
-8066 | 
-8067 | 
-8059 | Unable to push customer to solr
-8058 | Invalid mobile number passed in the comm channel
-8057 | Invalid email id passed in the comm channel
-8056 | Invalid mobile number
-8055 | Invalid email id
-8045 | Account id is not passed
-8010 | Comm channel is invalid
+8007 | Unable to update. The identifier is already registered in the same source.
+8008 | The new identifier already exists in the same source.
+8009 | Unable to identify the customer. Customer id is invalid.
+8051 | Same identifier found in other source. Merging into the account with user id X.
+8053 | Each identifier is registered with a different customer in other source. Unable to merge accounts.
+8053 | Same identifier is registered on other source. The account is already merged with user id X.
+8064 | External id validation failed.
+8066 | Unable to combine,User id already used in same source.
+8067 | Same customer found in other source. The account is already merged with user id X.
+8059 | Unable to push customer to solr.
+8058 | Invalid mobile number passed in the communication channel.
+8057 | Invalid email id passed in the communication channel.
+8056 | Invalid mobile number.
+8055 | Invalid email id.
+8045 | Account id is not passed.
+8010 | communication channel is invalid.
 
 
 
@@ -502,8 +505,8 @@ Allows fetching customers from all sources using query string. For example, you 
 <aside class="notice"> The keyword that you pass will be fetched automatically from all the sources. You do not need to explicitly specify the source type for this API.</aside>
 
 ### Resource Information
-Information | Value
------------ | -----
+| | |
+--------- | ----------- |
 URI | `/search?q={search keyword}'
 Authentication | Yes
 HTTP Method | GET
@@ -513,12 +516,11 @@ Batch Support | No
 ### Request URL
 `https://{host}/v2/customers/search?q={search keyword}`
 
-To fetch customer from a specific account of a source (with multiple accounts), you need to provide the respective account id.
 
 ### Request Parameter
 Parameter | Description
 --------- | -----------
-q |  Parameter based on which you want to fetch customers. It will fetch the customers whose first name/last name/identifiers start with the keyword specified in `q={}`
+q |  Enter the keyword based on which you want to fetch customers. It will fetch customers whose first name, last name, or registered identifiers start with keyword that you pass.
 
 
 
@@ -534,7 +536,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE&identifierNa
 > Sample Response
 
 ```json
-# The entity field shows the unique customer id
+# Entity is the unique id of the customer
 
 {
 "entity": 306,
@@ -542,12 +544,12 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE&identifierNa
 }
 ```
 
-Allows fetching unique customer ids of registered customers. The unique id is required to fetch customer details, update customer details, manage subscription details and so on.
+Lets you fetch unique customer id of a customer which is required to fetch customer details, update customer details, manage subscription details and other activities.
 
 
 ### Resource Information
-Information | Value
------------ | -----
+| | |
+--------- | ----------- |
 URI | `/lookup?{query parameters}'
 Authentication | Yes
 HTTP Method | GET
@@ -560,12 +562,12 @@ Batch Support | No
 
 
 ### Request Parameter
-Parameter | Description
---------- | -----------
-source* | Specify the source from which you want to fetch the customer details. Values: FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, ALL
-accountId | Specify the account id of the specific source if the source has multiple accounts. `accountId` is required for sources with multiple accounts such as WeChat or Facebook
-identifierName* | Identifier based on which you want to fetch the customer id. **Values**: "mobile", "email", "externalId", "wechat","martjackId", or "fbId"
-identifierValue* | Pass the respective identifier value
+Parameter | Datatype | Description
+--------- | -------- | -----------
+source* | enum | Specify the source from which you want to fetch the customer details. Values: FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, ALL
+accountId | string | Specify the account id of the specific source if the source has multiple accounts. `accountId` is required for sources with multiple accounts such as WeChat or Facebook.
+identifierName* | enum | Identifier based on which you want to fetch the customer id. **Values**: "mobile", "email", "externalId", "wechat","martjackId", or "fbId"
+identifierValue* | string | Pass the respective identifier value.
 
 
 <aside class="notice">Parameters marked with * are mandatory.</aside>
@@ -573,11 +575,11 @@ identifierValue* | Pass the respective identifier value
 ### Error Codes
 CODE | DESCRIPTION
 ---- | -----------
-8015 | No customer found with the given identifier
-8065 | No customer found in the given source with the given identifier 
-8045 | Account id is not passed
-8013 | Customer identifier is invalid. Also check if the parameter identifierName is passed correctly
-8011 | Source is invalid
+8015 | No customer found with the given identifier.
+8065 | No customer found in the given source with the given identifier.
+8045 | Account id is not passed.
+8013 | Customer identifier is invalid. Also check if the parameter identifierName is passed correctly.
+8011 | Invalid source account passed.
 
 
 
@@ -748,7 +750,7 @@ https://eu.api.capillarytech.com/v2/customers/17742?source=WECHAT&accountId=2223
 ```
  
  
-> When embed=mlp, you will see each loyalty program details of the customer   
+> When embed=mlp, you will see each loyalty program details of the customer.
  
 ```json
 ...
@@ -801,8 +803,8 @@ Retrieves details of a specific customer such as:
 
 
 ### Resource Information
-Information | Value
------------ | -----
+| | |
+--------- | ----------- |
 URI | `/{customerId}'
 Authentication | Yes
 HTTP Method | GET
@@ -820,16 +822,16 @@ Header | Description
 ------ | -----------
 language | Specify the ISO language code to get customer level extended field details in your preferred language. For example, `zh` for Chinese, `id` for Indonesian, `ar` for Arabic. English is the default language.
 
-<aside class="notice">To enable a specific language support for an org, contact the Platforms team to get the translations added to the database and activate translations for the org. </aside>
+<aside class="notice">If you need a specific language support for an org, contact the Platforms team and get the translations added to the database and activate it. </aside>
 
-### Request Parameters
-Parameter | Description
---------- | -----------
-id* | Unique identifier of the customer that you want to fetch
-source* | Fetch the details of the customer on a specific source (INSTORE, MARTJACK, WECHAT, ALL). To fetch details of a customer from all sources, pass <code>/source=”ALL”</code>. For sources with multiple accounts, you also need to pass the specific accountId
-account_Id |  For sources with multiple accounts, you also need to pass the specific accountId
-embed | To get points, subscription, multiple loyalty program details of the customer (points, subscriptions, mlp). Usage: <code>https://{ClusterURL}/v2/customers/{CustomerId}/source=WECHAT&accountId={WeChat account id}&embed=”points”</code>
-embed=usergroup | Retrieves user group details if the customer is in a user group
+### Request Query Parameters
+Parameter | Datatype | Description
+--------- | -------- | -----------
+id* | int | Unique identifier of the customer that you want to fetch.
+source* | enum | Pass the source from which you want to fetch details. Value: INSTORE, MARTJACK, WECHAT, ALL ( to fetch details from all sources. For sources with multiple accounts, you also need to pass the specific accountId.
+account_Id |  string | For sources with multiple accounts, pass the specific accountId.
+embed | enum | To get details of loyalty points, subscription, multiple loyalty program details of the customer. Value: `points`, `subscriptions`, `mlp`. Usage: <code>https://{ClusterURL}/v2/customers/{CustomerId}/source=WECHAT&accountId={WeChat account id}&embed=”points”</code>
+embed=usergroup | Retrieves user group details if the customer is in a user group.
 
 <aside class="notice">Parameters marked with * are mandatory.</aside>
 
@@ -839,13 +841,13 @@ embed=usergroup | Retrieves user group details if the customer is in a user grou
 ### Error Codes
 Code | Description
 ---- | -----------
-8069 | The customer is merged into another account
-8065 | No customer found in the given source with the given identifier 
-8015 | No customer found with the given identifier
-8063 | Unable to fetch segmentation details
-8062 | Unable to fetch loyalty points
-8045 | Account id is not passed
-8012 | Source is invalid
+8069 | The customer is merged into another account.
+8065 | No customer found in the given source with the given identifier.
+8015 | No customer found with the given identifier.
+8063 | Unable to fetch segmentation details.
+8062 | Unable to fetch loyalty points.
+8045 | Account id is not passed.
+8012 | Invalid source passed.
 
 
 
@@ -854,7 +856,7 @@ Code | Description
 > Sample Request
 
 ```html
-http://eu.api.capillarytech.com/v2/customers/loyaltyDetails
+http://eu.api.capillarytech.com/v2/customers/29372667/loyaltyDetails
 ```
 
 > Sample Response
@@ -903,13 +905,13 @@ http://eu.api.capillarytech.com/v2/customers/loyaltyDetails
 ```
 
 
-Retrieves the loyalty information of a customer across the org. If the customer is enrolled in multiple loyalty programs of an org, you will get the details of each loyalty program in a separate entity. You can also fetch a the customer's loyalty details of a specific program.
+Retrieves the loyalty information of a customer across all loyalty programs of the org . You can also fetch details of a specific loyalty program.
 
 
 
 ### Resource Information
-Information | Value
------------ | -----
+| | |
+--------- | ----------- |
 URI | `/{customerId}/loyaltyDetails'
 Authentication | Yes
 HTTP Method | GET
@@ -922,8 +924,8 @@ Batch Support | No
 ### Request Parameters
 Parameter | Description
 --------- | -----------
-customerId* | It is the unique id that is generated internally for a customer. Pass the unique id of a customer whose loyalty details you want to fetch 
-programId | Lets you fetch the details of a specific loyalty program if the org has multiple loyalty programs. Pass the id of the program that you want to fetch.
+customerId* | It is the unique ID that is generated internally for a customer. Pass the unique id of a customer whose loyalty details you want to fetch 
+programId | Pass the loyalty program ID to get details of that particular program (Applicable only if the org has multiple loyalty programs). Pass the id of the program that you want to fetch.
 
 <aside class="notice"> Parameter marked with * is mandatory.</aside>
 
@@ -981,8 +983,6 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 > Sample Response
 
 ```json
-
-
 {
   "scope": {
     "scopeId": 0,
@@ -1020,17 +1020,17 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
   "warnings": []
 }
 ```
-Subscription represents communication channels a customer has subscribed to. The communication channels can be "mobile", "email", "wechat", "ios", "android", and "line".
+Subscription represents communication channels to which a customer has subscribed. That could be "mobile", "email", "wechat", "ios", "android", and "line".
 
-This API allows updating (opt-in or opt-out) subscription status for trans or bulk messaging services.
+This API allows updating (opt-in or opt-out) subscription status of transactional and bulk messaging services for a customer.
 
-* **Transaction Messages**: These are personalized messages sent to the respective customer instantly when a new transaction is made, redeemed points/coupon, send birthday/anniversary wishes and so on
-* **Bulk Messages**: These are promotion messages sent to a list of customers
+* **Transaction Messages**: These are personalized messages sent to a customer instantly. For example, a new transaction details, points or coupon redeemed, send birthday or anniversary wishes and so on.
+* **Bulk Messages**: These are promotion messages sent to a list of customers. For example, through campaigns.
 
 ### Resource Information
 
-Entry | Description
------ | -----------
+| | |
+--------- | ----------- |
 URI | `/{customerId}/subscriptions`
 Authentication | Yes
 HTTP Method | POST
@@ -1042,12 +1042,14 @@ Batch Support | No
 ### Request Parameters
 Parameter | Description
 --------- | -----------
-id* | Unique id of the customer whose subscription details you want to modify
+id* | Unique ID of the customer whose subscription details you want to modify
 channel | Pass the communication channel that you want to update. **Value**: "mobile", "email", "wechat", "ios", "android", "line"
 priority | Type of service for which you want to modify the subscription details.`TRANS` for personalized messages and `BULK` for campaign or bulk messages
 type | `OPTIN` to subscribe and `OPTOUT` to unsubscribe
 
-<aside class="notice">Parameter marked by * is mandatory and also pass other dependent required for the specific action. </aside> 
+<aside class="notice">Parameter marked with * is mandatory and also pass other dependent required for the specific action. </aside> 
+
+
 
 ## Retrieve Subscription Details
 
@@ -1110,13 +1112,14 @@ Batch Support | No
 ### Request Query Parameters
 Parameter | Description
 --------- | -----------
-id* | Pass the unique id of the customer to fetch the subscription details
+id* | Pass the unique ID of the customer to fetch the subscription details
 
-<aside class="notice">Parameter marked by * is mandatory.</aside>
+<aside class="notice">Parameter marked with * is mandatory.</aside>
+
 
 ## Get Points Transfer Summary of Customer
 
-Retrieves the points transfer history of a customer.
+Retrieves points transfer summary of a customer. Points transfer summary consists of points that are transferred from the customer account to another customer's account (Deduction) or points that are received from another customer's account (Addition).
 
 > Sample Request
 
@@ -1196,13 +1199,16 @@ Batch Support | No
 
 Parameter | Type | Description
 --------- | ---- | -----------
-userId* | int | Unique id of the customer whose points transfer summary needs to fetch.
+userId* | int | Unique ID of the customer whose points transfer summary needs to fetch.
 
-<aside class="notice">All parameters marked by * are mandatory.</aside>
+<aside class="notice">Parameters marked with * are mandatory.</aside>
 
-## Retro Transaction
+## Get Change Requests
 
-Retro transaction lets you can convert a non-member transaction to a loyalty transaction by tagging a previous transaction of a customer after registering.
+Retrieves the summary of change in identifiers and other details such as email ID, mobile number, external ID, account merge, address change, mobile number reallocation, tier, and retro transactions.
+
+<aside class="notice">
+Retro transaction is conversion of non-member transactions to a loyalty transaction by tagging a previous transaction of a customer (once registered).
 
 To enable Retro Transaction for an org, you need to enable CONF_RETRO_TRANSACTION_ENABLE on the Billing configuration page. That is, InTouch > Settings > Systems & Deployment > InTouch PoS Configuration > Billing page.
 
@@ -1210,6 +1216,8 @@ Also, check the following configurations for maximum days allowed and minimum ti
 
 * CONF_CLIENT_RETRO_MAX_ALLOWED_AGE_DAYS
 * CONF_CLIENT_RETRO_DELAY_SINCE_REGISTRATION_HOURS
+
+</aside>
 
 > Sample Request
 
@@ -1221,8 +1229,290 @@ http://us.api.capillarytech.com/v2/customers/368881003/retroRequest
 > Sample Response
 
 ```json
-
+{
+    "pagination": {
+        "limit": 10,
+        "offset": 0,
+        "total": 5
+    },
+    "data": [
+        {
+            "id": 5,
+            "status": "REJECTED",
+            "addedBy": {
+                "id": 15091433,
+                "code": "till.india1",
+                "description": "",
+                "name": "till.india1",
+                "type": "TILL",
+                "adminType": "GENERAL",
+                "isActive": true,
+                "isOuEnabled": false,
+                "timeZoneId": 0,
+                "currencyId": 0,
+                "languageId": 0
+            },
+            "addedByParent": {
+                "id": 15091431,
+                "code": "store_india",
+                "description": "",
+                "name": "StoreIndia",
+                "type": "STORE",
+                "adminType": "GENERAL",
+                "isActive": true,
+                "isOuEnabled": false,
+                "timeZoneId": 0,
+                "currencyId": 23,
+                "languageId": 148
+            },
+            "updatedBy": {
+                "id": 8730028,
+                "code": "Patel",
+                "name": "Nayan Kumar",
+                "type": "ADMIN_USER",
+                "adminType": "GENERAL",
+                "isActive": true,
+                "isOuEnabled": false,
+                "timeZoneId": 0,
+                "currencyId": 0,
+                "languageId": 0
+            },
+            "addedOn": "2015-07-22T15:48:15+05:30",
+            "updatedOn": "2015-10-13T16:04:38+05:30",
+            "userId": 9113108,
+            "requestId": 116681,
+            "baseType": "RETRO",
+            "reason": "_memcare(\"Insufficient validation from requestor d",
+            "comments": "操作已失败于服务器。错误讯",
+            "transactionId": 2866,
+            "warnings": [
+            ],
+            "reqAdd": true,
+            "oneStep": false
+        },
+        {
+            "id": 4,
+            "status": "APPROVED",
+            "addedBy": {
+                "id": 15091433,
+                "code": "till.india1",
+                "description": "",
+                "name": "till.india1",
+                "type": "TILL",
+                "adminType": "GENERAL",
+                "isActive": true,
+                "isOuEnabled": false,
+                "timeZoneId": 0,
+                "currencyId": 0,
+                "languageId": 0
+            },
+            "addedByParent": {
+                "id": 15091431,
+                "code": "store_india",
+                "description": "",
+                "name": "StoreIndia",
+                "type": "STORE",
+                "adminType": "GENERAL",
+                "isActive": true,
+                "isOuEnabled": false,
+                "timeZoneId": 0,
+                "currencyId": 23,
+                "languageId": 148
+            },
+            "updatedBy": {
+                "id": 8730028,
+                "code": "Patel",
+                "name": "Nayan Kumar",
+                "type": "ADMIN_USER",
+                "adminType": "GENERAL",
+                "isActive": true,
+                "isOuEnabled": false,
+                "timeZoneId": 0,
+                "currencyId": 0,
+                "languageId": 0
+            },
+            "addedOn": "2019-07-22T15:47:22+05:30",
+            "updatedOn": "2019-10-13T16:12:54+05:30",
+            "userId": 9113108,
+            "requestId": 116679,
+            "baseType": "RETRO",
+            "reason": "",
+            "comments": "",
+            "transactionId": 2865,
+            "warnings": [
+            ],
+            "reqAdd": true,
+            "oneStep": false
+        },
+        {
+            "id": 3,
+            "status": "REJECTED",
+            "addedBy": {
+                "id": 15091433,
+                "code": "till.india1",
+                "description": "",
+                "name": "till.india1",
+                "type": "TILL",
+                "adminType": "GENERAL",
+                "isActive": true,
+                "isOuEnabled": false,
+                "timeZoneId": 0,
+                "currencyId": 0,
+                "languageId": 0
+            },
+            "addedByParent": {
+                "id": 15091431,
+                "code": "store_india",
+                "description": "",
+                "name": "StoreIndia",
+                "type": "STORE",
+                "adminType": "GENERAL",
+                "isActive": true,
+                "isOuEnabled": false,
+                "timeZoneId": 0,
+                "currencyId": 23,
+                "languageId": 148
+            },
+            "updatedBy": {
+                "id": 15091437,
+                "code": "till.sg",
+                "description": "",
+                "name": "till.sg",
+                "type": "TILL",
+                "adminType": "GENERAL",
+                "isActive": true,
+                "isOuEnabled": false,
+                "timeZoneId": 0,
+                "currencyId": 23,
+                "languageId": 148
+            },
+            "addedOn": "2019-07-22T14:30:23+05:30",
+            "updatedOn": "2019-07-22T14:31:56+05:30",
+            "userId": 9113108,
+            "requestId": 116669,
+            "baseType": "RETRO",
+            "transactionId": 2863,
+            "warnings": [
+            ],
+            "reqAdd": true,
+            "oneStep": false
+        },
+        {
+            "id": 2,
+            "status": "APPROVED",
+            "addedBy": {
+                "id": 15091433,
+                "code": "till.india1",
+                "description": "",
+                "name": "till.india1",
+                "type": "TILL",
+                "adminType": "GENERAL",
+                "isActive": true,
+                "isOuEnabled": false,
+                "timeZoneId": 0,
+                "currencyId": 0,
+                "languageId": 0
+            },
+            "addedByParent": {
+                "id": 15091431,
+                "code": "store_india",
+                "description": "",
+                "name": "StoreIndia",
+                "type": "STORE",
+                "adminType": "GENERAL",
+                "isActive": true,
+                "isOuEnabled": false,
+                "timeZoneId": 0,
+                "currencyId": 23,
+                "languageId": 148
+            },
+            "updatedBy": {
+                "id": 15091437,
+                "code": "till.sg",
+                "description": "",
+                "name": "till.sg",
+                "type": "TILL",
+                "adminType": "GENERAL",
+                "isActive": true,
+                "isOuEnabled": false,
+                "timeZoneId": 0,
+                "currencyId": 23,
+                "languageId": 148
+            },
+            "addedOn": "2019-07-22T14:20:56+05:30",
+            "updatedOn": "2019-07-22T14:27:20+05:30",
+            "userId": 9113108,
+            "requestId": 116668,
+            "baseType": "RETRO",
+            "transactionId": 2862,
+            "warnings": [
+            ],
+            "reqAdd": true,
+            "oneStep": false
+        },
+        {
+            "id": 1,
+            "status": "REJECTED",
+            "addedBy": {
+                "id": 15091433,
+                "code": "till.india1",
+                "description": "",
+                "name": "till.india1",
+                "type": "TILL",
+                "adminType": "GENERAL",
+                "isActive": true,
+                "isOuEnabled": false,
+                "timeZoneId": 0,
+                "currencyId": 0,
+                "languageId": 0
+            },
+            "addedByParent": {
+                "id": 15091431,
+                "code": "store_india",
+                "description": "",
+                "name": "StoreIndia",
+                "type": "STORE",
+                "adminType": "GENERAL",
+                "isActive": true,
+                "isOuEnabled": false,
+                "timeZoneId": 0,
+                "currencyId": 23,
+                "languageId": 148
+            },
+            "updatedBy": {
+                "id": 8730028,
+                "code": "Patel",
+                "name": "Nayan Kumar",
+                "type": "ADMIN_USER",
+                "adminType": "GENERAL",
+                "isActive": true,
+                "isOuEnabled": false,
+                "timeZoneId": 0,
+                "currencyId": 0,
+                "languageId": 0
+            },
+            "addedOn": "2015-07-22T14:06:14+05:30",
+            "updatedOn": "2015-10-13T16:12:43+05:30",
+            "userId": 9113108,
+            "requestId": 116663,
+            "baseType": "RETRO",
+            "reason": "_memcare(\"Insufficient validation from requestor d",
+            "comments": "Sample comments;",
+            "transactionId": 2861,
+            "warnings": [
+            ],
+            "reqAdd": true,
+            "oneStep": false
+        }
+    ],
+    "warnings": [
+    ],
+    "errors": [
+    ]
+}
 ```
+
+### Resource Information
 
 | | |
 --------- | ----------- |
@@ -1238,18 +1528,178 @@ Batch Support | No
 `https://{host}/v2/customers/{customerId}/retroRequest?{query parameters}`
 
 
-### Request Body Parameters
+### Request Query Parameters
 
 Parameter | Type | Description
 --------- | ---- | -----------
-Status | enum | APPROVED, PENDING, REJECTED, CUSTOM
-Type | enum | CHANGE_IDENTIFIER, GOODWILL, TRANSACTION_UPDATE
-startDate | string | 
-endDate | string | 
-startId | long | 
-endId | long | 
-offset | long | 
+changeType | enum | Lets you filter requests by type. Value: `EMAIL` (for email id changes), `MOBILE` (for mobile number change history), `EXTERNAL_ID` (for external ID change history), `MERGE` (for account merge history), `ADDRESS` (for address change history), `MOBILE_REALLOC` (for mobile reallocations), `COUPON`, `POINTS`, `TIER` (for tier change history), and `RETRO` (for retro transactions).
+startDate | string | Filter results by date-range. Pass the start date in `YYYY-MM-DD` format.
+endDate | string | Filter results by date-range. Pass the  end date in `YYYY-MM-DD` format.
+startId | long | Filter results by sequence ID (sequence in which a change happened). For example, get lists from startId 200
+endId | long | Filter results by sequence ID (sequence in which a change happened). For example, get lists from startId 200 until endId 400.
+offset | long | Number of rows that you want omit from showing.
+limit | int | Pass the number of results that you want to see.
+
+
+## Get Customer Goodwill Requests
+
+Retrieves the history of goodwill points of a customer.
+
+> Sample Request
+
+```html
+http://api.capillary.co.in/v2/customers/343040815/goodwillRequest
+```
+
+
+```json
+{
+    "pagination": {
+        "limit": 10,
+        "offset": 0,
+        "total": 2
+    },
+    "data": [
+        {
+            "id": 43114,
+            "addedBy": {
+                "id": 15000449,
+                "code": "1371622280_919866643044",
+                "description": "",
+                "name": "1371622280_Ashish",
+                "type": "ADMIN_USER",
+                "adminType": "GENERAL",
+                "isActive": true,
+                "isOuEnabled": false,
+                "timeZoneId": 0,
+                "currencyId": 0,
+                "languageId": 0
+            },
+            "updatedBy": {
+                "id": 15000449,
+                "code": "1371622280_919866643044",
+                "description": "",
+                "name": "1371622280_Ashish",
+                "type": "ADMIN_USER",
+                "adminType": "GENERAL",
+                "isActive": true,
+                "isOuEnabled": false,
+                "timeZoneId": 0,
+                "currencyId": 0,
+                "languageId": 0
+            },
+            "addedOn": "2019-11-04T15:18:23+05:30",
+            "updatedOn": "2019-11-04T15:18:23+05:30",
+            "userId": 343040815,
+            "requestId": 770197,
+            "goodwillType": "POINTS",
+            "goodwillStatus": "APPROVED",
+            "comments": "sample",
+            "reason": " ",
+            "approvedValue": "450",
+            "updatedComments": "sample; AUTO_APPROVED",
+            "oneStep": false
+        },
+        {
+            "id": 43113,
+            "addedBy": {
+                "id": 15000449,
+                "code": "1371622280_919866643044",
+                "description": "",
+                "name": "1371622280_Ashish",
+                "type": "ADMIN_USER",
+                "adminType": "GENERAL",
+                "isActive": true,
+                "isOuEnabled": false,
+                "timeZoneId": 0,
+                "currencyId": 0,
+                "languageId": 0
+            },
+            "updatedBy": {
+                "id": 15000449,
+                "code": "1371622280_919866643044",
+                "description": "",
+                "name": "1371622280_Ashish",
+                "type": "ADMIN_USER",
+                "adminType": "GENERAL",
+                "isActive": true,
+                "isOuEnabled": false,
+                "timeZoneId": 0,
+                "currencyId": 0,
+                "languageId": 0
+            },
+            "addedOn": "2019-11-04T15:17:55+05:30",
+            "updatedOn": "2019-11-04T15:17:55+05:30",
+            "userId": 343040815,
+            "requestId": 770196,
+            "goodwillType": "POINTS",
+            "goodwillStatus": "PENDING",
+            "comments": "",
+            "reason": " ",
+            "oneStep": false
+        }
+    ],
+    "warnings": [],
+    "errors": []
+}
+
+
+```
+
+### Resource Information
+
+| | |
+--------- | ----------- |
+URI | `/{customerId}/goodwillRequest`
+Authentication | Yes
+HTTP Method | GET
+Batch Support | No
+
+### Request URL
+
+`https://{host}/v2/customers/{customerId}/goodwillRequest`
 
 
 
 
+
+
+
+## Get Customer Coupons
+
+Retrieves coupon history of a customer.
+
+> Sample Request
+
+```html
+http://api.capillary.co.in/v2/customers/343040815/coupons
+```
+
+> Sample Response
+
+```json
+
+
+```
+
+
+### Resource Information
+
+| | |
+--------- | ----------- |
+URI | `/{customerId}/coupons`
+Authentication | Yes
+HTTP Method | GET
+Batch Support | No
+
+### Request URL
+
+`https://{host}/v2/customers/{customerId}/coupons`
+
+
+### Request Query Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+customerId | int | 
+mobile |

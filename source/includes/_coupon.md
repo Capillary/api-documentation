@@ -15,8 +15,9 @@ For any other coupon related APIs, please use v1.1 APIs.
 
 ## Redeem Coupons
 
+> Sample Request
+
 ```html
-# Sample Request
 http://api.capillary.co.in/v2/coupon/redeem 
 
 ```
@@ -34,9 +35,6 @@ http://api.capillary.co.in/v2/coupon/redeem
    "redemptionRequestList":[
       {
          "code":"9NUF8THR"
-      },
-      {
-         "code":"AFZDT2F6"
       }
    ]
 }
@@ -47,72 +45,44 @@ http://api.capillary.co.in/v2/coupon/redeem
 
 ```json
 {
-   "customer":{
-      "id":325666376,
-      "profiles":[
-         {
-            "accountId":"",
-            "autoUpdateTime":"2019-04-04T11:51:05+05:30",
-            "commChannels":[
-
-            ],
-            "fields":{
-
-            },
-            "firstName":"firstName_813014",
-            "identifiers":[
-               {
-                  "type":"email",
-                  "value":"autoemail7543813014@gmail.com"
-               },
-               {
-                  "type":"externalId",
-                  "value":"ext_id7543813014"
-               },
-               {
-                  "type":"mobile",
-                  "value":"917543813014"
-               }
-            ],
-            "lastName":"lastName_813014",
-            "userId":325666376
-         }
-      ]
-   },
-   "redemption":[
-      {
-         "appendedErrorMessage":"",
-         "code":"E1HX7Q34",
-         "couponValue":10.0,
-         "discountCode":"XYZ123",
-         "id":33021115,
-         "isAbsolute":false,
-         "seriesCode":9069,
-         "warnings":[
-
-         ]
-      },
-      {
-         "appendedErrorMessage":"",
-         "code":"UN7CZPQ3",
-         "couponValue":10.0,
-         "discountCode":"XYZ123",
-         "id":33021116,
-         "isAbsolute":false,
-         "seriesCode":9240,
-         "warnings":[
-
-         ]
-      }
-   ],
-   "redemptionStatus":{
-      "code":700,
-      "message":"Coupon processing successful",
-      "status":true
-   },
-   "warnings":[
-
-   ]
+    "redemption": [
+        {
+            "id": 33138363,
+            "warnings": [],
+            "appendedErrorMessage": "",
+            "code": "JL07UAZ3",
+            "discountCode": "MobilePush",
+            "seriesCode": 14162,
+            "isAbsolute": false,
+            "couponValue": 10.0
+        }
+    ],
+    "redemptionStatus": {
+        "status": true,
+        "code": 700,
+        "message": "Coupon processing successful"
+    },
+    "customer": {
+        "id": 342963216,
+        "profiles": [
+            {
+                "firstName": "Tom",
+                "lastName": "Sawyer",
+                "fields": {},
+                "identifiers": [
+                    {
+                        "type": "mobile",
+                        "value": "919999000000"
+                    }
+                ],
+                "commChannels": [],
+                "userId": 342963216,
+                "accountId": "",
+                "autoUpdateTime": "2019-10-31T17:41:25+05:30"
+            }
+        ]
+    },
+    "warnings": []
 }
 ```
 
@@ -120,28 +90,24 @@ http://api.capillary.co.in/v2/coupon/redeem
 This API allows you to redeem active coupons of a loyalty customer. You can pass multiple coupons at once.
 
 ### Resource Information
-Entry | Description
------ | -----------
-URI | coupon/redeem
-Rate Limited? | Yes
+| | |
+--------- | ----------- |
+URI | `/redeem`
 Authentication  | Yes
-Response Formats  | JSON
 HTTP Method  | POST
-API Version  | v2
-Batch Support  | Yes
+Batch Support  | No
 
 ### Request URL
-`http://api.capillary.co.in/v2/coupon/redeem`
+`http://{host}/v2/coupon/redeem`
 
 ### Request Parameters
 Parameter | Description
 --------- | -----------
-billAmount | Amount of the transaction for which you want to redeem coupons
-transactionNumber | Transaction number against which the coupon needs to be redeemed
-user | Specify any identifier of the user who wants to redeem coupons. Values: mobile, email, externalId
-redemptionTime | Date and time when the coupon has to be redeemed
-redemptionRequestList | Pass the list of each coupon code that you want  to redeem for the transaction
-code | Coupon code to be redeemed
+billAmount* | float | Transaction amount of the bill.
+transactionNumber* | string | Transaction number against which the coupon needs to be redeemed
+user* | enum | Specify any identifier of the user who wants to redeem coupons. Values: mobile, email, externalId
+redemptionTime | Date and time when the coupon has to be redeemed.
+code* | Coupon code to be redeemed.
 
 <aside class="warning"> You need to pass either code or id as applicable </aside>
 
@@ -227,24 +193,21 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000&
 Lets you check whether a set of coupons can be redeemed or not.
 
 ### Resource Information
-Entry | Description
------ | -----------
-URI | v2/coupon/is_redeemable?{customerIdentifier}&code={value1},{value2}...&details={true/extended}
-Rate Limited? | Yes
+| | |
+--------- | ----------- |
+URI | `/is_redeemable?{customerIdentifier}&code={value1},{value2}...&details={true/extended}`
 Authentication  | Yes
-Response Formats  | JSON
 HTTP Method  | GET
-API Version  | v2
 Batch Support  | Yes
 
 ### Request URL
-`http://<cluster url>/v2/coupon/is_redeemable?{customerIdentifier}&code={value1},{value2}...&details={true/extended}`
+`http://{host}/v2/coupon/is_redeemable?{customerIdentifier}&code={value1},{value2}...&details={true/extended}`
 
 ### Request Parameters
 Parameter | Description
 --------- | -----------
 Customer identifier* | Pass the identifier of the customer for whom you want to check whether the coupon is redeemable
-code | Pass the coupon codes that you want to check separating each with a comma (,)
+code* | Pass the coupon codes that you want to check separating each with a comma (,)
 details=true | Retrieves the details of the coupon series
 details=extended | Retrieves the details of coupon configurations (set on campaign) of that specific coupon series
 
