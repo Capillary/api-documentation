@@ -2533,7 +2533,45 @@ Also, check the following configurations for maximum days allowed and minimum ti
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/customers/{customerId}/goodwillRequest</code></p>
+<p>`https://{host}/v2/customers/{customerId}/goodwillRequest</p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>currencyId*</td>
+<td>long</td>
+<td>Pass the unique ID of the customer whose goodwill request details you want to fetch.</td>
+</tr>
+<tr>
+<td>requestId</td>
+<td>long</td>
+<td>Unique id of the goodwill request that you want to fetch.</td>
+</tr>
+<tr>
+<td>is_one_step_change</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to fetch goodwill points or coupon requests that are issued instantly (one step issual).</td>
+</tr>
+<tr>
+<td>programId</td>
+<td>string</td>
+<td>Get requests of a specific loyalty program. Pass the unique loyalty program ID.</td>
+</tr>
+<tr>
+<td>autoApprove</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to fetch requests that are auto-approved - without the involvement of the back-end team.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
 
 <h2 id="get-customer-coupons">Get Customer Coupons</h2>
 
@@ -2591,7 +2629,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </thead><tbody>
 <tr>
 <td>customerId</td>
-<td>int</td>
+<td>long</td>
 <td></td>
 </tr>
 <tr>
@@ -3100,7 +3138,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 
 <p>The functionality of OTPs depends on the configuration set on InTouch</p>
 
-<h2 id="issue-otp">Issue OTP</h2>
+<h2 id="generate-otp">Generate OTP</h2>
 <pre class="highlight html"><code>
 # Sample Request
 
@@ -3166,7 +3204,6 @@ https://us.api.capillarytech.com/v2/otp/generate?format=json
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
-
 </span></code></pre>
 <p>Issues validation code (OTP) to the customer&rsquo;s mobile number and/or email id for redeeming points/coupons, and registration.</p>
 
@@ -3180,7 +3217,7 @@ https://us.api.capillarytech.com/v2/otp/generate?format=json
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td>otp/generate</td>
+<td><code class="prettyprint">/generate</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -3202,33 +3239,40 @@ https://us.api.capillarytech.com/v2/otp/generate?format=json
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://&lt;cluster URL&gt;/v2/otp/generate?format=json</code></p>
+<p><code class="prettyprint">https://{host}/v2/otp/generate</code></p>
 
 <h3 id="request-attributes">Request Attributes</h3>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Datatype</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>entityType</td>
-<td>Specify MOBILE to identify customer by mobile number or EMAIL to identify customer by email id</td>
+<td>entityType*</td>
+<td>enum</td>
+<td>Specify <code class="prettyprint">MOBILE</code> to identify customer by mobile number, or <code class="prettyprint">EMAIL</code> to identify customer by email id.</td>
 </tr>
 <tr>
-<td>entityValue</td>
-<td>Specify the registered  mobile number or email id of the customer based on the entityType passed</td>
+<td>entityValue*</td>
+<td>string</td>
+<td>Specify the registered  mobile number or email id of the customer based on the entityType passed.</td>
 </tr>
 <tr>
-<td>action</td>
-<td>Choose the action for which the OTP has to be issued. Supported values: COUPON, POINTS, REGISTRATION, GENERIC</td>
+<td>action*</td>
+<td>enum</td>
+<td>Choose the action for which the OTP has to be issued. Values: <code class="prettyprint">COUPON</code> (for coupon redemption), <code class="prettyprint">POINTS</code> (for points redemption), <code class="prettyprint">REGISTRATION</code>, <code class="prettyprint">USERGROUP</code>, <code class="prettyprint">SUBSCRIPTION</code>, <code class="prettyprint">GENERIC</code> (for other purposes).</td>
 </tr>
 <tr>
-<td>channels</td>
-<td>Specify the channels through which you want to issue OTP for redemption or registration. Value: EMAIL, SMS, PHONE. You can use Phone to generate OTP through a voice call to the specified number.</td>
+<td>channels*</td>
+<td>enum</td>
+<td>Specify the channels through which you want to issue OTP for redemption or registration. Value: EMAIL, SMS, PHONE (phone call). You can use Phone to generate OTP through a voice call to the specified number.</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
 
 <aside class="notice">
 If the email template is not specified, the validation code will be sent in the default email template format specified below:
@@ -3245,7 +3289,7 @@ If the email template is not specified, the validation code will be sent in the 
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/otp/validate?format=json
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/otp/validate
 </code></pre>
 <blockquote>
 <p>Sample POST Request</p>
@@ -3290,7 +3334,7 @@ If the email template is not specified, the validation code will be sent in the 
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td>otp/validate</td>
+<td><code class="prettyprint">/validate</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -3312,42 +3356,45 @@ If the email template is not specified, the validation code will be sent in the 
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://&lt;cluster URL&gt;/v2/otp/validate?format=json</code></p>
+<p><code class="prettyprint">https://{host}/v2/otp/validate?format=json</code></p>
 
-<h3 id="request-attributes">Request Attributes</h3>
+<h3 id="request-body-parameters">Request Body Parameters</h3>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Datatype</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>entityType</td>
-<td>Specify MOBILE to identify customer by mobile number or EMAIL to identify customer by email id</td>
+<td>entityType*</td>
+<td>enum</td>
+<td>Specify MOBILE to identify customer by mobile number or EMAIL to identify customer by email id.</td>
 </tr>
 <tr>
-<td>entityValue</td>
-<td>Specify the registered  mobile number or email id of the customer based on the entityType passed</td>
+<td>entityValue*</td>
+<td>string</td>
+<td>Specify the registered  mobile number or email id of the customer based on the entityType passed.</td>
 </tr>
 <tr>
-<td>code</td>
-<td>Pass the validation code received by the customer</td>
+<td>code*</td>
+<td>string</td>
+<td>Pass the validation code received by the customer.</td>
 </tr>
 <tr>
 <td>action</td>
-<td>Specify the action to be performed on successful validation. COUPON, POINTS, REGISTRATION, GENERIC</td>
+<td>enum</td>
+<td>Specify the action to be performed on successful validation. Values: <code class="prettyprint">COUPON</code> (for coupon redemption), <code class="prettyprint">POINTS</code> (for points redemption), <code class="prettyprint">REGISTRATION</code>, <code class="prettyprint">USERGROUP</code>, <code class="prettyprint">SUBSCRIPTION</code>, <code class="prettyprint">GENERIC</code> (for other purposes).</td>
 </tr>
 </tbody></table>
 
-<h2 id="fetch-otp">Fetch OTP</h2>
+<h2 id="get-otp">Get OTP</h2>
 
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight html"><code>
-
-https://us.api.capillarytech.com/v2/otp/source=WECHAT<span class="err">&amp;</span>accountId=WECHAT-API1<span class="err">&amp;</span>identifierName=mobile<span class="err">&amp;</span>identifierValue=8799361139<span class="err">&amp;</span>threshold=60<span class="err">&amp;</span>scope=POINTS
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/otp/source=WECHAT<span class="err">&amp;</span>accountId=WECHAT-API1<span class="err">&amp;</span>identifierName=mobile<span class="err">&amp;</span>identifierValue=8799361139<span class="err">&amp;</span>threshold=60<span class="err">&amp;</span>scope=POINTS
 </code></pre>
 <blockquote>
 <p>Sample Response</p>
@@ -3398,41 +3445,50 @@ https://us.api.capillarytech.com/v2/otp/source=WECHAT<span class="err">&amp;</sp
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/otp/source=&lt;source name&gt;&amp;accountId=&lt;account id&gt;&amp;&lt;identifier name&gt;=&lt;identifier Value&gt;&amp;scope=&lt;POINTS/COUPONS&gt;</code></p>
+<p><code class="prettyprint">https://{host}/v2/otp/source={source_name}&amp;accountId={account_id}&amp;{identifierName}={value}&amp;scope={POINTS/COUPONS}</code></p>
 
 <h3 id="request-attributes">Request Attributes</h3>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Datatype</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>identifierName</td>
-<td>Registered identifier of the customer. Values: mobile, email, external_id, wechat</td>
+<td>identifierName*</td>
+<td>enum</td>
+<td>Pass any of the registered identifier type of the customer. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">external_id</code>, <code class="prettyprint">wechat</code>.</td>
 </tr>
 <tr>
-<td>identifierValue</td>
-<td>Specify the value of the selected identifierName</td>
+<td>identifierValue*</td>
+<td>string</td>
+<td>Specify the value of the specified identifierType</td>
 </tr>
 <tr>
 <td>source</td>
-<td>Specify a source in which the customer is registered</td>
+<td>enum</td>
+<td>Source in which the customer is registered.</td>
 </tr>
 <tr>
 <td>accountId</td>
-<td>Specify the specific of the source for sources such as WeChat and Facebook</td>
+<td>string</td>
+<td>Specific of the source for sources such as WeChat and Facebook</td>
 </tr>
 <tr>
 <td>threshold</td>
+<td>long</td>
 <td>Specify the validity of the OTP (in seconds) that you want to fetch</td>
 </tr>
 <tr>
 <td>scope</td>
-<td>Specify the scope of the OTP issued. Values: POINTS/COUPONS</td>
+<td>enum</td>
+<td>Specify the scope of the OTP issued. Values: <code class="prettyprint">COUPON</code> (for coupon redemption), <code class="prettyprint">POINTS</code> (for points redemption), <code class="prettyprint">REGISTRATION</code>, <code class="prettyprint">USERGROUP</code>, <code class="prettyprint">SUBSCRIPTION</code>, <code class="prettyprint">GENERIC</code> (for other purposes).</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
 
           <h1 id="coupon">Coupon</h1>
 
@@ -9512,7 +9568,7 @@ password* | Specify your preferred new password</p>
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/v2/usergroups</code></td>
+<td><code class="prettyprint">/usergroups</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -9550,15 +9606,18 @@ password* | Specify your preferred new password</p>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Datatype</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>name*</td>
+<td>string</td>
 <td>Name of the user group</td>
 </tr>
 <tr>
 <td>primaryUserId*</td>
+<td>long</td>
 <td>Unique user id of the group admin</td>
 </tr>
 </tbody></table>
@@ -9591,7 +9650,7 @@ password* | Specify your preferred new password</p>
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/v2/usergroups/{groupId}/members/{userId}</code></td>
+<td><code class="prettyprint">/{groupId}/members/{userId}</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -9629,18 +9688,23 @@ password* | Specify your preferred new password</p>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Datatype</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>groupId*</td>
+<td>long</td>
 <td>Unique id the group that the user wants to joinedOn</td>
 </tr>
 <tr>
 <td>userId*</td>
+<td>long</td>
 <td>Unique id of the user who wants to join the group</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
 
 <h2 id="join-user-group-otp-based">Join User Group (OTP Based)</h2>
 
@@ -9711,15 +9775,42 @@ password* | Specify your preferred new password</p>
 
 <p><code class="prettyprint">https://{host}/v2/usergroups/{groupId}/members/{userId}</code></p>
 
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>groupId*</td>
+<td>long</td>
+<td>Unique id the group that the user wants to joinedOn</td>
+</tr>
+<tr>
+<td>userId*</td>
+<td>long</td>
+<td>Unique id of the user who wants to join the group</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
+
 <h2 id="get-user-group-details">Get User Group Details</h2>
 
 <p>Retrieves the details of a specific user group.</p>
 
 <blockquote>
-<p>Sample Request</p>
+<p>Sample Request URL</p>
 </blockquote>
 <pre class="highlight html"><code>https://us.ap.capillarytech.com/v2/usergroups/1
-</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
     </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harsh"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"primaryUserId"</span><span class="p">:</span><span class="w"> </span><span class="mi">281348774</span><span class="p">,</span><span class="w">
@@ -9775,7 +9866,7 @@ password* | Specify your preferred new password</p>
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/v2/usergroups/{groupId}</code></td>
+<td><code class="prettyprint">/usergroups/{groupId}</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -9808,19 +9899,23 @@ password* | Specify your preferred new password</p>
 
 <p><code class="prettyprint">https://{host}/v2/usergroups/{groupId}</code></p>
 
-<h3 id="request-body-parameters">Request Body Parameters</h3>
+<h3 id="request-query-parameters">Request Query Parameters</h3>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Datatype</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>groupId*</td>
+<td>long</td>
 <td>Unique id the user group that you want to fetch</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
 
 <h2 id="update-group-admin">Update Group Admin</h2>
 
@@ -9890,7 +9985,7 @@ password* | Specify your preferred new password</p>
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/v2/usergroups/{groupId}</code></td>
+<td><code class="prettyprint">/usergroups/{groupId}</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -9928,22 +10023,28 @@ password* | Specify your preferred new password</p>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Datatype</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>groupId*</td>
+<td>long</td>
 <td>Unique id the user group that you want to fetch</td>
 </tr>
 <tr>
 <td>primaryUserId*</td>
+<td>long</td>
 <td>User id of the new admin</td>
 </tr>
 <tr>
 <td>name</td>
+<td>string</td>
 <td>Name of the user group</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
 
 <h2 id="update-group-admin-otp-based">Update Group Admin (OTP Based)</h2>
 
@@ -9965,7 +10066,7 @@ password* | Specify your preferred new password</p>
 <pre class="highlight html"><code>https://us.api.capillarytech.com/usergroups/1/primaryuser/368881003
 </code></pre>
 <blockquote>
-<p>Sample POST Request</p>
+<p>Sample PUT Request</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -10061,22 +10162,28 @@ password* | Specify your preferred new password</p>
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Datatype</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>groupId*</td>
-<td>Unique id the user group that you want to fetch</td>
+<td>long</td>
+<td>Unique id the user group that you want to fetch.</td>
 </tr>
 <tr>
 <td>primaryUserId*</td>
-<td>User id of the new admin</td>
+<td>long</td>
+<td>User id of the new admin.</td>
 </tr>
 <tr>
 <td>name</td>
-<td>Name of the user group</td>
+<td>string</td>
+<td>Name of the user group.</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
 
 <h2 id="exit-user-group">Exit User Group</h2>
 
@@ -10088,7 +10195,7 @@ password* | Specify your preferred new password</p>
 <pre class="highlight html"><code>https://us.api.capillarytech.com/v2/usergroups/1
 </code></pre>
 <blockquote>
-<p>Sample POST Request</p>
+<p>Sample Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
@@ -10107,19 +10214,11 @@ password* | Specify your preferred new password</p>
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/v2/usergroups/{groupId}/members/{userId}</code></td>
-</tr>
-<tr>
-<td>Rate Limited?</td>
-<td>No</td>
+<td><code class="prettyprint">/usergroups/{groupId}/members/{userId}</code></td>
 </tr>
 <tr>
 <td>Authentication</td>
 <td>Yes</td>
-</tr>
-<tr>
-<td>Response Formats</td>
-<td>JSON</td>
 </tr>
 <tr>
 <td>HTTP Methods</td>
@@ -10140,23 +10239,28 @@ password* | Specify your preferred new password</p>
 
 <p><code class="prettyprint">https://{host}/v2/usergroups/{groupId}/members/{userId}</code></p>
 
-<h3 id="request-parameters">Request Parameters</h3>
+<h3 id="request-query-parameters">Request Query Parameters</h3>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Datatype</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>groupId*</td>
 <td>Group id from which you want to exit the user</td>
+<td></td>
 </tr>
 <tr>
 <td>userId*</td>
 <td>Unique id of the user that you want to exit from the group</td>
+<td></td>
 </tr>
 </tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
 
 <h2 id="get-transactions-of-user-group">Get Transactions of User Group</h2>
 
@@ -10579,6 +10683,24 @@ password* | Specify your preferred new password</p>
 <h3 id="request-url">Request URL</h3>
 
 <p>`https://{host}/v2/usergroups/{groupId}/transactions</p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>groupId*</td>
+<td>long</td>
+<td>Unique id the user group that you want to fetch.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
 
 <h2 id="response-codes">Response Codes</h2>
 
