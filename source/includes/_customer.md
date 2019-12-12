@@ -1657,10 +1657,19 @@ Batch Support | No
 
 ### Request URL
 
-`https://{host}/v2/customers/{customerId}/goodwillRequest`
+`https://{host}/v2/customers/{customerId}/goodwillRequest
 
+### Request Query Parameters
 
+Parameter | Datatype | Description
+--------- | -------- | -----------
+currencyId* | long | Pass the unique ID of the customer whose goodwill request details you want to fetch.
+requestId | long | Unique id of the goodwill request that you want to fetch.
+is_one_step_change | boolean | Pass `true` to fetch goodwill points or coupon requests that are issued instantly (one step issual).
+programId | string | Get requests of a specific loyalty program. Pass the unique loyalty program ID.
+autoApprove | boolean | Pass `true` to fetch requests that are auto-approved - without the involvement of the back-end team.
 
+<aside class="notice">Parameters marked with * are mandatory. </aside>
 
 
 
@@ -1701,5 +1710,5 @@ Batch Support | No
 
 Parameter | Datatype | Description
 --------- | -------- | -----------
-customerId | int | 
+customerId | long | 
 mobile |

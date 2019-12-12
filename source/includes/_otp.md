@@ -5,7 +5,7 @@ This section consists of APIs related to OTPs that are used to validate customer
 The functionality of OTPs depends on the configuration set on InTouch
 
 
-## Issue OTP
+## Generate OTP
 
 ```html
 
@@ -78,7 +78,6 @@ https://us.api.capillarytech.com/v2/otp/generate?format=json
 	]
 }
 
-
 ```
 
 Issues validation code (OTP) to the customer's mobile number and/or email id for redeeming points/coupons, and registration.
@@ -87,7 +86,7 @@ Issues validation code (OTP) to the customer's mobile number and/or email id for
 ### Resource Information
 Parameter | Description
 --------- | -----------
-URI	| otp/generate
+URI	| `/generate`
 Rate Limited? | Yes
 Authentication | Yes
 HTTP Method | POST
@@ -95,15 +94,18 @@ Batch Support | No
 
 
 ### Request URL
-`https://<cluster URL>/v2/otp/generate?format=json`
+`https://{host}/v2/otp/generate`
 
 ### Request Attributes
-Parameter | Description
---------- | -----------
-entityType | Specify MOBILE to identify customer by mobile number or EMAIL to identify customer by email id
-entityValue | Specify the registered  mobile number or email id of the customer based on the entityType passed
-action |Choose the action for which the OTP has to be issued. Supported values: COUPON, POINTS, REGISTRATION, GENERIC
-channels | Specify the channels through which you want to issue OTP for redemption or registration. Value: EMAIL, SMS, PHONE. You can use Phone to generate OTP through a voice call to the specified number.
+Parameter | Datatype | Description
+--------- | -------- | -----------
+entityType* | enum | Specify `MOBILE` to identify customer by mobile number, or `EMAIL` to identify customer by email id.
+entityValue* | string | Specify the registered  mobile number or email id of the customer based on the entityType passed.
+action* | enum | Choose the action for which the OTP has to be issued. Values: `COUPON` (for coupon redemption), `POINTS` (for points redemption), `REGISTRATION`, `USERGROUP`, `SUBSCRIPTION`, `GENERIC` (for other purposes).
+channels* | enum | Specify the channels through which you want to issue OTP for redemption or registration. Value: EMAIL, SMS, PHONE (phone call). You can use Phone to generate OTP through a voice call to the specified number.
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
+
 
 <aside class="notice">
 If the email template is not specified, the validation code will be sent in the default email template format specified below:
@@ -123,7 +125,7 @@ If the email template is not specified, the validation code will be sent in the 
 > Sample Request
 
 ```html
-https://us.api.capillarytech.com/v2/otp/validate?format=json
+https://us.api.capillarytech.com/v2/otp/validate
 ```
 
 > Sample POST Request
@@ -167,7 +169,7 @@ Lets you authenticate customer by validating the OTP sent to the customer throug
 ### Resource Information
 Parameter | Description
 --------- | -----------
-URI	| otp/validate
+URI	| `/validate`
 Rate Limited? | Yes
 Authentication | Yes
 HTTP Method | POST
@@ -176,24 +178,24 @@ Batch Support | No
 
 
 ### Request URL
-`https://<cluster URL>/v2/otp/validate?format=json`
+`https://{host}/v2/otp/validate?format=json`
 
-### Request Attributes
-Parameter | Description
---------- | -----------
-entityType | Specify MOBILE to identify customer by mobile number or EMAIL to identify customer by email id
-entityValue | Specify the registered  mobile number or email id of the customer based on the entityType passed
-code | Pass the validation code received by the customer
-action | Specify the action to be performed on successful validation. COUPON, POINTS, REGISTRATION, GENERIC
+### Request Body Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+entityType* | enum | Specify MOBILE to identify customer by mobile number or EMAIL to identify customer by email id.
+entityValue* | string | Specify the registered  mobile number or email id of the customer based on the entityType passed.
+code* | string | Pass the validation code received by the customer.
+action | enum | Specify the action to be performed on successful validation. Values: `COUPON` (for coupon redemption), `POINTS` (for points redemption), `REGISTRATION`, `USERGROUP`, `SUBSCRIPTION`, `GENERIC` (for other purposes).
 
 
-## Fetch OTP
+
+## Get OTP
 
 > Sample Request
 
-```html
-
- 
+```html 
 https://us.api.capillarytech.com/v2/otp/source=WECHAT&accountId=WECHAT-API1&identifierName=mobile&identifierValue=8799361139&threshold=60&scope=POINTS
 ```
 
@@ -226,17 +228,19 @@ Batch Support | No
 
 ### Request URL
 
-`https://<Respective cluster’s API URL>/v2/otp/source=<source name>&accountId=<account id>&<identifier name>=<identifier Value>&scope=<POINTS/COUPONS>`
+`https://{host}/v2/otp/source={source_name}&accountId={account_id}&{identifierName}={value}&scope={POINTS/COUPONS}`
 
 ### Request Attributes
-Parameter | Description
---------- | -----------
-identifierName | Registered identifier of the customer. Values: mobile, email, external_id, wechat
-identifierValue | Specify the value of the selected identifierName
-source | Specify a source in which the customer is registered
-accountId | Specify the specific of the source for sources such as WeChat and Facebook
-threshold | Specify the validity of the OTP (in seconds) that you want to fetch
-scope | Specify the scope of the OTP issued. Values: POINTS/COUPONS
+Parameter | Datatype | Description
+--------- | -------- | -----------
+identifierName* | enum | Pass any of the registered identifier type of the customer. Values: `mobile`, `email`, `external_id`, `wechat`.
+identifierValue* | string | Specify the value of the specified identifierType
+source | enum | Source in which the customer is registered.
+accountId | string | Specific of the source for sources such as WeChat and Facebook
+threshold | long | Specify the validity of the OTP (in seconds) that you want to fetch
+scope | enum | Specify the scope of the OTP issued. Values: `COUPON` (for coupon redemption), `POINTS` (for points redemption), `REGISTRATION`, `USERGROUP`, `SUBSCRIPTION`, `GENERIC` (for other purposes).
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
 
 
 

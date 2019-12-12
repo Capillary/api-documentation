@@ -54,7 +54,7 @@ http://us.api.capillarytech.com/v2/usergroups
 ### Resource Information
 | | |
 --------- | ----------- |
-URI | `/v2/usergroups`
+URI | `/usergroups`
 Rate Limited? | No
 Authentication | Yes
 Response Formats | JSON
@@ -70,10 +70,10 @@ Batch Support | No
 
 ### Request Body Parameters
 
-Parameter | Description
---------- | -----------
-name* | Name of the user group
-primaryUserId* | Unique user id of the group admin
+Parameter | Datatype | Description
+--------- | -------- | -----------
+name* | string | Name of the user group
+primaryUserId* | long | Unique user id of the group admin
 
 
 
@@ -105,7 +105,7 @@ http://us.api.capillarytech.com/v2/usergroups/1/members/313099450
 ### Resource Information
 | | |
 --------- | ----------- |
-URI | `/v2/usergroups/{groupId}/members/{userId}`
+URI | `/{groupId}/members/{userId}`
 Rate Limited? | No
 Authentication | Yes
 Response Formats | JSON
@@ -121,10 +121,12 @@ Batch Support | No
 
 ### Request Body Parameters
 
-Parameter | Description
---------- | -----------
-groupId* | Unique id the group that the user wants to joinedOn
-userId* | Unique id of the user who wants to join the group
+Parameter | Datatype | Description
+--------- | -------- | -----------
+groupId* | long | Unique id the group that the user wants to joinedOn
+userId* | long | Unique id of the user who wants to join the group
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
 
 
 ## Join User Group (OTP Based)
@@ -175,19 +177,27 @@ Batch Support | No
 `https://{host}/v2/usergroups/{groupId}/members/{userId}`
 
 
+### Request Body Parameters
 
+Parameter | Datatype | Description
+--------- | -------- | -----------
+groupId* | long | Unique id the group that the user wants to joinedOn
+userId* | long | Unique id of the user who wants to join the group
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
 
 
 ## Get User Group Details
 
 Retrieves the details of a specific user group.
 
-> Sample Request
+> Sample Request URL
 
 ```html
 https://us.ap.capillarytech.com/v2/usergroups/1
 ```
 
+> Sample POST Request
 
 ```json
 {
@@ -242,7 +252,7 @@ https://us.ap.capillarytech.com/v2/usergroups/1
 ### Resource Information
 | | |
 --------- | ----------- |
-URI | `/v2/usergroups/{groupId}`
+URI | `/usergroups/{groupId}`
 Rate Limited? | No
 Authentication | Yes
 Response Formats | JSON
@@ -256,12 +266,13 @@ Batch Support | No
 
 `https://{host}/v2/usergroups/{groupId}`
 
-### Request Body Parameters
+### Request Query Parameters
 
-Parameter | Description
---------- | -----------
-groupId* | Unique id the user group that you want to fetch
+Parameter | Datatype | Description
+--------- | -------- | -----------
+groupId* | long | Unique id the user group that you want to fetch
 
+<aside class="notice">Parameters marked with * are mandatory. </aside>
 
 
 ## Update Group Admin
@@ -329,7 +340,7 @@ https://us.api.capillarytech.com/v2/usergroups/1
 ### Resource Information
 | | |
 --------- | ----------- |
-URI | `/v2/usergroups/{groupId}`
+URI | `/usergroups/{groupId}`
 Rate Limited? | No
 Authentication | Yes
 Response Formats | JSON
@@ -345,12 +356,13 @@ Batch Support | No
 
 ### Request Parameters
 
-Parameter | Description
---------- | -----------
-groupId* | Unique id the user group that you want to fetch
-primaryUserId* | User id of the new admin
-name | Name of the user group 
+Parameter | Datatype | Description
+--------- | -------- | -----------
+groupId* | long | Unique id the user group that you want to fetch
+primaryUserId* | long | User id of the new admin
+name | string | Name of the user group 
 
+<aside class="notice">Parameters marked with * are mandatory. </aside>
 
 
 
@@ -374,7 +386,7 @@ This is applicable only if OTP based authentication is enabled.
 https://us.api.capillarytech.com/usergroups/1/primaryuser/368881003
 ```
 
-> Sample POST Request
+> Sample PUT Request
 
 ```json
 {
@@ -445,12 +457,13 @@ Batch Support | No
 
 ### Request Parameters
 
-Parameter | Description
---------- | -----------
-groupId* | Unique id the user group that you want to fetch
-primaryUserId* | User id of the new admin
-name | Name of the user group
+Parameter | Datatype | Description
+--------- | -------- | -----------
+groupId* | long | Unique id the user group that you want to fetch.
+primaryUserId* | long | User id of the new admin.
+name | string | Name of the user group.
 
+<aside class="notice">Parameters marked with * are mandatory. </aside>
 
 
 
@@ -467,7 +480,7 @@ Exits a user from a user group.
 https://us.api.capillarytech.com/v2/usergroups/1
 ```
 
-> Sample POST Request
+> Sample Response
 
 ```json
 {
@@ -481,10 +494,8 @@ https://us.api.capillarytech.com/v2/usergroups/1
 ### Resource Information
 | | |
 --------- | ----------- |
-URI | `/v2/usergroups/{groupId}/members/{userId}`
-Rate Limited? | No
+URI | `/usergroups/{groupId}/members/{userId}`
 Authentication | Yes
-Response Formats | JSON
 HTTP Methods | DELETE
 Batch Support | No
 
@@ -495,12 +506,14 @@ Batch Support | No
 
 `https://{host}/v2/usergroups/{groupId}/members/{userId}`
 
-### Request Parameters
+### Request Query Parameters
 
-Parameter | Description
---------- | -----------
+Parameter | Datatype | Description
+--------- | -------- | -----------
 groupId* | Group id from which you want to exit the user
 userId* | Unique id of the user that you want to exit from the group
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
 
 
 
@@ -904,6 +917,13 @@ Batch Support | No
 `https://{host}/v2/usergroups/{groupId}/transactions
 
 
+### Request Query Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+groupId* | long | Unique id the user group that you want to fetch.
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
 
 
 
