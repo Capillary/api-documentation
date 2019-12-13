@@ -243,4 +243,26 @@ scope | enum | Specify the scope of the OTP issued. Values: `COUPON` (for coupon
 <aside class="notice">Parameters marked with * are mandatory. </aside>
 
 
+## Response Codes
 
+### Success Code
+
+Code | Description
+---- | -----------
+610 | OTP is validated successfully.
+
+### Error Codes
+
+Code | Description
+---- | -----------
+600 | Invalid or null `action` passed.
+601 | Invalid or null `entity_type` passed.
+602 | Invalid or null `entity_value` passed.
+603 | Invalid or null `communication channel` value passed.
+604 | No OTP passed.
+605 | OTP is either invalid, expired, or null.
+606 | Unable to generate OTP at the moment.
+874 | Unable to generate validation code (OTP).
+875 | Unable to generate validation code (OTP).
+876 | OTP Validation Failed
+9001 | No valid  OTP found.

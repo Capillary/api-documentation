@@ -57,7 +57,6 @@ http://us.api.capillarytech.com/v2/usergroups
 URI | `/usergroups`
 Rate Limited? | No
 Authentication | Yes
-Response Formats | JSON
 HTTP Methods | POST
 Batch Support | No
 
@@ -75,6 +74,7 @@ Parameter | Datatype | Description
 name* | string | Name of the user group
 primaryUserId* | long | Unique user id of the group admin
 
+<aside class="notice">Parameters marked with * are mandatory.</aside>
 
 
 
@@ -108,7 +108,6 @@ http://us.api.capillarytech.com/v2/usergroups/1/members/313099450
 URI | `/{groupId}/members/{userId}`
 Rate Limited? | No
 Authentication | Yes
-Response Formats | JSON
 HTTP Methods | POST
 Batch Support | No
 
@@ -165,7 +164,6 @@ http://us.api.capillarytech.com/v2/usergroups/1/members/313099450
 URI | `/v2/usergroups/{groupId}/members/{userId}`
 Rate Limited? | No
 Authentication | Yes
-Response Formats | JSON
 HTTP Methods | PUT
 Batch Support | No
 
@@ -255,7 +253,6 @@ https://us.ap.capillarytech.com/v2/usergroups/1
 URI | `/usergroups/{groupId}`
 Rate Limited? | No
 Authentication | Yes
-Response Formats | JSON
 HTTP Methods | GET
 Batch Support | No
 
@@ -343,7 +340,6 @@ https://us.api.capillarytech.com/v2/usergroups/1
 URI | `/usergroups/{groupId}`
 Rate Limited? | No
 Authentication | Yes
-Response Formats | JSON
 HTTP Methods | PUT
 Batch Support | No
 
@@ -358,9 +354,9 @@ Batch Support | No
 
 Parameter | Datatype | Description
 --------- | -------- | -----------
-groupId* | long | Unique id the user group that you want to fetch
-primaryUserId* | long | User id of the new admin
-name | string | Name of the user group 
+groupId* | long | Unique id the user group that you want to fetch.
+primaryUserId* | long | User id of the new admin.
+name | string | Name of the user group .
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
 
@@ -441,7 +437,7 @@ https://us.api.capillarytech.com/usergroups/1/primaryuser/368881003
 ### Resource Information
 | | |
 --------- | ----------- |
-URI | `/v2/usergroups/{groupId}/primaryuser/{userId}`
+URI | `/usergroups/{groupId}/primaryuser/{userId}`
 Rate Limited? | No
 Authentication | Yes
 Response Formats | JSON
@@ -510,8 +506,8 @@ Batch Support | No
 
 Parameter | Datatype | Description
 --------- | -------- | -----------
-groupId* | Group id from which you want to exit the user
-userId* | Unique id of the user that you want to exit from the group
+groupId* | long | Group id from which you want to exit the user
+userId* | long | Unique id of the user that you want to exit from the group
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
 
@@ -902,10 +898,9 @@ https://eu.api.capillarytech.com/v2/usergroups/1/transactions
 ### Resource Information
 | | |
 --------- | ----------- |
-URI | `/v2/usergroups/{groupId}/transactions`
+URI | `/usergroups/{groupId}/transactions`
 Rate Limited? | No
 Authentication | Yes
-Response Formats | JSON
 HTTP Methods | GET
 Batch Support | No
 
@@ -932,8 +927,19 @@ groupId* | long | Unique id the user group that you want to fetch.
 
 Code | Description
 ---- | -----------
-93002 | Invalid user id
-93003 | The specified user id is already associated with a group
-93004 | Invalid user group id
-93013 | Invalid userId specified 
-93014 | The specified user id is not part of the group
+93001 | Group name cannot be empty.
+93002 | Invalid user id {x}.
+93003 | User {x} is already associated with a group. Where `x` is the group ID.
+93004 | Invalid group id {x}. Where `x` is the group ID.
+93005 | User {y} is not secondary member of the group {y}. Where `y` is the user ID and `x` is the group ID.
+93006 | Failed to remove the user {y} from group {x}. Where `y` is the user ID and `x` is the group ID.
+93007 | UserId should not be empty. 
+93008 | Validation code should not be empty.
+93009 | Group Name {x} is already taken. Where `x` is the group ID.
+93010 | Group ID should not be empty. 
+93011 | Unable to add member to the group.
+93012 | Group size has reached maximum limit.
+93013 | Invalid userId specified  {y}. Where `y` is the user ID.
+93014 | User {y} is not part of the group. Where `y` is the user ID. 
+93015 | Primary user cannot be changed.
+93016 | User group feature is disabled.
