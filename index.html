@@ -2628,14 +2628,9 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </tr>
 </thead><tbody>
 <tr>
-<td>customerId</td>
+<td>customerId*</td>
 <td>long</td>
-<td></td>
-</tr>
-<tr>
-<td>mobile</td>
-<td></td>
-<td></td>
+<td>Unique ID of the customer to fetch coupons.</td>
 </tr>
 </tbody></table>
 
@@ -14553,7 +14548,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <p><code class="prettyprint">https://{host}/pages/notes</code></p>
 
-          <h1 id="events">Events</h1>
+          <h1 id="behavioral-events">Behavioral Events</h1>
 
 <p>Behavioral events help capture customer activities such as registration, forgot password, and cart abandonment. There are standard events that are predefined with name, id, and attributes. The <code class="prettyprint">events</code> resource lets you create custom events and Webhook account, enable standard events for an org, and map event fields.</p>
 
@@ -14679,10 +14674,6 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
 <td>HTTP Method</td>
 <td>POST</td>
 </tr>
@@ -14694,7 +14685,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://{Cluster URL}/v2/events</code></p>
+<p><code class="prettyprint">http://{host}/v2/events</code></p>
 
 <h3 id="request-body-parameters">Request Body Parameters</h3>
 
@@ -14883,10 +14874,6 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
 <td>HTTP Method</td>
 <td>PUT</td>
 </tr>
@@ -14898,7 +14885,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://{Cluster URL}/v2/events</code></p>
+<p><code class="prettyprint">http://{host}/v2/events</code></p>
 
 <h3 id="request-body-parameters">Request Body Parameters</h3>
 
@@ -14999,10 +14986,6 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <tr>
 <td>Authentication</td>
 <td>Yes</td>
-</tr>
-<tr>
-<td>Response Formats</td>
-<td>JSON</td>
 </tr>
 <tr>
 <td>HTTP Method</td>
@@ -15249,10 +15232,6 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
 <td>HTTP Method</td>
 <td>GET</td>
 </tr>
@@ -15264,7 +15243,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://{Cluster URL}/v2/events/meta_fields</code></p>
+<p><code class="prettyprint">http://{host}/v2/events/meta_fields</code></p>
 
 <h2 id="get-details-of-standard-events-metadata">Get Details of Standard Events (Metadata)</h2>
 
@@ -16871,10 +16850,6 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
 <td>HTTP Method</td>
 <td>GET</td>
 </tr>
@@ -16886,7 +16861,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://{Cluster URL}/v2/events/standard_events_meta</code></p>
+<p><code class="prettyprint">http://{host}/v2/events/standard_events_meta</code></p>
 
 <h2 id="get-org-events">Get Org Events</h2>
 
@@ -17002,7 +16977,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
                 </span><span class="p">],</span><span class="w">
                 </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UNPUBLISHED"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"testStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOT_VERIFIED"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fngjbjfghjbndfbj"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample description"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1560941666471</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"standardEvent"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
             </span><span class="p">},</span><span class="w">
@@ -17351,7 +17326,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
                 </span><span class="p">],</span><span class="w">
                 </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUBLISHED"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"testStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VERIFIED"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fngjbjfghjbndfbj"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sample description"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="mi">1560941666471</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"standardEvent"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
             </span><span class="p">},</span><span class="w">
@@ -17677,8 +17652,53 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">http://{host}/v2/events</code></p>
+
+<h2 id="get-events-data">Get Events Data</h2>
+
+<p>Retrieves the details of events of a specific customer.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>http://us.api.capillarytech.com/v2/events/event_data/342963216
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+
+</span></code></pre>
+<h3 id="request-information">Request Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/events/event_data/{userId}</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td>HTTP Method</td>
@@ -17692,7 +17712,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://{Cluster URL}/v2/events</code></p>
+<p><code class="prettyprint">https://{host}/v2/events/event_data/{userId}</code></p>
 
 <h2 id="events-mapping-to-standard-event">Events Mapping (to Standard Event)</h2>
 
@@ -17740,10 +17760,6 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
 <td>HTTP Method</td>
 <td>POST</td>
 </tr>
@@ -17755,7 +17771,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://{Cluster URL}/v2/events/adapter_mapping</code></p>
+<p><code class="prettyprint">http://{host}/v2/events/adapter_mapping</code></p>
 
 <h3 id="request-body-parameters">Request Body Parameters</h3>
 
@@ -17846,10 +17862,6 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
 <td>HTTP Method</td>
 <td>POST</td>
 </tr>
@@ -17861,7 +17873,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://{Cluster URL}/v2/events/adapter_mapping</code></p>
+<p><code class="prettyprint">http://{host}/v2/events/adapter_mapping</code></p>
 
 <h3 id="request-body-parameters">Request Body Parameters</h3>
 
@@ -17956,10 +17968,6 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
 <td>HTTP Method</td>
 <td>GET</td>
 </tr>
@@ -17971,7 +17979,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://{Cluster URL}/v2/events/adapters_meta</code></p>
+<p><code class="prettyprint">http://{host}/v2/events/adapters_meta</code></p>
 
 <h3 id="response-parameters">Response Parameters</h3>
 
@@ -18037,10 +18045,6 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
 <td>HTTP Method</td>
 <td>GET</td>
 </tr>
@@ -18052,7 +18056,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://{Cluster URL}/v2/events/webhooks</code></p>
+<p><code class="prettyprint">http://{host}/v2/events/webhooks</code></p>
 
 <h2 id="get-event-running-status">Get Event Running Status</h2>
 
@@ -18128,10 +18132,6 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
 <td>HTTP Method</td>
 <td>Get</td>
 </tr>
@@ -18143,7 +18143,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://{Cluster URL}/v2/events/running_status?eventId={eventId}</code></p>
+<p><code class="prettyprint">http://{host}/v2/events/running_status?eventId={eventId}</code></p>
 
 <h3 id="request-body-parameters">Request Body Parameters</h3>
 
@@ -18208,10 +18208,6 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
 <td>HTTP Method</td>
 <td>PUT</td>
 </tr>
@@ -18223,7 +18219,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://{Cluster URL}/v2/events/disable</code></p>
+<p><code class="prettyprint">http://{host}/v2/events/disable</code></p>
 
 <h3 id="request-body-parameters">Request Body Parameters</h3>
 
@@ -18626,10 +18622,6 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
 <td>HTTP Method</td>
 <td>GET</td>
 </tr>
@@ -18641,7 +18633,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://{Cluster URL}/v2/events</code></p>
+<p><code class="prettyprint">http://{host}/v2/events</code></p>
 
 <h2 id="get-standard-events-metadata">Get Standard Events Metadata</h2>
 
@@ -20228,10 +20220,6 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
 <td>HTTP Method</td>
 <td>GET</td>
 </tr>
@@ -20243,7 +20231,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://{Cluster URL}/v2/events/standard_events_meta</code></p>
+<p><code class="prettyprint">http://{host}/v2/events/standard_events_meta</code></p>
 
 <h2 id="create-webhook">Create Webhook</h2>
 
@@ -20293,10 +20281,6 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
 <td>HTTP Method</td>
 <td>POST</td>
 </tr>
@@ -20308,7 +20292,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://{Cluster URL}/v2/events/webhook</code></p>
+<p><code class="prettyprint">http://{host}/v2/events/webhook</code></p>
 
 <h3 id="request-body-parameters">Request Body Parameters</h3>
 
@@ -20378,10 +20362,6 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <tr>
 <td>Authentication</td>
 <td>Yes</td>
-</tr>
-<tr>
-<td>Response Formats</td>
-<td>JSON</td>
 </tr>
 <tr>
 <td>HTTP Method</td>
@@ -20467,10 +20447,6 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
 <td>HTTP Method</td>
 <td>GET</td>
 </tr>
@@ -20482,7 +20458,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://{Cluster URL}/v2/events/webhooks</code></p>
+<p><code class="prettyprint">http://{host}/v2/events/webhooks</code></p>
 
 <h2 id="disable-webhook">Disable Webhook</h2>
 
@@ -20524,10 +20500,6 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
 <td>HTTP Method</td>
 <td>PUT</td>
 </tr>
@@ -20539,7 +20511,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://{Cluster URL}/v2/events/webhook/disable</code></p>
+<p><code class="prettyprint">http://{host}/v2/events/webhook/disable</code></p>
 
 <h3 id="request-body-parameters">Request Body Parameters</h3>
 
@@ -20597,10 +20569,6 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
 <td>HTTP Method</td>
 <td>POST</td>
 </tr>
@@ -20612,7 +20580,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://{Cluster URL}/v2/events/standard_events/enable</code></p>
+<p><code class="prettyprint">http://{host}/v2/events/standard_events/enable</code></p>
 
 <h2 id="disable-a-custom-event">Disable a Custom Event</h2>
 
@@ -20652,10 +20620,6 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
 <td>HTTP Method</td>
 <td>PUT</td>
 </tr>
@@ -20667,7 +20631,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://{Cluster URL}/v2/events/disable?event_name={EventName}</code></p>
+<p><code class="prettyprint">http://{host}/v2/events/disable?event_name={EventName}</code></p>
 
 <h3 id="request-body-parameters">Request Body Parameters</h3>
 
@@ -20686,6 +20650,76 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </tbody></table>
 
 <aside class="notice">Parameter marked by * is mandatory.</aside>
+
+<h2 id="response-codes">Response Codes</h2>
+
+<h3 id="success-codes">Success Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>7300</td>
+<td>Feed added successfully</td>
+</tr>
+</tbody></table>
+
+<h3 id="error-codes">Error Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>7301</td>
+<td>Unable to add feed.</td>
+</tr>
+<tr>
+<td>7302</td>
+<td>Source is not specified.</td>
+</tr>
+<tr>
+<td>7303</td>
+<td>Invalid source passed.</td>
+</tr>
+<tr>
+<td>7304</td>
+<td>Event is not passed.</td>
+</tr>
+<tr>
+<td>7305</td>
+<td>Invalid event passed.</td>
+</tr>
+<tr>
+<td>7306</td>
+<td>UUID is not passed.</td>
+</tr>
+<tr>
+<td>7307</td>
+<td>Customer ID is not passed.</td>
+</tr>
+<tr>
+<td>7308</td>
+<td>Invalid customer ID passed.</td>
+</tr>
+<tr>
+<td>7309</td>
+<td>Invalid SKU passed.</td>
+</tr>
+<tr>
+<td>7310</td>
+<td>Invalid store code passed.</td>
+</tr>
+<tr>
+<td>7311</td>
+<td>Invalid customer details passed. <br>Scan event failed.</td>
+</tr>
+</tbody></table>
 
       </div>
       <div class="dark-box">
