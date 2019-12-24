@@ -3088,7 +3088,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </tr>
 <tr>
 <td>91015</td>
-<td>Failed to update extended fields; or field length too long -{x}.</td>
+<td>Failed to update extended fields; or field {x} length too long.</td>
 </tr>
 <tr>
 <td>91016</td>
@@ -3620,10 +3620,11 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <p>The functionality of OTPs depends on the configuration set on InTouch</p>
 
 <h2 id="generate-otp">Generate OTP</h2>
-<pre class="highlight html"><code>
-# Sample Request
 
-https://us.api.capillarytech.com/v2/otp/generate?format=json
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/otp/generate
 </code></pre>
 <blockquote>
 <p>Sample POST Request</p>
@@ -3658,18 +3659,14 @@ https://us.api.capillarytech.com/v2/otp/generate?format=json
 <p>Sample Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="w">
-</span><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Success</span><span class="w"> </span><span class="err">Response</span><span class="w">
-
-
+</span><span class="err">#</span><span class="w"> </span><span class="err">Success</span><span class="w"> </span><span class="err">Response</span><span class="w">
 </span><span class="p">{</span><span class="w">
     </span><span class="nt">"createdId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
     </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
 </span></code></pre><pre class="highlight json"><code><span class="w">
-</span><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Failure</span><span class="w"> </span><span class="err">Response</span><span class="w">
-
-
+</span><span class="err">#</span><span class="w"> </span><span class="err">Failure</span><span class="w"> </span><span class="err">Response</span><span class="w">
 </span><span class="p">{</span><span class="w">
     </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
@@ -3692,20 +3689,16 @@ https://us.api.capillarytech.com/v2/otp/generate?format=json
 
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
+<th></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/generate</code></td>
+<td><code class="prettyprint">otp/generate</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>Authentication</td>
 <td>Yes</td>
 </tr>
 <tr>
@@ -3722,7 +3715,7 @@ https://us.api.capillarytech.com/v2/otp/generate?format=json
 
 <p><code class="prettyprint">https://{host}/v2/otp/generate</code></p>
 
-<h3 id="request-attributes">Request Attributes</h3>
+<h3 id="request-body-parameters">Request Body Parameters</h3>
 
 <table><thead>
 <tr>
@@ -3764,6 +3757,22 @@ If the email template is not specified, the validation code will be sent in the 
    },`
    
 </aside>
+
+<h3 id="response-parameters">Response Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>createdId</td>
+<td>long</td>
+<td>Unique internal reference ID generated for the current request.</td>
+</tr>
+</tbody></table>
 
 <h2 id="validate-otp">Validate OTP</h2>
 
@@ -3809,8 +3818,8 @@ If the email template is not specified, the validation code will be sent in the 
 
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
+<th></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
@@ -3837,7 +3846,7 @@ If the email template is not specified, the validation code will be sent in the 
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/otp/validate?format=json</code></p>
+<p><code class="prettyprint">https://{host}/v2/otp/validate</code></p>
 
 <h3 id="request-body-parameters">Request Body Parameters</h3>
 
@@ -3870,6 +3879,24 @@ If the email template is not specified, the validation code will be sent in the 
 </tr>
 </tbody></table>
 
+<aside class="notice">Parameters marked with * are mandatory. </aside>
+
+<h3 id="response-parameters">Response Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>entity</td>
+<td>boolean</td>
+<td>The value will be<code class="prettyprint">true</code> if the OTP validation is successful, <code class="prettyprint">false</code> if the validation fails.</td>
+</tr>
+</tbody></table>
+
 <h2 id="get-otp">Get OTP</h2>
 
 <blockquote>
@@ -3880,8 +3907,7 @@ If the email template is not specified, the validation code will be sent in the 
 <blockquote>
 <p>Sample Response</p>
 </blockquote>
-<pre class="highlight json"><code><span class="w">
-</span><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
    </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">966</span><span class="p">,</span><span class="w">
    </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">313302314</span><span class="p">,</span><span class="w">
    </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"538AD87"</span><span class="p">,</span><span class="w">
@@ -3898,8 +3924,8 @@ If the email template is not specified, the validation code will be sent in the 
 
 <table><thead>
 <tr>
-<th>Parameter</th>
-<th>Description</th>
+<th></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
@@ -3928,7 +3954,7 @@ If the email template is not specified, the validation code will be sent in the 
 
 <p><code class="prettyprint">https://{host}/v2/otp/source={source_name}&amp;accountId={account_id}&amp;{identifierName}={value}&amp;scope={POINTS/COUPONS}</code></p>
 
-<h3 id="request-attributes">Request Attributes</h3>
+<h3 id="request-path-parameters">Request Path Parameters</h3>
 
 <table><thead>
 <tr>
@@ -3970,6 +3996,37 @@ If the email template is not specified, the validation code will be sent in the 
 </tbody></table>
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
+
+<h3 id="response-parameters">Response Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orgId</td>
+<td>long</td>
+<td>Unique ID of the org (the current org) from which the OTP is generated.</td>
+</tr>
+<tr>
+<td>userId</td>
+<td>long</td>
+<td>Unique ID of the customer to whom the OTP is sent.</td>
+</tr>
+<tr>
+<td>code</td>
+<td>string</td>
+<td>The OTP, or validation code, sent to the customer.</td>
+</tr>
+<tr>
+<td>validUpto</td>
+<td>date-time</td>
+<td>The validity of the OTP in <code class="prettyprint">YYYY:MM:DDTHH:MM:SS+[Time Zone]</code></td>
+</tr>
+</tbody></table>
 
 <h2 id="response-codes">Response Codes</h2>
 
@@ -17677,7 +17734,112 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <blockquote>
 <p>Sample Response</p>
 </blockquote>
-<pre class="highlight json"><code><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100458</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">98662653</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-09T03:13:23Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"eventName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"addedToCart"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"eventId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5aa2e5dc-2b84-4798-99a2-69dba75523ba"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEB_ENGAGE"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"tillCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"webstore.till_1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"additonalAttributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"accountid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"~11b564bda"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"autoUpdateTimeStamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mon Dec 09 03:13:23 UTC 2019"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"brandname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bukl"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"browsername"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chrome"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"cartid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7f1e74da-36d3-4fda-9aef-9e8be379a6db"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"categoryname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Men/Top Wear/Shirts"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bengaluru"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"India"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"device"</span><span class="p">:</span><span class="w"> </span><span class="s2">"desktop"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"eventName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"addedToCart"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5aa2e5dc-2b84-4798-99a2-69dba75523"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"ip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"115.99.221.149"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100458</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"osname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mac OS"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"pageurl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.bukl.in/products/root-men-top-wear-shirts/bukl/mens-casual-shirt/pid-14572567.aspx?vpid=10569467"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"productname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Men's Casual shirt"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Karnataka"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEB_ENGAGE"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"till"</span><span class="p">:</span><span class="w"> </span><span class="s2">"webstore.till_1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">98662653</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"variant"</span><span class="p">:</span><span class="w"> </span><span class="s2">"M"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100458</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">98662653</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-08T06:13:11Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"eventName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Checkout Started"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"eventId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"595e71ac-d5af-420a-a4df-973d6c7ad1e3"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEB_ENGAGE"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"tillCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"webstore.till_1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"additonalAttributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"accountid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"~11b564bda"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"autoUpdateTimeStamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sun Dec 08 06:13:11 UTC 2019"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"|Bukl|"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"browser_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chrome"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"cartrefkey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"||"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bengaluru"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"India"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"device"</span><span class="p">:</span><span class="w"> </span><span class="s2">"desktop"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"eventName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Checkout Started"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"595e71ac-doaf-420a-a4df-973d6c7ad1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"ip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"115.99.184.30"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"locationname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BUKL HSR LAYOUT"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"|Shorts|"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100458</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"os_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mac OS"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"page_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.bukl.in/singlepagecheckout.aspx"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"|1|"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Karnataka"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEB_ENGAGE"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"till"</span><span class="p">:</span><span class="w"> </span><span class="s2">"webstore.till_1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">98662653</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"variant"</span><span class="p">:</span><span class="w"> </span><span class="s2">"|30|"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100458</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">98662653</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-08T05:53:39Z"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"eventName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Checkout Started"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"eventId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0fa3e614-19fe-4c8d-8120-1c7e976ae862"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEB_ENGAGE"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"tillCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"webstore.till_1"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"additonalAttributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"accountid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"~11b564bda"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"autoUpdateTimeStamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sun Dec 08 05:53:39 UTC 2019"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"|Bukl|"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"browser_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Chrome"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"cartrefkey"</span><span class="p">:</span><span class="w"> </span><span class="s2">"||"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"category"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bengaluru"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"India"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"device"</span><span class="p">:</span><span class="w"> </span><span class="s2">"desktop"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"eventName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Checkout Started"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0fa3e614-19fe-4c8d-9120-1c7e976ae8sa"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"ip"</span><span class="p">:</span><span class="w"> </span><span class="s2">"115.99.184.30"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"locationname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BUKL HSR LAYOUT"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"|Shorts|"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100458</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"os_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mac OS"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"page_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://www.bukl.in/singlepagecheckout.aspx"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"quantity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"|1|"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"region"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Karnataka"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEB_ENGAGE"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"till"</span><span class="p">:</span><span class="w"> </span><span class="s2">"webstore.till_1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">98662653</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"variant"</span><span class="p">:</span><span class="w"> </span><span class="s2">"|30|"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+  </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
 </span></code></pre>
 <h3 id="request-information">Request Information</h3>
@@ -17713,6 +17875,24 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <h3 id="request-url">Request URL</h3>
 
 <p><code class="prettyprint">https://{host}/v2/events/event_data/{userId}</code></p>
+
+<h3 id="request-path-parameters">Request Path Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>userId*</td>
+<td>long</td>
+<td>Unique ID of the customer to fetch event data.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">The parameter marked with * is mandatory. </aside> 
 
 <h2 id="events-mapping-to-standard-event">Events Mapping (to Standard Event)</h2>
 
