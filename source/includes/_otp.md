@@ -7,11 +7,10 @@ The functionality of OTPs depends on the configuration set on InTouch
 
 ## Generate OTP
 
+> Sample Request
+
 ```html
-
-# Sample Request
-
-https://us.api.capillarytech.com/v2/otp/generate?format=json
+https://us.api.capillarytech.com/v2/otp/generate
 ```
 
 > Sample POST Request
@@ -48,9 +47,7 @@ https://us.api.capillarytech.com/v2/otp/generate?format=json
 
 ```json
 
-# Sample Success Response
-
-
+# Success Response
 {
 	"createdId": 10,
 	"warnings": []
@@ -60,9 +57,7 @@ https://us.api.capillarytech.com/v2/otp/generate?format=json
 
 ```json
 
-# Sample Failure Response
-
-
+# Failure Response
 {
 	"errors": [
     	{
@@ -84,11 +79,10 @@ Issues validation code (OTP) to the customer's mobile number and/or email id for
 
 
 ### Resource Information
-Parameter | Description
---------- | -----------
-URI	| `/generate`
+| | |
+--------- | ----------- |
+URI	| `otp/generate`
 Rate Limited? | Yes
-Authentication | Yes
 HTTP Method | POST
 Batch Support | No
 
@@ -96,7 +90,7 @@ Batch Support | No
 ### Request URL
 `https://{host}/v2/otp/generate`
 
-### Request Attributes
+### Request Body Parameters
 Parameter | Datatype | Description
 --------- | -------- | -----------
 entityType* | enum | Specify `MOBILE` to identify customer by mobile number, or `EMAIL` to identify customer by email id.
@@ -116,6 +110,13 @@ If the email template is not specified, the validation code will be sent in the 
    },`
    
 </aside>
+
+
+### Response Parameters
+Parameter | Datatype | Description
+--------- | -------- | -----------
+createdId | long | Unique internal reference ID generated for the current request.
+
 
 
 
@@ -167,8 +168,8 @@ https://us.api.capillarytech.com/v2/otp/validate
 Lets you authenticate customer by validating the OTP sent to the customer through SMS or email and proceed with the necessary action such as redeeming points/coupons, and registering customer.
 
 ### Resource Information
-Parameter | Description
---------- | -----------
+| | |
+--------- | ----------- |
 URI	| `/validate`
 Rate Limited? | Yes
 Authentication | Yes
@@ -178,7 +179,7 @@ Batch Support | No
 
 
 ### Request URL
-`https://{host}/v2/otp/validate?format=json`
+`https://{host}/v2/otp/validate`
 
 ### Request Body Parameters
 
@@ -189,6 +190,14 @@ entityValue* | string | Specify the registered  mobile number or email id of the
 code* | string | Pass the validation code received by the customer.
 action | enum | Specify the action to be performed on successful validation. Values: `COUPON` (for coupon redemption), `POINTS` (for points redemption), `REGISTRATION`, `USERGROUP`, `SUBSCRIPTION`, `GENERIC` (for other purposes).
 
+<aside class="notice">Parameters marked with * are mandatory. </aside>
+
+
+### Response Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+entity | boolean | The value will be`true` if the OTP validation is successful, `false` if the validation fails.
 
 
 ## Get OTP
@@ -202,7 +211,6 @@ https://us.api.capillarytech.com/v2/otp/source=WECHAT&accountId=WECHAT-API1&iden
 > Sample Response
 
 ```json
-
 {
    "orgId":966,
    "userId":313302314,
@@ -218,8 +226,8 @@ https://us.api.capillarytech.com/v2/otp/source=WECHAT&accountId=WECHAT-API1&iden
 Allows fetching recent OTP issued to a customer. For now, OTP is issued for redeeming points/coupons and customer registration. If there is more than one valid OTP available for the customer, this API fetches the recently issued OTP. 
 
 ### Resource Information
-Parameter | Description
---------- | -----------
+| | |
+--------- | ----------- |
 URI	| `/otp`
 Rate Limited? | Yes
 Authentication | Yes
@@ -230,7 +238,7 @@ Batch Support | No
 
 `https://{host}/v2/otp/source={source_name}&accountId={account_id}&{identifierName}={value}&scope={POINTS/COUPONS}`
 
-### Request Attributes
+### Request Path Parameters
 Parameter | Datatype | Description
 --------- | -------- | -----------
 identifierName* | enum | Pass any of the registered identifier type of the customer. Values: `mobile`, `email`, `external_id`, `wechat`.
@@ -241,6 +249,18 @@ threshold | long | Specify the validity of the OTP (in seconds) that you want to
 scope | enum | Specify the scope of the OTP issued. Values: `COUPON` (for coupon redemption), `POINTS` (for points redemption), `REGISTRATION`, `USERGROUP`, `SUBSCRIPTION`, `GENERIC` (for other purposes).
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
+
+
+### Response Parameters
+Parameter | Datatype | Description
+--------- | -------- | -----------
+orgId | long | Unique ID of the org (the current org) from which the OTP is generated.
+userId | long | Unique ID of the customer to whom the OTP is sent.
+code | string | The OTP, or validation code, sent to the customer.
+validUpto | date-time | The validity of the OTP in `YYYY:MM:DDTHH:MM:SS+[Time Zone]`
+
+
+
 
 
 ## Response Codes

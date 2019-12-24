@@ -1,4 +1,4 @@
-# Events
+# Behavioral Events
 
 Behavioral events help capture customer activities such as registration, forgot password, and cart abandonment. There are standard events that are predefined with name, id, and attributes. The `events` resource lets you create custom events and Webhook account, enable standard events for an org, and map event fields.
 
@@ -116,13 +116,12 @@ http://us.api.capillarytech.com/v2/events
 URI | `/events`
 Rate Limited? | Yes
 Authentication | Yes
-Response Formats | JSON
 HTTP Method | POST
 Batch Support | No
 
 ### Request URL
 
-`http://{Cluster URL}/v2/events`
+`http://{host}/v2/events`
 
 
 ### Request Body Parameters
@@ -264,14 +263,13 @@ http://us.api.capillarytech.com/v2/events
 URI | `/events`
 Rate Limited? | Yes
 Authentication | Yes
-Response Formats | JSON
 HTTP Method | PUT
 Batch Support | No
 
 
 ### Request URL
 
-`http://{Cluster URL}/v2/events`
+`http://{host}/v2/events`
 
 
 
@@ -328,7 +326,6 @@ http://us.api.capillarytech.com/v2/events/standard_events/enable?event_name=Prod
 URI | `/events/standard_events/enable?event_name={eventName}`
 Rate Limited? | Yes
 Authentication | Yes
-Response Formats | JSON
 HTTP Method | POST (No POST body required)
 Batch Support | No
 
@@ -555,13 +552,12 @@ http://us.api.capillarytech.com/v2/events/meta_fields
 URI | `/events/meta_fields`
 Rate Limited? | Yes
 Authentication | Yes
-Response Formats | JSON
 HTTP Method | GET
 Batch Support | No
 
 ### Request URL
 
-`http://{Cluster URL}/v2/events/meta_fields`
+`http://{host}/v2/events/meta_fields`
 
 
 
@@ -2162,14 +2158,13 @@ http://us.api.capillarytech.com/v2/events/standard_events_meta
 URI | `/events/standard_events_meta`
 Rate Limited? | Yes
 Authentication | Yes
-Response Formats | JSON
 HTTP Method | GET
 Batch Support | No
 
 
 ### Request URL
 
-`http://{Cluster URL}/v2/events/standard_events_meta`
+`http://{host}/v2/events/standard_events_meta`
 
 
 
@@ -2294,7 +2289,7 @@ http://us.api.capillarytech.com/v2/events
                 ],
                 "status": "UNPUBLISHED",
                 "testStatus": "NOT_VERIFIED",
-                "description": "fngjbjfghjbndfbj",
+                "description": "sample description",
                 "date": 1560941666471,
                 "standardEvent": false
             },
@@ -2643,7 +2638,7 @@ http://us.api.capillarytech.com/v2/events
                 ],
                 "status": "PUBLISHED",
                 "testStatus": "VERIFIED",
-                "description": "fngjbjfghjbndfbj",
+                "description": "Sample description",
                 "date": 1560941666471,
                 "standardEvent": false
             },
@@ -2956,20 +2951,165 @@ http://us.api.capillarytech.com/v2/events
 URI | `/events`
 Rate Limited? | Yes
 Authentication | Yes
-Response Formats | JSON
 HTTP Method | GET
 Batch Support | No
 
 
 ### Request URL
 
-`http://{Cluster URL}/v2/events`
+`http://{host}/v2/events`
 
 
 
 
 
+## Get Events Data
 
+Retrieves the details of events of a specific customer.
+
+> Sample Request
+
+```html
+http://us.api.capillarytech.com/v2/events/event_data/342963216
+```
+> Sample Response
+
+```json
+{
+  "data": [
+    {
+      "orgId": 100458,
+      "userId": 98662653,
+      "date": "2019-12-09T03:13:23Z",
+      "eventName": "addedToCart",
+      "eventId": "5aa2e5dc-2b84-4798-99a2-69dba75523ba",
+      "source": "WEB_ENGAGE",
+      "tillCode": "webstore.till_1",
+      "additonalAttributes": {
+        "accountid": "~11b564bda",
+        "autoUpdateTimeStamp": "Mon Dec 09 03:13:23 UTC 2019",
+        "brandname": "Bukl",
+        "browsername": "Chrome",
+        "cartid": "7f1e74da-36d3-4fda-9aef-9e8be379a6db",
+        "categoryname": "Men/Top Wear/Shirts",
+        "city": "Bengaluru",
+        "country": "India",
+        "device": "desktop",
+        "eventName": "addedToCart",
+        "id": "5aa2e5dc-2b84-4798-99a2-69dba75523",
+        "ip": "115.99.221.149",
+        "orgId": 100458,
+        "osname": "Mac OS",
+        "pageurl": "https://www.bukl.in/products/root-men-top-wear-shirts/bukl/mens-casual-shirt/pid-14572567.aspx?vpid=10569467",
+        "productname": "Men's Casual shirt",
+        "region": "Karnataka",
+        "source": "WEB_ENGAGE",
+        "till": "webstore.till_1",
+        "userId": 98662653,
+        "variant": "M"
+      }
+    },
+    {
+      "orgId": 100458,
+      "userId": 98662653,
+      "date": "2019-12-08T06:13:11Z",
+      "eventName": "Checkout Started",
+      "eventId": "595e71ac-d5af-420a-a4df-973d6c7ad1e3",
+      "source": "WEB_ENGAGE",
+      "tillCode": "webstore.till_1",
+      "additonalAttributes": {
+        "accountid": "~11b564bda",
+        "autoUpdateTimeStamp": "Sun Dec 08 06:13:11 UTC 2019",
+        "brand": "|Bukl|",
+        "browser_name": "Chrome",
+        "cartrefkey": "||",
+        "category": "application",
+        "city": "Bengaluru",
+        "country": "India",
+        "device": "desktop",
+        "eventName": "Checkout Started",
+        "id": "595e71ac-doaf-420a-a4df-973d6c7ad1",
+        "ip": "115.99.184.30",
+        "locationname": "BUKL HSR LAYOUT",
+        "name": "|Shorts|",
+        "orgId": 100458,
+        "os_name": "Mac OS",
+        "page_url": "https://www.bukl.in/singlepagecheckout.aspx",
+        "quantity": "|1|",
+        "region": "Karnataka",
+        "source": "WEB_ENGAGE",
+        "till": "webstore.till_1",
+        "userId": 98662653,
+        "variant": "|30|"
+      }
+    },
+    {
+      "orgId": 100458,
+      "userId": 98662653,
+      "date": "2019-12-08T05:53:39Z",
+      "eventName": "Checkout Started",
+      "eventId": "0fa3e614-19fe-4c8d-8120-1c7e976ae862",
+      "source": "WEB_ENGAGE",
+      "tillCode": "webstore.till_1",
+      "additonalAttributes": {
+        "accountid": "~11b564bda",
+        "autoUpdateTimeStamp": "Sun Dec 08 05:53:39 UTC 2019",
+        "brand": "|Bukl|",
+        "browser_name": "Chrome",
+        "cartrefkey": "||",
+        "category": "application",
+        "city": "Bengaluru",
+        "country": "India",
+        "device": "desktop",
+        "eventName": "Checkout Started",
+        "id": "0fa3e614-19fe-4c8d-9120-1c7e976ae8sa",
+        "ip": "115.99.184.30",
+        "locationname": "BUKL HSR LAYOUT",
+        "name": "|Shorts|",
+        "orgId": 100458,
+        "os_name": "Mac OS",
+        "page_url": "https://www.bukl.in/singlepagecheckout.aspx",
+        "quantity": "|1|",
+        "region": "Karnataka",
+        "source": "WEB_ENGAGE",
+        "till": "webstore.till_1",
+        "userId": 98662653,
+        "variant": "|30|"
+      }
+    }
+  ],
+  "warnings": [],
+  "errors": []
+}
+
+``` 
+
+
+
+
+### Request Information
+
+| | |
+--------- | ----------- |
+URI | `/events/event_data/{userId}`
+Rate Limited? | Yes
+Authentication | Yes
+HTTP Method | GET
+Batch Support | No
+
+
+### Request URL
+
+`https://{host}/v2/events/event_data/{userId}`
+
+
+### Request Path Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+userId* | long | Unique ID of the customer to fetch event data.
+
+<aside class="notice">The parameter marked with * is mandatory. </aside> 
 
 
 
@@ -3012,7 +3152,6 @@ http://us.api.capillarytech.com/v2/events/adapter_mapping
 URI | `/events/adapter_mapping`
 Rate Limited? | Yes
 Authentication | Yes
-Response Formats | JSON
 HTTP Method | POST
 Batch Support | No
 
@@ -3020,7 +3159,7 @@ Batch Support | No
 
 ### Request URL
 
-`http://{Cluster URL}/v2/events/adapter_mapping`
+`http://{host}/v2/events/adapter_mapping`
 
 
 
@@ -3093,14 +3232,13 @@ http://us.api.capillarytech.com/v2/events/adapter_mapping
 URI | `/events/adapter_mapping`
 Rate Limited? | Yes
 Authentication | Yes
-Response Formats | JSON
 HTTP Method | POST
 Batch Support | No
 
 
 ### Request URL
 
-`http://{Cluster URL}/v2/events/adapter_mapping`
+`http://{host}/v2/events/adapter_mapping`
 
 
 
@@ -3154,13 +3292,12 @@ http://us.api.capillarytech.com/v2/events/adapters_meta
 URI | `/events/adapters_meta`
 Rate Limited? | Yes
 Authentication | Yes
-Response Formats | JSON
 HTTP Method | GET
 Batch Support | No
 
 ### Request URL
 
-`http://{Cluster URL}/v2/events/adapters_meta`
+`http://{host}/v2/events/adapters_meta`
 
 
 ### Response Parameters
@@ -3212,14 +3349,13 @@ http://us.api.capillarytech.com/v2/events/webhooks
 URI | `/events/webhooks`
 Rate Limited? | Yes
 Authentication | Yes
-Response Formats | JSON
 HTTP Method | GET
 Batch Support | No
 
 
 ### Request URL
 
-`http://{Cluster URL}/v2/events/webhooks`
+`http://{host}/v2/events/webhooks`
 
 
 
@@ -3288,14 +3424,13 @@ http://us.api.capillarytech.com/v2/events/running_status?eventId=0d3f5a7f-2432-4
 URI | `/events/running_status?eventId={eventId}`
 Rate Limited? | Yes
 Authentication | Yes
-Response Formats | JSON
 HTTP Method | Get
 Batch Support | No
 
 
 ### Request URL
 
-`http://{Cluster URL}/v2/events/running_status?eventId={eventId}`
+`http://{host}/v2/events/running_status?eventId={eventId}`
 
 
 
@@ -3344,14 +3479,13 @@ http://us.api.capillarytech.com/v2/events
 URI | `/events/disable`
 Rate Limited? | Yes
 Authentication | Yes
-Response Formats | JSON
 HTTP Method | PUT
 Batch Support | No
 
 
 ### Request URL
 
-`http://{Cluster URL}/v2/events/disable`
+`http://{host}/v2/events/disable`
 
 
 ### Request Body Parameters
@@ -3741,14 +3875,13 @@ Retrieves all events configured for the organization (associated to the TILL use
 URI | `/events`
 Rate Limited? | Yes
 Authentication | Yes
-Response Formats | JSON
 HTTP Method | GET
 Batch Support | No
 
 
 ### Request URL
 
-`http://{Cluster URL}/v2/events`
+`http://{host}/v2/events`
 
 
 
@@ -5336,14 +5469,13 @@ http://us.api.capillarytech.com/v2/events/standard_events_meta
 URI | `/events/standard_events_meta`
 Rate Limited? | Yes
 Authentication | Yes
-Response Formats | JSON
 HTTP Method | GET
 Batch Support | No
 
 
 ### Request URL
 
-`http://{Cluster URL}/v2/events/standard_events_meta`
+`http://{host}/v2/events/standard_events_meta`
 
 
 
@@ -5387,14 +5519,13 @@ http://us.api.capillarytech.com/v2/events/webhook
 URI | `/events/webhook`
 Rate Limited? | Yes
 Authentication | Yes
-Response Formats | JSON
 HTTP Method | POST
 Batch Support | No
 
 
 ### Request URL
 
-`http://{Cluster URL}/v2/events/webhook`
+`http://{host}/v2/events/webhook`
 
 
 
@@ -5445,7 +5576,6 @@ https://1dzb567pwd.execute-api.us-east-2.amazonaws.com/nightly/webhooks/34b94vf9
 URI | `{webhookURL}`
 Rate Limited? | Yes
 Authentication | Yes
-Response Formats | JSON
 HTTP Method | POST
 Batch Support | No
 
@@ -5506,14 +5636,13 @@ http://us.api.capillarytech.com/v2/events/webhooks
 URI | `/events/webhooks`
 Rate Limited? | Yes
 Authentication | Yes
-Response Formats | JSON
 HTTP Method | GET
 Batch Support | No
 
 
 ### Request URL
 
-`http://{Cluster URL}/v2/events/webhooks`
+`http://{host}/v2/events/webhooks`
 
 
 
@@ -5550,14 +5679,13 @@ http://us.api.capillarytech.com/v2/events/webhook/disable
 URI | `/events/webhook/disable`
 Rate Limited? | Yes
 Authentication | Yes
-Response Formats | JSON
 HTTP Method | PUT
 Batch Support | No
 
 
 ### Request URL
 
-`http://{Cluster URL}/v2/events/webhook/disable`
+`http://{host}/v2/events/webhook/disable`
 
 
 
@@ -5603,14 +5731,13 @@ http://us.api.capillarytech.com/v2/events/standard_events/enable
 URI | `/events/standard_events/enable`
 Rate Limited? | Yes
 Authentication | Yes
-Response Formats | JSON
 HTTP Method | POST
 Batch Support | No
 
 
 ### Request URL
 
-`http://{Cluster URL}/v2/events/standard_events/enable`
+`http://{host}/v2/events/standard_events/enable`
 
 
 
@@ -5644,14 +5771,13 @@ http://us.api.capillarytech.com/v2/events/disable?event_name=CustomerEvent1
 URI | `/events/disable?event_name={EventName}`
 Rate Limited? | Yes
 Authentication | Yes
-Response Formats | JSON
 HTTP Method | PUT
 Batch Support | No
 
 
 ### Request URL
 
-`http://{Cluster URL}/v2/events/disable?event_name={EventName}`
+`http://{host}/v2/events/disable?event_name={EventName}`
 
 
 
@@ -5663,3 +5789,31 @@ EventName* | string | Pass the exact name of the event that you want to disable
 
 
 <aside class="notice">Parameter marked by * is mandatory.</aside>
+
+
+
+## Response Codes
+
+### Success Codes
+
+Code | Description
+---- | -----------
+7300 | Feed added successfully
+
+
+
+### Error Codes
+Code | Description
+---- | -----------
+7301 | Unable to add feed.
+7302 | Source is not specified.
+7303 | Invalid source passed.
+7304 | Event is not passed.
+7305 | Invalid event passed.
+7306 | UUID is not passed.
+7307 | Customer ID is not passed.
+7308 | Invalid customer ID passed.
+7309 | Invalid SKU passed.
+7310 | Invalid store code passed.
+7311 | Invalid customer details passed. <br>Scan event failed.
+

@@ -1710,8 +1710,7 @@ Batch Support | No
 
 Parameter | Datatype | Description
 --------- | -------- | -----------
-customerId | long | 
-mobile |
+customerId* | long | Unique ID of the customer to fetch coupons.
 
 
 ## Response Codes
@@ -1830,7 +1829,7 @@ mobile |
  91012  | Customer is already in the highest slab.
  91013  | Call to Points Engine for tier upgrade criteria has failed {x}.
  91014  | Call to Points Engine for tier renewal criteria has failed {x}.
- 91015  | Failed to update extended fields; or field length too long -{x}.
+ 91015  | Failed to update extended fields; or field {x} length too long.
  91016  | WECHAT profile is not available for the customer.
  91017  | WEB_ENGAGE profile is not available for the customer.
  91018  | Unable to load WeChat notifications.
