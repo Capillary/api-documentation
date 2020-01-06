@@ -374,12 +374,12 @@ https://us.api.capillarytech.com/v2/customers?source=LINE<span class="err">&amp;
 
 <aside class="notice">
 
-**Extended Fields**:
+<b>Extended Fields</b>:
 Extended Fields are proposed fields used to standardize input values and keys across organizations (unlike custom fields that have no control in input values). Platforms back-end team controls the field names, data-types, enum values, and scopes of extended fields. Extended Fields are created at customer level, transaction level, and transaction line-item level.
 
 Examples of customer level extended fields are age_group, preferred_store, gender, and nationality.
 
-Extended fields are either associated to verticals or to a generic category (available for all orgs). To know the list of extended fields enabled for an org, use GET v2/extendedFields API.
+Extended fields are either associated to verticals or to a generic category (available for all orgs). To know the list of extended fields enabled for an org, use GET <code>v2/extendedFields</code> API.
 </aside>
 
 <p>The Customer Register API functions as follows.</p>
@@ -14754,34 +14754,34 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </tr>
 </thead><tbody>
 <tr>
-<td>eventName</td>
+<td>eventName*</td>
 <td>string</td>
-<td>Specify a name of the event</td>
+<td>Specify a name of the event.</td>
 </tr>
 <tr>
-<td>actions</td>
+<td>actions*</td>
 <td>enum</td>
-<td>Specify the destination of the event. Values: <code class="prettyprint">EMFConsumer</code> for EMF related events: Loyalty, DVS, and Communication, EIConsumer for Essential Insights</td>
+<td>Specify the destination of the event. Values: <code class="prettyprint">EMFConsumer</code> for EMF related events: Loyalty, DVS, and Communication, EIConsumer for Essential Insights.</td>
 </tr>
 <tr>
 <td>description</td>
 <td>string</td>
-<td>Specify a short description for the event</td>
+<td>Specify a short description for the event.</td>
 </tr>
 <tr>
 <td>fields</td>
 <td>obj</td>
-<td>Configure fields for the current event with attributes: name, type, and value</td>
+<td>Configure fields for the current event with attributes: <code class="prettyprint">name</code>, <code class="prettyprint">type</code>, and <code class="prettyprint">value</code>.</td>
 </tr>
 <tr>
 <td>name</td>
 <td>string</td>
-<td>Specify the name of the field</td>
+<td>Specify the name of the field.</td>
 </tr>
 <tr>
 <td>type</td>
 <td>enum</td>
-<td>Specify the type of the attribute. Value: <code class="prettyprint">tillCode</code>, <code class="prettyprint">couponCode</code>, <code class="prettyprint">customer</code>, <code class="prettyprint">productSku</code>, <code class="prettyprint">productBrand</code>, <code class="prettyprint">productCategory</code>, <code class="prettyprint">string</code>, <code class="prettyprint">double</code>,</td>
+<td>Specify the type of the attribute. Values: <code class="prettyprint">tillCode</code>, <code class="prettyprint">couponCode</code>, <code class="prettyprint">customer</code>, <code class="prettyprint">productSku</code>, <code class="prettyprint">productBrand</code>, <code class="prettyprint">productCategory</code>, <code class="prettyprint">string</code>, <code class="prettyprint">double</code>.</td>
 </tr>
 <tr>
 <td>addCustomerIfNotExists</td>
@@ -14791,12 +14791,12 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <tr>
 <td>valueType</td>
 <td>enum</td>
-<td>Data-type of the attribute. Example: Boolean, Enum, String</td>
+<td>Data-type of the attribute. For example, <code class="prettyprint">Boolean</code>, <code class="prettyprint">Enum</code>, <code class="prettyprint">String</code>.</td>
 </tr>
 <tr>
 <td>value</td>
 <td>string</td>
-<td>Value of the attribute based on its <code class="prettyprint">valueType</code>.For example, if valueType is Boolean, either <code class="prettyprint">true</code> or <code class="prettyprint">false</code> is supported as value</td>
+<td>Value of the attribute based on its <code class="prettyprint">valueType</code>.For example, if <code class="prettyprint">valueType</code> is Boolean, value could be either <code class="prettyprint">true</code> or <code class="prettyprint">false</code>.</td>
 </tr>
 </tbody></table>
 
@@ -15007,6 +15007,62 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <aside class="notice">All parameters marked by * are mandatory. You need to pass all the parameters that you want to update or remain for the event. Fields that you do not pass in the API will be removed automatically.</aside> 
 
+<h3 id="response-parameters">Response Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>eventName</td>
+<td>string</td>
+<td>Name of the event.</td>
+</tr>
+<tr>
+<td>actions</td>
+<td>enum</td>
+<td>The destination of the event. Values: <code class="prettyprint">EMFConsumer</code> for EMF related events: Loyalty, DVS, and Communication, EIConsumer for Essential Insights.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>Specify a short description for the event.</td>
+</tr>
+<tr>
+<td>fields</td>
+<td>obj</td>
+<td>Configure fields for the current event with attributes: <code class="prettyprint">name</code>, <code class="prettyprint">type</code>, and <code class="prettyprint">value</code>.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Specify the name of the field.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>enum</td>
+<td>Specify the type of the attribute. Values: <code class="prettyprint">tillCode</code>, <code class="prettyprint">couponCode</code>, <code class="prettyprint">customer</code>, <code class="prettyprint">productSku</code>, <code class="prettyprint">productBrand</code>, <code class="prettyprint">productCategory</code>, <code class="prettyprint">string</code>, <code class="prettyprint">double</code>.</td>
+</tr>
+<tr>
+<td>addCustomerIfNotExists</td>
+<td>obj</td>
+<td>Set this value to <code class="prettyprint">true</code> to allow registering new customers in to the loyalty program automatically</td>
+</tr>
+<tr>
+<td>valueType</td>
+<td>enum</td>
+<td>Datatype of the attribute. For example, <code class="prettyprint">Boolean</code>, <code class="prettyprint">Enum</code>, <code class="prettyprint">String</code>.</td>
+</tr>
+<tr>
+<td>value</td>
+<td>string</td>
+<td>Value of the attribute based on its <code class="prettyprint">valueType</code>.For example, if <code class="prettyprint">valueType</code> is Boolean, value could be either <code class="prettyprint">true</code> or <code class="prettyprint">false</code>.</td>
+</tr>
+</tbody></table>
+
 <h2 id="enable-standard-event">Enable Standard Event</h2>
 
 <p>Lets you enable a standard event for the current org.</p>
@@ -15056,7 +15112,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://clusterURL}/v2/events/standard_events/enable?event_name={eventName}</code></p>
+<p><code class="prettyprint">http://{host}/v2/events/standard_events/enable?event_name={eventName}</code></p>
 
 <h3 id="request-query-parameters">Request Query Parameters</h3>
 
