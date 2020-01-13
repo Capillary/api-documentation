@@ -50,14 +50,14 @@ Retrieves the list of all verticals available for the org. This include both act
 
 Information | Value
 ----------- | -----
-URI | /verticals/meta
+URI | `/verticals/meta`
 Authentication | Yes
 HTTP Method | GET
 Batch Support | NA
 
 ### Request URL
 
-`htpps://<Cluster URL>/v2/verticals/meta`
+`htpps://{host}/v2/verticals/meta`
 
 
 
@@ -121,13 +121,13 @@ Retrieves the list of verticals enabled for the org (active verticals).
 
 Information | Value
 ----------- | -----
-URI | /verticals
+URI | `/verticals`
 Authentication | Yes
 HTTP Method | GET
 Batch Support | NA
 
 ### Request URL
-`htpps://<Cluster URL>/v2/verticals`
+`htpps://{host}/v2/verticals`
 
 
 
