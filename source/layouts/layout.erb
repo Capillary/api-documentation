@@ -33,9 +33,17 @@ under the License.
     <% else %>
       <%= javascript_include_tag  "all_nosearch" %>
     <% end %>
+	
+	<script type="text/javascript" src="https://s3.amazonaws.com/assets.freshdesk.com/widget/freshwidget.js"></script>
+	<style type="text/css" media="screen, projection">
+		@import url(https://s3.amazonaws.com/assets.freshdesk.com/widget/freshwidget.css); 
+	</style> 
+
   </head>
 
   <body class="<%= page_classes %>" data-languages="<%=h language_tabs.map{ |lang| lang.is_a?(Hash) ? lang.keys.first : lang }.to_json %>">
+  
+  
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -43,7 +51,7 @@ under the License.
       </span>
     </a>
     <div class="tocify-wrapper">
-      <%= image_tag "logo.png" %>
+      <%= image_tag "logo.svg" %>
       <% if language_tabs.any? %>
         <div class="lang-selector">
           <% language_tabs.each do |lang| %>
@@ -93,5 +101,41 @@ under the License.
         <% end %>
       </div>
     </div>
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-136354191-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-136354191-1');
+</script>
+
+<!-- Feedback widget -->
+
+<script>
+	window.fwSettings={
+	'widget_id':4000000058
+	};
+	!function(){if("function"!=typeof window.FreshworksWidget){var n=function(){n.q.push(arguments)};n.q=[],window.FreshworksWidget=n}}() 
+</script>
+<script type='text/javascript' src='https://widget.freshworks.com/widgets/4000000058.js' async defer></script>
+
+<!-- 
+
+<div class="feedback--container" style="display: none;">
+<div class="feedback--modal">
+<a class="feedback--modal-close">&times;</a>
+<iframe title="Feedback Form" class="freshwidget-embedded-form" id="freshwidget-embedded-form" src="https://support.capillarytech.com/widgets/feedback_widget/new?&widgetType=embedded&formTitle=Help+%26+Support&submitTitle=Submit&submitThanks=Thank+you+for+your+valuable+feedback.+We+will+get+back+to+you+soon.&screenshot=No&searchArea=no" scrolling="no" height="500px" width="100%" frameborder="0">
+</iframe>
+</div>
+</div>
+
+<div class="fab--container">
+       <button class="fab--button fab--button__feedback">✍️ Give feedback</button>
+</div>
+ -->
+
   </body>
 </html>
+

@@ -128,17 +128,24 @@ Batch Support | No
 
 Parameter | Type | Description
 --------- | ---- | -----------
-eventName | string | Specify a name of the event
-actions | enum | Specify the destination of the event. Values: `EMFConsumer` for EMF related events: Loyalty, DVS, and Communication, EIConsumer for Essential Insights
-description | string | Specify a short description for the event
-fields | obj | Configure fields for the current event with attributes: name, type, and value
-name | string | Specify the name of the field
-type | enum | Specify the type of the attribute. Value: `tillCode`, `couponCode`, `customer`, `productSku`, `productBrand`, `productCategory`, `string`, `double`,
+eventName* | string | Specify a name of the event.
+actions* | enum | Specify the destination of the event. Values: `EMFConsumer` for EMF related events: Loyalty, DVS, and Communication, EIConsumer for Essential Insights.
+description | string | Specify a short description for the event.
+fields | obj | Configure fields for the current event with attributes: `name`, `type`, and `value`.
+name | string | Specify the name of the field.
+type | enum | Specify the type of the attribute. Values: `tillCode`, `couponCode`, `customer`, `productSku`, `productBrand`, `productCategory`, `string`, `double`.
 addCustomerIfNotExists | obj | Set this value to `true` to allow registering new customers in to the loyalty program automatically
-valueType | enum | Data-type of the attribute. Example: Boolean, Enum, String
-value | string | Value of the attribute based on its `valueType`.For example, if valueType is Boolean, either `true` or `false` is supported as value
+valueType | enum | Data-type of the attribute. For example, `Boolean`, `Enum`, `String`.
+value | string | Value of the attribute based on its `valueType`.For example, if `valueType` is Boolean, value could be either `true` or `false`.
 
 <aside class="notice">All parameters marked by * are mandatory. </aside>
+
+
+
+
+
+
+
 
 
 ## Update Custom Event
@@ -291,8 +298,19 @@ value | string | Specify the field values based on the valueType selected
 <aside class="notice">All parameters marked by * are mandatory. You need to pass all the parameters that you want to update or remain for the event. Fields that you do not pass in the API will be removed automatically.</aside> 
 
 
+### Response Parameters
 
-
+Parameter | Type | Description
+--------- | ---- | -----------
+eventName | string | Name of the event.
+actions | enum | The destination of the event. Values: `EMFConsumer` for EMF related events: Loyalty, DVS, and Communication, EIConsumer for Essential Insights.
+description | string | Specify a short description for the event.
+fields | obj | Configure fields for the current event with attributes: `name`, `type`, and `value`.
+name | string | Specify the name of the field.
+type | enum | Specify the type of the attribute. Values: `tillCode`, `couponCode`, `customer`, `productSku`, `productBrand`, `productCategory`, `string`, `double`.
+addCustomerIfNotExists | obj | Set this value to `true` to allow registering new customers in to the loyalty program automatically
+valueType | enum | Datatype of the attribute. For example, `Boolean`, `Enum`, `String`.
+value | string | Value of the attribute based on its `valueType`.For example, if `valueType` is Boolean, value could be either `true` or `false`.
 
 
 
@@ -332,7 +350,7 @@ Batch Support | No
 
 ### Request URL
 
-`http://clusterURL}/v2/events/standard_events/enable?event_name={eventName}`
+`http://{host}/v2/events/standard_events/enable?event_name={eventName}`
 
 
 
@@ -3882,8 +3900,6 @@ Batch Support | No
 ### Request URL
 
 `http://{host}/v2/events`
-
-
 
 
 

@@ -91,12 +91,12 @@ Registers customers in the org's loyalty program on different source accounts su
 
 <aside class="notice">
 
-**Extended Fields**:
+<b>Extended Fields</b>:
 Extended Fields are proposed fields used to standardize input values and keys across organizations (unlike custom fields that have no control in input values). Platforms back-end team controls the field names, data-types, enum values, and scopes of extended fields. Extended Fields are created at customer level, transaction level, and transaction line-item level.
 
 Examples of customer level extended fields are age_group, preferred_store, gender, and nationality.
 
-Extended fields are either associated to verticals or to a generic category (available for all orgs). To know the list of extended fields enabled for an org, use GET v2/extendedFields API.
+Extended fields are either associated to verticals or to a generic category (available for all orgs). To know the list of extended fields enabled for an org, use GET <code>v2/extendedFields</code> API.
 </aside>
 
 
