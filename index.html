@@ -1509,8 +1509,8 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 </tr>
 <tr>
 <td>embed=usergroup</td>
+<td>-</td>
 <td>Retrieves user group details if the customer is in a user group.</td>
-<td></td>
 </tr>
 </tbody></table>
 
@@ -1617,7 +1617,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td>`/{customerId}/loyaltyDetails&rsquo;</td>
+<td><code class="prettyprint">/{customerId}/loyaltyDetails</code></td>
 </tr>
 <tr>
 <td>Authentication</td>
@@ -3190,10 +3190,6 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
 <td>HTTP Methods</td>
 <td>POST</td>
 </tr>
@@ -3217,18 +3213,23 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Datatype</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>name*</td>
-<td>Name of the tag or labels</td>
+<td>string</td>
+<td>Name of the tag or labels.</td>
 </tr>
 <tr>
 <td>description*</td>
-<td>Short description about the tag</td>
+<td>string</td>
+<td>Brief description about the tag.</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
 
 <h2 id="get-org-labels">Get Org Labels</h2>
 
@@ -3304,10 +3305,6 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
 <td>HTTP Methods</td>
 <td>GET</td>
 </tr>
@@ -3324,7 +3321,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{Cluster API URL}/v2/organization/labels</code></p>
+<p><code class="prettyprint">https://{host}/v2/organization/labels</code></p>
 
 <h2 id="tag-customers-to-labels">Tag Customers (to Labels)</h2>
 
@@ -3386,10 +3383,6 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
 <td>HTTP Methods</td>
 <td>POST</td>
 </tr>
@@ -3406,7 +3399,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{cluster URL}/v2/customers/{userId}/changeLabels</code></p>
+<p><code class="prettyprint">https://{host}/v2/customers/{userId}/changeLabels</code></p>
 
 <h3 id="request-parameters">Request Parameters</h3>
 
@@ -3428,6 +3421,8 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>Label name that you want to tag to the customer</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
 
 <h2 id="fetch-labels-of-a-customer">Fetch Labels of a Customer</h2>
 
@@ -3516,6 +3511,8 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </tr>
 </tbody></table>
 
+<aside class="notice">The parameter marked with * is mandatory.</aside>
+
 <h2 id="search-customers-by-labels">Search Customers by Labels</h2>
 
 <p>Retrieves the list of customers who are tagged to a specific label. You can also search by partial label name. By default you will see a maximum of 10 records.</p>
@@ -3523,7 +3520,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight html"><code>v2/customers/labels/search?q=premium
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/customers/labels/search?q=premium
 
 </code></pre>
 <blockquote>
@@ -3585,10 +3582,6 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
 <td>HTTP Methods</td>
 <td>GET</td>
 </tr>
@@ -3617,9 +3610,11 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </thead><tbody>
 <tr>
 <td>q*</td>
-<td>Specify the label name by which you want to fetch customers. You can also pass partial string. For example <code class="prettyprint">pre</code> to fetch customers in all labels that starts with pre</td>
+<td>Specify the label name by which you want to fetch customers. You can also pass partial string. For example <code class="prettyprint">pre</code> to fetch customers in all labels that starts with pre.</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">The parameters marked with * is mandatory.</aside>
 
           <h1 id="otp">OTP</h1>
 
