@@ -804,7 +804,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td>`/{customerId}/changeIdentifier?{query parameters}&rsquo;</td>
+<td>`/{customerId}/changeIdentifier?source={source}&amp;accountId={accountId}&rsquo;</td>
 </tr>
 <tr>
 <td>Authentication</td>
@@ -822,7 +822,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/customers/{customerId}/changeIdentifier?source={sourceName}&amp;accountId={accountId}</code></p>
+<p><code class="prettyprint">https://{host}/v2/customers/{customerId}/changeIdentifier?source={source}&amp;accountId={accountId}</code></p>
 
 <aside class="notice">The new identifier that you want to update should be unique across the source (for sources with single accounts) and unique across the account (for sources with multiple accounts).</aside>
 
