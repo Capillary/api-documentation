@@ -18167,7 +18167,1583 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <p><code class="prettyprint">http://{host}/v2/events</code></p>
 
-<h2 id="get-customer-events-data">Get Customer Events Data</h2>
+<h2 id="get-event-data">Get Event Data</h2>
+
+<p>Retrieves details of a specific events.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>http://eu.api.capillarytech.com/v2/events/event_data?id=5aa2e5dc-2b84-4798-99a2-69dba75523ba
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"data"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"clickEventsMeta"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"eventId"</span><span class="p">:</span><span class="s2">"48529b6f-b39f-4d10-83c9-a90a150dd73b"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"eventName"</span><span class="p">:</span><span class="s2">"OfferScan"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"eventType"</span><span class="p">:</span><span class="s2">"USEREVENT"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"actions"</span><span class="p">:[</span><span class="w">
+               </span><span class="s2">"EMFConsumer"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"EIConsumer"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"fields"</span><span class="p">:[</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"customer"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"customer"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"accountId"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"ENUM"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"addCustomerIfNotExists"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"identifierType"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"ENUM"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"source"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"ENUM"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Product category"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Discount %"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"double"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">100458</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"PUBLISHED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"testStatus"</span><span class="p">:</span><span class="s2">"VERIFIED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"Offer Scan Event"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"date"</span><span class="p">:</span><span class="mi">1583306398493</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"standardEvent"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"transformerMappings"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"defaultTransformerMappping"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"webEngageTransformerMapping"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"clickEventsMeta"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"eventId"</span><span class="p">:</span><span class="s2">"ff506f87-23c6-43d3-a009-392a133d1b3c"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"eventName"</span><span class="p">:</span><span class="s2">"sales_promotion"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"eventType"</span><span class="p">:</span><span class="s2">"USEREVENT"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"actions"</span><span class="p">:[</span><span class="w">
+               </span><span class="s2">"EMFConsumer"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"EIConsumer"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"fields"</span><span class="p">:[</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"customer"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"accountId"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"ENUM"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"addCustomerIfNotExists"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"identifierType"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"ENUM"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"source"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"ENUM"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"promotion_name"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"store"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"tillCode"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">100458</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"PUBLISHED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"testStatus"</span><span class="p">:</span><span class="s2">"VERIFIED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"Sales Promotion"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"sales promotion"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"date"</span><span class="p">:</span><span class="mi">1583306398494</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"standardEvent"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"transformerMappings"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"defaultTransformerMappping"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"webEngageTransformerMapping"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"clickEventsMeta"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"eventId"</span><span class="p">:</span><span class="s2">"208a6889-5653-4f5e-87d2-fa1470bdd2e9"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"eventName"</span><span class="p">:</span><span class="s2">"removedFromCart"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"eventType"</span><span class="p">:</span><span class="s2">"PRODUCTEVENT"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"actions"</span><span class="p">:[</span><span class="w">
+               </span><span class="s2">"EIConsumer"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"fields"</span><span class="p">:[</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"customerId"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"customer"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"accountId"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"~11b564bda"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"ENUM"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"addCustomerIfNotExists"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"identifierType"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"ENUM"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"source"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"WEB_ENGAGE"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"ENUM"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"cartId"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"skuCode"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"productSku"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"brandCode"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"productBrand"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"categoryCode"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"productCategory"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"quantity"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"double"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"price"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"double"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"productName"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"productType"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"brand"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"categoryName"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"locationName"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"variant"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"pageURL"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"browserName"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"osName"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"device"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"city"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"region"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"country"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"ip"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">100458</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"PUBLISHED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"testStatus"</span><span class="p">:</span><span class="s2">"VERIFIED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"Removed From Cart"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Removed From Cart"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"date"</span><span class="p">:</span><span class="mi">1583306398494</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"standardEvent"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"transformerMappings"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"defaultTransformerMappping"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"webEngageTransformerMapping"</span><span class="p">:{</span><span class="w">
+               </span><span class="nt">"eventNameMapping"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"valueMap"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"Added To Cart"</span><span class="p">:</span><span class="s2">"addedToCart"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"Product Viewed"</span><span class="p">:</span><span class="s2">"productViewed"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"Promotion Viewed"</span><span class="p">:</span><span class="s2">"promotionViewed"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"Register"</span><span class="p">:</span><span class="s2">"customerRegistered"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"Removed From Cart"</span><span class="p">:</span><span class="s2">"removedFromCart"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"asdfg"</span><span class="p">:</span><span class="s2">"promotionViewed"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"qwert"</span><span class="p">:</span><span class="s2">"addedToCart"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"qwert1234567u"</span><span class="p">:</span><span class="s2">"productViewed"</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"eventFieldMappings"</span><span class="p">:[</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"customerId"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"user_id"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"cartId"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"cartRefKey"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"skuCode"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"skuCode"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"brandCode"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"brandCode"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"categoryCode"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"categoryCode"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"quantity"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"quantity"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"price"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"price"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"productName"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"name"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"productType"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"productType"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"brand"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"brand"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"categoryName"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"category"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"locationName"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"LocationName"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"variant"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"variant"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"pageURL"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"page_url"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"browserName"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"browser_name"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"osName"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"os_name"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"device"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"device"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"city"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"city"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"region"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"region"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"country"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"country"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"ip"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"ip"</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"clickEventsMeta"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"eventId"</span><span class="p">:</span><span class="s2">"f0bbf01f-892b-44bd-b644-bd5ebd397821"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"eventName"</span><span class="p">:</span><span class="s2">"Checkout Started"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"actions"</span><span class="p">:[</span><span class="w">
+               </span><span class="s2">"EIConsumer"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"fields"</span><span class="p">:[</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"cartRefKey"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"user_id"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"customer"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"accountId"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"~11b564bda"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"ENUM"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"addCustomerIfNotExists"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"identifierType"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"ENUM"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"source"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"WEB_ENGAGE"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"ENUM"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"category"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"brand"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"LocationName"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"numberofProducts"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"double"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"quantity"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"browser_name"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"os_name"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"device"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"city"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"region"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"country"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"ip"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"page_url"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"name"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"variant"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">100458</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"PUBLISHED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"testStatus"</span><span class="p">:</span><span class="s2">"VERIFIED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"Checkout Started"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"date"</span><span class="p">:</span><span class="mi">1583306398494</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"standardEvent"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"transformerMappings"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"defaultTransformerMappping"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"webEngageTransformerMapping"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"clickEventsMeta"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"eventId"</span><span class="p">:</span><span class="s2">"8c5d2c45-2979-4b13-84d4-daf5f70d54ca"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"eventName"</span><span class="p">:</span><span class="s2">"SpintheWheelReloaded"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"eventType"</span><span class="p">:</span><span class="s2">"USEREVENT"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"actions"</span><span class="p">:[</span><span class="w">
+               </span><span class="s2">"EMFConsumer"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"EIConsumer"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"fields"</span><span class="p">:[</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"customerMobile"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"customer"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"accountId"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"ENUM"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"addCustomerIfNotExists"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"identifierType"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"ENUM"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"source"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"ENUM"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"till"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"tillCode"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"gametype"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"wheelslot"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"double"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">100458</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"UNPUBLISHED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"testStatus"</span><span class="p">:</span><span class="s2">"NOT_VERIFIED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"Spin the Wheel Demo"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Spin the Wheel for Sales Demo"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"date"</span><span class="p">:</span><span class="mi">1583306398494</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"standardEvent"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"transformerMappings"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"defaultTransformerMappping"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"webEngageTransformerMapping"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"clickEventsMeta"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"eventId"</span><span class="p">:</span><span class="s2">"fc73f1ee-cbe5-4585-8a54-33ddb24eb16f"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"eventName"</span><span class="p">:</span><span class="s2">"MovieInterval"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"eventType"</span><span class="p">:</span><span class="s2">"USEREVENT"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"actions"</span><span class="p">:[</span><span class="w">
+               </span><span class="s2">"EMFConsumer"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"EIConsumer"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"fields"</span><span class="p">:[</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"customerMobile"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"customer"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"accountId"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"ENUM"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"addCustomerIfNotExists"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"identifierType"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"ENUM"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"source"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"ENUM"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"movieName"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"theaterCode"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"tillCode"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">100458</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"PUBLISHED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"testStatus"</span><span class="p">:</span><span class="s2">"VERIFIED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"MovieInterval"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Reward on movie interval"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"date"</span><span class="p">:</span><span class="mi">1583306398494</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"standardEvent"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"transformerMappings"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"defaultTransformerMappping"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"webEngageTransformerMapping"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"clickEventsMeta"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"eventId"</span><span class="p">:</span><span class="s2">"63a888ec-1722-48e9-a538-b71cd96e6b79"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"eventName"</span><span class="p">:</span><span class="s2">"PWP"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"actions"</span><span class="p">:[</span><span class="w">
+               </span><span class="s2">"EMFConsumer"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"EIConsumer"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"fields"</span><span class="p">:[</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"SKU"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"productSku"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"productCategory"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"productCategory"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"date"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"date"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"customerID"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"customer"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"accountId"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"ENUM"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"addCustomerIfNotExists"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"identifierType"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"ENUM"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"source"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"ENUM"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">100458</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"UNPUBLISHED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"testStatus"</span><span class="p">:</span><span class="s2">"NOT_VERIFIED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"PWP"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Purchase with purchase"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"date"</span><span class="p">:</span><span class="mi">1583306398494</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"standardEvent"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"transformerMappings"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"defaultTransformerMappping"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"webEngageTransformerMapping"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"clickEventsMeta"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"eventId"</span><span class="p">:</span><span class="s2">"0f34757f-53cf-4bde-b1bd-3543e456108f"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"eventName"</span><span class="p">:</span><span class="s2">"productViewed"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"actions"</span><span class="p">:[</span><span class="w">
+               </span><span class="s2">"EIConsumer"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"fields"</span><span class="p">:[</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"customerId"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"customer"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"accountId"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"~11b564bda"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"ENUM"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"addCustomerIfNotExists"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"identifierType"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"MOBILE"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"ENUM"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"source"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"WEB_ENGAGE"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"ENUM"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"osName"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"browserName"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"region"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"device"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"country"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"pageURL"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"brandName"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">100458</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"PUBLISHED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"testStatus"</span><span class="p">:</span><span class="s2">"VERIFIED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"Product Viewed"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Product Viewed"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"date"</span><span class="p">:</span><span class="mi">1583306398494</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"standardEvent"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"transformerMappings"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"defaultTransformerMappping"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"webEngageTransformerMapping"</span><span class="p">:{</span><span class="w">
+               </span><span class="nt">"eventNameMapping"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"valueMap"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"Added To Cart"</span><span class="p">:</span><span class="s2">"addedToCart"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"Product Viewed"</span><span class="p">:</span><span class="s2">"productViewed"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"Promotion Viewed"</span><span class="p">:</span><span class="s2">"promotionViewed"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"Register"</span><span class="p">:</span><span class="s2">"customerRegistered"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"Removed From Cart"</span><span class="p">:</span><span class="s2">"removedFromCart"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"asdfg"</span><span class="p">:</span><span class="s2">"promotionViewed"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"qwert"</span><span class="p">:</span><span class="s2">"addedToCart"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"qwert1234567u"</span><span class="p">:</span><span class="s2">"productViewed"</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"eventFieldMappings"</span><span class="p">:[</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"customerId"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"user_id"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"skuCode"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"sku"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"brandCode"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"brandCode"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"categoryCode"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"categoryCode"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"price"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"price"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"productName"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"name"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"productType"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"productType"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"locationName"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"LocationName"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"categoryName"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"category"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"city"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"city"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"ip"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"ip"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"osName"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"os_name"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"browserName"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"browser_name"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"region"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"region"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"device"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"device"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"country"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"country"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"pageURL"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"page_url"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"brandName"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"brand"</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"clickEventsMeta"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"eventId"</span><span class="p">:</span><span class="s2">"3c7f8017-e060-40d7-9188-635a26d55596"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"eventName"</span><span class="p">:</span><span class="s2">"customerRegistered"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"eventType"</span><span class="p">:</span><span class="s2">"USEREVENT"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"actions"</span><span class="p">:[</span><span class="w">
+               </span><span class="s2">"EIConsumer"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"fields"</span><span class="p">:[</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"customerId"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"customer"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"accountId"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"~11b564bda"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"ENUM"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"addCustomerIfNotExists"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"identifierType"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"ENUM"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"source"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"WEB_ENGAGE"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"ENUM"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"firstName"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"lastName"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"deviceId"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"ipAddress"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"city"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"region"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"country"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"browserName"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"osName"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"device"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"pageURL"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"attributes"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"isRequired"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"BOOLEAN"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="nt">"regex"</span><span class="p">:{</span><span class="w">
+                        </span><span class="nt">"valueType"</span><span class="p">:</span><span class="s2">"STRING"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">100458</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="s2">"PUBLISHED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"testStatus"</span><span class="p">:</span><span class="s2">"VERIFIED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">"Customer Registered"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Customer Registered"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"date"</span><span class="p">:</span><span class="mi">1583306398495</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"standardEvent"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"transformerMappings"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"defaultTransformerMappping"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"webEngageTransformerMapping"</span><span class="p">:{</span><span class="w">
+               </span><span class="nt">"eventNameMapping"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"valueMap"</span><span class="p">:{</span><span class="w">
+                     </span><span class="nt">"Added To Cart"</span><span class="p">:</span><span class="s2">"addedToCart"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"Product Viewed"</span><span class="p">:</span><span class="s2">"productViewed"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"Promotion Viewed"</span><span class="p">:</span><span class="s2">"promotionViewed"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"Register"</span><span class="p">:</span><span class="s2">"customerRegistered"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"Removed From Cart"</span><span class="p">:</span><span class="s2">"removedFromCart"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"asdfg"</span><span class="p">:</span><span class="s2">"promotionViewed"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"qwert"</span><span class="p">:</span><span class="s2">"addedToCart"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"qwert1234567u"</span><span class="p">:</span><span class="s2">"productViewed"</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"eventFieldMappings"</span><span class="p">:[</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"customerId"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"user_id"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"firstName"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"firstName"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"lastName"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"lastName"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"deviceId"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"deviceId"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"ipAddress"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"ip"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"city"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"city"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"region"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"region"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"country"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"country"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"browserName"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"browser_name"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"osName"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"os_name"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"device"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"device"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="nt">"eventFieldName"</span><span class="p">:</span><span class="s2">"pageURL"</span><span class="p">,</span><span class="w">
+                     </span><span class="nt">"fieldName"</span><span class="p">:</span><span class="s2">"page_url"</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">]</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"errors"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="request-information">Request Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/events?id={eventId}</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/events?id={eventId}</code></p>
+
+<h3 id="request-path-parameters">Request Path Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id*</td>
+<td>long</td>
+<td>Unique ID of the event to fetch the event&rsquo;s data.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">The parameter marked with * is mandatory. </aside> 
+
+<h2 id="get-events-data-of-a-customer">Get Events Data of a Customer</h2>
 
 <p>Retrieves all event details of a specific customer.</p>
 
@@ -18248,7 +19824,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
       </span><span class="p">}</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100458</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100345</span><span class="p">,</span><span class="w">
       </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">98662653</span><span class="p">,</span><span class="w">
       </span><span class="nt">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-12-08T05:53:39Z"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"eventName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Checkout Started"</span><span class="p">,</span><span class="w">
