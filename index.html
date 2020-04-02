@@ -4880,12 +4880,12 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
 <p>Sample POST Request</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-</span><span class="nt">"redemptionId"</span><span class="p">:</span><span class="s2">"edgC0M"</span><span class="p">,</span><span class="w">
+</span><span class="nt">"redemptionId"</span><span class="p">:</span><span class="s2">"54ZNkA"</span><span class="p">,</span><span class="w">
 </span><span class="nt">"pointsToBeReversed"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
 </span><span class="nt">"identifier"</span><span class="p">:</span><span class="w">
     </span><span class="p">{</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"919700000000"</span><span class="w">
+    </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"919740000000"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
@@ -4894,16 +4894,18 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
 <p>Sample Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"redemptionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"edgC0M"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"pointsToBeReversed"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"redemptionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"54ZNkA"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pointsToBeReversed"</span><span class="p">:</span><span class="w"> </span><span class="mf">20.0</span><span class="p">,</span><span class="w">
     </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100458</span><span class="p">,</span><span class="w">
     </span><span class="nt">"identifier"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"919700000000"</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"919740000000"</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"customerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">98662653</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"pointsReversed"</span><span class="p">:</span><span class="w"> </span><span class="mf">20.0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"reversalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5wyOZM"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-</span><span class="p">}</span><span class="w">     
+</span><span class="p">}</span><span class="w">  
 </span></code></pre>
 <h3 id="resource-information">Resource Information</h3>
 
@@ -5167,6 +5169,86 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
 <tr>
 <td>419</td>
 <td>Merged customer found with id: {x}, where x is the user id of the customer.</td>
+</tr>
+<tr>
+<td>686</td>
+<td>User is from campaign and has not enrolled in the loyalty program. Points redemption is not applicable for the user.</td>
+</tr>
+<tr>
+<td>804</td>
+<td>Insufficient current points.</td>
+</tr>
+<tr>
+<td>805</td>
+<td>Insufficient lifetime points.</td>
+</tr>
+<tr>
+<td>806</td>
+<td>Insufficient lifetime purchases amount.</td>
+</tr>
+<tr>
+<td>807</td>
+<td>Redemptions points not divisible.</td>
+</tr>
+<tr>
+<td>809</td>
+<td>Customer is marked as fraud.</td>
+</tr>
+<tr>
+<td>818</td>
+<td>Current points are less than points requested for redemption.</td>
+</tr>
+<tr>
+<td>819</td>
+<td>Points to redeem exceeds the threshold limit (maximum points that can be redeemed in a transaction).</td>
+</tr>
+<tr>
+<td>821</td>
+<td>Points you are trying to redeem are less than the minimum points allowed.</td>
+</tr>
+<tr>
+<td>886</td>
+<td>Unable to process points. Please try again later.</td>
+</tr>
+<tr>
+<td>887</td>
+<td>Unable to process points. Please try again later.</td>
+</tr>
+<tr>
+<td>888</td>
+<td>Invalid configuration. Please report to capillary support.</td>
+</tr>
+<tr>
+<td>895</td>
+<td>Loyalty program is not configured for the  org.</td>
+</tr>
+<tr>
+<td>896</td>
+<td>Unable to process points. Please try again later.</td>
+</tr>
+<tr>
+<td>898</td>
+<td>Unable to process points. Please try again later.</td>
+</tr>
+<tr>
+<td>899</td>
+<td>Invalid configuration. Please report to capillary support.</td>
+</tr>
+<tr>
+<td>901</td>
+<td>Invalid points or points redemption Id passed.</td>
+</tr>
+<tr>
+<td>902</td>
+<td>Redemption ID does not exist.</td>
+</tr>
+<tr>
+<td>903</td>
+<td>Unable to redeem points.</td>
+</tr>
+<tr>
+<td>904</td>
+<td>Invalid customer details passed.</td>
 </tr>
 </tbody></table>
 
