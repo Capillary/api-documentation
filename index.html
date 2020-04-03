@@ -11728,13 +11728,16 @@ password* | Specify your preferred new password</p>
 
           <h1 id="other-apis-org-level">Other APIs (Org Level)</h1>
 
+<p>This section provides all other APIs that are not in any of the resources mentioned above.</p>
+
 <h2 id="update-org-currency-ratio">Update Org Currency Ratio</h2>
 
 <p>Lets you update currency ratio of the org.</p>
-<pre class="highlight html"><code># Sample Request
 
-
-https://us.api.capillarytech.com/v2/currencyratio
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/currencyratio
 </code></pre>
 <blockquote>
 <p>Sample POST Request</p>
@@ -11743,7 +11746,6 @@ https://us.api.capillarytech.com/v2/currencyratio
     </span><span class="nt">"ratioInr"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w"> 
     </span><span class="nt">"currencyCode"</span><span class="p">:</span><span class="s2">"INR"</span><span class="w"> 
 </span><span class="p">}</span><span class="w">
-
 </span></code></pre>
 <blockquote>
 <p>Sample Response</p>
@@ -11773,7 +11775,7 @@ https://us.api.capillarytech.com/v2/currencyratio
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/v2/currencyratio</code></td>
+<td><code class="prettyprint">/currencyratio</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -11806,10 +11808,33 @@ https://us.api.capillarytech.com/v2/currencyratio
 
 <p><code class="prettyprint">https://{host}/v2/currencyratio</code></p>
 
-<h2 id="generate-external-ids">Generate External IDs</h2>
-<pre class="highlight html"><code># Sample Request
+<h3 id="request-body-parameters">Request Body Parameters</h3>
 
-https://us.api.capillarytech.com/v2/cardNumber
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ratioInr</td>
+<td>double</td>
+<td></td>
+</tr>
+<tr>
+<td>currencyCode</td>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+
+<h2 id="generate-external-ids">Generate External IDs</h2>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/cardNumber
 </code></pre>
 <blockquote>
 <p>Sample Response</p>
@@ -11881,7 +11906,7 @@ https://us.api.capillarytech.com/v2/cardNumber
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">v2/entity/extended_field_config</code></td>
+<td><code class="prettyprint">/entity/extended_field_config</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -11890,10 +11915,6 @@ https://us.api.capillarytech.com/v2/cardNumber
 <tr>
 <td>Authentication</td>
 <td>Yes</td>
-</tr>
-<tr>
-<td>Response Formats</td>
-<td>JSON</td>
 </tr>
 <tr>
 <td>HTTP Methods</td>
@@ -11914,51 +11935,19 @@ https://us.api.capillarytech.com/v2/cardNumber
 
 <p><code class="prettyprint">https://{host}/v2/entity/extended_field_config</code></p>
 
-<h3 id="request-attributes">Request Attributes</h3>
+<h3 id="request-body-parameters">Request Body Parameters</h3>
 
-<table><thead>
-<tr>
-<th>Attribute</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>extendedFieldId*</td>
-<td>Specify the unique id of the extended field that you want to show/hide</td>
-</tr>
-<tr>
-<td>createdOn</td>
-<td>Date on which the field is created</td>
-</tr>
-<tr>
-<td>createdBy</td>
-<td>User id who created the extended field</td>
-</tr>
-<tr>
-<td>modifiedOn</td>
-<td>Current date</td>
-</tr>
-<tr>
-<td>modifiedBy</td>
-<td>User id who is</td>
-</tr>
-<tr>
-<td>hideDisplay*</td>
-<td>Value: true, false</td>
-</tr>
-<tr>
-<td>mandatory</td>
-<td>Value: true, false</td>
-</tr>
-<tr>
-<td>updatable</td>
-<td>Specify <code class="prettyprint">true</code> to allow updating extended field values, <code class="prettyprint">false</code> to disable updating extended field values</td>
-</tr>
-<tr>
-<td>position</td>
-<td>Specify the position order of the extended field on the UI</td>
-</tr>
-</tbody></table>
+<p>Attribute | Datatype | Description
+&mdash;&mdash;&mdash; | &mdash;&mdash;&mdash;&ndash;
+extendedFieldId* | long | Specify the unique id of the extended field that you want to show/hide
+createdOn | date | Date on which the field is created in <code class="prettyprint">YYYY-MM-DD</code> format.
+createdBy | string | Unique id of the user that created the extended field.
+modifiedOn | date | Date when the extended field is updated (usually the Current date)
+modifiedBy | date | Unique id of the user that modified the extended field.
+hideDisplay* | boolen | Pass <code class="prettyprint">true</code> to hide the extended field on UI, <code class="prettyprint">false</code> to show extended field.
+mandatory | boolen | Pass <code class="prettyprint">true</code> to make the extended a mandatory option on the UI, <code class="prettyprint">false</code> to make it an optional field.
+updatable | boolean | Specify <code class="prettyprint">true</code> to allow updating extended field values once entered, <code class="prettyprint">false</code> to disable updating extended field values
+position | boolean | Specify the position order of the extended field on the UI.</p>
 
 <h2 id="retrieve-org-extended-fields">Retrieve Org Extended Fields</h2>
 
@@ -12559,21 +12548,17 @@ https://us.api.capillarytech.com/v2/cardNumber
 </span></code></pre>
 <p>Retrieves the details of all extended fields configured for the organization.</p>
 
-<h3 id="request-url">Request URL</h3>
-
-<p><code class="prettyprint">https://{host}/v2/extendedFields</code></p>
-
 <h3 id="resource-information">Resource Information</h3>
 
 <table><thead>
 <tr>
-<th>Information</th>
-<th>Value</th>
+<th></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td>/extendedFields</td>
+<td><code class="prettyprint">/extendedFields</code></td>
 </tr>
 <tr>
 <td>Authentication</td>
@@ -12605,11 +12590,19 @@ https://us.api.capillarytech.com/v2/cardNumber
 
 <aside class="notice">To enable a specific language support for an org, contact the Platforms team to get the translations added to the database and activate translations for the org. </aside>
 
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/extendedFields</code></p>
+
 <h2 id="create-store-associates">Create Store Associates</h2>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
 <pre class="highlight html"><code>https://us.api.capillarytech.com/v2/orgEntity/associate
 </code></pre>
 <blockquote>
-<p>Sample Request</p>
+<p>Sample POST Request</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
  </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01099-james"</span><span class="p">,</span><span class="w">
@@ -12633,8 +12626,8 @@ https://us.api.capillarytech.com/v2/cardNumber
 
 <table><thead>
 <tr>
-<th>Information</th>
-<th>Value</th>
+<th></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
@@ -12660,8 +12653,16 @@ https://us.api.capillarytech.com/v2/cardNumber
 <p><code class="prettyprint">https://&lt;cluster url&gt;v2/orgEntity/associate</code></p>
 
 <h2 id="retrieve-org-loyalty-programs">Retrieve Org Loyalty Programs</h2>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
 <pre class="highlight html"><code>https://us.api.capillarytech.com/v2/organization/programs
-</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
        </span><span class="p">{</span><span class="w">
            </span><span class="nt">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1124</span><span class="p">,</span><span class="w">
@@ -12688,8 +12689,8 @@ https://us.api.capillarytech.com/v2/cardNumber
 
 <table><thead>
 <tr>
-<th>Information</th>
-<th>Value</th>
+<th></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
@@ -12712,9 +12713,13 @@ https://us.api.capillarytech.com/v2/cardNumber
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://&lt;cluster url&gt;v2/organization/programs</code></p>
+<p><code class="prettyprint">https://{host}/v2/organization/programs</code></p>
 
 <h2 id="feed-scan-event">Feed (Scan Event)</h2>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
 <pre class="highlight html"><code>https://us.api.capillarytech.com/v2/feed?source=INSTORE
 </code></pre>
 <blockquote>
@@ -12780,8 +12785,8 @@ https://us.api.capillarytech.com/v2/cardNumber
 
 <table><thead>
 <tr>
-<th>Information</th>
-<th>Value</th>
+<th></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
@@ -12804,7 +12809,7 @@ https://us.api.capillarytech.com/v2/cardNumber
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://&lt;cluster url&gt;v2/feed?source=INSTORE</code></p>
+<p><code class="prettyprint">https://{host}/v2/feed?source=INSTORE</code></p>
 
 <h3 id="request-body-parameters">Request Body Parameters</h3>
 
