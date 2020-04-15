@@ -4869,7 +4869,16 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
 
 <h2 id="reverse-redeemed-points">Reverse Redeemed Points</h2>
 
-<p>Lets you reverse a set of points that are redeemed in a transaction. For example, you can use this API to reverse points redeemed for a transaction if the transaction is returned. </p>
+<p>Lets you reverse a set of points that are redeemed in a transaction. For example, you can use this API to reverse points redeemed for a transaction if the transaction is returned.</p>
+
+<p>Prerequisites:</p>
+
+<p>The following configurations are required for <code class="prettyprint">points/reverse</code> API</p>
+
+<ul>
+<li>Enable Allow_points_redemption_reversal config on EMF settings. Only the back-end team has access to this page. Please raise a ticket to enable the config.</li>
+<li>Enable V2 API as points reversal is supported only V2.0.</li>
+</ul>
 
 <blockquote>
 <p>Sample Request</p>
@@ -11732,7 +11741,7 @@ password* | Specify your preferred new password</p>
 
 <h2 id="update-org-currency-ratio">Update Org Currency Ratio</h2>
 
-<p>Lets you update currency ratio of the org.</p>
+<p>Lets you add or update currency ratios with respect to Indian Rupee (INR).</p>
 
 <blockquote>
 <p>Sample Request</p>
@@ -11743,8 +11752,8 @@ password* | Specify your preferred new password</p>
 <p>Sample POST Request</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w"> 
-    </span><span class="nt">"ratioInr"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w"> 
-    </span><span class="nt">"currencyCode"</span><span class="p">:</span><span class="s2">"INR"</span><span class="w"> 
+    </span><span class="nt">"ratioInr"</span><span class="p">:</span><span class="mi">51</span><span class="p">,</span><span class="w"> 
+    </span><span class="nt">"currencyCode"</span><span class="p">:</span><span class="s2">"SGD"</span><span class="w"> 
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -11752,8 +11761,8 @@ password* | Specify your preferred new password</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
    </span><span class="nt">"entity"</span><span class="p">:{</span><span class="w">
-      </span><span class="nt">"currencyCode"</span><span class="p">:</span><span class="s2">"INR"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"ratioInr"</span><span class="p">:</span><span class="mf">10.0</span><span class="w">
+      </span><span class="nt">"currencyCode"</span><span class="p">:</span><span class="s2">"SGD"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"ratioInr"</span><span class="p">:</span><span class="mi">51</span><span class="w">
    </span><span class="p">},</span><span class="w">
    </span><span class="nt">"errors"</span><span class="p">:[</span><span class="w">
 
@@ -11786,10 +11795,6 @@ password* | Specify your preferred new password</p>
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
 <td>HTTP Methods</td>
 <td>POST</td>
 </tr>
@@ -11820,12 +11825,12 @@ password* | Specify your preferred new password</p>
 <tr>
 <td>ratioInr</td>
 <td>double</td>
-<td></td>
+<td>Conversion ratio with respect to INR.</td>
 </tr>
 <tr>
 <td>currencyCode</td>
-<td></td>
-<td></td>
+<td>string</td>
+<td>ISO currency code that you want to update. For example <code class="prettyprint">EUR</code> for Euro, <code class="prettyprint">SGD</code> for Singapore Dollar, <code class="prettyprint">CNY</code> for China Yuan Renminbi, <code class="prettyprint">SAR</code> Saudi Riyal. For more codes, Google for ISO currency codes.</td>
 </tr>
 </tbody></table>
 
