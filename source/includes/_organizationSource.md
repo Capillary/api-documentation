@@ -1,18 +1,16 @@
 # Other APIs (Org Level)
 
-
+This section provides all other APIs that are not in any of the resources mentioned above.
 
 
 ## Update Org Currency Ratio
 
-Lets you update currency ratio of the org.
+Lets you add or update currency ratios with respect to Indian Rupee (INR).
 
 
+> Sample Request
 
 ```html
-# Sample Request
-
- 
 https://us.api.capillarytech.com/v2/currencyratio
 ```
 
@@ -21,10 +19,9 @@ https://us.api.capillarytech.com/v2/currencyratio
 
 ```json
 { 
-	"ratioInr":10, 
-	"currencyCode":"INR" 
+	"ratioInr":51, 
+	"currencyCode":"SGD" 
 }
-
 ```
 
 
@@ -34,8 +31,8 @@ https://us.api.capillarytech.com/v2/currencyratio
 ```json
 {
    "entity":{
-      "currencyCode":"INR",
-      "ratioInr":10.0
+      "currencyCode":"SGD",
+      "ratioInr":51
    },
    "errors":[
 
@@ -51,10 +48,9 @@ https://us.api.capillarytech.com/v2/currencyratio
 ### Resource Information
 | | |
 --------- | ----------- |
-URI | `/v2/currencyratio`
+URI | `/currencyratio`
 Rate Limited? | No
 Authentication | Yes
-Response Formats | JSON
 HTTP Methods | POST
 Batch Support | No
 
@@ -68,13 +64,23 @@ Batch Support | No
 
 
 
+### Request Body Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+ratioInr | double | Conversion ratio with respect to INR.
+currencyCode | string | ISO currency code that you want to update. For example `EUR` for Euro, `SGD` for Singapore Dollar, `CNY` for China Yuan Renminbi, `SAR` Saudi Riyal. For more codes, Google for ISO currency codes. 
+
+
+
 
 
 ## Generate External IDs
 
-```html
-# Sample Request
- 
+> Sample Request
+
+
+```html 
 https://us.api.capillarytech.com/v2/cardNumber
 ```
 
@@ -145,10 +151,9 @@ This API lets you show or hide a specific extended field on your org's InTouch a
 ### Resource Information
 | | |
 --------- | ----------- |
-URI | `v2/entity/extended_field_config`
+URI | `/entity/extended_field_config`
 Rate Limited? | No
 Authentication | Yes
-Response Formats | JSON
 HTTP Methods | POST
 Batch Support | No
 
@@ -162,18 +167,18 @@ Batch Support | No
 
 `https://{host}/v2/entity/extended_field_config`
 
-### Request Attributes
-Attribute | Description
+### Request Body Parameters
+Attribute | Datatype | Description
 --------- | -----------
-extendedFieldId* | Specify the unique id of the extended field that you want to show/hide
-createdOn | Date on which the field is created
-createdBy | User id who created the extended field
-modifiedOn | Current date 
-modifiedBy | User id who is 
-hideDisplay* | Value: true, false
-mandatory | Value: true, false
-updatable | Specify `true` to allow updating extended field values, `false` to disable updating extended field values
-position |Specify the position order of the extended field on the UI
+extendedFieldId* | long | Specify the unique id of the extended field that you want to show/hide
+createdOn | date | Date on which the field is created in `YYYY-MM-DD` format.
+createdBy | string | Unique id of the user that created the extended field.
+modifiedOn | date | Date when the extended field is updated (usually the Current date)
+modifiedBy | date | Unique id of the user that modified the extended field.
+hideDisplay* | boolen | Pass `true` to hide the extended field on UI, `false` to show extended field.
+mandatory | boolen | Pass `true` to make the extended a mandatory option on the UI, `false` to make it an optional field.
+updatable | boolean | Specify `true` to allow updating extended field values once entered, `false` to disable updating extended field values
+position | boolean | Specify the position order of the extended field on the UI.
 
 
 
@@ -779,14 +784,12 @@ https://us.api.capillarytech.com/v2/extendedFields
 
 Retrieves the details of all extended fields configured for the organization.
 
-### Request URL
 
-`https://{host}/v2/extendedFields`
 
 ### Resource Information
-Information | Value
------------ | -----
-URI | /extendedFields
+| | |
+--------- | ----------- |
+URI | `/extendedFields`
 Authentication | Yes
 HTTP Method | GET
 Batch Support | No
@@ -799,13 +802,22 @@ language | Specify the ISO code of a language to get extended field values in yo
 
 <aside class="notice">To enable a specific language support for an org, contact the Platforms team to get the translations added to the database and activate translations for the org. </aside>
 
+### Request URL
+
+`https://{host}/v2/extendedFields`
+
+
+
 
 ## Create Store Associates
+
+> Sample Request
+
 ```html
 https://us.api.capillarytech.com/v2/orgEntity/associate
 ````
 
-> Sample Request
+> Sample POST Request
 
 ```json
 {
@@ -830,8 +842,8 @@ https://us.api.capillarytech.com/v2/orgEntity/associate
 Allows adding new associates to a store. Only admin users of the org can create associates.
 
 ### Resource Information
-Information | Value
------------ | -----
+| | |
+--------- | ----------- |
 URI | `orgEntity/associate`
 Authentication | Yes
 HTTP Method | POST
@@ -845,9 +857,13 @@ Batch Support | No
 
 
 ## Retrieve Org Loyalty Programs
+
+> Sample Request
+
 ```html
 https://us.api.capillarytech.com/v2/organization/programs
 ```
+> Sample Response
 
 ```json
 {
@@ -876,8 +892,8 @@ Retrieves all the active loyalty programs of the org.
 
 
 ### Resource Information
-Information | Value
------------ | -----
+| | |
+--------- | ----------- |
 URI | `organization/programs`
 Authentication | Yes
 HTTP Method | GET
@@ -885,13 +901,14 @@ Batch Support | No
 
 
 ### Request URL
-`https://<cluster url>v2/organization/programs`
+`https://{host}/v2/organization/programs`
 
 
 
 
 
 ## Feed (Scan Event)
+> Sample Request
 
 ```html
 https://us.api.capillarytech.com/v2/feed?source=INSTORE
@@ -959,8 +976,8 @@ https://us.api.capillarytech.com/v2/feed?source=INSTORE
 Captures details of an events based on qrcodes ,menuclick, and getpromotion.
 
 ### Resource Information
-Information | Value
------------ | -----
+| | |
+--------- | ----------- |
 URI | `feed?source=INSTORE`
 Authentication | Yes
 HTTP Method | POST
@@ -968,7 +985,7 @@ Batch Support | No
 
 
 ### Request URL
-`https://<cluster url>v2/feed?source=INSTORE`
+`https://{host}/v2/feed?source=INSTORE`
 
 ### Request Body Parameters
 

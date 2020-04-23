@@ -236,7 +236,7 @@ Batch Support | No
 
 ### Request URL
 
-`https://{host}/v2/otp/source={source_name}&accountId={account_id}&{identifierName}={value}&scope={POINTS/COUPONS}`
+`https://{host}/v2/otp/source={source}&accountId={account}&{identifierName}={value}&scope={POINTS/COUPONS}`
 
 ### Request Path Parameters
 Parameter | Datatype | Description
@@ -244,9 +244,9 @@ Parameter | Datatype | Description
 identifierName* | enum | Pass any of the registered identifier type of the customer. Values: `mobile`, `email`, `external_id`, `wechat`.
 identifierValue* | string | Specify the value of the specified identifierType
 source | enum | Source in which the customer is registered.
-accountId | string | Specific of the source for sources such as WeChat and Facebook
-threshold | long | Specify the validity of the OTP (in seconds) that you want to fetch
-scope | enum | Specify the scope of the OTP issued. Values: `COUPON` (for coupon redemption), `POINTS` (for points redemption), `REGISTRATION`, `USERGROUP`, `SUBSCRIPTION`, `GENERIC` (for other purposes).
+accountId | string | Account ID of the source such as WeChat and Facebook. Required for sources with multiple accounts.
+threshold | long | Specify the validity of the OTP (in seconds) that you want to fetch.
+scope* | enum | Specify the scope of the issued OTP. Values: `COUPON` (for coupon redemption), `POINTS` (for points redemption), `REGISTRATION`, `USERGROUP`, `SUBSCRIPTION`, `GENERIC` (for other purposes).
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
 

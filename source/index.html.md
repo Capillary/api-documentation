@@ -1,5 +1,5 @@
 ---
-title: Capillary API V2.0 Doc
+title: Capillary API Documentation
 
 language_tabs:
   - json
@@ -28,13 +28,15 @@ includes:
   - OrganizationSource
   - storeCare
   - events
+  - integrations
+  - eventNotifications
 
 search: true
 ---
 
 # Introduction
 
-Capillary RESTful APIs are be consumed by Capillary and other brands that are registered with Capillary/MartJack to manage their CRM. Capillary V2 APIs support multiple sources such as InStore, MartJack, Facebook, and WeChat.
+Capillary RESTful APIs are be consumed by Capillary and other brands that are registered with Capillary/MartJack to manage their CRM. Capillary V2 and V3 APIs support multiple sources such as InStore, MartJack, Facebook, and WeChat.
 
 This document provides detailed information on all the APIs and guides in how to each API with the appropriate samples.
 
@@ -98,10 +100,10 @@ To submit requests on behalf of other TILLs, include the following code along wi
 Entry | Description
 ----- | -----------
 Host | The server to which the API calls are made, usually the cluster URL. <br> * India: apac.intouch.capillary.co.in<br> * APAC2: apac2.intouch.capillarytech.com<br> * EU: eu.intouch.capillarytech.com<br> * US: us.intouch.capillarytech.com<br> * CN: intouch.capillarytech.cn.com
-BasePath | v2 (API version)
+BasePath | v2 or v3(API version)
 Resource | Provide the appropriate entity based on the action to be performed. **Supported Resources**: customers, communications, coupon, organization, points, product, store, transaction, goodwill requests, add events, integration resources, referral, request and other resources.
 HTTP Methods | The Capillary Cloud REST APIs support the standard HTTP methods GET, PUT, DELETE and POST.
-Response Format | JSON. All V2 APIs support only JSON response.
+Response Format | JSON. All V2 and V3 APIs support only JSON response.
 
 
 

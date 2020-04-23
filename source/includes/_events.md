@@ -364,6 +364,160 @@ eventName* | string | Specify the name of the standard event that you want to en
 
 
 
+## Events Mapping (for Events with Standard Fields)
+
+Lets you map a custom event to the defaultTransformer. Use this if you do not want need field level mapping and consider only standard fields for the event.
+
+For example, if you create a custom event by directly adding one or more standard events without creating new custom fields, you can map the event to `defaultTransformer`.
+
+
+> Sample Request
+
+```html
+http://us.api.capillarytech.com/v2/events/adapter_mapping
+```
+
+> Sample POST Request
+
+```json
+{
+  "transformerType":"defaultTransformer",
+  "eventsMapped":["eventsdemo1"]
+}
+```
+
+
+> Sample Response
+
+```json
+{
+    "warnings": [],
+    "errors": []
+}
+```
+
+
+### Request Information
+
+| | |
+--------- | ----------- |
+URI | `/events/adapter_mapping`
+Rate Limited? | Yes
+Authentication | Yes
+HTTP Method | POST
+Batch Support | No
+
+
+
+### Request URL
+
+`http://{host}/v2/events/adapter_mapping`
+
+
+
+### Request Body Parameters
+
+Parameter | Type | Description
+--------- | ---- | -----------
+transformerType* | enum | Specify `defaultTransformer` to map the custom event to the default transformer
+eventsMapped* | array | Specify the event names that you want to map to the `defaultTransformer` separating each event with a comma (,).
+
+<aside class="notice">All parameters marked by * are mandatory.</aside>
+
+
+
+## Event Fields Mapping (for Events with Custom Fields)
+
+Lets you map a transformer to an event and map the event fields .
+
+> Sample Request
+
+```html
+http://us.api.capillarytech.com/v2/events/adapter_mapping
+```
+
+> Sample POST Request
+
+```json
+{
+  "transformerType":"webEngageTransformer",
+	"webEngageTransformerData": {
+		"eventMapper": {
+			"eventFieldName": "event_name",
+			"eventDataType": "",
+			"fieldName": "event_name",
+			"valueMap": {
+			}
+		},
+		"eventFieldMapper": {
+			"CustomerEvent": [{
+					"eventFieldName": "customer",
+					"eventDataType": "",
+					"fieldName": "customer"
+               },
+                {
+                    "eventFieldName": "string",
+					"eventDataType": "",
+					"fieldName": "string"
+                  
+                }
+			]
+		}
+	}
+}
+```
+
+
+> Sample Response
+
+```json
+{
+    "warnings": [],
+    "errors": []
+}
+```
+
+### Request Information
+
+| | |
+--------- | ----------- |
+URI | `/events/adapter_mapping`
+Rate Limited? | Yes
+Authentication | Yes
+HTTP Method | POST
+Batch Support | No
+
+
+### Request URL
+
+`http://{host}/v2/events/adapter_mapping`
+
+
+
+### Request Body Parameters
+
+Parameter | Type | Description
+--------- | ---- | -----------
+transformerType* | enum | Pass the transformer that you want to associate with the event. Supported value: `WebEngageTransformer`. Support for more transformer types is in progress.
+eventMapper* | obj | Details of the event to be mapped with the third-party event.
+eventFieldName* | string | Name of the field `event` in the Capillary end.
+fieldName* | string | Name of the field `event` as in the third party source.
+eventFieldMapper | obj | Map even fields of Capillary with the third party. You need to pass individual schema for each event. For example, `CustomerEvent` as shown in the Sample POST Request. 
+eventFieldName | string | Name of the field as in the Capillary.
+fieldName | string | Name of the field as in the third-party source.
+eventDataType* | enum | Data type of the field.
+
+
+<aside class="notice">All parameters marked by * are mandatory.</aside>
+
+
+
+
+
+
+
+
+
 ## Get All Event Fields (Metadata)
 
 Retrieves meta details of all event Fields configured for the organization.
@@ -2978,12 +3132,1565 @@ Batch Support | No
 `http://{host}/v2/events`
 
 
+## Get Event Data
+
+Retrieves details of a specific events.
+
+
+> Sample Request
+
+```html
+http://eu.api.capillarytech.com/v2/events/event_data?id=5aa2e5dc-2b84-4798-99a2-69dba75523ba
+```
+> Sample Response
+
+```json
+{
+   "data":[
+      {
+         "clickEventsMeta":{
+            "eventId":"48529b6f-b39f-4d10-83c9-a90a150dd73b",
+            "eventName":"OfferScan",
+            "eventType":"USEREVENT",
+            "actions":[
+               "EMFConsumer",
+               "EIConsumer"
+            ],
+            "fields":[
+               {
+                  "name":"customer",
+                  "type":"customer",
+                  "attributes":{
+                     "accountId":{
+                        "valueType":"ENUM"
+                     },
+                     "addCustomerIfNotExists":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "identifierType":{
+                        "value":"mobile",
+                        "valueType":"ENUM"
+                     },
+                     "isRequired":{
+                        "value":"true",
+                        "valueType":"BOOLEAN"
+                     },
+                     "source":{
+                        "value":"INSTORE",
+                        "valueType":"ENUM"
+                     }
+                  }
+               },
+               {
+                  "name":"Product category",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"Discount %",
+                  "type":"double",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"true",
+                        "valueType":"BOOLEAN"
+                     }
+                  }
+               }
+            ],
+            "orgId":100458,
+            "status":"PUBLISHED",
+            "testStatus":"VERIFIED",
+            "label":"Offer Scan Event",
+            "date":1583306398493,
+            "standardEvent":false
+         },
+         "transformerMappings":{
+            "defaultTransformerMappping":false,
+            "webEngageTransformerMapping":null
+         }
+      },
+      {
+         "clickEventsMeta":{
+            "eventId":"ff506f87-23c6-43d3-a009-392a133d1b3c",
+            "eventName":"sales_promotion",
+            "eventType":"USEREVENT",
+            "actions":[
+               "EMFConsumer",
+               "EIConsumer"
+            ],
+            "fields":[
+               {
+                  "name":"mobile",
+                  "type":"customer",
+                  "attributes":{
+                     "accountId":{
+                        "valueType":"ENUM"
+                     },
+                     "addCustomerIfNotExists":{
+                        "value":"true",
+                        "valueType":"BOOLEAN"
+                     },
+                     "identifierType":{
+                        "value":"mobile",
+                        "valueType":"ENUM"
+                     },
+                     "isRequired":{
+                        "value":"true",
+                        "valueType":"BOOLEAN"
+                     },
+                     "source":{
+                        "value":"INSTORE",
+                        "valueType":"ENUM"
+                     }
+                  }
+               },
+               {
+                  "name":"promotion_name",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"true",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"store",
+                  "type":"tillCode",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"true",
+                        "valueType":"BOOLEAN"
+                     }
+                  }
+               }
+            ],
+            "orgId":100458,
+            "status":"PUBLISHED",
+            "testStatus":"VERIFIED",
+            "label":"Sales Promotion",
+            "description":"sales promotion",
+            "date":1583306398494,
+            "standardEvent":false
+         },
+         "transformerMappings":{
+            "defaultTransformerMappping":false,
+            "webEngageTransformerMapping":null
+         }
+      },
+      {
+         "clickEventsMeta":{
+            "eventId":"208a6889-5653-4f5e-87d2-fa1470bdd2e9",
+            "eventName":"removedFromCart",
+            "eventType":"PRODUCTEVENT",
+            "actions":[
+               "EIConsumer"
+            ],
+            "fields":[
+               {
+                  "name":"customerId",
+                  "type":"customer",
+                  "attributes":{
+                     "accountId":{
+                        "value":"~11b564bda",
+                        "valueType":"ENUM"
+                     },
+                     "addCustomerIfNotExists":{
+                        "value":"true",
+                        "valueType":"BOOLEAN"
+                     },
+                     "identifierType":{
+                        "value":"mobile",
+                        "valueType":"ENUM"
+                     },
+                     "isRequired":{
+                        "value":"true",
+                        "valueType":"BOOLEAN"
+                     },
+                     "source":{
+                        "value":"WEB_ENGAGE",
+                        "valueType":"ENUM"
+                     }
+                  }
+               },
+               {
+                  "name":"cartId",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"skuCode",
+                  "type":"productSku",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     }
+                  }
+               },
+               {
+                  "name":"brandCode",
+                  "type":"productBrand",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     }
+                  }
+               },
+               {
+                  "name":"categoryCode",
+                  "type":"productCategory",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     }
+                  }
+               },
+               {
+                  "name":"quantity",
+                  "type":"double",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     }
+                  }
+               },
+               {
+                  "name":"price",
+                  "type":"double",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     }
+                  }
+               },
+               {
+                  "name":"productName",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"productType",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"brand",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"categoryName",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"locationName",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"variant",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"pageURL",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"browserName",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"osName",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"device",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"city",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"region",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"country",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"ip",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               }
+            ],
+            "orgId":100458,
+            "status":"PUBLISHED",
+            "testStatus":"VERIFIED",
+            "label":"Removed From Cart",
+            "description":"Removed From Cart",
+            "date":1583306398494,
+            "standardEvent":true
+         },
+         "transformerMappings":{
+            "defaultTransformerMappping":false,
+            "webEngageTransformerMapping":{
+               "eventNameMapping":{
+                  "valueMap":{
+                     "Added To Cart":"addedToCart",
+                     "Product Viewed":"productViewed",
+                     "Promotion Viewed":"promotionViewed",
+                     "Register":"customerRegistered",
+                     "Removed From Cart":"removedFromCart",
+                     "asdfg":"promotionViewed",
+                     "qwert":"addedToCart",
+                     "qwert1234567u":"productViewed"
+                  }
+               },
+               "eventFieldMappings":[
+                  {
+                     "eventFieldName":"customerId",
+                     "fieldName":"user_id"
+                  },
+                  {
+                     "eventFieldName":"cartId",
+                     "fieldName":"cartRefKey"
+                  },
+                  {
+                     "eventFieldName":"skuCode",
+                     "fieldName":"skuCode"
+                  },
+                  {
+                     "eventFieldName":"brandCode",
+                     "fieldName":"brandCode"
+                  },
+                  {
+                     "eventFieldName":"categoryCode",
+                     "fieldName":"categoryCode"
+                  },
+                  {
+                     "eventFieldName":"quantity",
+                     "fieldName":"quantity"
+                  },
+                  {
+                     "eventFieldName":"price",
+                     "fieldName":"price"
+                  },
+                  {
+                     "eventFieldName":"productName",
+                     "fieldName":"name"
+                  },
+                  {
+                     "eventFieldName":"productType",
+                     "fieldName":"productType"
+                  },
+                  {
+                     "eventFieldName":"brand",
+                     "fieldName":"brand"
+                  },
+                  {
+                     "eventFieldName":"categoryName",
+                     "fieldName":"category"
+                  },
+                  {
+                     "eventFieldName":"locationName",
+                     "fieldName":"LocationName"
+                  },
+                  {
+                     "eventFieldName":"variant",
+                     "fieldName":"variant"
+                  },
+                  {
+                     "eventFieldName":"pageURL",
+                     "fieldName":"page_url"
+                  },
+                  {
+                     "eventFieldName":"browserName",
+                     "fieldName":"browser_name"
+                  },
+                  {
+                     "eventFieldName":"osName",
+                     "fieldName":"os_name"
+                  },
+                  {
+                     "eventFieldName":"device",
+                     "fieldName":"device"
+                  },
+                  {
+                     "eventFieldName":"city",
+                     "fieldName":"city"
+                  },
+                  {
+                     "eventFieldName":"region",
+                     "fieldName":"region"
+                  },
+                  {
+                     "eventFieldName":"country",
+                     "fieldName":"country"
+                  },
+                  {
+                     "eventFieldName":"ip",
+                     "fieldName":"ip"
+                  }
+               ]
+            }
+         }
+      },
+      {
+         "clickEventsMeta":{
+            "eventId":"f0bbf01f-892b-44bd-b644-bd5ebd397821",
+            "eventName":"Checkout Started",
+            "actions":[
+               "EIConsumer"
+            ],
+            "fields":[
+               {
+                  "name":"cartRefKey",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"user_id",
+                  "type":"customer",
+                  "attributes":{
+                     "accountId":{
+                        "value":"~11b564bda",
+                        "valueType":"ENUM"
+                     },
+                     "addCustomerIfNotExists":{
+                        "value":"true",
+                        "valueType":"BOOLEAN"
+                     },
+                     "identifierType":{
+                        "value":"mobile",
+                        "valueType":"ENUM"
+                     },
+                     "isRequired":{
+                        "value":"true",
+                        "valueType":"BOOLEAN"
+                     },
+                     "source":{
+                        "value":"WEB_ENGAGE",
+                        "valueType":"ENUM"
+                     }
+                  }
+               },
+               {
+                  "name":"category",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"brand",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"LocationName",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"numberofProducts",
+                  "type":"double",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     }
+                  }
+               },
+               {
+                  "name":"quantity",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"browser_name",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"os_name",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"device",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"city",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"region",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"country",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"ip",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"page_url",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"name",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"variant",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               }
+            ],
+            "orgId":100458,
+            "status":"PUBLISHED",
+            "testStatus":"VERIFIED",
+            "label":"Checkout Started",
+            "date":1583306398494,
+            "standardEvent":false
+         },
+         "transformerMappings":{
+            "defaultTransformerMappping":false,
+            "webEngageTransformerMapping":null
+         }
+      },
+      {
+         "clickEventsMeta":{
+            "eventId":"8c5d2c45-2979-4b13-84d4-daf5f70d54ca",
+            "eventName":"SpintheWheelReloaded",
+            "eventType":"USEREVENT",
+            "actions":[
+               "EMFConsumer",
+               "EIConsumer"
+            ],
+            "fields":[
+               {
+                  "name":"customerMobile",
+                  "type":"customer",
+                  "attributes":{
+                     "accountId":{
+                        "valueType":"ENUM"
+                     },
+                     "addCustomerIfNotExists":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "identifierType":{
+                        "value":"mobile",
+                        "valueType":"ENUM"
+                     },
+                     "isRequired":{
+                        "value":"true",
+                        "valueType":"BOOLEAN"
+                     },
+                     "source":{
+                        "value":"INSTORE",
+                        "valueType":"ENUM"
+                     }
+                  }
+               },
+               {
+                  "name":"till",
+                  "type":"tillCode",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"true",
+                        "valueType":"BOOLEAN"
+                     }
+                  }
+               },
+               {
+                  "name":"gametype",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"true",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"wheelslot",
+                  "type":"double",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"true",
+                        "valueType":"BOOLEAN"
+                     }
+                  }
+               }
+            ],
+            "orgId":100458,
+            "status":"UNPUBLISHED",
+            "testStatus":"NOT_VERIFIED",
+            "label":"Spin the Wheel Demo",
+            "description":"Spin the Wheel for Sales Demo",
+            "date":1583306398494,
+            "standardEvent":false
+         },
+         "transformerMappings":{
+            "defaultTransformerMappping":false,
+            "webEngageTransformerMapping":null
+         }
+      },
+      {
+         "clickEventsMeta":{
+            "eventId":"fc73f1ee-cbe5-4585-8a54-33ddb24eb16f",
+            "eventName":"MovieInterval",
+            "eventType":"USEREVENT",
+            "actions":[
+               "EMFConsumer",
+               "EIConsumer"
+            ],
+            "fields":[
+               {
+                  "name":"customerMobile",
+                  "type":"customer",
+                  "attributes":{
+                     "accountId":{
+                        "valueType":"ENUM"
+                     },
+                     "addCustomerIfNotExists":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "identifierType":{
+                        "value":"mobile",
+                        "valueType":"ENUM"
+                     },
+                     "isRequired":{
+                        "value":"true",
+                        "valueType":"BOOLEAN"
+                     },
+                     "source":{
+                        "value":"INSTORE",
+                        "valueType":"ENUM"
+                     }
+                  }
+               },
+               {
+                  "name":"movieName",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"true",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"theaterCode",
+                  "type":"tillCode",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"true",
+                        "valueType":"BOOLEAN"
+                     }
+                  }
+               }
+            ],
+            "orgId":100458,
+            "status":"PUBLISHED",
+            "testStatus":"VERIFIED",
+            "label":"MovieInterval",
+            "description":"Reward on movie interval",
+            "date":1583306398494,
+            "standardEvent":false
+         },
+         "transformerMappings":{
+            "defaultTransformerMappping":false,
+            "webEngageTransformerMapping":null
+         }
+      },
+      {
+         "clickEventsMeta":{
+            "eventId":"63a888ec-1722-48e9-a538-b71cd96e6b79",
+            "eventName":"PWP",
+            "actions":[
+               "EMFConsumer",
+               "EIConsumer"
+            ],
+            "fields":[
+               {
+                  "name":"SKU",
+                  "type":"productSku",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"true",
+                        "valueType":"BOOLEAN"
+                     }
+                  }
+               },
+               {
+                  "name":"productCategory",
+                  "type":"productCategory",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"true",
+                        "valueType":"BOOLEAN"
+                     }
+                  }
+               },
+               {
+                  "name":"date",
+                  "type":"date",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"true",
+                        "valueType":"BOOLEAN"
+                     }
+                  }
+               },
+               {
+                  "name":"customerID",
+                  "type":"customer",
+                  "attributes":{
+                     "accountId":{
+                        "valueType":"ENUM"
+                     },
+                     "addCustomerIfNotExists":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "identifierType":{
+                        "value":"mobile",
+                        "valueType":"ENUM"
+                     },
+                     "isRequired":{
+                        "value":"true",
+                        "valueType":"BOOLEAN"
+                     },
+                     "source":{
+                        "value":"INSTORE",
+                        "valueType":"ENUM"
+                     }
+                  }
+               }
+            ],
+            "orgId":100458,
+            "status":"UNPUBLISHED",
+            "testStatus":"NOT_VERIFIED",
+            "label":"PWP",
+            "description":"Purchase with purchase",
+            "date":1583306398494,
+            "standardEvent":false
+         },
+         "transformerMappings":{
+            "defaultTransformerMappping":false,
+            "webEngageTransformerMapping":null
+         }
+      },
+      {
+         "clickEventsMeta":{
+            "eventId":"0f34757f-53cf-4bde-b1bd-3543e456108f",
+            "eventName":"productViewed",
+            "actions":[
+               "EIConsumer"
+            ],
+            "fields":[
+               {
+                  "name":"customerId",
+                  "type":"customer",
+                  "attributes":{
+                     "accountId":{
+                        "value":"~11b564bda",
+                        "valueType":"ENUM"
+                     },
+                     "addCustomerIfNotExists":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "identifierType":{
+                        "value":"MOBILE",
+                        "valueType":"ENUM"
+                     },
+                     "isRequired":{
+                        "value":"true",
+                        "valueType":"BOOLEAN"
+                     },
+                     "source":{
+                        "value":"WEB_ENGAGE",
+                        "valueType":"ENUM"
+                     }
+                  }
+               },
+               {
+                  "name":"osName",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"browserName",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"region",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"device",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"country",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"pageURL",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"brandName",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               }
+            ],
+            "orgId":100458,
+            "status":"PUBLISHED",
+            "testStatus":"VERIFIED",
+            "label":"Product Viewed",
+            "description":"Product Viewed",
+            "date":1583306398494,
+            "standardEvent":true
+         },
+         "transformerMappings":{
+            "defaultTransformerMappping":false,
+            "webEngageTransformerMapping":{
+               "eventNameMapping":{
+                  "valueMap":{
+                     "Added To Cart":"addedToCart",
+                     "Product Viewed":"productViewed",
+                     "Promotion Viewed":"promotionViewed",
+                     "Register":"customerRegistered",
+                     "Removed From Cart":"removedFromCart",
+                     "asdfg":"promotionViewed",
+                     "qwert":"addedToCart",
+                     "qwert1234567u":"productViewed"
+                  }
+               },
+               "eventFieldMappings":[
+                  {
+                     "eventFieldName":"customerId",
+                     "fieldName":"user_id"
+                  },
+                  {
+                     "eventFieldName":"skuCode",
+                     "fieldName":"sku"
+                  },
+                  {
+                     "eventFieldName":"brandCode",
+                     "fieldName":"brandCode"
+                  },
+                  {
+                     "eventFieldName":"categoryCode",
+                     "fieldName":"categoryCode"
+                  },
+                  {
+                     "eventFieldName":"price",
+                     "fieldName":"price"
+                  },
+                  {
+                     "eventFieldName":"productName",
+                     "fieldName":"name"
+                  },
+                  {
+                     "eventFieldName":"productType",
+                     "fieldName":"productType"
+                  },
+                  {
+                     "eventFieldName":"locationName",
+                     "fieldName":"LocationName"
+                  },
+                  {
+                     "eventFieldName":"categoryName",
+                     "fieldName":"category"
+                  },
+                  {
+                     "eventFieldName":"city",
+                     "fieldName":"city"
+                  },
+                  {
+                     "eventFieldName":"ip",
+                     "fieldName":"ip"
+                  },
+                  {
+                     "eventFieldName":"osName",
+                     "fieldName":"os_name"
+                  },
+                  {
+                     "eventFieldName":"browserName",
+                     "fieldName":"browser_name"
+                  },
+                  {
+                     "eventFieldName":"region",
+                     "fieldName":"region"
+                  },
+                  {
+                     "eventFieldName":"device",
+                     "fieldName":"device"
+                  },
+                  {
+                     "eventFieldName":"country",
+                     "fieldName":"country"
+                  },
+                  {
+                     "eventFieldName":"pageURL",
+                     "fieldName":"page_url"
+                  },
+                  {
+                     "eventFieldName":"brandName",
+                     "fieldName":"brand"
+                  }
+               ]
+            }
+         }
+      },
+      {
+         "clickEventsMeta":{
+            "eventId":"3c7f8017-e060-40d7-9188-635a26d55596",
+            "eventName":"customerRegistered",
+            "eventType":"USEREVENT",
+            "actions":[
+               "EIConsumer"
+            ],
+            "fields":[
+               {
+                  "name":"customerId",
+                  "type":"customer",
+                  "attributes":{
+                     "accountId":{
+                        "value":"~11b564bda",
+                        "valueType":"ENUM"
+                     },
+                     "addCustomerIfNotExists":{
+                        "value":"true",
+                        "valueType":"BOOLEAN"
+                     },
+                     "identifierType":{
+                        "value":"mobile",
+                        "valueType":"ENUM"
+                     },
+                     "isRequired":{
+                        "value":"true",
+                        "valueType":"BOOLEAN"
+                     },
+                     "source":{
+                        "value":"WEB_ENGAGE",
+                        "valueType":"ENUM"
+                     }
+                  }
+               },
+               {
+                  "name":"firstName",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"lastName",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"deviceId",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"ipAddress",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"city",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"region",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"country",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"browserName",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"osName",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"device",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               },
+               {
+                  "name":"pageURL",
+                  "type":"string",
+                  "attributes":{
+                     "isRequired":{
+                        "value":"false",
+                        "valueType":"BOOLEAN"
+                     },
+                     "regex":{
+                        "valueType":"STRING"
+                     }
+                  }
+               }
+            ],
+            "orgId":100458,
+            "status":"PUBLISHED",
+            "testStatus":"VERIFIED",
+            "label":"Customer Registered",
+            "description":"Customer Registered",
+            "date":1583306398495,
+            "standardEvent":true
+         },
+         "transformerMappings":{
+            "defaultTransformerMappping":false,
+            "webEngageTransformerMapping":{
+               "eventNameMapping":{
+                  "valueMap":{
+                     "Added To Cart":"addedToCart",
+                     "Product Viewed":"productViewed",
+                     "Promotion Viewed":"promotionViewed",
+                     "Register":"customerRegistered",
+                     "Removed From Cart":"removedFromCart",
+                     "asdfg":"promotionViewed",
+                     "qwert":"addedToCart",
+                     "qwert1234567u":"productViewed"
+                  }
+               },
+               "eventFieldMappings":[
+                  {
+                     "eventFieldName":"customerId",
+                     "fieldName":"user_id"
+                  },
+                  {
+                     "eventFieldName":"firstName",
+                     "fieldName":"firstName"
+                  },
+                  {
+                     "eventFieldName":"lastName",
+                     "fieldName":"lastName"
+                  },
+                  {
+                     "eventFieldName":"deviceId",
+                     "fieldName":"deviceId"
+                  },
+                  {
+                     "eventFieldName":"ipAddress",
+                     "fieldName":"ip"
+                  },
+                  {
+                     "eventFieldName":"city",
+                     "fieldName":"city"
+                  },
+                  {
+                     "eventFieldName":"region",
+                     "fieldName":"region"
+                  },
+                  {
+                     "eventFieldName":"country",
+                     "fieldName":"country"
+                  },
+                  {
+                     "eventFieldName":"browserName",
+                     "fieldName":"browser_name"
+                  },
+                  {
+                     "eventFieldName":"osName",
+                     "fieldName":"os_name"
+                  },
+                  {
+                     "eventFieldName":"device",
+                     "fieldName":"device"
+                  },
+                  {
+                     "eventFieldName":"pageURL",
+                     "fieldName":"page_url"
+                  }
+               ]
+            }
+         }
+      }
+   ],
+   "warnings":[
+
+   ],
+   "errors":[
+
+   ]
+}
+```
+
+### Request Information
+
+| | |
+--------- | ----------- |
+URI | `/events?id={eventId}`
+Rate Limited? | Yes
+Authentication | Yes
+HTTP Method | GET
+Batch Support | No
+
+
+### Request URL
+
+`https://{host}/v2/events?id={eventId}`
+
+
+### Request Path Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+id* | long | Unique ID of the event to fetch the event's data.
+
+<aside class="notice">The parameter marked with * is mandatory. </aside> 
 
 
 
-## Get Events Data
 
-Retrieves the details of events of a specific customer.
+
+
+
+## Get Events Data of a Customer
+
+Retrieves all event details of a specific customer.
 
 > Sample Request
 
@@ -3062,7 +4769,7 @@ http://us.api.capillarytech.com/v2/events/event_data/342963216
       }
     },
     {
-      "orgId": 100458,
+      "orgId": 100345,
       "userId": 98662653,
       "date": "2019-12-08T05:53:39Z",
       "eventName": "Checkout Started",
@@ -3132,154 +4839,12 @@ userId* | long | Unique ID of the customer to fetch event data.
 
 
 
-## Events Mapping (to Standard Event)
-
-Lets you map a custom event to a standard event.
-
-
-> Sample Request
-
-```html
-http://us.api.capillarytech.com/v2/events/adapter_mapping
-```
-
-> Sample POST Request
-
-```json
-{
-  "transformerType":"defaultTransformer",
-  "eventsMapped":["eventsdemo1"]
-}
-```
-
-
-> Sample Response
-
-```json
-{
-    "warnings": [],
-    "errors": []
-}
-```
-
-
-### Request Information
-
-| | |
---------- | ----------- |
-URI | `/events/adapter_mapping`
-Rate Limited? | Yes
-Authentication | Yes
-HTTP Method | POST
-Batch Support | No
-
-
-
-### Request URL
-
-`http://{host}/v2/events/adapter_mapping`
-
-
-
-### Request Body Parameters
-
-Parameter | Type | Description
---------- | ---- | -----------
-transformerType* | enum | Specify `defaultTransformer` to map the custom event to the default transformer, `WebEngageTransformer` for Webhook transformer mapping
-eventsMapped* | array | Specify the event names that you want to map to the `transformerType`
-
-<aside class="notice">All parameters marked by * are mandatory.</aside>
-
-
-
-## Event Fields Mapping
-
-
-
-> Sample Request
-
-```html
-http://us.api.capillarytech.com/v2/events/adapter_mapping
-```
-
-> Sample POST Request
-
-```json
-{
-  "transformerType":"webEngageTransformer",
-	"webEngageTransformerData": {
-		"eventMapper": {
-			"eventFieldName": "event_name",
-			"eventDataType": "",
-			"fieldName": "event_name",
-			"valueMap": {
-			}
-		},
-		"eventFieldMapper": {
-			"CustomerEvent": [{
-					"eventFieldName": "customer",
-					"eventDataType": "",
-					"fieldName": "customer"
-               },
-                {
-                    "eventFieldName": "string",
-					"eventDataType": "",
-					"fieldName": "string"
-                  
-                }
-			]
-		}
-	}
-}
-```
-
-
-> Sample Response
-
-```json
-{
-    "warnings": [],
-    "errors": []
-}
-```
-
-### Request Information
-
-| | |
---------- | ----------- |
-URI | `/events/adapter_mapping`
-Rate Limited? | Yes
-Authentication | Yes
-HTTP Method | POST
-Batch Support | No
-
-
-### Request URL
-
-`http://{host}/v2/events/adapter_mapping`
-
-
-
-### Request Body Parameters
-
-Parameter | Type | Description
---------- | ---- | -----------
-transformerType* | enum | DefaultTransformer, WebEngageTransformer
-webEngageTransformerData | obj | Details of a specific to Webhook Transformer that you want to map with a custom event
-eventMapper* | obj | mapping details of third party events with our events
-eventFieldName* | string | Name of the event field (destination - always Capillary)
-eventDataType* | enum | Data-type of the event field
-fieldName* | string | Name of the adapter field name (source - third party)
-valueMap* | string | adapter field value to field value map
-eventFieldMapper | obj | Match event field name with the fields for each event. In the Sample POST Request provided, `CustomerEvent` is the event for which the field mapping is done 
-
-<aside class="notice">All parameters marked by * are mandatory.</aside>
 
 
 
 ## Get Adapters Metadata
 
-Retrieves the details of predefined transformers (field mappings).
+Retrieves the details of predefined integrations (transformer) (field mappings).
 
 ```html
 http://us.api.capillarytech.com/v2/events/adapters_meta
@@ -3322,8 +4887,8 @@ Batch Support | No
 
 Parameter | Description
 --------- | -----------
-DefaultTransformer | Used if no mapping is required
-WebEngageTransformer | Used for Webengage or Webhook mapping
+DefaultTransformer | This is a default integration for custom events where fields of standard events are consumed directly. 
+WebEngageTransformer | Used for Webengage integration and require event, field mappings.
 
 
 
@@ -3510,396 +5075,7 @@ Batch Support | No
 
 Parameter | Type | Description
 --------- | ---- | -----------
-webHookId | string | Unique id of the Webhook account. You can see Webhook id in `x-cap-hydra-request-id` in Webhook data push API 
-
-
-
-
-## Get Org Events
-
-
-
-> Sample Request
-
-```html
-http://us.api.capillarytech.com/v2/events
-```
-
-
-
-> Sample Response
-
-```json
-{
-    "data": [
-        {
-            "clickEventsMeta": {
-                "eventId": "02ec3c76-5c47-4983-b0df-f0ab29bf227c",
-                "eventName": "sagaEvent",
-                "eventType": "USEREVENT",
-                "actions": [
-                    "EIConsumer"
-                ],
-                "fields": [
-                    {
-                        "name": "ID",
-                        "type": "customer",
-                        "attributes": {
-                            "accountId": {
-                                "valueType": "ENUM"
-                            },
-                            "addCustomerIfNotExists": {
-                                "value": "false",
-                                "valueType": "BOOLEAN"
-                            },
-                            "identifierType": {
-                                "valueType": "ENUM"
-                            },
-                            "isRequired": {
-                                "value": "false",
-                                "valueType": "BOOLEAN"
-                            },
-                            "source": {
-                                "valueType": "ENUM"
-                            }
-                        }
-                    }
-                ],
-                "status": "UNPUBLISHED",
-                "testStatus": "NOT_VERIFIED",
-                "label": "saga event",
-                "description": "description",
-                "date": 1560921736699,
-                "standardEvent": false
-            },
-            "defaultTransformerMappping": false
-        },
-        {
-            "clickEventsMeta": {
-                "eventId": "dd531667-c17d-4886-a89b-87d6a1d2ad1a",
-                "eventName": "ProductRemovedFromCart",
-                "eventType": "PRODUCTEVENT",
-                "actions": [
-                    "EIConsumer",
-                    "EMFConsumer"
-                ],
-                "fields": [
-                    {
-                        "name": "customer",
-                        "type": "customer",
-                        "attributes": {
-                            "accountId": {
-                                "valueType": "ENUM"
-                            },
-                            "addCustomerIfNotExists": {
-                                "value": "false",
-                                "valueType": "BOOLEAN"
-                            },
-                            "identifierType": {
-                                "value": "MOBILE",
-                                "valueType": "ENUM"
-                            },
-                            "isRequired": {
-                                "value": "true",
-                                "valueType": "BOOLEAN"
-                            },
-                            "source": {
-                                "value": "INSTORE",
-                                "valueType": "ENUM"
-                            }
-                        },
-                        "standardField": true
-                    },
-                    {
-                        "name": "cartId",
-                        "type": "string",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "false",
-                                "valueType": "BOOLEAN"
-                            },
-                            "regex": {
-                                "valueType": "STRING"
-                            }
-                        },
-                        "standardField": true
-                    },
-                    {
-                        "name": "productSku",
-                        "type": "productSku",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "true",
-                                "valueType": "BOOLEAN"
-                            }
-                        },
-                        "standardField": true
-                    },
-                    {
-                        "name": "productBrand",
-                        "type": "productBrand",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "false",
-                                "valueType": "BOOLEAN"
-                            }
-                        },
-                        "standardField": true
-                    },
-                    {
-                        "name": "productCategory",
-                        "type": "productCategory",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "false",
-                                "valueType": "BOOLEAN"
-                            }
-                        },
-                        "standardField": true
-                    },
-                    {
-                        "name": "productQuantity",
-                        "type": "double",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "false",
-                                "valueType": "BOOLEAN"
-                            }
-                        },
-                        "standardField": true
-                    },
-                    {
-                        "name": "productPrice",
-                        "type": "double",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "false",
-                                "valueType": "BOOLEAN"
-                            }
-                        },
-                        "standardField": true
-                    },
-                    {
-                        "name": "productName",
-                        "type": "string",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "false",
-                                "valueType": "BOOLEAN"
-                            },
-                            "regex": {
-                                "valueType": "STRING"
-                            }
-                        },
-                        "standardField": true
-                    },
-                    {
-                        "name": "productType",
-                        "type": "string",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "false",
-                                "valueType": "BOOLEAN"
-                            },
-                            "regex": {
-                                "valueType": "STRING"
-                            }
-                        },
-                        "standardField": true
-                    }
-                ],
-                "status": "UNPUBLISHED",
-                "testStatus": "NOT_VERIFIED",
-                "label": "Product Removed From Cart",
-                "description": "Product Removed From Cart",
-                "date": 1560921736699,
-                "standardEvent": true
-            },
-            "defaultTransformerMappping": true
-        },
-        {
-            "clickEventsMeta": {
-                "eventId": "71d86bdc-738c-4741-800c-bdadec2d7860",
-                "eventName": "eventdemo4",
-                "eventType": "USEREVENT",
-                "actions": [
-                    "EIConsumer",
-                    "EMFConsumer"
-                ],
-                "fields": [
-                    {
-                        "name": "customer",
-                        "type": "customer",
-                        "attributes": {
-                            "accountId": {
-                                "valueType": "ENUM"
-                            },
-                            "addCustomerIfNotExists": {
-                                "value": "false",
-                                "valueType": "BOOLEAN"
-                            },
-                            "identifierType": {
-                                "value": "MOBILE",
-                                "valueType": "ENUM"
-                            },
-                            "isRequired": {
-                                "value": "true",
-                                "valueType": "BOOLEAN"
-                            },
-                            "source": {
-                                "value": "INSTORE",
-                                "valueType": "ENUM"
-                            }
-                        }
-                    },
-                    {
-                        "name": "name",
-                        "type": "string",
-                        "attributes": {
-                            "isRequired": {
-                                "value": "true",
-                                "valueType": "BOOLEAN"
-                            },
-                            "regex": {
-                                "valueType": "STRING"
-                            }
-                        }
-                    }
-                ],
-                "status": "PUBLISHED",
-                "testStatus": "VERIFIED",
-                "description": "Sample description1",
-                "date": 1560921736699,
-                "standardEvent": false
-            },
-            "webEngageTransformerMapping": {
-                "eventNameMapping": {
-                    "webEngageFieldName": "event_name",
-                    "valueMap": {
-                        "Product Added To Cart": "ProductAddedToCart"
-                    }
-                },
-                "eventFieldMappings": [
-                    {
-                        "eventFieldName": "customer",
-                        "webEngageFieldName": "customer"
-                    },
-                    {
-                        "eventFieldName": "name",
-                        "webEngageFieldName": "name"
-                    }
-                ]
-            },
-            "defaultTransformerMappping": false
-        },
-        {
-            "clickEventsMeta": {
-                "eventId": "f640fda0-0318-4a53-a631-4f005a199bad",
-                "eventName": "eventdemo3",
-                "eventType": "USEREVENT",
-                "actions": [
-                    "EIConsumer",
-                    "EMFConsumer"
-                ],
-                "fields": [
-                    {
-                        "name": "customer",
-                        "type": "customer",
-                        "attributes": {
-                            "accountId": {
-                                "valueType": "ENUM"
-                            },
-                            "addCustomerIfNotExists": {
-                                "value": "true",
-                                "valueType": "Boolean"
-                            },
-                            "identifierType": {
-                                "value": "MOBILE",
-                                "valueType": "ENUM"
-                            },
-                            "isRequired": {
-                                "value": "true",
-                                "valueType": "BOOLEAN"
-                            },
-                            "source": {
-                                "value": "INSTORE",
-                                "valueType": "ENUM"
-                            }
-                        }
-                    }
-                ],
-                "status": "PUBLISHED",
-                "testStatus": "VERIFIED",
-                "description": "Sample description",
-                "date": 1560921736699,
-                "standardEvent": false
-            },
-            "defaultTransformerMappping": true
-        },
-        {
-            "clickEventsMeta": {
-                "eventId": "d85f2a26-4536-439b-b666-d6f518912c17",
-                "eventName": "Testing",
-                "eventType": "USEREVENT",
-                "actions": [
-                    "EMFConsumer"
-                ],
-                "fields": [
-                    {
-                        "name": "Name",
-                        "type": "customer",
-                        "attributes": {
-                            "accountId": {
-                                "valueType": "ENUM"
-                            },
-                            "addCustomerIfNotExists": {
-                                "value": "true",
-                                "valueType": "BOOLEAN"
-                            },
-                            "identifierType": {
-                                "valueType": "ENUM"
-                            },
-                            "isRequired": {
-                                "value": "true",
-                                "valueType": "BOOLEAN"
-                            },
-                            "source": {
-                                "valueType": "ENUM"
-                            }
-                        }
-                    }
-                ],
-                "status": "UNPUBLISHED",
-                "testStatus": "NOT_VERIFIED",
-                "label": "Testing",
-                "date": 1560921736699,
-                "standardEvent": false
-            },
-            "defaultTransformerMappping": false
-        }
-    ],
-    "warnings": [],
-    "errors": []
-}
-```
-
-Retrieves all events configured for the organization (associated to the TILL used for authorization).
-
-
-### Request Information
-
-| | |
---------- | ----------- |
-URI | `/events`
-Rate Limited? | Yes
-Authentication | Yes
-HTTP Method | GET
-Batch Support | No
-
-
-### Request URL
-
-`http://{host}/v2/events`
+webHookId* | string | Unique id of the Webhook account. You can see Webhook id in `x-cap-hydra-request-id` in Webhook data push API 
 
 
 
@@ -3908,15 +5084,13 @@ Batch Support | No
 
 ## Get Standard Events Metadata
 
-
+Retrieves the meta information of all the standard events. This includes event level data such as event name, category, consumed by modules (actions), and detailed information of each field.
 
 > Sample Request
 
 ```html
 http://us.api.capillarytech.com/v2/events/standard_events_meta
 ```
-
-
 
 
 > Sample Response
@@ -5549,8 +6723,8 @@ Batch Support | No
 
 Parameter | Type | Description
 --------- | ---- | -----------
-transformerType* | | 
-tillCode* | | 
+transformerType* | enum | Currently `WebEngageTransformer` is supported. 
+tillCode* | string | Till code that you want to associate to the current Webhook. All events data that are posted through the current Webhook's URL will be associated to this store TILL.
 
 
 ## Push Data to Webhook

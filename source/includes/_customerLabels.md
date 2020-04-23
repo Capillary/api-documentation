@@ -59,7 +59,6 @@ https://api.us.capillarytech.com/v2/organization/labels
 URI | `organization/labels`
 Rate Limited? | No
 Authentication | Yes
-Response Formats | JSON
 HTTP Methods | POST
 Batch Support | No
 
@@ -73,12 +72,12 @@ Batch Support | No
 
 ### Request Body Parameters
 
-Parameter | Description
--------- | -----------
-name* | Name of the tag or labels
-description* | Short description about the tag
+Parameter | Datatype | Description
+-------- | --------- | -----------
+name* | string | Name of the tag or labels.
+description* | string | Brief description about the tag.
 
-
+<aside class="notice">Parameters marked with * are mandatory.</aside>
 
 
 
@@ -96,8 +95,6 @@ Retrieves all customers labels created for that specific org.
 https://eu.api.capillarytech.com/v2/organization/labels
 
 ```
-
-
 
 
 > Sample Response
@@ -152,7 +149,6 @@ https://eu.api.capillarytech.com/v2/organization/labels
 URI | `organization/labels`
 Rate Limited? | No
 Authentication | Yes
-Response Formats | JSON
 HTTP Methods | GET
 Batch Support | No
 
@@ -161,7 +157,7 @@ Batch Support | No
 
 ### Request URL
 
-`https://{Cluster API URL}/v2/organization/labels`
+`https://{host}/v2/organization/labels`
 
 
 
@@ -220,7 +216,6 @@ https://eu.api.capillarytech.com/v2/customers/249598560/changeLabels
 URI | `customers/{userId}/changeLabels`
 Rate Limited? | No
 Authentication | Yes
-Response Formats | JSON
 HTTP Methods | POST
 Batch Support | No
 
@@ -229,7 +224,7 @@ Batch Support | No
 
 ### Request URL
 
-`https://{cluster URL}/v2/customers/{userId}/changeLabels`
+`https://{host}/v2/customers/{userId}/changeLabels`
 
 
 ### Request Parameters
@@ -240,7 +235,7 @@ userId* | Path | Unique id of the  user that you want to add customer label
 labelName* | Body | Label name that you want to tag to the customer
 
 
-
+<aside class="notice">Parameters marked with * are mandatory.</aside>
 
 
 ## Fetch Labels of a Customer
@@ -254,8 +249,6 @@ Retrieves the list of labels tagged to a customer.
 https://eu.api.capillarytech.com/v2/customers/249598560/labels
 
 ```
-
-
 
 
 > Sample Response
@@ -305,6 +298,7 @@ Parameter | Description
 -------- | -----------
 userId* | Unique id of the customer for which you want to fetch tagged labels
 
+<aside class="notice">The parameter marked with * is mandatory.</aside>
 
 ## Search Customers by Labels
 
@@ -314,7 +308,7 @@ Retrieves the list of customers who are tagged to a specific label. You can also
 > Sample Request
 
 ```html
-v2/customers/labels/search?q=premium
+https://eu.api.capillarytech.com/v2/customers/labels/search?q=premium
 
 ```
 
@@ -368,7 +362,6 @@ v2/customers/labels/search?q=premium
 URI | `/customers/labels/search?q={LabelName}`
 Rate Limited? | No
 Authentication | Yes
-Response Formats | JSON
 HTTP Methods | GET
 Batch Support | No
 
@@ -384,4 +377,6 @@ Batch Support | No
 
 Parameter | Description
 -------- | -----------
-q* | Specify the label name by which you want to fetch customers. You can also pass partial string. For example `pre` to fetch customers in all labels that starts with pre
+q* | Specify the label name by which you want to fetch customers. You can also pass partial string. For example `pre` to fetch customers in all labels that starts with pre.
+
+<aside class="notice">The parameters marked with * is mandatory.</aside>

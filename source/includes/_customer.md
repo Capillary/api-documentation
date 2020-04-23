@@ -1,5 +1,5 @@
 # Customer
-A customer is an individual that either buys goods, services, or subscribes to the org’s newsletters. An org could be any business firm that is registered with Capillary. It could be a retail store, hospital, pharmacy, restaurant, or any other firm.
+A customer is an individual who is either enrolled in the org's loyalty program or subscribed to the org’s newsletters. An org is a business firm that is registered with Capillary - a retail store, hospital, pharmacy, restaurant, or any other firm.
 
 
 ## Register Customer
@@ -10,64 +10,103 @@ A customer is an individual that either buys goods, services, or subscribes to t
 ```html
 
  
-https://us.api.capillarytech.com/v2/customers?source=LINE&accountId=1234
+https://us.api.capillarytech.com/v2/customers?source=MOBILE_APP&accountId=400
 ```
 
 
 > Sample POST Request
 
 ```json
-{  
-   "loyaltyInfo":{  
+{ 
+   "loyaltyInfo":{ 
       "loyaltyType":"loyalty"
    },
-   "associatedWith":"westTill",
-   "profiles":[  
-      {  
-         "firstName":"Tom",
-         "lastName":"Sawyer",
-         "fields":{  
-            "Favorite Color":"Green",
-            "Favorite Sport":"Cricket"
-         },
-         "identifiers":[  
-            {  
-               "type":"mobile",
-               "value":"928000000113"
+   "associatedWith":"bukl.till",
+   "profiles":[ 
+      { 
+         "commChannels":[ 
+            { 
+               "type":"mobilePush",
+               "meta":{ 
+                  "lastViewedDate":"2019-10-10T22:04:38+05:30",
+                  "residence": false,
+                  "office": false
+               },
+               "verified":"true",
+               "primary":"true",
+               "value":"abc123456"
             },
             {  
-               "type":"line",
-               "value":"line12347"
-            }
-         ],
-         "commChannels":[  
-            {  
-               "type":"line",
-               "value":"line12345",
+               "type":"mobile",
+               "value":"91901000001",
                "primary":true,
                "verified":true,
                "meta":{  
+				 "lastViewedDate": "",
                   "residence":true,
                   "office":false
                }
             }
-         ]
+         ],
+         "firstName":"Tom",
+         "lastName":"Sawyer",
+         "identifiers":[ 
+            { 
+               "type":"email",
+               "value":"tom.sawyer@example.com"
+            },
+            { 
+               "type":"mobile",
+               "value":"91901000001"
+            }
+         ],
+         "source":"MOBILE_APP",
+         "fields":{ 
+            "employee":"true",
+            "dateofbirth":"22-10-2000"
+         },
+         "accountId":"400"
       }
    ],
-   "extendedFields":{  
+   "extendedFields":{ 
       "gender":"Male",
       "city":"Bangalore"
-   }
+   },
+   "loyaltyProgramEnrollments":[{
+	 "programId":1016,
+	 "tierNumber": 234,
+	"loyaltyPoints": 75,
+	"tierExpiryDate": "2022-02-11T16:36:17+05:30",
+	"pointsExpiryDate": "2022-02-11T16:36:17+05:30"
+}]
 }
 ```
+
+
+
 
 > Sample Response
 
 ```json
 {
-    "createdId": 316452956,
+    "createdId": 130713699,
     "warnings": [],
-    "sideEffects": []
+    "sideEffects": [
+        {
+            "awardedPoints": 100,
+            "type": "points"
+        },
+        {
+            "id": 263244517,
+            "couponType": "PE",
+            "couponCode": "HL1FALGQ",
+            "validTill": "2120-02-11T23:59:59Z",
+            "description": "Test Offer 20",
+            "discountCode": "NO_VALUE",
+            "trimmedCouponCode": "HL1FALGQ",
+            "type": "coupon"
+        }
+    ]
 }
 ```
 
@@ -83,11 +122,26 @@ https://us.api.capillarytech.com/v2/customers?source=LINE&accountId=1234
             "message": "Same Customer found in other sources,Combining"
         }
     ],
-    "sideEffects": []
+    "sideEffects": [
+        {
+            "awardedPoints": 100,
+            "type": "points"
+        },
+        {
+            "id": 263244517,
+            "couponType": "PE",
+            "couponCode": "HL1FALGQ",
+            "validTill": "2120-02-11T23:59:59Z",
+            "description": "Test Offer 20",
+            "discountCode": "NO_VALUE",
+            "trimmedCouponCode": "HL1FALGQ",
+            "type": "coupon"
+        }
+    ]
 }
 ```
 
-Registers customers in the org's loyalty program on different source accounts such as FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, LINE, and WEBSITE. You can also add customer-level extended fields and custom fields.
+Lets you register customers in the org's loyalty program or just register their identifiers across sources such as InStore, Facebook,Webengage, WeChat, Martjack, TMall, Taobao, JD, ecommerce, Line, Website, and Mobile app. You can also add customer-level extended and custom field details.
 
 <aside class="notice">
 
@@ -135,24 +189,33 @@ Batch Support | No
 ### Request Query Parameters
 Parameter | Type | Description
 --------- | ----- | -----------
-source* | enum | Source in which you want to register a customer. Value: FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE.
-accountId | string | For sources with multiple accounts, pass the specific account id in which you want to register a customer.
+source* | enum | Source in which you want to register a customer. Value: `FACEBOOK`, `WEB_ENGAGE`, `WECHAT`, `INSTORE`, `MARTJACK`, `TMALL`, `TAOBAO`, `JD`, `ECOMMERCE`, `WEBSITE`, `LINE`, `MOBILE_APP`. You can add customers on different sources.
+accountId** | string | For sources that support multiple accounts, provide the account ID. For example, FACEBOOK, WEB_ENGAGE, WECHAT, MOBILE_APP. 
 
 <aside class="notice">Parameter marked with * is mandatory.<br> If you try to register a customer that exists in a different source, the accounts will merge automatically.</aside>
 
 ### Request Body Parameters
 Parameter | Type | Description
 --------- | ----- | -----------
-loyaltyType | enum | Loyalty status of the customer. Value: `loyalty`, `non_loyalty`.
-profiles | commChannels | Available communication channels of the customer. Value: `mobile`, `email`, `wechat`, `ios`, `android`, `line`.
-profiles | obj | Profile information of the customer.
+loyaltyType* | enum | Loyalty status of the customer. Value: `loyalty`, `non_loyalty`.
+profiles | obj | Meta information of the customer.
+identifiers* | obj | Identifiers of the customer in type and value. Supported types: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, `fbId` `mobile`, `tmall_uname`, `cuid`, `ali_uname`, `jd_uname`, `vip_uname`, `mobilePush`, and `line`.
+commChannels | obj | Available communication channels of the customer. Value: `mobile`, `email`, `wechat`, `ios`, `android`, `line`, `mobilePush`.
 Firstname | string | First name of the customer.
 Lastname | string | Last name of the customer.
-identifiers | obj | Identifiers of the customer in type and value. Supported types: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, `fbId` `mobile`, `tmall_uname`, `cuid`, `ali_uname`, `jd_uname`, `vip_uname`, and `line`.
-profiles | fields | Custom field details (only that configured for the organization)
 attributionV2 | createDate | Time and date of registration in `YYYY-MM-DDTHH:MM:SS+HH:MM` format. Example: 2016-06-23T19:11:18+08:00
 associatedWith |  | The TILL code to which you want to associate the customer
-extendedFields | obj | Extended field details of the customer in key:value pairs. You can only pass extended fields that are enabled for your org with the respective datatypes for values.
+extendedFields | obj | Customer level extended field details of the customer in key:value pairs. You can only pass extended fields that are enabled for your org with the respective datatypes for values.
+fields | obj | Custom field details of customers in key-value pairs.
+lastViewedDate** | Date | Date when the customer recently opened the app. Applicable for the channel `mobilePush`.
+loyaltyProgramEnrollments | obj | Lets you enroll new customers in the loyalty program.
+programId | int | Unique ID of the loyalty program in which you want to enroll.
+tierNumber | int | Sequence number of the tier that you want to allocate to the customer. For example, `1` for the lowest tier, `2` for the subsequent tier, and so on.
+loyaltyPoints | int | Loyalty points to credit in customer's account.
+tierExpiryDate | date-time | Expiry date and time of the specified tier. Supported Format: YYYY-MM-DDTHH:MM:SS+/-(time-zone).
+pointsExpiryDate | date-time | Expiry date and time of the points issued. Supported Format: YYYY-MM-DDTHH:MM:SS+/-(time-zone).
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
 
 ## Update Customer Details
 
@@ -219,11 +282,31 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT&accountId=22232
       {  
          "gender":"MALE",
          "city":"Bangalore"
-      }
+      },
+	 "loyaltyProgramEnrollments":[{
+	 "programId":1016,
+	 "tierNumber": 234,
+	"loyaltyPoints": 75,
+	"tierExpiryDate": "2022-02-11T16:36:17+05:30",
+	"pointsExpiryDate": "2022-02-11T16:36:17+05:30"
+}]
    
 }
 
 ```
+
+```json
+# Sample Schema of mobilePush
+{  
+    "type":"mobilePush",
+    "value":"abcd12343434", //This is an FCM Token
+    "primary":true,
+    "verified":true,
+    "meta":{
+      “lastViewedDate” : <date>
+    }
+}
+````
 
 > Sample Response
 
@@ -262,14 +345,19 @@ Batch Support | No
 
 
 ### Request URL
+For sources with single accounts
+
+`https://{host}/v2/customers/{customerId}?source={sourceName}`
+
+For sources with multiple accounts
 `https://{host}/v2/customers/{customerId}?source={sourceName}&accountId={accountId}`
 
 ### Request Query Parameters
 Parameter | Description
 --------- | -----------
-customer_id* | Unique ID of the customer whose details need to be updated
-source* | Specify the source in which you want to update the customer details - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE. For sources with multiple accounts such as WECHAT, FACEBOOK, or LINE, you also need to provide the respective account id.
-account_Id | Account in which you want to update the customer details (Required only for sources with multiple accounts)
+customerId* | Unique ID of the customer whose details need to be updated
+source* | Specify the source in which you want to update the customer details - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, MOBILE_APP. For sources with multiple accounts such as WECHAT, FACEBOOK, MOBILE_APP, or LINE, you also need to provide the respective account id.
+accountId | Account in which you want to update the customer details (Required only for sources with multiple accounts)
 
 <aside class="notice">Parameters marked with * are mandatory.</aside>
 
@@ -279,9 +367,10 @@ Parameter | Type | Description
 --------- | ----- | -----------
 loyaltyType | enum | Loyalty status of the customer. Value: `loyalty`, `non_loyalty`.
 commChannels | obj | Communication channels of the customer. 
-type | enum | Type of the communication channel. Value: `mobile`, `email`, `wechat`, `ios`, `android`, `line`.
-value | string |Based on the channel `type` enter the channel value. For example, if `type` is "mobile", value will be mobile number.
+type | enum | Type of the communication channel. Value: `mobile`, `email`, `wechat`, `ios`, `android`, `line, mobilePush`.
+value | string | Based on the channel `type` enter the channel value. Example, mobile number is the value for `type:mobile`, firebase token for `type:mobilePush`. mobilePush is supported for sources mobile_app, Instore, Martjack, Ecommerce, and Website
 primary | boolean | Whether the current identifier is the primary identifier of the customer (primary identifier as per the org's configuration).
+lastViewedDate | date | Date when the customer recently opened the app. Applicable for the channel 'mobilePush'.
 verified | boolean | Whether the current identifier is verified or not. For example, through OTP.
 profiles | obj | Profile information of the customer.
 meta | obj | Additional information of the identifier.
@@ -290,8 +379,15 @@ Lastname | string | Last name of the customer.
 identifiers | obj | Identifiers of the customer in type and value. Supported types: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, `fbId` `mobile`, `tmall_uname`, `cuid`, `ali_uname`, `jd_uname`, `vip_uname`, and `line`.
 profiles | fields | Custom field details (only that configured for the organization)
 extendedFields | obj | Extended field details of the customer in key:value pairs. You can only pass extended fields that are enabled for your org with the respective datatypes for values.
+fields | obj | Custom field details of the customer in key:value pairs.
+loyaltyProgramEnrollments | obj | Lets you enroll new customers in the loyalty program.
+programId | int | Unique ID of the loyalty program in which you want to enroll. You cannot update details if the customer is already enrolled in the loyalty program.
+tierNumber | int | Sequence number of the tier that you want to allocate to the customer. For example, `1` for the lower tier, `2` for the next tier, and so on.
+loyaltyPoints | int | Loyalty points to credit in customer's account.
+tierExpiryDate | date-time | Expiry date and time of the specified tier. Supported Format: YYYY-MM-DDTHH:MM:SS+/-(time-zone).
+pointsExpiryDate | date-time | Expiry date and time of the points issued. Supported Format: YYYY-MM-DDTHH:MM:SS+/-(time-zone).
 
-
+<aside class="notice">Parameters marked with * are mandatory. </aside>
 
 
 
@@ -348,7 +444,7 @@ Limitations of the customer identifier update API:
 ### Resource Information
 | | |
 --------- | ----------- |
-URI | `/{customerId}/changeIdentifier?{query parameters}'
+URI | `/{customerId}/changeIdentifier?source={source}&accountId={accountId}'
 Authentication | Yes
 HTTP Method | POST
 Batch Support | No
@@ -356,7 +452,7 @@ Batch Support | No
 
 
 ### Request URL
-`https://{host}/v2/customers/{customerId}/changeIdentifier?source={sourceName}&accountId={accountId}`
+`https://{host}/v2/customers/{customerId}/changeIdentifier?source={source}&accountId={accountId}`
 
 <aside class="notice">The new identifier that you want to update should be unique across the source (for sources with single accounts) and unique across the account (for sources with multiple accounts).</aside>
 
@@ -364,11 +460,12 @@ Batch Support | No
 ### Request Query Parameters
 Parameter | Type | Description
 --------- | ---- | -----------
-customer_id* | int | Unique ID of the customer whose identifiers need to be updated
+customerId* | int | Unique ID of the customer whose identifiers need to be updated
 source* | enum | Source in which you want to update customer identifier(s) - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE. For sources that support multiple accounts, you also need to provide the associated account id.
-account_Id | string | Account in which you want to update the customer identifier (Required only for sources with multiple accounts)
+accountId** | string | Account for which you want to update the customer identifier (Required only for sources with multiple accounts)
 
-<aside class="notice">Parameters marked with * are mandatory.</aside>
+
+<aside class="notice">Parameters marked with * are mandatory. acountId** is required for sources with multiple accounts.</aside>
 
 ### Request Body Parameters
 Attributes | Type | Description
@@ -829,9 +926,9 @@ Parameter | Datatype | Description
 --------- | -------- | -----------
 id* | int | Unique identifier of the customer that you want to fetch.
 source* | enum | Pass the source from which you want to fetch details. Value: INSTORE, MARTJACK, WECHAT, ALL ( to fetch details from all sources. For sources with multiple accounts, you also need to pass the specific accountId.
-account_Id |  string | For sources with multiple accounts, pass the specific accountId.
+accountId |  string | For sources with multiple accounts, pass the specific accountId.
 embed | enum | To get details of loyalty points, subscription, multiple loyalty program details of the customer. Value: `points`, `subscriptions`, `mlp`. Usage: <code>https://{ClusterURL}/v2/customers/{CustomerId}/source=WECHAT&accountId={WeChat account id}&embed=”points”</code>
-embed=usergroup | Retrieves user group details if the customer is in a user group.
+embed=usergroup | - | Retrieves user group details if the customer is in a user group.
 
 <aside class="notice">Parameters marked with * are mandatory.</aside>
 
@@ -912,7 +1009,7 @@ Retrieves the loyalty information of a customer across all loyalty programs of t
 ### Resource Information
 | | |
 --------- | ----------- |
-URI | `/{customerId}/loyaltyDetails'
+URI | `/{customerId}/loyaltyDetails`
 Authentication | Yes
 HTTP Method | GET
 Batch Support | No
@@ -1181,10 +1278,9 @@ https://eu.api.capillarytech.com/v2/customers/343015431/pointsTransfers
 ### Resource Information
 | | |
 --------- | ----------- |
-URI | `/{userId}/pointsTransferSummary`
+URI | `/{userId}/pointsTransfers`
 Rate Limited? | No
 Authentication | Yes
-Response Formats | JSON
 HTTP Methods | GET
 Batch Support | No
 
@@ -1193,7 +1289,7 @@ Batch Support | No
 
 ### Request URL
 
-`https://{host}/v2/customers/{userId}/pointsTransferSummary`
+`https://{host}/v2/customers/{userId}/pointsTransfers`
 
 ### Request Query Parameters
 

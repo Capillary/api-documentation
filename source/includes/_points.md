@@ -270,6 +270,88 @@ issueOtp | Boolean | Sends OTP to the fromCustomer if the specified points are t
 
 
 
+## Reverse Redeemed Points
+
+Lets you reverse a set of points that are redeemed in a transaction. For example, you can use this API to reverse points redeemed for a transaction if the transaction is returned.
+
+Prerequisites:
+
+The following configurations are required for `points/reverse` API
+
+* Enable Allow_points_redemption_reversal config on EMF settings. Only the back-end team has access to this page. Please raise a ticket to enable the config.
+* Enable V2 API as points reversal is supported only V2.0.
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/points/reverse
+```
+
+> Sample POST Request
+
+```json
+{
+"redemptionId":"54ZNkA",
+"pointsToBeReversed": 10,
+"identifier":
+	{
+	"type":"mobile",
+	"value":"919740000000"
+	}
+}
+
+```
+
+> Sample Response
+
+```json
+{
+    "redemptionId": "54ZNkA",
+    "pointsToBeReversed": 20.0,
+    "orgId": 100458,
+    "identifier": {
+        "type": "mobile",
+        "value": "919740000000"
+    },
+    "customerId": 98662653,
+    "pointsReversed": 20.0,
+    "reversalId": "5wyOZM",
+    "warnings": []
+}  
+```
+
+
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/reverse`
+Rate Limited? | No
+Authentication | Yes
+HTTP Methods | POST
+Batch Support | No
+
+* **Rate limiter** controls the number of incoming and outgoing traffic of a network
+* **Authentication** verifies the identity of the current user or integration. See Introduction > Authentication (Merchant Setup on Admin Portal) for more details
+
+### Request URL
+
+`https://{host}/v2/points/reverse`
+
+### Request Body Parameters
+
+Parameter | Type | Description
+--------- | ---- | -----------
+redemptionId* | long | Unique reference ID generated for redeeming the points. 
+Identifier | obj | Customer details associated to the redemption.
+type* | enum | Pass any of  the registered identifiers of the customer. Supported values: mobile, email, externalId.
+value* | string | Pass the respective identifier value. This should match with the identifier tagged to the redemption id
+pointsToBeReversed | int | The number of points be reversed.
+
+<aside class="notice">All parameters marked by * are mandatory. </aside>
+
+
+
 
 
 ## Transfer Points
@@ -377,3 +459,23 @@ Code | Description
 417 | Customer with fraud status exists.
 418 | From and To customers are same.
 419 | Merged customer found with id: {x}, where x is the user id of the customer.
+686 | User is from campaign and has not enrolled in the loyalty program. Points redemption is not applicable for the user.
+804 | Insufficient current points.
+805 | Insufficient lifetime points.
+806 | Insufficient lifetime purchases amount.
+807 | Redemptions points not divisible.
+809 | Customer is marked as fraud.
+818 | Current points are less than points requested for redemption.
+819 | Points to redeem exceeds the threshold limit (maximum points that can be redeemed in a transaction).
+821 | Points you are trying to redeem are less than the minimum points allowed.
+886 | Unable to process points. Please try again later.
+887 | Unable to process points. Please try again later.
+888 | Invalid configuration. Please report to capillary support.
+895 | Loyalty program is not configured for the  org.
+896 | Unable to process points. Please try again later.
+898 | Unable to process points. Please try again later.
+899 | Invalid configuration. Please report to capillary support.
+901 | Invalid points or points redemption Id passed.
+902	| Redemption ID does not exist.
+903 | Unable to redeem points.
+904 | Invalid customer details passed.

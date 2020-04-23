@@ -92,7 +92,7 @@ This API allows you to redeem active coupons of a loyalty customer. You can pass
 ### Resource Information
 | | |
 --------- | ----------- |
-URI | `/redeem`
+URI | `coupon/redeem`
 Authentication  | Yes
 HTTP Method  | POST
 Batch Support  | No
@@ -100,14 +100,14 @@ Batch Support  | No
 ### Request URL
 `http://{host}/v2/coupon/redeem`
 
-### Request Parameters
-Parameter | Description
---------- | -----------
+### Request Body Parameters
+Parameter | Datatype | Description
+--------- | -------- | -----------
 billAmount* | float | Transaction amount of the bill.
 transactionNumber* | string | Transaction number against which the coupon needs to be redeemed
 user* | enum | Specify any identifier of the user who wants to redeem coupons. Values: mobile, email, externalId
-redemptionTime | Date and time when the coupon has to be redeemed.
-code* | Coupon code to be redeemed.
+redemptionTime | date-time | Date and time when the coupon has to be redeemed in `YYYY-MM-DD HH:MM:SS` format.
+code* | string | Coupon code to be redeemed.
 
 <aside class="warning"> You need to pass either code or id as applicable </aside>
 
@@ -203,15 +203,16 @@ Batch Support  | Yes
 ### Request URL
 `http://{host}/v2/coupon/is_redeemable?{customerIdentifier}&code={value1},{value2}...&details={true/extended}`
 
-### Request Parameters
-Parameter | Description
---------- | -----------
-Customer identifier* | Pass the identifier of the customer for whom you want to check whether the coupon is redeemable
-code* | Pass the coupon codes that you want to check separating each with a comma (,)
-details=true | Retrieves the details of the coupon series
-details=extended | Retrieves the details of coupon configurations (set on campaign) of that specific coupon series
+### Request Query Parameters
+Parameter | Datatype | Description
+--------- | -------- | -----------
+user* | obj | Pass the identifier of the customer to check if his/her coupon is redeemable.
+mobile/email/externalId/id* | string | Pass any of the identifiers of the customer.
+code* | string | Pass the coupon code that you want to check for redemption. You can also pass multiple coupon codes separating each with a comma `,`
+details | boolean | Pass `=true` to retrieve the details of the coupon series.
+details=extended | - | Retrieves the details of coupon configurations (set on campaign) of that specific coupon series.
 
-<aside class="warning"> You can pass either coupon id or code. Any one parameter is required</aside>
+<aside class="warning"> You can pass either coupon ID or coupon code. Any one parameter is required.</aside>
 
 
 
