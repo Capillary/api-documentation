@@ -23303,6 +23303,663 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <p><code class="prettyprint">https://{host}/v3/integrations/clients/{clientKey}</code></p>
 
+          <h1 id="event-notifications">Event Notifications</h1>
+
+<p>Event Notifications is a framework that provides near real-time data of events generated in the Capillary System and helps brands to subscribe to notifications about particular events. After configuring to receive notifications, brands can build custom solutions to trigger for pre-configured actions. </p>
+
+<h2 id="add-webhook-account">Add Webhook Account</h2>
+
+<p>Lets you integrate a Webhook account to the Capillary system.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>http://eu.api.capillarytech.com/v3/webHooks
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+ </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"eventNames"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+   </span><span class="s2">"transactionAdded"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"pointsRedeemed"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+
+ </span><span class="nt">"maxAllowedConnections"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.99</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"methodType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DemoWebhook1"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"slaInSeconds"</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"webHookHeaders"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nt">"Content-Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/json"</span><span class="w">
+ </span><span class="p">},</span><span class="w">
+ </span><span class="nt">"webHookType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HTTP"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"webHookUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://envr6t7iue26f.x.pipedream.net/"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-20T10:35:47.473+0000"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-20T10:35:47.473+0000"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75040399</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bukl.till"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bukl.till"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75040399</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bukl.till"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bukl.till"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"webHookId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5e9d7b03c64f3d00085d7f00"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DemoWebhook1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"eventNames"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"transactionAdded"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pointsRedeemed"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"webHookUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://envr6t7iue26f.x.pipedream.net/"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"webHookType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HTTP"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"methodType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"webHookHeaders"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"Content-Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/json"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"noOfRetryAttempts"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"maxAllowedConnections"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"slaInSeconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"consumerGroupId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8371bfe1-4e27-427c-8d03-a30c85066a1b"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v3/webHooks</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Rate Limited</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v3</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v3/webHooks</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>active</td>
+<td>boolean</td>
+<td>Status of the Webhook integration. Value is true by default</td>
+</tr>
+<tr>
+<td>eventNames</td>
+<td>array</td>
+<td>Names of the events that you want to add to the current account.<br> Values: <code class="prettyprint">tierDowngradeReminder</code> <code class="prettyprint">pointsExpiryReminder</code> <code class="prettyprint">pointsRedeemed</code> <code class="prettyprint">transactionAdded</code> <code class="prettyprint">pointsExpired</code> <code class="prettyprint">transactionUpdated</code> <code class="prettyprint">customerAdded</code> <code class="prettyprint">promisedToCurrentPointsConversion</code> <code class="prettyprint">pointsTransferredReceived</code> <code class="prettyprint">pointsIssued</code> <code class="prettyprint">redeemedPointsReversed</code> <code class="prettyprint">tierRenewed</code> <code class="prettyprint">tierDowngraded</code> <code class="prettyprint">customerUpdated</code> <code class="prettyprint">pointsTransferredInitiated</code> <code class="prettyprint">tierUpgraded</code>.</td>
+</tr>
+<tr>
+<td>maxAllowedConnections</td>
+<td>int</td>
+<td>The number of parallel requests that can be made from Event Notification to the integration server at the configured webhook url</td>
+</tr>
+<tr>
+<td>methodType</td>
+<td>enum</td>
+<td>Pass <code class="prettyprint">POST</code> to add a new Webhook or event notification.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Name of the account. This should be unique within the cluster.</td>
+</tr>
+<tr>
+<td>slaInSeconds</td>
+<td>int</td>
+<td>Expected delivery time of an event notification in seconds. This is used to identify notifications that took more time than the delivery SLA set.</td>
+</tr>
+<tr>
+<td>webHookHeaders</td>
+<td>obj</td>
+<td>Headers that you want to add to the event notification call. For example, Content-Type, AccessToken.</td>
+</tr>
+<tr>
+<td>webHookType</td>
+<td>enum</td>
+<td>Type of the Webhook account. Value: HTTP, queue</td>
+</tr>
+<tr>
+<td>webHookUrl</td>
+<td>string</td>
+<td>URL of the webhook account. Applicable for webHookType: queue</td>
+</tr>
+</tbody></table>
+
+<h2 id="retrieve-org-events">Retrieve Org Events</h2>
+
+<p>Retrieves all the events of the org with the event status. This includes both standard events and custom events.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.intouch.capillarytech.com/v3/webHooks/eventMetaData
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"eventName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customerupdate"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"eventName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"transaction"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"eventName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"registration"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"eventName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"changeidentifier"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"eventName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"updateidentifier"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"eventName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mergecustomer"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"eventName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pointredemption"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td>v3/webHooks/eventMetaData</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v3</td>
+</tr>
+<tr>
+<td>Rate Limited</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>NA</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v3/webHooks/eventMetaData</code></p>
+
+<h2 id="update-webhook-account">Update Webhook Account</h2>
+
+<p>Lets you update details such as event names and SLAs of an existing Webhook account.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.intouch.capillarytech.com/v3/webHooks/eventMetaData
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+ </span><span class="nt">"eventNames"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+   </span><span class="s2">"transaction"</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"maxAllowedConnections"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.99</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"methodType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test10"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"noOfRetryAttempts"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"slaInSeconds"</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"webHookHeaders"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+</span><span class="nt">"Content-Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/json"</span><span class="w">
+ </span><span class="p">},</span><span class="w">
+ </span><span class="nt">"webHookType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HTTP"</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"webHookUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://envr6t7iue26f.x.pipedream.net"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-06T13:08:19.995+0530"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-01-09T12:45:11.835+0530"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobilepush.1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobilepush.1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobilepush.1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobilepush.1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"webHookId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5e12e3ec57871a0008c15d9e"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TestTransaction"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"eventNames"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="s2">"transaction"</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"webHookUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://envr6t7iue26f.x.pipedream.net"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"webHookType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HTTP"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"methodType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POST"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"webHookHeaders"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"Content-Type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"application/json"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"noOfRetryAttempts"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"maxAllowedConnections"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"slaInSeconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"consumerGroupId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"76870cd8-b72c-40f5-9fde-d4faa429d4d9"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v3/webHooks/{webhookId}</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>PUT</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v3</td>
+</tr>
+<tr>
+<td>Rate Limited</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v3/webHooks/{webhookId}</code></p>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>eventNames</td>
+<td>array</td>
+<td>Specify event names that you want to have for the account. Event names that are not mentioned will be removed from the account.</td>
+</tr>
+</tbody></table>
+
+<p>Following are the few event names for reference. &ldquo;transaction&rdquo;,&ldquo;pointsRedeem&rdquo;&ldquo;pointredemption&rdquo;,&ldquo;mergecustomer&rdquo;,&ldquo;registration&rdquo;.
+maxAllowedConnections | 
+methodType | 
+name | string | Name of the account that you want to modify.
+noOfRetryAttempts |  | 
+slaInSeconds |  | 
+webHookHeaders |  | Specify headers of the Webhook account (if applicable) in key:value pairs. For example, content-type, accept.
+webHookType | enum | Type of the Webhook account. Value: HTTP, queue.
+webHookUrl | string | URL of the webhook account. Applicable for webHookType: <code class="prettyprint">queue</code>. </p>
+
+<h2 id="get-event-metadata">Get Event Metadata</h2>
+
+<p>Retrieves all the parameters, attributes, and their data-types of a specific event.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://nightly.capillary.in/v3/webHooks/eventMetaData/transaction
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"eventName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"transaction"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"schema"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"$schema"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://json-schema.org/draft-04/schema#"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"object"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="s2">"ingestionTimestamp"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"description"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"attributes"</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"ingestionTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"integer"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"object"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"required"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="s2">"transactionNumber"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"transactionId"</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nt">"properties"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"number"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nt">"subtype"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nt">"billClientId"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nt">"transactionNumber"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nt">"basketSize"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"number"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nt">"customerId"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                                </span><span class="s2">"integer"</span><span class="p">,</span><span class="w">
+                                </span><span class="s2">"null"</span><span class="w">
+                            </span><span class="p">]</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nt">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"integer"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nt">"grossAmount"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"number"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="nt">"transactionId"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"integer"</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v3/webHooks/eventMetaData/{eventName}</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v3</td>
+</tr>
+<tr>
+<td>Rate Limited</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>NA</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v3/webHooks/eventMetaData/{eventName}</code></p>
+
+<h2 id="get-event-details-by-event-id">Get Event Details (by Event ID)</h2>
+
+<p>Retrieves the details of a specific event based on the event ID passed.</p>
+
+<h2 id="get-event-log-by-request-id">Get Event Log (by Request ID)</h2>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v3/webHooks/eventLog/requestId/a8bc7e42-9580-4820-9d21-8733b5f91a1d
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"refId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50074_38236068"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a8bc7e42-9580-4820-9d21-8733b5f91a1d"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"eventName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"transactionAdded"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"eventId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1e767db6-1fcf-45e4-a982-19ae5d20f56a"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"consumerGroupId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"36b25f81-7047-4f60-8a24-21908cc0bdad"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"eventIngestionTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-23T10:53:13.240+0530"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"eventStartTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-23T10:53:13.262+0530"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"eventEndTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-23T10:53:13.312+0530"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"slaBreachTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"consumerResponse"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"webhookHttpStatus"</span><span class="p">:</span><span class="w"> </span><span class="mf">200.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"time_taken"</span><span class="p">:</span><span class="w"> </span><span class="mf">3370.0</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>Retrieves the details of a specific event call based on the <code class="prettyprint">X-CAP-REQUEST-ID</code> passed. This is a normal request ID generated for an API call.</p>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v3/webHooks/eventLog/requestId/{requestId}</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v3</td>
+</tr>
+<tr>
+<td>Rate Limited</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>NA</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v3/webHooks/eventLog/requestId/{requestId}</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>requestId*</td>
+<td>string</td>
+<td>Pass the generated request ID (X-CAP-REQUEST-ID) of an event to fetch details.</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-event-log-by-reference-id">Get Event Log (by Reference ID)</h2>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v3/webHooks/eventLog/refId/50074_38236069
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"refId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50074_38236069"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ebcce693-48ff-4a5f-b335-76abd1c9e33f"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"eventName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"transactionAdded"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"eventId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ccc983c2-df7a-4ece-b5cc-e574cec66fc1"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"consumerGroupId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"36b25f81-7047-4f60-8a24-21908cc0bdad"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"eventIngestionTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-23T11:10:51.351+0530"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"eventStartTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-23T11:10:51.354+0530"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"eventEndTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-23T11:10:51.385+0530"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"slaBreachTimestamp"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"consumerResponse"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"webhookHttpStatus"</span><span class="p">:</span><span class="w"> </span><span class="mf">200.0</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"time_taken"</span><span class="p">:</span><span class="w"> </span><span class="mf">195.0</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<p>Retrieves the details of a specific event call based on the <code class="prettyprint">X-CAP-REQUEST-ID</code> passed. This is a normal request ID generated for an API call.</p>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v3/webHooks/eventLog/refId/{refId}</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v3</td>
+</tr>
+<tr>
+<td>Rate Limited</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>NA</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v3/webHooks/eventLog/refId/{refId}</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>refId*</td>
+<td>string</td>
+<td>Pass the reference ID of the API call to fetch details. Reference ID is a combination of {orgId}<em>{uniqueId}. For example for a transactionAdd event it is {orgId}</em>{transactionId}, for a customerAdd event, it is {orgId}<em>{userId}, for points redemption it is {orgId}</em>{redemptionId}.</td>
+</tr>
+</tbody></table>
+
       </div>
       <div class="dark-box">
           <div class="lang-selector">
