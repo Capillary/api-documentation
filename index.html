@@ -302,10 +302,20 @@
 <h2 id="q4-releases-2019-20">Q4 Releases (2019-20)</h2>
 
 <ul>
-<li><strong>OAuth Support</strong>: Besides Basic Auth, Capillary APIs now support OAuth and access tokens for more secured API calls. For more details, see support portal. </li>
-<li><strong>Points Reversal</strong>: Allows reversing redeemed points directly if the transaction - for which the points are redeemed - is returned. A new redemption ID is introduced. For more details see <code class="prettyprint">v1.1/points/redeem</code>, <code class="prettyprint">v2/points/reverse</code>, <code class="prettyprint">v1.1/customer/redemptions</code>.</li>
+<li><strong>OAuth Support</strong>: Besides Basic Authentication, Capillary APIs now support OAuth and access tokens for more secured API calls. For more details, see support portal. </li>
+<li><strong>Points Reversal</strong>: Allows reversing redeemed points directly if the transaction - for which the points are redeemed - is returned. A new redemption ID is introduced. 
+
+<ul>
+<li>POST <code class="prettyprint">v1.1/points/redeem</code>: Introduced a new parameter <code class="prettyprint">redemption_id</code> which can be used to reverse points if the transaction is returned.</li>
+<li>POST <code class="prettyprint">v2/points/reverse</code>: Uses <code class="prettyprint">redemptionId</code> to reverse points of a specific transaction.</li>
+<li>GET <code class="prettyprint">v1.1/customer/redemptions</code>: Shows <code class="prettyprint">total_points_reversed</code> and points reversal history.</li>
+</ul></li>
 <li><strong>Event Notification</strong>: Allows building integrations with Capillary events that originate either through Capillary products or APIs. For more details, see  <a href="https://capillary.github.io/api-documentation/#event-notifications">Event Notification APIs</a>.</li>
-<li><strong>Redemption across loyalty programs</strong>: With this release, you can redeem points earned in one program in another loyalty program of the org. For more details, see <code class="prettyprint">v1.1/points/redeem</code></li>
+<li><strong>Redemption across loyalty programs</strong>: With this release, you can redeem points earned in one program in another loyalty program of the org. 
+
+<ul>
+<li>POST <code class="prettyprint">v1.1/points/redeem</code>: A new parameter <code class="prettyprint">group_redemption</code> if set <code class="prettyprint">true</code> enables cross loyalty program redemption.<br></li>
+</ul></li>
 <li><strong>OTP Support without PII information</strong>: Allows non-PII clients (clients which would not send PII information such as mobile number, email ID, etc to Capillary) to send OTP via Capillary communication gateway.</li>
 <li><strong>Transaction V2 APIs</strong>: Support to add and retrieve transaction in V2 APIs. </li>
 <li>Option to disable OTP validation for points transfer.</li>
