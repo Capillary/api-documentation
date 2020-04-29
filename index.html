@@ -295,6 +295,25 @@
 </tr>
 </tbody></table>
 
+<h1 id="api-updates">API Updates</h1>
+
+<p>This section provides the quarterly breakup of existing API updates and new API releases.</p>
+
+<h2 id="q4-releases-2019-20">Q4 Releases (2019-20)</h2>
+
+<ul>
+<li><strong>OAuth Support</strong>: Besides Basic Auth, Capillary APIs now support OAuth and access tokens for more secured API calls. For more details, see support portal. </li>
+<li><strong>Points Reversal</strong>: Allows reversing redeemed points directly if the transaction - for which the points are redeemed - is returned. A new redemption ID is introduced. For more details see <code class="prettyprint">v1.1/points/redeem</code>, <code class="prettyprint">v2/points/reverse</code>, <code class="prettyprint">v1.1/customer/redemptions</code>.</li>
+<li><strong>Event Notification</strong>: Allows building integrations with Capillary events that originate either through Capillary products or APIs. For more details, see  <a href="https://capillary.github.io/api-documentation/#event-notifications">Event Notification APIs</a>.</li>
+<li><strong>Redemption across loyalty programs</strong>: With this release, you can redeem points earned in one program in another loyalty program of the org. For more details, see <code class="prettyprint">v1.1/points/redeem</code></li>
+<li><strong>OTP Support without PII information</strong>: Allows non-PII clients (clients which would not send PII information such as mobile number, email ID, etc to Capillary) to send OTP via Capillary communication gateway.</li>
+<li><strong>Transaction V2 APIs</strong>: Support to add and retrieve transaction in V2 APIs. </li>
+<li>Option to disable OTP validation for points transfer.</li>
+<li>Customer enrollment with one-time points and tier upgrade</li>
+<li>External loyalty program linking</li>
+<li>Support for external reference number in redemption.</li>
+</ul>
+
           <h1 id="customer">Customer</h1>
 
 <p>A customer is an individual who is either enrolled in the org&rsquo;s loyalty program or subscribed to the org’s newsletters. An org is a business firm that is registered with Capillary - a retail store, hospital, pharmacy, restaurant, or any other firm.</p>
