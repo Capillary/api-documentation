@@ -105,7 +105,7 @@ maxAllowedConnections | int | The number of parallel requests that can be made f
 methodType | enum | Pass `POST` to add a new Webhook or event notification.
 name | string | Name of the account. This should be unique within the cluster.
 slaInSeconds | int | Expected delivery time of an event notification in seconds. This is used to identify notifications that took more time than the delivery SLA set.
-webHookHeaders | obj | Headers that you want to add to the event notification call. For example, Content-Type, AccessToken.
+webHookHeaders | obj | Headers that you want to add to the event notification as required for the integration. For example, Content-Type, AccessToken.
 webHookType | enum | Type of the Webhook account. Value: HTTP, queue 
 webHookUrl  | string | URL of the webhook account. Applicable for webHookType: queue  
 
@@ -259,18 +259,19 @@ Batch Support | No
 
 `https://{host}/v3/webHooks/{webhookId}`
 
+### Request Body Parameters
+
 Parameter | Datatype | Description
 --------- | -------- | -----------
-eventNames | array | Specify event names that you want to have for the account. Event names that are not mentioned will be removed from the account.
-Following are the few event names for reference. "transaction","pointsRedeem""pointredemption","mergecustomer","registration".
-maxAllowedConnections | 
-methodType | 
-name | string | Name of the account that you want to modify.
-noOfRetryAttempts |  | 
-slaInSeconds |  | 
-webHookHeaders |  | Specify headers of the Webhook account (if applicable) in key:value pairs. For example, content-type, accept.
+eventNames | array | Specify event names that you want to have for the account. Event names that are not mentioned will be removed from the account. <br>Supported event values: `tierDowngradeReminder` `pointsExpiryReminder` `pointsRedeemed` `transactionAdded` `pointsExpired` `transactionUpdated` `customerAdded` `promisedToCurrentPointsConversion` `pointsTransferredReceived` `pointsIssued` `redeemedPointsReversed` `tierRenewed` `tierDowngraded` `customerUpdated` `pointsTransferredInitiated` `tierUpgraded`.
+maxAllowedConnections | int | The number of parallel requests that can be made from Event Notification to the integration server at the configured webhook url
+methodType | enum | Pass `POST` to add a new Webhook or event notification.
+slaInSeconds | int | Expected delivery time of an event notification in seconds. This is used to identify notifications that took more time than the delivery SLA set.
+webHookHeaders | obj | Mention headers that you want to add to the event notification depending on the integration. Example headers could be Content-Type,client-key, client-secret, AccessToken.
 webHookType | enum | Type of the Webhook account. Value: HTTP, queue.
 webHookUrl | string | URL of the webhook account. Applicable for webHookType: `queue`. 
+
+
 
 ## Get Event Metadata 
 
@@ -371,7 +372,58 @@ Batch Support | NA
 
 ## Get Event Details (by Event ID)
 
-Retrieves the details of a specific event based on the event ID passed.
+Retrieves the log of a specific event based on the event ID passed.
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v3/webHooks/eventLog/ccc983c2-df7a-4ece-b5cc-e574cec66fc1
+```
+
+> Sample Response
+
+```json
+{
+    "data": {
+        "refId": "50074_38236069",
+        "requestId": "ebcce693-48ff-4a5f-b335-76abd1c9e33f",
+        "eventName": "transactionAdded",
+        "eventId": "ccc983c2-df7a-4ece-b5cc-e574cec66fc1",
+        "consumerGroupId": "36b25f81-7047-4f60-8a24-21908cc0bdad",
+        "eventIngestionTimestamp": "2020-04-23T11:10:51.351+0530",
+        "eventStartTimestamp": "2020-04-23T11:10:51.354+0530",
+        "eventEndTimestamp": "2020-04-23T11:10:51.385+0530",
+        "slaBreachTimestamp": null,
+        "consumerResponse": {
+            "webhookHttpStatus": 200.0,
+            "time_taken": 195.0
+        }
+    },
+    "errors": null
+}
+```
+
+| | |
+--------- | ----------- |
+URI | `v3/webHooks/eventLog/{eventId}`
+HTTP Method | GET
+API Version | v3
+Rate Limited | Yes
+Batch Support | NA
+
+
+### Request URL
+
+`https://{host}/v3/webHooks/eventLog/{eventId}`
+
+
+### Request Query Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+eventId* | string | Pass the unique ID of the event to fetch log details.
+
+
 
 
 ## Get Event Log (by Request ID)
@@ -386,24 +438,24 @@ https://eu.api.capillarytech.com/v3/webHooks/eventLog/requestId/a8bc7e42-9580-48
 
 ```json
 {
-    "data": [
-        {
-            "refId": "50074_38236068",
-            "requestId": "a8bc7e42-9580-4820-9d21-8733b5f91a1d",
-            "eventName": "transactionAdded",
-            "eventId": "1e767db6-1fcf-45e4-a982-19ae5d20f56a",
-            "consumerGroupId": "36b25f81-7047-4f60-8a24-21908cc0bdad",
-            "eventIngestionTimestamp": "2020-04-23T10:53:13.240+0530",
-            "eventStartTimestamp": "2020-04-23T10:53:13.262+0530",
-            "eventEndTimestamp": "2020-04-23T10:53:13.312+0530",
-            "slaBreachTimestamp": null,
-            "consumerResponse": {
-                "webhookHttpStatus": 200.0,
-                "time_taken": 3370.0
-            }
-        }
-    ],
-    "errors": null
+   "data": [
+      {
+        "refId": "50074_38236068",
+        "requestId": "a8bc7e42-9580-4820-9d21-8733b5f91a1d",
+        "eventName": "transactionAdded",
+        "eventId": "1e767db6-1fcf-45e4-a982-19ae5d20f56a",
+        "consumerGroupId": "36b25f81-7047-4f60-8a24-21908cc0bdad",
+        "eventIngestionTimestamp": "2020-04-23T10:53:13.240+0530",
+        "eventStartTimestamp": "2020-04-23T10:53:13.262+0530",
+        "eventEndTimestamp": "2020-04-23T10:53:13.312+0530",
+        "slaBreachTimestamp": null,
+        "consumerResponse": {
+             "webhookHttpStatus": 200.0,
+             "time_taken": 3370.0
+         }
+     }
+  ],
+  "errors": null
 }
 
 ```
