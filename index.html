@@ -161,7 +161,7 @@
 
 <aside class="notice"> To gain access to our entities in the Rest API, you need to authenticate your TILL with its username and password using the HTTP Basic Authentication.</aside>
 
-<h3 id="authorization-header">Authorization Header</h3>
+<h3 id="basic-authentication-authorization-header">Basic Authentication - Authorization Header</h3>
 
 <p>Authorization Header is used for validating authentication credentials. The Authorization Header is constructed as shown below:</p>
 
@@ -182,6 +182,80 @@
 <p><code class="prettyprint">X-CAP-API-ATTRIBUTION-LOOKUP-TYPE:&lt;name&gt;</code>
 <code class="prettyprint">X-CAP-API-ATTRIBUTION-LOOKUP:&lt;value&gt;</code>(value is case sensitive)</p>
 
+<h3 id="oauth">OAuth</h3>
+
+<p>OAuth provides better security and helps you create secure passages to access your org&rsquo;s data through Capillary APIs. To generate oAuth client key and secret see <a href="http://developer.capillarytech.com/en/support/solutions/articles/4000154305-oauth">OAuth Documentation</a>.</p>
+
+<p>Once you get key and secret, you can generate access token or JWT (JSON Web Token) using the token/generate API. JWT is a compact URL and JSON-based used to transfer data securely between two parties.</p>
+
+<h4 id="resource-information">Resource Information</h4>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/oauth/token/generate</code></td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v3</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Authentication Required?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Batch Support?</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h4 id="endpoint">Endpoint</h4>
+
+<p><code class="prettyprint">https://{host}/v3/oauth/token/generate</code></p>
+
+<h4 id="post-request-schema">POST Request Schema</h4>
+
+<p><code class="prettyprint">
+{
+  &quot;key&quot;: &quot;&quot;,
+  &quot;secret&quot;: &quot;&quot;
+}
+</code>
+<aside class="notice">The token validity will be as per the value set for the client (Token expiry duration).</aside></p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v3/oauth/token/generate
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WnCygRI1Fmlf6YudKwTxQq1LI"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"secret"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hoqSBz6VwefECaZA8Q3oNx4V4H3pMDITksarZVES"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+     </span><span class="nt">"accessToken"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJraWQiOiJrMSIsImFsZyI6IlJTMjU2In0.eyJpc3MiOiJDYXBpbGxhcnkiLCJleHAiOjE1NzUyNzAyNzAsImp0aSI6IjJaX2FqUjcwYzJABChVUjlDVTVpUlEiLCJpYXQiOjE1NzUyNjk5NzAsInN1YiI6Im5hbWVfODQzNjIwODIwMSIsImNsaWVudF9pZCI6MjEsIm9yZ19pZCI6MTExNSwidG9rZW5fdXNlIjoidG9rZW5fYWNjZXNzIn0.Ala1-XTDlPtrHFQfCtJKsXe3h_WVyq4QOGI3ZnLNJqOa-yJc1UPGbypUysWemzEaiQC_BJ0n9G68SYkVZGi4CSVOhHRNA_dILe8y1Sa90YZKwHVHogJmIKzLmksJrTbjn8s8hSMePBaaUcEdUZ1XssxdFrZhEHHN1fWVYtkdb74PB3sZ7OMDqKUysON8YTNQxLgKOJ3kq0o2QUUDQo1q3gxXFuswate6-jj3oBkcdd1ohhXkPIWZlAb_1lRcLr-ECaaBfh473gayeMVV_6khdKJ7cXrUQ3CXppkrPIzBb7rS6I93iWZw0IlmWbaGduTmPPOhLX6HZLOb84Y28st-cw"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"ttlSeconds"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <h3 id="other-headers-required">Other Headers Required</h3>
 
 <ul>
@@ -3304,6 +3378,1481 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>Failed to update subscription for {x} channel and priority {y}.</td>
 </tr>
 </tbody></table>
+
+          <h1 id="transaction">Transaction</h1>
+
+<p>A transaction represents a purchase or return event. </p>
+
+<p>Transactions are classified into the following types:</p>
+
+<ul>
+<li><strong>Regular</strong>: Normal transactions made at the PoS. Regular transactions could be loyalty, non-loyalty and not-interested.</li>
+<li><strong>Return</strong> : Transactions that are returned at the PoS. Return transactions need an identifier reference. Hence, only loyalty and non-loyalty transactions can be returned through APIs. See Transaction Return API for more details.</li>
+<li><strong>Mixed</strong>: A transaction that involves both regular and return is termed as mixed transaction.</li>
+</ul>
+
+<h2 id="add-transaction">Add Transaction</h2>
+
+<p>Lets you add one or more loyalty transactions to the Capillary system.</p>
+
+<ul>
+<li>If CONFIG_SKIP_SECONDARY_ID_ON_PRIMARY_MISMATCH is enabled, if the primary identifier is different but any of the secondary identifiers exist, a new customer is registered with the primary identifier ignoring the secondary identifier. The config is available on the Registration Page of InTouch Profile &gt; Organization Settings &gt; Miscellaneous.</li>
+</ul>
+
+<aside class="notice">You cannot register a customer with this API. Hence, you need to pass only registered identifiers for regular transactions.</aside>
+
+<h3 id="prerequisites">Prerequisites</h3>
+
+<p>Before using transaction APIs, understand the transaction configurations of your organization. You can see the transaction related settings on InTouch &gt; <strong>Settings</strong> &gt; <strong>Systems &amp; Deployment</strong> &gt; <strong>InTouch PoS Configuration</strong> &gt; <strong>Billing</strong>.</p>
+
+<ul>
+<li>Mandatory parameters required to submit a transaction.</li>
+<li>Scope of transaction number uniqueness (store level or TILL level) and duration for which repetition is not allowed (20 days, 30 days etc.).</li>
+<li>Maximum and minimum amount allowed per transaction.</li>
+<li>Maximum and minimum amount allowed per line-item.</li>
+</ul>
+
+<p>Following are the key functionalities of the <code class="prettyprint">transaction/add</code> API.</p>
+
+<ul>
+<li>Supports transactions with Product Variant and Product Bundle details.</li>
+<li>Adds product variant to the database when a new variant product is passed with an existing base product.</li>
+<li>Adds  base product to the database when a new base product/variant product is passed. However, if a new base product is passed with variant details, it adds only base product and ignores variant .</li>
+</ul>
+
+<p><strong>Variant Product</strong>: A same product having different variations in terms of common properties such as size, and color.</p>
+
+<p><strong>Product Bundle</strong>: A group of items that are sold as a single pack. This can include Combo items (Example: pack of 2, combo offers), Split items (Example: a necklace having gold rate, store rate, making charge, wastage charge and so on) and add-on items (Example: Pizza with extra cheese, and personalized toppings) </p>
+
+<aside class="notice">
+* To add variant details, pass the variant id at the line-item level. For bundle products, pass each line item details in the respective bundle type (split/combo/add-on).* 
+</aside>
+
+<ul>
+<li><strong>Regular Transactions</strong>: To make regular transactions, set <code class="prettyprint">type</code> as <code class="prettyprint">regular</code> and pass the customer’s unique identifier of the customer in the respective tag.</li>
+<li><strong>Non-Interested Transactions</strong>: To make not-interested transactions, set <code class="prettyprint">type</code> as <code class="prettyprint">not_interested</code> and customer identifiers are not required for not-interested transactions.</li>
+</ul>
+
+<p>You can update custom field details and extended field details for either regular or return transactions. To retrieve these details, use customer/get, customer/transaction APIs.</p>
+
+<ul>
+<li>Extended fields are a kind of custom fields with defined field names and values that help generate reports on basis of extended fields. In transactions, extended field details can be captured at transaction level, or line-item level. Examples of transaction level extended fields include additional_discount, centralGST, GrossWeight etc and examples of line-item level extended fields include DesignCode, imei_number, MakingCharge etc.<br></li>
+<li>Pass custom field details in the custom_fields element and extended fields in the extended_fields element</li>
+<li>To retrieve custom field values and extended field values, use the customer/get or customer/transaction API</li>
+</ul>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.intouch.capillarytech.com/v2/transactions/bulk
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"identifierType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"identifierValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"919740000000"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REGULAR"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"billNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"num-668288857749"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"billAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this is test"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"grossAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"110"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"deliveryStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHIPPED"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"paymentModes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BankNameAPI"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value_6555444"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes_6555444"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CHECKAPI"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"500"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"ship_first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"ship_last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"customFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"trans_cf_a"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"lineItemsV2"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_2"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_2"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_3"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"marital_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Married"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"customFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"cashierid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jim2345"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bangalore"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_4"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_5"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_6"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_7"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_8"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_9"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_10"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"identifierType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"identifierValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"919740000000"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REGULAR"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"billNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"num-668288857765"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"billAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this is test"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"grossAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"110"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"deliveryStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHIPPED"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"paymentModes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BankNameAPI"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value_6555444"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes_6555444"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CHECKAPI"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"500"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"ship_first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"ship_last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"customFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"trans_cf_a"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"lineItemsV2"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_2"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_2"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_3"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_4"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_5"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_6"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_7"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_8"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"marital_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Married"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"customFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"cashierid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jim2345"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bangalore"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_9"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_10"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"identifierType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"identifierValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"919740390065"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"ship_first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"ship_last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"deliveryStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHIPPED"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REGULAR"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"billAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"billNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"num-668288857749"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"grossAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">110</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this is test"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"lineItemsV2"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_2"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_2"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_3"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_4"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_5"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_6"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_7"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_8"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_9"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_10"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"customFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"trans_cf_a"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"paymentModes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CHECKAPI"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"500"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes_6555444"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BankNameAPI"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value_6555444"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"billingDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-28T10:44:15+05:30"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">8015</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer not found for the given identifiers"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">38236696</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"identifierType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"identifierValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"919740390055"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="nt">"deliveryStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHIPPED"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REGULAR"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"billAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"billNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"num-668288857765"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"grossAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">110</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this is test"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"lineItemsV2"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_2"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_2"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_3"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_4"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_5"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_6"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_7"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_8"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_9"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_10"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"customFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"trans_cf_a"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"paymentModes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CHECKAPI"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"500"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes_6555444"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+              </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BankNameAPI"</span><span class="p">,</span><span class="w">
+              </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value_6555444"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="nt">"billingDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-28T10:44:15+05:30"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"totalCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"failureCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/v2/transactions/bulk</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Rate Limited</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/transactions/bulk</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifierType*</td>
+<td>enum</td>
+<td>Pass any of the registered identifier name of the customer. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>, or <code class="prettyprint">fbId</code> (Facebook ID).</td>
+</tr>
+<tr>
+<td>identifierValue*</td>
+<td>string</td>
+<td>Pass the respective identifier value. For example if <code class="prettyprint">identifierType</code> is mobile, <code class="prettyprint">identifierValue</code> is mobile number.</td>
+</tr>
+<tr>
+<td>source*</td>
+<td>enum</td>
+<td>Pass the source from which the transaction is made. Values: <code class="prettyprint">INSTORE</code>( for InStore), <code class="prettyprint">WECHAT</code> (WeChat), <code class="prettyprint">MARTJACK</code>(AnywhereCommerce), <code class="prettyprint">WEB_ENGAGE</code> (Web-engage integration), ECOMMERCE (ECOMMERCE), <code class="prettyprint">JD</code> (JD), <code class="prettyprint">TAOBAO</code> (Taobao), <code class="prettyprint">TMALL</code> (TMall), <code class="prettyprint">FACEBOOK</code> (Facebook), <code class="prettyprint">WEBSITE</code> (other website), <code class="prettyprint">OTHERS</code> (any other source).</td>
+</tr>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>For sources with multiple accounts (such as MARTJACK, WECHAT), pass the respective account ID.</td>
+</tr>
+<tr>
+<td>extendedFields</td>
+<td>obj</td>
+<td>Valid transaction level extended field details in name and value pairs. You can also pass line-item level extended field details in <code class="prettyprint">line_item</code> object.</td>
+</tr>
+<tr>
+<td>currencyCode</td>
+<td>string</td>
+<td>ISO currency code of the transaction. For example, <code class="prettyprint">INR</code> for Indian Rupee, SGD for Singapore Dollar, <code class="prettyprint">EUR</code> for Euro, <code class="prettyprint">IQD</code> for Iraqi Dinar.</td>
+</tr>
+<tr>
+<td>addWithLocalCurrency</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to add a transaction in local currency.</td>
+</tr>
+<tr>
+<td>deliveryStatus</td>
+<td>enum</td>
+<td>Delivery status of the item. Values: DELIVERED, SHIPPED.</td>
+</tr>
+<tr>
+<td>type*</td>
+<td>enum</td>
+<td>Type of transaction. Supported value:  <code class="prettyprint">regular</code> for loyalty transactions. &lsquo;RETURN&rsquo; for return transactions. Currently, there is no not-interested transactions support in V2.</td>
+</tr>
+<tr>
+<td>billAmount*</td>
+<td>double</td>
+<td>Net transaction amount.</td>
+</tr>
+<tr>
+<td>billNumber*</td>
+<td>string</td>
+<td>Unique transaction number. The uniqueness either at till, store, or org, depends on the configuration <code class="prettyprint">CONF_LOYALTY_BILL_NUMBER_UNIQUE_IN_DAYS</code> set on InTouch <strong>Settings</strong> &gt; <strong>System &amp; Deployment</strong> &gt; <strong>InTouch POS Configuration</strong> &gt; <strong>Billing</strong>.</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>ISO currency code of the transaction. Org&rsquo;s base currency is considered by default. For example, <code class="prettyprint">INR</code> for Indian Rupee, <code class="prettyprint">SGD</code> for Singapore Dollar, <code class="prettyprint">EUR</code> for Euro, <code class="prettyprint">IQD</code> for Iraqi Dinar.</td>
+</tr>
+<tr>
+<td>discount</td>
+<td>double</td>
+<td>Discount availed for the transaction (discount amount).</td>
+</tr>
+<tr>
+<td>grossAmount</td>
+<td>double</td>
+<td>Transaction amount before discount.</td>
+</tr>
+<tr>
+<td>note</td>
+<td>string</td>
+<td>Additional information about the transaction.</td>
+</tr>
+<tr>
+<td>lineItemsV2</td>
+<td>obj</td>
+<td>Details of line-items.</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>double</td>
+<td>Net transaction amount</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>One or two liner description of the line-item.</td>
+</tr>
+<tr>
+<td>itemCode</td>
+<td>string</td>
+<td>Unique code of the transaction line-item.</td>
+</tr>
+<tr>
+<td>qty</td>
+<td>double</td>
+<td>Quantity of the current line-item.</td>
+</tr>
+<tr>
+<td>rate</td>
+<td>double</td>
+<td>Price of each line-item.</td>
+</tr>
+<tr>
+<td>serial</td>
+<td>string</td>
+<td>Serial number of the line-item.</td>
+</tr>
+<tr>
+<td>returnable</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> if the item can be returned.</td>
+</tr>
+<tr>
+<td>returnableDays</td>
+<td>int</td>
+<td>Maximum number of days in which the item is allowed to return.</td>
+</tr>
+<tr>
+<td>customFields</td>
+<td>obj</td>
+<td>Transaction or line-item level custom field details.</td>
+</tr>
+<tr>
+<td>imgUrl</td>
+<td>string</td>
+<td>URL of the product image.</td>
+</tr>
+<tr>
+<td>attributes</td>
+<td>obj</td>
+<td>Attributes of the product in name-value pairs.</td>
+</tr>
+<tr>
+<td>comboDetails obj</td>
+<td>Details of combo or bundle items. For example, buy 1 shirt get one free, shirt+pant, pack of 5 soaps</td>
+<td></td>
+</tr>
+<tr>
+<td>itemCode</td>
+<td>string</td>
+<td>Unique line-item code.</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>double</td>
+<td>Quantity of the current combo item.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>One or two liner description of add-on, split, or combo item.</td>
+</tr>
+<tr>
+<td>value</td>
+<td>double</td>
+<td>Item price excluding discount.</td>
+</tr>
+<tr>
+<td>comboType</td>
+<td>string</td>
+<td>Type of the combo. For example, buy 1 shirt get one free, shirt+pant, pack of 5 soaps.</td>
+</tr>
+<tr>
+<td>addOnDetails</td>
+<td>obj</td>
+<td>Details of add-on item.</td>
+</tr>
+<tr>
+<td>splitDetails</td>
+<td>obj</td>
+<td>Details of split item.</td>
+</tr>
+<tr>
+<td>parentBillNumber</td>
+<td>string</td>
+<td>Details of the actual transaction number. This is applicable only for return transactions.</td>
+</tr>
+<tr>
+<td>purchaseTime</td>
+<td>date-time</td>
+<td>Date and time of purchase in <code class="prettyprint">YYYY-MM-DDTHH:MM:SS</code> format.</td>
+</tr>
+<tr>
+<td>customFields</td>
+<td>obj</td>
+<td>Details of transaction level or transaction line-item level custom fields.</td>
+</tr>
+<tr>
+<td>loyaltyPromotionIdentifiers</td>
+<td>array</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>redemptions</td>
+<td>obj</td>
+<td>Details of points and coupon redemptions for the  transaction.</td>
+</tr>
+<tr>
+<td>pointsRedemptions</td>
+<td>array</td>
+<td>array</td>
+</tr>
+<tr>
+<td>couponRedemptions</td>
+<td>array</td>
+<td>Unique coupon redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]</td>
+</tr>
+<tr>
+<td>paymentModes</td>
+<td>obj</td>
+<td>Payment details used for the transaction.</td>
+</tr>
+<tr>
+<td>mode</td>
+<td>string</td>
+<td>Mode of payment.</td>
+</tr>
+<tr>
+<td>value</td>
+<td>double</td>
+<td>Amount paid through the current mode.</td>
+</tr>
+<tr>
+<td>notes</td>
+<td>string</td>
+<td>Additional information related to the payment mode.</td>
+</tr>
+<tr>
+<td>attributes</td>
+<td>obj</td>
+<td>Attributes of the payment mode in names and value pairs.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
+
+<h3 id="response-parameters">Response Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>entityId</td>
+<td>long</td>
+<td>Unique transaction ID generated.</td>
+</tr>
+<tr>
+<td>billingDate</td>
+<td>date-time</td>
+<td>Date and time of the transaction in <code class="prettyprint">HH-MM-DDThh:mm:ssTZD</code></td>
+</tr>
+</tbody></table>
+
+<h2 id="get-transaction-details">Get Transaction Details</h2>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/transactions/38236823?type=REGULAR
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-28T17:04:13+05:30"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobilepush.1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobilepush.1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"isOuEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">216</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="nt">"modifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-28T17:04:13+05:30"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"billDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">200.0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"billingStore"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006795</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"storecode"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"webenagestore"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"webstore1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STORE"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"isOuEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">216</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"billNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"num-6682858599"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"billingTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-28T17:04:13+05:30"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"grossAmount"</span><span class="p">:</span><span class="w"> </span><span class="mf">110.0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this is test"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"returnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"canceled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"niReturnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="nt">"invalidBill"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"customFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"cashierid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jim2345"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"addWithLocalCurrency"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"async"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"useV2"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"customerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">316726161</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">38236823</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"lineItems"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2151509718</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"customerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_2"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"serial"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                </span><span class="nt">"rateSupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"valueSupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"qtySupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"attributesSet"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"discountSupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"extendedFieldsSet"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"outlierStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+            </span><span class="nt">"valid"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnLineItemsDtos"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"niReturnLineItemsDtos"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"addonDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"splitItemsDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"niReturn"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2151509719</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"customerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_2"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"serial"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                </span><span class="nt">"rateSupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"valueSupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"qtySupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"attributesSet"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"discountSupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"extendedFieldsSet"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"outlierStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+            </span><span class="nt">"valid"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnLineItemsDtos"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"niReturnLineItemsDtos"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"addonDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"splitItemsDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"niReturn"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2151509720</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"customerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_3"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"serial"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                </span><span class="nt">"rateSupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"valueSupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"qtySupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"attributesSet"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"discountSupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"extendedFieldsSet"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"outlierStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+            </span><span class="nt">"valid"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnLineItemsDtos"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"niReturnLineItemsDtos"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"addonDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"splitItemsDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"niReturn"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2151509721</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"customerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_4"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"serial"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                </span><span class="nt">"rateSupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"valueSupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"qtySupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"attributesSet"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"discountSupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"extendedFieldsSet"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"outlierStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+            </span><span class="nt">"valid"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnLineItemsDtos"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"niReturnLineItemsDtos"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"addonDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"splitItemsDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"niReturn"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2151509722</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"customerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_5"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"serial"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                </span><span class="nt">"rateSupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"valueSupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"qtySupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"attributesSet"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"discountSupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"extendedFieldsSet"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"outlierStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+            </span><span class="nt">"valid"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnLineItemsDtos"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"niReturnLineItemsDtos"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"addonDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"splitItemsDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"niReturn"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2151509723</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"customerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_6"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"serial"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                </span><span class="nt">"rateSupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"valueSupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"qtySupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"attributesSet"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"discountSupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"extendedFieldsSet"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"outlierStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+            </span><span class="nt">"valid"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnLineItemsDtos"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"niReturnLineItemsDtos"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"addonDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"splitItemsDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"niReturn"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2151509724</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"customerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_7"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"serial"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                </span><span class="nt">"rateSupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"valueSupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"qtySupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"attributesSet"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"discountSupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"extendedFieldsSet"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"outlierStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+            </span><span class="nt">"valid"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnLineItemsDtos"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"niReturnLineItemsDtos"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"addonDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"splitItemsDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"niReturn"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2151509725</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"customerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_8"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"serial"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                </span><span class="nt">"rateSupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"valueSupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"qtySupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"attributesSet"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"discountSupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"extendedFieldsSet"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"outlierStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+            </span><span class="nt">"valid"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnLineItemsDtos"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"niReturnLineItemsDtos"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"addonDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"splitItemsDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"niReturn"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2151509726</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"customerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_9"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"serial"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                </span><span class="nt">"rateSupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"valueSupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"qtySupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"attributesSet"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"discountSupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"extendedFieldsSet"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"outlierStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+            </span><span class="nt">"valid"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnLineItemsDtos"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"niReturnLineItemsDtos"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"addonDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"splitItemsDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"niReturn"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2151509727</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"customerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_10"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"serial"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                </span><span class="nt">"rateSupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"valueSupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"qtySupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"attributesSet"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"discountSupportingNull"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"extendedFieldsSet"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"outlierStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+            </span><span class="nt">"valid"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returnLineItemsDtos"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"niReturnLineItemsDtos"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"addonDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"splitItemsDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"niReturn"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"outlierStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REGULAR"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"lifeTimePurchases"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"ignorePoints"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+    </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-28T17:04:13+05:30"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"returnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"canceled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"extendedFieldsSet"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"customFieldsSet"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"cashierid"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jim2345"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"niReturnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+    </span><span class="nt">"basketSize"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Retrieves the details of a specific transaction.</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/transactions/{id}</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Rate Limited</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>NA</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/transactions/{id}</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id*</td>
+<td>long</td>
+<td>Unique transaction id to fetch details.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">The parameter marked with * is mandatory.</aside>
 
           <h1 id="customer-labels">Customer Labels</h1>
 
