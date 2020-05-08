@@ -127,7 +127,36 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id="introduction">Introduction</h1>
+        <h1 id="release-updates">Release Updates</h1>
+
+<p>This section provides the quarterly breakup of existing API updates and new API releases.</p>
+
+<h2 id="q4-releases-2019-20">Q4 Releases (2019-20)</h2>
+
+<ul>
+<li><strong>OAuth Support</strong>: Besides Basic Authentication, Capillary APIs now support OAuth and access tokens for more secured API calls. For more details, see support portal. </li>
+<li><strong>Points Reversal</strong>: Allows reversing redeemed points directly if the transaction - for which the points are redeemed - is returned. A new redemption ID is introduced. 
+
+<ul>
+<li>POST <a href="https://capillary.github.io/v1.1-API-Documentation/#redeem-points">v1.1/points/redeem</a>: Introduced a new parameter <code class="prettyprint">redemption_id</code> which can be used to reverse points if the transaction is returned.</li>
+<li>POST <a href="https://capillary.github.io/api-documentation/#reverse-redeemed-points">v2/points/reverse</a>: Uses <code class="prettyprint">redemptionId</code> to reverse points of a specific transaction.</li>
+<li>GET <a href="https://capillary.github.io/v1.1-API-Documentation/#get-customer-redemptions">v1.1/customer/redemptions</a>: Shows <code class="prettyprint">total_points_reversed</code> and points reversal history.</li>
+</ul></li>
+<li><strong>Event Notification</strong>: Allows building integrations with Capillary events that originate either through Capillary products or APIs. For more details, see  <a href="https://capillary.github.io/api-documentation/#event-notifications">Event Notification APIs</a>.</li>
+<li><strong>Redemption across loyalty programs</strong>: With this release, you can redeem points earned in one program in another loyalty program of the org. 
+
+<ul>
+<li>POST <a href="https://capillary.github.io/v1.1-API-Documentation/#redeem-points">v1.1/points/redeem</a>: A new parameter <code class="prettyprint">group_redemption</code> if set <code class="prettyprint">true</code> enables cross loyalty program redemption.<br></li>
+</ul></li>
+<li><strong>OTP Support without PII information</strong>: Allows non-PII clients (clients which would not send PII information such as mobile number, email ID, etc to Capillary) to send OTP via Capillary communication gateway.</li>
+<li><strong>Transaction V2 APIs</strong>: Support to <a href="https://capillary.github.io/api-documentation/#add-transaction">Add transactions</a> and <a href="https://capillary.github.io/api-documentation/#get-transaction-details">Retrieve transaction details</a>. </li>
+<li>Option to disable OTP validation for points transfer.</li>
+<li>Customer enrollment with one-time points and tier upgrade</li>
+<li>External loyalty program linking</li>
+<li>Support for external reference number in redemption.</li>
+</ul>
+
+<h1 id="introduction">Introduction</h1>
 
 <p>Capillary RESTful APIs are be consumed by Capillary and other brands that are registered with Capillary/MartJack to manage their CRM. Capillary V2 and V3 APIs support multiple sources such as InStore, MartJack, Facebook, and WeChat.</p>
 
@@ -157,11 +186,27 @@
 
 <h2 id="authentication">Authentication</h2>
 
-<p>Before starting with authentication process, ensure that your organization is registered in Capillary InTouch and at least one TILL has been created for your organization. Stores and store TILLs will be created based on the size and outlets of your organization. You need to know the username and password of the TILL that you want to authenticate for making API calls. </p>
+<p>Capillary supports two types of authentication.</p>
 
-<aside class="notice"> To gain access to our entities in the Rest API, you need to authenticate your TILL with its username and password using the HTTP Basic Authentication.</aside>
+<p>Capillary APIs can be accessed either using Basic auth (TILL/Store Center credentials), or OAuth (Client key and secret associated to a Till/Store Center) . Please note that it is mandatory to use only the store specific Till/Store Center credentials as the data in the API response depends on this identification.</p>
 
-<h3 id="basic-authentication-authorization-header">Basic Authentication - Authorization Header</h3>
+<p>To configure your API keys, see <a href="https://support.capillarytech.com/en/support/solutions/articles/4000157087-api-authentication-configuration">API Authentication Configuration</a>.</p>
+
+<p><strong>When to use Basic &amp; OAuth?</strong></p>
+
+<table><thead>
+<tr>
+<th>Basic</th>
+<th>oAuth</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Can be used for POS integrations where API requests come to Capillary server directly from POS front end or POS store server.</td>
+<td>Shall be used for backend integrations (from one backend to another backend). For example, POS integrations where API requests come to Capillary server from API gateway or a central server; FTP integrations where backend service need to be authenticated; 3rd party integration where API requests come to Capillary from a backend platform.</td>
+</tr>
+</tbody></table>
+
+<h3 id="process-1-basic-authentication">Process 1: Basic Authentication</h3>
 
 <p>Authorization Header is used for validating authentication credentials. The Authorization Header is constructed as shown below:</p>
 
@@ -182,7 +227,14 @@
 <p><code class="prettyprint">X-CAP-API-ATTRIBUTION-LOOKUP-TYPE:&lt;name&gt;</code>
 <code class="prettyprint">X-CAP-API-ATTRIBUTION-LOOKUP:&lt;value&gt;</code>(value is case sensitive)</p>
 
-<h3 id="oauth">OAuth</h3>
+<h4 id="headers-required-for-basic-auth">Headers Required for Basic Auth</h4>
+
+<ul>
+<li><p><strong>Content-Type</strong> - This should be set as application/json</p></li>
+<li><p><strong>Accept</strong> - This should also be set as application/json</p></li>
+</ul>
+
+<h3 id="process-2-oauth">Process 2: OAuth</h3>
 
 <p>OAuth provides better security and helps you create secure passages to access your org&rsquo;s data through Capillary APIs. To generate oAuth client key and secret see <a href="http://developer.capillarytech.com/en/support/solutions/articles/4000154305-oauth">OAuth Documentation</a>.</p>
 
@@ -263,8 +315,53 @@
 <li><p><strong>Accept</strong> - This should also be set as application/json</p></li>
 </ul>
 
-<h2 id="resource-information">Resource Information</h2>
+<h3 id="using-access-token">Using Access Token</h3>
 
+<p>Once you generate the access token, you can use it to authenticate API calls as shown below.</p>
+
+<p>Set the  authentication to No Auth and pass the following headers.</p>
+
+<h4 id="required-headers">Required Headers</h4>
+
+<table><thead>
+<tr>
+<th>Header</th>
+<th>Value</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>X-CAP-API-OAUTH-TOKEN*</td>
+<td>Generated access token. If the token expires, you need to regenerate the access token.</td>
+</tr>
+<tr>
+<td>Content-Type*</td>
+<td>This should be set as application/json</td>
+</tr>
+<tr>
+<td>Accept*</td>
+<td>This should also be set as application/json</td>
+</tr>
+<tr>
+<td>X-CAP-API-ATTRIBUTION-TILL</td>
+<td>Till ID from which you want to POST data. By default, the Till associated with the client key and secret is mapped if this is not passed.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
+
+<p>For example, to get transaction details, you can use the following details. Before making a API call, make sure the token has access to the required resource.</p>
+
+<p><strong>Headers</strong></p>
+
+<p>Accept | application/json
+Content-Type | application/json
+X-CAP-API-OAUTH-TOKEN | eyJraWQiOiJrMSIsImFsZyI6IlJTMjU2In0.wiOlwiV1JJ&hellip;</p>
+
+<blockquote>
+<p>Sample Request URL</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/transaction/38233952?type=REGULAR
+</code></pre>
 <h3 id="request-url-format">Request URL Format</h3>
 
 <p><code class="prettyprint">https://{host}/v2/{resource}/{endpoint}?{query params}</code></p>
@@ -368,35 +465,6 @@
 <td>Invalid org ID passed.</td>
 </tr>
 </tbody></table>
-
-<h1 id="api-updates">API Updates</h1>
-
-<p>This section provides the quarterly breakup of existing API updates and new API releases.</p>
-
-<h2 id="q4-releases-2019-20">Q4 Releases (2019-20)</h2>
-
-<ul>
-<li><strong>OAuth Support</strong>: Besides Basic Authentication, Capillary APIs now support OAuth and access tokens for more secured API calls. For more details, see support portal. </li>
-<li><strong>Points Reversal</strong>: Allows reversing redeemed points directly if the transaction - for which the points are redeemed - is returned. A new redemption ID is introduced. 
-
-<ul>
-<li>POST <code class="prettyprint">v1.1/points/redeem</code>: Introduced a new parameter <code class="prettyprint">redemption_id</code> which can be used to reverse points if the transaction is returned.</li>
-<li>POST <code class="prettyprint">v2/points/reverse</code>: Uses <code class="prettyprint">redemptionId</code> to reverse points of a specific transaction.</li>
-<li>GET <code class="prettyprint">v1.1/customer/redemptions</code>: Shows <code class="prettyprint">total_points_reversed</code> and points reversal history.</li>
-</ul></li>
-<li><strong>Event Notification</strong>: Allows building integrations with Capillary events that originate either through Capillary products or APIs. For more details, see  <a href="https://capillary.github.io/api-documentation/#event-notifications">Event Notification APIs</a>.</li>
-<li><strong>Redemption across loyalty programs</strong>: With this release, you can redeem points earned in one program in another loyalty program of the org. 
-
-<ul>
-<li>POST <code class="prettyprint">v1.1/points/redeem</code>: A new parameter <code class="prettyprint">group_redemption</code> if set <code class="prettyprint">true</code> enables cross loyalty program redemption.<br></li>
-</ul></li>
-<li><strong>OTP Support without PII information</strong>: Allows non-PII clients (clients which would not send PII information such as mobile number, email ID, etc to Capillary) to send OTP via Capillary communication gateway.</li>
-<li><strong>Transaction V2 APIs</strong>: Support to add and retrieve transaction in V2 APIs. </li>
-<li>Option to disable OTP validation for points transfer.</li>
-<li>Customer enrollment with one-time points and tier upgrade</li>
-<li>External loyalty program linking</li>
-<li>Support for external reference number in redemption.</li>
-</ul>
 
           <h1 id="customer">Customer</h1>
 
@@ -795,7 +863,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
     </span><span class="nt">"primary"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"verified"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"meta"</span><span class="p">:{</span><span class="w">
-      </span><span class="err">“lastViewedDate”</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="err">&lt;date&gt;</span><span class="w">
+      </span><span class="nt">"lastViewedDate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-25"</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -838,7 +906,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/{customerId}?{query_param}={param_value}</code></td>
+<td><code class="prettyprint">/{customerId}?{queryParam}={paramValue}</code></td>
 </tr>
 <tr>
 <td>Authentication</td>
@@ -954,7 +1022,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <tr>
 <td>identifiers</td>
 <td>obj</td>
-<td>Identifiers of the customer in type and value. Supported types: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>, <code class="prettyprint">fbId</code> <code class="prettyprint">mobile</code>, <code class="prettyprint">tmall_uname</code>, <code class="prettyprint">cuid</code>, <code class="prettyprint">ali_uname</code>, <code class="prettyprint">jd_uname</code>, <code class="prettyprint">vip_uname</code>, and <code class="prettyprint">line</code>.</td>
+<td>Identifiers of the customer that you want to add in type and value. Supported types: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>, <code class="prettyprint">fbId</code> <code class="prettyprint">mobile</code>, <code class="prettyprint">tmall_uname</code>, <code class="prettyprint">cuid</code>, <code class="prettyprint">ali_uname</code>, <code class="prettyprint">jd_uname</code>, <code class="prettyprint">vip_uname</code>, and <code class="prettyprint">line</code>.</td>
 </tr>
 <tr>
 <td>profiles</td>
