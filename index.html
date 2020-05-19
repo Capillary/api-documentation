@@ -516,7 +516,7 @@ https://us.api.capillarytech.com/v2/customers?source=MOBILE_APP<span class="err"
          </span><span class="p">],</span><span class="w">
          </span><span class="nt">"firstName"</span><span class="p">:</span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
          </span><span class="nt">"lastName"</span><span class="p">:</span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w"> 
+         </span><span class="nt">"customerIdentifiers"</span><span class="p">:[</span><span class="w"> 
             </span><span class="p">{</span><span class="w"> 
                </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
                </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"tom.sawyer@example.com"</span><span class="w">
@@ -703,7 +703,7 @@ Extended fields are either associated to verticals or to a generic category (ava
 <td>Meta information of the customer.</td>
 </tr>
 <tr>
-<td>identifiers*</td>
+<td>customerIdentifiers*</td>
 <td>obj</td>
 <td>Identifiers of the customer in type and value. Supported types: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>, <code class="prettyprint">fbId</code> <code class="prettyprint">mobile</code>, <code class="prettyprint">tmall_uname</code>, <code class="prettyprint">cuid</code>, <code class="prettyprint">ali_uname</code>, <code class="prettyprint">jd_uname</code>, <code class="prettyprint">vip_uname</code>, <code class="prettyprint">mobilePush</code>, and <code class="prettyprint">line</code>.</td>
 </tr>
@@ -801,7 +801,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
             </span><span class="nt">"gender"</span><span class="p">:</span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"city"</span><span class="p">:</span><span class="s2">"Bangalore"</span><span class="w">
          </span><span class="p">},</span><span class="w">
-         </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w">  
+         </span><span class="nt">"customerIdentifiers"</span><span class="p">:[</span><span class="w">  
             </span><span class="p">{</span><span class="w">  
                </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
                </span><span class="nt">"value"</span><span class="p">:</span><span class="mi">919111111111</span><span class="w">
@@ -1021,7 +1021,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <td>Last name of the customer.</td>
 </tr>
 <tr>
-<td>identifiers</td>
+<td>customerIdentifiers</td>
 <td>obj</td>
 <td>Identifiers of the customer that you want to add in type and value. Supported types: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>, <code class="prettyprint">fbId</code> <code class="prettyprint">mobile</code>, <code class="prettyprint">tmall_uname</code>, <code class="prettyprint">cuid</code>, <code class="prettyprint">ali_uname</code>, <code class="prettyprint">jd_uname</code>, <code class="prettyprint">vip_uname</code>, and <code class="prettyprint">line</code>.</td>
 </tr>
@@ -1105,7 +1105,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 </span></code></pre>
 <p>Allows adding/removing identifiers of a customer in different sources, i.e., you can either add a new identifier or remove an existing identifier of a customer in a source.</p>
 
-<p><strong>Identifiers</strong>: &ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;externalId&rdquo;, &ldquo;wechat&rdquo;,&ldquo;martjackId&rdquo;, &ldquo;fbId&rdquo; &ldquo;mobile&rdquo;, &ldquo;tmall_uname&rdquo;, &ldquo;cuid&rdquo;, &ldquo;ali_uname&rdquo;, &ldquo;jd_uname&rdquo;, &ldquo;vip_uname&rdquo;, &ldquo;line&rdquo; </p>
+<p><strong>customerIdentifiers</strong>: &ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;externalId&rdquo;, &ldquo;wechat&rdquo;,&ldquo;martjackId&rdquo;, &ldquo;fbId&rdquo; &ldquo;mobile&rdquo;, &ldquo;tmall_uname&rdquo;, &ldquo;cuid&rdquo;, &ldquo;ali_uname&rdquo;, &ldquo;jd_uname&rdquo;, &ldquo;vip_uname&rdquo;, &ldquo;line&rdquo; </p>
 
 <p>Limitations of the customer identifier update API:
 * Only identifiers can be updated using this API
@@ -1577,7 +1577,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
                </span><span class="nt">"Gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
                </span><span class="nt">"Favorite Color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Green"</span><span class="w">
            </span><span class="p">},</span><span class="w">
-           </span><span class="nt">"identifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+           </span><span class="nt">"customerIdentifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                </span><span class="p">{</span><span class="w">
                    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
                    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom.sawyer@example.com"</span><span class="w">
@@ -2377,7 +2377,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
             </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REJECTED"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"addedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091433</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.india1"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2390,7 +2390,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
                 </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"addedByParent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"enteredByParent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091431</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"store_india"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2403,7 +2403,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
                 </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">148</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8730028</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Patel"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nayan Kumar"</span><span class="p">,</span><span class="w">
@@ -2431,7 +2431,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
             </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"APPROVED"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"addedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091433</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.india1"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2444,7 +2444,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
                 </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"addedByParent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"enteredByParent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091431</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"store_india"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2457,7 +2457,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
                 </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">148</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8730028</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Patel"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nayan Kumar"</span><span class="p">,</span><span class="w">
@@ -2485,7 +2485,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
             </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REJECTED"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"addedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091433</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.india1"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2498,7 +2498,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
                 </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"addedByParent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"enteredByParent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091431</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"store_india"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2511,7 +2511,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
                 </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">148</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091437</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.sg"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2538,7 +2538,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
             </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"APPROVED"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"addedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091433</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.india1"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2551,7 +2551,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
                 </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"addedByParent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"enteredByParent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091431</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"store_india"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2564,7 +2564,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
                 </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">148</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091437</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.sg"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2591,7 +2591,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
             </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REJECTED"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"addedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091433</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.india1"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2604,7 +2604,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
                 </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"addedByParent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"enteredByParent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091431</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"store_india"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2617,7 +2617,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
                 </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">148</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8730028</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Patel"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nayan Kumar"</span><span class="p">,</span><span class="w">
@@ -2750,7 +2750,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
     </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">43114</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"addedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15000449</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1371622280_919866643044"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2763,7 +2763,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
                 </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15000449</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1371622280_919866643044"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2790,7 +2790,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">43113</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"addedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15000449</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1371622280_919866643044"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2803,7 +2803,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
                 </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15000449</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1371622280_919866643044"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -4464,7 +4464,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-28T17:04:13+05:30"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
             </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobilepush.1"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -5959,7 +5959,7 @@ If the email template is not specified, the validation code will be sent in the 
                 </span><span class="nt">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-                </span><span class="nt">"identifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="nt">"customerIdentifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                     </span><span class="p">{</span><span class="w">
                         </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
                         </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"919999000000"</span><span class="w">
@@ -6066,7 +6066,7 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
 
             </span><span class="p">},</span><span class="w">
             </span><span class="nt">"firstName"</span><span class="p">:</span><span class="s2">"firstName_667095"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w">
+            </span><span class="nt">"customerIdentifiers"</span><span class="p">:[</span><span class="w">
                </span><span class="p">{</span><span class="w">
                   </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
                   </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"autoemail7601667095@gmail.com"</span><span class="w">
@@ -6234,7 +6234,7 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
                   </span><span class="nt">"lastName"</span><span class="p">:</span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
                   </span><span class="nt">"attribution"</span><span class="p">:{</span><span class="w"> 
                      </span><span class="nt">"createDate"</span><span class="p">:</span><span class="s2">"2018-03-05T15:52:47+05:30"</span><span class="p">,</span><span class="w">
-                     </span><span class="nt">"createdBy"</span><span class="p">:{</span><span class="w"> 
+                     </span><span class="nt">"enteredBy"</span><span class="p">:{</span><span class="w"> 
                         </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">15041276</span><span class="p">,</span><span class="w">
                         </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
                         </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
@@ -6251,7 +6251,7 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
                   </span><span class="nt">"fields"</span><span class="p">:{</span><span class="w"> 
 
                   </span><span class="p">},</span><span class="w">
-                  </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w"> 
+                  </span><span class="nt">"customerIdentifiers"</span><span class="p">:[</span><span class="w"> 
                      </span><span class="p">{</span><span class="w"> 
                         </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
                         </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"919111111111"</span><span class="w">
@@ -6285,7 +6285,7 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
                </span><span class="nt">"loyaltyType"</span><span class="p">:</span><span class="s2">"loyalty"</span><span class="p">,</span><span class="w">
                </span><span class="nt">"attributionV2"</span><span class="p">:{</span><span class="w"> 
                   </span><span class="nt">"createDate"</span><span class="p">:</span><span class="s2">"2018-03-05T15:52:47+05:30"</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"createdBy"</span><span class="p">:{</span><span class="w"> 
+                  </span><span class="nt">"enteredBy"</span><span class="p">:{</span><span class="w"> 
                      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">15041276</span><span class="p">,</span><span class="w">
                      </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
                      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
@@ -6315,7 +6315,7 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
                   </span><span class="nt">"lastName"</span><span class="p">:</span><span class="s2">"autoln_9294476894"</span><span class="p">,</span><span class="w">
                   </span><span class="nt">"attribution"</span><span class="p">:{</span><span class="w"> 
                      </span><span class="nt">"createDate"</span><span class="p">:</span><span class="s2">"2019-09-18T16:40:10+05:30"</span><span class="p">,</span><span class="w">
-                     </span><span class="nt">"createdBy"</span><span class="p">:{</span><span class="w"> 
+                     </span><span class="nt">"enteredBy"</span><span class="p">:{</span><span class="w"> 
                         </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">15041276</span><span class="p">,</span><span class="w">
                         </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
                         </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
@@ -6332,7 +6332,7 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
                   </span><span class="nt">"fields"</span><span class="p">:{</span><span class="w"> 
 
                   </span><span class="p">},</span><span class="w">
-                  </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w"> 
+                  </span><span class="nt">"customerIdentifiers"</span><span class="p">:[</span><span class="w"> 
                      </span><span class="p">{</span><span class="w"> 
                         </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
                         </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"james.f@example.com"</span><span class="w">
@@ -6387,7 +6387,7 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
                </span><span class="nt">"loyaltyType"</span><span class="p">:</span><span class="s2">"loyalty"</span><span class="p">,</span><span class="w">
                </span><span class="nt">"attributionV2"</span><span class="p">:{</span><span class="w"> 
                   </span><span class="nt">"createDate"</span><span class="p">:</span><span class="s2">"2019-09-18T16:40:10+05:30"</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"createdBy"</span><span class="p">:{</span><span class="w"> 
+                  </span><span class="nt">"enteredBy"</span><span class="p">:{</span><span class="w"> 
                      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">15041276</span><span class="p">,</span><span class="w">
                      </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
                      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
@@ -24992,7 +24992,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
                 </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bukl.till"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75040399</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bukl.till"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -25107,7 +25107,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <tr>
 <td>webHookUrl</td>
 <td>string</td>
-<td>URL of the webhook account. Applicable for webHookType: queue</td>
+<td>URL of the Webhook account. Applicable for webHookType: queue</td>
 </tr>
 </tbody></table>
 
@@ -25234,7 +25234,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
                 </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobilepush.1"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobilepush.1"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
