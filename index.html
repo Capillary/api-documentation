@@ -138,15 +138,15 @@
 <li><strong>Points Reversal</strong>: Allows reversing redeemed points directly if the transaction - for which the points are redeemed - is returned. A new redemption ID is introduced. 
 
 <ul>
-<li>POST <a href="https://capillary.github.io/v1.1-API-Documentation/#redeem-points">v1.1/points/redeem</a>: Introduced a new parameter <code class="prettyprint">redemption_id</code> which can be used to reverse points if the transaction is returned.</li>
+<li>POST <a href="https://capillary.github.io/v1.1-API-Documentation/#redeem-points" target="_blank">v1.1/points/redeem</a>: Introduced a new parameter <code class="prettyprint">redemption_id</code> which can be used to reverse points if the transaction is returned.</li>
 <li>POST <a href="https://capillary.github.io/api-documentation/#reverse-redeemed-points">v2/points/reverse</a>: Uses <code class="prettyprint">redemptionId</code> to reverse points of a specific transaction.</li>
-<li>GET <a href="https://capillary.github.io/v1.1-API-Documentation/#get-customer-redemptions">v1.1/customer/redemptions</a>: Shows <code class="prettyprint">total_points_reversed</code> and points reversal history.</li>
+<li>GET <a href="https://capillary.github.io/v1.1-API-Documentation/#get-customer-redemptions" target="_blank">v1.1/customer/redemptions</a>: Shows <code class="prettyprint">total_points_reversed</code> and points reversal history.</li>
 </ul></li>
 <li><strong>Event Notification</strong>: Allows building integrations with Capillary events that originate either through Capillary products or APIs. For more details, see  <a href="https://capillary.github.io/api-documentation/#event-notifications">Event Notification APIs</a>.</li>
 <li><strong>Redemption across loyalty programs</strong>: With this release, you can redeem points earned in one program in another loyalty program of the org. 
 
 <ul>
-<li>POST <a href="https://capillary.github.io/v1.1-API-Documentation/#redeem-points">v1.1/points/redeem</a>: A new parameter <code class="prettyprint">group_redemption</code> if set <code class="prettyprint">true</code> enables cross loyalty program redemption.<br></li>
+<li>POST <a href="https://capillary.github.io/v1.1-API-Documentation/#redeem-points" target="_blank">v1.1/points/redeem</a>: A new parameter <code class="prettyprint">group_redemption</code> if set <code class="prettyprint">true</code> enables cross loyalty program redemption.<br></li>
 </ul></li>
 <li><strong>OTP Support without PII information</strong>: Allows non-PII clients (clients which would not send PII information such as mobile number, email ID, etc to Capillary) to send OTP via Capillary communication gateway.</li>
 <li><strong>Transaction V2 APIs</strong>: Support to <a href="https://capillary.github.io/api-documentation/#add-transaction">Add transactions</a> and <a href="https://capillary.github.io/api-documentation/#get-transaction-details">Retrieve transaction details</a>. </li>
@@ -190,7 +190,7 @@
 
 <p>Capillary APIs can be accessed either using Basic auth (TILL/Store Center credentials), or OAuth (Client key and secret associated to a Till/Store Center) . Please note that it is mandatory to use only the store specific Till/Store Center credentials as the data in the API response depends on this identification.</p>
 
-<p>To configure your API keys, see <a href="https://support.capillarytech.com/en/support/solutions/articles/4000157087-api-authentication-configuration">API Authentication Configuration</a>.</p>
+<p>To configure your API keys, see <a href="http://developer.capillarytech.com/en/support/solutions/articles/4000154305-oauth" target="_blank">API Authentication Configuration</a>.</p>
 
 <p><strong>When to use Basic &amp; OAuth?</strong></p>
 
@@ -236,11 +236,13 @@
 
 <h3 id="process-2-oauth">Process 2: OAuth</h3>
 
-<p>OAuth provides better security and helps you create secure passages to access your org&rsquo;s data through Capillary APIs. To generate oAuth client key and secret see <a href="http://developer.capillarytech.com/en/support/solutions/articles/4000154305-oauth">OAuth Documentation</a>.</p>
+<p>OAuth provides better security and helps you create secure passages to access your org&rsquo;s data through Capillary APIs. To generate oAuth client key and secret see <a href="http://developer.capillarytech.com/en/support/solutions/articles/4000154305-oauth" target="_blank">OAuth Documentation</a>.</p>
+
+<h4 id="generate-access-token">Generate Access Token</h4>
 
 <p>Once you get key and secret, you can generate access token or JWT (JSON Web Token) using the token/generate API. JWT is a compact URL and JSON-based used to transfer data securely between two parties.</p>
 
-<h4 id="resource-information">Resource Information</h4>
+<p><strong>Resource Information</strong></p>
 
 <table><thead>
 <tr>
@@ -270,14 +272,13 @@
 </tr>
 </tbody></table>
 
-<h4 id="endpoint">Endpoint</h4>
+<p><strong>Endpoint</strong></p>
 
 <p><code class="prettyprint">https://{host}/v3/oauth/token/generate</code></p>
 
-<h4 id="post-request-schema">POST Request Schema</h4>
+<p><strong>POST Request Schema</strong></p>
 
-<p><code class="prettyprint">
-{
+<p><code class="prettyprint">{
   &quot;key&quot;: &quot;&quot;,
   &quot;secret&quot;: &quot;&quot;
 }
