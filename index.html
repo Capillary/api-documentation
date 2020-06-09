@@ -1653,7 +1653,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
-<p>When embed=&ldquo;subscriptions&rdquo;</p>
+<p>When embed=&ldquo;  ptions&rdquo;</p>
 </blockquote>
 <pre class="highlight json"><code><span class="err">...</span><span class="w">
 
@@ -1680,7 +1680,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
                 </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EMAIL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WHATSAPP"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BULK"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="w">
             </span><span class="p">},</span><span class="w">
@@ -2069,7 +2069,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
   </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Subscription represents communication channels to which a customer has subscribed. That could be &ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;wechat&rdquo;, &ldquo;ios&rdquo;, &ldquo;android&rdquo;, and &ldquo;line&rdquo;.</p>
+<p>Subscription represents communication channels to which a customer has subscribed. Capillary supports the following channels - <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">wechat</code>, <code class="prettyprint">whatsapp</code>, <code class="prettyprint">ios</code>, <code class="prettyprint">android</code>, and <code class="prettyprint">line</code>.</p>
 
 <p>This API allows updating (opt-in or opt-out) subscription status of transactional and bulk messaging services for a customer.</p>
 
@@ -2122,7 +2122,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 </tr>
 <tr>
 <td>channel</td>
-<td>Pass the communication channel that you want to update. <strong>Value</strong>: &ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;wechat&rdquo;, &ldquo;ios&rdquo;, &ldquo;android&rdquo;, &ldquo;line&rdquo;</td>
+<td>Pass the communication channel that you want to update. <strong>Value</strong>: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">wechat</code>, <code class="prettyprint">whatsapp</code>, <code class="prettyprint">ios</code>, <code class="prettyprint">android</code>, and <code class="prettyprint">line</code>.</td>
 </tr>
 <tr>
 <td>priority</td>
@@ -5664,7 +5664,7 @@ If the email template is not specified, the validation code will be sent in the 
 <td>Pass the validation code received by the customer.</td>
 </tr>
 <tr>
-<td>action</td>
+<td>action*</td>
 <td>enum</td>
 <td>Specify the action to be performed on successful validation. Values: <code class="prettyprint">COUPON</code> (for coupon redemption), <code class="prettyprint">POINTS</code> (for points redemption), <code class="prettyprint">REGISTRATION</code>, <code class="prettyprint">USERGROUP</code>, <code class="prettyprint">SUBSCRIPTION</code>, <code class="prettyprint">GENERIC</code> (for other purposes).</td>
 </tr>
@@ -12145,11 +12145,22 @@ password* | Specify your preferred new password</p>
 <pre class="highlight html"><code>http://us.api.capillarytech.com/v2/usergroups
 </code></pre>
 <blockquote>
-<p>Sample POST Request</p>
+<p>Sample POST Request (Using User ID)</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harsh"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"primaryUserId"</span><span class="p">:</span><span class="w"> </span><span class="mi">281348774</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample POST Request (Using Customer Identifiers)</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harsh"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"primaryMemberIdentifier"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91934000000"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -12310,16 +12321,31 @@ password* | Specify your preferred new password</p>
 <tr>
 <td>groupId*</td>
 <td>long</td>
-<td>Unique id the group that the user wants to joinedOn</td>
+<td>Unique id the group that the user wants to joinedOn.</td>
 </tr>
 <tr>
-<td>userId*</td>
+<td>userId**</td>
 <td>long</td>
-<td>Unique id of the user who wants to join the group</td>
+<td>Unique id of the user who wants to join the group.</td>
+</tr>
+<tr>
+<td>primaryMemberIdentifier**</td>
+<td>obj</td>
+<td>Use this create user group with customer identifier such as mobile number, email ID, or external ID.</td>
+</tr>
+<tr>
+<td>type*</td>
+<td>enum</td>
+<td>Type of the identifier. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>.</td>
+</tr>
+<tr>
+<td>value*</td>
+<td>string</td>
+<td>Value of the respective identifier type (mobile number/email ID/external ID).</td>
 </tr>
 </tbody></table>
 
-<aside class="notice">Parameters marked with * are mandatory. </aside>
+<aside class="notice">Parameters marked with * are mandatory. Any one among the params marked with ** is mandatory.</aside>
 
 <h2 id="join-user-group-otp-based">Join User Group (OTP Based)</h2>
 
@@ -13378,6 +13404,79 @@ password* | Specify your preferred new password</p>
           <h1 id="other-apis-org-level">Other APIs (Org Level)</h1>
 
 <p>This section provides all other APIs that are not in any of the resources mentioned above.</p>
+
+<h2 id="validate-referral-code">Validate Referral Code</h2>
+
+<p>Validates a referral code retrieving the user ID of the referral.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/referral/validate?code=57b410hfq1
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"valid"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"referrer"</span><span class="p">:</span><span class="mi">314606628</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/referral/validate?code={referralCode}</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/referral/validate?code={referralCode}</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>referralCode</td>
+<td>string</td>
+<td>Referral code that you need to validate.</td>
+</tr>
+</tbody></table>
 
 <h2 id="update-org-currency-ratio">Update Org Currency Ratio</h2>
 
