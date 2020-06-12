@@ -25046,6 +25046,33 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <p>Event Notifications is a framework that provides near real-time data of events generated in the Capillary System and helps brands to subscribe to notifications about particular events. After configuring to receive notifications, brands can build custom solutions to trigger for pre-configured actions. </p>
 
+<p>Event Notification allows building integrations with Capillary events that originate either through Capillary API (such as customerAdded and transactionAdded)requests or Capillary products such as Loyalty+ (such as pointsIssued and pointsRedeemed), Engage+ or other. Once an event notification is configured, brands can build custom solutions to trigger for pre-configured actions.</p>
+
+<p>Event Notifications are sent through Webhooks configured in Capillary Event Notifications. </p>
+
+<h3 id="use-cases">Use Cases</h3>
+
+<p>There are several use cases of event notifications. A couple of examples are provided in the following.</p>
+
+<p><strong>Enable PII-less Communication</strong></p>
+
+<ul>
+<li>In some cases, brands prefer not to send customers&rsquo; personally identifiable information (PII data) such as names, email ID, and mobile number to Capillary and manage communication completely at their end. Event Notification can be used to get the events that require communication such as customer registration, transaction, points issual, points redemption, points transfer, etc. On receiving these events, clients can send communication to customers with their names and identifiers as needed.</li>
+</ul>
+
+<p><strong>Integration with 3rd Party Applications</strong></p>
+
+<ul>
+<li>Event notification can be used to build integrations with 3rd party applications. For example, send a survey link to a customer post transaction event from a survey application such as Medallia; sync customer’s loyalty information to an e-commerce platform such as Magento. Integration can be built to receive real-time events, enrich information using Capillary APIs (if required), and sync it to the 3rd party application using the brand&rsquo;s APIs.</li>
+</ul>
+
+<p>Also, see </p>
+
+<ul>
+<li>how to use <a href="https://support.capillarytech.com/en/support/solutions/articles/4000157394-consuming-event-notifications" target="_blank">how to consume event notifications.</a></li>
+<li><a href="https://support.capillarytech.com/en/support/solutions/articles/4000159789-event-schema-payload-" target="_blank">Sample schema/payloads of all events to post event data.</li>
+</ul>
+
 <h2 id="add-webhook-account">Add Webhook Account</h2>
 
 <p>Lets you integrate a Webhook account to the Capillary system.</p>
