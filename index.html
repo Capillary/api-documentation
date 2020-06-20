@@ -5693,7 +5693,7 @@ If the email template is not specified, the validation code will be sent in the 
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/otp/source=WECHAT<span class="err">&amp;</span>accountId=WECHAT-API1<span class="err">&amp;</span>identifierName=mobile<span class="err">&amp;</span>identifierValue=8799361139<span class="err">&amp;</span>threshold=60<span class="err">&amp;</span>scope=POINTS
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/otp?source=WECHAT<span class="err">&amp;</span>accountId=WECHAT-API1<span class="err">&amp;</span>identifierName=mobile<span class="err">&amp;</span>identifierValue=8799361139<span class="err">&amp;</span>threshold=60<span class="err">&amp;</span>scope=POINTS
 </code></pre>
 <blockquote>
 <p>Sample Response</p>
@@ -5743,7 +5743,7 @@ If the email template is not specified, the validation code will be sent in the 
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/otp/source={source}&amp;accountId={account}&amp;{identifierName}={value}&amp;scope={POINTS/COUPONS}</code></p>
+<p><code class="prettyprint">https://{host}/v2/otp?source={source}&amp;accountId={account}&amp;{identifierName}={value}&amp;scope={POINTS/COUPONS}</code></p>
 
 <h3 id="request-path-parameters">Request Path Parameters</h3>
 
