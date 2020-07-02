@@ -186,9 +186,7 @@
 
 <h2 id="authentication">Authentication</h2>
 
-<blockquote>
 <p>Capillary supports two types of authentication.</p>
-</blockquote>
 
 <p>Capillary APIs can be accessed either using Basic auth (TILL/Store Center credentials), or OAuth (Client key and secret associated with a Till/Store Center). Please note that it is mandatory to use only the store-specific Till/Store Center credentials as the data in the API response depends on this identification</p>
 
@@ -360,10 +358,11 @@
 <p>Accept | application/json Content-Type | application/json X-CAP-API-OAUTH-TOKEN | eyJraWQiOiJrMSIsImFsZyI6IlJTMjU2In0.wiOlwiV1JJ…</p>
 
 <blockquote>
-<p>Sample Request URL</p>
+<p>Sample Request URL
+<code class="prettyprint">html
+https://eu.api.capillarytech.com/v2/transaction/38233952?type=REGULAR
+</code></p>
 </blockquote>
-
-<p>https://eu.api.capillarytech.com/v2/transaction/38233952?type=REGULAR</p>
 
 <h3 id="request-url-format">Request URL Format</h3>
 
