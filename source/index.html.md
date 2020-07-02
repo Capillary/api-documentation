@@ -85,7 +85,7 @@ The following sub-sections guides you in authenticating your organization to use
 
 ## Authentication
 
->Capillary supports two types of authentication.
+Capillary supports two types of authentication.
 
 Capillary APIs can be accessed either using Basic auth (TILL/Store Center credentials), or OAuth (Client key and secret associated with a Till/Store Center). Please note that it is mandatory to use only the store-specific Till/Store Center credentials as the data in the API response depends on this identification
 
@@ -215,8 +215,9 @@ For example, to get transaction details, you can use the following details. Befo
 Accept | application/json Content-Type | application/json X-CAP-API-OAUTH-TOKEN | eyJraWQiOiJrMSIsImFsZyI6IlJTMjU2In0.wiOlwiV1JJ…
 
 > Sample Request URL
-
-    https://eu.api.capillarytech.com/v2/transaction/38233952?type=REGULAR
+```html
+https://eu.api.capillarytech.com/v2/transaction/38233952?type=REGULAR
+```
 
 
 
