@@ -127,36 +127,7 @@
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
-        <h1 id="release-updates">Release Updates</h1>
-
-<p>This section provides the quarterly breakup of existing API updates and new API releases.</p>
-
-<h2 id="q4-releases-2019-20">Q4 Releases (2019-20)</h2>
-
-<ul>
-<li><strong>OAuth Support</strong>: Besides Basic Authentication, Capillary APIs now support OAuth and access tokens for more secured API calls. For more details, see support portal. </li>
-<li><strong>Points Reversal</strong>: Allows reversing redeemed points directly if the transaction - for which the points are redeemed - is returned. A new redemption ID is introduced. 
-
-<ul>
-<li>POST <a href="https://capillary.github.io/v1.1-API-Documentation/#redeem-points" target="_blank">v1.1/points/redeem</a>: Introduced a new parameter <code class="prettyprint">redemption_id</code> which can be used to reverse points if the transaction is returned.</li>
-<li>POST <a href="https://capillary.github.io/api-documentation/#reverse-redeemed-points">v2/points/reverse</a>: Uses <code class="prettyprint">redemptionId</code> to reverse points of a specific transaction.</li>
-<li>GET <a href="https://capillary.github.io/v1.1-API-Documentation/#get-customer-redemptions" target="_blank">v1.1/customer/redemptions</a>: Shows <code class="prettyprint">total_points_reversed</code> and points reversal history.</li>
-</ul></li>
-<li><strong>Event Notification</strong>: Allows building integrations with Capillary events that originate either through Capillary products or APIs. For more details, see  <a href="https://capillary.github.io/api-documentation/#event-notifications">Event Notification APIs</a>.</li>
-<li><strong>Redemption across loyalty programs</strong>: With this release, you can redeem points earned in one program in another loyalty program of the org. 
-
-<ul>
-<li>POST <a href="https://capillary.github.io/v1.1-API-Documentation/#redeem-points" target="_blank">v1.1/points/redeem</a>: A new parameter <code class="prettyprint">group_redemption</code> if set <code class="prettyprint">true</code> enables cross loyalty program redemption.<br></li>
-</ul></li>
-<li><strong>OTP Support without PII information</strong>: Allows non-PII clients (clients which would not send PII information such as mobile number, email ID, etc to Capillary) to send OTP via Capillary communication gateway.</li>
-<li><strong>Transaction V2 APIs</strong>: Support to <a href="https://capillary.github.io/api-documentation/#add-transaction">Add transactions</a> and <a href="https://capillary.github.io/api-documentation/#get-transaction-details">Retrieve transaction details</a>. </li>
-<li>Option to disable OTP validation for points transfer.</li>
-<li>Customer enrollment with one-time points and tier upgrade</li>
-<li>External loyalty program linking</li>
-<li>Support for external reference number in redemption.</li>
-</ul>
-
-<h1 id="introduction">Introduction</h1>
+        <h1 id="introduction">Introduction</h1>
 
 <p>Capillary RESTful APIs are be consumed by Capillary and other brands that are registered with Capillary/MartJack to manage their CRM. Capillary V2 and V3 APIs support multiple sources such as InStore, MartJack, Facebook, and WeChat.</p>
 
@@ -186,27 +157,11 @@
 
 <h2 id="authentication">Authentication</h2>
 
-<p>Capillary supports two types of authentication.</p>
+<p>Before starting with authentication process, ensure that your organization is registered in Capillary InTouch and at least one TILL has been created for your organization. Stores and store TILLs will be created based on the size and outlets of your organization. You need to know the username and password of the TILL that you want to authenticate for making API calls. </p>
 
-<p>Capillary APIs can be accessed either using Basic auth (TILL/Store Center credentials), or OAuth (Client key and secret associated to a Till/Store Center) . Please note that it is mandatory to use only the store specific Till/Store Center credentials as the data in the API response depends on this identification.</p>
+<aside class="notice"> To gain access to our entities in the Rest API, you need to authenticate your TILL with its username and password using the HTTP Basic Authentication.</aside>
 
-<p>To configure your API keys, see <a href="http://developer.capillarytech.com/en/support/solutions/articles/4000154305-oauth" target="_blank">API Authentication Configuration</a>.</p>
-
-<p><strong>When to use Basic &amp; OAuth?</strong></p>
-
-<table><thead>
-<tr>
-<th>Basic</th>
-<th>oAuth</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>Can be used for POS integrations where API requests come to Capillary server directly from POS front end or POS store server.</td>
-<td>Shall be used for backend integrations (from one backend to another backend). For example, POS integrations where API requests come to Capillary server from API gateway or a central server; FTP integrations where backend service need to be authenticated; 3rd party integration where API requests come to Capillary from a backend platform.</td>
-</tr>
-</tbody></table>
-
-<h3 id="process-1-basic-authentication">Process 1: Basic Authentication</h3>
+<h3 id="basic-authentication-authorization-header">Basic Authentication - Authorization Header</h3>
 
 <p>Authorization Header is used for validating authentication credentials. The Authorization Header is constructed as shown below:</p>
 
@@ -227,22 +182,13 @@
 <p><code class="prettyprint">X-CAP-API-ATTRIBUTION-LOOKUP-TYPE:&lt;name&gt;</code>
 <code class="prettyprint">X-CAP-API-ATTRIBUTION-LOOKUP:&lt;value&gt;</code>(value is case sensitive)</p>
 
-<h4 id="headers-required-for-basic-auth">Headers Required for Basic Auth</h4>
+<h3 id="oauth">OAuth</h3>
 
-<ul>
-<li><p><strong>Content-Type</strong> - This should be set as application/json</p></li>
-<li><p><strong>Accept</strong> - This should also be set as application/json</p></li>
-</ul>
-
-<h3 id="process-2-oauth">Process 2: OAuth</h3>
-
-<p>OAuth provides better security and helps you create secure passages to access your org&rsquo;s data through Capillary APIs. To generate oAuth client key and secret see <a href="http://developer.capillarytech.com/en/support/solutions/articles/4000154305-oauth" target="_blank">OAuth Documentation</a>.</p>
-
-<h4 id="generate-access-token">Generate Access Token</h4>
+<p>OAuth provides better security and helps you create secure passages to access your org&rsquo;s data through Capillary APIs. To generate oAuth client key and secret see <a href="http://developer.capillarytech.com/en/support/solutions/articles/4000154305-oauth">OAuth Documentation</a>.</p>
 
 <p>Once you get key and secret, you can generate access token or JWT (JSON Web Token) using the token/generate API. JWT is a compact URL and JSON-based used to transfer data securely between two parties.</p>
 
-<p><strong>Resource Information</strong></p>
+<h4 id="resource-information">Resource Information</h4>
 
 <table><thead>
 <tr>
@@ -272,13 +218,14 @@
 </tr>
 </tbody></table>
 
-<p><strong>Endpoint</strong></p>
+<h4 id="endpoint">Endpoint</h4>
 
 <p><code class="prettyprint">https://{host}/v3/oauth/token/generate</code></p>
 
-<p><strong>POST Request Schema</strong></p>
+<h4 id="post-request-schema">POST Request Schema</h4>
 
-<p><code class="prettyprint">{
+<p><code class="prettyprint">
+{
   &quot;key&quot;: &quot;&quot;,
   &quot;secret&quot;: &quot;&quot;
 }
@@ -316,53 +263,8 @@
 <li><p><strong>Accept</strong> - This should also be set as application/json</p></li>
 </ul>
 
-<h3 id="using-access-token">Using Access Token</h3>
+<h2 id="resource-information">Resource Information</h2>
 
-<p>Once you generate the access token, you can use it to authenticate API calls as shown below.</p>
-
-<p>Set the  authentication to No Auth and pass the following headers.</p>
-
-<h4 id="required-headers">Required Headers</h4>
-
-<table><thead>
-<tr>
-<th>Header</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>X-CAP-API-OAUTH-TOKEN*</td>
-<td>Generated access token. If the token expires, you need to regenerate the access token.</td>
-</tr>
-<tr>
-<td>Content-Type*</td>
-<td>This should be set as application/json</td>
-</tr>
-<tr>
-<td>Accept*</td>
-<td>This should also be set as application/json</td>
-</tr>
-<tr>
-<td>X-CAP-API-ATTRIBUTION-TILL</td>
-<td>Till ID from which you want to POST data. By default, the Till associated with the client key and secret is mapped if this is not passed.</td>
-</tr>
-</tbody></table>
-
-<aside class="notice">Parameters marked with * are mandatory. </aside>
-
-<p>For example, to get transaction details, you can use the following details. Before making a API call, make sure the token has access to the required resource.</p>
-
-<p><strong>Headers</strong></p>
-
-<p>Accept | application/json
-Content-Type | application/json
-X-CAP-API-OAUTH-TOKEN | eyJraWQiOiJrMSIsImFsZyI6IlJTMjU2In0.wiOlwiV1JJ&hellip;</p>
-
-<blockquote>
-<p>Sample Request URL</p>
-</blockquote>
-<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/transaction/38233952?type=REGULAR
-</code></pre>
 <h3 id="request-url-format">Request URL Format</h3>
 
 <p><code class="prettyprint">https://{host}/v2/{resource}/{endpoint}?{query params}</code></p>
@@ -467,6 +369,35 @@ X-CAP-API-OAUTH-TOKEN | eyJraWQiOiJrMSIsImFsZyI6IlJTMjU2In0.wiOlwiV1JJ&hellip;</
 </tr>
 </tbody></table>
 
+<h1 id="api-updates">API Updates</h1>
+
+<p>This section provides the quarterly breakup of existing API updates and new API releases.</p>
+
+<h2 id="q4-releases-2019-20">Q4 Releases (2019-20)</h2>
+
+<ul>
+<li><strong>OAuth Support</strong>: Besides Basic Authentication, Capillary APIs now support OAuth and access tokens for more secured API calls. For more details, see support portal. </li>
+<li><strong>Points Reversal</strong>: Allows reversing redeemed points directly if the transaction - for which the points are redeemed - is returned. A new redemption ID is introduced. 
+
+<ul>
+<li>POST <code class="prettyprint">v1.1/points/redeem</code>: Introduced a new parameter <code class="prettyprint">redemption_id</code> which can be used to reverse points if the transaction is returned.</li>
+<li>POST <code class="prettyprint">v2/points/reverse</code>: Uses <code class="prettyprint">redemptionId</code> to reverse points of a specific transaction.</li>
+<li>GET <code class="prettyprint">v1.1/customer/redemptions</code>: Shows <code class="prettyprint">total_points_reversed</code> and points reversal history.</li>
+</ul></li>
+<li><strong>Event Notification</strong>: Allows building integrations with Capillary events that originate either through Capillary products or APIs. For more details, see  <a href="https://capillary.github.io/api-documentation/#event-notifications">Event Notification APIs</a>.</li>
+<li><strong>Redemption across loyalty programs</strong>: With this release, you can redeem points earned in one program in another loyalty program of the org. 
+
+<ul>
+<li>POST <code class="prettyprint">v1.1/points/redeem</code>: A new parameter <code class="prettyprint">group_redemption</code> if set <code class="prettyprint">true</code> enables cross loyalty program redemption.<br></li>
+</ul></li>
+<li><strong>OTP Support without PII information</strong>: Allows non-PII clients (clients which would not send PII information such as mobile number, email ID, etc to Capillary) to send OTP via Capillary communication gateway.</li>
+<li><strong>Transaction V2 APIs</strong>: Support to add and retrieve transaction in V2 APIs. </li>
+<li>Option to disable OTP validation for points transfer.</li>
+<li>Customer enrollment with one-time points and tier upgrade</li>
+<li>External loyalty program linking</li>
+<li>Support for external reference number in redemption.</li>
+</ul>
+
           <h1 id="customer">Customer</h1>
 
 <p>A customer is an individual who is either enrolled in the org&rsquo;s loyalty program or subscribed to the org’s newsletters. An org is a business firm that is registered with Capillary - a retail store, hospital, pharmacy, restaurant, or any other firm.</p>
@@ -516,7 +447,7 @@ https://us.api.capillarytech.com/v2/customers?source=MOBILE_APP<span class="err"
          </span><span class="p">],</span><span class="w">
          </span><span class="nt">"firstName"</span><span class="p">:</span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
          </span><span class="nt">"lastName"</span><span class="p">:</span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"customerIdentifiers"</span><span class="p">:[</span><span class="w"> 
+         </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w"> 
             </span><span class="p">{</span><span class="w"> 
                </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
                </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"tom.sawyer@example.com"</span><span class="w">
@@ -703,7 +634,7 @@ Extended fields are either associated to verticals or to a generic category (ava
 <td>Meta information of the customer.</td>
 </tr>
 <tr>
-<td>customerIdentifiers*</td>
+<td>identifiers*</td>
 <td>obj</td>
 <td>Identifiers of the customer in type and value. Supported types: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>, <code class="prettyprint">fbId</code> <code class="prettyprint">mobile</code>, <code class="prettyprint">tmall_uname</code>, <code class="prettyprint">cuid</code>, <code class="prettyprint">ali_uname</code>, <code class="prettyprint">jd_uname</code>, <code class="prettyprint">vip_uname</code>, <code class="prettyprint">mobilePush</code>, and <code class="prettyprint">line</code>.</td>
 </tr>
@@ -801,7 +732,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
             </span><span class="nt">"gender"</span><span class="p">:</span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"city"</span><span class="p">:</span><span class="s2">"Bangalore"</span><span class="w">
          </span><span class="p">},</span><span class="w">
-         </span><span class="nt">"customerIdentifiers"</span><span class="p">:[</span><span class="w">  
+         </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w">  
             </span><span class="p">{</span><span class="w">  
                </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
                </span><span class="nt">"value"</span><span class="p">:</span><span class="mi">919111111111</span><span class="w">
@@ -864,7 +795,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
     </span><span class="nt">"primary"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"verified"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"meta"</span><span class="p">:{</span><span class="w">
-      </span><span class="nt">"lastViewedDate"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-25"</span><span class="w">
+      </span><span class="err">“lastViewedDate”</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="err">&lt;date&gt;</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -907,7 +838,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/{customerId}?{queryParam}={paramValue}</code></td>
+<td><code class="prettyprint">/{customerId}?{query_param}={param_value}</code></td>
 </tr>
 <tr>
 <td>Authentication</td>
@@ -1021,9 +952,9 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <td>Last name of the customer.</td>
 </tr>
 <tr>
-<td>customerIdentifiers</td>
+<td>identifiers</td>
 <td>obj</td>
-<td>Identifiers of the customer that you want to add in type and value. Supported types: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>, <code class="prettyprint">fbId</code> <code class="prettyprint">mobile</code>, <code class="prettyprint">tmall_uname</code>, <code class="prettyprint">cuid</code>, <code class="prettyprint">ali_uname</code>, <code class="prettyprint">jd_uname</code>, <code class="prettyprint">vip_uname</code>, and <code class="prettyprint">line</code>.</td>
+<td>Identifiers of the customer in type and value. Supported types: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>, <code class="prettyprint">fbId</code> <code class="prettyprint">mobile</code>, <code class="prettyprint">tmall_uname</code>, <code class="prettyprint">cuid</code>, <code class="prettyprint">ali_uname</code>, <code class="prettyprint">jd_uname</code>, <code class="prettyprint">vip_uname</code>, and <code class="prettyprint">line</code>.</td>
 </tr>
 <tr>
 <td>profiles</td>
@@ -1105,7 +1036,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 </span></code></pre>
 <p>Allows adding/removing identifiers of a customer in different sources, i.e., you can either add a new identifier or remove an existing identifier of a customer in a source.</p>
 
-<p><strong>customerIdentifiers</strong>: &ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;externalId&rdquo;, &ldquo;wechat&rdquo;,&ldquo;martjackId&rdquo;, &ldquo;fbId&rdquo; &ldquo;mobile&rdquo;, &ldquo;tmall_uname&rdquo;, &ldquo;cuid&rdquo;, &ldquo;ali_uname&rdquo;, &ldquo;jd_uname&rdquo;, &ldquo;vip_uname&rdquo;, &ldquo;line&rdquo; </p>
+<p><strong>Identifiers</strong>: &ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;externalId&rdquo;, &ldquo;wechat&rdquo;,&ldquo;martjackId&rdquo;, &ldquo;fbId&rdquo; &ldquo;mobile&rdquo;, &ldquo;tmall_uname&rdquo;, &ldquo;cuid&rdquo;, &ldquo;ali_uname&rdquo;, &ldquo;jd_uname&rdquo;, &ldquo;vip_uname&rdquo;, &ldquo;line&rdquo; </p>
 
 <p>Limitations of the customer identifier update API:
 * Only identifiers can be updated using this API
@@ -1577,7 +1508,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
                </span><span class="nt">"Gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
                </span><span class="nt">"Favorite Color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Green"</span><span class="w">
            </span><span class="p">},</span><span class="w">
-           </span><span class="nt">"customerIdentifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+           </span><span class="nt">"identifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                </span><span class="p">{</span><span class="w">
                    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
                    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom.sawyer@example.com"</span><span class="w">
@@ -1653,7 +1584,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
-<p>When embed=&ldquo;  ptions&rdquo;</p>
+<p>When embed=&ldquo;subscriptions&rdquo;</p>
 </blockquote>
 <pre class="highlight json"><code><span class="err">...</span><span class="w">
 
@@ -1680,7 +1611,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
                 </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="w">
             </span><span class="p">},</span><span class="w">
             </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WHATSAPP"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EMAIL"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BULK"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="w">
             </span><span class="p">},</span><span class="w">
@@ -2069,7 +2000,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
   </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Subscription represents communication channels to which a customer has subscribed. Capillary supports the following channels - <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">wechat</code>, <code class="prettyprint">whatsapp</code>, <code class="prettyprint">ios</code>, <code class="prettyprint">android</code>, and <code class="prettyprint">line</code>.</p>
+<p>Subscription represents communication channels to which a customer has subscribed. That could be &ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;wechat&rdquo;, &ldquo;ios&rdquo;, &ldquo;android&rdquo;, and &ldquo;line&rdquo;.</p>
 
 <p>This API allows updating (opt-in or opt-out) subscription status of transactional and bulk messaging services for a customer.</p>
 
@@ -2122,7 +2053,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 </tr>
 <tr>
 <td>channel</td>
-<td>Pass the communication channel that you want to update. <strong>Value</strong>: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">wechat</code>, <code class="prettyprint">whatsapp</code>, <code class="prettyprint">ios</code>, <code class="prettyprint">android</code>, and <code class="prettyprint">line</code>.</td>
+<td>Pass the communication channel that you want to update. <strong>Value</strong>: &ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;wechat&rdquo;, &ldquo;ios&rdquo;, &ldquo;android&rdquo;, &ldquo;line&rdquo;</td>
 </tr>
 <tr>
 <td>priority</td>
@@ -2377,7 +2308,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
             </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REJECTED"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"addedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091433</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.india1"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2390,7 +2321,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
                 </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"enteredByParent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"addedByParent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091431</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"store_india"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2403,7 +2334,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
                 </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">148</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8730028</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Patel"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nayan Kumar"</span><span class="p">,</span><span class="w">
@@ -2431,7 +2362,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
             </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"APPROVED"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"addedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091433</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.india1"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2444,7 +2375,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
                 </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"enteredByParent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"addedByParent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091431</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"store_india"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2457,7 +2388,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
                 </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">148</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8730028</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Patel"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nayan Kumar"</span><span class="p">,</span><span class="w">
@@ -2485,7 +2416,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
             </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REJECTED"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"addedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091433</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.india1"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2498,7 +2429,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
                 </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"enteredByParent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"addedByParent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091431</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"store_india"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2511,7 +2442,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
                 </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">148</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091437</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.sg"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2538,7 +2469,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
             </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"APPROVED"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"addedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091433</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.india1"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2551,7 +2482,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
                 </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"enteredByParent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"addedByParent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091431</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"store_india"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2564,7 +2495,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
                 </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">148</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091437</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.sg"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2591,7 +2522,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
             </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REJECTED"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"addedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091433</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.india1"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2604,7 +2535,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
                 </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"enteredByParent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"addedByParent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091431</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"store_india"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2617,7 +2548,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
                 </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">148</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8730028</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Patel"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nayan Kumar"</span><span class="p">,</span><span class="w">
@@ -2750,7 +2681,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
     </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">43114</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"addedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15000449</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1371622280_919866643044"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2763,7 +2694,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
                 </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15000449</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1371622280_919866643044"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2790,7 +2721,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">43113</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"addedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15000449</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1371622280_919866643044"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2803,7 +2734,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
                 </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15000449</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1371622280_919866643044"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -3486,8 +3417,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <ul>
 <li>Supports transactions with Product Variant and Product Bundle details.</li>
 <li>Adds product variant to the database when a new variant product is passed with an existing base product.</li>
-<li>Adds  base product to the database when a new base product/variant product is passed. However, if a new base product is passed with variant details, it adds only base product and ignores variant.</li>
-<li>Add custom field and extended field details both at the transaction and line-item level.</li>
+<li>Adds  base product to the database when a new base product/variant product is passed. However, if a new base product is passed with variant details, it adds only base product and ignores variant .</li>
 </ul>
 
 <p><strong>Variant Product</strong>: A same product having different variations in terms of common properties such as size, and color.</p>
@@ -3497,6 +3427,19 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <aside class="notice">
 * To add variant details, pass the variant id at the line-item level. For bundle products, pass each line item details in the respective bundle type (split/combo/add-on).* 
 </aside>
+
+<ul>
+<li><strong>Regular Transactions</strong>: To make regular transactions, set <code class="prettyprint">type</code> as <code class="prettyprint">regular</code> and pass the customer’s unique identifier of the customer in the respective tag.</li>
+<li><strong>Non-Interested Transactions</strong>: To make not-interested transactions, set <code class="prettyprint">type</code> as <code class="prettyprint">not_interested</code> and customer identifiers are not required for not-interested transactions.</li>
+</ul>
+
+<p>You can update custom field details and extended field details for either regular or return transactions. To retrieve these details, use customer/get, customer/transaction APIs.</p>
+
+<ul>
+<li>Extended fields are a kind of custom fields with defined field names and values that help generate reports on basis of extended fields. In transactions, extended field details can be captured at transaction level, or line-item level. Examples of transaction level extended fields include additional_discount, centralGST, GrossWeight etc and examples of line-item level extended fields include DesignCode, imei_number, MakingCharge etc.<br></li>
+<li>Pass custom field details in the custom_fields element and extended fields in the extended_fields element</li>
+<li>To retrieve custom field values and extended field values, use the customer/get or customer/transaction API</li>
+</ul>
 
 <blockquote>
 <p>Sample Request</p>
@@ -4322,9 +4265,9 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>Attributes of the product in name-value pairs.</td>
 </tr>
 <tr>
-<td>comboDetails</td>
-<td>obj</td>
+<td>comboDetails obj</td>
 <td>Details of combo or bundle items. For example, buy 1 shirt get one free, shirt+pant, pack of 5 soaps</td>
+<td></td>
 </tr>
 <tr>
 <td>itemCode</td>
@@ -4464,7 +4407,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-28T17:04:13+05:30"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
             </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobilepush.1"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -4906,11 +4849,6 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>id*</td>
 <td>long</td>
 <td>Unique transaction id to fetch details.</td>
-</tr>
-<tr>
-<td>type*</td>
-<td>enum</td>
-<td>Type of transaction to fetch. Value: REGULAR, RETURN.</td>
 </tr>
 </tbody></table>
 
@@ -5664,7 +5602,7 @@ If the email template is not specified, the validation code will be sent in the 
 <td>Pass the validation code received by the customer.</td>
 </tr>
 <tr>
-<td>action*</td>
+<td>action</td>
 <td>enum</td>
 <td>Specify the action to be performed on successful validation. Values: <code class="prettyprint">COUPON</code> (for coupon redemption), <code class="prettyprint">POINTS</code> (for points redemption), <code class="prettyprint">REGISTRATION</code>, <code class="prettyprint">USERGROUP</code>, <code class="prettyprint">SUBSCRIPTION</code>, <code class="prettyprint">GENERIC</code> (for other purposes).</td>
 </tr>
@@ -5693,7 +5631,7 @@ If the email template is not specified, the validation code will be sent in the 
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/otp?source=WECHAT<span class="err">&amp;</span>accountId=WECHAT-API1<span class="err">&amp;</span>identifierName=mobile<span class="err">&amp;</span>identifierValue=8799361139<span class="err">&amp;</span>threshold=60<span class="err">&amp;</span>scope=POINTS
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/otp/source=WECHAT<span class="err">&amp;</span>accountId=WECHAT-API1<span class="err">&amp;</span>identifierName=mobile<span class="err">&amp;</span>identifierValue=8799361139<span class="err">&amp;</span>threshold=60<span class="err">&amp;</span>scope=POINTS
 </code></pre>
 <blockquote>
 <p>Sample Response</p>
@@ -5743,7 +5681,7 @@ If the email template is not specified, the validation code will be sent in the 
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/otp?source={source}&amp;accountId={account}&amp;{identifierName}={value}&amp;scope={POINTS/COUPONS}</code></p>
+<p><code class="prettyprint">https://{host}/v2/otp/source={source}&amp;accountId={account}&amp;{identifierName}={value}&amp;scope={POINTS/COUPONS}</code></p>
 
 <h3 id="request-path-parameters">Request Path Parameters</h3>
 
@@ -5959,7 +5897,7 @@ If the email template is not specified, the validation code will be sent in the 
                 </span><span class="nt">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-                </span><span class="nt">"customerIdentifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="nt">"identifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                     </span><span class="p">{</span><span class="w">
                         </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
                         </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"919999000000"</span><span class="w">
@@ -6066,7 +6004,7 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
 
             </span><span class="p">},</span><span class="w">
             </span><span class="nt">"firstName"</span><span class="p">:</span><span class="s2">"firstName_667095"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"customerIdentifiers"</span><span class="p">:[</span><span class="w">
+            </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w">
                </span><span class="p">{</span><span class="w">
                   </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
                   </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"autoemail7601667095@gmail.com"</span><span class="w">
@@ -6234,7 +6172,7 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
                   </span><span class="nt">"lastName"</span><span class="p">:</span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
                   </span><span class="nt">"attribution"</span><span class="p">:{</span><span class="w"> 
                      </span><span class="nt">"createDate"</span><span class="p">:</span><span class="s2">"2018-03-05T15:52:47+05:30"</span><span class="p">,</span><span class="w">
-                     </span><span class="nt">"enteredBy"</span><span class="p">:{</span><span class="w"> 
+                     </span><span class="nt">"createdBy"</span><span class="p">:{</span><span class="w"> 
                         </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">15041276</span><span class="p">,</span><span class="w">
                         </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
                         </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
@@ -6251,7 +6189,7 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
                   </span><span class="nt">"fields"</span><span class="p">:{</span><span class="w"> 
 
                   </span><span class="p">},</span><span class="w">
-                  </span><span class="nt">"customerIdentifiers"</span><span class="p">:[</span><span class="w"> 
+                  </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w"> 
                      </span><span class="p">{</span><span class="w"> 
                         </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
                         </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"919111111111"</span><span class="w">
@@ -6285,7 +6223,7 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
                </span><span class="nt">"loyaltyType"</span><span class="p">:</span><span class="s2">"loyalty"</span><span class="p">,</span><span class="w">
                </span><span class="nt">"attributionV2"</span><span class="p">:{</span><span class="w"> 
                   </span><span class="nt">"createDate"</span><span class="p">:</span><span class="s2">"2018-03-05T15:52:47+05:30"</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"enteredBy"</span><span class="p">:{</span><span class="w"> 
+                  </span><span class="nt">"createdBy"</span><span class="p">:{</span><span class="w"> 
                      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">15041276</span><span class="p">,</span><span class="w">
                      </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
                      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
@@ -6315,7 +6253,7 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
                   </span><span class="nt">"lastName"</span><span class="p">:</span><span class="s2">"autoln_9294476894"</span><span class="p">,</span><span class="w">
                   </span><span class="nt">"attribution"</span><span class="p">:{</span><span class="w"> 
                      </span><span class="nt">"createDate"</span><span class="p">:</span><span class="s2">"2019-09-18T16:40:10+05:30"</span><span class="p">,</span><span class="w">
-                     </span><span class="nt">"enteredBy"</span><span class="p">:{</span><span class="w"> 
+                     </span><span class="nt">"createdBy"</span><span class="p">:{</span><span class="w"> 
                         </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">15041276</span><span class="p">,</span><span class="w">
                         </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
                         </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
@@ -6332,7 +6270,7 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
                   </span><span class="nt">"fields"</span><span class="p">:{</span><span class="w"> 
 
                   </span><span class="p">},</span><span class="w">
-                  </span><span class="nt">"customerIdentifiers"</span><span class="p">:[</span><span class="w"> 
+                  </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w"> 
                      </span><span class="p">{</span><span class="w"> 
                         </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
                         </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"james.f@example.com"</span><span class="w">
@@ -6387,7 +6325,7 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
                </span><span class="nt">"loyaltyType"</span><span class="p">:</span><span class="s2">"loyalty"</span><span class="p">,</span><span class="w">
                </span><span class="nt">"attributionV2"</span><span class="p">:{</span><span class="w"> 
                   </span><span class="nt">"createDate"</span><span class="p">:</span><span class="s2">"2019-09-18T16:40:10+05:30"</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"enteredBy"</span><span class="p">:{</span><span class="w"> 
+                  </span><span class="nt">"createdBy"</span><span class="p">:{</span><span class="w"> 
                      </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">15041276</span><span class="p">,</span><span class="w">
                      </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
                      </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"org2.till1"</span><span class="p">,</span><span class="w">
@@ -12145,22 +12083,11 @@ password* | Specify your preferred new password</p>
 <pre class="highlight html"><code>http://us.api.capillarytech.com/v2/usergroups
 </code></pre>
 <blockquote>
-<p>Sample POST Request (Using User ID)</p>
+<p>Sample POST Request</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harsh"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"primaryUserId"</span><span class="p">:</span><span class="w"> </span><span class="mi">281348774</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>Sample POST Request (Using Customer Identifiers)</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harsh"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"primaryMemberIdentifier"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91934000000"</span><span class="w">
-  </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -12321,31 +12248,16 @@ password* | Specify your preferred new password</p>
 <tr>
 <td>groupId*</td>
 <td>long</td>
-<td>Unique id the group that the user wants to joinedOn.</td>
+<td>Unique id the group that the user wants to joinedOn</td>
 </tr>
 <tr>
-<td>userId**</td>
+<td>userId*</td>
 <td>long</td>
-<td>Unique id of the user who wants to join the group.</td>
-</tr>
-<tr>
-<td>primaryMemberIdentifier**</td>
-<td>obj</td>
-<td>Use this create user group with customer identifier such as mobile number, email ID, or external ID.</td>
-</tr>
-<tr>
-<td>type*</td>
-<td>enum</td>
-<td>Type of the identifier. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>.</td>
-</tr>
-<tr>
-<td>value*</td>
-<td>string</td>
-<td>Value of the respective identifier type (mobile number/email ID/external ID).</td>
+<td>Unique id of the user who wants to join the group</td>
 </tr>
 </tbody></table>
 
-<aside class="notice">Parameters marked with * are mandatory. Any one among the params marked with ** is mandatory.</aside>
+<aside class="notice">Parameters marked with * are mandatory. </aside>
 
 <h2 id="join-user-group-otp-based">Join User Group (OTP Based)</h2>
 
@@ -13405,79 +13317,6 @@ password* | Specify your preferred new password</p>
 
 <p>This section provides all other APIs that are not in any of the resources mentioned above.</p>
 
-<h2 id="validate-referral-code">Validate Referral Code</h2>
-
-<p>Validates a referral code retrieving the user ID of the referral.</p>
-
-<blockquote>
-<p>Sample Request</p>
-</blockquote>
-<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/referral/validate?code=57b410hfq1
-</code></pre>
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"valid"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"referrer"</span><span class="p">:</span><span class="mi">314606628</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"warnings"</span><span class="p">:[]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<h3 id="resource-information">Resource Information</h3>
-
-<table><thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URI</td>
-<td><code class="prettyprint">/referral/validate?code={referralCode}</code></td>
-</tr>
-<tr>
-<td>Rate Limited?</td>
-<td>No</td>
-</tr>
-<tr>
-<td>Authentication</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>HTTP Methods</td>
-<td>GET</td>
-</tr>
-<tr>
-<td>Batch Support</td>
-<td>No</td>
-</tr>
-</tbody></table>
-
-<ul>
-<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
-<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
-</ul>
-
-<h3 id="request-url">Request URL</h3>
-
-<p><code class="prettyprint">https://{host}/referral/validate?code={referralCode}</code></p>
-
-<h3 id="request-query-parameters">Request Query Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Datatype</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>referralCode</td>
-<td>string</td>
-<td>Referral code that you need to validate.</td>
-</tr>
-</tbody></table>
-
 <h2 id="update-org-currency-ratio">Update Org Currency Ratio</h2>
 
 <p>Lets you add or update currency ratios with respect to Indian Rupee (INR).</p>
@@ -13564,12 +13403,12 @@ password* | Specify your preferred new password</p>
 <tr>
 <td>ratioInr</td>
 <td>double</td>
-<td>Conversion ratio with respect to INR. For example, 75 for currencyCode USD, 10.65 for CNY, 82.63 for EUR, 0.0051 for IDR (Indonesian Rupiah).</td>
+<td>Conversion ratio with respect to INR.</td>
 </tr>
 <tr>
 <td>currencyCode</td>
 <td>string</td>
-<td>ISO currency code that you want to update. For example <code class="prettyprint">EUR</code> for Euro, <code class="prettyprint">SGD</code> for Singapore Dollar, <code class="prettyprint">CNY</code> for China Yuan Renminbi, <code class="prettyprint">SAR</code> Saudi Riyal. For more codes, see <a href="https://www2.1010data.com/documentationcenter/prod/1010dataReferenceManual/DataTypesAndFormats/currencyUnitCodes.html" target="_blank">ISO currency codes</a>.</td>
+<td>ISO currency code that you want to update. For example <code class="prettyprint">EUR</code> for Euro, <code class="prettyprint">SGD</code> for Singapore Dollar, <code class="prettyprint">CNY</code> for China Yuan Renminbi, <code class="prettyprint">SAR</code> Saudi Riyal. For more codes, Google for ISO currency codes.</td>
 </tr>
 </tbody></table>
 
@@ -25046,33 +24885,6 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <p>Event Notifications is a framework that provides near real-time data of events generated in the Capillary System and helps brands to subscribe to notifications about particular events. After configuring to receive notifications, brands can build custom solutions to trigger for pre-configured actions. </p>
 
-<p>Event Notification allows building integrations with Capillary events that originate either through Capillary API (such as customerAdded and transactionAdded)requests or Capillary products such as Loyalty+ (such as pointsIssued and pointsRedeemed), Engage+ or other. Once an event notification is configured, brands can build custom solutions to trigger for pre-configured actions.</p>
-
-<p>Event Notifications are sent through Webhooks configured in Capillary Event Notifications. </p>
-
-<h3 id="where-to-use-event-notifications">Where to use Event Notifications</h3>
-
-<p>There are several use cases of event notifications. A couple of examples are provided in the following.</p>
-
-<p><strong>Enable PII-less Communication</strong></p>
-
-<ul>
-<li>In some cases, brands prefer not to send customers&rsquo; personally identifiable information (PII data) such as names, email ID, and mobile number to Capillary and manage communication completely at their end. Event Notification can be used to get the events that require communication such as customer registration, transaction, points issual, points redemption, points transfer, etc. On receiving these events, clients can send communication to customers with their names and identifiers as needed.</li>
-</ul>
-
-<p><strong>Integration with 3rd Party Applications</strong></p>
-
-<ul>
-<li>Event notification can be used to build integrations with 3rd party applications. For example, send a survey link to a customer post transaction event from a survey application such as Medallia; sync customer’s loyalty information to an e-commerce platform such as Magento. Integration can be built to receive real-time events, enrich information using Capillary APIs (if required), and sync it to the 3rd party application using the brand&rsquo;s APIs.</li>
-</ul>
-
-<p>Also, see </p>
-
-<ul>
-<li><a href="https://support.capillarytech.com/en/support/solutions/articles/4000157394-consuming-event-notifications" target="_blank">How to consume event notifications </a>?</li>
-<li><a href="https://support.capillarytech.com/en/support/solutions/articles/4000159789-event-schema-payload-" target="_blank">Sample schema/payloads of all events to post event data</a>.</li>
-</ul>
-
 <h2 id="add-webhook-account">Add Webhook Account</h2>
 
 <p>Lets you integrate a Webhook account to the Capillary system.</p>
@@ -25118,7 +24930,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
                 </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bukl.till"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75040399</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bukl.till"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -25233,7 +25045,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <tr>
 <td>webHookUrl</td>
 <td>string</td>
-<td>URL of the Webhook account. Applicable for webHookType: queue</td>
+<td>URL of the webhook account. Applicable for webHookType: queue</td>
 </tr>
 </tbody></table>
 
@@ -25360,7 +25172,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
                 </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobilepush.1"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobilepush.1"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
