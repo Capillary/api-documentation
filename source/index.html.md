@@ -35,6 +35,27 @@ includes:
 search: true
 ---
 
+# Release Updates
+This section provides the quarterly breakup of existing API updates and new API releases.
+
+## Q4 Releases (2019-20)
+
+* **OAuth Support**: Besides Basic Authentication, Capillary APIs now support OAuth and access tokens for more secured API calls. For more details, see support portal. 
+* **Points Reversal**: Allows reversing redeemed points directly if the transaction - for which the points are redeemed - is returned. A new redemption ID is introduced. 
+	*   POST [v1.1/points/redeem](https://capillary.github.io/v1.1-API-Documentation/#redeem-points): Introduced a new parameter `redemption_id` which can be used to reverse points if the transaction is returned.
+	* POST `v2/points/reverse`: Uses `redemptionId` to reverse points of a specific transaction.
+	* GET <a href="https://capillary.github.io/v1.1-API-Documentation/#get-customer-redemptions" target="_blank">v1.1/customer/redemptions</a>`v1.1/customer/redemptions`</a>: Shows `total_points_reversed` and points reversal history.
+* **Event Notification**: Allows building integrations with Capillary events that originate either through Capillary products or APIs. For more details, see  <a href="https://capillary.github.io/api-documentation/#event-notifications" target="_blank">Event Notification APIs</a>.
+* **Redemption across loyalty programs**: With this release, you can redeem points earned in one program in another loyalty program of the org. 
+	* POST `v1.1/points/redeem`: <a href="https://capillary.github.io/v1.1-API-Documentation/#redeem-points" target="_blank">v1.1/points/redeem</a>A new parameter `group_redemption` if set `true` enables cross loyalty program redemption.			
+* **OTP Support without PII information**: Allows non-PII clients (clients which would not send PII information such as mobile number, email ID, etc to Capillary) to send OTP via Capillary communication gateway.
+* **Transaction V2 APIs**: Support to add and retrieve transaction in V2 APIs. Support to <a href="https://capillary.github.io/api-documentation/#add-transaction" target="_blank">Add transactions</a> and <a href="https://capillary.github.io/api-documentation/#get-transaction-details" target="_blank">Retrieve transaction details</a>.
+* Option to disable OTP validation for points transfer.
+* Customer enrollment with one-time points and tier upgrade
+* External loyalty program linking
+* Support for external reference number in redemption.
+
+
 # Introduction
 
 Capillary RESTful APIs are be consumed by Capillary and other brands that are registered with Capillary/MartJack to manage their CRM. Capillary V2 and V3 APIs support multiple sources such as InStore, MartJack, Facebook, and WeChat.
@@ -63,11 +84,22 @@ Before starting with v2.0 APIs, it is important to understand different official
 The following sub-sections guides you in authenticating your organization to use Capillary v2.0 APIs.
 
 ## Authentication
-Before starting with authentication process, ensure that your organization is registered in Capillary InTouch and at least one TILL has been created for your organization. Stores and store TILLs will be created based on the size and outlets of your organization. You need to know the username and password of the TILL that you want to authenticate for making API calls. 
 
-<aside class="notice"> To gain access to our entities in the Rest API, you need to authenticate your TILL with its username and password using the HTTP Basic Authentication.</aside>
+>Capillary supports two types of authentication.
 
-### Basic Authentication - Authorization Header
+Capillary APIs can be accessed either using Basic auth (TILL/Store Center credentials), or OAuth (Client key and secret associated with a Till/Store Center). Please note that it is mandatory to use only the store-specific Till/Store Center credentials as the data in the API response depends on this identification
+
+To configure your API keys, see [API Authentication Configuration](http://developer.capillarytech.com/en/support/solutions/articles/4000154305-oauth).
+
+**When to use Basic & OAuth?**
+
+Basic | oAuth
+----- | -----
+Can be used for POS integrations where API requests come to Capillary server directly from POS front end or POS store server. | Shall be used for backend integrations (from one backend to another backend). For example, POS integrations where API requests come to Capillary server from API gateway or a central server; FTP integrations where backend service need to be authenticated; 3rd party integration where API requests come to Capillary from a backend platform.
+
+
+
+### Process 1: Basic Authentication
 Authorization Header is used for validating authentication credentials. The Authorization Header is constructed as shown below:
 
 `Authorization: Basic <Base64 encoded (username: md5(password)>`
@@ -87,10 +119,22 @@ To submit requests on behalf of other TILLs, include the following code along wi
 `X-CAP-API-ATTRIBUTION-LOOKUP-TYPE:<name>`
 `X-CAP-API-ATTRIBUTION-LOOKUP:<value>`(value is case sensitive)
 
-### OAuth
-OAuth provides better security and helps you create secure passages to access your org's data through Capillary APIs. To generate oAuth client key and secret see <a href="http://developer.capillarytech.com/en/support/solutions/articles/4000154305-oauth">OAuth Documentation</a>.
+
+### Headers Required for Basic Authentication
+
+*   **Content-Type** - This should be set as application/json
+
+*   **Accept** - This should also be set as application/json
+
+
+### Process 2: OAuth
+
+OAuth provides better security and helps you create secure passages to access your org&rsquo;s data through Capillary APIs. To generate oAuth client key and secret see <a href="http://developer.capillarytech.com/en/support/solutions/articles/4000154305-oauth" target="_blank">OAuth Documentation</a>.
+
+#### Generate Access Token
 
 Once you get key and secret, you can generate access token or JWT (JSON Web Token) using the token/generate API. JWT is a compact URL and JSON-based used to transfer data securely between two parties.
+
 
 #### Resource Information
 | | |
@@ -146,7 +190,36 @@ https://eu.api.capillarytech.com/v3/oauth/token/generate
 
 * **Accept** - This should also be set as application/json
 
-## Resource Information
+
+### Using Access Token
+
+Once you generate the access token, you can use it to authenticate API calls as shown below.
+
+Set the authentication to No Auth and pass the following headers.
+
+#### Required Headers
+
+Header | Value
+------ | -----
+X-CAP-API-OAUTH-TOKEN* | Generated access token. If the token expires, you need to regenerate the access token.
+Content-Type* | This should be set as application/json
+Accept* | This should also be set as application/json
+X-CAP-API-ATTRIBUTION-TILL-CODE | Till code from which you want to POST data. By default, the Till associated with the client key and secret is mapped if this is not passed.
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
+
+For example, to get transaction details, you can use the following details. Before making a API call, make sure the token has access to the required resource.
+
+**Headers**
+
+Accept | application/json Content-Type | application/json X-CAP-API-OAUTH-TOKEN | eyJraWQiOiJrMSIsImFsZyI6IlJTMjU2In0.wiOlwiV1JJ…
+
+> Sample Request URL
+
+    https://eu.api.capillarytech.com/v2/transaction/38233952?type=REGULAR
+
+
+
 
 ### Request URL Format	
 `https://{host}/v2/{resource}/{endpoint}?{query params}`
@@ -188,24 +261,5 @@ Code | Description
 
 
 
-# API Updates
-This section provides the quarterly breakup of existing API updates and new API releases.
-
-## Q4 Releases (2019-20)
-
-* **OAuth Support**: Besides Basic Authentication, Capillary APIs now support OAuth and access tokens for more secured API calls. For more details, see support portal. 
-* **Points Reversal**: Allows reversing redeemed points directly if the transaction - for which the points are redeemed - is returned. A new redemption ID is introduced. 
-	* POST `v1.1/points/redeem`: Introduced a new parameter `redemption_id` which can be used to reverse points if the transaction is returned.
-	* POST `v2/points/reverse`: Uses `redemptionId` to reverse points of a specific transaction.
-	* GET `v1.1/customer/redemptions`: Shows `total_points_reversed` and points reversal history.
-* **Event Notification**: Allows building integrations with Capillary events that originate either through Capillary products or APIs. For more details, see  <a href="https://capillary.github.io/api-documentation/#event-notifications">Event Notification APIs</a>.
-* **Redemption across loyalty programs**: With this release, you can redeem points earned in one program in another loyalty program of the org. 
-	* POST `v1.1/points/redeem`: A new parameter `group_redemption` if set `true` enables cross loyalty program redemption.			
-* **OTP Support without PII information**: Allows non-PII clients (clients which would not send PII information such as mobile number, email ID, etc to Capillary) to send OTP via Capillary communication gateway.
-* **Transaction V2 APIs**: Support to add and retrieve transaction in V2 APIs. 
-* Option to disable OTP validation for points transfer.
-* Customer enrollment with one-time points and tier upgrade
-* External loyalty program linking
-* Support for external reference number in redemption.
 
 

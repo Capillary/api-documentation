@@ -50,7 +50,7 @@ https://us.api.capillarytech.com/v2/customers?source=MOBILE_APP&accountId=400
          ],
          "firstName":"Tom",
          "lastName":"Sawyer",
-         "identifiers":[ 
+         "customerIdentifiers":[ 
             { 
                "type":"email",
                "value":"tom.sawyer@example.com"
@@ -199,7 +199,7 @@ Parameter | Type | Description
 --------- | ----- | -----------
 loyaltyType* | enum | Loyalty status of the customer. Value: `loyalty`, `non_loyalty`.
 profiles | obj | Meta information of the customer.
-identifiers* | obj | Identifiers of the customer in type and value. Supported types: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, `fbId` `mobile`, `tmall_uname`, `cuid`, `ali_uname`, `jd_uname`, `vip_uname`, `mobilePush`, and `line`.
+customerIdentifiers* | obj | Identifiers of the customer in type and value. Supported types: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, `fbId` `mobile`, `tmall_uname`, `cuid`, `ali_uname`, `jd_uname`, `vip_uname`, `mobilePush`, and `line`.
 commChannels | obj | Available communication channels of the customer. Value: `mobile`, `email`, `wechat`, `ios`, `android`, `line`, `mobilePush`.
 Firstname | string | First name of the customer.
 Lastname | string | Last name of the customer.
@@ -237,7 +237,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT&accountId=22232
             "gender":"Male",
             "city":"Bangalore"
          },
-         "identifiers":[  
+         "customerIdentifiers":[  
             {  
                "type":"mobile",
                "value":919111111111
@@ -303,7 +303,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT&accountId=22232
     "primary":true,
     "verified":true,
     "meta":{
-      “lastViewedDate” : <date>
+      “lastViewedDate” : "2019-10-25"
     }
 }
 ````
@@ -337,7 +337,7 @@ The following are the prerequisites for updating customer details:
 ### Resource Information
 | | |
 --------- | ----------- |
-URI | `/{customerId}?{query_param}={param_value}`
+URI | `/{customerId}?{queryParam}={paramValue}`
 Authentication | Yes
 HTTP Method | PUT
 Batch Support | No
@@ -376,7 +376,7 @@ profiles | obj | Profile information of the customer.
 meta | obj | Additional information of the identifier.
 Firstname | string | First name of the customer.
 Lastname | string | Last name of the customer.
-identifiers | obj | Identifiers of the customer in type and value. Supported types: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, `fbId` `mobile`, `tmall_uname`, `cuid`, `ali_uname`, `jd_uname`, `vip_uname`, and `line`.
+customerIdentifiers | obj | Identifiers of the customer that you want to add in type and value. Supported types: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, `fbId` `mobile`, `tmall_uname`, `cuid`, `ali_uname`, `jd_uname`, `vip_uname`, and `line`.
 profiles | fields | Custom field details (only that configured for the organization)
 extendedFields | obj | Extended field details of the customer in key:value pairs. You can only pass extended fields that are enabled for your org with the respective datatypes for values.
 fields | obj | Custom field details of the customer in key:value pairs.
@@ -718,7 +718,7 @@ https://eu.api.capillarytech.com/v2/customers/17742?source=WECHAT&accountId=2223
                "Gender": "Male",
                "Favorite Color": "Green"
            },
-           "identifiers": [
+           "customerIdentifiers": [
                {
                    "type": "email",
                    "value": "tom.sawyer@example.com"
@@ -1117,7 +1117,8 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
   "warnings": []
 }
 ```
-Subscription represents communication channels to which a customer has subscribed. That could be "mobile", "email", "wechat", "ios", "android", and "line".
+
+Subscription represents communication channels to which a customer has subscribed. Capillary supports the following channels - `mobile`, `email`, `wechat`, `whatsapp`, `ios`, `android`, and `line`.
 
 This API allows updating (opt-in or opt-out) subscription status of transactional and bulk messaging services for a customer.
 
@@ -1140,7 +1141,7 @@ Batch Support | No
 Parameter | Description
 --------- | -----------
 id* | Unique ID of the customer whose subscription details you want to modify
-channel | Pass the communication channel that you want to update. **Value**: "mobile", "email", "wechat", "ios", "android", "line"
+channel | Pass the communication channel that you want to update. **Value**: `mobile`, `email`, `wechat`, `whatsapp`, `ios`, `android`, and `line`.
 priority | Type of service for which you want to modify the subscription details.`TRANS` for personalized messages and `BULK` for campaign or bulk messages
 type | `OPTIN` to subscribe and `OPTOUT` to unsubscribe
 
@@ -1335,7 +1336,7 @@ http://us.api.capillarytech.com/v2/customers/368881003/retroRequest
         {
             "id": 5,
             "status": "REJECTED",
-            "addedBy": {
+            "enteredBy": {
                 "id": 15091433,
                 "code": "till.india1",
                 "description": "",
@@ -1348,7 +1349,7 @@ http://us.api.capillarytech.com/v2/customers/368881003/retroRequest
                 "currencyId": 0,
                 "languageId": 0
             },
-            "addedByParent": {
+            "enteredByParent": {
                 "id": 15091431,
                 "code": "store_india",
                 "description": "",
@@ -1361,7 +1362,7 @@ http://us.api.capillarytech.com/v2/customers/368881003/retroRequest
                 "currencyId": 23,
                 "languageId": 148
             },
-            "updatedBy": {
+            "enteredBy": {
                 "id": 8730028,
                 "code": "Patel",
                 "name": "Nayan Kumar",
@@ -1389,7 +1390,7 @@ http://us.api.capillarytech.com/v2/customers/368881003/retroRequest
         {
             "id": 4,
             "status": "APPROVED",
-            "addedBy": {
+            "enteredBy": {
                 "id": 15091433,
                 "code": "till.india1",
                 "description": "",
@@ -1402,7 +1403,7 @@ http://us.api.capillarytech.com/v2/customers/368881003/retroRequest
                 "currencyId": 0,
                 "languageId": 0
             },
-            "addedByParent": {
+            "enteredByParent": {
                 "id": 15091431,
                 "code": "store_india",
                 "description": "",
@@ -1415,7 +1416,7 @@ http://us.api.capillarytech.com/v2/customers/368881003/retroRequest
                 "currencyId": 23,
                 "languageId": 148
             },
-            "updatedBy": {
+            "enteredBy": {
                 "id": 8730028,
                 "code": "Patel",
                 "name": "Nayan Kumar",
@@ -1443,7 +1444,7 @@ http://us.api.capillarytech.com/v2/customers/368881003/retroRequest
         {
             "id": 3,
             "status": "REJECTED",
-            "addedBy": {
+            "enteredBy": {
                 "id": 15091433,
                 "code": "till.india1",
                 "description": "",
@@ -1456,7 +1457,7 @@ http://us.api.capillarytech.com/v2/customers/368881003/retroRequest
                 "currencyId": 0,
                 "languageId": 0
             },
-            "addedByParent": {
+            "enteredByParent": {
                 "id": 15091431,
                 "code": "store_india",
                 "description": "",
@@ -1469,7 +1470,7 @@ http://us.api.capillarytech.com/v2/customers/368881003/retroRequest
                 "currencyId": 23,
                 "languageId": 148
             },
-            "updatedBy": {
+            "enteredBy": {
                 "id": 15091437,
                 "code": "till.sg",
                 "description": "",
@@ -1496,7 +1497,7 @@ http://us.api.capillarytech.com/v2/customers/368881003/retroRequest
         {
             "id": 2,
             "status": "APPROVED",
-            "addedBy": {
+            "enteredBy": {
                 "id": 15091433,
                 "code": "till.india1",
                 "description": "",
@@ -1509,7 +1510,7 @@ http://us.api.capillarytech.com/v2/customers/368881003/retroRequest
                 "currencyId": 0,
                 "languageId": 0
             },
-            "addedByParent": {
+            "enteredByParent": {
                 "id": 15091431,
                 "code": "store_india",
                 "description": "",
@@ -1522,7 +1523,7 @@ http://us.api.capillarytech.com/v2/customers/368881003/retroRequest
                 "currencyId": 23,
                 "languageId": 148
             },
-            "updatedBy": {
+            "enteredBy": {
                 "id": 15091437,
                 "code": "till.sg",
                 "description": "",
@@ -1549,7 +1550,7 @@ http://us.api.capillarytech.com/v2/customers/368881003/retroRequest
         {
             "id": 1,
             "status": "REJECTED",
-            "addedBy": {
+            "enteredBy": {
                 "id": 15091433,
                 "code": "till.india1",
                 "description": "",
@@ -1562,7 +1563,7 @@ http://us.api.capillarytech.com/v2/customers/368881003/retroRequest
                 "currencyId": 0,
                 "languageId": 0
             },
-            "addedByParent": {
+            "enteredByParent": {
                 "id": 15091431,
                 "code": "store_india",
                 "description": "",
@@ -1575,7 +1576,7 @@ http://us.api.capillarytech.com/v2/customers/368881003/retroRequest
                 "currencyId": 23,
                 "languageId": 148
             },
-            "updatedBy": {
+            "enteredBy": {
                 "id": 8730028,
                 "code": "Patel",
                 "name": "Nayan Kumar",
@@ -1658,7 +1659,7 @@ http://api.capillary.co.in/v2/customers/343040815/goodwillRequest
     "data": [
         {
             "id": 43114,
-            "addedBy": {
+            "enteredBy": {
                 "id": 15000449,
                 "code": "1371622280_919866643044",
                 "description": "",
@@ -1671,7 +1672,7 @@ http://api.capillary.co.in/v2/customers/343040815/goodwillRequest
                 "currencyId": 0,
                 "languageId": 0
             },
-            "updatedBy": {
+            "enteredBy": {
                 "id": 15000449,
                 "code": "1371622280_919866643044",
                 "description": "",
@@ -1698,7 +1699,7 @@ http://api.capillary.co.in/v2/customers/343040815/goodwillRequest
         },
         {
             "id": 43113,
-            "addedBy": {
+            "enteredBy": {
                 "id": 15000449,
                 "code": "1371622280_919866643044",
                 "description": "",
@@ -1711,7 +1712,7 @@ http://api.capillary.co.in/v2/customers/343040815/goodwillRequest
                 "currencyId": 0,
                 "languageId": 0
             },
-            "updatedBy": {
+            "enteredBy": {
                 "id": 15000449,
                 "code": "1371622280_919866643044",
                 "description": "",

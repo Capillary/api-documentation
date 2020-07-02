@@ -13,7 +13,7 @@ Lets you create a new user group.
 http://us.api.capillarytech.com/v2/usergroups
 ```
 
-> Sample POST Request
+> Sample POST Request (Using User ID)
 
 ```json
 {
@@ -21,6 +21,18 @@ http://us.api.capillarytech.com/v2/usergroups
   "primaryUserId": 281348774
 }
 ```
+
+> Sample POST Request (Using Customer Identifiers)
+
+```json 
+ {
+      "name": "Harsh",
+      "primaryMemberIdentifier": {
+        "type": "mobile",
+        "value": "91934000000"
+      }
+    }
+```	
 
 > Sample Response
 
@@ -122,10 +134,13 @@ Batch Support | No
 
 Parameter | Datatype | Description
 --------- | -------- | -----------
-groupId* | long | Unique id the group that the user wants to joinedOn
-userId* | long | Unique id of the user who wants to join the group
+groupId* | long | Unique id the group that the user wants to joinedOn.
+userId** | long | Unique id of the user who wants to join the group.
+primaryMemberIdentifier** | obj | Use this create user group with customer identifier such as mobile number, email ID, or external ID. 
+type* | enum | Type of the identifier. Values: `mobile`, `email`, `externalId`. 
+value* | string | Value of the respective identifier type (mobile number/email ID/external ID).
 
-<aside class="notice">Parameters marked with * are mandatory. </aside>
+<aside class="notice">Parameters marked with * are mandatory. Any one among the params marked with ** is mandatory.</aside>
 
 
 ## Join User Group (OTP Based)

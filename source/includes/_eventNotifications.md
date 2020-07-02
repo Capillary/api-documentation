@@ -1,6 +1,30 @@
 # Event Notifications
 
-Event Notifications is a framework that provides near real-time data of events generated in the Capillary System and helps brands to subscribe to notifications about particular events. After configuring to receive notifications, brands can build custom solutions to trigger for pre-configured actions. 
+Event Notification allows building integrations with Capillary events that originate either through Capillary API (such as customerAdded and transactionAdded)requests or Capillary products such as Loyalty+ (such as pointsIssued and pointsRedeemed), Engage+ or other. Once an event notification is configured, brands can build custom solutions to trigger for pre-configured actions.
+
+Event Notifications are sent through Webhooks configured in Capillary Event Notifications.
+
+
+### Use Cases
+
+There are several use cases of event notifications. A couple of examples are provided in the following.
+
+**Enable PII-less Communication**
+
+*   In some cases, brands prefer not to send customers’ personally identifiable information (PII data) such as names, email ID, and mobile number to Capillary and manage communication completely at their end. Event Notification can be used to get the events that require communication such as customer registration, transaction, points issual, points redemption, points transfer, etc. On receiving these events, clients can send communication to customers with their names and identifiers as needed.
+
+**Integration with 3rd Party Applications**
+
+*   Event notification can be used to build integrations with 3rd party applications. For example, send a survey link to a customer post transaction event from a survey application such as Medallia; sync customer’s loyalty information to an e-commerce platform such as Magento. Integration can be built to receive real-time events, enrich information using Capillary APIs (if required), and sync it to the 3rd party application using the brand’s APIs.
+
+### Where to use Event Notifications
+
+There are several use cases of event notifications. A couple of examples are provided in the following.
+
+Also, see
+
+*   [How to consume event notifications](https://support.capillarytech.com/en/support/solutions/articles/4000157394-consuming-event-notifications) ?
+*   [Sample schema/payloads of all events to post event data](	https://support.capillarytech.com/en/support/solutions/articles/4000159789-event-schema-payload-).
 
 ## Add Webhook Account
 

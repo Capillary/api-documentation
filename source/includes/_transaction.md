@@ -28,11 +28,12 @@ Before using transaction APIs, understand the transaction configurations of your
 * Maximum and minimum amount allowed per transaction.
 * Maximum and minimum amount allowed per line-item.
 
-Following are the key functionalities of the `transaction/add` API.
+The `transaction/add` API lets you do the following.
 
 * Supports transactions with Product Variant and Product Bundle details.
 * Adds product variant to the database when a new variant product is passed with an existing base product.
 * Adds  base product to the database when a new base product/variant product is passed. However, if a new base product is passed with variant details, it adds only base product and ignores variant .
+* Adds custom field and extended field details both at the transaction and line-item level.
 
 **Variant Product**: A same product having different variations in terms of common properties such as size, and color.
 
@@ -43,17 +44,6 @@ Following are the key functionalities of the `transaction/add` API.
 </aside>
 
 
-
-* **Regular Transactions**: To make regular transactions, set `type` as `regular` and pass the customer’s unique identifier of the customer in the respective tag.
-* **Non-Interested Transactions**: To make not-interested transactions, set `type` as `not_interested` and customer identifiers are not required for not-interested transactions.
-
-
-
-You can update custom field details and extended field details for either regular or return transactions. To retrieve these details, use customer/get, customer/transaction APIs.
-
-* Extended fields are a kind of custom fields with defined field names and values that help generate reports on basis of extended fields. In transactions, extended field details can be captured at transaction level, or line-item level. Examples of transaction level extended fields include additional_discount, centralGST, GrossWeight etc and examples of line-item level extended fields include DesignCode, imei_number, MakingCharge etc.  
-* Pass custom field details in the custom_fields element and extended fields in the extended_fields element
-* To retrieve custom field values and extended field values, use the customer/get or customer/transaction API
 
 > Sample Request
 
@@ -749,7 +739,7 @@ returnableDays | int | Maximum number of days in which the item is allowed to re
 customFields | obj | Transaction or line-item level custom field details.
 imgUrl | string | URL of the product image.
 attributes | obj | Attributes of the product in name-value pairs.
-comboDetails obj | Details of combo or bundle items. For example, buy 1 shirt get one free, shirt+pant, pack of 5 soaps
+comboDetails | obj | Details of combo or bundle items. For example, buy 1 shirt get one free, shirt+pant, pack of 5 soaps
 itemCode | string | Unique line-item code.
 quantity | double | Quantity of the current combo item.
 description | string | One or two liner description of add-on, split, or combo item.
@@ -798,7 +788,7 @@ https://eu.api.capillarytech.com/v2/transactions/38236823?type=REGULAR
 {
     "attribution": {
         "createDate": "2020-04-28T17:04:13+05:30",
-        "createdBy": {
+        "enteredBy": {
             "id": 50006796,
             "code": "mobilepush.1",
             "description": "",
@@ -1212,6 +1202,7 @@ Batch Support | NA
 Parameter | Datatype | Description
 --------- | -------- | -----------
 id* | long | Unique transaction id to fetch details.
+type* | enum | Type of transaction to fetch. Value: REGULAR, RETURN.
 
 <aside class="notice">The parameter marked with * is mandatory.</aside>
 

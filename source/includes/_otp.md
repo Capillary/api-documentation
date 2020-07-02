@@ -188,7 +188,7 @@ Parameter | Datatype | Description
 entityType* | enum | Specify MOBILE to identify customer by mobile number or EMAIL to identify customer by email id.
 entityValue* | string | Specify the registered  mobile number or email id of the customer based on the entityType passed.
 code* | string | Pass the validation code received by the customer.
-action | enum | Specify the action to be performed on successful validation. Values: `COUPON` (for coupon redemption), `POINTS` (for points redemption), `REGISTRATION`, `USERGROUP`, `SUBSCRIPTION`, `GENERIC` (for other purposes).
+action* | enum | Specify the action to be performed on successful validation. Values: `COUPON` (for coupon redemption), `POINTS` (for points redemption), `REGISTRATION`, `USERGROUP`, `SUBSCRIPTION`, `GENERIC` (for other purposes).
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
 
@@ -205,7 +205,7 @@ entity | boolean | The value will be`true` if the OTP validation is successful, 
 > Sample Request
 
 ```html 
-https://us.api.capillarytech.com/v2/otp/source=WECHAT&accountId=WECHAT-API1&identifierName=mobile&identifierValue=8799361139&threshold=60&scope=POINTS
+https://us.api.capillarytech.com/v2/otp?source=WECHAT&accountId=WECHAT-API1&identifierName=mobile&identifierValue=8799361139&threshold=60&scope=POINTS
 ```
 
 > Sample Response
@@ -236,7 +236,7 @@ Batch Support | No
 
 ### Request URL
 
-`https://{host}/v2/otp/source={source}&accountId={account}&{identifierName}={value}&scope={POINTS/COUPONS}`
+`https://{host}/v2/otp?source={source}&accountId={account}&{identifierName}={value}&scope={POINTS/COUPONS}`
 
 ### Request Path Parameters
 Parameter | Datatype | Description
