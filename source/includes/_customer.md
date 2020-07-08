@@ -1129,18 +1129,18 @@ This API allows updating (opt-in or opt-out) subscription status of transactiona
 
 | | |
 --------- | ----------- |
-URI | `/{customerId}/subscriptions`
+URI | `/{userId}/subscriptions`
 Authentication | Yes
 HTTP Method | POST
 Batch Support | No
 
 ### Request URL
-`https://{host}/v2/customers/{customerId}/subscriptions`
+`https://{host}/v2/customers/{userId}/subscriptions`
 
 ### Request Parameters
 Parameter | Description
 --------- | -----------
-id* | Unique ID of the customer whose subscription details you want to modify
+userId* | Unique ID of the customer whose subscription details you want to modify
 channel | Pass the communication channel that you want to update. **Value**: `mobile`, `email`, `wechat`, `whatsapp`, `ios`, `android`, and `line`.
 priority | Type of service for which you want to modify the subscription details.`TRANS` for personalized messages and `BULK` for campaign or bulk messages
 type | `OPTIN` to subscribe and `OPTOUT` to unsubscribe
