@@ -230,10 +230,15 @@ owner | string | Username of the staff user who is assigned to the lead
 subStatus | enum | Current sub-status of the lead. Use only names that are created using `leads/substatus` API
 
 
+## Assign Lead
+Lets you change the owner of an existing lead. 
+
+
+
 
 ## Get Lead Details
 
-Retrieves the details of all leads of an org or a specific lead based on the lead ID passed.
+Retrieves the details of leads created in an org. You can use filter parameters to get personalized results.
 
 
 
@@ -243,7 +248,7 @@ Retrieves the details of all leads of an org or a specific lead based on the lea
 > Sample Request
 
 ```html
-https://us.api.capillarytech.com/v2/leads
+https://eu.api.capillarytech.com/v2/leads?userId=90486448
 
 ```
 
@@ -256,350 +261,184 @@ https://us.api.capillarytech.com/v2/leads
 {
     "data": [
         {
-            "id": 1,
-            "userId": 368754334,
+            "id": 3,
+            "userId": 90486448,
             "type": "SKU",
-            "leadFor": "item001",
+            "leadFor": "Denim",
             "status": "ON_HOLD",
-            "lastFollowUp": "2018-10-04T12:45:00+05:30",
-            "nextFollowUp": "2018-10-04T13:15:00+05:30",
-            "createdOn": "2018-10-04T13:30:00+05:30",
-            "createdBy": 28812689,
-            "lastUpdatedOn": "2019-04-15T14:54:32+05:30",
-            "lastUpdatedBy": 15002926,
+            "nextFollowUp": "2018-10-05T02:30:00Z",
+            "createdOn": "2018-10-04T08:00:00Z",
+            "createdBy": 75029724,
+            "lastUpdatedOn": "2019-02-20T15:28:13Z",
+            "lastUpdatedBy": 75029724,
             "followUpDetails": [
-                {
-                    "id": 1,
-                    "userId": 368754334,
-                    "leadId": 1,
-                    "notes": "notes 1",
-                    "createdBy": 15002926,
-                    "createdOn": "2018-11-14T15:38:04+05:30",
-                    "followedUpBy": 28812689,
-                    "followedUpOn": "2018-10-04T12:45:00+05:30",
-                    "scheduledFollowUp": "2018-10-04T12:30:00+05:30"
-                },
-                {
-                    "id": 2,
-                    "userId": 368754334,
-                    "leadId": 1,
-                    "notes": "notes 2",
-                    "createdBy": 15002926,
-                    "createdOn": "2018-11-14T15:38:04+05:30",
-                    "followedUpBy": 28812689,
-                    "followedUpOn": "2018-10-04T12:45:00+05:30",
-                    "scheduledFollowUp": "2018-10-04T12:30:00+05:30"
-                },
-                {
-                    "id": 15,
-                    "userId": 368754334,
-                    "leadId": 1,
-                    "createdBy": 15002926,
-                    "createdOn": "2019-02-07T17:26:02+05:30",
-                    "followedUpBy": 12348,
-                    "followedUpOn": "2018-10-04T12:45:00+05:30",
-                    "scheduledFollowUp": "2018-10-05T08:00:00+05:30"
-                }
-            ],
-            "statusLogDetails": [
-                {
-                    "id": 1,
-                    "userId": 368754334,
-                    "leadId": 1,
-                    "status": "OPEN",
-                    "createdBy": 15002926,
-                    "createdOn": "2018-11-14T15:38:04+05:30",
-                    "reasonId": 5,
-                    "reason": "Best price available at another store"
-                },
-                {
-                    "id": 2,
-                    "userId": 368754334,
-                    "leadId": 1,
-                    "status": "ON_HOLD",
-                    "createdBy": 15002926,
-                    "createdOn": "2018-11-14T15:38:04+05:30",
-                    "reasonId": 4,
-                    "reason": "Item not available in store"
-                }
-            ],
-            "orgSourceId": -1,
-            "extendedFields": {},
-            "subStatus": "YetToDecide"
-        },
-        {
-            "id": 2,
-            "userId": 368754334,
-            "type": "SKU",
-            "leadFor": "item001",
-            "status": "ON_HOLD",
-            "nextFollowUp": "2018-10-05T08:00:00+05:30",
-            "createdOn": "2018-10-04T13:30:00+05:30",
-            "createdBy": 28812689,
-            "lastUpdatedOn": "2019-04-15T14:58:39+05:30",
-            "lastUpdatedBy": 15002926,
-            "followUpDetails": [
-                {
-                    "id": 3,
-                    "userId": 368754334,
-                    "leadId": 2,
-                    "notes": "notes 1",
-                    "createdBy": 15002926,
-                    "createdOn": "2018-12-06T17:36:28+05:30",
-                    "followedUpBy": 28812689,
-                    "followedUpOn": "2018-10-04T12:45:00+05:30",
-                    "scheduledFollowUp": "2018-10-04T12:30:00+05:30"
-                },
-                {
-                    "id": 4,
-                    "userId": 368754334,
-                    "leadId": 2,
-                    "notes": "notes 2",
-                    "createdBy": 15002926,
-                    "createdOn": "2018-12-06T17:36:28+05:30",
-                    "followedUpBy": 28812689,
-                    "followedUpOn": "2018-10-04T12:45:00+05:30",
-                    "scheduledFollowUp": "2018-10-04T12:30:00+05:30"
-                }
-            ],
-            "statusLogDetails": [
-                {
-                    "id": 4,
-                    "userId": 368754334,
-                    "leadId": 2,
-                    "status": "OPEN",
-                    "createdBy": 15002926,
-                    "createdOn": "2018-12-06T17:36:28+05:30",
-                    "reasonId": 1,
-                    "reason": "Item not available in store"
-                },
                 {
                     "id": 5,
-                    "userId": 368754334,
-                    "leadId": 2,
-                    "status": "ON_HOLD",
-                    "createdBy": 15002926,
-                    "createdOn": "2018-12-06T17:36:28+05:30",
-                    "reasonId": 2,
-                    "reason": "Best price available at another store"
+                    "userId": 90486448,
+                    "leadId": 3,
+                    "notes": "notes 1",
+                    "createdBy": 75029724,
+                    "createdOn": "2019-02-20T15:28:13Z",
+                    "followedUpBy": 75029724,
+                    "followedUpOn": "2018-10-04T07:15:00Z",
+                    "scheduledFollowUp": "2018-10-04T07:00:00Z"
                 },
                 {
-                    "id": 16,
-                    "userId": 368754334,
-                    "leadId": 2,
-                    "status": "LOST",
-                    "createdBy": -1,
-                    "createdOn": "2019-01-28T14:34:46+05:30",
-                    "reasonId": 11,
-                    "reason": "AUTO_CLOSE"
+                    "id": 6,
+                    "userId": 90486448,
+                    "leadId": 3,
+                    "notes": "notes 2",
+                    "createdBy": 75029724,
+                    "createdOn": "2019-02-20T15:28:13Z",
+                    "followedUpBy": 75029724,
+                    "followedUpOn": "2018-10-04T07:15:00Z",
+                    "scheduledFollowUp": "2018-10-04T07:00:00Z"
+                }
+            ],
+            "statusLogDetails": [
+                {
+                    "id": 5,
+                    "userId": 90486448,
+                    "leadId": 3,
+                    "status": "OPEN",
+                    "createdBy": 75029724,
+                    "createdOn": "2019-02-20T15:28:13Z",
+                    "reasonId": 3,
+                    "reason": "APICALL"
                 },
                 {
-                    "id": 23,
-                    "userId": 368754334,
-                    "leadId": 2,
+                    "id": 6,
+                    "userId": 90486448,
+                    "leadId": 3,
                     "status": "ON_HOLD",
-                    "createdBy": 28812689,
-                    "createdOn": "2019-04-15T14:58:39+05:30",
-                    "reasonId": 2,
-                    "reason": "Best price available at another store",
-                    "subStatus": "YetToDecide"
+                    "createdBy": 75029724,
+                    "createdOn": "2019-02-20T15:28:13Z",
+                    "reasonId": 4,
+                    "reason": "NOT PICKING CALL"
                 }
             ],
             "orgSourceId": -1,
             "extendedFields": {
                 "trial_status": "Not Done"
-            },
-            "subStatus": "YetToDecide"
+            }
         },
         {
-            "id": 3,
-            "userId": 368754334,
+            "id": 4,
+            "userId": 90486448,
             "type": "SKU",
-            "leadFor": "item001",
-            "status": "LOST",
-            "nextFollowUp": "2018-10-05T08:00:00+05:30",
-            "createdOn": "2018-10-04T13:30:00+05:30",
-            "createdBy": 28812689,
-            "lastUpdatedOn": "2019-01-28T14:34:46+05:30",
-            "lastUpdatedBy": -1,
+            "leadFor": "CasualShirt",
+            "status": "ON_HOLD",
+            "nextFollowUp": "2018-10-05T02:30:00Z",
+            "createdOn": "2018-10-04T08:00:00Z",
+            "createdBy": 75029724,
+            "lastUpdatedOn": "2019-02-20T15:28:51Z",
+            "lastUpdatedBy": 75029724,
             "followUpDetails": [
                 {
                     "id": 7,
-                    "userId": 368754334,
+                    "userId": 90486448,
                     "leadId": 4,
                     "notes": "notes 1",
-                    "createdBy": 15002926,
-                    "createdOn": "2018-12-06T18:14:26+05:30",
-                    "followedUpBy": 28812689,
-                    "followedUpOn": "2018-10-04T12:45:00+05:30",
-                    "scheduledFollowUp": "2018-10-04T12:30:00+05:30"
+                    "createdBy": 75029724,
+                    "createdOn": "2019-02-20T15:28:51Z",
+                    "followedUpBy": 75029724,
+                    "followedUpOn": "2018-10-04T07:15:00Z",
+                    "scheduledFollowUp": "2018-10-04T07:00:00Z"
                 },
                 {
                     "id": 8,
-                    "userId": 368754334,
+                    "userId": 90486448,
                     "leadId": 4,
                     "notes": "notes 2",
-                    "createdBy": 15002926,
-                    "createdOn": "2018-12-06T18:14:26+05:30",
-                    "followedUpBy": 28812689,
-                    "followedUpOn": "2018-10-04T12:45:00+05:30",
-                    "scheduledFollowUp": "2018-10-04T12:30:00+05:30"
+                    "createdBy": 75029724,
+                    "createdOn": "2019-02-20T15:28:51Z",
+                    "followedUpBy": 75029724,
+                    "followedUpOn": "2018-10-04T07:15:00Z",
+                    "scheduledFollowUp": "2018-10-04T07:00:00Z"
                 }
             ],
             "statusLogDetails": [
                 {
-                    "id": 8,
-                    "userId": 368754334,
+                    "id": 7,
+                    "userId": 90486448,
                     "leadId": 4,
                     "status": "OPEN",
-                    "createdBy": 15002926,
-                    "createdOn": "2018-12-06T18:14:26+05:30",
-                    "reasonId": 1,
-                    "reason": "Item not available in store"
+                    "createdBy": 75029724,
+                    "createdOn": "2019-02-20T15:28:51Z",
+                    "reasonId": 3,
+                    "reason": "APICALL"
                 },
+                {
+                    "id": 8,
+                    "userId": 90486448,
+                    "leadId": 4,
+                    "status": "ON_HOLD",
+                    "createdBy": 75029724,
+                    "createdOn": "2019-02-20T15:28:51Z",
+                    "reasonId": 4,
+                    "reason": "NOT PICKING CALL"
+                }
+            ],
+            "orgSourceId": -1,
+            "extendedFields": {
+                "trial_status": "Not Done"
+            }
+        },
+        {
+            "id": 5,
+            "userId": 90486448,
+            "type": "SKU",
+            "leadFor": "Polo",
+            "status": "ON_HOLD",
+            "nextFollowUp": "2018-10-05T02:30:00Z",
+            "createdOn": "2018-10-04T08:00:00Z",
+            "createdBy": 75029724,
+            "lastUpdatedOn": "2019-02-20T15:29:29Z",
+            "lastUpdatedBy": 75029724,
+            "followUpDetails": [
                 {
                     "id": 9,
-                    "userId": 368754334,
-                    "leadId": 4,
-                    "status": "ON_HOLD",
-                    "createdBy": 15002926,
-                    "createdOn": "2018-12-06T18:14:26+05:30",
-                    "reasonId": 2,
-                    "reason": "Best price available at another store"
-                },
-                {
-                    "id": 18,
-                    "userId": 368754334,
-                    "leadId": 4,
-                    "status": "LOST",
-                    "createdBy": -1,
-                    "createdOn": "2019-01-28T14:34:46+05:30",
-                    "reasonId": 11,
-                    "reason": "AUTO_CLOSE"
-                }
-            ],
-            "orgSourceId": -1,
-            "extendedFields": {
-                "trial_status": "Not Done"
-            }
-        },
-        {
-            "id": 6,
-            "userId": 368754334,
-            "type": "SKU",
-            "leadFor": "item001",
-            "status": "LOST",
-            "nextFollowUp": "2018-10-05T08:00:00+05:30",
-            "createdOn": "2018-10-04T13:30:00+05:30",
-            "createdBy": 28812689,
-            "lastUpdatedOn": "2019-01-28T14:34:46+05:30",
-            "lastUpdatedBy": -1,
-            "followUpDetails": [
-                {
-                    "id": 11,
-                    "userId": 368754334,
-                    "leadId": 6,
+                    "userId": 90486448,
+                    "leadId": 5,
                     "notes": "notes 1",
-                    "createdBy": 15002926,
-                    "createdOn": "2018-12-06T18:18:28+05:30",
-                    "followedUpBy": 28812689,
-                    "followedUpOn": "2018-10-04T12:45:00+05:30",
-                    "scheduledFollowUp": "2018-10-04T12:30:00+05:30"
+                    "createdBy": 75029724,
+                    "createdOn": "2019-02-20T15:29:29Z",
+                    "followedUpBy": 75029724,
+                    "followedUpOn": "2018-10-04T07:15:00Z",
+                    "scheduledFollowUp": "2018-10-04T07:00:00Z"
                 },
                 {
-                    "id": 12,
-                    "userId": 368754334,
-                    "leadId": 6,
+                    "id": 10,
+                    "userId": 90486448,
+                    "leadId": 5,
                     "notes": "notes 2",
-                    "createdBy": 15002926,
-                    "createdOn": "2018-12-06T18:18:28+05:30",
-                    "followedUpBy": 28812689,
-                    "followedUpOn": "2018-10-04T12:45:00+05:30",
-                    "scheduledFollowUp": "2018-10-04T12:30:00+05:30"
+                    "createdBy": 75029724,
+                    "createdOn": "2019-02-20T15:29:29Z",
+                    "followedUpBy": 75029724,
+                    "followedUpOn": "2018-10-04T07:15:00Z",
+                    "scheduledFollowUp": "2018-10-04T07:00:00Z"
                 }
             ],
             "statusLogDetails": [
                 {
-                    "id": 12,
-                    "userId": 368754334,
-                    "leadId": 6,
+                    "id": 9,
+                    "userId": 90486448,
+                    "leadId": 5,
                     "status": "OPEN",
-                    "createdBy": 15002926,
-                    "createdOn": "2018-12-06T18:18:28+05:30",
-                    "reasonId": 1,
-                    "reason": "Item not available in store"
+                    "createdBy": 75029724,
+                    "createdOn": "2019-02-20T15:29:29Z",
+                    "reasonId": 3,
+                    "reason": "APICALL"
                 },
                 {
-                    "id": 20,
-                    "userId": 368754334,
-                    "leadId": 6,
-                    "status": "LOST",
-                    "createdBy": -1,
-                    "createdOn": "2019-01-28T14:34:46+05:30",
-                    "reasonId": 11,
-                    "reason": "AUTO_CLOSE"
-                }
-            ],
-            "orgSourceId": -1,
-            "extendedFields": {
-                "trial_status": "Not Done"
-            }
-        },
-        {
-            "id": 7,
-            "userId": 368754334,
-            "type": "SKU",
-            "leadFor": "item001",
-            "status": "LOST",
-            "nextFollowUp": "2018-10-05T08:00:00+05:30",
-            "createdOn": "2018-10-04T13:30:00+05:30",
-            "createdBy": 876,
-            "lastUpdatedOn": "2019-01-28T14:34:46+05:30",
-            "lastUpdatedBy": -1,
-            "followUpDetails": [
-                {
-                    "id": 13,
-                    "userId": 368754334,
-                    "leadId": 7,
-                    "notes": "notes 1",
-                    "createdBy": 15002926,
-                    "createdOn": "2018-12-06T18:45:29+05:30",
-                    "followedUpBy": 28812689,
-                    "followedUpOn": "2018-10-04T12:45:00+05:30",
-                    "scheduledFollowUp": "2018-10-04T12:30:00+05:30"
-                },
-                {
-                    "id": 14,
-                    "userId": 368754334,
-                    "leadId": 7,
-                    "notes": "notes 2",
-                    "createdBy": 15002926,
-                    "createdOn": "2018-12-06T18:45:29+05:30",
-                    "followedUpBy": 28812689,
-                    "followedUpOn": "2018-10-04T12:45:00+05:30",
-                    "scheduledFollowUp": "2018-10-04T12:30:00+05:30"
-                }
-            ],
-            "statusLogDetails": [
-                {
-                    "id": 14,
-                    "userId": 368754334,
-                    "leadId": 7,
-                    "status": "OPEN",
-                    "createdBy": 15002926,
-                    "createdOn": "2018-12-06T18:45:29+05:30",
-                    "reasonId": 1,
-                    "reason": "Item not available in store"
-                },
-                {
-                    "id": 15,
-                    "userId": 368754334,
-                    "leadId": 7,
+                    "id": 10,
+                    "userId": 90486448,
+                    "leadId": 5,
                     "status": "ON_HOLD",
-                    "createdBy": 15002926,
-                    "createdOn": "2018-12-06T18:45:29+05:30",
-                    "reasonId": 2,
-                    "reason": "Best price available at another store"
+                    "createdBy": 75029724,
+                    "createdOn": "2019-02-20T15:29:29Z",
+                    "reasonId": 4,
+                    "reason": "NOT PICKING CALL"
                 }
             ],
             "orgSourceId": -1,
@@ -611,7 +450,6 @@ https://us.api.capillarytech.com/v2/leads
     "warnings": [],
     "errors": []
 }
-
 ```
 
 
@@ -629,7 +467,24 @@ Batch Support | No
 
 ### Request URL
 
-`http://{host}/v2/leads/{leadId}`
+`http://{host}/v2/leads?{queryParams}={value}`
+
+
+### Request Query Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+userId | long | Get leads of a specific customer. Pass the user ID of the customer.
+status | enum | Get leads of a specific status. Values: `OPEN`, `ON_HOLD`, `WON`, `LOST`, `DELETED`.
+substatus | string | Get leads by lead sub-status. 
+owner | string | Fetch leads assigned to a specific associate. Pass the associate/staff ID (user id of the staff).
+limit | int | Limit the number of results to retrieve.
+offset | long | Number of rows (as per the data entered into the table) that you want omit from showing.
+entityType | enum | Get leads of a specific entity. You also need to pass the entityCode accordingly. Pass entityType and e Values: `ZONE`, `CONCEPT`, `STORE`, `TILL`, `STR_SERVER`, `ADMIN_USER`, `ASSOCIATE`, `STAFF`.
+entityCode | string | Pass the code of the respective `entityType`. For example, if `entityType` is STORE, then `entityCode` should be store code by which you want to get leads.
+
+
+
 
 ### Additional Header
 
@@ -639,14 +494,6 @@ language | Specify the ISO code of a language to get extended field values in yo
 
 <aside class="notice">To enable a specific language support for an org, contact the Platforms team to get the translations added to the database and activate translations for the org. </aside>
 
-### Request Path Parameters
-
-Parameter | Data Type | Description
--------- | ---------- | -----------
-leadId | int | Specify the lead id to get details of a specific lead
-
-
-<aside class="notice"> Parameters marked with * are mandatory. </aside>
 
 
 
@@ -1043,7 +890,7 @@ createdOn | ate-time | Date and time of lead creation in `YYYY-MM-DDThh:mm:ssTZD
 
 
 
-## Update Lead Followup 
+## Update Lead follow-ups 
 
 Lets you update the recent follow up date and till id of a lead.
 
@@ -1376,4 +1223,5 @@ Batch Support | No
 Parameter | Type | Description
 --------- | ---- | -----------
 reason* | string | Specify a meaningful reason that you want to add to the organization
+
 

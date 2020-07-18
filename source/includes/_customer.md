@@ -1129,18 +1129,18 @@ This API allows updating (opt-in or opt-out) subscription status of transactiona
 
 | | |
 --------- | ----------- |
-URI | `/{userId}/subscriptions`
+URI | `/{customerId}/subscriptions`
 Authentication | Yes
 HTTP Method | POST
 Batch Support | No
 
 ### Request URL
-`https://{host}/v2/customers/{userId}/subscriptions`
+`https://{host}/v2/customers/{customerId}/subscriptions`
 
 ### Request Parameters
 Parameter | Description
 --------- | -----------
-userId* | Unique ID of the customer whose subscription details you want to modify
+customerId* | Unique ID of the customer whose subscription details you want to modify
 channel | Pass the communication channel that you want to update. **Value**: `mobile`, `email`, `wechat`, `whatsapp`, `ios`, `android`, and `line`.
 priority | Type of service for which you want to modify the subscription details.`TRANS` for personalized messages and `BULK` for campaign or bulk messages
 type | `OPTIN` to subscribe and `OPTOUT` to unsubscribe
@@ -1636,6 +1636,122 @@ startId | long | Filter results by sequence ID (sequence in which a change happe
 endId | long | Filter results by sequence ID (sequence in which a change happened). For example, get lists from startId 200 until endId 400.
 offset | long | Number of rows that you want omit from showing.
 limit | int | Pass the number of results that you want to see.
+
+## Get Identifier Change Requests
+
+Retrieves the details of identifiers (mobile number/email ID/external ID)change requests. You can also fetch change requests of a specific identifier type using the query parameters.
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/customers/130238908/changeRequest?source=INSTORE
+```
+
+> Sample Response
+
+```json
+{
+    "pagination": {
+        "limit": 10,
+        "offset": 0,
+        "total": 1
+    },
+    "data": [
+        {
+            "id": 560739,
+            "status": "APPROVED",
+            "addedBy": {
+                "id": 75030996,
+                "code": "1552291147_",
+                "description": "",
+                "name": "Henry",
+                "type": "ADMIN_USER",
+                "adminType": "GENERAL",
+                "isActive": true,
+                "isOuEnabled": false,
+                "timeZoneId": 0,
+                "currencyId": 0,
+                "languageId": 0
+            },
+            "updatedBy": {
+                "id": 75030996,
+                "code": "1552291147",
+                "description": "",
+                "name": "Henry",
+                "type": "ADMIN_USER",
+                "adminType": "GENERAL",
+                "isActive": true,
+                "isOuEnabled": false,
+                "timeZoneId": 0,
+                "currencyId": 0,
+                "languageId": 0
+            },
+            "addedOn": "2020-02-12T09:58:41Z",
+            "updatedOn": "2020-02-12T09:58:41Z",
+            "userId": 130238908,
+            "changeType": "EMAIL",
+            "changeIdentifiers": {
+                "add": [
+                    {
+                        "type": "EMAIL",
+                        "value": "iwan.gold@example.com"
+                    }
+                ],
+                "remove": [
+                    {
+                        "type": "EMAIL",
+                        "value": "dore.gold@example
+						.com"
+                    }
+                ]
+            },
+            "comments": "auto approved by 75030996",
+            "secUserId": 0,
+            "oneStep": false
+        }
+    ],
+    "warnings": [],
+    "errors": []
+}
+```
+
+
+
+
+
+### Resource Information
+
+| | |
+--------- | ----------- |
+URI | `/{customerId}/changeRequest`
+Authentication | Yes
+HTTP Method | GET
+Batch Support | No
+
+### Request URL
+
+`https://{host}/v2/customers/{customerId}/changeRequest?queryParams
+
+### Request Query Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+customerId* | long | Unique ID of the customer to get the details of change requests.
+limit | int | Limit the number of results to retrieve.
+offset | int | Fetches change requests > the offset number. Offset is the position of the lead in the db record. The value is assigned based on the sequence of creation. . For example, offset=10 retrieves all the leads from record number 11.
+source | enum | Source in which want to fetch details. Values: `INSTORE`, `FACEBOOK`, `WEB_ENGAGE`, `WECHAT`, `MARTJACK`, `TMALL`, `TAOBAO`, `JD`, `ECOMMERCE`, `WEBSITE`, `LINE`, `MOBILE_APP`. For sources with multiple accounts such as WECHAT, FACEBOOK, MOBILE_APP, or LINE,
+changeType | enum | Fetch details of a specific identifier change. Values: `EMAIL`, `MOBILE`, `EXTERNAL_ID`, `MERGE`, `MOBILE_REALLOC`, `COUPON`, `POINTS`, `TIER`, `RETRO`. 
+limit | int | Limit the number of results to retrieve.
+sortBy | enum | Lets you sort the list by created date, `createdon` or last updated date, `lastUpdatedOn`.
+sortOrder | Sort the results in ascending, `ASC` or descending, `DESC` order of sortBy
+startDate | date-time | Fetch change requests added on or after a specific date. Pass the date in `YYYY-MM-DD` format.
+endDate | date-time | Fetch change requests added on or before a specific date. Pass the date in `YYYY-MM-DD` format.
+startId | long | Fetch change requests greater than or equal to a specific request ID range.
+endId | long | Fetch change requests less than or equal to a specific request ID range.
+ 
+<aside class="notice">Parameter marked with * is mandatory. </aside>
+
+
 
 
 ## Get Customer Goodwill Requests

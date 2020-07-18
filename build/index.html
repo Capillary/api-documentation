@@ -2118,7 +2118,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 </tr>
 </thead><tbody>
 <tr>
-<td>id*</td>
+<td>customerId*</td>
 <td>Unique ID of the customer whose subscription details you want to modify</td>
 </tr>
 <tr>
@@ -2733,6 +2733,185 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>Pass the number of results that you want to see.</td>
 </tr>
 </tbody></table>
+
+<h2 id="get-identifier-change-requests">Get Identifier Change Requests</h2>
+
+<p>Retrieves the details of identifiers (mobile number/email ID/external ID)change requests. You can also fetch change requests of a specific identifier type using the query parameters.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/customers/130238908/changeRequest?source=INSTORE
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">560739</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"APPROVED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"addedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75030996</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1552291147_"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Henry"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADMIN_USER"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isOuEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75030996</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1552291147"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Henry"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADMIN_USER"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isOuEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"addedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-12T09:58:41Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-02-12T09:58:41Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">130238908</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"changeType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EMAIL"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"changeIdentifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"add"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EMAIL"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"iwan.gold@example.com"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="nt">"remove"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EMAIL"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dore.gold@example
+                        .com"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">]</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"auto approved by 75030996"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"secUserId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"oneStep"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/{customerId}/changeRequest</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p>`https://{host}/v2/customers/{customerId}/changeRequest?queryParams</p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>customerId*</td>
+<td>long</td>
+<td>Unique ID of the customer to get the details of change requests.</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>int</td>
+<td>Limit the number of results to retrieve.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>int</td>
+<td>Fetches change requests &gt; the offset number. Offset is the position of the lead in the db record. The value is assigned based on the sequence of creation. . For example, offset=10 retrieves all the leads from record number 11.</td>
+</tr>
+<tr>
+<td>source</td>
+<td>enum</td>
+<td>Source in which want to fetch details. Values: <code class="prettyprint">INSTORE</code>, <code class="prettyprint">FACEBOOK</code>, <code class="prettyprint">WEB_ENGAGE</code>, <code class="prettyprint">WECHAT</code>, <code class="prettyprint">MARTJACK</code>, <code class="prettyprint">TMALL</code>, <code class="prettyprint">TAOBAO</code>, <code class="prettyprint">JD</code>, <code class="prettyprint">ECOMMERCE</code>, <code class="prettyprint">WEBSITE</code>, <code class="prettyprint">LINE</code>, <code class="prettyprint">MOBILE_APP</code>. For sources with multiple accounts such as WECHAT, FACEBOOK, MOBILE_APP, or LINE,</td>
+</tr>
+<tr>
+<td>changeType</td>
+<td>enum</td>
+<td>Fetch details of a specific identifier change. Values: <code class="prettyprint">EMAIL</code>, <code class="prettyprint">MOBILE</code>, <code class="prettyprint">EXTERNAL_ID</code>, <code class="prettyprint">MERGE</code>, <code class="prettyprint">MOBILE_REALLOC</code>, <code class="prettyprint">COUPON</code>, <code class="prettyprint">POINTS</code>, <code class="prettyprint">TIER</code>, <code class="prettyprint">RETRO</code>.</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>int</td>
+<td>Limit the number of results to retrieve.</td>
+</tr>
+<tr>
+<td>sortBy</td>
+<td>enum</td>
+<td>Lets you sort the list by created date, <code class="prettyprint">createdon</code> or last updated date, <code class="prettyprint">lastUpdatedOn</code>.</td>
+</tr>
+<tr>
+<td>sortOrder</td>
+<td>Sort the results in ascending, <code class="prettyprint">ASC</code> or descending, <code class="prettyprint">DESC</code> order of sortBy</td>
+<td></td>
+</tr>
+<tr>
+<td>startDate</td>
+<td>date-time</td>
+<td>Fetch change requests added on or after a specific date. Pass the date in <code class="prettyprint">YYYY-MM-DD</code> format.</td>
+</tr>
+<tr>
+<td>endDate</td>
+<td>date-time</td>
+<td>Fetch change requests added on or before a specific date. Pass the date in <code class="prettyprint">YYYY-MM-DD</code> format.</td>
+</tr>
+<tr>
+<td>startId</td>
+<td>long</td>
+<td>Fetch change requests greater than or equal to a specific request ID range.</td>
+</tr>
+<tr>
+<td>endId</td>
+<td>long</td>
+<td>Fetch change requests less than or equal to a specific request ID range.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameter marked with * is mandatory. </aside>
 
 <h2 id="get-customer-goodwill-requests">Get Customer Goodwill Requests</h2>
 
@@ -10751,14 +10930,18 @@ password* | Specify your preferred new password</p>
 </tr>
 </tbody></table>
 
+<h2 id="assign-lead">Assign Lead</h2>
+
+<p>Lets you change the owner of an existing lead. </p>
+
 <h2 id="get-lead-details">Get Lead Details</h2>
 
-<p>Retrieves the details of all leads of an org or a specific lead based on the lead ID passed.</p>
+<p>Retrieves the details of leads created in an org. You can use filter parameters to get personalized results.</p>
 
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/leads
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/leads?userId=90486448
 
 </code></pre>
 <blockquote>
@@ -10767,350 +10950,184 @@ password* | Specify your preferred new password</p>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">90486448</span><span class="p">,</span><span class="w">
             </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SKU"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"leadFor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"item001"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"leadFor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Denim"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ON_HOLD"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"lastFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:45:00+05:30"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"nextFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T13:15:00+05:30"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T13:30:00+05:30"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">28812689</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-15T14:54:32+05:30"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"nextFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-05T02:30:00Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T08:00:00Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-20T15:28:13Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
             </span><span class="nt">"followUpDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes 1"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-14T15:38:04+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"followedUpBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">28812689</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"followedUpOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:45:00+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"scheduledFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:30:00+05:30"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes 2"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-14T15:38:04+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"followedUpBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">28812689</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"followedUpOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:45:00+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"scheduledFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:30:00+05:30"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-07T17:26:02+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"followedUpBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">12348</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"followedUpOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:45:00+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"scheduledFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-05T08:00:00+05:30"</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">],</span><span class="w">
-            </span><span class="nt">"statusLogDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPEN"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-14T15:38:04+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Best price available at another store"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ON_HOLD"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-11-14T15:38:04+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Item not available in store"</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">],</span><span class="w">
-            </span><span class="nt">"orgSourceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-            </span><span class="nt">"subStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YetToDecide"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SKU"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"leadFor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"item001"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ON_HOLD"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"nextFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-05T08:00:00+05:30"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T13:30:00+05:30"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">28812689</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-15T14:58:39+05:30"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"followUpDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes 1"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-06T17:36:28+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"followedUpBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">28812689</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"followedUpOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:45:00+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"scheduledFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:30:00+05:30"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes 2"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-06T17:36:28+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"followedUpBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">28812689</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"followedUpOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:45:00+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"scheduledFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:30:00+05:30"</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">],</span><span class="w">
-            </span><span class="nt">"statusLogDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPEN"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-06T17:36:28+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Item not available in store"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
                 </span><span class="p">{</span><span class="w">
                     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ON_HOLD"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-06T17:36:28+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Best price available at another store"</span><span class="w">
+                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">90486448</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes 1"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-20T15:28:13Z"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"followedUpBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"followedUpOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T07:15:00Z"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"scheduledFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T07:00:00Z"</span><span class="w">
                 </span><span class="p">},</span><span class="w">
                 </span><span class="p">{</span><span class="w">
-                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LOST"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-28T14:34:46+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUTO_CLOSE"</span><span class="w">
+                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">90486448</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes 2"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-20T15:28:13Z"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"followedUpBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"followedUpOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T07:15:00Z"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"scheduledFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T07:00:00Z"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"statusLogDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">90486448</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPEN"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-20T15:28:13Z"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"APICALL"</span><span class="w">
                 </span><span class="p">},</span><span class="w">
                 </span><span class="p">{</span><span class="w">
-                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">90486448</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
                     </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ON_HOLD"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">28812689</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-04-15T14:58:39+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Best price available at another store"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"subStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YetToDecide"</span><span class="w">
+                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-20T15:28:13Z"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOT PICKING CALL"</span><span class="w">
                 </span><span class="p">}</span><span class="w">
             </span><span class="p">],</span><span class="w">
             </span><span class="nt">"orgSourceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
             </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"trial_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Not Done"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"subStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"YetToDecide"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">90486448</span><span class="p">,</span><span class="w">
             </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SKU"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"leadFor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"item001"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LOST"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"nextFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-05T08:00:00+05:30"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T13:30:00+05:30"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">28812689</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-28T14:34:46+05:30"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"leadFor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CasualShirt"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ON_HOLD"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"nextFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-05T02:30:00Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T08:00:00Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-20T15:28:51Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
             </span><span class="nt">"followUpDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="p">{</span><span class="w">
                     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">90486448</span><span class="p">,</span><span class="w">
                     </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
                     </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes 1"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-06T18:14:26+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"followedUpBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">28812689</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"followedUpOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:45:00+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"scheduledFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:30:00+05:30"</span><span class="w">
+                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-20T15:28:51Z"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"followedUpBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"followedUpOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T07:15:00Z"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"scheduledFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T07:00:00Z"</span><span class="w">
                 </span><span class="p">},</span><span class="w">
                 </span><span class="p">{</span><span class="w">
                     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">90486448</span><span class="p">,</span><span class="w">
                     </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
                     </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes 2"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-06T18:14:26+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"followedUpBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">28812689</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"followedUpOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:45:00+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"scheduledFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:30:00+05:30"</span><span class="w">
+                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-20T15:28:51Z"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"followedUpBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"followedUpOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T07:15:00Z"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"scheduledFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T07:00:00Z"</span><span class="w">
                 </span><span class="p">}</span><span class="w">
             </span><span class="p">],</span><span class="w">
             </span><span class="nt">"statusLogDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="p">{</span><span class="w">
-                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">90486448</span><span class="p">,</span><span class="w">
                     </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
                     </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPEN"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-06T18:14:26+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Item not available in store"</span><span class="w">
+                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-20T15:28:51Z"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"APICALL"</span><span class="w">
                 </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">90486448</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ON_HOLD"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-20T15:28:51Z"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOT PICKING CALL"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"orgSourceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"trial_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Not Done"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">90486448</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SKU"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"leadFor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Polo"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ON_HOLD"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"nextFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-05T02:30:00Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T08:00:00Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-20T15:29:29Z"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"followUpDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="p">{</span><span class="w">
                     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ON_HOLD"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-06T18:14:26+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Best price available at another store"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LOST"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-28T14:34:46+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUTO_CLOSE"</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">],</span><span class="w">
-            </span><span class="nt">"orgSourceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"trial_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Not Done"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SKU"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"leadFor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"item001"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LOST"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"nextFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-05T08:00:00+05:30"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T13:30:00+05:30"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">28812689</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-28T14:34:46+05:30"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"followUpDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">90486448</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
                     </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes 1"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-06T18:18:28+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"followedUpBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">28812689</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"followedUpOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:45:00+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"scheduledFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:30:00+05:30"</span><span class="w">
+                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-20T15:29:29Z"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"followedUpBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"followedUpOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T07:15:00Z"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"scheduledFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T07:00:00Z"</span><span class="w">
                 </span><span class="p">},</span><span class="w">
                 </span><span class="p">{</span><span class="w">
-                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">90486448</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
                     </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes 2"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-06T18:18:28+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"followedUpBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">28812689</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"followedUpOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:45:00+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"scheduledFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:30:00+05:30"</span><span class="w">
+                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-20T15:29:29Z"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"followedUpBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"followedUpOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T07:15:00Z"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"scheduledFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T07:00:00Z"</span><span class="w">
                 </span><span class="p">}</span><span class="w">
             </span><span class="p">],</span><span class="w">
             </span><span class="nt">"statusLogDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                 </span><span class="p">{</span><span class="w">
-                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">90486448</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
                     </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPEN"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-06T18:18:28+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Item not available in store"</span><span class="w">
+                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-20T15:29:29Z"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"APICALL"</span><span class="w">
                 </span><span class="p">},</span><span class="w">
                 </span><span class="p">{</span><span class="w">
-                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LOST"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-28T14:34:46+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AUTO_CLOSE"</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">],</span><span class="w">
-            </span><span class="nt">"orgSourceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"trial_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Not Done"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SKU"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"leadFor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"item001"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LOST"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"nextFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-05T08:00:00+05:30"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T13:30:00+05:30"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">876</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-01-28T14:34:46+05:30"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"followUpDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes 1"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-06T18:45:29+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"followedUpBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">28812689</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"followedUpOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:45:00+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"scheduledFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:30:00+05:30"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes 2"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-06T18:45:29+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"followedUpBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">28812689</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"followedUpOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:45:00+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"scheduledFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T12:30:00+05:30"</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">],</span><span class="w">
-            </span><span class="nt">"statusLogDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPEN"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-06T18:45:29+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Item not available in store"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">368754334</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">90486448</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
                     </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ON_HOLD"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15002926</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-12-06T18:45:29+05:30"</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-                    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Best price available at another store"</span><span class="w">
+                    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-20T15:29:29Z"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOT PICKING CALL"</span><span class="w">
                 </span><span class="p">}</span><span class="w">
             </span><span class="p">],</span><span class="w">
             </span><span class="nt">"orgSourceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
@@ -11122,7 +11139,6 @@ password* | Specify your preferred new password</p>
     </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
     </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
 </span></code></pre>
 <h3 id="resource-information">Resource Information</h3>
 
@@ -11160,7 +11176,58 @@ password* | Specify your preferred new password</p>
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://{host}/v2/leads/{leadId}</code></p>
+<p><code class="prettyprint">http://{host}/v2/leads?{queryParams}={value}</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>userId</td>
+<td>long</td>
+<td>Get leads of a specific customer. Pass the user ID of the customer.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>enum</td>
+<td>Get leads of a specific status. Values: <code class="prettyprint">OPEN</code>, <code class="prettyprint">ON_HOLD</code>, <code class="prettyprint">WON</code>, <code class="prettyprint">LOST</code>, <code class="prettyprint">DELETED</code>.</td>
+</tr>
+<tr>
+<td>substatus</td>
+<td>string</td>
+<td>Get leads by lead sub-status.</td>
+</tr>
+<tr>
+<td>owner</td>
+<td>string</td>
+<td>Fetch leads assigned to a specific associate. Pass the associate/staff ID (user id of the staff).</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>int</td>
+<td>Limit the number of results to retrieve.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>long</td>
+<td>Number of rows (as per the data entered into the table) that you want omit from showing.</td>
+</tr>
+<tr>
+<td>entityType</td>
+<td>enum</td>
+<td>Get leads of a specific entity. You also need to pass the entityCode accordingly. Pass entityType and e Values: <code class="prettyprint">ZONE</code>, <code class="prettyprint">CONCEPT</code>, <code class="prettyprint">STORE</code>, <code class="prettyprint">TILL</code>, <code class="prettyprint">STR_SERVER</code>, <code class="prettyprint">ADMIN_USER</code>, <code class="prettyprint">ASSOCIATE</code>, <code class="prettyprint">STAFF</code>.</td>
+</tr>
+<tr>
+<td>entityCode</td>
+<td>string</td>
+<td>Pass the code of the respective <code class="prettyprint">entityType</code>. For example, if <code class="prettyprint">entityType</code> is STORE, then <code class="prettyprint">entityCode</code> should be store code by which you want to get leads.</td>
+</tr>
+</tbody></table>
 
 <h3 id="additional-header">Additional Header</h3>
 
@@ -11177,24 +11244,6 @@ password* | Specify your preferred new password</p>
 </tbody></table>
 
 <aside class="notice">To enable a specific language support for an org, contact the Platforms team to get the translations added to the database and activate translations for the org. </aside>
-
-<h3 id="request-path-parameters">Request Path Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Data Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>leadId</td>
-<td>int</td>
-<td>Specify the lead id to get details of a specific lead</td>
-</tr>
-</tbody></table>
-
-<aside class="notice"> Parameters marked with * are mandatory. </aside>
 
 <h2 id="update-lead">Update Lead</h2>
 
@@ -11676,7 +11725,7 @@ password* | Specify your preferred new password</p>
 </tr>
 </tbody></table>
 
-<h2 id="update-lead-followup">Update Lead Followup</h2>
+<h2 id="update-lead-follow-ups">Update Lead follow-ups</h2>
 
 <p>Lets you update the recent follow up date and till id of a lead.</p>
 
