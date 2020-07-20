@@ -10930,9 +10930,146 @@ password* | Specify your preferred new password</p>
 </tr>
 </tbody></table>
 
-<h2 id="assign-lead">Assign Lead</h2>
+<h2 id="change-lead-owner">Change Lead Owner</h2>
 
 <p>Lets you change the owner of an existing lead. </p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/leads/16716
+
+</code></pre>
+<blockquote>
+<p>Sample PUT Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+ </span><span class="nt">"owner"</span><span class="p">:</span><span class="w"> </span><span class="mi">15041276</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16716</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">379271162</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CATEGORY"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"leadFor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"firstName_3596178"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ON_HOLD"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"nextFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-07-21T11:31:24+05:30"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-07-20T11:31:24+05:30"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15041276</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-07-20T11:31:26+05:30"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15041276</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"followUpDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+       </span><span class="p">{</span><span class="w">
+           </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">32834</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">379271162</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">16716</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes 1"</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15041276</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-07-20T11:31:26+05:30"</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"followedUpBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15041276</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"followedUpOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-07-21T11:31:24+05:30"</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"scheduledFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-07-21T11:31:24+05:30"</span><span class="w">
+       </span><span class="p">},</span><span class="w">
+       </span><span class="p">{</span><span class="w">
+           </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">32835</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">379271162</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">16716</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes 2"</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15041276</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-07-20T11:31:26+05:30"</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"followedUpBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15041276</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"followedUpOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-07-22T11:31:24+05:30"</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"scheduledFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-07-22T11:31:24+05:30"</span><span class="w">
+       </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"statusLogDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+       </span><span class="p">{</span><span class="w">
+           </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">37361</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">379271162</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">16716</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPEN"</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15041276</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-07-20T11:31:26+05:30"</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">45</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Color not available"</span><span class="w">
+       </span><span class="p">},</span><span class="w">
+       </span><span class="p">{</span><span class="w">
+           </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">37362</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">379271162</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">16716</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ON_HOLD"</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15041276</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-07-20T11:31:26+05:30"</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">46</span><span class="p">,</span><span class="w">
+           </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Price too high"</span><span class="w">
+       </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"orgSourceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+       </span><span class="nt">"trial_status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Not Done"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"user1129"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/leads/{leadId}</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p>`http://{host}/v2/leads/{leadId}</p>
+
+<h3 id="request-body-parameter">Request Body Parameter</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>leadId*</td>
+<td>long</td>
+<td>Unique ID of the lead to update.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">The parameter marked with * is mandatory.</aside>
 
 <h2 id="get-lead-details">Get Lead Details</h2>
 
