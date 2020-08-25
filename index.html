@@ -10665,6 +10665,10 @@ password* | Specify your preferred new password</p>
 <td>Yes</td>
 </tr>
 <tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
 <td>HTTP Methods</td>
 <td>GET</td>
 </tr>
@@ -10823,6 +10827,10 @@ password* | Specify your preferred new password</p>
 <td>Yes</td>
 </tr>
 <tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
 <td>HTTP Methods</td>
 <td>POST</td>
 </tr>
@@ -10921,6 +10929,10 @@ password* | Specify your preferred new password</p>
 <td>Current sub-status of the lead. Use only names that are created using <code class="prettyprint">leads/substatus</code> API</td>
 </tr>
 </tbody></table>
+
+<h2 id="assign-lead">Assign Lead</h2>
+
+<p>Lets you change the owner of an existing lead. </p>
 
 <h2 id="get-lead-details">Get Lead Details</h2>
 
@@ -11149,6 +11161,10 @@ password* | Specify your preferred new password</p>
 <td>Yes</td>
 </tr>
 <tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
 <td>HTTP Methods</td>
 <td>GET</td>
 </tr>
@@ -11231,7 +11247,7 @@ password* | Specify your preferred new password</p>
 
 <h2 id="update-lead">Update Lead</h2>
 
-<p>Lets you update extended fields and lead owner for an existing lead.</p>
+<p>Updates extended fields for an existing lead</p>
 
 <blockquote>
 <p>Sample Request URL</p>
@@ -11239,7 +11255,7 @@ password* | Specify your preferred new password</p>
 <pre class="highlight html"><code>http://us.api.capillarytech.com/v2/leads/19
 </code></pre>
 <blockquote>
-<p>Sample PUT Request (to update extended fields)</p>
+<p>Sample PUT Request</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
 </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w">
@@ -11247,13 +11263,6 @@ password* | Specify your preferred new password</p>
     </span><span class="nt">"trial_status"</span><span class="p">:</span><span class="s2">"Not Done"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>Sample PUT Request (to change lead owner)</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
- </span><span class="nt">"owner"</span><span class="p">:</span><span class="w"> </span><span class="mi">15041276</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -11341,6 +11350,14 @@ password* | Specify your preferred new password</p>
 <td>Yes</td>
 </tr>
 <tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
 <td>HTTP Methods</td>
 <td>PUT</td>
 </tr>
@@ -11423,6 +11440,10 @@ password* | Specify your preferred new password</p>
 <td>Yes</td>
 </tr>
 <tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
 <td>HTTP Methods</td>
 <td>POST</td>
 </tr>
@@ -11503,6 +11524,10 @@ password* | Specify your preferred new password</p>
 <tr>
 <td>Authentication</td>
 <td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
 </tr>
 <tr>
 <td>HTTP Methods</td>
@@ -11645,6 +11670,10 @@ password* | Specify your preferred new password</p>
 <tr>
 <td>Authentication</td>
 <td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
 </tr>
 <tr>
 <td>HTTP Methods</td>
@@ -11811,6 +11840,10 @@ password* | Specify your preferred new password</p>
 <tr>
 <td>Authentication</td>
 <td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
 </tr>
 <tr>
 <td>HTTP Methods</td>
@@ -11984,6 +12017,10 @@ password* | Specify your preferred new password</p>
 <td>Yes</td>
 </tr>
 <tr>
+<td>Response Formats</td>
+<td>JSON</td>
+</tr>
+<tr>
 <td>HTTP Methods</td>
 <td>GET</td>
 </tr>
@@ -12109,6 +12146,10 @@ password* | Specify your preferred new password</p>
 <tr>
 <td>Authentication</td>
 <td>Yes</td>
+</tr>
+<tr>
+<td>Response Formats</td>
+<td>JSON</td>
 </tr>
 <tr>
 <td>HTTP Methods</td>
