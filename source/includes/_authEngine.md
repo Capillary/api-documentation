@@ -582,7 +582,7 @@ confirmPassword | string | Enter the new password again.
 
 ## Forget Password
 
-Lets you set a new password if the customer has lost or forgot password. This is applicable only for brands for which password is enabled. After using this API, `password/forget`, the customer needs to authenticate again - 1. Generate token, 2. Generate OTP, and 3. Validate OTP. 
+Lets you set a new password if the customer has lost or forgot password. This is applicable only for brands for which password is enabled. You need to first generate `sessionId` and then use it in `password/forget`. After setting a new password, the customer customer needs to authenticate again - 1. Generate token, 2. Generate OTP, and 3. Validate OTP. 
 
 
 > Sample Request URL
@@ -650,11 +650,11 @@ Parameter | Datatype | Description
 --------- | -------- | -----------
 identifierType* | enum | . Values: `MOBILE`, `EMAIL`, `USERNAME`.
 identifierValue* | string | Value of the specified identifierType. For example, if `identifierType` is `MOBILE`, the `identifierValue` is mobile number.
-deviceId** | string | Unique ID of the device used to forget password.   
-brand | string | Name of the brand or org associated to the current account.
-sessionId | string | Unique sessionId generated for the `identifierType` and `deviceId` combination.
-password | string | New password for the account.
-confirmPassword | string | Reenter the new password.
+deviceId** | string | Unique ID of the device used to reset password.
+brand* | string | Name of the brand or org associated to the current account.
+sessionId* | string | Unique sessionId generated for the `identifierType` and `deviceId` combination.
+password* | string | New password for the account.
+confirmPassword* | string | Reenter the new password.
 
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
