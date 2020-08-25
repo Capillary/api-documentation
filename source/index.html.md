@@ -39,6 +39,10 @@ search: true
 # Release Updates
 This section provides the quarterly breakup of existing API updates and new API releases.
 
+## Q2 Releases (2020)
+
+* New resource [Auth Engine] (https://capillary.github.io/api-documentation/#auth-engine) is added. Auth Engine provides front-end APIs to enable org customers to authenticate to org's mobile  or web application.
+
 ## Q4 Releases (2019-20)
 
 * **OAuth Support**: Besides Basic Authentication, Capillary APIs now support OAuth and access tokens for more secured API calls. For more details, see support portal. 
