@@ -31,6 +31,7 @@ includes:
   - events
   - integrations
   - eventNotifications
+  - authEngine
 
 search: true
 ---
