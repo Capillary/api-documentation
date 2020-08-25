@@ -26656,7 +26656,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h2 id="forget-password">Forget Password</h2>
 
-<p>Lets you set a new password if the customer has lost or forgot password. This is applicable only for brands for which password is enabled. After using this API, <code class="prettyprint">password/forget</code>, the customer needs to authenticate again - 1. Generate token, 2. Generate OTP, and 3. Validate OTP. </p>
+<p>Lets you set a new password if the customer has lost or forgot password. This is applicable only for brands for which password is enabled. You need to first generate <code class="prettyprint">sessionId</code> and then use it in <code class="prettyprint">password/forget</code>. After setting a new password, the customer customer needs to authenticate again - 1. Generate token, 2. Generate OTP, and 3. Validate OTP. </p>
 
 <blockquote>
 <p>Sample Request URL</p>
@@ -26753,25 +26753,25 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <tr>
 <td>deviceId**</td>
 <td>string</td>
-<td>Unique ID of the device used to forget password.</td>
+<td>Unique ID of the device used to reset password.</td>
 </tr>
 <tr>
-<td>brand</td>
+<td>brand*</td>
 <td>string</td>
 <td>Name of the brand or org associated to the current account.</td>
 </tr>
 <tr>
-<td>sessionId</td>
+<td>sessionId*</td>
 <td>string</td>
 <td>Unique sessionId generated for the <code class="prettyprint">identifierType</code> and <code class="prettyprint">deviceId</code> combination.</td>
 </tr>
 <tr>
-<td>password</td>
+<td>password*</td>
 <td>string</td>
 <td>New password for the account.</td>
 </tr>
 <tr>
-<td>confirmPassword</td>
+<td>confirmPassword*</td>
 <td>string</td>
 <td>Reenter the new password.</td>
 </tr>
