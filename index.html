@@ -25802,6 +25802,983 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </tr>
 </tbody></table>
 
+          <h1 id="auth-engine">Auth Engine</h1>
+
+<p>Auth Engine is a framework that manages end-user (customer) authentication to the organization&rsquo;s mobile or web application. This resource provides APIs related to authenticating web and mobile applications.</p>
+
+<p>The authentication completes only after validating the mobile number or email ID through OTP.</p>
+
+<p>Before starting with the Auth Engine APIs, you need to know the following backend configurations.</p>
+
+<ul>
+<li>Whether the password option is enabled for the org if you want to use password-based authentication.</li>
+<li>Whether OTP is enabled for the org and the daily limit of OTPs a customer can generate. If you need to increase the daily limit of OTPs a customer can generate in a day, log a request and assign it to the Platforms team.</li>
+</ul>
+
+<p>Here we have provided only the details of Auth Engine APIs. To know more about Auth Engine, see  <a href="https://support.capillarytech.com/en/support/solutions/articles/4000161784-auth-engine">Auth Engine Documentation</a>.</p>
+
+<aside class="notice">The host URL of Auth Engine is different from CRM V1.1 or V2 APIs. Please consider the URLs provided for Auth Engine APIs. </aside>
+
+<h2 id="generate-authentication-token">Generate Authentication Token</h2>
+
+<blockquote>
+<p>Sample Request URL</p>
+</blockquote>
+<pre class="highlight html"><code>https://apac2-auth-api.capillarytech.com/auth/v1/token/generate
+</code></pre>
+<blockquote>
+<p>Sample POST Request (to Authenticate  with Mobile/Email)</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"identifierType"</span><span class="p">:</span><span class="s2">"MOBILE"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"identifierValue"</span><span class="p">:</span><span class="s2">"0495678923"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deviceid1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STANDARDAPP"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample POST Request (to Authenticate with Username)</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"identifierType"</span><span class="p">:</span><span class="s2">"USERNAME"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"identifierValue"</span><span class="p">:</span><span class="s2">"9945560224"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"mobile"</span><span class="p">:</span><span class="s2">"9945560224"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deviceid1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STANDARDAPP"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"password"</span><span class="p">:</span><span class="s2">"password"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"confirmPassword"</span><span class="p">:</span><span class="s2">"password"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"auth"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJpZHYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiMzJydHNkZXJlZCIsIm9yZyI6IlNUQU5EQVJEQVBQIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwib2djIjpbIjE1MTA2MHxzYS5kZW1vLnNvbHV0aW9uIl0sImV4cCI6MTU5NzY1NTgxMywiaWF0IjoxNTk3NjUyMjEzLCJyb2wiOiJWSUVXIn0.2LqAg3tDVu8VwasSXuwiL6p917NCxgpKEt76qqrARgQ"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"appRegistered"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sessionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"D-12c177af-dac7-4383-a0fb-6c09e148af8e"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VIEW"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"userRegisteredForPassword"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Generates authentication token using customer identifier and deviceId. To use password based authentication, the password option has to be enabled for the org. Contact Engineering team to get password enabled for your org.</p>
+
+<p>Once the token is generated, you need to generate OTP and validate the OTP to complete the authentication process. For password enabled orgs, you need to verify the account for the first time.</p>
+
+<p>When the token expires, you can regenerate it using <code class="prettyprint">token/regenerate</code>.</p>
+
+<p><strong>1. Steps to generate token for mobile apps</strong> :</p>
+
+<ol>
+<li>Generate a token using the <code class="prettyprint">token/generate</code> API. You will get <code class="prettyprint">sessionId</code> (valid for 15 minutes).</li>
+<li>Using <code class="prettyprint">sessionId</code>, generate an OTP.</li>
+<li>Validate the OTP using <code class="prettyprint">sessionId</code>. You will get the actual <code class="prettyprint">token</code> along with the non-expiry <code class="prettyprint">key</code>.</li>
+<li>Use the <code class="prettyprint">key</code> to regenerate token whenever required.</li>
+</ol>
+
+<p><strong>2. Steps to generate token for Web application</strong>:</p>
+
+<ol>
+<li>Generate a session using a token generate API. You will get VIEW token and <code class="prettyprint">sessionId</code> (valid for 15 minutes).</li>
+<li>Using sessionId, generate an OTP.</li>
+<li>Validate the OTP using <code class="prettyprint">sessionId</code>. You will get the actual token. The key is not generated for web applications.</li>
+<li>Use the <code class="prettyprint">token</code> generated for validating the OTP to regenerate the token.</li>
+</ol>
+
+<p><strong>3. Steps to generate token for password-based authentication</strong>:</p>
+
+<p>For the first time user:
+* Use the steps mentioned above according to the type  of application - mobile app or web app .</p>
+
+<p>From second time:</p>
+
+<ol>
+<li>Generate a session using a token generate API. You will get VIEW token and <code class="prettyprint">sessionId</code> (valid for 15 minutes).</li>
+<li>Validate the password (password/validate) using the <code class="prettyprint">sessionId</code> generated.</li>
+</ol>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI for Mobile App</td>
+<td><code class="prettyprint">/auth/v1/token/generate</code></td>
+</tr>
+<tr>
+<td>URI for Web App</td>
+<td><code class="prettyprint">/auth/v1/web/token/generate</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p>For mobile application:</p>
+
+<p><code class="prettyprint">http://{ae-host}/auth/v1/token/generate</code></p>
+
+<p>For web application:</p>
+
+<p><code class="prettyprint">http://{ae-host}/auth/v1/web/token/generate</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifierType*</td>
+<td>enum</td>
+<td>Identifier used for token generation. Values: <code class="prettyprint">MOBILE</code>, <code class="prettyprint">EMAIL</code>, <code class="prettyprint">USERNAME</code>.</td>
+</tr>
+<tr>
+<td>identifierValue*</td>
+<td>string</td>
+<td>Value of the specified identifierType. For example, if <code class="prettyprint">identifierType</code> is <code class="prettyprint">MOBILE</code>, the <code class="prettyprint">identifierValue</code> is mobile number.</td>
+</tr>
+<tr>
+<td>deviceId*</td>
+<td>string</td>
+<td>Unique ID of the device from which the customer has generated the token.</td>
+</tr>
+<tr>
+<td>brand*</td>
+<td>string</td>
+<td>Name of the brand or org for which authentication needs to be verified.</td>
+</tr>
+<tr>
+<td>mobile**</td>
+<td>string</td>
+<td>Mobile number of the customer. Either mobile number or email ID is required to authenticate with username.</td>
+</tr>
+<tr>
+<td>email**</td>
+<td>string</td>
+<td>Email ID of the customer. Either mobile number or email ID is required to authenticate with username.</td>
+</tr>
+<tr>
+<td>password**</td>
+<td>string</td>
+<td>Password to login to the app.</td>
+</tr>
+<tr>
+<td>confirmPassword**</td>
+<td>string</td>
+<td>Reenter the password.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory and the ones marked with ** are required when the <code>identifierType</code> is <code>USERNAME</code>. </aside>
+
+<h2 id="generate-otp">Generate OTP</h2>
+
+<p>Issues OTP to the customer&rsquo;s mobile number/email ID using the <code class="prettyprint">sessionId</code> generated through the <code class="prettyprint">token/generate</code> API.</p>
+
+<p>There is a limit in the number of OTPs a customer can generate in a day. If you wish to increase or decrease the limit, contact the Platforms team.</p>
+
+<blockquote>
+<p>Sample Request URL</p>
+</blockquote>
+<pre class="highlight html"><code>https://apac2-auth-api.capillarytech.com/auth/v1/otp/generate
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"identifierType"</span><span class="p">:</span><span class="s2">"MOBILE"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"identifierValue"</span><span class="p">:</span><span class="s2">"9940000000"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"32rtsdered"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STANDARDAPP"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sessionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"D-502259d3-d4d6-4458-bc5f-b89d3d8e4c7b"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI for Mobile App</td>
+<td><code class="prettyprint">/auth/v1/otp/generate</code></td>
+</tr>
+<tr>
+<td>URI for Web App</td>
+<td><code class="prettyprint">/auth/v1/web/otp/generate</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>No</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p>For mobile application:</p>
+
+<p><code class="prettyprint">http://{ae-host}/auth/v1/otp/generate</code></p>
+
+<p>For web application:</p>
+
+<p><code class="prettyprint">http://{ae-host}/auth/v1/web/otp/generate</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifierType*</td>
+<td>enum</td>
+<td>Identifier used for authentication. Values: <code class="prettyprint">MOBILE</code>, <code class="prettyprint">EMAIL</code>, <code class="prettyprint">USERNAME</code>.</td>
+</tr>
+<tr>
+<td>identifierValue*</td>
+<td>string</td>
+<td>Value of the specified identifierType. For example, if <code class="prettyprint">identifierType</code> is <code class="prettyprint">MOBILE</code>, the <code class="prettyprint">identifierValue</code> is mobile number.</td>
+</tr>
+<tr>
+<td>deviceId**</td>
+<td>string</td>
+<td>Unique ID of the device from which the customer has generated the token.</td>
+</tr>
+<tr>
+<td>brand*</td>
+<td>string</td>
+<td>Name of the brand or org for which authentication needs to be verified.</td>
+</tr>
+<tr>
+<td>sessionId*</td>
+<td>string</td>
+<td>Session ID generated through the <code class="prettyprint">v1/token/generate</code> API.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory and the parameter with ** is required for mobile app. </aside>
+
+<h2 id="validate-otp">Validate OTP</h2>
+
+<p>Validates the OTP generated through the <code class="prettyprint">/otp/generate</code> API.</p>
+
+<blockquote>
+<p>Sample Request URL</p>
+</blockquote>
+<pre class="highlight html"><code>https://apac2-auth-api.capillarytech.com/auth/v1/otp/validate
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"identifierType"</span><span class="p">:</span><span class="s2">"MOBILE"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"identifierValue"</span><span class="p">:</span><span class="s2">"9940000000"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deviceid1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"standardapp"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sessionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"D-502259d3-d4d6-4458-bc5f-b89d3d8e4c7b"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"otp"</span><span class="p">:</span><span class="s2">"276889"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"auth"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJpZHYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiZGV2aWNlaWQxIiwib3JnIjoiU1RBTkRBUkRBUFAiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI3Njg4MTYiLCJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwiaXNjIjoiZmFsc2UiLCJvZ2MiOlsiMTUxMDYwfHNhLmRlbW8uc29sdXRpb24iXSwiZXhwIjoxNTk3OTQzODU1LCJpYXQiOjE1OTc5NDAyNTUsInJvbCI6IlVTRVIifQ.Wyt_xxlqtmMH3lyReO718sDokngYGp_HSLuiBOyaEds"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJpZHYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiZGV2aWNlaWQxIiwib3JnIjoiU1RBTkRBUkRBUFAiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI3Njg4MTYiLCJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwiaWF0IjoxNTk3OTQwMjU1LCJyb2wiOiJBVVRIIn0.UKCOU1oFLPsRx5YJRkClIaRVmE1lNDCjuuKQ9nnMdhE"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"appRegistered"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sessionId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USER"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"userRegisteredForPassword"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI for Mobile App</td>
+<td><code class="prettyprint">auth/v1/otp/validate</code></td>
+</tr>
+<tr>
+<td>URI for Web App</td>
+<td><code class="prettyprint">auth/v1/web/otp/validate</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>No</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p>For mobile application:</p>
+
+<p><code class="prettyprint">http://{ae-host}/auth/v1/otp/validate</code></p>
+
+<p>For web application:</p>
+
+<p><code class="prettyprint">http://{ae-host}/auth/v1/web/otp/validate</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifierType*</td>
+<td>enum</td>
+<td>Identifier used to generate OTP. Values: <code class="prettyprint">MOBILE</code>, <code class="prettyprint">EMAIL</code>, <code class="prettyprint">USERNAME</code>.</td>
+</tr>
+<tr>
+<td>identifierValue*</td>
+<td>string</td>
+<td>Value of the specified identifierType. For example, if <code class="prettyprint">identifierType</code> is <code class="prettyprint">MOBILE</code>, the <code class="prettyprint">identifierValue</code> is mobile number.</td>
+</tr>
+<tr>
+<td>deviceId**</td>
+<td>string</td>
+<td>Unique ID of the device associated with the OTP. Not applicable for web application.</td>
+</tr>
+<tr>
+<td>brand*</td>
+<td>string</td>
+<td>Name of the brand or org associated with the OTP.</td>
+</tr>
+<tr>
+<td>sessionId*</td>
+<td>string</td>
+<td>Session ID generated through the <code class="prettyprint">v1/token/generate</code> API.</td>
+</tr>
+<tr>
+<td>otp*</td>
+<td>long</td>
+<td>Validation code received by the customer (either to the mobile number or email ID provided).</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
+
+<h2 id="validate-password">Validate Password</h2>
+
+<p>Validates the password of an existing user account and generates the access token and key. The token is valid for 15 minutes by default. You can use the <code class="prettyprint">key</code> to regenerate token. </p>
+
+<blockquote>
+<p>Sample Request URL</p>
+</blockquote>
+<pre class="highlight html"><code>https://apac2-auth-api.capillarytech.com/auth/v1/password/validate
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">   </span><span class="nt">"identifierType"</span><span class="p">:</span><span class="s2">"USERNAME"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"identifierValue"</span><span class="p">:</span><span class="s2">"9940000000"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deviceid1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KANMODEMO"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sessionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"D-c62d7326-e122-4186-8c72-e42f270b0cdf"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"password"</span><span class="p">:</span><span class="s2">"password"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"auth"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJpZHYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiZGV2aWNlaWQxIiwib3JnIjoiU1RBTkRBUkRBUFAiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI3Njg4MTYiLCJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwiaXNjIjoiZmFsc2UiLCJvZ2MiOlsiMTUxMDYwfHNhLmRlbW8uc29sdXRpb24iXSwiZXhwIjoxNTk3OTQzODU1LCJpYXQiOjE1OTc5NDAyNTUsInJvbCI6IlVTRVIifQ.Wyt_xxlqtmMH3lyReO718sDokngYGp_HSLuiBOyaEds"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJpZHYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiZGV2aWNlaWQxIiwib3JnIjoiU1RBTkRBUkRBUFAiLCJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiI3Njg4MTYiLCJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwiaWF0IjoxNTk3OTQwMjU1LCJyb2wiOiJBVVRIIn0.UKCOU1oFLPsRx5YJRkClIaRVmE1lNDCjuuKQ9nnMdhE"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"appRegistered"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sessionId"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USER"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"userRegisteredForPassword"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI for Mobile App</td>
+<td><code class="prettyprint">auth/v1/password/validate</code></td>
+</tr>
+<tr>
+<td>URI for Web App</td>
+<td><code class="prettyprint">auth/v1/web/password/validate</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>No</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p>For mobile application:</p>
+
+<p><code class="prettyprint">http://{ae-host}/auth/v1/password/validate</code></p>
+
+<p>For web application:</p>
+
+<p><code class="prettyprint">http://{ae-host}/auth/v1/web/password/validate</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifierType*</td>
+<td>enum</td>
+<td>Identifier used to generate OTP. Values: <code class="prettyprint">MOBILE</code>, <code class="prettyprint">EMAIL</code>, <code class="prettyprint">USERNAME</code>.</td>
+</tr>
+<tr>
+<td>identifierValue*</td>
+<td>string</td>
+<td>Value of the specified identifierType. For example, if <code class="prettyprint">identifierType</code> is <code class="prettyprint">MOBILE</code>, the <code class="prettyprint">identifierValue</code> is mobile number.</td>
+</tr>
+<tr>
+<td>deviceId**</td>
+<td>string</td>
+<td>Unique ID of the device used for password validate. This should be the same as the deviceId used to generate the current token. <em>Not applicable for web application</em>.</td>
+</tr>
+<tr>
+<td>brand*</td>
+<td>string</td>
+<td>Name of the brand or org associated to the current account.</td>
+</tr>
+<tr>
+<td>sessionId*</td>
+<td>string</td>
+<td>Session ID generated through the <code class="prettyprint">v1/token/generate</code> API.</td>
+</tr>
+<tr>
+<td>password*</td>
+<td>string</td>
+<td>Password of the current account.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory and the parameters marked with ** are required for mobile app.</aside>
+
+<h2 id="regenerate-authentication-token">Regenerate Authentication Token</h2>
+
+<blockquote>
+<p>Sample Request URL</p>
+</blockquote>
+<pre class="highlight html"><code>https://apac2-auth-api.capillarytech.com/auth/v1/token/regenerate
+</code></pre>
+<blockquote>
+<p>Sample POST Request (for Mobile App)</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"identifierType"</span><span class="p">:</span><span class="s2">"MOBILE"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"identifierValue"</span><span class="p">:</span><span class="s2">"0495678923"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"32rtsdered"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STANDARDAPP"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample POST Request (for Web App)</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"identifierType"</span><span class="p">:</span><span class="s2">"MOBILE"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"identifierValue"</span><span class="p">:</span><span class="s2">"0495678923"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STANDARDAPP"</span><span class="p">,</span><span class="w"> </span><span class="nt">"expiredToken"</span><span class="p">:</span><span class="s2">"nhdbYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiMzJydHNkZXJlZCIsIm9yZyI6IlNUQU5EQVJEQVBQIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwib2djIjpbIjE1MTA2MHxzYS5kZW1vLnNvbHV0aW9uIl0sImV4cCI6MTU5NzY1NTgxMywiaWF0IjoxNTk3NjUyMjEzLCJyb2wiOiJWSUVXIn0.2LqAg3tDVu8VwasSXuwiL6p917NCxgpKEt76qqrHGsF"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"auth"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJpZHYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiXSwiZGV2IjoiMzJydHNkZXJlZCIsIm9yZyI6IlNUQU5EQVJEQVBQIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwib2djIjpbIjE1MTA2MHxzYS5kZW1vLnNvbHV0aW9uIl0sImV4cCI6MTU5NzY1NTgxMywiaWF0IjoxNTk3NjUyMjEzLCJyb2wiOiJWSUVXIn0.2LqAg3tDVu8VwasSXuwiL6p917NCxgpKEt76qqrARgQ"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"key"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"user"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"appRegistered"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"sessionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"D-12c177af-dac7-4383-a0fb-6c09e148af8e"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VIEW"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"userRegisteredForPassword"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Generates authentication token using auth key or expired token generated in <code class="prettyprint">otp/validate</code> API. By default, a token is valid for 15 minutes. You can use this API only for orgs in which password based authentication is enabled. </p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI for Mobile App</td>
+<td><code class="prettyprint">/auth/v1/token/regenerate</code></td>
+</tr>
+<tr>
+<td>URI for Web App</td>
+<td><code class="prettyprint">/auth/v1/web/token/regenerate</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p>For mobile application:</p>
+
+<p><code class="prettyprint">http://{ae-host}/auth/v1/token/regenerate</code></p>
+
+<p>For web application:</p>
+
+<p><code class="prettyprint">http://{ae-host}/{auth}/v1/web/token/regenerate</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifierType*</td>
+<td>enum</td>
+<td>Identifier used for token generation. Values: <code class="prettyprint">MOBILE</code>, <code class="prettyprint">EMAIL</code>, <code class="prettyprint">USERNAME</code>.</td>
+</tr>
+<tr>
+<td>identifierValue*</td>
+<td>string</td>
+<td>Value of the specified identifierType. For example, if <code class="prettyprint">identifierType</code> is <code class="prettyprint">MOBILE</code>, the <code class="prettyprint">identifierValue</code> is mobile number.</td>
+</tr>
+<tr>
+<td>deviceId*</td>
+<td>string</td>
+<td>Unique ID of the device from which the customer has generated the token.</td>
+</tr>
+<tr>
+<td>brand*</td>
+<td>string</td>
+<td>Name of the brand or org for which authentication needs to be verified.</td>
+</tr>
+<tr>
+<td>mobile**</td>
+<td>string</td>
+<td>Mobile number of the customer. Either mobile number or email ID is required to authenticate with username.</td>
+</tr>
+<tr>
+<td>email**</td>
+<td>string</td>
+<td>Email ID of the customer. Either mobile number or email ID is required to authenticate with username.</td>
+</tr>
+<tr>
+<td>key**</td>
+<td>string</td>
+<td>Unique key generated for the successful mobile app OTP validation.</td>
+</tr>
+<tr>
+<td>expiredToken**</td>
+<td>string</td>
+<td>Unique key generated for the successful web OTP validation.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory and the ones marked with ** are required when the <code>identifierType</code> is <code>USERNAME</code>. </aside>
+
+<h2 id="change-password">Change Password</h2>
+
+<p>Lets you modify the current password of a customer. This is applicable only for brands for which password is enabled.</p>
+
+<blockquote>
+<p>Sample Request URL</p>
+</blockquote>
+<pre class="highlight html"><code>https://apac2-auth-api.capillarytech.com/auth/v1/password/change
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"identifierType"</span><span class="p">:</span><span class="s2">"USERNAME"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"identifierValue"</span><span class="p">:</span><span class="s2">"9940000000"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="s2">"deviceid1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KANMODEMO"</span><span class="p">,</span><span class="w">
+     </span><span class="nt">"password"</span><span class="p">:</span><span class="s2">"password"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"newPassword"</span><span class="p">:</span><span class="w"> </span><span class="s2">"password1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"confirmPassword"</span><span class="p">:</span><span class="w"> </span><span class="s2">"password1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"eyJpZHYiOlsiTU9CSUxFfDk5NDU1NjAyMjQiLCJVU0VSTkFNRXw5OTQ1NTYwMjI0Il0sImRldiI6ImRldmljZWlkMSIsIm9yZyI6IlNUQU5EQVJEQVBQIiwiYWxnIjoiSFMyNTYifQ.eyJpc3MiOiJDQVBJTExBUlkgVEVDSE5PTE9HSUVTIiwib2djIjpbIjE1MTA2MHxzYS5kZW1vLnNvbHV0aW9uIl0sImV4cCI6MTU5Nzg0MzczMywiaWF0IjoxNTk3ODQwMTMzLCJyb2wiOiJWSUVXIn0.pKYy3FpZm82igqp5CRUku4WF8pT5JEp6mX3P48M2qvY"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI for Mobile App</td>
+<td><code class="prettyprint">auth/v1/password/change</code></td>
+</tr>
+<tr>
+<td>URI for Web App</td>
+<td><code class="prettyprint">auth/v1/web/password/change</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Token-based</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p>For mobile application:</p>
+
+<p><code class="prettyprint">http://{ae-host}/auth/v1/password/change</code></p>
+
+<p>For web application:</p>
+
+<p><code class="prettyprint">http://{ae-host}/auth/v1/web/password/change</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifierType*</td>
+<td>enum</td>
+<td>. Values: <code class="prettyprint">MOBILE</code>, <code class="prettyprint">EMAIL</code>, <code class="prettyprint">USERNAME</code>.</td>
+</tr>
+<tr>
+<td>identifierValue*</td>
+<td>string</td>
+<td>Value of the specified identifierType. For example, if <code class="prettyprint">identifierType</code> is <code class="prettyprint">MOBILE</code>, the <code class="prettyprint">identifierValue</code> is mobile number.</td>
+</tr>
+<tr>
+<td>deviceId**</td>
+<td>string</td>
+<td>Unique ID of the device used for changing password. Applicable only for mobile app.</td>
+</tr>
+<tr>
+<td>brand</td>
+<td>string</td>
+<td>Name of the brand or org associated to the current account.</td>
+</tr>
+<tr>
+<td>token</td>
+<td>string</td>
+<td>Unique token generated for the identifierType, identifierValue and for web application, and including <code class="prettyprint">deviceId</code> for the  mobile application.</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>Existing password of the account.</td>
+</tr>
+<tr>
+<td>newPassword</td>
+<td>string</td>
+<td>New password the customer would like to have.</td>
+</tr>
+<tr>
+<td>confirmPassword</td>
+<td>string</td>
+<td>Enter the new password again.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
+
+<h2 id="forget-password">Forget Password</h2>
+
+<p>Lets you set a new password if the customer has lost or forgot password. This is applicable only for brands for which password is enabled. After using this API, <code class="prettyprint">password/forget</code>, the customer needs to authenticate again - 1. Generate token, 2. Generate OTP, and 3. Validate OTP. </p>
+
+<blockquote>
+<p>Sample Request URL</p>
+</blockquote>
+<pre class="highlight html"><code>https://apac2-auth-api.capillarytech.com/auth/v1/password/forget
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"identifierType"</span><span class="p">:</span><span class="s2">"USERNAME"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"identifierValue"</span><span class="p">:</span><span class="s2">"9940000000"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"deviceId"</span><span class="p">:</span><span class="s2">"deviceid1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KANMODEMO"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"password"</span><span class="p">:</span><span class="s2">"password1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"confirmPassword"</span><span class="p">:</span><span class="w"> </span><span class="s2">"password1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"sessionId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"D-86c23a88-9062-473d-ab3a-9a27145bf321"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUCCESS"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI for Mobile App</td>
+<td><code class="prettyprint">auth/v1/password/forget</code></td>
+</tr>
+<tr>
+<td>URI for Web App</td>
+<td><code class="prettyprint">auth/v1/web/password/forget</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>No</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p>For mobile application:</p>
+
+<p><code class="prettyprint">http://{ae-host}/auth/v1/password/forget</code></p>
+
+<p>For web application:</p>
+
+<p><code class="prettyprint">http://{ae-host}/auth/v1/web/password/forget</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifierType*</td>
+<td>enum</td>
+<td>. Values: <code class="prettyprint">MOBILE</code>, <code class="prettyprint">EMAIL</code>, <code class="prettyprint">USERNAME</code>.</td>
+</tr>
+<tr>
+<td>identifierValue*</td>
+<td>string</td>
+<td>Value of the specified identifierType. For example, if <code class="prettyprint">identifierType</code> is <code class="prettyprint">MOBILE</code>, the <code class="prettyprint">identifierValue</code> is mobile number.</td>
+</tr>
+<tr>
+<td>deviceId**</td>
+<td>string</td>
+<td>Unique ID of the device used to forget password.</td>
+</tr>
+<tr>
+<td>brand</td>
+<td>string</td>
+<td>Name of the brand or org associated to the current account.</td>
+</tr>
+<tr>
+<td>sessionId</td>
+<td>string</td>
+<td>Unique sessionId generated for the <code class="prettyprint">identifierType</code> and <code class="prettyprint">deviceId</code> combination.</td>
+</tr>
+<tr>
+<td>password</td>
+<td>string</td>
+<td>New password for the account.</td>
+</tr>
+<tr>
+<td>confirmPassword</td>
+<td>string</td>
+<td>Reenter the new password.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
+
       </div>
       <div class="dark-box">
           <div class="lang-selector">
