@@ -135,6 +135,7 @@
 
 <ul>
 <li>New resource <a href="https://capillary.github.io/api-documentation/#auth-engine">Auth Engine</a> is added. Auth Engine provides front-end APIs to enable org customers to authenticate to org&rsquo;s mobile  or web application.</li>
+<li>OAuth supports posting data through store along with Till that was already supported. Two new headers are introduced <code class="prettyprint">X-CAP-API-ATTRIBUTION-ENTITY-TYPE</code>, <code class="prettyprint">X-CAP-API-ATTRIBUTION-ENTITY-CODE</code> replacing <code class="prettyprint">X-CAP-API-ATTRIBUTION-TILL-CODE</code>.</li>
 </ul>
 
 <h2 id="q4-releases-2019-20">Q4 Releases (2019-20)</h2>
@@ -350,8 +351,12 @@
 <td>This should also be set as application/json</td>
 </tr>
 <tr>
-<td>X-CAP-API-ATTRIBUTION-TILL-CODE</td>
-<td>Till code from which you want to POST data. By default, the Till associated with the client key and secret is mapped if this is not passed.</td>
+<td>X-CAP-API-ATTRIBUTION-ENTITY-TYPE</td>
+<td>Till or store from which you want to post the data. Supported Values: <code class="prettyprint">TILL</code>, <code class="prettyprint">STORE_CODE</code>, <code class="prettyprint">STORE_NAME</code>, <code class="prettyprint">STORE_EXTERNAL_ ID</code>, <code class="prettyprint">STORE_EXTERNAL_ID_1</code>, <code class="prettyprint">STORE_EXTERNAL_ID_2</code>. The default value is <code class="prettyprint">TILL</code>.</td>
+</tr>
+<tr>
+<td>X-CAP-API-ATTRIBUTION-ENTITY-CODE</td>
+<td>Pass the entity value based on the entity type. For example, if <code class="prettyprint">X-CAP-API-ATTRIBUTION-ENTITY-TYPE</code> is STORE_CODE, then X-CAP-API-ATTRIBUTION-ENTITY-CODE is the store code that you want to tag to POST data. By default, it considers the Till associated with the client key and secret.</td>
 </tr>
 </tbody></table>
 
