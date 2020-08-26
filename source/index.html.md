@@ -39,9 +39,11 @@ search: true
 # Release Updates
 This section provides the quarterly breakup of existing API updates and new API releases.
 
+
 ## Q2 Releases (2020)
 
 * New resource [Auth Engine] (https://capillary.github.io/api-documentation/#auth-engine) is added. Auth Engine provides front-end APIs to enable org customers to authenticate to org's mobile  or web application.
+* OAuth supports posting data through store along with Till that was already supported. Two new headers are introduced `X-CAP-API-ATTRIBUTION-ENTITY-TYPE`, `X-CAP-API-ATTRIBUTION-ENTITY-CODE` replacing `X-CAP-API-ATTRIBUTION-TILL-CODE`.
 
 ## Q4 Releases (2019-20)
 
@@ -209,7 +211,8 @@ Header | Value
 X-CAP-API-OAUTH-TOKEN* | Generated access token. If the token expires, you need to regenerate the access token.
 Content-Type* | This should be set as application/json
 Accept* | This should also be set as application/json
-X-CAP-API-ATTRIBUTION-TILL-CODE | Till code from which you want to POST data. By default, the Till associated with the client key and secret is mapped if this is not passed.
+X-CAP-API-ATTRIBUTION-ENTITY-TYPE | Till or store from which you want to post the data. Supported Values: `TILL`, `STORE_CODE`, `STORE_NAME`, `STORE_EXTERNAL_ ID`, `STORE_EXTERNAL_ID_1`, `STORE_EXTERNAL_ID_2`. The default value is `TILL`.
+X-CAP-API-ATTRIBUTION-ENTITY-CODE | Pass the entity value based on the entity type. For example, if `X-CAP-API-ATTRIBUTION-ENTITY-TYPE` is STORE_CODE, then X-CAP-API-ATTRIBUTION-ENTITY-CODE is the store code that you want to tag to POST data. By default, it considers the Till associated with the client key and secret.
 
 <aside class="notice">Parameters marked with * are mandatory.</aside>
 

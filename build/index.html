@@ -135,6 +135,7 @@
 
 <ul>
 <li>New resource <a href="https://capillary.github.io/api-documentation/#auth-engine">Auth Engine</a> is added. Auth Engine provides front-end APIs to enable org customers to authenticate to org&rsquo;s mobile  or web application.</li>
+<li>OAuth supports posting data through store along with Till that was already supported. Two new headers are introduced <code class="prettyprint">X-CAP-API-ATTRIBUTION-ENTITY-TYPE</code>, <code class="prettyprint">X-CAP-API-ATTRIBUTION-ENTITY-CODE</code> replacing <code class="prettyprint">X-CAP-API-ATTRIBUTION-TILL-CODE</code>.</li>
 </ul>
 
 <h2 id="q4-releases-2019-20">Q4 Releases (2019-20)</h2>
@@ -350,8 +351,12 @@
 <td>This should also be set as application/json</td>
 </tr>
 <tr>
-<td>X-CAP-API-ATTRIBUTION-TILL-CODE</td>
-<td>Till code from which you want to POST data. By default, the Till associated with the client key and secret is mapped if this is not passed.</td>
+<td>X-CAP-API-ATTRIBUTION-ENTITY-TYPE</td>
+<td>Till or store from which you want to post the data. Supported Values: <code class="prettyprint">TILL</code>, <code class="prettyprint">STORE_CODE</code>, <code class="prettyprint">STORE_NAME</code>, <code class="prettyprint">STORE_EXTERNAL_ ID</code>, <code class="prettyprint">STORE_EXTERNAL_ID_1</code>, <code class="prettyprint">STORE_EXTERNAL_ID_2</code>. The default value is <code class="prettyprint">TILL</code>.</td>
+</tr>
+<tr>
+<td>X-CAP-API-ATTRIBUTION-ENTITY-CODE</td>
+<td>Pass the entity value based on the entity type. For example, if <code class="prettyprint">X-CAP-API-ATTRIBUTION-ENTITY-TYPE</code> is STORE_CODE, then X-CAP-API-ATTRIBUTION-ENTITY-CODE is the store code that you want to tag to POST data. By default, it considers the Till associated with the client key and secret.</td>
 </tr>
 </tbody></table>
 
@@ -25823,6 +25828,34 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <p>Here we have provided only the details of Auth Engine APIs. To know more about Auth Engine, see  <a href="https://support.capillarytech.com/en/support/solutions/articles/4000161784-auth-engine">Auth Engine Documentation</a>.</p>
 
+<h3 id="ae-host-urls">AE Host URLs:</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ae-host</td>
+<td><strong>APAC</strong>: https://apac-s3wrapper.capillarytech.com<br> <strong>APAC 2</strong>: https://apac2-auth-api.capillarytech.com <br> <strong>EU</strong>:  https://eu-auth-api.capillarytech.com</td>
+</tr>
+</tbody></table>
+
+<h3 id="api-gateway-urls">API Gateway URLs</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>ae-host</td>
+<td><strong>APAC</strong>: https://apac-apigateway.capillarytech.com/mobile<br> <strong>APAC 2</strong>: https://apac2-api-gateway.capillarytech.com/mobile</td>
+</tr>
+</tbody></table>
+
 <aside class="notice">The host URL of Auth Engine is different from CRM V1.1 or V2 APIs. Please consider the URLs provided for Auth Engine APIs. </aside>
 
 <h2 id="generate-authentication-token">Generate Authentication Token</h2>
@@ -26784,6 +26817,140 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </tbody></table>
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
+
+<h2 id="response-codes">Response Codes</h2>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1502</td>
+<td>Unable to validate OTP.</td>
+</tr>
+<tr>
+<td>1503</td>
+<td>Unable to generate OTP.</td>
+</tr>
+<tr>
+<td>1504</td>
+<td>Unable to generate token.</td>
+</tr>
+<tr>
+<td>1505</td>
+<td>Invalid session.</td>
+</tr>
+<tr>
+<td>1506</td>
+<td>Invalid OTP.</td>
+</tr>
+<tr>
+<td>1507</td>
+<td>Mobile number does not match with the mobile number used to generate token/session.</td>
+</tr>
+<tr>
+<td>1508</td>
+<td>Device ID does not match with the device ID used to generate token/session.</td>
+</tr>
+<tr>
+<td>1509</td>
+<td>Brand name does not match with the brand name used to generate token/session.</td>
+</tr>
+<tr>
+<td>1515</td>
+<td>User does not exist.</td>
+</tr>
+<tr>
+<td>1518</td>
+<td>Reached the maximum allowed OTP retry attempts, Authenticate form the start.</td>
+</tr>
+<tr>
+<td>1519</td>
+<td>Invalid details passed.</td>
+</tr>
+<tr>
+<td>1520</td>
+<td>Password is enabled for the brand. Password cannot be empty.</td>
+</tr>
+<tr>
+<td>1521</td>
+<td>Password and confirm password does not match.</td>
+</tr>
+<tr>
+<td>1523</td>
+<td>Unable to change password.</td>
+</tr>
+<tr>
+<td>1524</td>
+<td>Password is not enabled for the brand.</td>
+</tr>
+<tr>
+<td>1525</td>
+<td>Cannot regenerate token, please authenticate again.</td>
+</tr>
+<tr>
+<td>1526</td>
+<td>Unable to validate password.</td>
+</tr>
+<tr>
+<td>1527</td>
+<td>Old password and new password cannot be same.</td>
+</tr>
+<tr>
+<td>1528</td>
+<td>Invalid password, please try with the correct password.</td>
+</tr>
+<tr>
+<td>1529</td>
+<td>Token has expired.</td>
+</tr>
+<tr>
+<td>1530</td>
+<td>Reached the maximum allowed password retry attempts, please reset your password.</td>
+</tr>
+<tr>
+<td>1531</td>
+<td>Unable to expire token.</td>
+</tr>
+<tr>
+<td>1532</td>
+<td>Unable to reset password.</td>
+</tr>
+<tr>
+<td>1534</td>
+<td>Reached the maximum number of OTPs allowed per customer.</td>
+</tr>
+<tr>
+<td>1535</td>
+<td>Maximum OTP count per customer cannot be 0 (it has to be &gt;= 1).</td>
+</tr>
+<tr>
+<td>1537</td>
+<td>OTP is not generated for the provided details. Please generate OTP and try again.</td>
+</tr>
+<tr>
+<td>1540</td>
+<td>Either mobile or email is required to send OTP.</td>
+</tr>
+<tr>
+<td>1541</td>
+<td>Identifier used to generate session does not match with the identifier used to generate or validate OTP.</td>
+</tr>
+<tr>
+<td>1542</td>
+<td>Password does not meet the requirements.</td>
+</tr>
+<tr>
+<td>1543</td>
+<td>Username already exists.</td>
+</tr>
+<tr>
+<td>1546</td>
+<td>Invalid identifierType passed.</td>
+</tr>
+</tbody></table>
 
       </div>
       <div class="dark-box">
