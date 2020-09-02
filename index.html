@@ -12313,7 +12313,7 @@ password* | Specify your preferred new password</p>
 
 <aside class="notice">Parameters marked with * are mandatory.</aside>
 
-<h2 id="join-user-group">Join User Group</h2>
+<h2 id="join-user-group-with-userid">Join User Group (with UserId)</h2>
 
 <p>Adds user to an existing group.</p>
 
@@ -12353,7 +12353,7 @@ password* | Specify your preferred new password</p>
 </tr>
 <tr>
 <td>HTTP Methods</td>
-<td>POST</td>
+<td>POST (No Body required)</td>
 </tr>
 <tr>
 <td>Batch Support</td>
@@ -12370,7 +12370,7 @@ password* | Specify your preferred new password</p>
 
 <p><code class="prettyprint">https://{host}/v2/usergroups/{groupId}/members/{userId}</code></p>
 
-<h3 id="request-body-parameters">Request Body Parameters</h3>
+<h3 id="request-query-parameters">Request Query Parameters</h3>
 
 <table><thead>
 <tr>
@@ -12407,6 +12407,134 @@ password* | Specify your preferred new password</p>
 </tbody></table>
 
 <aside class="notice">Parameters marked with * are mandatory. Any one among the params marked with ** is mandatory.</aside>
+
+<h2 id="join-user-group-with-customer-identifiers">Join User Group (with Customer Identifiers)</h2>
+
+<p>Adds user to an existing group.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/usergroups/2876/members
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"secondaryMemberIdentifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"userId"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"126080386"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+       </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"identifier"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"userId"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"126080386"</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+       </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+       </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+       </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/{groupId}/members</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/usergroups/{groupId}/members</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>groupId*</td>
+<td>long</td>
+<td>Unique id the group that the user wants to joinedOn.</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>secondaryMemberIdentifiers*</td>
+<td>obj</td>
+<td>Details of secondary member(s).</td>
+</tr>
+<tr>
+<td>type*</td>
+<td>enum</td>
+<td>Identifier by which you want to use to add secondary member. Supported values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">userId</code>.</td>
+</tr>
+<tr>
+<td>value*</td>
+<td>string</td>
+<td>Value of the respective identifier <code class="prettyprint">type</code>.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
 
 <h2 id="join-user-group-otp-based">Join User Group (OTP Based)</h2>
 
@@ -12496,7 +12624,7 @@ password* | Specify your preferred new password</p>
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
 
-<h2 id="get-user-group-details">Get User Group Details</h2>
+<h2 id="get-user-group-details-by-group-id">Get User Group Details (by group ID)</h2>
 
 <p>Retrieves the details of a specific user group.</p>
 
@@ -12606,6 +12734,251 @@ password* | Specify your preferred new password</p>
 <td>groupId*</td>
 <td>long</td>
 <td>Unique id the user group that you want to fetch</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
+
+<h2 id="get-group-details-amp-group-loyalty-details-by-identifier">Get Group Details &amp; Group Loyalty Details (by Identifier)</h2>
+
+<p>Retrieves the details of a specific user group and group loyalty information using any of the identifiers of the primary or secondary member of the group. </p>
+
+<blockquote>
+<p>Sample Request URL</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/usergroups?identifierName=mobile<span class="err">&amp;</span>identifierValue=919740000000<span class="err">&amp;</span>loyaltyDetails=true
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">2876</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"TomGroup"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"primaryUserId"</span><span class="p">:</span><span class="mi">98662653</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="s2">"2020-09-02T06:26:55Z"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="mi">75040399</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="s2">"2020-09-02T06:26:55Z"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"updatedBy"</span><span class="p">:</span><span class="mi">75040399</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"members"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"groupId"</span><span class="p">:</span><span class="mi">2876</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">98662653</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"role"</span><span class="p">:</span><span class="s2">"PRIMARY"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"joinedOn"</span><span class="p">:</span><span class="s2">"2020-09-02T06:26:55Z"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"addedBy"</span><span class="p">:</span><span class="mi">75040399</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="s2">"2020-09-02T06:26:55Z"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Tom Sawyer"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"joinSource"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"joinAccountId"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"externalId"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"anjvat123"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"tom.sawyer@capillarytech.com"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"919740000000"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">],</span><span class="w">
+         </span><span class="nt">"firstName"</span><span class="p">:</span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"lastName"</span><span class="p">:</span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"loyaltySummary"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"enrolledPrograms"</span><span class="p">:[</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"redeemed"</span><span class="p">:</span><span class="mf">450.12</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"expired"</span><span class="p">:</span><span class="mf">4498.83</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"returned"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"adjusted"</span><span class="p">:</span><span class="mf">-0.01</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"lifetimePoints"</span><span class="p">:</span><span class="mf">6630.32</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"loyaltyPoints"</span><span class="p">:</span><span class="mf">1681.37</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"cumulativePurchases"</span><span class="p">:</span><span class="mf">67597.0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"loyaltyId"</span><span class="p">:</span><span class="mi">310120407</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"currentSlab"</span><span class="p">:</span><span class="s2">"Albatross Elite"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"nextSlab"</span><span class="p">:</span><span class="s2">"Platinum"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"nextSlabSerialNumber"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"nextSlabDescription"</span><span class="p">:</span><span class="s2">"Top level tier"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"slabSNo"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"slabExpiryDate"</span><span class="p">:</span><span class="s2">"2020-10-31T23:59:59Z"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"programId"</span><span class="p">:</span><span class="mi">469</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"delayedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"delayedReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"totalAvailablePoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"totalReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"linkedPartnerPrograms"</span><span class="p">:[</span><span class="w">
+
+                  </span><span class="p">],</span><span class="w">
+                  </span><span class="nt">"programTitle"</span><span class="p">:</span><span class="s2">"BUKLDefaultProgram"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"programDescription"</span><span class="p">:</span><span class="s2">"Default program for BUKL"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"programPointsToCurrencyRatio"</span><span class="p">:</span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"pointsContributionToGroup"</span><span class="p">:</span><span class="mf">0.0</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"groupPrograms"</span><span class="p">:[</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"groupProgramId"</span><span class="p">:</span><span class="mi">469</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"BUKLDefaultProgram"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Default program for BUKL"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"programsList"</span><span class="p">:[</span><span class="w">
+                     </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">469</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"BUKLDefaultProgram"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Default program for BUKL"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">],</span><span class="w">
+                  </span><span class="nt">"lifetimePoints"</span><span class="p">:</span><span class="mf">6630.32</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"loyaltyPoints"</span><span class="p">:</span><span class="mf">1681.37</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"promisedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"pointsToCurrencyRatio"</span><span class="p">:</span><span class="mf">1.0</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"groupId"</span><span class="p">:</span><span class="mi">2876</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">126080386</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"role"</span><span class="p">:</span><span class="s2">"SECONDARY"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"joinedOn"</span><span class="p">:</span><span class="s2">"2020-09-02T09:53:23Z"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"addedBy"</span><span class="p">:</span><span class="mi">75040399</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="s2">"2020-09-02T09:53:23Z"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"joinSource"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"joinAccountId"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"917575700000"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"test789@test.com"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">],</span><span class="w">
+         </span><span class="nt">"firstName"</span><span class="p">:</span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"lastName"</span><span class="p">:</span><span class="s2">"test"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"loyaltySummary"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"enrolledPrograms"</span><span class="p">:[</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"redeemed"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"expired"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"returned"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"adjusted"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"lifetimePoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"loyaltyPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"cumulativePurchases"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"loyaltyId"</span><span class="p">:</span><span class="mi">364845637</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"currentSlab"</span><span class="p">:</span><span class="s2">"Albatross Elite"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"nextSlab"</span><span class="p">:</span><span class="s2">"Employee"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"nextSlabSerialNumber"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"nextSlabDescription"</span><span class="p">:</span><span class="s2">"Employee"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"slabSNo"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"slabExpiryDate"</span><span class="p">:</span><span class="s2">"2020-10-31T23:59:59Z"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"programId"</span><span class="p">:</span><span class="mi">469</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"delayedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"delayedReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"totalAvailablePoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"totalReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"linkedPartnerPrograms"</span><span class="p">:[</span><span class="w">
+
+                  </span><span class="p">],</span><span class="w">
+                  </span><span class="nt">"programTitle"</span><span class="p">:</span><span class="s2">"BUKLDefaultProgram"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"programDescription"</span><span class="p">:</span><span class="s2">"Default program for BUKL"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"programPointsToCurrencyRatio"</span><span class="p">:</span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"pointsContributionToGroup"</span><span class="p">:</span><span class="mf">0.0</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"groupPrograms"</span><span class="p">:[</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="nt">"groupProgramId"</span><span class="p">:</span><span class="mi">469</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"title"</span><span class="p">:</span><span class="s2">"BUKLDefaultProgram"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Default program for BUKL"</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"programsList"</span><span class="p">:[</span><span class="w">
+                     </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">469</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"BUKLDefaultProgram"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Default program for BUKL"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">],</span><span class="w">
+                  </span><span class="nt">"lifetimePoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"loyaltyPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"promisedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"pointsToCurrencyRatio"</span><span class="p">:</span><span class="mf">1.0</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"lifetimePurchases"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/usergroups/{queryParams}</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/usergroups?identifierName={identifierName}&amp;identifierValue={identifierValue}&amp;{loyaltyDetails=true}</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifierName*</td>
+<td>enum</td>
+<td>Unique identifier to identifier of the primary or secondary member of a group. Value: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">userId</code>.</td>
+</tr>
+<tr>
+<td>identifierValue*</td>
+<td>string</td>
+<td>The respective identifier value. For example if the <code class="prettyprint">identifierName</code> is email, then the <code class="prettyprint">identifierValue</code> needs to the email ID of the primary or any of the secondary members of the group.</td>
+</tr>
+<tr>
+<td>loyaltyDetails=true**</td>
+<td>-</td>
+<td>Pass to get loyalty details of the group.</td>
 </tr>
 </tbody></table>
 
@@ -12941,12 +13314,163 @@ password* | Specify your preferred new password</p>
 <tr>
 <td>groupId*</td>
 <td>long</td>
-<td>Group id from which you want to exit the user</td>
+<td>Group id from which you want to exit the user.</td>
 </tr>
 <tr>
 <td>userId*</td>
 <td>long</td>
-<td>Unique id of the user that you want to exit from the group</td>
+<td>Unique id of the user that you want to exit from the group.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
+
+<h2 id="get-points-contribution-by-secondary-members">Get Points Contribution by Secondary Members</h2>
+
+<p>Retrieves the details of points transferred from secondary members to the primary member of the group on predefined events. Pass any of the identifiers of the primary member or any of the secondary members of the group.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/usergroups/pointContributionHistory?identifierName=mobile<span class="err">&amp;</span>identifierValue=917487000000
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">6705</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"TomGroup"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="s2">"2020-08-10T11:31:14+05:30"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="s2">"2020-08-10T11:31:14+05:30"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"primaryMember"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">379353267</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"firstName"</span><span class="p">:</span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"primaryMemberIdentifier"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"917487000000"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"tom.sawyer@example.com"</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"groupPointContributionRecords"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"groupPointContributions"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">379353651</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"role"</span><span class="p">:</span><span class="s2">"SECONDARY"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"firstName"</span><span class="p">:</span><span class="s2">"Kevin"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"kevin.3533611762@example.com"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"917487000000"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">],</span><span class="w">
+         </span><span class="nt">"loyaltyProgramId"</span><span class="p">:</span><span class="mi">1400</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"pointsContributed"</span><span class="p">:</span><span class="mf">480.0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"pointsContributedDate"</span><span class="p">:</span><span class="s2">"2020-08-10T12:21:32+05:30"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"tillId"</span><span class="p">:</span><span class="mi">50021323</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"programName"</span><span class="p">:</span><span class="s2">"TestOrgDefaultProgram"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"eventName"</span><span class="p">:</span><span class="s2">"GroupMemberJoin"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"eventIdentifiers"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"customerId"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"379353651"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"userId"</span><span class="p">:</span><span class="mi">379353654</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"role"</span><span class="p">:</span><span class="s2">"SECONDARY"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"firstName"</span><span class="p">:</span><span class="s2">"Jim"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"917487000000"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"jim.3533611763@example.com"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">],</span><span class="w">
+         </span><span class="nt">"loyaltyProgramId"</span><span class="p">:</span><span class="mi">1400</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"pointsContributed"</span><span class="p">:</span><span class="mf">480.0</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"pointsContributedDate"</span><span class="p">:</span><span class="s2">"2020-08-10T12:37:36+05:30"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"tillId"</span><span class="p">:</span><span class="mi">50021323</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"programName"</span><span class="p">:</span><span class="s2">"OrgDefaultProgram"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"eventName"</span><span class="p">:</span><span class="s2">"GroupMemberJoin"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"eventIdentifiers"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="nt">"key"</span><span class="p">:</span><span class="s2">"customerId"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"379353654"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/usergroups/pointContributionHistory?identifierName={identifierName}&amp;identifierValue={identifierValue}</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/usergroups/pointContributionHistory?identifierName={identifierName}&amp;identifierValue={identifierValue}</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifierName*</td>
+<td>enum</td>
+<td>Unique identifier to identifier of the primary or a secondary member of the group that you want to get. Value: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">userId</code>.</td>
+</tr>
+<tr>
+<td>identifierValue*</td>
+<td>string</td>
+<td>The respective identifier value. For example if the <code class="prettyprint">identifierName</code> is email, then the <code class="prettyprint">identifierValue</code> needs to the email ID of the primary or any of the secondary members of the group.</td>
 </tr>
 </tbody></table>
 
