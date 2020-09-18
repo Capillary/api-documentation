@@ -22606,20 +22606,13 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h2 id="disable-event">Disable Event</h2>
 
-<p>Lets you disable an existing event.</p>
+<p>Lets you disable an existing event. You cannot restore an event once deleted.</p>
 
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight html"><code>http://us.api.capillarytech.com/v2/events/disable
+<pre class="highlight html"><code>http://us.api.capillarytech.com/v2/events/disable?event_name=OfferScan
 </code></pre>
-<blockquote>
-<p>Sample PUT Request</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"webHookId"</span><span class="p">:</span><span class="s2">"34b94aa9-ae09-4784-9993-4936d92a7447"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
 <blockquote>
 <p>Sample Response</p>
 </blockquote>
@@ -22638,7 +22631,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/events/disable</code></td>
+<td><code class="prettyprint">/events/disable??event_name={eventName}</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -22650,7 +22643,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </tr>
 <tr>
 <td>HTTP Method</td>
-<td>PUT</td>
+<td>PUT (No body required)</td>
 </tr>
 <tr>
 <td>Batch Support</td>
@@ -22660,9 +22653,9 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://{host}/v2/events/disable</code></p>
+<p><code class="prettyprint">http://{host}/v2/events/disable?event_name={eventName}</code></p>
 
-<h3 id="request-body-parameters">Request Body Parameters</h3>
+<h3 id="request-query-parameter">Request Query Parameter</h3>
 
 <table><thead>
 <tr>
@@ -22672,11 +22665,13 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </tr>
 </thead><tbody>
 <tr>
-<td>webHookId*</td>
+<td>event_name*</td>
 <td>string</td>
-<td>Unique id of the Webhook account. You can see Webhook id in <code class="prettyprint">x-cap-hydra-request-id</code> in Webhook data push API</td>
+<td>Specify the name of the event that you want to disable.</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">Parameter marked with * is mandatory. You cannot enable an event once disabled. </aside>
 
 <h2 id="get-standard-events-metadata">Get Standard Events Metadata</h2>
 
