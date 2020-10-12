@@ -6384,7 +6384,7 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
  <aside class="notice">This is not a v2 API. Hence, all the API details including host and headers are provided in this section itself.  </aside></p>
 
 <blockquote>
-<p>Sample Response</p>
+<p>Sample Request</p>
 </blockquote>
 <pre class="highlight plaintext"><code>curl -X POST \
   https://intouch-staging.capillary.in/coupon/api/v1/upload/file/311025 \
@@ -6512,34 +6512,13 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
 <tr>
 <td>file*</td>
 <td>string</td>
-<td>Name of the CSV file with customer and coupon details. <br></td>
+<td>Name of the CSV file with customer and coupon details. <br>Sample file content: <br>File content sample for uploading the coupon code is as follows <br>customer_identifier,coupon code<br>value 1,ABCDEF1<br>value 2,ABCDEF2<br>value 3,ABCDEF3<br>File content sample for uploading customer identifier:<br> customerIdentifier<br> value 1<br> value 2<br>value 3<br>File content sample for uploading customer tagged coupons is as follows<br></td>
 </tr>
 </tbody></table>
 
-<p>Sample file content: <br>
-File content sample for uploading the coupon code is as follows <br>
-customer_identifier,coupon code<br>
-value 1,ABCDEF1<br>
-value 2,ABCDEF2<br>
-value 3,ABCDEF3<br></p>
-
-<p>File content sample for uploading customer identifier:<br>
-customerIdentifier<br>
-value 1<br>
-value 2<br>
-value 3<br></p>
-
-<p>File content sample for uploading customer tagged coupons is as follows<br>
-customerIdentifier,coupon code<br>
-value 1,ABCDEF1<br>
-value 2,ABCDEF2<br>
-value 3,ABCDEF3<br>
-customerIdentifier* | enum | Customer identifier type used in the CSV file. Values: <code class="prettyprint">MOBILE</code>, <code class="prettyprint">EXTERNAL_ID</code>, <code class="prettyprint">EMAIL</code>, <code class="prettyprint">USER_ID</code>, <code class="prettyprint">NOT_TAGGED</code>. <br>
-*  Use <code class="prettyprint">NOT_TAGGED</code> as the identifier to upload only coupon codes.
-customerIdentifierColumn | string | Column ID of the customer identifier in the uploaded CSV file. <br>
-For example, <br>
-If the first column of the file contains customer identification data, then the value of customerIdentifierColumn will be 0.<br>
-If the second column of the file contains customer identification data, then the value of customerIdentifierColumn will be 1.<br></p>
+<p>customerIdentifier,coupon code<br>value 1,ABCDEF1<br>value 2,ABCDEF2<br>value 3,ABCDEF3
+customerIdentifier* | enum | Customer identifier type used in the CSV file. Values: <code class="prettyprint">MOBILE</code>, <code class="prettyprint">EXTERNAL_ID</code>, <code class="prettyprint">EMAIL</code>, <code class="prettyprint">USER_ID</code>, <code class="prettyprint">NOT_TAGGED</code>. <br>Use <code class="prettyprint">NOT_TAGGED</code> as the identifier to upload only coupon codes.
+customerIdentifierColumn | string | Column ID of the customer identifier in the uploaded CSV file. <br> For example, <br>If the first column of the file contains customer identification data, then the value of customerIdentifierColumn will be 0.<br>If the second column of the file contains customer identification data, then the value of customerIdentifierColumn will be 1.</p>
 
           <h1 id="points">Points</h1>
 
