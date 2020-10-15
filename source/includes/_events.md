@@ -5028,21 +5028,15 @@ eventId* |  string | Unique id of the event that is generated (in x-cap-hydra-re
 
 ## Disable Event
 
-Lets you disable an existing event.
+Lets you disable an existing event. You cannot restore an event once deleted.
 
 > Sample Request
 
 ```html
-http://us.api.capillarytech.com/v2/events
+http://us.api.capillarytech.com/v2/events/disable?event_name=OfferScan
 ```
 
-> Sample PUT Request
 
-```
-{
-  "webHookId":"34b94aa9-ae09-4784-9993-4936d92a7447"
-}
-```
 
 
 
@@ -5059,23 +5053,25 @@ http://us.api.capillarytech.com/v2/events
 
 | | |
 --------- | ----------- |
-URI | `/events/disable`
+URI | `/events/disable??event_name={eventName}`
 Rate Limited? | Yes
 Authentication | Yes
-HTTP Method | PUT
+HTTP Method | PUT (No body required)
 Batch Support | No
 
 
 ### Request URL
 
-`http://{host}/v2/events/disable`
+`http://{host}/v2/events/disable?event_name={eventName}`
 
 
-### Request Body Parameters
+### Request Query Parameter
 
 Parameter | Type | Description
 --------- | ---- | -----------
-webHookId* | string | Unique id of the Webhook account. You can see Webhook id in `x-cap-hydra-request-id` in Webhook data push API 
+event_name* | string | Specify the name of the event that you want to disable.
+
+<aside class="notice">Parameter marked with * is mandatory. You cannot enable an event once disabled. </aside>
 
 
 

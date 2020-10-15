@@ -352,7 +352,7 @@
 </tr>
 <tr>
 <td>X-CAP-API-ATTRIBUTION-ENTITY-TYPE</td>
-<td>Till or store from which you want to post the data. Supported Values: <code class="prettyprint">TILL</code>, <code class="prettyprint">STORE_CODE</code>, <code class="prettyprint">STORE_NAME</code>, <code class="prettyprint">STORE_EXTERNAL_ ID</code>, <code class="prettyprint">STORE_EXTERNAL_ID_1</code>, <code class="prettyprint">STORE_EXTERNAL_ID_2</code>. The default value is <code class="prettyprint">TILL</code>.</td>
+<td>Till or store from which you want to post the data. Supported Values: <code class="prettyprint">TILL</code>, <code class="prettyprint">STORE_CODE</code>, <code class="prettyprint">STORE_NAME</code>, <code class="prettyprint">STORE_EXTERNAL_ID</code>, <code class="prettyprint">STORE_EXTERNAL_ID_1</code>, <code class="prettyprint">STORE_EXTERNAL_ID_2</code>. The default value is <code class="prettyprint">TILL</code>.</td>
 </tr>
 <tr>
 <td>X-CAP-API-ATTRIBUTION-ENTITY-CODE</td>
@@ -369,12 +369,10 @@
 <p>Accept | application/json Content-Type | application/json X-CAP-API-OAUTH-TOKEN | eyJraWQiOiJrMSIsImFsZyI6IlJTMjU2In0.wiOlwiV1JJ…</p>
 
 <blockquote>
-<p>Sample Request URL
-<code class="prettyprint">html
-https://eu.api.capillarytech.com/v2/transaction/38233952?type=REGULAR
-</code></p>
+<p>Sample Request URL</p>
 </blockquote>
-
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/transaction/38233952?type=REGULAR
+</code></pre>
 <h3 id="request-url-format">Request URL Format</h3>
 
 <p><code class="prettyprint">https://{host}/v2/{resource}/{endpoint}?{query params}</code></p>
@@ -387,7 +385,7 @@ https://eu.api.capillarytech.com/v2/transaction/38233952?type=REGULAR
 </thead><tbody>
 <tr>
 <td>Host</td>
-<td>The server to which the API calls are made, usually the cluster URL. <br> * India: apac.intouch.capillary.co.in<br> * APAC2: apac2.intouch.capillarytech.com<br> * EU: eu.intouch.capillarytech.com<br> * US: us.intouch.capillarytech.com<br> * CN: intouch.capillarytech.cn.com</td>
+<td>The server to which the API calls are made, usually the cluster URL. <br> <strong>India</strong>: apac.api.capillary.co.in <br> <strong>APAC2</strong>: apac2.api.capillarytech.com <br><strong>EU</strong>: eu.api.capillarytech.com <br><strong>US</strong>: us.api.capillarytech.com <br><strong>China</strong>: cdn-api.capillarytech.cn.com [or] api.capillarytech.cn.com</td>
 </tr>
 <tr>
 <td>BasePath</td>
@@ -6380,6 +6378,154 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
 
 <aside class="warning"> You can pass either coupon ID or coupon code. Any one parameter is required.</aside>
 
+<h2 id="upload-coupons-in-bulk">Upload Coupons in Bulk</h2>
+
+<p>Lets you upload coupons of a specific coupon series in bulk. 
+ <aside class="notice">This is not a v2 API. Hence, all the API details including host and headers are provided in this section itself.  </aside></p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight plaintext"><code>curl -X POST \
+  https://intouch-staging.capillary.in/coupon/api/v1/upload/file/311025 \
+  -H 'Content-Type: application/json' \
+  -H 'Postman-Token: 3056825f-5e0d-411e-a83d-e6ce0e6da3d2' \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' \
+  -H 'x-cap-api-oauth-token: eyJraWQiOiJrMSIsImFsZyI6IlJTMjU2In0.eyJpc3MiOiJDYXBpbGxhcnkiLCJleHAiOjE2MDE5ODY1NzUsImp0aSI6IllzQndtY20xbEh6OGlYNzQ4djI4QXciLCJpYXQiOjE2MDE5ODI5NzUsInN1YiI6IlRFU1RfQ09VUE9OUyIsImNsaWVudF9pZCI6NzgsIm9yZ19pZCI6NTAxMjgsInRva2VuX3VzZSI6InRva2VuX2FjY2VzcyIsImNsaWVudF9rZXkiOiJHY3dmdUFlaEVDOE02NmNBN1RWR05OQ1E0IiwiZGVmYXVsdF90aWxsIjo1MDAwNzM5Miwic2NvcGVzIjoiW3tcInBlcm1pc3Npb25cIjpcIlJFQURXUklURVwiLFwiZW50aXR5SWRcIjoxLFwicmVzb3VyY2VzXCI6W1wiLip2MS4xL2N1c3RvbWVyLy4qXCJdfSx7XCJwZXJtaXNzaW9uXCI6XCJSRUFEV1JJVEVcIixcImVudGl0eUlkXCI6MixcInJlc291cmNlc1wiOltcIi4qdjEuMS90cmFuc2FjdGlvbi8uKlwiXX0se1wicGVybWlzc2lvblwiOlwiUkVBRFdSSVRFXCIsXCJlbnRpdHlJZFwiOjMsXCJyZXNvdXJjZXNcIjpbXCIuKnYxLjEvcG9pbnRzLy4qXCJdfSx7XCJwZXJtaXNzaW9uXCI6XCJSRUFEV1JJVEVcIixcImVudGl0eUlkXCI6NCxcInJlc291cmNlc1wiOltcIi4qXCJdfV0ifQ.YVjVaOWDK_3G_B7TjPyy-QMNGpHbjev7Z_vmOCn07dJZ5sGeQcwUbYBi4RHdeNruggH7SyEKngBRAyFGot3ha3JkdJC1IV9ux6L6xwwfgqthavj6MTV0LhMEy6tRM06LEFtYrN5CuCllJ6yM3hUc25ZZKxyEGxYMflAt65TpK-A3EJDpo8RxrY-XHAitwL_R4m6kSZ2_rxyDC2qyRv6rdkjoLRzZ7urcPTOn37EGIe0TByFRa3LSPpywlMjkTX1wcFSW1z_2XgydfoqGfBAkf8Ng4db9gEr_pP96btnRm6fvoEg0RXdfsflp_LEsWUcExPFEiQvuC5wbo0TXHLOsgA' \
+  -F 'file=@/Users/rajshekar.sv/Downloads/couponCode (10).csv' \
+  -F customerIdentifier=USER_ID \
+  -F customerIdentifierColumn=0
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"status"</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"result"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"couponSeriesId"</span><span class="p">:</span><span class="mi">123</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"uploadJobStatuses"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"jobId"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadStatus"</span><span class="p">:</span><span class="s2">"STARTED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="s2">"1601835836973"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="s2">"1601835836973"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"errorFileUrl"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"successFileUrl"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadedFileUrl"</span><span class="p">:</span><span class="s2">"couponCode_1601835836573_123.csv"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"totalUploadedCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"actualRowCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"errorCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadTableName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadedFileName"</span><span class="p">:</span><span class="s2">"couponCode.csv"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"audienceGroupId"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"audienceGroupVersionId"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"fileName"</span><span class="p">:</span><span class="s2">"couponCode_1601835836573_123.csv"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/coupon/api/v1/upload/file/{couponSeriedId}</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes (oAuth)</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host1}/coupon/api/v1/upload/file/{couponSeriedId}</code></p>
+
+<p><strong>host1</strong></p>
+
+<ul>
+<li><strong>India</strong>: https://intouch.capillary.co.in</li>
+<li><strong>Apac2</strong>: https://apac2.intouch.capillarytech.com</li>
+<li><strong>EU</strong>: https://eu.intouch.capillarytech.com</li>
+<li><strong>China</strong>: https://intouch.capillarytech.cn.com</li>
+</ul>
+
+<h3 id="header-required">Header Required</h3>
+
+<table><thead>
+<tr>
+<th>Header</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type*</td>
+<td>multipart/form-data</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>couponSeriesId*</td>
+<td>long</td>
+<td>Unique ID of the coupon series for which you need to upload coupons.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">The parameter marked with * is mandatory.</aside>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>file*</td>
+<td>string</td>
+<td>Name of the CSV file with customer and coupon details. <br>Sample file content: <br>File content sample for uploading the coupon code is as follows <br>customer_identifier,coupon code<br>value 1,ABCDEF1<br>value 2,ABCDEF2<br>value 3,ABCDEF3<br>File content sample for uploading customer identifier:<br> customerIdentifier<br> value 1<br> value 2<br>value 3<br>File content sample for uploading customer tagged coupons is as follows<br>customerIdentifier,coupon code<br>value 1,ABCDEF1<br>value 2,ABCDEF2<br>value 3,ABCDEF3</td>
+</tr>
+<tr>
+<td>customerIdentifier*</td>
+<td>enum</td>
+<td>Customer identifier type used in the CSV file. Values: <code class="prettyprint">MOBILE</code>, <code class="prettyprint">EXTERNAL_ID</code>, <code class="prettyprint">EMAIL</code>, <code class="prettyprint">USER_ID</code>, <code class="prettyprint">NOT_TAGGED</code>. <br>Use <code class="prettyprint">NOT_TAGGED</code> as the identifier to upload only coupon codes.</td>
+</tr>
+<tr>
+<td>customerIdentifierColumn</td>
+<td>string</td>
+<td>Column ID of the customer identifier in the uploaded CSV file. <br> For example, <br>If the first column of the file contains customer identification data, then the value of customerIdentifierColumn will be 0.<br>If the second column of the file contains customer identification data, then the value of customerIdentifierColumn will be 1.</td>
+</tr>
+</tbody></table>
+
           <h1 id="points">Points</h1>
 
 <p>Points represent loyalty points issued to customers through Loyalty+, Engage+, GoodWill (Member Care), or Data Import. Customers can redeem the points within the validity period and can also transfer their points to other loyalty customers.</p>
@@ -8130,6 +8276,86 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
 <td>Duplicate survey question external id {0} in request</td>
 </tr>
 </tbody></table>
+
+          <h1 id="referral">Referral</h1>
+
+<p>Referral is an act of directing new customers to the org stores. A person that refers is a referral and the person that receives the referral invite is a referee. </p>
+
+<h2 id="validate-referral-code">Validate Referral Code</h2>
+
+<p>Lets you validate referral code received by the referee.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/referral/validate?code=referral345
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"valid"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"referrer"</span><span class="p">:</span><span class="w"> </span><span class="mi">314606628</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/validate?code={referalcode}</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/referral/validate?code={referralcode}</code></p>
+
+<h3 id="request-path-parameters">Request Path Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>referralCode*</td>
+<td>string</td>
+<td>Unique referral code that you want to validate.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> Parameter marked by * are mandatory. </aside>
 
           <h1 id="user-authentication">User Authentication</h1>
 
@@ -13327,7 +13553,7 @@ password* | Specify your preferred new password</p>
 
 <h2 id="get-points-contribution-by-secondary-members">Get Points Contribution by Secondary Members</h2>
 
-<p>Retrieves the details of points transferred from secondary members to the primary member of the group on predefined events. Pass any of the identifiers of the primary member or any of the secondary members of the group.</p>
+<p>Retrieves the details of points transferred from secondary members to the primary member of the group on predefined events. Pass any of the identifiers of the primary member or any of the secondary members of the group. For more details on the configurations related to points pooling, see <a href="https://support.capillarytech.com/en/support/solutions/articles/4000162618-group-loyalty-overview">Group Loyalty Overview</a>.</p>
 
 <blockquote>
 <p>Sample Request</p>
@@ -22606,20 +22832,13 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h2 id="disable-event">Disable Event</h2>
 
-<p>Lets you disable an existing event.</p>
+<p>Lets you disable an existing event. You cannot restore an event once deleted.</p>
 
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight html"><code>http://us.api.capillarytech.com/v2/events
+<pre class="highlight html"><code>http://us.api.capillarytech.com/v2/events/disable?event_name=OfferScan
 </code></pre>
-<blockquote>
-<p>Sample PUT Request</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-  </span><span class="nt">"webHookId"</span><span class="p">:</span><span class="s2">"34b94aa9-ae09-4784-9993-4936d92a7447"</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
 <blockquote>
 <p>Sample Response</p>
 </blockquote>
@@ -22638,7 +22857,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/events/disable</code></td>
+<td><code class="prettyprint">/events/disable??event_name={eventName}</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -22650,7 +22869,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </tr>
 <tr>
 <td>HTTP Method</td>
-<td>PUT</td>
+<td>PUT (No body required)</td>
 </tr>
 <tr>
 <td>Batch Support</td>
@@ -22660,9 +22879,9 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://{host}/v2/events/disable</code></p>
+<p><code class="prettyprint">http://{host}/v2/events/disable?event_name={eventName}</code></p>
 
-<h3 id="request-body-parameters">Request Body Parameters</h3>
+<h3 id="request-query-parameter">Request Query Parameter</h3>
 
 <table><thead>
 <tr>
@@ -22672,11 +22891,13 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </tr>
 </thead><tbody>
 <tr>
-<td>webHookId*</td>
+<td>event_name*</td>
 <td>string</td>
-<td>Unique id of the Webhook account. You can see Webhook id in <code class="prettyprint">x-cap-hydra-request-id</code> in Webhook data push API</td>
+<td>Specify the name of the event that you want to disable.</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">Parameter marked with * is mandatory. You cannot enable an event once disabled. </aside>
 
 <h2 id="get-standard-events-metadata">Get Standard Events Metadata</h2>
 

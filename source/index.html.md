@@ -19,6 +19,7 @@ includes:
   - coupon
   - points
   - survey
+  - referral
   - userAuth
   - customerWalkin
   - verticals
@@ -211,7 +212,7 @@ Header | Value
 X-CAP-API-OAUTH-TOKEN* | Generated access token. If the token expires, you need to regenerate the access token.
 Content-Type* | This should be set as application/json
 Accept* | This should also be set as application/json
-X-CAP-API-ATTRIBUTION-ENTITY-TYPE | Till or store from which you want to post the data. Supported Values: `TILL`, `STORE_CODE`, `STORE_NAME`, `STORE_EXTERNAL_ ID`, `STORE_EXTERNAL_ID_1`, `STORE_EXTERNAL_ID_2`. The default value is `TILL`.
+X-CAP-API-ATTRIBUTION-ENTITY-TYPE | Till or store from which you want to post the data. Supported Values: `TILL`, `STORE_CODE`, `STORE_NAME`, `STORE_EXTERNAL_ID`, `STORE_EXTERNAL_ID_1`, `STORE_EXTERNAL_ID_2`. The default value is `TILL`.
 X-CAP-API-ATTRIBUTION-ENTITY-CODE | Pass the entity value based on the entity type. For example, if `X-CAP-API-ATTRIBUTION-ENTITY-TYPE` is STORE_CODE, then X-CAP-API-ATTRIBUTION-ENTITY-CODE is the store code that you want to tag to POST data. By default, it considers the Till associated with the client key and secret.
 
 <aside class="notice">Parameters marked with * are mandatory.</aside>
@@ -223,6 +224,7 @@ For example, to get transaction details, you can use the following details. Befo
 Accept | application/json Content-Type | application/json X-CAP-API-OAUTH-TOKEN | eyJraWQiOiJrMSIsImFsZyI6IlJTMjU2In0.wiOlwiV1JJ…
 
 > Sample Request URL
+
 ```html
 https://eu.api.capillarytech.com/v2/transaction/38233952?type=REGULAR
 ```
@@ -235,7 +237,7 @@ https://eu.api.capillarytech.com/v2/transaction/38233952?type=REGULAR
 
 Entry | Description
 ----- | -----------
-Host | The server to which the API calls are made, usually the cluster URL. <br> * India: apac.intouch.capillary.co.in<br> * APAC2: apac2.intouch.capillarytech.com<br> * EU: eu.intouch.capillarytech.com<br> * US: us.intouch.capillarytech.com<br> * CN: intouch.capillarytech.cn.com
+Host | The server to which the API calls are made, usually the cluster URL. <br> **India**: apac.api.capillary.co.in <br> **APAC2**: apac2.api.capillarytech.com <br>**EU**: eu.api.capillarytech.com <br>**US**: us.api.capillarytech.com <br>**China**: cdn-api.capillarytech.cn.com [or] api.capillarytech.cn.com
 BasePath | v2 or v3(API version)
 Resource | Provide the appropriate entity based on the action to be performed. **Supported Resources**: customers, communications, coupon, organization, points, product, store, transaction, goodwill requests, add events, integration resources, referral, request and other resources.
 HTTP Methods | The Capillary Cloud REST APIs support the standard HTTP methods GET, PUT, DELETE and POST.

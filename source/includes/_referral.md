@@ -11,13 +11,17 @@ Lets you validate referral code received by the referee.
 > Sample Request
 
 ```html
-
+https://eu.api.capillarytech.com/v2/referral/validate?code=referral345
 ```
 
 > Sample Response
 
 ```json
-
+{
+    "valid": true,
+    "referrer": 314606628,
+    "warnings": []
+}
 
 ```
 
@@ -31,7 +35,7 @@ Lets you validate referral code received by the referee.
 URI | `/validate?code={referalcode}`
 Rate Limited? | No
 Authentication | Yes
-HTTP Methods | POST
+HTTP Methods | GET
 Batch Support | No
 
 * **Rate limiter** controls the number of incoming and outgoing traffic of a network
@@ -39,7 +43,7 @@ Batch Support | No
 
 ### Request URL
 
-`https://{host}//v2/referral/validate?code={referralcode}`
+`https://{host}/v2/referral/validate?code={referralcode}`
 
 
 ### Request Path Parameters

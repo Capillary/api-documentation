@@ -833,7 +833,7 @@ userId* | long | Unique id of the user that you want to exit from the group.
 
 ## Get Points Contribution by Secondary Members
 
-Retrieves the details of points transferred from secondary members to the primary member of the group on predefined events. Pass any of the identifiers of the primary member or any of the secondary members of the group.
+Retrieves the details of points transferred from secondary members to the primary member of the group on predefined events. Pass any of the identifiers of the primary member or any of the secondary members of the group. For more details on the configurations related to points pooling, see [Group Loyalty Overview](https://support.capillarytech.com/en/support/solutions/articles/4000162618-group-loyalty-overview).
 
 > Sample Request
 

@@ -216,3 +216,101 @@ details=extended | - | Retrieves the details of coupon configurations (set on ca
 
 
 
+## Upload Coupons in Bulk
+
+Lets you upload coupons of a specific coupon series in bulk. 
+ <aside class="notice">This is not a v2 API. Hence, all the API details including host and headers are provided in this section itself.  </aside>
+
+> Sample Request
+
+```curl
+curl -X POST \
+  https://intouch-staging.capillary.in/coupon/api/v1/upload/file/311025 \
+  -H 'Content-Type: application/json' \
+  -H 'Postman-Token: 3056825f-5e0d-411e-a83d-e6ce0e6da3d2' \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW' \
+  -H 'x-cap-api-oauth-token: eyJraWQiOiJrMSIsImFsZyI6IlJTMjU2In0.eyJpc3MiOiJDYXBpbGxhcnkiLCJleHAiOjE2MDE5ODY1NzUsImp0aSI6IllzQndtY20xbEh6OGlYNzQ4djI4QXciLCJpYXQiOjE2MDE5ODI5NzUsInN1YiI6IlRFU1RfQ09VUE9OUyIsImNsaWVudF9pZCI6NzgsIm9yZ19pZCI6NTAxMjgsInRva2VuX3VzZSI6InRva2VuX2FjY2VzcyIsImNsaWVudF9rZXkiOiJHY3dmdUFlaEVDOE02NmNBN1RWR05OQ1E0IiwiZGVmYXVsdF90aWxsIjo1MDAwNzM5Miwic2NvcGVzIjoiW3tcInBlcm1pc3Npb25cIjpcIlJFQURXUklURVwiLFwiZW50aXR5SWRcIjoxLFwicmVzb3VyY2VzXCI6W1wiLip2MS4xL2N1c3RvbWVyLy4qXCJdfSx7XCJwZXJtaXNzaW9uXCI6XCJSRUFEV1JJVEVcIixcImVudGl0eUlkXCI6MixcInJlc291cmNlc1wiOltcIi4qdjEuMS90cmFuc2FjdGlvbi8uKlwiXX0se1wicGVybWlzc2lvblwiOlwiUkVBRFdSSVRFXCIsXCJlbnRpdHlJZFwiOjMsXCJyZXNvdXJjZXNcIjpbXCIuKnYxLjEvcG9pbnRzLy4qXCJdfSx7XCJwZXJtaXNzaW9uXCI6XCJSRUFEV1JJVEVcIixcImVudGl0eUlkXCI6NCxcInJlc291cmNlc1wiOltcIi4qXCJdfV0ifQ.YVjVaOWDK_3G_B7TjPyy-QMNGpHbjev7Z_vmOCn07dJZ5sGeQcwUbYBi4RHdeNruggH7SyEKngBRAyFGot3ha3JkdJC1IV9ux6L6xwwfgqthavj6MTV0LhMEy6tRM06LEFtYrN5CuCllJ6yM3hUc25ZZKxyEGxYMflAt65TpK-A3EJDpo8RxrY-XHAitwL_R4m6kSZ2_rxyDC2qyRv6rdkjoLRzZ7urcPTOn37EGIe0TByFRa3LSPpywlMjkTX1wcFSW1z_2XgydfoqGfBAkf8Ng4db9gEr_pP96btnRm6fvoEg0RXdfsflp_LEsWUcExPFEiQvuC5wbo0TXHLOsgA' \
+  -F 'file=@/Users/rajshekar.sv/Downloads/couponCode (10).csv' \
+  -F customerIdentifier=USER_ID \
+  -F customerIdentifierColumn=0
+```
+
+
+
+> Sample Response
+
+```json
+{
+   "success":true,
+   "status":200,
+   "result":{
+      "orgId":0,
+      "couponSeriesId":123,
+      "uploadJobStatuses":[
+         {
+            "jobId":1,
+            "uploadStatus":"STARTED",
+            "createdOn":"1601835836973",
+            "updatedOn":"1601835836973",
+            "errorFileUrl":null,
+            "successFileUrl":null,
+            "uploadedFileUrl":"couponCode_1601835836573_123.csv",
+            "totalUploadedCount":0,
+            "actualRowCount":0,
+            "errorCount":0,
+            "uploadTableName":null,
+            "uploadedFileName":"couponCode.csv",
+            "audienceGroupId":0,
+            "audienceGroupVersionId":0
+         }
+      ],
+      "fileName":"couponCode_1601835836573_123.csv"
+   }
+}
+
+```
+
+
+
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/coupon/api/v1/upload/file/{couponSeriedId}`
+Authentication  | Yes (oAuth)
+HTTP Method  | POST
+Batch Support  | No
+
+### Request URL
+`{host1}/coupon/api/v1/upload/file/{couponSeriedId}`
+
+**host1**
+
+* **India**: https://intouch.capillary.co.in
+* **Apac2**: https://apac2.intouch.capillarytech.com
+* **EU**: https://eu.intouch.capillarytech.com
+* **China**: https://intouch.capillarytech.cn.com
+
+### Header Required
+Header |  Description
+--------- | -----------
+Content-Type* | multipart/form-data
+
+### Request Query Parameters
+Parameter | Datatype | Description
+--------- | -------- | -----------
+couponSeriesId* | long | Unique ID of the coupon series for which you need to upload coupons.
+
+<aside class="notice">The parameter marked with * is mandatory.</aside>
+
+
+### Request Body Parameters
+Parameter | Datatype | Description
+--------- | -------- | -----------
+file* | string | Name of the CSV file with customer and coupon details. <br>Sample file content: <br>File content sample for uploading the coupon code is as follows <br>customer_identifier,coupon code<br>value 1,ABCDEF1<br>value 2,ABCDEF2<br>value 3,ABCDEF3<br>File content sample for uploading customer identifier:<br> customerIdentifier<br> value 1<br> value 2<br>value 3<br>File content sample for uploading customer tagged coupons is as follows<br>customerIdentifier,coupon code<br>value 1,ABCDEF1<br>value 2,ABCDEF2<br>value 3,ABCDEF3
+customerIdentifier* | enum | Customer identifier type used in the CSV file. Values: `MOBILE`, `EXTERNAL_ID`, `EMAIL`, `USER_ID`, `NOT_TAGGED`. <br>Use `NOT_TAGGED` as the identifier to upload only coupon codes.
+customerIdentifierColumn | string | Column ID of the customer identifier in the uploaded CSV file. <br> For example, <br>If the first column of the file contains customer identification data, then the value of customerIdentifierColumn will be 0.<br>If the second column of the file contains customer identification data, then the value of customerIdentifierColumn will be 1.
+
+
+
