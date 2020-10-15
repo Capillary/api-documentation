@@ -8277,6 +8277,86 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
 </tr>
 </tbody></table>
 
+          <h1 id="referral">Referral</h1>
+
+<p>Referral is an act of directing new customers to the org stores. A person that refers is a referral and the person that receives the referral invite is a referee. </p>
+
+<h2 id="validate-referral-code">Validate Referral Code</h2>
+
+<p>Lets you validate referral code received by the referee.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/referral/validate?code=referral345
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"valid"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"referrer"</span><span class="p">:</span><span class="w"> </span><span class="mi">314606628</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/validate?code={referalcode}</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/referral/validate?code={referralcode}</code></p>
+
+<h3 id="request-path-parameters">Request Path Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>referralCode*</td>
+<td>string</td>
+<td>Unique referral code that you want to validate.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> Parameter marked by * are mandatory. </aside>
+
           <h1 id="user-authentication">User Authentication</h1>
 
 <p>The userAuth resource allows existing customers of InStore to register on the org&rsquo;s web page/mobile app, authenticate login credentials, and update user details.</p>
