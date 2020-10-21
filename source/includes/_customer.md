@@ -217,7 +217,7 @@ pointsExpiryDate | date-time | Expiry date and time of the points issued. Suppor
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
 
-## Update Customer Details
+## Update Customer Details (using userId)
 
 > Sample Request
 
@@ -357,7 +357,7 @@ Parameter | Description
 --------- | -----------
 customerId* | Unique ID of the customer whose details need to be updated
 source* | Specify the source in which you want to update the customer details - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, MOBILE_APP. For sources with multiple accounts such as WECHAT, FACEBOOK, MOBILE_APP, or LINE, you also need to provide the respective account id.
-accountId | Account in which you want to update the customer details (Required only for sources with multiple accounts)
+accountId** | Account in which you want to update the customer details (Required only for sources with multiple accounts)
 
 <aside class="notice">Parameters marked with * are mandatory.</aside>
 
@@ -388,6 +388,155 @@ tierExpiryDate | date-time | Expiry date and time of the specified tier. Support
 pointsExpiryDate | date-time | Expiry date and time of the points issued. Supported Format: YYYY-MM-DDTHH:MM:SS+/-(time-zone).
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
+
+
+## Update Customer Details (using identifier)
+Lets you update customer details with mobile number, email ID or external ID. 
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE&identifierName=mobile&identifierValue=919999000001
+```
+
+> Sample PUT request
+
+```json
+{  
+   "profiles":[  
+      {  
+         "firstName":"Tom",
+         "lastName":"Sawyer",
+         "fields":{  
+            "gender":"Male",
+            "city":"Bangalore"
+         },
+         "customerIdentifiers":[  
+            {  
+               "type":"email",
+               "value":"tom.sawyer@example.com"
+            },
+            {  
+               "type":"wechat",
+               "value":"wc_2"
+            }
+         ],
+         "commChannels":[  
+            {  
+               "type":"email",
+               "value":"tom.sawyer@example.com",
+               "primary":"true",
+               "verified":"false",
+               "meta":{  
+                  "residence":true
+               }
+            },
+            {  
+               "type":"wechat",
+               "value":"wc_2",
+               "primary":"true",
+               "verified":"true",
+               "meta":{  
+                  "residence":true
+               }
+            }
+         ],
+         "source":"WECHAT",
+         "accountId":"WeChat1234"
+      }
+   ],
+   "loyaltyInfo":{  
+      "loyaltyType":"loyalty"
+   },
+   "extendedFields":  
+      {  
+         "gender":"MALE",
+         "city":"Bangalore"
+      },
+	 "loyaltyProgramEnrollments":[{
+	 "programId":1016,
+	 "tierNumber": 234,
+	"loyaltyPoints": 75,
+	"tierExpiryDate": "2022-02-11T16:36:17+05:30",
+	"pointsExpiryDate": "2022-02-11T16:36:17+05:30"
+}]
+   
+}
+
+```
+
+> Sample Response
+
+```json
+{
+    "createdId": 342963216,
+    "warnings": [],
+    "sideEffects": []
+}
+```
+
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/lookup?identifierName={identifierName}&identifierValue={IdentifierValue}&{queryParams}`
+Authentication | Yes
+HTTP Method | PUT
+Batch Support | No
+
+
+
+### Request URL
+For sources with single accounts
+
+`https://{host}/v2/customers/lookup?source={sourceName}?&accountId={accountId}&identifierName={identifierName}&identifierValue={IdentifierValue}`
+
+
+
+### Request Query Parameters
+Parameter | Datatype | Description
+--------- | -------- | -----------
+identifierName* | enum | Identifier you use to update customer details. Values: `mobile`, `email`, `externalId`.
+identifierValue* | string | The respective identifier value. For example if `identifierName` is email, then the `identifierValue` needs to be the email ID of the customer.
+source* | Specify the source in which you want to update the customer details - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, MOBILE_APP. For sources with multiple accounts such as WECHAT, FACEBOOK, MOBILE_APP, or LINE, you also need to provide the respective account id.
+accountId** | Account in which you want to update the customer details (Required only for sources with multiple accounts)
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
+
+### Request Body Parameters
+
+Parameter | Datatype | Description
+--------- | ----- | -----------
+loyaltyType | enum | Loyalty status of the customer. Value: `loyalty`, `non_loyalty`.
+commChannels | obj | Communication channels of the customer. 
+type | enum | Type of the communication channel. Value: `mobile`, `email`, `wechat`, `ios`, `android`, `line, mobilePush`.
+value | string | Based on the channel `type` enter the channel value. Example, mobile number is the value for `type:mobile`, firebase token for `type:mobilePush`. mobilePush is supported for sources mobile_app, Instore, Martjack, Ecommerce, and Website
+primary | boolean | Whether the current identifier is the primary identifier of the customer (primary identifier as per the org's configuration).
+lastViewedDate | date | Date when the customer recently opened the app. Applicable for the channel 'mobilePush'.
+verified | boolean | Whether the current identifier is verified or not. For example, through OTP.
+profiles | obj | Profile information of the customer.
+meta | obj | Additional information of the identifier.
+Firstname | string | First name of the customer.
+Lastname | string | Last name of the customer.
+customerIdentifiers | obj | Identifiers of the customer that you want to add in type and value. Supported types: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, `fbId` `mobile`, `tmall_uname`, `cuid`, `ali_uname`, `jd_uname`, `vip_uname`, and `line`.
+profiles | fields | Custom field details (only that configured for the organization)
+extendedFields | obj | Extended field details of the customer in key:value pairs. You can only pass extended fields that are enabled for your org with the respective datatypes for values.
+fields | obj | Custom field details of the customer in key:value pairs.
+loyaltyProgramEnrollments | obj | Lets you enroll new customers in the loyalty program.
+programId | int | Unique ID of the loyalty program in which you want to enroll. You cannot update details if the customer is already enrolled in the loyalty program.
+tierNumber | int | Sequence number of the tier that you want to allocate to the customer. For example, `1` for the lower tier, `2` for the next tier, and so on.
+loyaltyPoints | int | Loyalty points to credit in customer's account.
+tierExpiryDate | date-time | Expiry date and time of the specified tier. Supported Format: YYYY-MM-DDTHH:MM:SS+/-(time-zone).
+pointsExpiryDate | date-time | Expiry date and time of the points issued. Supported Format: YYYY-MM-DDTHH:MM:SS+/-(time-zone).
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
+
+
+
+
+
+
+
 
 
 
@@ -680,7 +829,7 @@ CODE | DESCRIPTION
 
 
 
-## Fetch Customer Details
+## Fetch Customer Details (by User ID)
 
 
 > Sample Request
@@ -890,6 +1039,65 @@ https://eu.api.capillarytech.com/v2/customers/17742?source=WECHAT&accountId=2223
 ...
 ```
 
+> embed=promotionalPoints, to see summary of customer promotional points
+ 
+```json
+...
+"promotionalPoints": {
+        "customerPromotionType": [
+            {
+                "points": 200.0,
+                "issuedAt": {
+                    "code": "store",
+                    "name": "store 10"
+                },
+                "issuedOn": "2019-12-12T11:23:03+05:30",
+                "expiryDate": "2020-12-31T23:59:59+05:30",
+                "promotionSource": {
+                    "promotionSourceId": -1,
+                    "promotionSourceType": "GOODWILL"
+                },
+                "programId": 1016,
+                "promotionName": "Goodwill Promotion"
+            },
+            {
+                "points": 34.0,
+                "issuedAt": {
+                    "code": "store",
+                    "name": "store 10"
+                },
+                "issuedOn": "2019-10-31T14:49:51+05:30",
+                "expiryDate": "2020-10-31T23:59:59+05:30",
+                "promotionSource": {
+                    "promotionSourceId": -1,
+                    "promotionSourceType": "GOODWILL"
+                },
+                "programId": 1016,
+                "promotionName": "Goodwill Promotion"
+            },
+            {
+                "points": 32.0,
+                "issuedAt": {
+                    "code": "store",
+                    "name": "store 10"
+                },
+                "issuedOn": "2019-10-31T14:49:03+05:30",
+                "expiryDate": "2020-10-31T23:59:59+05:30",
+                "promotionSource": {
+                    "promotionSourceId": -1,
+                    "promotionSourceType": "GOODWILL"
+                },
+                "programId": 1016,
+                "promotionName": "Goodwill Promotion"
+            }
+        ],
+        "transactionPromotionType": [],
+        "lineitemPromotionType": []
+    },
+
+...
+```
+
 Retrieves details of a specific customer such as:
 
 * profile information – first name, last name, registered date, registered at TILL 
@@ -927,8 +1135,7 @@ Parameter | Datatype | Description
 id* | int | Unique identifier of the customer that you want to fetch.
 source* | enum | Pass the source from which you want to fetch details. Value: INSTORE, MARTJACK, WECHAT, ALL ( to fetch details from all sources. For sources with multiple accounts, you also need to pass the specific accountId.
 accountId |  string | For sources with multiple accounts, pass the specific accountId.
-embed | enum | To get details of loyalty points, subscription, multiple loyalty program details of the customer. Value: `points`, `subscriptions`, `mlp`. Usage: <code>https://{ClusterURL}/v2/customers/{CustomerId}/source=WECHAT&accountId={WeChat account id}&embed=”points”</code>
-embed=usergroup | - | Retrieves user group details if the customer is in a user group.
+embed | enum | To include the details of a specific entity in response. Value: `points`, `subscriptions`, `mlp` (multi-loyalty program details), `promotionalPoints`, `expirySchedules`, `expiredPoints`. For example, `embed=expiredPoints` retrieves the summary of expired points of the customer. <br>Usage: <code>{host}/v2/customers/{CustomerId}/source=INSTORE&&embed=points</code>.
 
 <aside class="notice">Parameters marked with * are mandatory.</aside>
 
@@ -945,6 +1152,134 @@ Code | Description
 8062 | Unable to fetch loyalty points.
 8045 | Account id is not passed.
 8012 | Invalid source passed.
+
+
+## Fetch Customer Details (Identifier)
+Retrieves details of a customer by any of the identifiers (mobile number, email ID, or external ID).
+
+
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/customers/lookup/customerDetails?source=WECHAT&accountId=22232&identifierName=mobile&identifierValue=919999000001&embed=mlp
+
+```
+
+> Sample Response
+
+```json
+{
+    "id": 342963216,
+    "profiles": [
+        {
+            "firstName": "Tom",
+            "lastName": "Sawyer",
+            "attribution": {
+                "createDate": "2019-09-20T15:16:00+05:30",
+                "createdBy": {
+                    "id": 50006796,
+                    "code": "mobilepush.1",
+                    "name": "mobilepush.1",
+                    "type": "TILL"
+                },
+                "modifiedBy": {
+                    "id": 50006796,
+                    "code": "mobilepush.1",
+                    "name": "mobilepush.1",
+                    "type": "TILL"
+                },
+                "modifiedDate": "2020-03-11T13:50:58+05:30"
+            },
+            "fields": {},
+            "identifiers": [
+                {
+                    "type": "mobile",
+                    "value": "919999000001"
+                }
+            ],
+            "commChannels": [
+                {
+                    "type": "mobile",
+                    "value": "919999000001",
+                    "primary": true,
+                    "verified": false,
+                    "meta": {
+                        "residence": false,
+                        "office": false
+                    },
+                    "attributes": {}
+                }
+            ],
+            "source": "INSTORE",
+            "userId": 342963216,
+            "accountId": "",
+            "conflictingProfileList": [],
+            "autoUpdateTime": "2020-10-16T16:18:11+05:30"
+        }
+    ],
+    "loyaltyInfo": {
+        "loyaltyType": "loyalty",
+        "attributionV2": {
+            "createDate": "2019-09-20T15:16:00+05:30",
+            "createdBy": {
+                "id": 50006796,
+                "code": "mobilepush.1",
+                "name": "mobilepush.1",
+                "type": "TILL"
+            },
+            "modifiedBy": {
+                "id": 50006796,
+                "code": "mobilepush.1",
+                "name": "mobilepush.1",
+                "type": "TILL"
+            },
+            "modifiedDate": "2020-03-11T13:50:58+05:30",
+            "createdFromSource": "instore"
+        },
+        "lifetimePurchases": 18000.0
+    },
+    "fraudDetails": {
+        "markedBy": {},
+        "modifiedOn": "2019-09-23T15:13:14+05:30",
+        "status": "NOT_FRAUD"
+    },
+    "segments": {},
+    "associatedWith": "mobilepush.1",
+    "extendedFields": {
+        "city": "Bangalore",
+        "gender": "Male"
+    },
+    "warnings": []
+}
+```
+
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/lookup/customerDetails?{requestParams}'
+Authentication | Yes
+HTTP Method | GET
+Batch Support | No
+
+
+### Request URL
+`https://{host}/v2/customers/lookup/customerDetails?source={source}&accountId={accountId}&identifierName={identifierName}&identifierValue={identifierValue}&embed={embedParameterName}`
+
+
+### Request Query Parameters
+Parameter | Datatype | Description
+--------- | -------- | -----------
+identifierName* | enum | Identifier type used to get customer details. Values: `mobile`, `email`, `externalId`.
+identifierValue* | string | Value of the identifierName passed. For example, `externalId=externalId123`
+source* | enum | Source from which you want to fetch details. Value: `INSTORE`, `MARTJACK`, `WECHAT`, `ALL`. ( to fetch details from all sources. For sources with multiple accounts, you also need to pass the specific accountId.
+accountId** |  string | For sources with multiple accounts, pass the specific accountId.
+embed | enum | To include the details of a specific entity in response. Value: `points`, `subscriptions`, `mlp`, `promotionalPoints`, `expirySchedules`, `expiredPoints`. For example, `embed=expiredPoints` retrieves the summary of expired points of the customer. <br>Usage: <code>{host}/v2/customers/{CustomerId}/source=INSTORE&&embed=points</code>.
+
+
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
 
 
 
