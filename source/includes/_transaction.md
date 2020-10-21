@@ -750,11 +750,11 @@ splitDetails | obj | Details of split item.
 parentBillNumber | string | Details of the actual transaction number. This is applicable only for return transactions.
 purchaseTime | date-time | Date and time of purchase in `YYYY-MM-DDTHH:MM:SS` format.
 customFields | obj | Details of transaction level or transaction line-item level custom fields.
-loyaltyPromotionIdentifiers | array | 
-id | | 
 redemptions | obj | Details of points and coupon redemptions for the  transaction.
 pointsRedemptions | array |  array | Unique points redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]
 couponRedemptions | array | Unique coupon redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]
+loyaltyPromotionIdentifiers | array | 
+id | - | -
 paymentModes | obj | Payment details used for the transaction. 
 mode | string | Mode of payment.
 value | double | Amount paid through the current mode.
