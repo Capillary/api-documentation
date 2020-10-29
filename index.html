@@ -28283,6 +28283,792 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </tr>
 </tbody></table>
 
+          <h1 id="marvel-rewards">Marvel Rewards</h1>
+
+<p>Rewards are incentives issued customers from a specific org. Rewards could be in the form of either points and coupons. Again, coupons are categorized into the following types.
+* <strong>Vouchers</strong>: Digital coupons generated against redeeming customer points. For example, redeem 50 points for 10% off coupon. 
+* <strong>Physical voucher</strong>: Physical coupons generated against redeeming customer points. For example, redeem 150 points for flat 150 off coupon.
+* <strong>Free voucher</strong>: Digital coupons generated without any points redemption.</p>
+
+<p>Based on the source of issual, rewards are of the following types:</p>
+
+<ul>
+<li><strong>InTouch only rewards</strong>: These are points or coupons created in Capillary and users Capillary APIs. </li>
+<li><strong>Vendor only rewards</strong>: These are either points or coupons created at the vendor end. Capillary uses vendor specific APIs directly to identify and issue rewards.</li>
+<li><strong>InTouch + Vendor rewards</strong>: These are vendor rewards Vendor rewards with reference created at the Capillary end.</li>
+</ul>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>host</td>
+<td><strong>APAC</strong>: https://apac-apigateway.capillarytech.com/</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td><a href="https://capillary.github.io/api-documentation/#customer-authentication">Customer Authentication</a>.</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-brand-rewards">Get Brand Rewards</h2>
+
+<p>Retrieves rewards of a specific brand.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://apac-apigateway.capillarytech.com/mobile/v2/api/marvel/reward/details?sortBy=asc<span class="err">&amp;</span>orderBy=intouchPoints<span class="err">&amp;</span>area=hsr<span class="err">&amp;</span>language=en<span class="err">&amp;</span>city=bangalore<span class="err">&amp;</span>tier=<span class="err">&amp;</span>type=<span class="err">&amp;</span>group=<span class="err">&amp;</span>label=<span class="err">&amp;</span>country=india<span class="err">&amp;</span>category=fuel
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"status"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"code"</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"message"</span><span class="p">:</span><span class="s2">"User Reward fetched successfully"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"rewardList"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">489</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"50 NFR Discount Voucher"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"50 NFR Discount Voucher"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"imageId"</span><span class="p">:</span><span class="s2">"49J2711828.image/jpeg"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"imageUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/STANDARDAPP/49J2711828.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T143336Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=21d7bc16a4af1d99894a235bb53e4e08f79d81e524572f75ec475799e983c425"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"thumbnailId"</span><span class="p">:</span><span class="s2">"49J2719V29.image/jpeg"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"thumbnailUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/STANDARDAPP/49J2719V29.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T143336Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=e3ce9dcae77d8dd0680ac28ba6745fcbcfcf795ee6922eabeced5234f8bd8657"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"termAndConditionsId"</span><span class="p">:</span><span class="s2">"49J271AC30.html"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"termAndConditionsUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/STANDARDAPP/49J271AC30.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T143336Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=1c71e0cfb2573537747f8fa01771fbe95756ecabe57cdcc404a8b724393fb0fd"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"tier"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"priority"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"intouchPoints"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"group"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"startTime"</span><span class="p">:</span><span class="s2">"2020-10-17 14:00:36"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"endTime"</span><span class="p">:</span><span class="s2">"2026-12-31 03:00:36"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"expired"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"started"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">488</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Ferrari Merchandise"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Ferrari Merchandise"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"imageId"</span><span class="p">:</span><span class="s2">"49J2H0VB31.image/jpeg"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"imageUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/STANDARDAPP/49J2H0VB31.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T143336Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=3e04f3284253d58ffef1a44ce704c57846f1a401f16451cc4caf923314b36616"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"thumbnailId"</span><span class="p">:</span><span class="s2">"49J2H12D32.image/jpeg"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"thumbnailUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/STANDARDAPP/49J2H12D32.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T143336Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=6e3a36312b7f1bf1de3ec578f91a8f50e761e9c85332592507f1a2d9dc3f0f90"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"termAndConditionsId"</span><span class="p">:</span><span class="s2">"49J3M0Y134.html"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"termAndConditionsUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/STANDARDAPP/49J3M0Y134.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T143336Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=e7fabaa9221d48ccef0172bee64554a5e98566d2ebd5b2a0af6c71e018dab5be"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"tier"</span><span class="p">:</span><span class="s2">"GIFT"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"priority"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"intouchPoints"</span><span class="p">:</span><span class="mi">300</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"group"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"startTime"</span><span class="p">:</span><span class="s2">"2020-10-16 09:34:39"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"endTime"</span><span class="p">:</span><span class="s2">"2021-01-27 00:34:39"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"expired"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"started"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">380</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"200 Fuel Discount Voucher"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"200 Fuel Discount Voucher"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"imageId"</span><span class="p">:</span><span class="s2">"49H500SIB1.image/png"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"imageUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/STANDARDAPP/49H500SIB1.image/png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T143336Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=e8935ddf0b679032b963212f3f8bfcb6b1ef7adbac6c1dd6baf6b3b795291e44"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"thumbnailId"</span><span class="p">:</span><span class="s2">"49H500Z2B2.image/png"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"thumbnailUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/STANDARDAPP/49H500Z2B2.image/png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T143336Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=4cf5a4ab4c03c04344914d6431f31b5887fd8899ae93252d0cacca97a590c67e"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"termAndConditionsId"</span><span class="p">:</span><span class="s2">"49H5010FB3.html"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"termAndConditionsUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/STANDARDAPP/49H5010FB3.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T143336Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=d20daa142088a398d2ec73fe747fbafc98a62b3a526e4008eec129f48255ffdd"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"tier"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"priority"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"intouchPoints"</span><span class="p">:</span><span class="mi">250</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"group"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"startTime"</span><span class="p">:</span><span class="s2">"2020-09-02 12:50:53"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"endTime"</span><span class="p">:</span><span class="s2">"2026-12-29 05:50:53"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"expired"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"started"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"pagingDto"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"last"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"totalElements"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"totalPages"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"numberOfElements"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"first"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"size"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"number"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/mobile/v2/api/marvel/reward/details</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Customer Auth</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Rate Limited</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/mobile/v2/api/marvel/reward/details?sortBy={asc/desc}&amp;orderBy={}&amp;area=hsr&amp;language={langCode}&amp;city={city}&amp;tier={}&amp;type={}&amp;group={}&amp;label={}&amp;country={}&amp;category={}</code></p>
+
+<h3 id="request-headers">Request Headers</h3>
+
+<table><thead>
+<tr>
+<th>Header</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>cap_authorization*</td>
+<td>Unique token generated for the customer.</td>
+</tr>
+<tr>
+<td>cap_brand*</td>
+<td>Org associated with the token to issue rewards.</td>
+</tr>
+<tr>
+<td>cap_device_id*</td>
+<td>Unique device ID the customer used for authentication.</td>
+</tr>
+<tr>
+<td>cap_mobile*</td>
+<td>The registered mobile number of the customer.</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>brandName*</td>
+<td>string</td>
+<td>Name of the brand by which you want to fetch rewards.</td>
+</tr>
+<tr>
+<td>city</td>
+<td>string</td>
+<td>Filter rewards by city. Pass the city name.</td>
+</tr>
+<tr>
+<td>sortBy</td>
+<td>enum</td>
+<td>Pass <code class="prettyprint">asc</code> to sort the results in ascending order of <code class="prettyprint">sortBy</code> value, <code class="prettyprint">desc</code> to order in descending order.</td>
+</tr>
+<tr>
+<td>orderBy</td>
+<td>enum</td>
+<td>Filter results by a specific parameter. Value: <code class="prettyprint">intouchVoucherExpiry</code>, <code class="prettyprint">rewardId</code>, <code class="prettyprint">intouchPoints</code>.</td>
+</tr>
+<tr>
+<td>language</td>
+<td>string</td>
+<td>Specify the ISO language code to get reward details in that particular language. For example, <code class="prettyprint">zh</code> for Chinese, <code class="prettyprint">ar</code> for Arabic, <code class="prettyprint">en</code> for English (default language). You can configure a reward in different languages and retrieve in a specific language only if it is configured.</td>
+</tr>
+<tr>
+<td>area</td>
+<td>string</td>
+<td>Retrieve rewards of a specific region. Pass the area name.</td>
+</tr>
+<tr>
+<td>city</td>
+<td>string</td>
+<td>Retrieve rewards of a specific city. Pass the city name.</td>
+</tr>
+<tr>
+<td>country</td>
+<td>string</td>
+<td>Retrieve rewards of a specific country. Pass the country name.</td>
+</tr>
+<tr>
+<td>category</td>
+<td>string</td>
+<td>Retrieve rewards of a specific category. Pass the category name.</td>
+</tr>
+<tr>
+<td>label</td>
+<td>string</td>
+<td>Retrieve rewards tagged to a specific label. Pass the label name.</td>
+</tr>
+<tr>
+<td>group</td>
+<td>string</td>
+<td>Retrieve rewards of a specific label. Pass the group name.</td>
+</tr>
+<tr>
+<td>tier</td>
+<td>string</td>
+<td>Retrieve rewards of a specific tier. Pass the tier name.</td>
+</tr>
+<tr>
+<td>size</td>
+<td>long</td>
+<td>Results to show per page.</td>
+</tr>
+<tr>
+<td>page</td>
+<td>int</td>
+<td>To retrieve details of a specific page. Pass <code class="prettyprint">0</code> to not apply pagination. For example, <code class="prettyprint">page=2&amp;size=10</code> shows 10 results on page 2.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">The parameter marked with * is mandatory. The parameter values for area, city, country, category, label, group, and tier are user-defined. You need to pass the exact names as per created on the UI.</aside>
+
+<h2 id="get-user-rewards">Get User Rewards</h2>
+
+<p>Retrieves rewards of a specific customer.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://apac-apigateway.capillarytech.com/mobile/v2/api/marvel/vouchers/get?mobile=918848000000<span class="err">&amp;</span>cap_brand=demoBrand<span class="err">&amp;</span>username=till.1<span class="err">&amp;</span>status={{status}}<span class="err">&amp;</span>language=en
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"status"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"code"</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"message"</span><span class="p">:</span><span class="s2">"User Reward fetched successfully"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"userVouchers"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"rewardDetails"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"rewardId"</span><span class="p">:</span><span class="mi">488</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Ferrari Merchandise"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Ferrari Merchandise"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"thumbnailId"</span><span class="p">:</span><span class="s2">"49J2H12D32.image/jpeg"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"thumbnailUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/STANDARDAPP/49J2H12D32.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T142928Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=d57fc7aae76c9632946f88f54cab83ff4c168642084774c0326a86c98f929a34"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"imageId"</span><span class="p">:</span><span class="s2">"49J2H0VB31.image/jpeg"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"termNConditionsId"</span><span class="p">:</span><span class="s2">"49J3M0Y134.html"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"termNConditionsUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/STANDARDAPP/49J3M0Y134.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T142928Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=cbaf68a15587a4b7f07ba46f51bbd7688baf27c6d9312e2b2f0ec9ba43d211b4"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"imageUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/STANDARDAPP/49J2H0VB31.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T142928Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=61bfabff1582fdd948ebbba6fbbd1e13eda386a6c382755fba93d78be7b0d3ce"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"tier"</span><span class="p">:</span><span class="s2">"GIFT"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"group"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"tillId"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"vouchers"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="nt">"code"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"expiry"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"vendor"</span><span class="p">:</span><span class="s2">"{\"status\":{\"success\":\"true\",\"code\":200,\"message\":\"Success\"},\"coupons\":{\"coupon\":{\"customer\":{\"mobile\":\"918848000000\",\"email\":null,\"external_id\":\"90000000000018700\"},\"code\":\"TL150O7R\",\"discount_code\":\"NO_VALUE\",\"series_code\":\"2483\",\"series_info\":[],\"is_absolute\":\"true\",\"coupon_value\":\"0\",\"transaction\":{\"amount\":\"\",\"number\":\"\"},\"side_effects\":[],\"item_status\":{\"success\":\"true\",\"code\":700,\"message\":\"Coupon processing successful\"}}}}"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"rewardId"</span><span class="p">:</span><span class="mi">488</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"issued"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"seriesName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"redemptionCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"redemptions"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="nt">"code"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"expiry"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"vendor"</span><span class="p">:</span><span class="s2">"{\"status\":{\"success\":\"true\",\"code\":200,\"message\":\"Success\"},\"coupons\":{\"coupon\":{\"customer\":{\"mobile\":\"918848000000\",\"email\":null,\"external_id\":\"90000000000018700\"},\"code\":\"F0J8Z9AA\",\"discount_code\":\"NO_VALUE\",\"series_code\":\"2483\",\"series_info\":[],\"is_absolute\":\"true\",\"coupon_value\":\"0\",\"transaction\":{\"amount\":\"\",\"number\":\"\"},\"side_effects\":[],\"item_status\":{\"success\":\"true\",\"code\":700,\"message\":\"Coupon processing successful\"}}}}"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"rewardId"</span><span class="p">:</span><span class="mi">488</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"issued"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"seriesName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"redemptionCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"redemptions"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="nt">"code"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"expiry"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"vendor"</span><span class="p">:</span><span class="s2">"{\"status\":{\"success\":\"true\",\"code\":200,\"message\":\"Success\"},\"coupons\":{\"coupon\":{\"customer\":{\"mobile\":\"918848000000\",\"email\":null,\"external_id\":\"90000000000018700\"},\"code\":\"7OK2IMSB\",\"discount_code\":\"NO_VALUE\",\"series_code\":\"2483\",\"series_info\":[],\"is_absolute\":\"true\",\"coupon_value\":\"0\",\"transaction\":{\"amount\":\"\",\"number\":\"\"},\"side_effects\":[],\"item_status\":{\"success\":\"true\",\"code\":700,\"message\":\"Coupon processing successful\"}}}}"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"rewardId"</span><span class="p">:</span><span class="mi">488</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"issued"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"seriesName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"redemptionCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"redemptions"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="nt">"code"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"expiry"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"vendor"</span><span class="p">:</span><span class="s2">"{\"status\":{\"success\":\"true\",\"code\":200,\"message\":\"Success\"},\"coupons\":{\"coupon\":{\"customer\":{\"mobile\":\"918848000000\",\"email\":null,\"external_id\":\"90000000000018700\"},\"code\":\"CITHYUGK\",\"discount_code\":\"NO_VALUE\",\"series_code\":\"2483\",\"series_info\":[],\"is_absolute\":\"true\",\"coupon_value\":\"0\",\"transaction\":{\"amount\":\"\",\"number\":\"\"},\"side_effects\":[],\"item_status\":{\"success\":\"true\",\"code\":700,\"message\":\"Coupon processing successful\"}}}}"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"rewardId"</span><span class="p">:</span><span class="mi">488</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"issued"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"seriesName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"redemptionCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"redemptions"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="nt">"code"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"expiry"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"vendor"</span><span class="p">:</span><span class="s2">"{\"status\":{\"success\":\"true\",\"code\":200,\"message\":\"Success\"},\"coupons\":{\"coupon\":{\"customer\":{\"mobile\":\"918848000000\",\"email\":null,\"external_id\":\"90000000000018700\"},\"code\":\"VAFCQDCS\",\"discount_code\":\"NO_VALUE\",\"series_code\":\"2483\",\"series_info\":[],\"is_absolute\":\"true\",\"coupon_value\":\"0\",\"transaction\":{\"amount\":\"\",\"number\":\"\"},\"side_effects\":[],\"item_status\":{\"success\":\"true\",\"code\":700,\"message\":\"Coupon processing successful\"}}}}"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"rewardId"</span><span class="p">:</span><span class="mi">488</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"issued"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"seriesName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"redemptionCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"redemptions"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"rewardDetails"</span><span class="p">:{</span><span class="w">
+            </span><span class="nt">"rewardId"</span><span class="p">:</span><span class="mi">489</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"50 NFR Discount Voucher"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"50 NFR Discount Voucher"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"thumbnailId"</span><span class="p">:</span><span class="s2">"49J2719V29.image/jpeg"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"thumbnailUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/STANDARDAPP/49J2719V29.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T142928Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=dce8783763093a0b6d166c4facb42a9e9bb3db51b8a33366acdebc1831031a7f"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"imageId"</span><span class="p">:</span><span class="s2">"49J2711828.image/jpeg"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"termNConditionsId"</span><span class="p">:</span><span class="s2">"49J271AC30.html"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"termNConditionsUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/STANDARDAPP/49J271AC30.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T142928Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=7d6f6ebc06627fc7e7de12489ec3f11148616ea2ee25308d43c011546f00ccac"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"imageUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/STANDARDAPP/49J2711828.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T142928Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=4c66b3075db316c3fac99d053ed2c84dbbe9440cf098e12d620986cd6f41f9b8"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"tier"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"group"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"tillId"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="nt">"vouchers"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"KUQ3AAK7"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"expiry"</span><span class="p">:</span><span class="s2">"2020-12-12 23:59:59"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"vendor"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"rewardId"</span><span class="p">:</span><span class="mi">489</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"issued"</span><span class="p">:</span><span class="s2">"2020-10-28T17:27:03.000+05:30"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="s2">"2490"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"seriesName"</span><span class="p">:</span><span class="s2">"50 NFR Discount Voucher"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"redemptionCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"redemptions"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"redemption"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"DBN600HI"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"expiry"</span><span class="p">:</span><span class="s2">"2020-12-12 23:59:59"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"vendor"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"rewardId"</span><span class="p">:</span><span class="mi">489</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"issued"</span><span class="p">:</span><span class="s2">"2020-10-28T17:27:03.000+05:30"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="s2">"2490"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"seriesName"</span><span class="p">:</span><span class="s2">"50 NFR Discount Voucher"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"redemptionCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"redemptions"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"redemption"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"rewardDetails"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"vouchers"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"L3CC29OJ"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"expiry"</span><span class="p">:</span><span class="s2">"2120-02-24 23:59:59"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"vendor"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"rewardId"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"issued"</span><span class="p">:</span><span class="s2">"2020-02-25T22:35:55.000+05:30"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="s2">"833"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"seriesName"</span><span class="p">:</span><span class="s2">"Google Mini"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"redemptionCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"redemptions"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"redemption"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"1DGT50TE"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"expiry"</span><span class="p">:</span><span class="s2">"2120-02-24 23:59:59"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"vendor"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"rewardId"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"issued"</span><span class="p">:</span><span class="s2">"2020-02-25T22:36:43.000+05:30"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="s2">"833"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"seriesName"</span><span class="p">:</span><span class="s2">"Google Mini"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"redemptionCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"redemptions"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"redemption"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"pagingDto"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"last"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"totalElements"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"totalPages"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"numberOfElements"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"first"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"size"</span><span class="p">:</span><span class="mi">1000</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"number"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/mobile/v2/api/marvel/vouchers/get</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Customer Auth</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v1</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Rate Limited</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-headers">Request Headers</h3>
+
+<table><thead>
+<tr>
+<th>Header</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>cap_authorization*</td>
+<td>Unique token generated for the customer.</td>
+</tr>
+<tr>
+<td>cap_brand*</td>
+<td>Org associated with the token to issue rewards.</td>
+</tr>
+<tr>
+<td>cap_device_id*</td>
+<td>Unique device ID the customer used for authentication.</td>
+</tr>
+<tr>
+<td>cap_mobile*</td>
+<td>The registered mobile number of the customer.</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/mobile/v2/api/marvel/vouchers/get?mobile={mobile}&amp;cap_brand={brand}&amp;username={till}&amp;status={status}&amp;language={language}&amp;orderBy={orderBy}&amp;sortBy={sortBy}&amp;intouch={intouch}&amp;page={}&amp;size={}</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mobile*</td>
+<td>string</td>
+<td>Mobile number of the customer to fetch rewards.</td>
+</tr>
+<tr>
+<td>cap_brand*</td>
+<td>string</td>
+<td>Name of the brand (as in Capillary) associated with the rewards.</td>
+</tr>
+<tr>
+<td>language</td>
+<td>string</td>
+<td>ISO language code to get rewards of that particular language. For example, <code class="prettyprint">zh</code> for Chinese, <code class="prettyprint">ar</code> for Arabic, <code class="prettyprint">en</code> for English (default language). You can configure a reward in different languages and retrieve in a specific language only if it is configured.</td>
+</tr>
+<tr>
+<td>sortBy</td>
+<td>enum</td>
+<td>Sort the results by a specific parameter. Value: <code class="prettyprint">intouchVoucherExpiry</code>, <code class="prettyprint">rewardId</code>.</td>
+</tr>
+<tr>
+<td>orderBy</td>
+<td>enum</td>
+<td>Pass <code class="prettyprint">asc</code> to order the results in ascending order of <code class="prettyprint">sortBy</code> value, <code class="prettyprint">desc</code> to order in descending order.</td>
+</tr>
+<tr>
+<td>intouch</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">false</code> to show only vendor rewards, <code class="prettyprint">true</code> (default value) to show reward details with vouchers, including campaigns.</td>
+</tr>
+<tr>
+<td>size</td>
+<td>long</td>
+<td>Results to show per page.</td>
+</tr>
+<tr>
+<td>page</td>
+<td>int</td>
+<td>To retrieve details of a specific page. Pass <code class="prettyprint">0</code> to not apply pagination. For example, <code class="prettyprint">page=2&amp;size=10</code> shows 10 results on page 2.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">All parameters marked with * are mandatory.</aside>
+
+<h2 id="issue-user-reward">Issue User Reward</h2>
+
+<p>Lets you issue rewards to a specific customer. Customer points are deducted according to the voucher issued.</p>
+
+<aside class="notice">Points are not deducted for free vouchers. </aside>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://apac-apigateway.capillarytech.com/mobile/v2/api/marvel/rewards/issue?id=5623<span class="err">&amp;</span>till_id=internal.test.solution
+</code></pre>
+<blockquote>
+<p>Sample Post Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"8848240000"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"brand"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DemoBrand"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sample note, issuing rewards to customer"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"transactionNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cap12345"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"validationCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"87654"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"redemptionTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response (for Vendor only Rewards)</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"status"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"code"</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"message"</span><span class="p">:</span><span class="s2">"Reward issued successfully"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"intouch"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"pointsRedeemed"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"couponCode"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"codeExpiry"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"vendor"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"voucher"</span><span class="p">:</span><span class="s2">"{\"status\":{\"success\":\"true\",\"code\":200,\"message\":\"Success\"},\"coupons\":{\"coupon\":{\"customer\":{\"mobile\":\"918848000000\",\"email\":null,\"external_id\":\"90000000000018700\"},\"code\":\"S4WUGJMT\",\"discount_code\":\"NO_VALUE\",\"series_code\":\"2483\",\"series_info\":[],\"is_absolute\":\"true\",\"coupon_value\":\"0\",\"transaction\":{\"amount\":\"\",\"number\":\"\"},\"side_effects\":[],\"item_status\":{\"success\":\"true\",\"code\":700,\"message\":\"Coupon processing successful\"}}}}"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"coupon_issue_status"</span><span class="p">:</span><span class="s2">"{\"success\":true,\"code\":200,\"message\":\"Success\"}"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response (for InTouch only Rewards)</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"status"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"code"</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"message"</span><span class="p">:</span><span class="s2">"Reward issued successfully"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"intouch"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"pointsRedeemed"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"couponCode"</span><span class="p">:</span><span class="s2">"ASDFGHJKL"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"codeExpiry"</span><span class="p">:</span><span class="s2">"2020-10-22 17:00:00"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"vendor"</span><span class="p">:{</span><span class="w">
+
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response (for Vendor+InTouch rewards)</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"status"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"code"</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"message"</span><span class="p">:</span><span class="s2">"Reward issued successfully"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"intouch"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"pointsRedeemed"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"couponCode"</span><span class="p">:</span><span class="s2">"ASDFGHJKL"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"codeExpiry"</span><span class="p">:</span><span class="s2">"2020-10-22 17:00:00"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"vendor"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"voucher"</span><span class="p">:</span><span class="s2">"{\"status\":{\"success\":\"true\",\"code\":200,\"message\":\"Success\"},\"coupons\":{\"coupon\":{\"customer\":{\"mobile\":\"918848000000\",\"email\":null,\"external_id\":\"90000000000018700\"},\"code\":\"S4WUGJMT\",\"discount_code\":\"NO_VALUE\",\"series_code\":\"2483\",\"series_info\":[],\"is_absolute\":\"true\",\"coupon_value\":\"0\",\"transaction\":{\"amount\":\"\",\"number\":\"\"},\"side_effects\":[],\"item_status\":{\"success\":\"true\",\"code\":700,\"message\":\"Coupon processing successful\"}}}}"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"coupon_issue_status"</span><span class="p">:</span><span class="s2">"{\"success\":true,\"code\":200,\"message\":\"Success\"}"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/core/v1/user/rewards/issue</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Customer Auth</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v1</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Rate Limited</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/mobile/v2/api/marvel/rewards/issue?id={id}&amp;till_id={tillCode}</code> </p>
+
+<h3 id="request-headers">Request Headers</h3>
+
+<table><thead>
+<tr>
+<th>Header</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>cap_authorization*</td>
+<td>Unique token generated for the customer.</td>
+</tr>
+<tr>
+<td>cap_brand*</td>
+<td>Org associated with the token to issue rewards.</td>
+</tr>
+<tr>
+<td>cap_device_id*</td>
+<td>Unique device ID the customer used for authentication.</td>
+</tr>
+<tr>
+<td>cap_mobile*</td>
+<td>The registered mobile number of the customer.</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mobile*</td>
+<td>string</td>
+<td>Registered mobile number of the customer to issue rewards.</td>
+</tr>
+<tr>
+<td>brand*</td>
+<td>string</td>
+<td>Name of the brand associated with the reward.</td>
+</tr>
+<tr>
+<td>transactionNumber*</td>
+<td>string</td>
+<td>Unique transaction number of the issual.</td>
+</tr>
+<tr>
+<td>tillID</td>
+<td>long</td>
+<td>Till code that you want to associate with the rewards.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
+
+<h2 id="response-codes">Response Codes</h2>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>200</td>
+<td>User rewards fetched or issued successfully.</td>
+</tr>
+<tr>
+<td>8000</td>
+<td>Unable to fetch user reward.</td>
+</tr>
+<tr>
+<td>8003</td>
+<td>Unable to issue user reward.</td>
+</tr>
+<tr>
+<td>8004</td>
+<td>Unable to issue user reward.</td>
+</tr>
+<tr>
+<td>8005</td>
+<td>User reward is disabled for the brand.</td>
+</tr>
+<tr>
+<td>8009</td>
+<td>Invalid page or size passed. Page or size should not be zero.</td>
+</tr>
+<tr>
+<td>8010</td>
+<td>User reward is partially successful (in case of batch issual).</td>
+</tr>
+</tbody></table>
+
       </div>
       <div class="dark-box">
           <div class="lang-selector">
