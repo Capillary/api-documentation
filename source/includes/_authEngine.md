@@ -1,5 +1,5 @@
-# Auth Engine
-Auth Engine is a framework that manages end-user (customer) authentication to the organization's mobile or web application. This resource provides APIs related to authenticating web and mobile applications.
+# Customer Authentication
+Customer Authentication is a Auth Engine framework that manages end-user (customer) authentication to the organization's mobile or web application. This resource provides APIs related to authenticating web and mobile applications.
 
 The authentication completes only after validating the mobile number or email ID through OTP.
 
@@ -24,7 +24,7 @@ ae-host | **APAC**: https://apac-apigateway.capillarytech.com/mobile<br> **APAC 
 
 
 
-<aside class="notice">The host URL of Auth Engine is different from CRM V1.1 or V2 APIs. Please consider the URLs provided for Auth Engine APIs. </aside>
+<aside class="notice">The host URL of Auth Engine is different from CRM V1.1 or V2 APIs. Please consider the URLs provided for Customer Authentication APIs. </aside>
 
 ## Generate Authentication Token
 

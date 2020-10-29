@@ -33,6 +33,7 @@ includes:
   - integrations
   - eventNotifications
   - authEngine
+  - rewards
 
 search: true
 ---
