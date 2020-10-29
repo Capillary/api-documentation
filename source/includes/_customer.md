@@ -1389,24 +1389,32 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
             "accountId": "",
             "priority": "BULK",
             "type": "OPTOUT"
+			"orgUnitId": 200031782,
+			"sourceName": "INSTORE"
         },
         {
             "channel": "MOBILE",
             "accountId": "",
             "priority": "BULK",
             "type": "OPTOUT"
+			"orgUnitId": 200031782,
+			"sourceName": "INSTORE"
         }, 
         {
             "channel": "EMAIL",
             "accountId": "",
             "priority": "TRANS",
-            "type": "OPTIN"
+            "type": "OPTIN",
+			"orgUnitId": 200031782,
+			"sourceName": "INSTORE"
         },
         {
             "channel": "MOBILE",
             "accountId": "123",
             "priority": "TRANS",
-            "type": "OPTIN"
+            "type": "OPTIN",
+			"orgUnitId": 200031782,
+			"sourceName": "WECHAT"
         }
     ]
 }
@@ -1478,7 +1486,9 @@ Parameter | Description
 customerId* | Unique ID of the customer whose subscription details you want to modify
 channel | Pass the communication channel that you want to update. **Value**: `mobile`, `email`, `wechat`, `whatsapp`, `ios`, `android`, and `line`.
 priority | Type of service for which you want to modify the subscription details.`TRANS` for personalized messages and `BULK` for campaign or bulk messages
-type | `OPTIN` to subscribe and `OPTOUT` to unsubscribe
+type | `OPTIN` to subscribe and `OPTOUT` to unsubscribe.
+orgUnitId | long | Concept ID or org unit ID to update subscription details of for an org unit.
+sourceName | Source in which the identifier is registered. Values: `INSTORE`, `FACEBOOK`, `WEB_ENGAGE`, `WECHAT`, `INSTORE`, `MARTJACK`, `TMALL`, `TAOBAO`, `JD`, `ECOMMERCE`, `WEBSITE`, `LINE`, `MOBILE_APP`.
 
 <aside class="notice">Parameter marked with * is mandatory and also pass other dependent required for the specific action. </aside> 
 

@@ -11,9 +11,9 @@ Transactions are classified into the following types:
 
 
 
-## Add Transaction
+## Add or Return Transaction
 
-Lets you add one or more loyalty transactions to the Capillary system.
+Lets you add or return one or more loyalty transactions to the Capillary system.
 
 * If CONFIG_SKIP_SECONDARY_ID_ON_PRIMARY_MISMATCH is enabled, if the primary identifier is different but any of the secondary identifiers exist, a new customer is registered with the primary identifier ignoring the secondary identifier. The config is available on the Registration Page of InTouch Profile > Organization Settings > Miscellaneous.
 
@@ -51,7 +51,7 @@ The `transaction/add` API lets you do the following.
 https://eu.intouch.capillarytech.com/v2/transactions/bulk
 ```
 
-> Sample POST Request
+> Sample POST Request (POST Transaction)
 
 ```json
 [
@@ -78,6 +78,16 @@ https://eu.intouch.capillarytech.com/v2/transactions/bulk
         "value": "500"
       }
     ],
+	"redemptions": {
+   "pointsRedemptions": [
+		123453,
+		345673
+	],
+   "couponRedemptions": [
+		727272, 
+		237878
+	]
+ },
     "extendedFields": {
       "ship_first_name": "22.02",
       "ship_last_name": "10.50"
@@ -331,6 +341,79 @@ https://eu.intouch.capillarytech.com/v2/transactions/bulk
   }
 ]
 ```
+
+> Sample POST Request (Return Transaction)
+
+```json
+[
+  {
+    "identifierType": "mobile",
+    "identifierValue": "919035000000",
+    "source": "INSTORE",
+    "type": "RETURN",
+    "returnType": "LINE_ITEM",
+    "billNumber": "num-6682818",
+    "discount": "10",
+    "billAmount": "210",
+    "paymentModes": [
+      {
+        "attributes": {
+          "name": "CASH",
+          "value": "210"
+        }
+      }
+    ],
+    "redemptions": {
+      "pointsRedemptions": [
+        123453,
+        345673
+      ],
+      "couponRedemptions": [
+        727272,
+        237878
+      ]
+    },
+    "extendedFields": {
+      "ship_first_name": "22.02",
+      "ship_last_name": "10.50"
+    },
+    "customFields": {
+      "trans_cf_a": "abc"
+    },
+    "lineItemsV2": [
+      {
+        "itemCode": "sku_486741_2",
+        "description": "ribon box",
+        "amount": 50,
+        "rate": 100,
+        "qty": 1,
+        "value": 100,
+        "discount": 50
+      },
+      {
+        "itemCode": "sku_486741_2",
+        "description": "Lower",
+        "amount": 100,
+        "rate": 100,
+        "qty": 1,
+        "value": 100,
+        "discount": 0
+      },
+      {
+        "itemCode": "sku_486741_3",
+        "description": "Upper T-shirt",
+        "amount": 60,
+        "rate": 100,
+        "qty": 1,
+        "value": 100,
+        "discount": 40
+      }
+    ]
+  }
+]
+
+```
+
 
 > Sample Response
 
@@ -720,7 +803,8 @@ extendedFields | obj | Valid transaction level extended field details in name an
 currencyCode | string | ISO currency code of the transaction. For example, `INR` for Indian Rupee, SGD for Singapore Dollar, `EUR` for Euro, `IQD` for Iraqi Dinar.
 addWithLocalCurrency | boolean | Pass `true` to add a transaction in local currency.
 deliveryStatus | enum | Delivery status of the item. Values: DELIVERED, SHIPPED.
-type* | enum | Type of transaction. Supported value:  `regular` for loyalty transactions. 'RETURN' for return transactions. Currently, there is no not-interested transactions support in V2.
+type* | enum | Type of transaction. Supported value: `REGULAR` for loyalty transactions. 'RETURN' for return transactions. Currently, there is no not-interested transactions support in V2.
+returnType** | enum | For a return transaction, pass the return type. Value: `AMOUNT`, `FULL`, `LINE_ITEM`, `CANCELLED`.
 billAmount* | double | Net transaction amount.
 billNumber* |  string | Unique transaction number. The uniqueness either at till, store, or org, depends on the configuration `CONF_LOYALTY_BILL_NUMBER_UNIQUE_IN_DAYS` set on InTouch **Settings** > **System & Deployment** > **InTouch POS Configuration** > **Billing**.  
 currency | string | ISO currency code of the transaction. Org's base currency is considered by default. For example, `INR` for Indian Rupee, `SGD` for Singapore Dollar, `EUR` for Euro, `IQD` for Iraqi Dinar.
@@ -751,10 +835,10 @@ parentBillNumber | string | Details of the actual transaction number. This is ap
 purchaseTime | date-time | Date and time of purchase in `YYYY-MM-DDTHH:MM:SS` format.
 customFields | obj | Details of transaction level or transaction line-item level custom fields.
 redemptions | obj | Details of points and coupon redemptions for the  transaction.
-pointsRedemptions | array |  array | Unique points redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]
+pointsRedemptions | array | Unique points redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]
 couponRedemptions | array | Unique coupon redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]
 loyaltyPromotionIdentifiers | array | 
-id | - | -
+id | - | --
 paymentModes | obj | Payment details used for the transaction. 
 mode | string | Mode of payment.
 value | double | Amount paid through the current mode.
