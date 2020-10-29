@@ -2501,24 +2501,32 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
             </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
             </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BULK"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTOUT"</span><span class="w">
+            </span><span class="s2">"orgUnitId"</span><span class="err">:</span><span class="w"> </span><span class="mi">200031782</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"sourceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSTORE"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MOBILE"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
             </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BULK"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTOUT"</span><span class="w">
+            </span><span class="s2">"orgUnitId"</span><span class="err">:</span><span class="w"> </span><span class="mi">200031782</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"sourceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSTORE"</span><span class="w">
         </span><span class="p">},</span><span class="w"> 
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EMAIL"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
             </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRANS"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"orgUnitId"</span><span class="p">:</span><span class="w"> </span><span class="mi">200031782</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"sourceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSTORE"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MOBILE"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"123"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRANS"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTIN"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"orgUnitId"</span><span class="p">:</span><span class="w"> </span><span class="mi">200031782</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"sourceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WECHAT"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -2624,7 +2632,15 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 </tr>
 <tr>
 <td>type</td>
-<td><code class="prettyprint">OPTIN</code> to subscribe and <code class="prettyprint">OPTOUT</code> to unsubscribe</td>
+<td><code class="prettyprint">OPTIN</code> to subscribe and <code class="prettyprint">OPTOUT</code> to unsubscribe.</td>
+</tr>
+<tr>
+<td>orgUnitId</td>
+<td>long</td>
+</tr>
+<tr>
+<td>sourceName</td>
+<td>Source in which the identifier is registered. Values: <code class="prettyprint">INSTORE</code>, <code class="prettyprint">FACEBOOK</code>, <code class="prettyprint">WEB_ENGAGE</code>, <code class="prettyprint">WECHAT</code>, <code class="prettyprint">INSTORE</code>, <code class="prettyprint">MARTJACK</code>, <code class="prettyprint">TMALL</code>, <code class="prettyprint">TAOBAO</code>, <code class="prettyprint">JD</code>, <code class="prettyprint">ECOMMERCE</code>, <code class="prettyprint">WEBSITE</code>, <code class="prettyprint">LINE</code>, <code class="prettyprint">MOBILE_APP</code>.</td>
 </tr>
 </tbody></table>
 
@@ -4133,9 +4149,9 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <li><strong>Mixed</strong>: A transaction that involves both regular and return is termed as mixed transaction.</li>
 </ul>
 
-<h2 id="add-transaction">Add Transaction</h2>
+<h2 id="add-or-return-transaction">Add or Return Transaction</h2>
 
-<p>Lets you add one or more loyalty transactions to the Capillary system.</p>
+<p>Lets you add or return one or more loyalty transactions to the Capillary system.</p>
 
 <ul>
 <li>If CONFIG_SKIP_SECONDARY_ID_ON_PRIMARY_MISMATCH is enabled, if the primary identifier is different but any of the secondary identifiers exist, a new customer is registered with the primary identifier ignoring the secondary identifier. The config is available on the Registration Page of InTouch Profile &gt; Organization Settings &gt; Miscellaneous.</li>
@@ -4177,7 +4193,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <pre class="highlight html"><code>https://eu.intouch.capillarytech.com/v2/transactions/bulk
 </code></pre>
 <blockquote>
-<p>Sample POST Request</p>
+<p>Sample POST Request (POST Transaction)</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
@@ -4465,6 +4481,77 @@ Also, check the following configurations for maximum days allowed and minimum ti
     </span><span class="p">]</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">]</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample POST Request (Return Transaction)</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"identifierType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"identifierValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"919035000000"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RETURN"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"returnType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LINE_ITEM"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"billNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"num-6682818"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"billAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"210"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"paymentModes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CASH"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"210"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"redemptions"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"pointsRedemptions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="mi">123453</span><span class="p">,</span><span class="w">
+        </span><span class="mi">345673</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"couponRedemptions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="mi">727272</span><span class="p">,</span><span class="w">
+        </span><span class="mi">237878</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"ship_first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"ship_last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"customFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"trans_cf_a"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"lineItemsV2"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_2"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ribon box"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_2"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Lower"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_3"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Upper T-shirt"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">60</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">40</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+
 </span></code></pre>
 <blockquote>
 <p>Sample Response</p>
@@ -4912,7 +4999,12 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <tr>
 <td>type*</td>
 <td>enum</td>
-<td>Type of transaction. Supported value:  <code class="prettyprint">regular</code> for loyalty transactions. &lsquo;RETURN&rsquo; for return transactions. Currently, there is no not-interested transactions support in V2.</td>
+<td>Type of transaction. Supported value: <code class="prettyprint">REGULAR</code> for loyalty transactions. &lsquo;RETURN&rsquo; for return transactions. Currently, there is no not-interested transactions support in V2.</td>
+</tr>
+<tr>
+<td>returnType**</td>
+<td>enum</td>
+<td>For a return transaction, pass the return type. Value: <code class="prettyprint">AMOUNT</code>, <code class="prettyprint">FULL</code>, <code class="prettyprint">LINE_ITEM</code>, <code class="prettyprint">CANCELLED</code>.</td>
 </tr>
 <tr>
 <td>billAmount*</td>
@@ -27052,9 +27144,9 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </tr>
 </tbody></table>
 
-          <h1 id="auth-engine">Auth Engine</h1>
+          <h1 id="customer-authentication">Customer Authentication</h1>
 
-<p>Auth Engine is a framework that manages end-user (customer) authentication to the organization&rsquo;s mobile or web application. This resource provides APIs related to authenticating web and mobile applications.</p>
+<p>Customer Authentication is a Auth Engine framework that manages end-user (customer) authentication to the organization&rsquo;s mobile or web application. This resource provides APIs related to authenticating web and mobile applications.</p>
 
 <p>The authentication completes only after validating the mobile number or email ID through OTP.</p>
 
@@ -27095,7 +27187,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </tr>
 </tbody></table>
 
-<aside class="notice">The host URL of Auth Engine is different from CRM V1.1 or V2 APIs. Please consider the URLs provided for Auth Engine APIs. </aside>
+<aside class="notice">The host URL of Auth Engine is different from CRM V1.1 or V2 APIs. Please consider the URLs provided for Customer Authentication APIs. </aside>
 
 <h2 id="generate-authentication-token">Generate Authentication Token</h2>
 
