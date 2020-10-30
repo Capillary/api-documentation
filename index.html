@@ -6964,7 +6964,20 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
 
 <aside class="warning"> You can pass either coupon ID or coupon code. Any one parameter is required.</aside>
 
-<h2 id="upload-coupons-in-bulk">Upload Coupons in Bulk</h2>
+<h1 id="coupon-upload">Coupon Upload</h1>
+
+<p>These are not CRM or v2 APIs. Hence, please note that there are changes in all the API details including host and headers. </p>
+
+<p><strong>host1</strong></p>
+
+<ul>
+<li><strong>India</strong>: https://intouch.capillary.co.in</li>
+<li><strong>Apac2</strong>: https://apac2.intouch.capillarytech.com</li>
+<li><strong>EU</strong>: https://eu.intouch.capillarytech.com</li>
+<li><strong>China</strong>: https://intouch.capillarytech.cn.com</li>
+</ul>
+
+<h2 id="upload-coupons-batch">Upload Coupons (Batch)</h2>
 
 <p>Lets you upload coupons of a specific coupon series in bulk. 
  <aside class="notice">This is not a v2 API. Hence, all the API details including host and headers are provided in this section itself.  </aside></p>
@@ -6973,7 +6986,7 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
 <p>Sample Request</p>
 </blockquote>
 <pre class="highlight plaintext"><code>curl -X POST \
-  https://intouch-staging.capillary.in/coupon/api/v1/upload/file/311025 \
+  https://eu.intouch.capillarytech.com/coupon/api/v1/upload/file/311025 \
   -H 'Content-Type: application/json' \
   -H 'Postman-Token: 3056825f-5e0d-411e-a83d-e6ce0e6da3d2' \
   -H 'cache-control: no-cache' \
@@ -7045,15 +7058,6 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
 
 <p><code class="prettyprint">{host1}/coupon/api/v1/upload/file/{couponSeriedId}</code></p>
 
-<p><strong>host1</strong></p>
-
-<ul>
-<li><strong>India</strong>: https://intouch.capillary.co.in</li>
-<li><strong>Apac2</strong>: https://apac2.intouch.capillarytech.com</li>
-<li><strong>EU</strong>: https://eu.intouch.capillarytech.com</li>
-<li><strong>China</strong>: https://intouch.capillarytech.cn.com</li>
-</ul>
-
 <h3 id="header-required">Header Required</h3>
 
 <table><thead>
@@ -7065,6 +7069,10 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
 <tr>
 <td>Content-Type*</td>
 <td>multipart/form-data</td>
+</tr>
+<tr>
+<td>x-cap-api-oauth-token</td>
+<td>Generated authentication token</td>
 </tr>
 </tbody></table>
 
@@ -7111,6 +7119,358 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
 <td>Column ID of the customer identifier in the uploaded CSV file. <br> For example, <br>If the first column of the file contains customer identification data, then the value of customerIdentifierColumn will be 0.<br>If the second column of the file contains customer identification data, then the value of customerIdentifierColumn will be 1.</td>
 </tr>
 </tbody></table>
+
+<h2 id="upload-redeemed-coupons">Upload Redeemed Coupons</h2>
+
+<p>This API lets you bulk upload coupons that are redeemed for a coupon series. This API exposes an endpoint by which coupons that are redeemed externally can be imported into the Capillary CRM system.</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/coupon/api/v1/upload/redeemFile/{couponSeriesId}</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td><a href="https://capillary.github.io/v1.1-API-Documentation/?xml#process-2-oauth">oAuth</a></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host1}//coupon/api/v1/upload/redeemFile/{couponSeriesId}</code></p>
+
+<h3 id="header-required">Header Required</h3>
+
+<table><thead>
+<tr>
+<th>Header</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type*</td>
+<td>multipart/form-data</td>
+</tr>
+<tr>
+<td>x-cap-api-oauth-token</td>
+<td>Generated authentication token</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>couponSeriesId*</td>
+<td>long</td>
+<td>Unique ID of the coupon series for which you need to upload redeemed coupons.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">The parameter marked with * is mandatory.</aside>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>customerIdentifier*</td>
+<td>enum</td>
+<td>Unique identifier of the customer to update redeemed coupons. Values: <code class="prettyprint">MOBILE</code>, <code class="prettyprint">EXTERNAL_ID</code>, <code class="prettyprint">EMAIL</code>, <code class="prettyprint">USER_ID</code>.</td>
+</tr>
+<tr>
+<td>couponIdentifier</td>
+<td>enum</td>
+<td>Coupon identifier used. Value: <code class="prettyprint">COUPON_ID</code>, <code class="prettyprint">COUPON_CODE</code>.</td>
+</tr>
+<tr>
+<td>file*</td>
+<td>file</td>
+<td>The CSV file that contains information of redeemed coupons. Each row in CSV file can contain following fields(columns marked with * are mandatory).</td>
+</tr>
+<tr>
+<td>uploadHeaders*</td>
+<td>int</td>
+<td>The sequence (starts from 0) of the columns in the attached csv file. This field accepts stringified JSON. <br>Key name for columns are as follows:</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-status-of-uploaded-coupons">Get Status of Uploaded Coupons</h2>
+
+<p>Retrieves the status of a coupon upload job.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight plaintext"><code>curl -i -X GET 
+https://eu.intouch.capillarytech.com/coupon/api/v1/upload/getUploadStatus/253234 
+-H 'Content-Type: application/json' 
+-H 'x-cap-api-oauth-token: 
+
+eyJraWQiOiJrMSIsImFsZyI6IlJTMjU2In0.eyJpc3MiOiJDYXBpbGxhcnkiLCJleHAiOjE2MDMyNjQ4NzksImp0aSI6IlBEV0JLRXZCTFh0VUZEdnhvbkFoNFEiLCJpYXQiOjE2MDMyNjQyNzksInN1YiI6InJlZGVtcHRpb24gaW1wb3J0IGNvdXBvbnMiLCJjbGllbnRfaWQiOjEyNjEsIm9yZ19pZCI6MTYxOSwidG9rZW5fdXNlIjoidG9rZW5fYWNjZXNzIiwiY2xpZW50X2tleSI6IldUMFQzcFdpU1JOTGFvdFBrbWFiWGR3VVgiLCJkZWZhdWx0X3RpbGwiOjE1MTQ3MTEwLCJzY29wZXMiOiJbe1wicGVybWlzc2lvblwiOlwiUkVBRFdSSVRFXCIsXCJlbnRpdHlJZFwiOjEsXCJyZXNvdXJjZXNcIjpbXCIuKnYxLjEvY3VzdG9tZXIvLipcIl19LHtcInBlcm1pc3Npb25cIjpcIlJFQURXUklURVwiLFwiZW50aXR5SWRcIjoyLFwicmVzb3VyY2VzXCI6W1wiLip2MS4xL3RyYW5zYWN0aW9uLy4qXCJdfSx7XCJwZXJtaXNzaW9uXCI6XCJSRUFEV1JJVEVcIixcImVudGl0eUlkXCI6MyxcInJlc291cmNlc1wiOltcIi4qdjEuMS9wb2ludHMvLipcIl19LHtcInBlcm1pc3Npb25cIjpcIlJFQURXUklURVwiLFwiZW50aXR5SWRcIjo0LFwicmVzb3VyY2VzXCI6W1wiLipcIl19XSJ9.xZuDQbcoekA7NsRZnNYTo1eIzjMeATccbmiR9lUdTeLZjRo453GqiBhezIfafw6GBYaDkOrJcjJCRscJt2cSlUUi8jw2z1QIuJLYIS2kQ_BFvuOUuc0p3olgyEjPdRNK3gqdD9gfQSK92_o05xLSOM205nBUeFrgaFUjuU30XcxfXOe6J7e61tOMAyxH-7ESAycOO4lo78iaSWpjio33n0rW4ngJ6PwrZQxN14JIrNkOit_r8CuZtqOTwYpF7SbZY9JG1wmYu4MT08J00neUS7j-QU9cgUaJAkd8pzoi6HhaZfpIjPaf3rSvB6doWmofyhDQc0jtVZK1iQqTovSOBg'
+
+</code></pre>
+<blockquote>
+<p>Sample Response </p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"status"</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"result"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">2345</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"couponSeriesId"</span><span class="p">:</span><span class="mi">253543</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"uploadJobStatuses"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"jobId"</span><span class="p">:</span><span class="mi">93477</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadStatus"</span><span class="p">:</span><span class="s2">"FINISHED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="s2">"1603101625000"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="s2">"1603101632000"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"errorFileUrl"</span><span class="p">:</span><span class="s2">"error_1619_2532342020_10_19_15_30_32"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"successFileUrl"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadedFileUrl"</span><span class="p">:</span><span class="s2">"couponCode_1603101623721_253234.csv"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"totalUploadedCount"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"actualRowCount"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"errorCount"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadTableName"</span><span class="p">:</span><span class="s2">"temp_1619_20201019_153531582"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadedFileName"</span><span class="p">:</span><span class="s2">"couponCode.csv"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"audienceGroupId"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"audienceGroupVersionId"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">coupon/api/v1/upload/getUploadStatus/{couponSeriesId}</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td><a href="https://capillary.github.io/v1.1-API-Documentation/?xml#process-2-oauth">OAuth</a></td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v1</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-header">Request Header</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
+</tr>
+<tr>
+<td>x-cap-api-oauth-token</td>
+<td>Generated authentication token</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/coupon/api/v1/upload/getUploadStatus/{couponSeriesId}</code> </p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>couponSeriesId*</td>
+<td>int</td>
+<td>The ID of coupon series for which you want to get the status.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> The pParameter marked with * is mandatory. </aside>
+
+<h2 id="get-status-of-redeemed-coupons">Get Status of Redeemed Coupons</h2>
+
+<p>Retrieves the status of the uploaded coupon redeem job a coupon series.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight plaintext"><code>curl -i -X GET 
+https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedeemedCouponStatus/253234 
+-H 'Content-Type: application/json' 
+-H 'x-cap-api-oauth-token: eyJraWQiOiJrMSIsImFsZyI6IlJTMjU2In0.eyJpc3MiOiJDYXBpbGxhcnkiLCJleHAiOjE2MDMyNjM5MjQsImp0aSI6InlRQmxQS2pvVlhJRmZiM2xjNk9SU2ciLCJpYXQiOjE2MDMyNjMzMjQsInN1YiI6InJlZGVtcHRpb24gaW1wb3J0IGNvdXBvbnMiLCJjbGllbnRfaWQiOjEyNjEsIm9yZ19pZCI6MTYxOSwidG9rZW5fdXNlIjoidG9rZW5fYWNjZXNzIiwiY2xpZW50X2tleSI6IldUMFQzcFdpU1JOTGFvdFBrbWFiWGR3VVgiLCJkZWZhdWx0X3RpbGwiOjE1MTQ3MTEwLCJzY29wZXMiOiJbe1wicGVybWlzc2lvblwiOlwiUkVBRFdSSVRFXCIsXCJlbnRpdHlJZFwiOjEsXCJyZXNvdXJjZXNcIjpbXCIuKnYxLjEvY3VzdG9tZXIvLipcIl19LHtcInBlcm1pc3Npb25cIjpcIlJFQURXUklURVwiLFwiZW50aXR5SWRcIjoyLFwicmVzb3VyY2VzXCI6W1wiLip2MS4xL3RyYW5zYWN0aW9uLy4qXCJdfSx7XCJwZXJtaXNzaW9uXCI6XCJSRUFEV1JJVEVcIixcImVudGl0eUlkXCI6MyxcInJlc291cmNlc1wiOltcIi4qdjEuMS9wb2ludHMvLipcIl19LHtcInBlcm1pc3Npb25cIjpcIlJFQURXUklURVwiLFwiZW50aXR5SWRcIjo0LFwicmVzb3VyY2VzXCI6W1wiLipcIl19XSJ9.plHd64-7bxkse3BIAUR1rz_SjoeeITDcKe675LQOd1okIxggdwP3Tv3Wt7z72Z7O3TiLpzHT_k5lGenuW3Ds7enNfzt3yNRnAPCWpVN-yHXwSQDulJErcGd6iWDId_tKEjy2Ihgy5_a7ZZTDMUiItjqOyaScQZuP-6E4R7YpXSKMNK8_sQdud8SvXNe-oGE9Hgq3yNljMpPzUKtsNIis_Gd__qNxuAZPdOX1mikf1qfK0q-TOmOK7ZDmcl9WCV4IoSQvo7-gNd81rL6qXxtQsMkvixjq_HIq6I2zGuT6s06ZlYD3fe1Sx3p4jUAzpj6ygP-E67nxewaOaiLKW4xLOA'
+</code></pre>
+<blockquote>
+<p>Sample Response </p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"status"</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"result"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">9838</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"couponSeriesId"</span><span class="p">:</span><span class="mi">909234</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"redeemUploadJobStatuses"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"jobId"</span><span class="p">:</span><span class="mi">4455</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadRedeemedCouponStatus"</span><span class="p">:</span><span class="s2">"COMPLETED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="s2">"1603132200000"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="s2">"1603132200000"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"errorFileUrl"</span><span class="p">:</span><span class="s2">"error_redemption_upload_1619_2532342020_10_20_14_17_00"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"successFileUrl"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadedFileUrl"</span><span class="p">:</span><span class="s2">"couponCode_1603183613031_253234.csv"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"totalUploadedCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"actualRowCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"errorCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadTableName"</span><span class="p">:</span><span class="s2">"temp_redemption_upload_1619_20201020_141700172"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadedFileName"</span><span class="p">:</span><span class="s2">"couponCode_1603183613081_259234.csv"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"jobId"</span><span class="p">:</span><span class="mi">4456</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadRedeemedCouponStatus"</span><span class="p">:</span><span class="s2">"COMPLETED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="s2">"1603132200000"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="s2">"1603132200000"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"errorFileUrl"</span><span class="p">:</span><span class="s2">"error_redemption_upload_1619_2532342020_10_20_17_33_14"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"successFileUrl"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadedFileUrl"</span><span class="p">:</span><span class="s2">"couponCode_1603195385330_253234.csv"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"totalUploadedCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"actualRowCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"errorCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadTableName"</span><span class="p">:</span><span class="s2">"temp_redemption_upload_1619_20201020_173313820"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadedFileName"</span><span class="p">:</span><span class="s2">"couponCode_1603195345330_253564.csv"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"jobId"</span><span class="p">:</span><span class="mi">4457</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadRedeemedCouponStatus"</span><span class="p">:</span><span class="s2">"COMPLETED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="s2">"1603218600000"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="s2">"1603218600000"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"errorFileUrl"</span><span class="p">:</span><span class="s2">"error_redemption_upload_1619_2532342020_10_21_12_29_00"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"successFileUrl"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadedFileUrl"</span><span class="p">:</span><span class="s2">"couponCode_1603263533789_253234.csv"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"totalUploadedCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"actualRowCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"errorCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadTableName"</span><span class="p">:</span><span class="s2">"temp_redemption_upload_1619_20201021_122859950"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadedFileName"</span><span class="p">:</span><span class="s2">"couponCode_1603263533789_253234.csv"</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/coupon/api/v1/upload/getUploadRedeemedCouponStatus/{couponSeriesId}</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td><a href="https://capillary.github.io/v1.1-API-Documentation/?xml#process-2-oauth">OAuth</a></td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v1</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
+</tr>
+<tr>
+<td>x-cap-api-oauth-token</td>
+<td>Generated authentication token</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/coupon/api/v1/upload/getUploadRedeemedCouponStatus/{couponSeriedId}</code> </p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>couponSeriesId*</td>
+<td>int</td>
+<td>The ID of coupon series for which the user wants to know the redeem status.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> The parameter marked with * is mandatory. </aside>
 
           <h1 id="points">Points</h1>
 
