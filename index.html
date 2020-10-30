@@ -7124,6 +7124,46 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
 
 <p>This API lets you bulk upload coupons that are redeemed for a coupon series. This API exposes an endpoint by which coupons that are redeemed externally can be imported into the Capillary CRM system.</p>
 
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight plaintext"><code>curl -i -X POST 
+https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/redeemFile/253234 -H 'Content-Type: multipart/form-data' 
+-H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6WyI0Il0sIm9yZ0lEIjowLCJleHAiOjE2MDM4OTIxNTYsImlhdCI6MTYwMzgwNTc1NiwiaXNzIjoiY2FwaWxsYXJ5dGVjaC5jb20iLCJhdWQiOiJjYXBpbGxhcnksaW50b3VjaCxhcnlhLHJlb24sYXBwcyIsInNvdXJjZSI6IldFQkFQUCJ9.APtFDqTh7Yf26lzhmwFm4OwPQBo24E_MTNl6CcnIr9A' 
+-F file=@couponCode.csv 
+-F customerIdentifier=USER_ID 
+-F couponIdentifier=COUPON_ID 
+-F uploadHeaders='{"redeemedAt": 1, "billNumber": 5, "couponCode": 3, "userId": 2, "billId": 4, "redeemedDateInMillis": 0, "details": 6}'
+</code></pre>
+<blockquote>
+<p>Sample Response </p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"status"</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"result"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">9619</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"couponSeriesId"</span><span class="p">:</span><span class="mi">953234</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"redeemUploadJobStatuses"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"jobId"</span><span class="p">:</span><span class="mi">9137</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadRedeemedCouponStatus"</span><span class="p">:</span><span class="s2">"QUEUED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="s2">"1603263535389"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="s2">"1603263535389"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"errorFileUrl"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"successFileUrl"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadedFileUrl"</span><span class="p">:</span><span class="s2">"couponCode_9603263533789_253294.csv"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"totalUploadedCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"actualRowCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"errorCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadTableName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadedFileName"</span><span class="p">:</span><span class="s2">"couponCode_9603263533789_253294.csv"</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"fileName"</span><span class="p">:</span><span class="s2">"couponCode_9603263533789_253294.csv"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <h3 id="resource-information">Resource Information</h3>
 
 <table><thead>
@@ -7212,14 +7252,16 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
 <tr>
 <td>file*</td>
 <td>file</td>
-<td>The CSV file that contains information of redeemed coupons. Each row in CSV file can contain following fields(columns marked with * are mandatory).</td>
+<td>The CSV file that contains information of redeemed coupons. Each row in CSV file can contain following fields(columns marked with * are mandatory).<br/><br/> -  <strong>Customer identifier</strong>* : Field used to identify the customer, it can be userId, mobile, email or externalId. (userId will have more preference over the other customer identifiers, in case of multiple values)<br/> - <strong>Coupon identifier</strong>* : Field used to identify the redeemed coupon, It can be couponId, couponCode. (couponId has more preference over couponCode in case of multiple values)<br/> - <strong>Redeemed date in milliseconds</strong>* : Coupon redeemed time in Epoch<br/> - <strong>Redeemed at</strong>* : Coupon redeemed till’s Id<br/> - <strong>Bill Id</strong> : Transaction Id<br/> - <strong>Bill Number</strong> : Transaction Number Details.<br/><br/><strong>Sample file content:</strong><br/> - <em>File content sample 1</em>:<br/>&nbsp; &nbsp; &nbsp; &nbsp;redeemed date in millis, redeemed at, user id, coupon id, bill id, bill number, details<br/>&nbsp; &nbsp; &nbsp; &nbsp; 1603128622000,50015497,23599838,23456,1603128596000,1603128596000,<br/>&nbsp; &nbsp; &nbsp; &nbsp;luci_auto_15039.<br/> - <em>File content sample 2</em>:<br/>&nbsp; &nbsp; &nbsp; &nbsp;redeemed date in millis, redeemed at, mobile, coupon code ,bill id, bill number, details<br/>&nbsp; &nbsp; &nbsp; &nbsp;1603128622000,50015497,9876543210,ABCDEF1,1603128596000,1603128596000,<br/>&nbsp; &nbsp; &nbsp; &nbsp;luci_auto_15039</td>
 </tr>
 <tr>
 <td>uploadHeaders*</td>
 <td>int</td>
-<td>The sequence (starts from 0) of the columns in the attached csv file. This field accepts stringified JSON. <br>Key name for columns are as follows:</td>
+<td>The sequence (starts from 0) of the columns in the attached csv file. This field accepts stringified JSON. <br>Key name for columns are as follows:<br/><br/>Key name for the columns are as follows<br/> - <strong>Customer identifier</strong>* : Key name for this field varies according to the customerIdentifier param.<br/>&nbsp; &nbsp; &nbsp; &nbsp;MOBILE : mobile<br/>&nbsp; &nbsp; &nbsp; &nbsp;EXTERNAL_ID: externalId<br/>&nbsp; &nbsp; &nbsp; &nbsp;EMAIL: email<br/>&nbsp; &nbsp; &nbsp; &nbsp;USER_ID: userId<br/> - <strong>Coupon identifier</strong>* :  Key name for this field varies according to the couponIdentifier param.<br/>&nbsp; &nbsp; &nbsp; &nbsp;COUPON_ID: couponId<br/>&nbsp; &nbsp; &nbsp; &nbsp;COUPON_CODE: couponCode<br/> - <strong>Redeemed date in milliseconds</strong>* : redeemedDateInMillis<br/> - <strong>Redeemed at</strong>* : redeemedAt<br/> - <strong>Bill Id</strong> : billId<br/> - <strong>Bill Number</strong> : billNumber<br/> - <strong>Details</strong> : details<br/><br/>For the above file samples, the uploadHeaders will be -<br/>&nbsp; &nbsp; &nbsp; &nbsp;<em>Sample 1</em> - {&lsquo;redeemedDateInMillis&rsquo;: 0, &#39;redeemedAt&rsquo;: 1, &#39;billNumber&rsquo;: 5, &#39;couponId&rsquo;: 3,<br/>&nbsp; &nbsp; &nbsp; &nbsp;&#39;userId&rsquo;: 2, &#39;billId&rsquo;: 4, &#39;details&rsquo;: 6}<br/>&nbsp; &nbsp; &nbsp; &nbsp;<em>Sample 2</em> - {&#39;redeemedDateInMillis&rsquo;: 0, &#39;redeemedAt&rsquo;: 1, &#39;billNumber&rsquo;: 5, &#39;couponCode&rsquo;: 3,<br/>&nbsp; &nbsp; &nbsp; &nbsp;mobile: 2, &#39;billId&rsquo;: 4, &#39;details&rsquo;: 6}</td>
 </tr>
 </tbody></table>
+
+<aside class="notice"> All parameters marked with * are mandatory. </aside>
 
 <h2 id="get-status-of-uploaded-coupons">Get Status of Uploaded Coupons</h2>
 
