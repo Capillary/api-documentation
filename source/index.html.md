@@ -27,6 +27,7 @@ includes:
   - staffUser
   - leads
   - userGroup
+  - cardLoyalty
   - OrganizationSource
   - storeCare
   - events
@@ -40,6 +41,24 @@ search: true
 
 # Release Updates
 This section provides the quarterly breakup of existing API updates and new API releases.
+
+
+## Q3 Releases (2020)
+
+* **Card Loyalty** : APIs to create card series, generate cards, and retrieve card details. For more details see, 
+* **Support for store identifiers in the header for oAuth2 authentication** : Earlier, only TILL information could be passed in the API header for attribution of events such as registration, transaction, etc. In case of centralized POS integrations, this caused an additional overhead of maintaining store - TILL mapping at the integration end. This can be avoided now by passing store identifiers directly in the API request.
+
+Following headers can be used to pass store or till identifiers.
+
+  * `X-CAP-API-ATTRIBUTION-ENTITY-TYPE` can be `STORE_CODE, STORE_NAME, STORE_EXTERNAL_ID,  STORE_EXTERNAL_ID_1, STORE_EXTERNAL_ID_2`. If anything else or nothing is passed, the default value of `TILL_CODE` is taken.
+  * `X-CAP-API-ATTRIBUTION-ENTITY-CODE` is the value of the above type.
+* **Save transactions with invalid or missing identifiers as Not Interested bills** : To capture bills that are tagged with invalid or missing identifiers, a new configuration has been added in Organization Settings > Billing Configuration. 
+* **New query params in v2 customer API** : [Fetch customer details](https://capillary.github.io/api-documentation/#fetch-customer-details-identifier) API now supports fetching customer’s promotional points, points expiry schedule and expired points using query param ‘embed’ value as `promotionalPoints`, `expirySchedules`, and `expiredPoints`. This helps by reducing dependency on v1.1 APIs, which have consistency issues in returning empty JSON objects. 
+
+* **External identifiers and group creation/joining/leaving** : Pass external identifiers and group creation/joining/leaving dates in User Group APIs, and get loyalty details
+  * Group APIs can be called using external identifiers, see in [details](https://capillary.github.io/api-documentation/#create-user-group). 
+  * Optional parameters have been added to pass group creation, [join](https://capillary.github.io/api-documentation/#join-user-group-with-customer-identifiers) and [exit](https://capillary.github.io/api-documentation/#exit-user-group) dates.
+  * Multiple secondary identifiers can be added in single request, see in [details](https://capillary.github.io/api-documentation/#get-points-contribution-by-secondary-members).
 
 
 ## Q2 Releases (2020)

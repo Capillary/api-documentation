@@ -95,7 +95,7 @@ This API allows you to redeem active coupons of a loyalty customer. You can pass
 URI | `coupon/redeem`
 Authentication  | Yes
 HTTP Method  | POST
-Batch Support  | No
+Batch Support  | Yes
 
 ### Request URL
 `http://{host}/v2/coupon/redeem`
@@ -216,7 +216,27 @@ details=extended | - | Retrieves the details of coupon configurations (set on ca
 
 
 
-## Upload Coupons in Bulk
+
+
+
+# Coupon Upload
+
+
+These are not CRM or v2 APIs. Hence, please note that there are changes in all the API details including host and headers. 
+
+**host1**
+
+* **India**: https://intouch.capillary.co.in
+* **Apac2**: https://apac2.intouch.capillarytech.com
+* **EU**: https://eu.intouch.capillarytech.com
+* **China**: https://intouch.capillarytech.cn.com
+
+
+
+
+
+
+## Upload Coupons (Batch)
 
 Lets you upload coupons of a specific coupon series in bulk. 
  <aside class="notice">This is not a v2 API. Hence, all the API details including host and headers are provided in this section itself.  </aside>
@@ -225,7 +245,7 @@ Lets you upload coupons of a specific coupon series in bulk.
 
 ```curl
 curl -X POST \
-  https://intouch-staging.capillary.in/coupon/api/v1/upload/file/311025 \
+  https://eu.intouch.capillarytech.com/coupon/api/v1/upload/file/311025 \
   -H 'Content-Type: application/json' \
   -H 'Postman-Token: 3056825f-5e0d-411e-a83d-e6ce0e6da3d2' \
   -H 'cache-control: no-cache' \
@@ -285,17 +305,14 @@ Batch Support  | No
 ### Request URL
 `{host1}/coupon/api/v1/upload/file/{couponSeriedId}`
 
-**host1**
-
-* **India**: https://intouch.capillary.co.in
-* **Apac2**: https://apac2.intouch.capillarytech.com
-* **EU**: https://eu.intouch.capillarytech.com
-* **China**: https://intouch.capillarytech.cn.com
 
 ### Header Required
 Header |  Description
 --------- | -----------
 Content-Type* | multipart/form-data
+x-cap-api-oauth-token | Generated authentication token
+
+
 
 ### Request Query Parameters
 Parameter | Datatype | Description
@@ -311,6 +328,276 @@ Parameter | Datatype | Description
 file* | string | Name of the CSV file with customer and coupon details. <br>Sample file content: <br>File content sample for uploading the coupon code is as follows <br>customer_identifier,coupon code<br>value 1,ABCDEF1<br>value 2,ABCDEF2<br>value 3,ABCDEF3<br>File content sample for uploading customer identifier:<br> customerIdentifier<br> value 1<br> value 2<br>value 3<br>File content sample for uploading customer tagged coupons is as follows<br>customerIdentifier,coupon code<br>value 1,ABCDEF1<br>value 2,ABCDEF2<br>value 3,ABCDEF3
 customerIdentifier* | enum | Customer identifier type used in the CSV file. Values: `MOBILE`, `EXTERNAL_ID`, `EMAIL`, `USER_ID`, `NOT_TAGGED`. <br>Use `NOT_TAGGED` as the identifier to upload only coupon codes.
 customerIdentifierColumn | string | Column ID of the customer identifier in the uploaded CSV file. <br> For example, <br>If the first column of the file contains customer identification data, then the value of customerIdentifierColumn will be 0.<br>If the second column of the file contains customer identification data, then the value of customerIdentifierColumn will be 1.
+
+
+
+## Upload Redeemed Coupons
+
+This API lets you bulk upload coupons that are redeemed for a coupon series. This API exposes an endpoint by which coupons that are redeemed externally can be imported into the Capillary CRM system.
+
+> Sample Request
+
+```curl
+curl -i -X POST 
+https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/redeemFile/253234 -H 'Content-Type: multipart/form-data' 
+-H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6WyI0Il0sIm9yZ0lEIjowLCJleHAiOjE2MDM4OTIxNTYsImlhdCI6MTYwMzgwNTc1NiwiaXNzIjoiY2FwaWxsYXJ5dGVjaC5jb20iLCJhdWQiOiJjYXBpbGxhcnksaW50b3VjaCxhcnlhLHJlb24sYXBwcyIsInNvdXJjZSI6IldFQkFQUCJ9.APtFDqTh7Yf26lzhmwFm4OwPQBo24E_MTNl6CcnIr9A' 
+-F file=@couponCode.csv 
+-F customerIdentifier=USER_ID 
+-F couponIdentifier=COUPON_ID 
+-F uploadHeaders='{"redeemedAt": 1, "billNumber": 5, "couponCode": 3, "userId": 2, "billId": 4, "redeemedDateInMillis": 0, "details": 6}'
+```
+
+> Sample Response 
+
+```json
+{
+   "success":true,
+   "status":200,
+   "result":{
+      "orgId":9619,
+      "couponSeriesId":953234,
+      "redeemUploadJobStatuses":[
+         {
+            "jobId":9137,
+            "uploadRedeemedCouponStatus":"QUEUED",
+            "createdOn":"1603263535389",
+            "updatedOn":"1603263535389",
+            "errorFileUrl":null,
+            "successFileUrl":null,
+            "uploadedFileUrl":"couponCode_9603263533789_253294.csv",
+            "totalUploadedCount":0,
+            "actualRowCount":0,
+            "errorCount":0,
+            "uploadTableName":null,
+            "uploadedFileName":"couponCode_9603263533789_253294.csv"
+         }
+      ],
+      "fileName":"couponCode_9603263533789_253294.csv"
+   }
+}
+```
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/coupon/api/v1/upload/redeemFile/{couponSeriesId}`
+Authentication  | [oAuth](https://capillary.github.io/v1.1-API-Documentation/?xml#process-2-oauth)
+HTTP Method  | POST
+Batch Support  | No
+
+### Request URL
+`{host1}//coupon/api/v1/upload/redeemFile/{couponSeriesId}`
+
+
+### Header Required
+Header |  Description
+--------- | -----------
+Content-Type* | multipart/form-data
+x-cap-api-oauth-token | Generated authentication token
+
+
+
+### Request Query Parameters
+Parameter | Datatype | Description
+--------- | -------- | -----------
+couponSeriesId* | long | Unique ID of the coupon series for which you need to upload redeemed coupons.
+
+<aside class="notice">The parameter marked with * is mandatory.</aside>
+
+
+### Request Body Parameters
+Parameter | Datatype | Description
+--------- | -------- | -----------
+customerIdentifier* | enum | Unique identifier of the customer to update redeemed coupons. Values: `MOBILE`, `EXTERNAL_ID`, `EMAIL`, `USER_ID`.
+couponIdentifier | enum | Coupon identifier used. Value: `COUPON_ID`, `COUPON_CODE`.
+file* | file | The CSV file that contains information of redeemed coupons. Each row in CSV file can contain following fields(columns marked with * are mandatory).<br/><br/> -  **Customer identifier*** : Field used to identify the customer, it can be userId, mobile, email or externalId. (userId will have more preference over the other customer identifiers, in case of multiple values)<br/> - **Coupon identifier*** : Field used to identify the redeemed coupon, It can be couponId, couponCode. (couponId has more preference over couponCode in case of multiple values)<br/> - **Redeemed date in milliseconds*** : Coupon redeemed time in Epoch<br/> - **Redeemed at*** : Coupon redeemed till’s Id<br/> - **Bill Id** : Transaction Id<br/> - **Bill Number** : Transaction Number Details.<br/><br/>**Sample file content:**<br/> - *File content sample 1*:<br/>&nbsp; &nbsp; &nbsp; &nbsp;redeemed date in millis, redeemed at, user id, coupon id, bill id, bill number, details<br/>&nbsp; &nbsp; &nbsp; &nbsp; 1603128622000,50015497,23599838,23456,1603128596000,1603128596000,<br/>&nbsp; &nbsp; &nbsp; &nbsp;luci_auto_15039.<br/> - *File content sample 2*:<br/>&nbsp; &nbsp; &nbsp; &nbsp;redeemed date in millis, redeemed at, mobile, coupon code ,bill id, bill number, details<br/>&nbsp; &nbsp; &nbsp; &nbsp;1603128622000,50015497,9876543210,ABCDEF1,1603128596000,1603128596000,<br/>&nbsp; &nbsp; &nbsp; &nbsp;luci_auto_15039
+uploadHeaders* | int | The sequence (starts from 0) of the columns in the attached csv file. This field accepts stringified JSON. <br>Key name for columns are as follows:<br/><br/>Key name for the columns are as follows<br/> - **Customer identifier*** : Key name for this field varies according to the customerIdentifier param.<br/>&nbsp; &nbsp; &nbsp; &nbsp;MOBILE : mobile<br/>&nbsp; &nbsp; &nbsp; &nbsp;EXTERNAL_ID: externalId<br/>&nbsp; &nbsp; &nbsp; &nbsp;EMAIL: email<br/>&nbsp; &nbsp; &nbsp; &nbsp;USER_ID: userId<br/> - **Coupon identifier*** :  Key name for this field varies according to the couponIdentifier param.<br/>&nbsp; &nbsp; &nbsp; &nbsp;COUPON_ID: couponId<br/>&nbsp; &nbsp; &nbsp; &nbsp;COUPON_CODE: couponCode<br/> - **Redeemed date in milliseconds*** : redeemedDateInMillis<br/> - **Redeemed at*** : redeemedAt<br/> - **Bill Id** : billId<br/> - **Bill Number** : billNumber<br/> - **Details** : details<br/><br/>For the above file samples, the uploadHeaders will be -<br/>&nbsp; &nbsp; &nbsp; &nbsp;*Sample 1* - {'redeemedDateInMillis': 0, 'redeemedAt': 1, 'billNumber': 5, 'couponId': 3,<br/>&nbsp; &nbsp; &nbsp; &nbsp;'userId': 2, 'billId': 4, 'details': 6}<br/>&nbsp; &nbsp; &nbsp; &nbsp;*Sample 2* - {'redeemedDateInMillis': 0, 'redeemedAt': 1, 'billNumber': 5, 'couponCode': 3,<br/>&nbsp; &nbsp; &nbsp; &nbsp;mobile: 2, 'billId': 4, 'details': 6}
+
+
+<aside class="notice"> All parameters marked with * are mandatory. </aside>
+
+
+
+
+
+
+
+
+## Get Status of Uploaded Coupons
+
+Retrieves the status of a coupon upload job.
+
+> Sample Request
+
+```curl
+curl -i -X GET 
+https://eu.intouch.capillarytech.com/coupon/api/v1/upload/getUploadStatus/253234 
+-H 'Content-Type: application/json' 
+-H 'x-cap-api-oauth-token: 
+
+eyJraWQiOiJrMSIsImFsZyI6IlJTMjU2In0.eyJpc3MiOiJDYXBpbGxhcnkiLCJleHAiOjE2MDMyNjQ4NzksImp0aSI6IlBEV0JLRXZCTFh0VUZEdnhvbkFoNFEiLCJpYXQiOjE2MDMyNjQyNzksInN1YiI6InJlZGVtcHRpb24gaW1wb3J0IGNvdXBvbnMiLCJjbGllbnRfaWQiOjEyNjEsIm9yZ19pZCI6MTYxOSwidG9rZW5fdXNlIjoidG9rZW5fYWNjZXNzIiwiY2xpZW50X2tleSI6IldUMFQzcFdpU1JOTGFvdFBrbWFiWGR3VVgiLCJkZWZhdWx0X3RpbGwiOjE1MTQ3MTEwLCJzY29wZXMiOiJbe1wicGVybWlzc2lvblwiOlwiUkVBRFdSSVRFXCIsXCJlbnRpdHlJZFwiOjEsXCJyZXNvdXJjZXNcIjpbXCIuKnYxLjEvY3VzdG9tZXIvLipcIl19LHtcInBlcm1pc3Npb25cIjpcIlJFQURXUklURVwiLFwiZW50aXR5SWRcIjoyLFwicmVzb3VyY2VzXCI6W1wiLip2MS4xL3RyYW5zYWN0aW9uLy4qXCJdfSx7XCJwZXJtaXNzaW9uXCI6XCJSRUFEV1JJVEVcIixcImVudGl0eUlkXCI6MyxcInJlc291cmNlc1wiOltcIi4qdjEuMS9wb2ludHMvLipcIl19LHtcInBlcm1pc3Npb25cIjpcIlJFQURXUklURVwiLFwiZW50aXR5SWRcIjo0LFwicmVzb3VyY2VzXCI6W1wiLipcIl19XSJ9.xZuDQbcoekA7NsRZnNYTo1eIzjMeATccbmiR9lUdTeLZjRo453GqiBhezIfafw6GBYaDkOrJcjJCRscJt2cSlUUi8jw2z1QIuJLYIS2kQ_BFvuOUuc0p3olgyEjPdRNK3gqdD9gfQSK92_o05xLSOM205nBUeFrgaFUjuU30XcxfXOe6J7e61tOMAyxH-7ESAycOO4lo78iaSWpjio33n0rW4ngJ6PwrZQxN14JIrNkOit_r8CuZtqOTwYpF7SbZY9JG1wmYu4MT08J00neUS7j-QU9cgUaJAkd8pzoi6HhaZfpIjPaf3rSvB6doWmofyhDQc0jtVZK1iQqTovSOBg'
+
+```
+
+> Sample Response 
+
+```json
+{
+   "success":true,
+   "status":200,
+   "result":{
+      "orgId":2345,
+      "couponSeriesId":253543,
+      "uploadJobStatuses":[
+         {
+            "jobId":93477,
+            "uploadStatus":"FINISHED",
+            "createdOn":"1603101625000",
+            "updatedOn":"1603101632000",
+            "errorFileUrl":"error_1619_2532342020_10_19_15_30_32",
+            "successFileUrl":null,
+            "uploadedFileUrl":"couponCode_1603101623721_253234.csv",
+            "totalUploadedCount":3,
+            "actualRowCount":3,
+            "errorCount":3,
+            "uploadTableName":"temp_1619_20201019_153531582",
+            "uploadedFileName":"couponCode.csv",
+            "audienceGroupId":0,
+            "audienceGroupVersionId":0
+         }
+      ]
+   }
+}
+```
+
+### Resource Information
+
+| | |
+--------- | ----------- |
+URI | `coupon/api/v1/upload/getUploadStatus/{couponSeriesId}`
+HTTP Method | GET
+Authentication | [OAuth](https://capillary.github.io/v1.1-API-Documentation/?xml#process-2-oauth)
+API Version | v1
+Batch Support | No
+
+### Request Header
+
+| | |
+--------- | ----------- |
+Content-Type | application/json
+x-cap-api-oauth-token | Generated authentication token
+
+### Request URL
+
+`https://{host}/coupon/api/v1/upload/getUploadStatus/{couponSeriesId}` 
+
+### Request Query Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+couponSeriesId* | int |The ID of coupon series for which you want to get the status.
+
+<aside class="notice"> The pParameter marked with * is mandatory. </aside>
+
+
+
+## Get Status of Redeemed Coupons 
+
+Retrieves the status of the uploaded coupon redeem job a coupon series.
+
+> Sample Request
+
+```curl
+curl -i -X GET 
+https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedeemedCouponStatus/253234 
+-H 'Content-Type: application/json' 
+-H 'x-cap-api-oauth-token: eyJraWQiOiJrMSIsImFsZyI6IlJTMjU2In0.eyJpc3MiOiJDYXBpbGxhcnkiLCJleHAiOjE2MDMyNjM5MjQsImp0aSI6InlRQmxQS2pvVlhJRmZiM2xjNk9SU2ciLCJpYXQiOjE2MDMyNjMzMjQsInN1YiI6InJlZGVtcHRpb24gaW1wb3J0IGNvdXBvbnMiLCJjbGllbnRfaWQiOjEyNjEsIm9yZ19pZCI6MTYxOSwidG9rZW5fdXNlIjoidG9rZW5fYWNjZXNzIiwiY2xpZW50X2tleSI6IldUMFQzcFdpU1JOTGFvdFBrbWFiWGR3VVgiLCJkZWZhdWx0X3RpbGwiOjE1MTQ3MTEwLCJzY29wZXMiOiJbe1wicGVybWlzc2lvblwiOlwiUkVBRFdSSVRFXCIsXCJlbnRpdHlJZFwiOjEsXCJyZXNvdXJjZXNcIjpbXCIuKnYxLjEvY3VzdG9tZXIvLipcIl19LHtcInBlcm1pc3Npb25cIjpcIlJFQURXUklURVwiLFwiZW50aXR5SWRcIjoyLFwicmVzb3VyY2VzXCI6W1wiLip2MS4xL3RyYW5zYWN0aW9uLy4qXCJdfSx7XCJwZXJtaXNzaW9uXCI6XCJSRUFEV1JJVEVcIixcImVudGl0eUlkXCI6MyxcInJlc291cmNlc1wiOltcIi4qdjEuMS9wb2ludHMvLipcIl19LHtcInBlcm1pc3Npb25cIjpcIlJFQURXUklURVwiLFwiZW50aXR5SWRcIjo0LFwicmVzb3VyY2VzXCI6W1wiLipcIl19XSJ9.plHd64-7bxkse3BIAUR1rz_SjoeeITDcKe675LQOd1okIxggdwP3Tv3Wt7z72Z7O3TiLpzHT_k5lGenuW3Ds7enNfzt3yNRnAPCWpVN-yHXwSQDulJErcGd6iWDId_tKEjy2Ihgy5_a7ZZTDMUiItjqOyaScQZuP-6E4R7YpXSKMNK8_sQdud8SvXNe-oGE9Hgq3yNljMpPzUKtsNIis_Gd__qNxuAZPdOX1mikf1qfK0q-TOmOK7ZDmcl9WCV4IoSQvo7-gNd81rL6qXxtQsMkvixjq_HIq6I2zGuT6s06ZlYD3fe1Sx3p4jUAzpj6ygP-E67nxewaOaiLKW4xLOA'
+```
+
+> Sample Response 
+
+```json
+{
+   "success":true,
+   "status":200,
+   "result":{
+      "orgId":9838,
+      "couponSeriesId":909234,
+      "redeemUploadJobStatuses":[
+         {
+            "jobId":4455,
+            "uploadRedeemedCouponStatus":"COMPLETED",
+            "createdOn":"1603132200000",
+            "updatedOn":"1603132200000",
+            "errorFileUrl":"error_redemption_upload_1619_2532342020_10_20_14_17_00",
+            "successFileUrl":null,
+            "uploadedFileUrl":"couponCode_1603183613031_253234.csv",
+            "totalUploadedCount":1,
+            "actualRowCount":1,
+            "errorCount":1,
+            "uploadTableName":"temp_redemption_upload_1619_20201020_141700172",
+            "uploadedFileName":"couponCode_1603183613081_259234.csv"
+         },
+         {
+            "jobId":4456,
+            "uploadRedeemedCouponStatus":"COMPLETED",
+            "createdOn":"1603132200000",
+            "updatedOn":"1603132200000",
+            "errorFileUrl":"error_redemption_upload_1619_2532342020_10_20_17_33_14",
+            "successFileUrl":null,
+            "uploadedFileUrl":"couponCode_1603195385330_253234.csv",
+            "totalUploadedCount":1,
+            "actualRowCount":1,
+            "errorCount":1,
+            "uploadTableName":"temp_redemption_upload_1619_20201020_173313820",
+            "uploadedFileName":"couponCode_1603195345330_253564.csv"
+         },
+         {
+            "jobId":4457,
+            "uploadRedeemedCouponStatus":"COMPLETED",
+            "createdOn":"1603218600000",
+            "updatedOn":"1603218600000",
+            "errorFileUrl":"error_redemption_upload_1619_2532342020_10_21_12_29_00",
+            "successFileUrl":null,
+            "uploadedFileUrl":"couponCode_1603263533789_253234.csv",
+            "totalUploadedCount":1,
+            "actualRowCount":1,
+            "errorCount":1,
+            "uploadTableName":"temp_redemption_upload_1619_20201021_122859950",
+            "uploadedFileName":"couponCode_1603263533789_253234.csv"
+         }
+      ]
+   }
+}
+```
+
+### Resource Information
+
+| | |
+--------- | ----------- |
+URI | `/coupon/api/v1/upload/getUploadRedeemedCouponStatus/{couponSeriesId}`
+HTTP Method | GET
+Authentication | [OAuth](https://capillary.github.io/v1.1-API-Documentation/?xml#process-2-oauth)
+API Version | v1
+Batch Support | No
+
+| | |
+--------- | ----------- |
+Content-Type | application/json
+x-cap-api-oauth-token | Generated authentication token
+
+
+### Request URL
+
+`https://{host}/coupon/api/v1/upload/getUploadRedeemedCouponStatus/{couponSeriedId}` 
+
+### Request Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+couponSeriesId* | int |The ID of coupon series for which the user wants to know the redeem status.
+
+<aside class="notice"> The parameter marked with * is mandatory. </aside>
 
 
 

@@ -264,7 +264,7 @@ fromCustomerIdentifier* | obj | Details of source customer - customer that wants
 toCustomerIdentifier* | obj | Details of destination customer - customer to whom the points have to be transferred.
 type* | enum | Customer identifier type. Values: `ID` (user id of the customer), `MOBILE`, `EXTERNAL_ID`, `EMAIL`.
 value* | string | The value of the specified identifier.
-issueOtp | Boolean | Sends OTP to the fromCustomer if the specified points are transferrable. Use this to issue OTP (used to authenticate `fromCustomer` to transfer points) if `isPointsTransferrable` is successful. The default value is `false`. 
+issueOtp** | Boolean | Sends OTP to the fromCustomer if the specified points are transferrable. Use this to issue OTP (used to authenticate `fromCustomer` to transfer points) if `isPointsTransferrable` is successful. If `false` (default value) then no OTP is generated. **However, you cannot transfer points without OTP. You need  to only pass `issueOtp` as `true` to transfer points**.  
 
 <aside class="notice"> All parameters marked by * are mandatory. </aside>
 

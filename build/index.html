@@ -131,6 +131,28 @@
 
 <p>This section provides the quarterly breakup of existing API updates and new API releases.</p>
 
+<h2 id="q3-releases-2020">Q3 Releases (2020)</h2>
+
+<ul>
+<li><strong>Support for store identifiers in the header for oAuth2 authentication</strong> : Earlier, only TILL information could be passed in the API header for attribution of events such as registration, transaction, etc. In case of centralized POS integrations, this caused an additional overhead of maintaining store - TILL mapping at the integration end. This can be avoided now by passing store identifiers directly in the API request.</li>
+</ul>
+
+<p>Following headers can be used to pass store or till identifiers.</p>
+
+<ul>
+<li><code class="prettyprint">X-CAP-API-ATTRIBUTION-ENTITY-TYPE</code> can be <code class="prettyprint">STORE_CODE, STORE_NAME, STORE_EXTERNAL_ID,  STORE_EXTERNAL_ID_1, STORE_EXTERNAL_ID_2</code>. If anything else or nothing is passed, the default value of <code class="prettyprint">TILL_CODE</code> is taken.</li>
+<li><p><code class="prettyprint">X-CAP-API-ATTRIBUTION-ENTITY-CODE</code> is the value of the above type.</p>
+
+<ul>
+<li><strong>Save transactions with invalid or missing identifiers as Not Interested bills</strong> : To capture bills that are tagged with invalid or missing identifiers, a new configuration has been added in Organization Settings &gt; Billing Configuration. </li>
+<li><strong>New query params in v2 customer API</strong> : <a href="https://capillary.github.io/api-documentation/#fetch-customer-details-identifier">Fetch customer details</a> API now supports fetching customer’s promotional points, points expiry schedule and expired points using query param ‘embed’ value as <code class="prettyprint">promotionalPoints</code>, <code class="prettyprint">expirySchedules</code>, and <code class="prettyprint">expiredPoints</code>. This helps by reducing dependency on v1.1 APIs, which have consistency issues in returning empty JSON objects. </li>
+<li><strong>External identifiers and group creation/joining/leaving</strong> : Pass external identifiers and group creation/joining/leaving dates in User Group APIs, and get loyalty details</li>
+</ul></li>
+<li><p>Group APIs can be called using external identifiers, see in <a href="https://capillary.github.io/api-documentation/#create-user-group">details</a>. </p></li>
+<li><p>Optional parameters have been added to pass group creation, <a href="https://capillary.github.io/api-documentation/#join-user-group-with-customer-identifiers">join</a> and <a href="https://capillary.github.io/api-documentation/#exit-user-group">exit</a> dates.</p></li>
+<li><p>Multiple secondary identifiers can be added in single request, see in <a href="https://capillary.github.io/api-documentation/#get-points-contribution-by-secondary-members">details</a>.</p></li>
+</ul>
+
 <h2 id="q2-releases-2020">Q2 Releases (2020)</h2>
 
 <ul>
@@ -6774,7 +6796,7 @@ If the email template is not specified, the validation code will be sent in the 
 </tr>
 <tr>
 <td>Batch Support</td>
-<td>No</td>
+<td>Yes</td>
 </tr>
 </tbody></table>
 
@@ -6964,7 +6986,20 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
 
 <aside class="warning"> You can pass either coupon ID or coupon code. Any one parameter is required.</aside>
 
-<h2 id="upload-coupons-in-bulk">Upload Coupons in Bulk</h2>
+<h1 id="coupon-upload">Coupon Upload</h1>
+
+<p>These are not CRM or v2 APIs. Hence, please note that there are changes in all the API details including host and headers. </p>
+
+<p><strong>host1</strong></p>
+
+<ul>
+<li><strong>India</strong>: https://intouch.capillary.co.in</li>
+<li><strong>Apac2</strong>: https://apac2.intouch.capillarytech.com</li>
+<li><strong>EU</strong>: https://eu.intouch.capillarytech.com</li>
+<li><strong>China</strong>: https://intouch.capillarytech.cn.com</li>
+</ul>
+
+<h2 id="upload-coupons-batch">Upload Coupons (Batch)</h2>
 
 <p>Lets you upload coupons of a specific coupon series in bulk. 
  <aside class="notice">This is not a v2 API. Hence, all the API details including host and headers are provided in this section itself.  </aside></p>
@@ -6973,7 +7008,7 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
 <p>Sample Request</p>
 </blockquote>
 <pre class="highlight plaintext"><code>curl -X POST \
-  https://intouch-staging.capillary.in/coupon/api/v1/upload/file/311025 \
+  https://eu.intouch.capillarytech.com/coupon/api/v1/upload/file/311025 \
   -H 'Content-Type: application/json' \
   -H 'Postman-Token: 3056825f-5e0d-411e-a83d-e6ce0e6da3d2' \
   -H 'cache-control: no-cache' \
@@ -7045,15 +7080,6 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
 
 <p><code class="prettyprint">{host1}/coupon/api/v1/upload/file/{couponSeriedId}</code></p>
 
-<p><strong>host1</strong></p>
-
-<ul>
-<li><strong>India</strong>: https://intouch.capillary.co.in</li>
-<li><strong>Apac2</strong>: https://apac2.intouch.capillarytech.com</li>
-<li><strong>EU</strong>: https://eu.intouch.capillarytech.com</li>
-<li><strong>China</strong>: https://intouch.capillarytech.cn.com</li>
-</ul>
-
 <h3 id="header-required">Header Required</h3>
 
 <table><thead>
@@ -7065,6 +7091,10 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
 <tr>
 <td>Content-Type*</td>
 <td>multipart/form-data</td>
+</tr>
+<tr>
+<td>x-cap-api-oauth-token</td>
+<td>Generated authentication token</td>
 </tr>
 </tbody></table>
 
@@ -7111,6 +7141,400 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
 <td>Column ID of the customer identifier in the uploaded CSV file. <br> For example, <br>If the first column of the file contains customer identification data, then the value of customerIdentifierColumn will be 0.<br>If the second column of the file contains customer identification data, then the value of customerIdentifierColumn will be 1.</td>
 </tr>
 </tbody></table>
+
+<h2 id="upload-redeemed-coupons">Upload Redeemed Coupons</h2>
+
+<p>This API lets you bulk upload coupons that are redeemed for a coupon series. This API exposes an endpoint by which coupons that are redeemed externally can be imported into the Capillary CRM system.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight plaintext"><code>curl -i -X POST 
+https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/redeemFile/253234 -H 'Content-Type: multipart/form-data' 
+-H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6WyI0Il0sIm9yZ0lEIjowLCJleHAiOjE2MDM4OTIxNTYsImlhdCI6MTYwMzgwNTc1NiwiaXNzIjoiY2FwaWxsYXJ5dGVjaC5jb20iLCJhdWQiOiJjYXBpbGxhcnksaW50b3VjaCxhcnlhLHJlb24sYXBwcyIsInNvdXJjZSI6IldFQkFQUCJ9.APtFDqTh7Yf26lzhmwFm4OwPQBo24E_MTNl6CcnIr9A' 
+-F file=@couponCode.csv 
+-F customerIdentifier=USER_ID 
+-F couponIdentifier=COUPON_ID 
+-F uploadHeaders='{"redeemedAt": 1, "billNumber": 5, "couponCode": 3, "userId": 2, "billId": 4, "redeemedDateInMillis": 0, "details": 6}'
+</code></pre>
+<blockquote>
+<p>Sample Response </p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"status"</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"result"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">9619</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"couponSeriesId"</span><span class="p">:</span><span class="mi">953234</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"redeemUploadJobStatuses"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"jobId"</span><span class="p">:</span><span class="mi">9137</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadRedeemedCouponStatus"</span><span class="p">:</span><span class="s2">"QUEUED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="s2">"1603263535389"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="s2">"1603263535389"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"errorFileUrl"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"successFileUrl"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadedFileUrl"</span><span class="p">:</span><span class="s2">"couponCode_9603263533789_253294.csv"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"totalUploadedCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"actualRowCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"errorCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadTableName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadedFileName"</span><span class="p">:</span><span class="s2">"couponCode_9603263533789_253294.csv"</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"fileName"</span><span class="p">:</span><span class="s2">"couponCode_9603263533789_253294.csv"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/coupon/api/v1/upload/redeemFile/{couponSeriesId}</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td><a href="https://capillary.github.io/v1.1-API-Documentation/?xml#process-2-oauth">oAuth</a></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host1}//coupon/api/v1/upload/redeemFile/{couponSeriesId}</code></p>
+
+<h3 id="header-required">Header Required</h3>
+
+<table><thead>
+<tr>
+<th>Header</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type*</td>
+<td>multipart/form-data</td>
+</tr>
+<tr>
+<td>x-cap-api-oauth-token</td>
+<td>Generated authentication token</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>couponSeriesId*</td>
+<td>long</td>
+<td>Unique ID of the coupon series for which you need to upload redeemed coupons.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">The parameter marked with * is mandatory.</aside>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>customerIdentifier*</td>
+<td>enum</td>
+<td>Unique identifier of the customer to update redeemed coupons. Values: <code class="prettyprint">MOBILE</code>, <code class="prettyprint">EXTERNAL_ID</code>, <code class="prettyprint">EMAIL</code>, <code class="prettyprint">USER_ID</code>.</td>
+</tr>
+<tr>
+<td>couponIdentifier</td>
+<td>enum</td>
+<td>Coupon identifier used. Value: <code class="prettyprint">COUPON_ID</code>, <code class="prettyprint">COUPON_CODE</code>.</td>
+</tr>
+<tr>
+<td>file*</td>
+<td>file</td>
+<td>The CSV file that contains information of redeemed coupons. Each row in CSV file can contain following fields(columns marked with * are mandatory).<br/><br/> -  <strong>Customer identifier</strong>* : Field used to identify the customer, it can be userId, mobile, email or externalId. (userId will have more preference over the other customer identifiers, in case of multiple values)<br/> - <strong>Coupon identifier</strong>* : Field used to identify the redeemed coupon, It can be couponId, couponCode. (couponId has more preference over couponCode in case of multiple values)<br/> - <strong>Redeemed date in milliseconds</strong>* : Coupon redeemed time in Epoch<br/> - <strong>Redeemed at</strong>* : Coupon redeemed till’s Id<br/> - <strong>Bill Id</strong> : Transaction Id<br/> - <strong>Bill Number</strong> : Transaction Number Details.<br/><br/><strong>Sample file content:</strong><br/> - <em>File content sample 1</em>:<br/>&nbsp; &nbsp; &nbsp; &nbsp;redeemed date in millis, redeemed at, user id, coupon id, bill id, bill number, details<br/>&nbsp; &nbsp; &nbsp; &nbsp; 1603128622000,50015497,23599838,23456,1603128596000,1603128596000,<br/>&nbsp; &nbsp; &nbsp; &nbsp;luci_auto_15039.<br/> - <em>File content sample 2</em>:<br/>&nbsp; &nbsp; &nbsp; &nbsp;redeemed date in millis, redeemed at, mobile, coupon code ,bill id, bill number, details<br/>&nbsp; &nbsp; &nbsp; &nbsp;1603128622000,50015497,9876543210,ABCDEF1,1603128596000,1603128596000,<br/>&nbsp; &nbsp; &nbsp; &nbsp;luci_auto_15039</td>
+</tr>
+<tr>
+<td>uploadHeaders*</td>
+<td>int</td>
+<td>The sequence (starts from 0) of the columns in the attached csv file. This field accepts stringified JSON. <br>Key name for columns are as follows:<br/><br/>Key name for the columns are as follows<br/> - <strong>Customer identifier</strong>* : Key name for this field varies according to the customerIdentifier param.<br/>&nbsp; &nbsp; &nbsp; &nbsp;MOBILE : mobile<br/>&nbsp; &nbsp; &nbsp; &nbsp;EXTERNAL_ID: externalId<br/>&nbsp; &nbsp; &nbsp; &nbsp;EMAIL: email<br/>&nbsp; &nbsp; &nbsp; &nbsp;USER_ID: userId<br/> - <strong>Coupon identifier</strong>* :  Key name for this field varies according to the couponIdentifier param.<br/>&nbsp; &nbsp; &nbsp; &nbsp;COUPON_ID: couponId<br/>&nbsp; &nbsp; &nbsp; &nbsp;COUPON_CODE: couponCode<br/> - <strong>Redeemed date in milliseconds</strong>* : redeemedDateInMillis<br/> - <strong>Redeemed at</strong>* : redeemedAt<br/> - <strong>Bill Id</strong> : billId<br/> - <strong>Bill Number</strong> : billNumber<br/> - <strong>Details</strong> : details<br/><br/>For the above file samples, the uploadHeaders will be -<br/>&nbsp; &nbsp; &nbsp; &nbsp;<em>Sample 1</em> - {&lsquo;redeemedDateInMillis&rsquo;: 0, &#39;redeemedAt&rsquo;: 1, &#39;billNumber&rsquo;: 5, &#39;couponId&rsquo;: 3,<br/>&nbsp; &nbsp; &nbsp; &nbsp;&#39;userId&rsquo;: 2, &#39;billId&rsquo;: 4, &#39;details&rsquo;: 6}<br/>&nbsp; &nbsp; &nbsp; &nbsp;<em>Sample 2</em> - {&#39;redeemedDateInMillis&rsquo;: 0, &#39;redeemedAt&rsquo;: 1, &#39;billNumber&rsquo;: 5, &#39;couponCode&rsquo;: 3,<br/>&nbsp; &nbsp; &nbsp; &nbsp;mobile: 2, &#39;billId&rsquo;: 4, &#39;details&rsquo;: 6}</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> All parameters marked with * are mandatory. </aside>
+
+<h2 id="get-status-of-uploaded-coupons">Get Status of Uploaded Coupons</h2>
+
+<p>Retrieves the status of a coupon upload job.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight plaintext"><code>curl -i -X GET 
+https://eu.intouch.capillarytech.com/coupon/api/v1/upload/getUploadStatus/253234 
+-H 'Content-Type: application/json' 
+-H 'x-cap-api-oauth-token: 
+
+eyJraWQiOiJrMSIsImFsZyI6IlJTMjU2In0.eyJpc3MiOiJDYXBpbGxhcnkiLCJleHAiOjE2MDMyNjQ4NzksImp0aSI6IlBEV0JLRXZCTFh0VUZEdnhvbkFoNFEiLCJpYXQiOjE2MDMyNjQyNzksInN1YiI6InJlZGVtcHRpb24gaW1wb3J0IGNvdXBvbnMiLCJjbGllbnRfaWQiOjEyNjEsIm9yZ19pZCI6MTYxOSwidG9rZW5fdXNlIjoidG9rZW5fYWNjZXNzIiwiY2xpZW50X2tleSI6IldUMFQzcFdpU1JOTGFvdFBrbWFiWGR3VVgiLCJkZWZhdWx0X3RpbGwiOjE1MTQ3MTEwLCJzY29wZXMiOiJbe1wicGVybWlzc2lvblwiOlwiUkVBRFdSSVRFXCIsXCJlbnRpdHlJZFwiOjEsXCJyZXNvdXJjZXNcIjpbXCIuKnYxLjEvY3VzdG9tZXIvLipcIl19LHtcInBlcm1pc3Npb25cIjpcIlJFQURXUklURVwiLFwiZW50aXR5SWRcIjoyLFwicmVzb3VyY2VzXCI6W1wiLip2MS4xL3RyYW5zYWN0aW9uLy4qXCJdfSx7XCJwZXJtaXNzaW9uXCI6XCJSRUFEV1JJVEVcIixcImVudGl0eUlkXCI6MyxcInJlc291cmNlc1wiOltcIi4qdjEuMS9wb2ludHMvLipcIl19LHtcInBlcm1pc3Npb25cIjpcIlJFQURXUklURVwiLFwiZW50aXR5SWRcIjo0LFwicmVzb3VyY2VzXCI6W1wiLipcIl19XSJ9.xZuDQbcoekA7NsRZnNYTo1eIzjMeATccbmiR9lUdTeLZjRo453GqiBhezIfafw6GBYaDkOrJcjJCRscJt2cSlUUi8jw2z1QIuJLYIS2kQ_BFvuOUuc0p3olgyEjPdRNK3gqdD9gfQSK92_o05xLSOM205nBUeFrgaFUjuU30XcxfXOe6J7e61tOMAyxH-7ESAycOO4lo78iaSWpjio33n0rW4ngJ6PwrZQxN14JIrNkOit_r8CuZtqOTwYpF7SbZY9JG1wmYu4MT08J00neUS7j-QU9cgUaJAkd8pzoi6HhaZfpIjPaf3rSvB6doWmofyhDQc0jtVZK1iQqTovSOBg'
+
+</code></pre>
+<blockquote>
+<p>Sample Response </p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"status"</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"result"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">2345</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"couponSeriesId"</span><span class="p">:</span><span class="mi">253543</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"uploadJobStatuses"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"jobId"</span><span class="p">:</span><span class="mi">93477</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadStatus"</span><span class="p">:</span><span class="s2">"FINISHED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="s2">"1603101625000"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="s2">"1603101632000"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"errorFileUrl"</span><span class="p">:</span><span class="s2">"error_1619_2532342020_10_19_15_30_32"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"successFileUrl"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadedFileUrl"</span><span class="p">:</span><span class="s2">"couponCode_1603101623721_253234.csv"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"totalUploadedCount"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"actualRowCount"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"errorCount"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadTableName"</span><span class="p">:</span><span class="s2">"temp_1619_20201019_153531582"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadedFileName"</span><span class="p">:</span><span class="s2">"couponCode.csv"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"audienceGroupId"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"audienceGroupVersionId"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">coupon/api/v1/upload/getUploadStatus/{couponSeriesId}</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td><a href="https://capillary.github.io/v1.1-API-Documentation/?xml#process-2-oauth">OAuth</a></td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v1</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-header">Request Header</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
+</tr>
+<tr>
+<td>x-cap-api-oauth-token</td>
+<td>Generated authentication token</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/coupon/api/v1/upload/getUploadStatus/{couponSeriesId}</code> </p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>couponSeriesId*</td>
+<td>int</td>
+<td>The ID of coupon series for which you want to get the status.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> The pParameter marked with * is mandatory. </aside>
+
+<h2 id="get-status-of-redeemed-coupons">Get Status of Redeemed Coupons</h2>
+
+<p>Retrieves the status of the uploaded coupon redeem job a coupon series.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight plaintext"><code>curl -i -X GET 
+https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedeemedCouponStatus/253234 
+-H 'Content-Type: application/json' 
+-H 'x-cap-api-oauth-token: eyJraWQiOiJrMSIsImFsZyI6IlJTMjU2In0.eyJpc3MiOiJDYXBpbGxhcnkiLCJleHAiOjE2MDMyNjM5MjQsImp0aSI6InlRQmxQS2pvVlhJRmZiM2xjNk9SU2ciLCJpYXQiOjE2MDMyNjMzMjQsInN1YiI6InJlZGVtcHRpb24gaW1wb3J0IGNvdXBvbnMiLCJjbGllbnRfaWQiOjEyNjEsIm9yZ19pZCI6MTYxOSwidG9rZW5fdXNlIjoidG9rZW5fYWNjZXNzIiwiY2xpZW50X2tleSI6IldUMFQzcFdpU1JOTGFvdFBrbWFiWGR3VVgiLCJkZWZhdWx0X3RpbGwiOjE1MTQ3MTEwLCJzY29wZXMiOiJbe1wicGVybWlzc2lvblwiOlwiUkVBRFdSSVRFXCIsXCJlbnRpdHlJZFwiOjEsXCJyZXNvdXJjZXNcIjpbXCIuKnYxLjEvY3VzdG9tZXIvLipcIl19LHtcInBlcm1pc3Npb25cIjpcIlJFQURXUklURVwiLFwiZW50aXR5SWRcIjoyLFwicmVzb3VyY2VzXCI6W1wiLip2MS4xL3RyYW5zYWN0aW9uLy4qXCJdfSx7XCJwZXJtaXNzaW9uXCI6XCJSRUFEV1JJVEVcIixcImVudGl0eUlkXCI6MyxcInJlc291cmNlc1wiOltcIi4qdjEuMS9wb2ludHMvLipcIl19LHtcInBlcm1pc3Npb25cIjpcIlJFQURXUklURVwiLFwiZW50aXR5SWRcIjo0LFwicmVzb3VyY2VzXCI6W1wiLipcIl19XSJ9.plHd64-7bxkse3BIAUR1rz_SjoeeITDcKe675LQOd1okIxggdwP3Tv3Wt7z72Z7O3TiLpzHT_k5lGenuW3Ds7enNfzt3yNRnAPCWpVN-yHXwSQDulJErcGd6iWDId_tKEjy2Ihgy5_a7ZZTDMUiItjqOyaScQZuP-6E4R7YpXSKMNK8_sQdud8SvXNe-oGE9Hgq3yNljMpPzUKtsNIis_Gd__qNxuAZPdOX1mikf1qfK0q-TOmOK7ZDmcl9WCV4IoSQvo7-gNd81rL6qXxtQsMkvixjq_HIq6I2zGuT6s06ZlYD3fe1Sx3p4jUAzpj6ygP-E67nxewaOaiLKW4xLOA'
+</code></pre>
+<blockquote>
+<p>Sample Response </p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"status"</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"result"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">9838</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"couponSeriesId"</span><span class="p">:</span><span class="mi">909234</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"redeemUploadJobStatuses"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"jobId"</span><span class="p">:</span><span class="mi">4455</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadRedeemedCouponStatus"</span><span class="p">:</span><span class="s2">"COMPLETED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="s2">"1603132200000"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="s2">"1603132200000"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"errorFileUrl"</span><span class="p">:</span><span class="s2">"error_redemption_upload_1619_2532342020_10_20_14_17_00"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"successFileUrl"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadedFileUrl"</span><span class="p">:</span><span class="s2">"couponCode_1603183613031_253234.csv"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"totalUploadedCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"actualRowCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"errorCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadTableName"</span><span class="p">:</span><span class="s2">"temp_redemption_upload_1619_20201020_141700172"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadedFileName"</span><span class="p">:</span><span class="s2">"couponCode_1603183613081_259234.csv"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"jobId"</span><span class="p">:</span><span class="mi">4456</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadRedeemedCouponStatus"</span><span class="p">:</span><span class="s2">"COMPLETED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="s2">"1603132200000"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="s2">"1603132200000"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"errorFileUrl"</span><span class="p">:</span><span class="s2">"error_redemption_upload_1619_2532342020_10_20_17_33_14"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"successFileUrl"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadedFileUrl"</span><span class="p">:</span><span class="s2">"couponCode_1603195385330_253234.csv"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"totalUploadedCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"actualRowCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"errorCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadTableName"</span><span class="p">:</span><span class="s2">"temp_redemption_upload_1619_20201020_173313820"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadedFileName"</span><span class="p">:</span><span class="s2">"couponCode_1603195345330_253564.csv"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"jobId"</span><span class="p">:</span><span class="mi">4457</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadRedeemedCouponStatus"</span><span class="p">:</span><span class="s2">"COMPLETED"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="s2">"1603218600000"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="s2">"1603218600000"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"errorFileUrl"</span><span class="p">:</span><span class="s2">"error_redemption_upload_1619_2532342020_10_21_12_29_00"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"successFileUrl"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadedFileUrl"</span><span class="p">:</span><span class="s2">"couponCode_1603263533789_253234.csv"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"totalUploadedCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"actualRowCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"errorCount"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadTableName"</span><span class="p">:</span><span class="s2">"temp_redemption_upload_1619_20201021_122859950"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"uploadedFileName"</span><span class="p">:</span><span class="s2">"couponCode_1603263533789_253234.csv"</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/coupon/api/v1/upload/getUploadRedeemedCouponStatus/{couponSeriesId}</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td><a href="https://capillary.github.io/v1.1-API-Documentation/?xml#process-2-oauth">OAuth</a></td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v1</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
+</tr>
+<tr>
+<td>x-cap-api-oauth-token</td>
+<td>Generated authentication token</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/coupon/api/v1/upload/getUploadRedeemedCouponStatus/{couponSeriedId}</code> </p>
+
+<h3 id="request-parameters">Request Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>couponSeriesId*</td>
+<td>int</td>
+<td>The ID of coupon series for which the user wants to know the redeem status.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> The parameter marked with * is mandatory. </aside>
 
           <h1 id="points">Points</h1>
 
@@ -7422,9 +7846,9 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
 <td>The value of the specified identifier.</td>
 </tr>
 <tr>
-<td>issueOtp</td>
+<td>issueOtp**</td>
 <td>Boolean</td>
-<td>Sends OTP to the fromCustomer if the specified points are transferrable. Use this to issue OTP (used to authenticate <code class="prettyprint">fromCustomer</code> to transfer points) if <code class="prettyprint">isPointsTransferrable</code> is successful. The default value is <code class="prettyprint">false</code>.</td>
+<td>Sends OTP to the fromCustomer if the specified points are transferrable. Use this to issue OTP (used to authenticate <code class="prettyprint">fromCustomer</code> to transfer points) if <code class="prettyprint">isPointsTransferrable</code> is successful. If <code class="prettyprint">false</code> (default value) then no OTP is generated. <strong>However, you cannot transfer points without OTP. You need  to only pass <code class="prettyprint">issueOtp</code> as <code class="prettyprint">true</code> to transfer points</strong>.</td>
 </tr>
 </tbody></table>
 
@@ -28298,6 +28722,8 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <li><strong>InTouch + Vendor rewards</strong>: These are vendor rewards Vendor rewards with reference created at the Capillary end.</li>
 </ul>
 
+<aside class="notice">The API details mentioned herein are only for your reference. These APIs are exposed by creating Wrapper APIs using our API gateway for an organization on need basis. Postman Collection for the APIs can be requested through Capillary Support during or after onboarding the org. </aside>
+
 <h3 id="resource-information">Resource Information</h3>
 
 <table><thead>
@@ -28340,11 +28766,11 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
          </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"50 NFR Discount Voucher"</span><span class="p">,</span><span class="w">
          </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"50 NFR Discount Voucher"</span><span class="p">,</span><span class="w">
          </span><span class="nt">"imageId"</span><span class="p">:</span><span class="s2">"49J2711828.image/jpeg"</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"imageUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/STANDARDAPP/49J2711828.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T143336Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=21d7bc16a4af1d99894a235bb53e4e08f79d81e524572f75ec475799e983c425"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"imageUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J2711828.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T143336Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=21d7bc16a4af1d99894a235bb53e4e08f79d81e524572f75ec475799e983c425"</span><span class="p">,</span><span class="w">
          </span><span class="nt">"thumbnailId"</span><span class="p">:</span><span class="s2">"49J2719V29.image/jpeg"</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"thumbnailUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/STANDARDAPP/49J2719V29.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T143336Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=e3ce9dcae77d8dd0680ac28ba6745fcbcfcf795ee6922eabeced5234f8bd8657"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"thumbnailUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J2719V29.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T143336Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=e3ce9dcae77d8dd0680ac28ba6745fcbcfcf795ee6922eabeced5234f8bd8657"</span><span class="p">,</span><span class="w">
          </span><span class="nt">"termAndConditionsId"</span><span class="p">:</span><span class="s2">"49J271AC30.html"</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"termAndConditionsUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/STANDARDAPP/49J271AC30.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T143336Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=1c71e0cfb2573537747f8fa01771fbe95756ecabe57cdcc404a8b724393fb0fd"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"termAndConditionsUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J271AC30.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T143336Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=1c71e0cfb2573537747f8fa01771fbe95756ecabe57cdcc404a8b724393fb0fd"</span><span class="p">,</span><span class="w">
          </span><span class="nt">"tier"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
          </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
          </span><span class="nt">"priority"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
@@ -28360,11 +28786,11 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
          </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Ferrari Merchandise"</span><span class="p">,</span><span class="w">
          </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Ferrari Merchandise"</span><span class="p">,</span><span class="w">
          </span><span class="nt">"imageId"</span><span class="p">:</span><span class="s2">"49J2H0VB31.image/jpeg"</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"imageUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/STANDARDAPP/49J2H0VB31.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T143336Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=3e04f3284253d58ffef1a44ce704c57846f1a401f16451cc4caf923314b36616"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"imageUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J2H0VB31.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T143336Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=3e04f3284253d58ffef1a44ce704c57846f1a401f16451cc4caf923314b36616"</span><span class="p">,</span><span class="w">
          </span><span class="nt">"thumbnailId"</span><span class="p">:</span><span class="s2">"49J2H12D32.image/jpeg"</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"thumbnailUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/STANDARDAPP/49J2H12D32.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T143336Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=6e3a36312b7f1bf1de3ec578f91a8f50e761e9c85332592507f1a2d9dc3f0f90"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"thumbnailUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J2H12D32.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T143336Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=6e3a36312b7f1bf1de3ec578f91a8f50e761e9c85332592507f1a2d9dc3f0f90"</span><span class="p">,</span><span class="w">
          </span><span class="nt">"termAndConditionsId"</span><span class="p">:</span><span class="s2">"49J3M0Y134.html"</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"termAndConditionsUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/STANDARDAPP/49J3M0Y134.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T143336Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=e7fabaa9221d48ccef0172bee64554a5e98566d2ebd5b2a0af6c71e018dab5be"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"termAndConditionsUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J3M0Y134.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T143336Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=e7fabaa9221d48ccef0172bee64554a5e98566d2ebd5b2a0af6c71e018dab5be"</span><span class="p">,</span><span class="w">
          </span><span class="nt">"tier"</span><span class="p">:</span><span class="s2">"GIFT"</span><span class="p">,</span><span class="w">
          </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
          </span><span class="nt">"priority"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -28380,11 +28806,11 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
          </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"200 Fuel Discount Voucher"</span><span class="p">,</span><span class="w">
          </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"200 Fuel Discount Voucher"</span><span class="p">,</span><span class="w">
          </span><span class="nt">"imageId"</span><span class="p">:</span><span class="s2">"49H500SIB1.image/png"</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"imageUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/STANDARDAPP/49H500SIB1.image/png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T143336Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=e8935ddf0b679032b963212f3f8bfcb6b1ef7adbac6c1dd6baf6b3b795291e44"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"imageUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49H500SIB1.image/png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T143336Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=e8935ddf0b679032b963212f3f8bfcb6b1ef7adbac6c1dd6baf6b3b795291e44"</span><span class="p">,</span><span class="w">
          </span><span class="nt">"thumbnailId"</span><span class="p">:</span><span class="s2">"49H500Z2B2.image/png"</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"thumbnailUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/STANDARDAPP/49H500Z2B2.image/png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T143336Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=4cf5a4ab4c03c04344914d6431f31b5887fd8899ae93252d0cacca97a590c67e"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"thumbnailUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49H500Z2B2.image/png?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T143336Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=4cf5a4ab4c03c04344914d6431f31b5887fd8899ae93252d0cacca97a590c67e"</span><span class="p">,</span><span class="w">
          </span><span class="nt">"termAndConditionsId"</span><span class="p">:</span><span class="s2">"49H5010FB3.html"</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"termAndConditionsUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/STANDARDAPP/49H5010FB3.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T143336Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=d20daa142088a398d2ec73fe747fbafc98a62b3a526e4008eec129f48255ffdd"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"termAndConditionsUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49H5010FB3.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T143336Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=d20daa142088a398d2ec73fe747fbafc98a62b3a526e4008eec129f48255ffdd"</span><span class="p">,</span><span class="w">
          </span><span class="nt">"tier"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
          </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
          </span><span class="nt">"priority"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -28575,15 +29001,15 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
    </span><span class="nt">"userVouchers"</span><span class="p">:[</span><span class="w">
       </span><span class="p">{</span><span class="w">
          </span><span class="nt">"rewardDetails"</span><span class="p">:{</span><span class="w">
-            </span><span class="nt">"rewardId"</span><span class="p">:</span><span class="mi">488</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rewardId"</span><span class="p">:</span><span class="mi">21400</span><span class="p">,</span><span class="w">
             </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Ferrari Merchandise"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Ferrari Merchandise"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"thumbnailId"</span><span class="p">:</span><span class="s2">"49J2H12D32.image/jpeg"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"thumbnailUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/STANDARDAPP/49J2H12D32.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T142928Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=d57fc7aae76c9632946f88f54cab83ff4c168642084774c0326a86c98f929a34"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"thumbnailUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J2H12D32.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T142928Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=d57fc7aae76c9632946f88f54cab83ff4c168642084774c0326a86c98f929a34"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"imageId"</span><span class="p">:</span><span class="s2">"49J2H0VB31.image/jpeg"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"termNConditionsId"</span><span class="p">:</span><span class="s2">"49J3M0Y134.html"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"termNConditionsUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/STANDARDAPP/49J3M0Y134.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T142928Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=cbaf68a15587a4b7f07ba46f51bbd7688baf27c6d9312e2b2f0ec9ba43d211b4"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"imageUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/STANDARDAPP/49J2H0VB31.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T142928Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=61bfabff1582fdd948ebbba6fbbd1e13eda386a6c382755fba93d78be7b0d3ce"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"termNConditionsUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J3M0Y134.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T142928Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=cbaf68a15587a4b7f07ba46f51bbd7688baf27c6d9312e2b2f0ec9ba43d211b4"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"imageUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J2H0VB31.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T142928Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=61bfabff1582fdd948ebbba6fbbd1e13eda386a6c382755fba93d78be7b0d3ce"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"tier"</span><span class="p">:</span><span class="s2">"GIFT"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
             </span><span class="nt">"group"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -28593,8 +29019,8 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
             </span><span class="p">{</span><span class="w">
                </span><span class="nt">"code"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
                </span><span class="nt">"expiry"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"vendor"</span><span class="p">:</span><span class="s2">"{\"status\":{\"success\":\"true\",\"code\":200,\"message\":\"Success\"},\"coupons\":{\"coupon\":{\"customer\":{\"mobile\":\"918848000000\",\"email\":null,\"external_id\":\"90000000000018700\"},\"code\":\"TL150O7R\",\"discount_code\":\"NO_VALUE\",\"series_code\":\"2483\",\"series_info\":[],\"is_absolute\":\"true\",\"coupon_value\":\"0\",\"transaction\":{\"amount\":\"\",\"number\":\"\"},\"side_effects\":[],\"item_status\":{\"success\":\"true\",\"code\":700,\"message\":\"Coupon processing successful\"}}}}"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"rewardId"</span><span class="p">:</span><span class="mi">488</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"vendor"</span><span class="p">:</span><span class="s2">"{\"status\":{\"success\":\"true\",\"code\":200,\"message\":\"Success\"},\"coupons\":{\"coupon\":{\"customer\":{\"mobile\":\"918848000000\",\"email\":null,\"external_id\":\"90000000000195300\"},\"code\":\"TL150O7R\",\"discount_code\":\"NO_VALUE\",\"series_code\":\"8483\",\"series_info\":[],\"is_absolute\":\"true\",\"coupon_value\":\"0\",\"transaction\":{\"amount\":\"\",\"number\":\"\"},\"side_effects\":[],\"item_status\":{\"success\":\"true\",\"code\":700,\"message\":\"Coupon processing successful\"}}}}"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"rewardId"</span><span class="p">:</span><span class="mi">21400</span><span class="p">,</span><span class="w">
                </span><span class="nt">"issued"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
                </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
                </span><span class="nt">"seriesName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -28604,8 +29030,8 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
             </span><span class="p">{</span><span class="w">
                </span><span class="nt">"code"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
                </span><span class="nt">"expiry"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"vendor"</span><span class="p">:</span><span class="s2">"{\"status\":{\"success\":\"true\",\"code\":200,\"message\":\"Success\"},\"coupons\":{\"coupon\":{\"customer\":{\"mobile\":\"918848000000\",\"email\":null,\"external_id\":\"90000000000018700\"},\"code\":\"F0J8Z9AA\",\"discount_code\":\"NO_VALUE\",\"series_code\":\"2483\",\"series_info\":[],\"is_absolute\":\"true\",\"coupon_value\":\"0\",\"transaction\":{\"amount\":\"\",\"number\":\"\"},\"side_effects\":[],\"item_status\":{\"success\":\"true\",\"code\":700,\"message\":\"Coupon processing successful\"}}}}"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"rewardId"</span><span class="p">:</span><span class="mi">488</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"vendor"</span><span class="p">:</span><span class="s2">"{\"status\":{\"success\":\"true\",\"code\":200,\"message\":\"Success\"},\"coupons\":{\"coupon\":{\"customer\":{\"mobile\":\"918848000000\",\"email\":null,\"external_id\":\"90000000000195300\"},\"code\":\"F0J8Z9AA\",\"discount_code\":\"NO_VALUE\",\"series_code\":\"8483\",\"series_info\":[],\"is_absolute\":\"true\",\"coupon_value\":\"0\",\"transaction\":{\"amount\":\"\",\"number\":\"\"},\"side_effects\":[],\"item_status\":{\"success\":\"true\",\"code\":700,\"message\":\"Coupon processing successful\"}}}}"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"rewardId"</span><span class="p">:</span><span class="mi">21400</span><span class="p">,</span><span class="w">
                </span><span class="nt">"issued"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
                </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
                </span><span class="nt">"seriesName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -28615,8 +29041,8 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
             </span><span class="p">{</span><span class="w">
                </span><span class="nt">"code"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
                </span><span class="nt">"expiry"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"vendor"</span><span class="p">:</span><span class="s2">"{\"status\":{\"success\":\"true\",\"code\":200,\"message\":\"Success\"},\"coupons\":{\"coupon\":{\"customer\":{\"mobile\":\"918848000000\",\"email\":null,\"external_id\":\"90000000000018700\"},\"code\":\"7OK2IMSB\",\"discount_code\":\"NO_VALUE\",\"series_code\":\"2483\",\"series_info\":[],\"is_absolute\":\"true\",\"coupon_value\":\"0\",\"transaction\":{\"amount\":\"\",\"number\":\"\"},\"side_effects\":[],\"item_status\":{\"success\":\"true\",\"code\":700,\"message\":\"Coupon processing successful\"}}}}"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"rewardId"</span><span class="p">:</span><span class="mi">488</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"vendor"</span><span class="p">:</span><span class="s2">"{\"status\":{\"success\":\"true\",\"code\":200,\"message\":\"Success\"},\"coupons\":{\"coupon\":{\"customer\":{\"mobile\":\"918848000000\",\"email\":null,\"external_id\":\"90000000000195300\"},\"code\":\"7OK2IMSB\",\"discount_code\":\"NO_VALUE\",\"series_code\":\"8483\",\"series_info\":[],\"is_absolute\":\"true\",\"coupon_value\":\"0\",\"transaction\":{\"amount\":\"\",\"number\":\"\"},\"side_effects\":[],\"item_status\":{\"success\":\"true\",\"code\":700,\"message\":\"Coupon processing successful\"}}}}"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"rewardId"</span><span class="p">:</span><span class="mi">21400</span><span class="p">,</span><span class="w">
                </span><span class="nt">"issued"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
                </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
                </span><span class="nt">"seriesName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -28626,8 +29052,8 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
             </span><span class="p">{</span><span class="w">
                </span><span class="nt">"code"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
                </span><span class="nt">"expiry"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"vendor"</span><span class="p">:</span><span class="s2">"{\"status\":{\"success\":\"true\",\"code\":200,\"message\":\"Success\"},\"coupons\":{\"coupon\":{\"customer\":{\"mobile\":\"918848000000\",\"email\":null,\"external_id\":\"90000000000018700\"},\"code\":\"CITHYUGK\",\"discount_code\":\"NO_VALUE\",\"series_code\":\"2483\",\"series_info\":[],\"is_absolute\":\"true\",\"coupon_value\":\"0\",\"transaction\":{\"amount\":\"\",\"number\":\"\"},\"side_effects\":[],\"item_status\":{\"success\":\"true\",\"code\":700,\"message\":\"Coupon processing successful\"}}}}"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"rewardId"</span><span class="p">:</span><span class="mi">488</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"vendor"</span><span class="p">:</span><span class="s2">"{\"status\":{\"success\":\"true\",\"code\":200,\"message\":\"Success\"},\"coupons\":{\"coupon\":{\"customer\":{\"mobile\":\"918848000000\",\"email\":null,\"external_id\":\"90000000000195300\"},\"code\":\"CITHYUGK\",\"discount_code\":\"NO_VALUE\",\"series_code\":\"8483\",\"series_info\":[],\"is_absolute\":\"true\",\"coupon_value\":\"0\",\"transaction\":{\"amount\":\"\",\"number\":\"\"},\"side_effects\":[],\"item_status\":{\"success\":\"true\",\"code\":700,\"message\":\"Coupon processing successful\"}}}}"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"rewardId"</span><span class="p">:</span><span class="mi">21400</span><span class="p">,</span><span class="w">
                </span><span class="nt">"issued"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
                </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
                </span><span class="nt">"seriesName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -28637,8 +29063,8 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
             </span><span class="p">{</span><span class="w">
                </span><span class="nt">"code"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
                </span><span class="nt">"expiry"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"vendor"</span><span class="p">:</span><span class="s2">"{\"status\":{\"success\":\"true\",\"code\":200,\"message\":\"Success\"},\"coupons\":{\"coupon\":{\"customer\":{\"mobile\":\"918848000000\",\"email\":null,\"external_id\":\"90000000000018700\"},\"code\":\"VAFCQDCS\",\"discount_code\":\"NO_VALUE\",\"series_code\":\"2483\",\"series_info\":[],\"is_absolute\":\"true\",\"coupon_value\":\"0\",\"transaction\":{\"amount\":\"\",\"number\":\"\"},\"side_effects\":[],\"item_status\":{\"success\":\"true\",\"code\":700,\"message\":\"Coupon processing successful\"}}}}"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"rewardId"</span><span class="p">:</span><span class="mi">488</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"vendor"</span><span class="p">:</span><span class="s2">"{\"status\":{\"success\":\"true\",\"code\":200,\"message\":\"Success\"},\"coupons\":{\"coupon\":{\"customer\":{\"mobile\":\"918848000000\",\"email\":null,\"external_id\":\"90000000000195300\"},\"code\":\"VAFCQDCS\",\"discount_code\":\"NO_VALUE\",\"series_code\":\"8483\",\"series_info\":[],\"is_absolute\":\"true\",\"coupon_value\":\"0\",\"transaction\":{\"amount\":\"\",\"number\":\"\"},\"side_effects\":[],\"item_status\":{\"success\":\"true\",\"code\":700,\"message\":\"Coupon processing successful\"}}}}"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"rewardId"</span><span class="p">:</span><span class="mi">21400</span><span class="p">,</span><span class="w">
                </span><span class="nt">"issued"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
                </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
                </span><span class="nt">"seriesName"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
@@ -28649,15 +29075,15 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
          </span><span class="nt">"rewardDetails"</span><span class="p">:{</span><span class="w">
-            </span><span class="nt">"rewardId"</span><span class="p">:</span><span class="mi">489</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rewardId"</span><span class="p">:</span><span class="mi">21400</span><span class="p">,</span><span class="w">
             </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"50 NFR Discount Voucher"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"50 NFR Discount Voucher"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"thumbnailId"</span><span class="p">:</span><span class="s2">"49J2719V29.image/jpeg"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"thumbnailUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/STANDARDAPP/49J2719V29.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T142928Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=dce8783763093a0b6d166c4facb42a9e9bb3db51b8a33366acdebc1831031a7f"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"thumbnailUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J2719V29.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T142928Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=dce8783763093a0b6d166c4facb42a9e9bb3db51b8a33366acdebc1831031a7f"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"imageId"</span><span class="p">:</span><span class="s2">"49J2711828.image/jpeg"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"termNConditionsId"</span><span class="p">:</span><span class="s2">"49J271AC30.html"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"termNConditionsUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/STANDARDAPP/49J271AC30.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T142928Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=7d6f6ebc06627fc7e7de12489ec3f11148616ea2ee25308d43c011546f00ccac"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"imageUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/STANDARDAPP/49J2711828.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T142928Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=4c66b3075db316c3fac99d053ed2c84dbbe9440cf098e12d620986cd6f41f9b8"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"termNConditionsUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J271AC30.html?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T142928Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=7d6f6ebc06627fc7e7de12489ec3f11148616ea2ee25308d43c011546f00ccac"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"imageUrl"</span><span class="p">:</span><span class="s2">"https://demo.aip-southeast-1.amazonaws.com/solutions-rewards/DemoOrg/49J2711828.image/jpeg?X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20201028T142928Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=AKIAIU4E4JJZBOKPYUAA%2F20201028%2Fap-southeast-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=4c66b3075db316c3fac99d053ed2c84dbbe9440cf098e12d620986cd6f41f9b8"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"tier"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
             </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
             </span><span class="nt">"group"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -28668,7 +29094,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
                </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"KUQ3AAK7"</span><span class="p">,</span><span class="w">
                </span><span class="nt">"expiry"</span><span class="p">:</span><span class="s2">"2020-12-12 23:59:59"</span><span class="p">,</span><span class="w">
                </span><span class="nt">"vendor"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"rewardId"</span><span class="p">:</span><span class="mi">489</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"rewardId"</span><span class="p">:</span><span class="mi">21400</span><span class="p">,</span><span class="w">
                </span><span class="nt">"issued"</span><span class="p">:</span><span class="s2">"2020-10-28T17:27:03.000+05:30"</span><span class="p">,</span><span class="w">
                </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="s2">"2490"</span><span class="p">,</span><span class="w">
                </span><span class="nt">"seriesName"</span><span class="p">:</span><span class="s2">"50 NFR Discount Voucher"</span><span class="p">,</span><span class="w">
@@ -28681,7 +29107,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
                </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"DBN600HI"</span><span class="p">,</span><span class="w">
                </span><span class="nt">"expiry"</span><span class="p">:</span><span class="s2">"2020-12-12 23:59:59"</span><span class="p">,</span><span class="w">
                </span><span class="nt">"vendor"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"rewardId"</span><span class="p">:</span><span class="mi">489</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"rewardId"</span><span class="p">:</span><span class="mi">21400</span><span class="p">,</span><span class="w">
                </span><span class="nt">"issued"</span><span class="p">:</span><span class="s2">"2020-10-28T17:27:03.000+05:30"</span><span class="p">,</span><span class="w">
                </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="s2">"2490"</span><span class="p">,</span><span class="w">
                </span><span class="nt">"seriesName"</span><span class="p">:</span><span class="s2">"50 NFR Discount Voucher"</span><span class="p">,</span><span class="w">
@@ -28757,7 +29183,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </tr>
 <tr>
 <td>API Version</td>
-<td>v1</td>
+<td>v2</td>
 </tr>
 <tr>
 <td>Batch Support</td>
@@ -28890,7 +29316,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
       </span><span class="nt">"codeExpiry"</span><span class="p">:</span><span class="kc">null</span><span class="w">
    </span><span class="p">},</span><span class="w">
    </span><span class="nt">"vendor"</span><span class="p">:{</span><span class="w">
-      </span><span class="nt">"voucher"</span><span class="p">:</span><span class="s2">"{\"status\":{\"success\":\"true\",\"code\":200,\"message\":\"Success\"},\"coupons\":{\"coupon\":{\"customer\":{\"mobile\":\"918848000000\",\"email\":null,\"external_id\":\"90000000000018700\"},\"code\":\"S4WUGJMT\",\"discount_code\":\"NO_VALUE\",\"series_code\":\"2483\",\"series_info\":[],\"is_absolute\":\"true\",\"coupon_value\":\"0\",\"transaction\":{\"amount\":\"\",\"number\":\"\"},\"side_effects\":[],\"item_status\":{\"success\":\"true\",\"code\":700,\"message\":\"Coupon processing successful\"}}}}"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"voucher"</span><span class="p">:</span><span class="s2">"{\"status\":{\"success\":\"true\",\"code\":200,\"message\":\"Success\"},\"coupons\":{\"coupon\":{\"customer\":{\"mobile\":\"918848000000\",\"email\":null,\"external_id\":\"90000000000195300\"},\"code\":\"S4WUGJMT\",\"discount_code\":\"NO_VALUE\",\"series_code\":\"8483\",\"series_info\":[],\"is_absolute\":\"true\",\"coupon_value\":\"0\",\"transaction\":{\"amount\":\"\",\"number\":\"\"},\"side_effects\":[],\"item_status\":{\"success\":\"true\",\"code\":700,\"message\":\"Coupon processing successful\"}}}}"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"coupon_issue_status"</span><span class="p">:</span><span class="s2">"{\"success\":true,\"code\":200,\"message\":\"Success\"}"</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -28929,7 +29355,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
       </span><span class="nt">"codeExpiry"</span><span class="p">:</span><span class="s2">"2020-10-22 17:00:00"</span><span class="w">
    </span><span class="p">},</span><span class="w">
    </span><span class="nt">"vendor"</span><span class="p">:{</span><span class="w">
-      </span><span class="nt">"voucher"</span><span class="p">:</span><span class="s2">"{\"status\":{\"success\":\"true\",\"code\":200,\"message\":\"Success\"},\"coupons\":{\"coupon\":{\"customer\":{\"mobile\":\"918848000000\",\"email\":null,\"external_id\":\"90000000000018700\"},\"code\":\"S4WUGJMT\",\"discount_code\":\"NO_VALUE\",\"series_code\":\"2483\",\"series_info\":[],\"is_absolute\":\"true\",\"coupon_value\":\"0\",\"transaction\":{\"amount\":\"\",\"number\":\"\"},\"side_effects\":[],\"item_status\":{\"success\":\"true\",\"code\":700,\"message\":\"Coupon processing successful\"}}}}"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"voucher"</span><span class="p">:</span><span class="s2">"{\"status\":{\"success\":\"true\",\"code\":200,\"message\":\"Success\"},\"coupons\":{\"coupon\":{\"customer\":{\"mobile\":\"918848000000\",\"email\":null,\"external_id\":\"90000000000195300\"},\"code\":\"S4WUGJMT\",\"discount_code\":\"NO_VALUE\",\"series_code\":\"8483\",\"series_info\":[],\"is_absolute\":\"true\",\"coupon_value\":\"0\",\"transaction\":{\"amount\":\"\",\"number\":\"\"},\"side_effects\":[],\"item_status\":{\"success\":\"true\",\"code\":700,\"message\":\"Coupon processing successful\"}}}}"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"coupon_issue_status"</span><span class="p">:</span><span class="s2">"{\"success\":true,\"code\":200,\"message\":\"Success\"}"</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -28956,7 +29382,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </tr>
 <tr>
 <td>API Version</td>
-<td>v1</td>
+<td>v2</td>
 </tr>
 <tr>
 <td>Batch Support</td>
@@ -29016,6 +29442,11 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>brand*</td>
 <td>string</td>
 <td>Name of the brand associated with the reward.</td>
+</tr>
+<tr>
+<td>id*</td>
+<td>long</td>
+<td>Unique ID of the reward that you want to issue.</td>
 </tr>
 <tr>
 <td>transactionNumber*</td>
