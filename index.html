@@ -134,6 +134,7 @@
 <h2 id="q3-releases-2020">Q3 Releases (2020)</h2>
 
 <ul>
+<li><strong>Card Loyalty</strong> : APIs to create card series, generate cards, and retrieve card details. For more details see, </li>
 <li><strong>Support for store identifiers in the header for oAuth2 authentication</strong> : Earlier, only TILL information could be passed in the API header for attribution of events such as registration, transaction, etc. In case of centralized POS integrations, this caused an additional overhead of maintaining store - TILL mapping at the integration end. This can be avoided now by passing store identifiers directly in the API request.</li>
 </ul>
 
@@ -15221,6 +15222,660 @@ password* | Specify your preferred new password</p>
 <td>User group feature is disabled.</td>
 </tr>
 </tbody></table>
+
+          <h1 id="card-loyalty-membership">Card Loyalty/Membership</h1>
+
+<p>Card enables orgs to run card based loyalty memberships with multiple card types. A customer can have multiple cards of a same series or different series as intended by the org.</p>
+
+<p>This resource contains APIs related to creating card series, cards, and retrieving respective details.</p>
+
+<h2 id="create-card-series">Create Card Series</h2>
+
+<p>Lets you create a new card series for the org.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/card/series
+</code></pre>
+<blockquote>
+<p>Sample Post Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"2#$%^&amp;*1"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"card series create"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"PHYSICAL"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"expiryDays"</span><span class="p">:</span><span class="mi">355</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"entity"</span><span class="p">:</span><span class="mi">19</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/card/series</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v2/card/series</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code*</td>
+<td>string</td>
+<td>A valid code (supports up to 50 characters) of the card series according to the card configuration.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>Description of the  coupon series.</td>
+</tr>
+<tr>
+<td>type*</td>
+<td>enum</td>
+<td>Type of the card. Value <code class="prettyprint">PHYSICAL</code> (for physical cards), <code class="prettyprint">DIGITAL</code> (for digital or soft copies)</td>
+</tr>
+<tr>
+<td>expiryDays*</td>
+<td>int</td>
+<td>Validity of the card series in number of days from the day of issual.</td>
+</tr>
+</tbody></table>
+
+<p><aside class="notice">Parameters marked with * are mandatory. </aside></p>
+
+<h2 id="get-card-series-details">Get Card Series Details</h2>
+
+<p>Retrieves the details of a specific card series.</p>
+
+<blockquote>
+<p>Sample Request
+<code class="prettyprint">html
+https://us.api.capillarytech.com/v2/card/series/10
+</code></p>
+
+<p>Sample Response
+<code class="prettyprint">json
+{
+   &quot;expiryDays&quot;:355,
+   &quot;lastUpdateBy&quot;:50006796,
+   &quot;cardGenerationEnabled&quot;:false,
+   &quot;code&quot;:&quot;3#$%^&amp;*1&quot;,
+   &quot;createdBy&quot;:50006796,
+   &quot;createdOn&quot;:&quot;2020-11-04T12:19:38+05:30&quot;,
+   &quot;description&quot;:&quot;card series create&quot;,
+   &quot;id&quot;:10,
+   &quot;isActive&quot;:true,
+   &quot;orgId&quot;:50074,
+   &quot;type&quot;:&quot;PHYSICAL&quot;,
+   &quot;warnings&quot;:[ ]
+}
+</code></p>
+</blockquote>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/card/series/{seriesId}</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/card/series/{seriesId}</code></p>
+
+<h3 id="request-query-parameter">Request Query Parameter</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>seriesId*</td>
+<td>int</td>
+<td>Unique ID of the series to retrieve.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> The Parameter marked with * is mandatory. </aside>
+
+<h2 id="update-card-series">Update Card Series</h2>
+
+<p>Lets you update the details of existing card series.</p>
+
+<blockquote>
+<p>Sample Request
+<code class="prettyprint">html
+https://us.api.capillarytech.com/v2/card/series/10
+</code></p>
+
+<p>Sample PUT Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Titanium Card for DemoOrg"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"DIGITAL"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"cardGenerationConfiguration"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"prefix"</span><span class="p">:</span><span class="s2">"TTM00111"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"suffix"</span><span class="p">:</span><span class="s2">"ZS"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"length"</span><span class="p">:</span><span class="mi">10</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"lastUpdateBy"</span><span class="p">:</span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"cardGenerationConfiguration"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"lastUpdatedBy"</span><span class="p">:</span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">50074</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="mi">19</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"suffix"</span><span class="p">:</span><span class="s2">"ZS"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"prefix"</span><span class="p">:</span><span class="s2">"TTM00111"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"length"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"LUHNAlGO"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Titanium Card for DemoOrg"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">19</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">50074</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"DIGITAL"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/card/series/{seriesId}</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>PUT</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/card/series/{seriesId}</code></p>
+
+<h3 id="request-query-parameter">Request Query Parameter</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>seriesId*</td>
+<td>int</td>
+<td>Unique ID of the card series to update.</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>Description of the Card Series.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>enum</td>
+<td>Type of the card series.  Values: <code class="prettyprint">PHYSICAL</code> (physical card), <code class="prettyprint">DIGITAL</code> (digital card or soft copy)</td>
+</tr>
+<tr>
+<td>prefix</td>
+<td>string</td>
+<td>Characters to start with in a card number.</td>
+</tr>
+<tr>
+<td>suffix</td>
+<td>string</td>
+<td>Characters to end with in a card number.</td>
+</tr>
+<tr>
+<td>length</td>
+<td>int</td>
+<td>Length of the card.</td>
+</tr>
+<tr>
+<td>cardGenerationEnabled</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to enable auto generating card, pass <code class="prettyprint">false</code> to manually generate card numbers.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> All parameters marked with * are mandatory. </aside>
+
+<h2 id="generate-cards">Generate Cards</h2>
+
+<p>Lets you generate cards for a card series.</p>
+
+<blockquote>
+<p>Sample Request
+<code class="prettyprint">html
+https://us.api.capillarytech.com/v2/card/generate
+</code></p>
+
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"count"</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"statusLabel"</span><span class="p">:</span><span class="s2">"NOT_ISSUED"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response
+&ldquo;`json
+{
+   &quot;entity&rdquo;:[
+      &ldquo;TTM001113542235716ZS&rdquo;,
+      &ldquo;TTM001118022074654ZS&rdquo;,
+      &ldquo;TTM001113042076596ZS&rdquo;,
+      &ldquo;TTM001116982717633ZS&rdquo;,
+      &ldquo;TTM001118982988139ZS&rdquo;,
+      &ldquo;TTM001113572706062ZS&rdquo;
+   ],
+   &ldquo;warnings&rdquo;:[</p>
+</blockquote>
+
+<p>]
+}
+&ldquo;`</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/card/generate</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/card/generate</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>seriesId*</td>
+<td>int</td>
+<td>Unique ID of the card series to issue cards.</td>
+</tr>
+<tr>
+<td>count*</td>
+<td>int</td>
+<td>Number of cards to generate.</td>
+</tr>
+<tr>
+<td>statusLabel*</td>
+<td>string</td>
+<td>Current user defined status of the card. Check your user defined values for the system values (not issued, active, inactive, deleted, expired).</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> All parameters marked with * are mandatory. </aside>
+
+<h2 id="get-card-generation-log">Get Card Generation Log</h2>
+
+<p>Retrieves the log of cards generated for a specific card series.</p>
+
+<blockquote>
+<p>Sample Request
+<code class="prettyprint">html
+https://us.api.capillarytech.com/v2/card/generation/logs/10
+</code></p>
+
+<p>Sample Response
+&rdquo;`json
+{
+   &ldquo;entity&rdquo;:[
+      {
+         &ldquo;count&rdquo;:56,
+         &ldquo;createdBy&rdquo;:50006796,
+         &ldquo;date&rdquo;:&ldquo;2020-11-04T12:47:53+05:30&rdquo;,
+         &ldquo;description&rdquo;:&ldquo;&rdquo;,
+         &ldquo;fileHandle&rdquo;:&ldquo;7aed5630-15ea-477c-bd35-d71200b22272&rdquo;,
+         &ldquo;id&rdquo;:46,
+         &ldquo;orgId&rdquo;:50074,
+         &ldquo;seriesId&rdquo;:10
+      }
+   ],
+   &ldquo;warnings&rdquo;:[</p>
+</blockquote>
+
+<p>]
+}
+&ldquo;`</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/card/generation/logs/{seriesId}</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/card/generation/logs/{seriesId}</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>seriesId*</td>
+<td>int</td>
+<td>Unique ID of the card series to retrieve log.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> The parameter marked with * is mandatory. </aside>
+
+<h2 id="create-card">Create Card</h2>
+
+<p>Lets you create cards for a series manually.</p>
+
+<blockquote>
+<p>Sample Request
+<code class="prettyprint">html
+https://us.api.capillarytech.com/v2/card
+</code></p>
+
+<p>Sample Post Request
+<code class="prettyprint">json
+{
+   &quot;seriesId&quot;:10,
+   &quot;cardNumber&quot;:&quot;test123112121&quot;,
+   &quot;statusLabel&quot;:&quot;NOT_ISSUED&quot;
+}
+</code></p>
+
+<p>Sample Response
+&rdquo;`json
+{
+   &ldquo;entity&rdquo;:550271,
+   &ldquo;warnings&rdquo;:[</p>
+</blockquote>
+
+<p>]
+}
+&ldquo;`</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/card</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/card</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>seriesId*</td>
+<td>int</td>
+<td>Card Series ID from which you want to generate card.</td>
+</tr>
+<tr>
+<td>cardNumber*</td>
+<td>string</td>
+<td>Unique number of the card as per the card series configuration.</td>
+</tr>
+<tr>
+<td>statusLabel*</td>
+<td>string</td>
+<td>Current user defined status of the card. Check your user defined values for the system values (not issued, active, inactive, deleted, expired).</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> Parameter marked with * is mandatory. </aside>
+
+<h2 id="get-card-details">Get Card Details</h2>
+
+<p>Retrieves the details of a specific card.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/card?number=test123112121
+
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"cardNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test123112121"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50074</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"statusInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-11-04"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-11-04"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">550271</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">550260</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"labelId"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50074</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOT_ISSUED"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOT_ISSUED"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/card?number={cardNmber}</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/card?number={cardNumber}</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>cardNmber*</td>
+<td>int</td>
+<td>Card number to retrieve details.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> The parameter marked with * is  mandatory. </aside>
 
           <h1 id="other-apis-org-level">Other APIs (Org Level)</h1>
 
