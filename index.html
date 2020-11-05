@@ -15326,30 +15326,28 @@ password* | Specify your preferred new password</p>
 <p>Retrieves the details of a specific card series.</p>
 
 <blockquote>
-<p>Sample Request
-<code class="prettyprint">html
-https://us.api.capillarytech.com/v2/card/series/10
-</code></p>
-
-<p>Sample Response
-<code class="prettyprint">json
-{
-   &quot;expiryDays&quot;:355,
-   &quot;lastUpdateBy&quot;:50006796,
-   &quot;cardGenerationEnabled&quot;:false,
-   &quot;code&quot;:&quot;3#$%^&amp;*1&quot;,
-   &quot;createdBy&quot;:50006796,
-   &quot;createdOn&quot;:&quot;2020-11-04T12:19:38+05:30&quot;,
-   &quot;description&quot;:&quot;card series create&quot;,
-   &quot;id&quot;:10,
-   &quot;isActive&quot;:true,
-   &quot;orgId&quot;:50074,
-   &quot;type&quot;:&quot;PHYSICAL&quot;,
-   &quot;warnings&quot;:[ ]
-}
-</code></p>
+<p>Sample Request</p>
 </blockquote>
-
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/card/series/10
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"expiryDays"</span><span class="p">:</span><span class="mi">355</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"lastUpdateBy"</span><span class="p">:</span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"3#$%^&amp;*1"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="s2">"2020-11-04T12:19:38+05:30"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"card series create"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"isActive"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">50074</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"PHYSICAL"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <h3 id="resource-information">Resource Information</h3>
 
 <table><thead>
@@ -15403,11 +15401,11 @@ https://us.api.capillarytech.com/v2/card/series/10
 <p>Lets you update the details of existing card series.</p>
 
 <blockquote>
-<p>Sample Request
-<code class="prettyprint">html
-https://us.api.capillarytech.com/v2/card/series/10
-</code></p>
-
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/card/series/10
+</code></pre>
+<blockquote>
 <p>Sample PUT Request</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -15539,11 +15537,11 @@ https://us.api.capillarytech.com/v2/card/series/10
 <p>Lets you generate cards for a card series.</p>
 
 <blockquote>
-<p>Sample Request
-<code class="prettyprint">html
-https://us.api.capillarytech.com/v2/card/generate
-</code></p>
-
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/card/generate
+</code></pre>
+<blockquote>
 <p>Sample POST Request</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -15553,24 +15551,22 @@ https://us.api.capillarytech.com/v2/card/generate
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
-<p>Sample Response
-&ldquo;`json
-{
-   &quot;entity&rdquo;:[
-      &ldquo;TTM001113542235716ZS&rdquo;,
-      &ldquo;TTM001118022074654ZS&rdquo;,
-      &ldquo;TTM001113042076596ZS&rdquo;,
-      &ldquo;TTM001116982717633ZS&rdquo;,
-      &ldquo;TTM001118982988139ZS&rdquo;,
-      &ldquo;TTM001113572706062ZS&rdquo;
-   ],
-   &ldquo;warnings&rdquo;:[</p>
+<p>Sample Response</p>
 </blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"entity"</span><span class="p">:[</span><span class="w">
+      </span><span class="s2">"TTM001113542235716ZS"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"TTM001118022074654ZS"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"TTM001113042076596ZS"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"TTM001116982717633ZS"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"TTM001118982988139ZS"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"TTM001113572706062ZS"</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">
 
-<p>]
-}
-&ldquo;`</p>
-
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <h3 id="resource-information">Resource Information</h3>
 
 <table><thead>
@@ -15634,33 +15630,31 @@ https://us.api.capillarytech.com/v2/card/generate
 <p>Retrieves the log of cards generated for a specific card series.</p>
 
 <blockquote>
-<p>Sample Request
-<code class="prettyprint">html
-https://us.api.capillarytech.com/v2/card/generation/logs/10
-</code></p>
-
-<p>Sample Response
-&rdquo;`json
-{
-   &ldquo;entity&rdquo;:[
-      {
-         &ldquo;count&rdquo;:56,
-         &ldquo;createdBy&rdquo;:50006796,
-         &ldquo;date&rdquo;:&ldquo;2020-11-04T12:47:53+05:30&rdquo;,
-         &ldquo;description&rdquo;:&ldquo;&rdquo;,
-         &ldquo;fileHandle&rdquo;:&ldquo;7aed5630-15ea-477c-bd35-d71200b22272&rdquo;,
-         &ldquo;id&rdquo;:46,
-         &ldquo;orgId&rdquo;:50074,
-         &ldquo;seriesId&rdquo;:10
-      }
-   ],
-   &ldquo;warnings&rdquo;:[</p>
+<p>Sample Request</p>
 </blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/card/generation/logs/10
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"entity"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"count"</span><span class="p">:</span><span class="mi">56</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"date"</span><span class="p">:</span><span class="s2">"2020-11-04T12:47:53+05:30"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"fileHandle"</span><span class="p">:</span><span class="s2">"7aed5630-15ea-477c-bd35-d71200b22272"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">46</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">50074</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="mi">10</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">
 
-<p>]
-}
-&ldquo;`</p>
-
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <h3 id="resource-information">Resource Information</h3>
 
 <table><thead>
@@ -15714,31 +15708,29 @@ https://us.api.capillarytech.com/v2/card/generation/logs/10
 <p>Lets you create cards for a series manually.</p>
 
 <blockquote>
-<p>Sample Request
-<code class="prettyprint">html
-https://us.api.capillarytech.com/v2/card
-</code></p>
-
-<p>Sample Post Request
-<code class="prettyprint">json
-{
-   &quot;seriesId&quot;:10,
-   &quot;cardNumber&quot;:&quot;test123112121&quot;,
-   &quot;statusLabel&quot;:&quot;NOT_ISSUED&quot;
-}
-</code></p>
-
-<p>Sample Response
-&rdquo;`json
-{
-   &ldquo;entity&rdquo;:550271,
-   &ldquo;warnings&rdquo;:[</p>
+<p>Sample Request</p>
 </blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/card
+</code></pre>
+<blockquote>
+<p>Sample Post Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"cardNumber"</span><span class="p">:</span><span class="s2">"test123112121"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"statusLabel"</span><span class="p">:</span><span class="s2">"NOT_ISSUED"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"entity"</span><span class="p">:</span><span class="mi">550271</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">
 
-<p>]
-}
-&ldquo;`</p>
-
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <h3 id="resource-information">Resource Information</h3>
 
 <table><thead>
