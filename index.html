@@ -516,68 +516,90 @@ https://us.api.capillarytech.com/v2/customers?source=MOBILE_APP<span class="err"
 <blockquote>
 <p>Sample POST Request</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w"> 
-   </span><span class="nt">"loyaltyInfo"</span><span class="p">:{</span><span class="w"> 
-      </span><span class="nt">"loyaltyType"</span><span class="p">:</span><span class="s2">"loyalty"</span><span class="w">
-   </span><span class="p">},</span><span class="w">
-   </span><span class="nt">"associatedWith"</span><span class="p">:</span><span class="s2">"bukl.till"</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"profiles"</span><span class="p">:[</span><span class="w"> 
-      </span><span class="p">{</span><span class="w"> 
-         </span><span class="nt">"commChannels"</span><span class="p">:[</span><span class="w"> 
-            </span><span class="p">{</span><span class="w"> 
-               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"mobilePush"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"meta"</span><span class="p">:{</span><span class="w"> 
-                  </span><span class="nt">"lastViewedDate"</span><span class="p">:</span><span class="s2">"2019-10-10T22:04:38+05:30"</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"residence"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"office"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-               </span><span class="p">},</span><span class="w">
-               </span><span class="nt">"verified"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"primary"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"abc123456"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">  
-               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"91901000001"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"primary"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"verified"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"meta"</span><span class="p">:{</span><span class="w">  
-                 </span><span class="nt">"lastViewedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"residence"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"office"</span><span class="p">:</span><span class="kc">false</span><span class="w">
-               </span><span class="p">}</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-         </span><span class="p">],</span><span class="w">
-         </span><span class="nt">"firstName"</span><span class="p">:</span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"lastName"</span><span class="p">:</span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"customerIdentifiers"</span><span class="p">:[</span><span class="w"> 
-            </span><span class="p">{</span><span class="w"> 
-               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"tom.sawyer@example.com"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w"> 
-               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"91901000001"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-         </span><span class="p">],</span><span class="w">
-         </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"MOBILE_APP"</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"fields"</span><span class="p">:{</span><span class="w"> 
-            </span><span class="nt">"employee"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"dateofbirth"</span><span class="p">:</span><span class="s2">"22-10-2000"</span><span class="w">
-         </span><span class="p">},</span><span class="w">
-         </span><span class="nt">"accountId"</span><span class="p">:</span><span class="s2">"400"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-   </span><span class="p">],</span><span class="w">
-   </span><span class="nt">"extendedFields"</span><span class="p">:{</span><span class="w"> 
-      </span><span class="nt">"gender"</span><span class="p">:</span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"city"</span><span class="p">:</span><span class="s2">"Bangalore"</span><span class="w">
-   </span><span class="p">},</span><span class="w">
-   </span><span class="nt">"loyaltyProgramEnrollments"</span><span class="p">:[{</span><span class="w">
-     </span><span class="nt">"programId"</span><span class="p">:</span><span class="mi">1016</span><span class="p">,</span><span class="w">
-     </span><span class="nt">"tierNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">234</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"loyaltyPoints"</span><span class="p">:</span><span class="w"> </span><span class="mi">75</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"tierExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-11T16:36:17+05:30"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"pointsExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-11T16:36:17+05:30"</span><span class="w">
-</span><span class="p">}]</span><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"loyaltyInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"loyaltyType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"loyalty"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"associatedWith"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bukl.till"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"profiles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"identifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"919010000022"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cuid"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cuid_91901000002"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unionId"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unionId_91901000002"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cardnumber"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test123112121"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"statusLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACTIVE"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"commChannels"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobilePush"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"lastViewedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-10T22:04:38+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"residence"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"office"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"verified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"primary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc123456"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91901000001"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"primary"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"lastViewedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"residence"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"office"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"identifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom.sawyer@example.com"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91901000001"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MOBILE_APP"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"employee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"dateofbirth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22-10-2000"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"400"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bangalore"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"loyaltyProgramEnrollments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1016</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"tierNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">234</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"loyaltyPoints"</span><span class="p">:</span><span class="w"> </span><span class="mi">75</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"tierExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-11T16:36:17+05:30"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"pointsExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-11T16:36:17+05:30"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -736,9 +758,19 @@ Extended fields are either associated to verticals or to a generic category (ava
 <td>Meta information of the customer.</td>
 </tr>
 <tr>
-<td>customerIdentifiers*</td>
+<td>identifiers*</td>
 <td>obj</td>
-<td>Identifiers of the customer in type and value. Supported types: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>, <code class="prettyprint">fbId</code> <code class="prettyprint">mobile</code>, <code class="prettyprint">tmall_uname</code>, <code class="prettyprint">cuid</code>, <code class="prettyprint">ali_uname</code>, <code class="prettyprint">jd_uname</code>, <code class="prettyprint">vip_uname</code>, <code class="prettyprint">mobilePush</code>, and <code class="prettyprint">line</code>.</td>
+<td>Identifiers of the customer in type and value.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>enum</td>
+<td>Type of the customer identifier. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>, <code class="prettyprint">fbId</code> <code class="prettyprint">mobile</code>, <code class="prettyprint">tmall_uname</code>, <code class="prettyprint">cuid</code>, <code class="prettyprint">ali_uname</code>, <code class="prettyprint">jd_uname</code>, <code class="prettyprint">vip_uname</code>, <code class="prettyprint">mobilePush</code>, and <code class="prettyprint">line</code>, and <code class="prettyprint">card</code> (to issue loyalty card to the customers through registration).</td>
+</tr>
+<tr>
+<td>value</td>
+<td>string</td>
+<td>Value of the specified identifier. For the <code class="prettyprint">type</code> card, <code class="prettyprint">value</code> is card number.</td>
 </tr>
 <tr>
 <td>commChannels</td>
@@ -834,7 +866,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
             </span><span class="nt">"gender"</span><span class="p">:</span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"city"</span><span class="p">:</span><span class="s2">"Bangalore"</span><span class="w">
          </span><span class="p">},</span><span class="w">
-         </span><span class="nt">"customerIdentifiers"</span><span class="p">:[</span><span class="w">  
+         </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w">  
             </span><span class="p">{</span><span class="w">  
                </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
                </span><span class="nt">"value"</span><span class="p">:</span><span class="mi">919111111111</span><span class="w">
@@ -1054,7 +1086,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <td>Last name of the customer.</td>
 </tr>
 <tr>
-<td>customerIdentifiers</td>
+<td>identifiers</td>
 <td>obj</td>
 <td>Identifiers of the customer that you want to add in type and value. Supported types: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>, <code class="prettyprint">fbId</code> <code class="prettyprint">mobile</code>, <code class="prettyprint">tmall_uname</code>, <code class="prettyprint">cuid</code>, <code class="prettyprint">ali_uname</code>, <code class="prettyprint">jd_uname</code>, <code class="prettyprint">vip_uname</code>, and <code class="prettyprint">line</code>.</td>
 </tr>
@@ -1128,7 +1160,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
             </span><span class="nt">"gender"</span><span class="p">:</span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"city"</span><span class="p">:</span><span class="s2">"Bangalore"</span><span class="w">
          </span><span class="p">},</span><span class="w">
-         </span><span class="nt">"customerIdentifiers"</span><span class="p">:[</span><span class="w">  
+         </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w">  
             </span><span class="p">{</span><span class="w">  
                </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
                </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"tom.sawyer@example.com"</span><span class="w">
@@ -1320,7 +1352,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <td>Last name of the customer.</td>
 </tr>
 <tr>
-<td>customerIdentifiers</td>
+<td>identifiers</td>
 <td>obj</td>
 <td>Identifiers of the customer that you want to add in type and value. Supported types: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>, <code class="prettyprint">fbId</code> <code class="prettyprint">mobile</code>, <code class="prettyprint">tmall_uname</code>, <code class="prettyprint">cuid</code>, <code class="prettyprint">ali_uname</code>, <code class="prettyprint">jd_uname</code>, <code class="prettyprint">vip_uname</code>, and <code class="prettyprint">line</code>.</td>
 </tr>
@@ -1373,7 +1405,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
 
-<h2 id="update-customer-identifiers">Update Customer Identifiers</h2>
+<h2 id="update-customer-identifiers-issue-card">Update Customer Identifiers/Issue Card</h2>
 
 <blockquote>
 <p>Sample Request</p>
@@ -1395,14 +1427,39 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
+<p>Sample POST Request (to Issue Card)</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"add"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TTM001110000000001ZS"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cardnumber"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"statusLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACTIVE"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample POST Request (to Delink Card)</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"remove"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cardNumber"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SEC001200011210012SUF"</span><span class="w">
+    </span><span class="p">}]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
 <p>Sample Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-</span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-</span><span class="nt">"warnings"</span><span class="p">:[]</span><span class="w">
+    </span><span class="nt">"createdId"</span><span class="p">:</span><span class="w"> </span><span class="mi">382756026</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Allows adding/removing identifiers of a customer in different sources, i.e., you can either add a new identifier or remove an existing identifier of a customer in a source.</p>
+<p>Lets you add/remove identifiers or loyalty cards of a customer across sources.</p>
 
 <p><strong>Identifiers</strong>: &ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;externalId&rdquo;, &ldquo;wechat&rdquo;,&ldquo;martjackId&rdquo;, &ldquo;fbId&rdquo; &ldquo;mobile&rdquo;, &ldquo;tmall_uname&rdquo;, &ldquo;cuid&rdquo;, &ldquo;ali_uname&rdquo;, &ldquo;jd_uname&rdquo;, &ldquo;vip_uname&rdquo;, &ldquo;line&rdquo; </p>
 
@@ -1499,12 +1556,12 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <tr>
 <td>type*</td>
 <td>enum</td>
-<td>Type of the identifier that you want to add or remove. For example, email, mobile, and wechat.</td>
+<td>Type of the identifier that you want to add or remove. Value: <code class="prettyprint">cardNumber</code>, <code class="prettyprint">email</code>, <code class="prettyprint">mobile</code>, and <code class="prettyprint">wechat</code>.</td>
 </tr>
 <tr>
 <td>value*</td>
 <td>string</td>
-<td>Value of the specified <code class="prettyprint">type</code>. For example, if <code class="prettyprint">type</code> is email, then pass the email id that you want to add or remove in <code class="prettyprint">value</code>.</td>
+<td>Value of the specified <code class="prettyprint">type</code>. For example, if <code class="prettyprint">type</code> is email, then pass the email id that you want to add or remove in <code class="prettyprint">value</code>; for <code class="prettyprint">cardNumber</code> pass card number to add or remove.</td>
 </tr>
 </tbody></table>
 
@@ -1876,7 +1933,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
                </span><span class="nt">"Gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
                </span><span class="nt">"Favorite Color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Green"</span><span class="w">
            </span><span class="p">},</span><span class="w">
-           </span><span class="nt">"customerIdentifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+           </span><span class="nt">"identifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                </span><span class="p">{</span><span class="w">
                    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
                    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom.sawyer@example.com"</span><span class="w">
@@ -2674,8 +2731,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight html"><code>
-https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 </code></pre>
 <blockquote>
 <p>Sample Response</p>
@@ -3671,6 +3727,61 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>customerId*</td>
 <td>long</td>
 <td>Unique ID of the customer to fetch coupons.</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-customer-card-status">Update Customer Card Status</h2>
+
+<p>Lets you deactivate a customers membership card.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>
+</code></pre>
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/customers/{userId}?source={source}</code></p>
+
+<h3 id="request-query-parameter">Request Query Parameter</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>userId*</td>
+<td>long</td>
+<td>Unique ID of the customer whose card status has to be updated.</td>
+</tr>
+<tr>
+<td>source*</td>
+<td>int</td>
+<td>Unique ID of the card series to update.</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>cardNumber*</td>
+<td>string</td>
+<td>Card number to update status.</td>
+</tr>
+<tr>
+<td>cardStatus*</td>
+<td>enum</td>
+<td>New status of the card. Value: <code class="prettyprint">BLOCKED</code> to block an active card.</td>
 </tr>
 </tbody></table>
 
@@ -7215,7 +7326,7 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/redeemFile/253
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">{host1}//coupon/api/v1/upload/redeemFile/{couponSeriesId}</code></p>
+<p><code class="prettyprint">{host1}/coupon/api/v1/upload/redeemFile/{couponSeriesId}</code></p>
 
 <h3 id="header-required">Header Required</h3>
 
@@ -7268,19 +7379,24 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/redeemFile/253
 <td>Unique identifier of the customer to update redeemed coupons. Values: <code class="prettyprint">MOBILE</code>, <code class="prettyprint">EXTERNAL_ID</code>, <code class="prettyprint">EMAIL</code>, <code class="prettyprint">USER_ID</code>.</td>
 </tr>
 <tr>
-<td>couponIdentifier</td>
+<td>couponIdentifier*</td>
 <td>enum</td>
 <td>Coupon identifier used. Value: <code class="prettyprint">COUPON_ID</code>, <code class="prettyprint">COUPON_CODE</code>.</td>
 </tr>
 <tr>
 <td>file*</td>
 <td>file</td>
-<td>The CSV file that contains information of redeemed coupons. Each row in CSV file can contain following fields(columns marked with * are mandatory).<br/><br/> -  <strong>Customer identifier</strong>* : Field used to identify the customer, it can be userId, mobile, email or externalId. (userId will have more preference over the other customer identifiers, in case of multiple values)<br/> - <strong>Coupon identifier</strong>* : Field used to identify the redeemed coupon, It can be couponId, couponCode. (couponId has more preference over couponCode in case of multiple values)<br/> - <strong>Redeemed date in milliseconds</strong>* : Coupon redeemed time in Epoch<br/> - <strong>Redeemed at</strong>* : Coupon redeemed till’s Id<br/> - <strong>Bill Id</strong> : Transaction Id<br/> - <strong>Bill Number</strong> : Transaction Number Details.<br/><br/><strong>Sample file content:</strong><br/> - <em>File content sample 1</em>:<br/>&nbsp; &nbsp; &nbsp; &nbsp;redeemed date in millis, redeemed at, user id, coupon id, bill id, bill number, details<br/>&nbsp; &nbsp; &nbsp; &nbsp; 1603128622000,50015497,23599838,23456,1603128596000,1603128596000,<br/>&nbsp; &nbsp; &nbsp; &nbsp;luci_auto_15039.<br/> - <em>File content sample 2</em>:<br/>&nbsp; &nbsp; &nbsp; &nbsp;redeemed date in millis, redeemed at, mobile, coupon code ,bill id, bill number, details<br/>&nbsp; &nbsp; &nbsp; &nbsp;1603128622000,50015497,9876543210,ABCDEF1,1603128596000,1603128596000,<br/>&nbsp; &nbsp; &nbsp; &nbsp;luci_auto_15039</td>
+<td>The CSV file that contains information of redeemed coupons. Each row in CSV file can contain following fields(columns marked with * are mandatory).<br/><br/> -  <strong>Customer identifier</strong>* : Field used to identify the customer, it can be userId, mobile, email or externalId. (userId will have more preference over the other customer identifiers, in case of multiple values)<br/> - <strong>Coupon identifier</strong>* : Field used to identify the redeemed coupon, It can be couponId, couponCode. (couponId has more preference over couponCode in case of multiple values)<br/> - <strong>Redeemed date in milliseconds</strong>* : Coupon redeemed time in Epoch<br/> - <strong>Redeemed at</strong>* : Coupon redeemed till’s Id<br/> - <strong>Bill Id</strong> : Transaction Id<br/> - <strong>Bill Number</strong> : Transaction Number Details.<br/><br/><strong>Sample file content:</strong><br/> - <em>File content sample 1</em>:<br/>&nbsp; &nbsp; &nbsp; &nbsp;redeemed date in millis, redeemed at, user id, coupon id, bill id, bill number, details<br/>&nbsp; &nbsp; &nbsp; &nbsp; 1603128622000,50015497,23599838,23456,1603128596000<br/>&nbsp; &nbsp; &nbsp; &nbsp;luci_auto_15039.<br/> - <em>File content sample 2</em>:<br/>&nbsp; &nbsp; &nbsp; &nbsp;redeemed date in millis, redeemed at, mobile, coupon code ,bill id, bill number, details<br/>&nbsp; &nbsp; &nbsp; &nbsp;1603128622000,50015497,9876543210,ABCDEF1,1603128596000<br/>&nbsp; &nbsp; &nbsp; &nbsp;luci_auto_15039</td>
 </tr>
 <tr>
 <td>uploadHeaders*</td>
 <td>int</td>
 <td>The sequence (starts from 0) of the columns in the attached csv file. This field accepts stringified JSON. <br>Key name for columns are as follows:<br/><br/>Key name for the columns are as follows<br/> - <strong>Customer identifier</strong>* : Key name for this field varies according to the customerIdentifier param.<br/>&nbsp; &nbsp; &nbsp; &nbsp;MOBILE : mobile<br/>&nbsp; &nbsp; &nbsp; &nbsp;EXTERNAL_ID: externalId<br/>&nbsp; &nbsp; &nbsp; &nbsp;EMAIL: email<br/>&nbsp; &nbsp; &nbsp; &nbsp;USER_ID: userId<br/> - <strong>Coupon identifier</strong>* :  Key name for this field varies according to the couponIdentifier param.<br/>&nbsp; &nbsp; &nbsp; &nbsp;COUPON_ID: couponId<br/>&nbsp; &nbsp; &nbsp; &nbsp;COUPON_CODE: couponCode<br/> - <strong>Redeemed date in milliseconds</strong>* : redeemedDateInMillis<br/> - <strong>Redeemed at</strong>* : redeemedAt<br/> - <strong>Bill Id</strong> : billId<br/> - <strong>Bill Number</strong> : billNumber<br/> - <strong>Details</strong> : details<br/><br/>For the above file samples, the uploadHeaders will be -<br/>&nbsp; &nbsp; &nbsp; &nbsp;<em>Sample 1</em> - {&lsquo;redeemedDateInMillis&rsquo;: 0, &#39;redeemedAt&rsquo;: 1, &#39;billNumber&rsquo;: 5, &#39;couponId&rsquo;: 3,<br/>&nbsp; &nbsp; &nbsp; &nbsp;&#39;userId&rsquo;: 2, &#39;billId&rsquo;: 4, &#39;details&rsquo;: 6}<br/>&nbsp; &nbsp; &nbsp; &nbsp;<em>Sample 2</em> - {&#39;redeemedDateInMillis&rsquo;: 0, &#39;redeemedAt&rsquo;: 1, &#39;billNumber&rsquo;: 5, &#39;couponCode&rsquo;: 3,<br/>&nbsp; &nbsp; &nbsp; &nbsp;mobile: 2, &#39;billId&rsquo;: 4, &#39;details&rsquo;: 6}</td>
+</tr>
+<tr>
+<td>Details</td>
+<td>string</td>
+<td>Any additional details or notes to capture for redeemed coupon upload.</td>
 </tr>
 </tbody></table>
 
@@ -7394,7 +7510,7 @@ eyJraWQiOiJrMSIsImFsZyI6IlJTMjU2In0.eyJpc3MiOiJDYXBpbGxhcnkiLCJleHAiOjE2MDMyNjQ4
 </thead><tbody>
 <tr>
 <td>couponSeriesId*</td>
-<td>int</td>
+<td>long</td>
 <td>The ID of coupon series for which you want to get the status.</td>
 </tr>
 </tbody></table>
@@ -7499,25 +7615,27 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 </tr>
 </tbody></table>
 
+<h3 id="headers-required">Headers Required</h3>
+
 <table><thead>
 <tr>
-<th></th>
-<th></th>
+<th>Header</th>
+<th>Value</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>Content-Type</td>
+<td>Content-Type*</td>
 <td>application/json</td>
 </tr>
 <tr>
-<td>x-cap-api-oauth-token</td>
+<td>x-cap-api-oauth-token*</td>
 <td>Generated authentication token</td>
 </tr>
 </tbody></table>
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/coupon/api/v1/upload/getUploadRedeemedCouponStatus/{couponSeriedId}</code> </p>
+<p><code class="prettyprint">https://{host}/coupon/api/v1/upload/getUploadRedeemedCouponStatus/{couponSeriesId}</code> </p>
 
 <h3 id="request-parameters">Request Parameters</h3>
 
@@ -7536,6 +7654,26 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 </tbody></table>
 
 <aside class="notice"> The parameter marked with * is mandatory. </aside>
+
+<h2 id="response-codes">Response Codes</h2>
+
+<p>Error Codes</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Incorrect or invalid input.</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Unable to post or retrieve details.</td>
+</tr>
+</tbody></table>
 
           <h1 id="points">Points</h1>
 
@@ -15227,7 +15365,14 @@ password* | Specify your preferred new password</p>
 
 <p>Card enables orgs to run card based loyalty memberships with multiple card types. A customer can have multiple cards of a same series or different series as intended by the org.</p>
 
-<p>This resource contains APIs related to creating card series, cards, and retrieving respective details.</p>
+<p><code class="prettyprint">Card Series</code> represents different types of cards a brand. For example, Value Card, Premium card, Digital Card, and Physical Card. A card series stores information such as card series name, card type, card numbers config details, and expiry details.</p>
+
+<p>A card is a physical or digital card and associated to a Card Series. A card stores information such as issued date, expiry date, store or source account from which the card is issued, and current status.</p>
+
+<p>Cards are specific to customers and not to source accounts. A customer can have multiple cards of the same card series. Issuing a card means linking a card to a customer. A card to be issued to a customer can be any of the following types.
+* Issuing a digital or virtual card.
+* Issuing a physical card generated in Capillary.
+* Issuing a physical card that is not generated in Capillary.</p>
 
 <h2 id="create-card-series">Create Card Series</h2>
 
@@ -15242,7 +15387,7 @@ password* | Specify your preferred new password</p>
 <p>Sample Post Request</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-   </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"2#$%^&amp;*1"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"2platin34"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"card series create"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"PHYSICAL"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"expiryDays"</span><span class="p">:</span><span class="mi">355</span><span class="w">
@@ -15300,7 +15445,7 @@ password* | Specify your preferred new password</p>
 <tr>
 <td>code*</td>
 <td>string</td>
-<td>A valid code (supports up to 50 characters) of the card series according to the card configuration.</td>
+<td>A valid code (supports up to 50 characters) for the card series. Only alpha-numeric is allowed.</td>
 </tr>
 <tr>
 <td>description</td>
@@ -15534,7 +15679,7 @@ password* | Specify your preferred new password</p>
 
 <h2 id="generate-cards">Generate Cards</h2>
 
-<p>Lets you generate cards for a card series.</p>
+<p>Lets you generate cards for a card series in bulk.</p>
 
 <blockquote>
 <p>Sample Request</p>
@@ -15627,7 +15772,7 @@ password* | Specify your preferred new password</p>
 
 <h2 id="get-card-generation-log">Get Card Generation Log</h2>
 
-<p>Retrieves the log of cards generated for a specific card series.</p>
+<p>Retrieves the log of cards generated for a specific card series. It also retrieves <code class="prettyprint">fileHandle</code> using which you can download the history from S3 server.</p>
 
 <blockquote>
 <p>Sample Request</p>
@@ -15703,9 +15848,11 @@ password* | Specify your preferred new password</p>
 
 <aside class="notice"> The parameter marked with * is mandatory. </aside>
 
-<h2 id="create-card">Create Card</h2>
+<h2 id="create-card-without-customer-tagging">Create Card (without Customer Tagging)</h2>
 
-<p>Lets you create cards for a series manually.</p>
+<p>Lets you create or add a card of a series. The card will not have any customer tagging.</p>
+
+<aside class="notice">Use this API to add an existing card that is not linked to a customer. </aside>
 
 <blockquote>
 <p>Sample Request</p>
@@ -29356,7 +29503,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
           <h1 id="marvel-rewards">Marvel Rewards</h1>
 
-<p>Rewards are incentives issued customers from a specific org. Rewards could be in the form of either points and coupons. Again, coupons are categorized into the following types.
+<p>Rewards are incentives issued customers from a specific org. Rewards could be in the form of either points and coupons. Again, coupons are categorized into physical and digital vouchers.
 * <strong>Vouchers</strong>: Digital coupons generated against redeeming customer points. For example, redeem 50 points for 10% off coupon. 
 * <strong>Physical voucher</strong>: Physical coupons generated against redeeming customer points. For example, redeem 150 points for flat 150 off coupon.
 * <strong>Free voucher</strong>: Digital coupons generated without any points redemption.</p>
@@ -30017,7 +30164,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/core/v1/user/rewards/issue</code></td>
+<td><code class="prettyprint">/mobile/v2/api/marvel/rewards/issue/</code></td>
 </tr>
 <tr>
 <td>HTTP Method</td>
@@ -30071,6 +30218,29 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </tr>
 </tbody></table>
 
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id*</td>
+<td>long</td>
+<td>Unique ID of the reward that you want to issue.</td>
+</tr>
+<tr>
+<td>tillID</td>
+<td>long</td>
+<td>Till code that you want to associate with the rewards.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">The parameter marked with * is mandatory.</aside>
+
 <h3 id="request-body-parameters">Request Body Parameters</h3>
 
 <table><thead>
@@ -30091,19 +30261,9 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>Name of the brand associated with the reward.</td>
 </tr>
 <tr>
-<td>id*</td>
-<td>long</td>
-<td>Unique ID of the reward that you want to issue.</td>
-</tr>
-<tr>
 <td>transactionNumber*</td>
 <td>string</td>
 <td>Unique transaction number of the issual.</td>
-</tr>
-<tr>
-<td>tillID</td>
-<td>long</td>
-<td>Till code that you want to associate with the rewards.</td>
 </tr>
 </tbody></table>
 
