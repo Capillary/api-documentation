@@ -1443,17 +1443,6 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
-<p>Sample POST Request (to Delink Card)</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"remove"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cardnumber"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SEC001200011210012SUF"</span><span class="w">
-    </span><span class="p">}]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre>
-<blockquote>
 <p>Sample Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -1531,6 +1520,16 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <td>accountId**</td>
 <td>string</td>
 <td>Account for which you want to update the customer identifier (Required only for sources with multiple accounts)</td>
+</tr>
+<tr>
+<td>seriesId</td>
+<td>int</td>
+<td>Series ID of the card that you want to add or remove. Required for external cards.</td>
+</tr>
+<tr>
+<td>statusLabel</td>
+<td>enum</td>
+<td>Status of the card. Value: ACTIVE (to activate a card).</td>
 </tr>
 </tbody></table>
 
@@ -1937,6 +1936,16 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
            </span><span class="p">},</span><span class="w">
            </span><span class="nt">"identifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
                </span><span class="p">{</span><span class="w">
+                   </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"line"</span><span class="p">,</span><span class="w">
+                   </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lineAS6"</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                   </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cardNumber"</span><span class="p">,</span><span class="w">
+                   </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TTM001110000000002ZS"</span><span class="p">,</span><span class="w">
+                   </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w">
+                   </span><span class="nt">"statusLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACTIVE"</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
                    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
                    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom.sawyer@example.com"</span><span class="w">
                </span><span class="p">}</span><span class="w">
@@ -2326,6 +2335,16 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
             </span><span class="p">},</span><span class="w">
             </span><span class="nt">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
             </span><span class="nt">"identifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                 </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"line"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lineAS6"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cardNumber"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TTM001110000000002ZS"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"statusLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACTIVE"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
                 </span><span class="p">{</span><span class="w">
                     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
                     </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"919999000001"</span><span class="w">
