@@ -1418,14 +1418,18 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <p>Sample POST Request</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-</span><span class="nt">"add"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wechat"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ray11"</span><span class="w">
-</span><span class="p">}],</span><span class="w">
-</span><span class="nt">"remove"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom.sawyer@example.com"</span><span class="w">
-</span><span class="p">}]</span><span class="w">
+    </span><span class="nt">"add"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wechat"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ray11"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"remove"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom.sawyer@example.com"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -1524,7 +1528,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <tr>
 <td>seriesId</td>
 <td>int</td>
-<td>Series ID of the card that you want to add or remove. Required for external cards.</td>
+<td>Series ID of the card that you want to add or remove.</td>
 </tr>
 <tr>
 <td>statusLabel</td>
@@ -1987,10 +1991,6 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
    </span><span class="p">},</span><span class="w">
    </span><span class="nt">"segments"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-       </span><span class="nt">"ethnicity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bangalore"</span><span class="p">,</span><span class="w">
-       </span><span class="nt">"religion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hindu"</span><span class="w">
-   </span><span class="p">},</span><span class="w">
      </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bangalore"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="w">
@@ -2070,7 +2070,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 </span><span class="err">...</span><span class="w">
 </span></code></pre>
 <blockquote>
-<p>When embed=mlp, you will see each loyalty program details of the customer.</p>
+<p>When embed=mlp, you will see the details of each loyalty program of the customer.</p>
 </blockquote>
 <pre class="highlight json"><code><span class="err">...</span><span class="w">
 </span><span class="s2">"loyaltyProgramDetails"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -2112,7 +2112,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 </span><span class="err">...</span><span class="w">
 </span></code></pre>
 <blockquote>
-<p>embed=promotionalPoints, to see summary of customer promotional points</p>
+<p>embed=promotionalPoints, to see the summary of customer&rsquo;s promotional points</p>
 </blockquote>
 <pre class="highlight json"><code><span class="err">...</span><span class="w">
 </span><span class="s2">"promotionalPoints"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -2601,16 +2601,16 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
             </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EMAIL"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
             </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BULK"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTOUT"</span><span class="w">
-            </span><span class="s2">"orgUnitId"</span><span class="err">:</span><span class="w"> </span><span class="mi">200031782</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTOUT"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"orgUnitId"</span><span class="p">:</span><span class="w"> </span><span class="mi">200031782</span><span class="p">,</span><span class="w">
             </span><span class="nt">"sourceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSTORE"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MOBILE"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
             </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BULK"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTOUT"</span><span class="w">
-            </span><span class="s2">"orgUnitId"</span><span class="err">:</span><span class="w"> </span><span class="mi">200031782</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTOUT"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"orgUnitId"</span><span class="p">:</span><span class="w"> </span><span class="mi">200031782</span><span class="p">,</span><span class="w">
             </span><span class="nt">"sourceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSTORE"</span><span class="w">
         </span><span class="p">},</span><span class="w"> 
         </span><span class="p">{</span><span class="w">
@@ -3600,7 +3600,285 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <p>Sample Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="w">
-
+</span><span class="p">{</span><span class="w">
+    </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">33267197</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="w"> </span><span class="mi">14162</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"series"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">14162</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50074</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mobile Push offer 1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"discountCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MobilePush"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"validTillDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2118-09-10T16:09:02+05:30"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"validDaysFromCreation"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"expiryStrategyValue"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"maxCreate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"maxRedeem"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isTransferrable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"anyUser"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"sameUserMultipleRedeem"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isReferralExistingUsersAllowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isMultipleUseAllowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isValidationRequired"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isValidWithDiscountedItem"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"numIssued"</span><span class="p">:</span><span class="w"> </span><span class="mi">78</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"numRedeemed"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-10T14:45:06+05:30"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"lastUsed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-31T16:47:39+05:30"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"seriesCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GM0V3HXC"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"smsTemplate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{full_name}} Your Coupon code {{voucher}} Expires on {{valid_days_from_create}} {{optout}}"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isSMSDisabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isUpdateProductData"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mobile Push offer 1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isMultipleVouchersPerUserAllowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"doNotResendExistingVoucher"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"mutualExclusiveSeriesIds"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[]"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"storeIdsJson"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[-1]"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isDvsEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dvsExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-30T00:00:00+05:30"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"shortSMSTemplate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello {{cust_name}}, your voucher code is {{voucher_code}}"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"maxVouchersPerUser"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"minDaysBetweenVouchers"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"maxReferralsPerReferee"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"discountUpto"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"discountValue"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dvsItems"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"redemptionRange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{\"dom\":[\"-1\"],\"dow\":[\"-1\"],\"hours\":[\"-1\"]}"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"minBillAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"maxBillAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">9007199254740991</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"redeemAtStore"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[-1]"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"campaignId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mobile Push offer 1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"maxRedemptionsInSeriesPerUser"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"minDaysBetweenRedemption"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"redemptionValidFrom"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01T05:30:00+05:30"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"sourceOrgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"issueToLoyalty"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"redeemStoreType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"redeemable_stores"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"offlineRedeemType"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isOldFlowEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isPreRedeemEventRequired"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"brands"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"products"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"categories"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"termsAndConditions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"T&amp;C apply"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"signalRedemptionEvent"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"syncToClient"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"showPinCode"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"validRedemptionOrgEntityDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"concepts"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                    </span><span class="nt">"zones"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                    </span><span class="nt">"stores"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                    </span><span class="nt">"tills"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nt">"seriesType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LOYALTY"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"clientHandlingType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DISC_CODE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"expiryStrategyType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DAYS"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"discountOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BILL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"discountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PERC"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dvsExpiryDateFormat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-30"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"updateProductData"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"validTilldateFormat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2118-09-10"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"redemptionValidFromFormat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ER07BCJ8"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mobile Push offer 1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-31T17:15:02+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"validTill"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-18T23:59:59+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"isRedeemed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"issuedTo"</span><span class="p">:</span><span class="w"> </span><span class="mi">343040815</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"issuedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50074</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"refId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"issuedAt"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006795</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"storecode"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"webenagestore"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"webstore1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STORE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isOrgUnit"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">700</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Coupon Resent"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"warningsAsStatusCode"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">700</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Coupon Resent"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"couponDiscountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PERC"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"issuedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-31T17:15:02+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"activeFrom"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-31T00:00:00+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"redemptionsLeft"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"couponStatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"warningsAsStatusCode"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"redemptionInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"discountType"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"discountValue"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"discountUpto"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"redeemed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"seriesName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mobile Push offer 1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"trimmedCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ER07BCJ8"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">33267195</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="w"> </span><span class="mi">14162</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"series"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">14162</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50074</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mobile Push offer 1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"discountCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MobilePush"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"validTillDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2118-09-10T16:09:02+05:30"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"validDaysFromCreation"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"expiryStrategyValue"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"maxCreate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"maxRedeem"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isTransferrable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"anyUser"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"sameUserMultipleRedeem"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isReferralExistingUsersAllowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isMultipleUseAllowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isValidationRequired"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isValidWithDiscountedItem"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"numIssued"</span><span class="p">:</span><span class="w"> </span><span class="mi">78</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"numRedeemed"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-10T14:45:06+05:30"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"lastUsed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-31T16:47:39+05:30"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"seriesCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GM0V3HXC"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"smsTemplate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{full_name}} Your Coupon code {{voucher}} Expires on {{valid_days_from_create}} {{optout}}"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isSMSDisabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isUpdateProductData"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mobile Push offer 1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isMultipleVouchersPerUserAllowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"doNotResendExistingVoucher"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"mutualExclusiveSeriesIds"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[]"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"storeIdsJson"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[-1]"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isDvsEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dvsExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-30T00:00:00+05:30"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"shortSMSTemplate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello {{cust_name}}, your voucher code is {{voucher_code}}"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"maxVouchersPerUser"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"minDaysBetweenVouchers"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"maxReferralsPerReferee"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"discountUpto"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"discountValue"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dvsItems"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"redemptionRange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{\"dom\":[\"-1\"],\"dow\":[\"-1\"],\"hours\":[\"-1\"]}"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"minBillAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"maxBillAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">9007199254740991</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"redeemAtStore"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[-1]"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"campaignId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mobile Push offer 1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"maxRedemptionsInSeriesPerUser"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"minDaysBetweenRedemption"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"redemptionValidFrom"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01T05:30:00+05:30"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"sourceOrgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"issueToLoyalty"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"redeemStoreType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"redeemable_stores"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"offlineRedeemType"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isOldFlowEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isPreRedeemEventRequired"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"brands"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"products"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"categories"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"termsAndConditions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"T&amp;C apply"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"signalRedemptionEvent"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"syncToClient"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"showPinCode"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"validRedemptionOrgEntityDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"concepts"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                    </span><span class="nt">"zones"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                    </span><span class="nt">"stores"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                    </span><span class="nt">"tills"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nt">"seriesType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LOYALTY"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"clientHandlingType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DISC_CODE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"expiryStrategyType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DAYS"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"discountOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BILL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"discountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PERC"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dvsExpiryDateFormat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-30"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"updateProductData"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"validTilldateFormat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2118-09-10"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"redemptionValidFromFormat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"H306ORH2"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mobile Push offer 1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-31T17:14:49+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"validTill"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-18T23:59:59+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"isRedeemed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"issuedTo"</span><span class="p">:</span><span class="w"> </span><span class="mi">343040815</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"issuedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50074</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"refId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"issuedAt"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006795</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"storecode"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"webenagestore"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"webstore1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STORE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isOrgUnit"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">700</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Coupon Resent"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"warningsAsStatusCode"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">700</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Coupon Resent"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"couponDiscountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PERC"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"issuedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-31T17:14:49+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"activeFrom"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-31T00:00:00+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"redemptionsLeft"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"couponStatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"warningsAsStatusCode"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"redemptionInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"discountType"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"discountValue"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"discountUpto"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"redeemed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"seriesName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mobile Push offer 1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"trimmedCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"H306ORH2"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <h3 id="resource-information">Resource Information</h3>
 
@@ -7612,6 +7890,7 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"pointsTobeTransferred"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"groupProgramTransfer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"fromCustomerIdentifier"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MOBILE"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7799497290"</span><span class="w">
@@ -8053,6 +8332,7 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w"> 
    </span><span class="nt">"pointsTobeTransferred"</span><span class="p">:</span><span class="mi">123</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"groupProgramTransfer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"fromCustomerIdentifier"</span><span class="p">:{</span><span class="w"> 
       </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"MOBILE"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"7799000000"</span><span class="w">
@@ -10154,15 +10434,18 @@ https://us.api.capillarytech.com/v2/org/9081/sources
     </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Allows adding a source account to the org. Currently, the following sources are supported:
-* Facebook
-* WEB_ENGAGE
-* WECHAT<br>
-* INSTORE<br>
-* MARTJACK<br>
-* TMALL<br>
-* TAOBAO<br>
-* JD</p>
+<p>Allows adding a source account to the org. Currently, the following sources are supported:</p>
+
+<ul>
+<li>Facebook</li>
+<li>WEB_ENGAGE</li>
+<li>WECHAT<br></li>
+<li>INSTORE<br></li>
+<li>MARTJACK<br></li>
+<li>TMALL<br></li>
+<li>TAOBAO<br></li>
+<li>JD</li>
+</ul>
 
 <h3 id="resource-information">Resource Information</h3>
 
@@ -15867,78 +16150,6 @@ password* | Specify your preferred new password</p>
 
 <aside class="notice"> The parameter marked with * is mandatory. </aside>
 
-<h2 id="get-standard-card-statuses">Get Standard Card Statuses</h2>
-
-<p>Retrieves the details of standard card statuses defined in the system. </p>
-
-<blockquote>
-<p>Sample Request</p>
-</blockquote>
-<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/genericStatus/entities
-</code></pre>
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Card Not Issued"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOT_ISSUED"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CARD"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Card LINKED"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACTIVE"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CARD"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Card Expired"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXPIRED"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CARD"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Card Blocked"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUSPENDED"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CARD"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<h3 id="resource-information">Resource Information</h3>
-
-<table><thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URI</td>
-<td><code class="prettyprint">v2/genericStatus/entities</code></td>
-</tr>
-<tr>
-<td>HTTP Method</td>
-<td>POST</td>
-</tr>
-<tr>
-<td>API Version</td>
-<td>v2</td>
-</tr>
-<tr>
-<td>Batch Support</td>
-<td>No</td>
-</tr>
-</tbody></table>
-
-<h3 id="request-url">Request URL</h3>
-
-<p><code class="prettyprint">https://{host}/v2/genericStatus/entities</code></p>
-
 <h2 id="create-card-without-customer-tagging">Create Card (without Customer Tagging)</h2>
 
 <p>Lets you create or add a card of a series. The card will not have any customer tagging.</p>
@@ -16983,7 +17194,7 @@ position | boolean | Specify the position order of the extended field on the UI.
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
  </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01099-james"</span><span class="p">,</span><span class="w">
- </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"William James "</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"William James"</span><span class="p">,</span><span class="w">
  </span><span class="nt">"storeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50007863</span><span class="p">,</span><span class="w">
  </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -17027,7 +17238,7 @@ position | boolean | Specify the position order of the extended field on the UI.
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://&lt;cluster url&gt;v2/orgEntity/associate</code></p>
+<p><code class="prettyprint">https://{host}/v2/orgEntity/associate</code></p>
 
 <h2 id="retrieve-org-loyalty-programs">Retrieve Org Loyalty Programs</h2>
 
