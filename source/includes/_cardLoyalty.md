@@ -2,7 +2,16 @@
 
 Card enables orgs to run card based loyalty memberships with multiple card types. A customer can have multiple cards of a same series or different series as intended by the org.
 
-This resource contains APIs related to creating card series, cards, and retrieving respective details.
+`Card Series` represents different types of cards a brand. For example, Value Card, Premium card, Digital Card, and Physical Card. A card series stores information such as card series name, card type, card numbers config details, and expiry details.
+
+A card is a physical or digital card and associated to a Card Series. A card stores information such as issued date, expiry date, store or source account from which the card is issued, and current status.
+
+Cards are specific to customers and not to source accounts. A customer can have multiple cards of the same card series. Issuing a card means linking a card to a customer. A card to be issued to a customer can be any of the following types.
+* Issuing a digital or virtual card.
+* Issuing a physical card generated in Capillary.
+* Issuing a physical card that is not generated in Capillary.
+
+
 
 
 
@@ -21,7 +30,7 @@ https://us.api.capillarytech.com/v2/card/series
 
 ```json
 {
-   "code":"2#$%^&*1",
+   "code":"2platin34",
    "description":"card series create",
    "type":"PHYSICAL",
    "expiryDays":355
@@ -54,7 +63,7 @@ Batch Support | No
 ### Request Body Parameters
 Parameter | Datatype | Description
 --------- | -------- | -----------
- code* | string | A valid code (supports up to 50 characters) of the card series according to the card configuration.
+ code* | string | A valid code (supports up to 50 characters) for the card series. Only alpha-numeric is allowed.
  description | string | Description of the  coupon series.
  type* | enum | Type of the card. Value `PHYSICAL` (for physical cards), `DIGITAL` (for digital or soft copies)
  expiryDays* | int | Validity of the card series in number of days from the day of issual.
@@ -68,11 +77,13 @@ Retrieves the details of a specific card series.
 
 
 > Sample Request
+
 ```html
 https://us.api.capillarytech.com/v2/card/series/10
 ```
 
 > Sample Response
+
 ```json
 {
    "expiryDays":355,
@@ -115,10 +126,11 @@ seriesId* | int | Unique ID of the series to retrieve.
 
 ## Update Card Series
 
-Lets you update the details of existing card series.
+Lets you update the details of an existing card series.
 
 
 > Sample Request
+
 ```html
 https://us.api.capillarytech.com/v2/card/series/10
 ```
@@ -184,23 +196,97 @@ seriesId* | int | Unique ID of the card series to update.
 Parameter | Datatype | Description
 --------- | -------- | -----------
 description | string | Description of the Card Series.
-type | enum | Type of the card series.  Values: `PHYSICAL` (physical card), `DIGITAL` (digital card or soft copy)
+type* | enum | Type of the card series.  Values: `PHYSICAL` (physical card), `DIGITAL` (digital card or soft copy)
 prefix | string | Characters to start with in a card number. 
 suffix | string | Characters to end with in a card number. 
-length | int | Length of the card.
+length* | int | Length of the card.
 cardGenerationEnabled | boolean | Pass `true` to enable auto generating card, pass `false` to manually generate card numbers.
+ 
+<aside class="notice"> All parameters marked with * are mandatory. </aside>
+
+
+## Deactivate Card Series
+
+Lets you deactivate an active card series.
+
+
+> Sample Request
+
+```html
+https://us.api.capillarytech.com/v2/card/series
+```
+
+> Sample PUT Request
+
+```json
+{
+    "description": "",
+    "isActive":0,
+    "type": "DIGITAL",
+    "cardGenerationConfiguration": {
+        "prefix": "",
+        "suffix": "",
+        "length": 10
+    },
+    "cardGenerationEnabled": false
+}
+```
+
+> Sample Response
+
+```json
+{
+    "lastUpdateBy": 50006796,
+    "cardGenerationConfiguration": {
+        "suffix": "",
+        "prefix": "",
+        "length": 10
+    },
+    "cardGenerationEnabled": false,
+    "description": "",
+    "id": 18,
+    "isActive": false,
+    "orgId": 50074,
+    "type": "DIGITAL",
+    "warnings": []
+}
+```
+
+
+
+### Resource Information
+
+| | |
+--------- | ----------- |
+URI | `v2/card/series/{seriesId}`
+HTTP Method | PUT
+API Version | v2
+Batch Support | No
+
+### Request URL
+`https://{host}/v2/card/series/{seriesId}`
+
+### Request Body Parameters
+Parameter | Datatype | Description
+--------- | -------- | -----------
+seriesId* | int | Unique ID of the card series to issue cards (Query parameter).
+isActive* | enum | Pass `0` to deactivate the card series. 
+count* | int | Number of cards to generate.
  
 <aside class="notice"> All parameters marked with * are mandatory. </aside>
 
 
 
 
+
+
 ## Generate Cards
 
-Lets you generate cards for a card series.
+Lets you generate cards for a card series in bulk.
 
 
 > Sample Request
+
 ```html
 https://us.api.capillarytech.com/v2/card/generate
 ```
@@ -216,6 +302,7 @@ https://us.api.capillarytech.com/v2/card/generate
 ```
 
 > Sample Response
+
 ```json
 {
    "entity":[
@@ -259,15 +346,17 @@ statusLabel* | string | Current user defined status of the card. Check your user
 
 ## Get Card Generation Log
 
-Retrieves the log of cards generated for a specific card series.
+Retrieves the log of cards generated for a specific card series. It also retrieves `fileHandle` using which you can download the history from S3 server.
 
 
 > Sample Request
+
 ```html
 https://us.api.capillarytech.com/v2/card/generation/logs/10
 ```
 
 > Sample Response
+
 ```json
 {
    "entity":[
@@ -309,17 +398,25 @@ seriesId* | int | Unique ID of the card series to retrieve log.
 
 
 
-## Create Card
 
-Lets you create cards for a series manually.
+
+
+
+## Create Card (without Customer Tagging)
+
+Lets you create or add a card of a series. The card will not have any customer tagging.
+
+<aside class="notice">Use this API to add an existing card that is not linked to a customer. </aside>
 
 
 > Sample Request
+
 ```html
 https://us.api.capillarytech.com/v2/card
 ```
 
 > Sample Post Request
+
 ```json
 {
    "seriesId":10,
@@ -329,6 +426,7 @@ https://us.api.capillarytech.com/v2/card
 ```
 
 > Sample Response
+
 ```json
 {
    "entity":550271,

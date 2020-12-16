@@ -1,6 +1,6 @@
 # Marvel Rewards
 
-Rewards are incentives issued customers from a specific org. Rewards could be in the form of either points and coupons. Again, coupons are categorized into the following types.
+Rewards are incentives issued customers from a specific org. Rewards could be in the form of either points and coupons. Again, coupons are categorized into physical and digital vouchers.
 * **Vouchers**: Digital coupons generated against redeeming customer points. For example, redeem 50 points for 10% off coupon. 
 * **Physical voucher**: Physical coupons generated against redeeming customer points. For example, redeem 150 points for flat 150 off coupon.
 * **Free voucher**: Digital coupons generated without any points redemption.
@@ -25,8 +25,6 @@ host | **APAC**: https://apac-apigateway.capillarytech.com/
 Authentication | [Customer Authentication](https://capillary.github.io/api-documentation/#customer-authentication). |
 
  
-
-
 
 
 
@@ -507,7 +505,7 @@ https://apac-apigateway.capillarytech.com/mobile/v2/api/marvel/rewards/issue?id=
 
 | | |
 --------- | ----------- |
-URI | `/core/v1/user/rewards/issue`
+URI | `/mobile/v2/api/marvel/rewards/issue/`
 HTTP Method | POST
 Authentication | Customer Auth
 API Version | v2
@@ -528,6 +526,14 @@ cap_brand* | Org associated with the token to issue rewards.
 cap_device_id* | Unique device ID the customer used for authentication.
 cap_mobile* | The registered mobile number of the customer.
 
+### Request Query Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+id* | long | Unique ID of the reward that you want to issue.
+tillID | long | Till code that you want to associate with the rewards. 
+
+<aside class="notice">The parameter marked with * is mandatory.</aside>
 
 
 
@@ -537,9 +543,7 @@ Parameter | Datatype | Description
 --------- | -------- | -----------
 mobile* | string | Registered mobile number of the customer to issue rewards.
 brand* | string | Name of the brand associated with the reward.
-id* | long | Unique ID of the reward that you want to issue.
 transactionNumber* | string | Unique transaction number of the issual.
-tillID | long | Till code that you want to associate with the rewards. 
 
 <aside class="notice">Parameters marked with * are mandatory.</aside>
 

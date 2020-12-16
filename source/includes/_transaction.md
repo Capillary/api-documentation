@@ -872,7 +872,7 @@ https://eu.api.capillarytech.com/v2/transactions/38236823?type=REGULAR
 {
     "attribution": {
         "createDate": "2020-04-28T17:04:13+05:30",
-        "enteredBy": {
+        "createdBy": {
             "id": 50006796,
             "code": "mobilepush.1",
             "description": "",

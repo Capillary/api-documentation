@@ -822,7 +822,7 @@ https://us.api.capillarytech.com/v2/orgEntity/associate
 ```json
 {
  "code": "01099-james",
- "name": "William James ",
+ "name": "William James",
  "storeId": 50007863,
  "isActive": true
 }
@@ -851,7 +851,7 @@ Batch Support | No
 
 
 ### Request URL
-`https://<cluster url>v2/orgEntity/associate`
+`https://{host}/v2/orgEntity/associate`
 
 
 

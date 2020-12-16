@@ -17,70 +17,94 @@ https://us.api.capillarytech.com/v2/customers?source=MOBILE_APP&accountId=400
 > Sample POST Request
 
 ```json
-{ 
-   "loyaltyInfo":{ 
-      "loyaltyType":"loyalty"
-   },
-   "associatedWith":"bukl.till",
-   "profiles":[ 
-      { 
-         "commChannels":[ 
-            { 
-               "type":"mobilePush",
-               "meta":{ 
-                  "lastViewedDate":"2019-10-10T22:04:38+05:30",
-                  "residence": false,
-                  "office": false
-               },
-               "verified":"true",
-               "primary":"true",
-               "value":"abc123456"
-            },
-            {  
-               "type":"mobile",
-               "value":"91901000001",
-               "primary":true,
-               "verified":true,
-               "meta":{  
-				 "lastViewedDate": "",
-                  "residence":true,
-                  "office":false
-               }
-            }
-         ],
-         "firstName":"Tom",
-         "lastName":"Sawyer",
-         "customerIdentifiers":[ 
-            { 
-               "type":"email",
-               "value":"tom.sawyer@example.com"
-            },
-            { 
-               "type":"mobile",
-               "value":"91901000001"
-            }
-         ],
-         "source":"MOBILE_APP",
-         "fields":{ 
-            "employee":"true",
-            "dateofbirth":"22-10-2000"
-         },
-         "accountId":"400"
-      }
-   ],
-   "extendedFields":{ 
-      "gender":"Male",
-      "city":"Bangalore"
-   },
-   "loyaltyProgramEnrollments":[{
-	 "programId":1016,
-	 "tierNumber": 234,
-	"loyaltyPoints": 75,
-	"tierExpiryDate": "2022-02-11T16:36:17+05:30",
-	"pointsExpiryDate": "2022-02-11T16:36:17+05:30"
-}]
+{
+  "loyaltyInfo": {
+    "loyaltyType": "loyalty"
+  },
+  "associatedWith": "bukl.till",
+  "profiles": [
+    {
+      "firstName": "Tom",
+      "lastName": "Sawyer",
+      "identifiers": [
+        {
+          "type": "mobile",
+          "value": "919010000022"
+        },
+        {
+          "type": "cuid",
+          "value": "cuid_91901000002"
+        },
+        {
+          "type": "unionId",
+          "value": "unionId_91901000002"
+        },
+        {
+          "type": "cardnumber",
+          "value": "test123112121",
+          "seriesId": 19,
+          "statusLabel": "ACTIVE"
+        }
+      ],
+      "commChannels": [
+        {
+          "type": "mobilePush",
+          "meta": {
+            "lastViewedDate": "2019-10-10T22:04:38+05:30",
+            "residence": false,
+            "office": false
+          },
+          "verified": "true",
+          "primary": "true",
+          "value": "abc123456"
+        },
+        {
+          "type": "mobile",
+          "value": "91901000001",
+          "primary": true,
+          "verified": true,
+          "meta": {
+            "lastViewedDate": "",
+            "residence": true,
+            "office": false
+          }
+        }
+      ],
+      "identifiers": [
+        {
+          "type": "email",
+          "value": "tom.sawyer@example.com"
+        },
+        {
+          "type": "mobile",
+          "value": "91901000001"
+        }
+      ],
+      "source": "MOBILE_APP",
+      "fields": {
+        "employee": "true",
+        "dateofbirth": "22-10-2000"
+      },
+      "accountId": "400"
+    }
+  ],
+  "extendedFields": {
+    "gender": "Male",
+    "city": "Bangalore"
+  },
+  "loyaltyProgramEnrollments": [
+    {
+      "programId": 1016,
+      "tierNumber": 234,
+      "loyaltyPoints": 75,
+      "tierExpiryDate": "2022-02-11T16:36:17+05:30",
+      "pointsExpiryDate": "2022-02-11T16:36:17+05:30"
+    }
+  ]
 }
 ```
+
+
 
 
 
@@ -143,6 +167,8 @@ https://us.api.capillarytech.com/v2/customers?source=MOBILE_APP&accountId=400
 
 Lets you register customers in the org's loyalty program or just register their identifiers across sources such as InStore, Facebook,Webengage, WeChat, Martjack, TMall, Taobao, JD, ecommerce, Line, Website, and Mobile app. You can also add customer-level extended and custom field details.
 
+With this API, you can also issue loyalty card to the customer.
+
 <aside class="notice">
 
 <b>Extended Fields</b>:
@@ -199,7 +225,9 @@ Parameter | Type | Description
 --------- | ----- | -----------
 loyaltyType* | enum | Loyalty status of the customer. Value: `loyalty`, `non_loyalty`.
 profiles | obj | Meta information of the customer.
-customerIdentifiers* | obj | Identifiers of the customer in type and value. Supported types: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, `fbId` `mobile`, `tmall_uname`, `cuid`, `ali_uname`, `jd_uname`, `vip_uname`, `mobilePush`, and `line`.
+identifiers* | obj | Identifiers of the customer in type and value. 
+type | enum | Type of the customer identifier. Values: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, `fbId` `mobile`, `tmall_uname`, `cuid`, `ali_uname`, `jd_uname`, `vip_uname`, `mobilePush`, and `line`, and `card` (to issue loyalty card to the customers through registration).
+value | string | Value of the specified identifier. For the `type` card, `value` is card number.
 commChannels | obj | Available communication channels of the customer. Value: `mobile`, `email`, `wechat`, `ios`, `android`, `line`, `mobilePush`.
 Firstname | string | First name of the customer.
 Lastname | string | Last name of the customer.
@@ -216,6 +244,7 @@ tierExpiryDate | date-time | Expiry date and time of the specified tier. Support
 pointsExpiryDate | date-time | Expiry date and time of the points issued. Supported Format: YYYY-MM-DDTHH:MM:SS+/-(time-zone).
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
+
 
 ## Update Customer Details (using userId)
 
@@ -237,7 +266,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT&accountId=22232
             "gender":"Male",
             "city":"Bangalore"
          },
-         "customerIdentifiers":[  
+         "identifiers":[  
             {  
                "type":"mobile",
                "value":919111111111
@@ -376,7 +405,7 @@ profiles | obj | Profile information of the customer.
 meta | obj | Additional information of the identifier.
 Firstname | string | First name of the customer.
 Lastname | string | Last name of the customer.
-customerIdentifiers | obj | Identifiers of the customer that you want to add in type and value. Supported types: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, `fbId` `mobile`, `tmall_uname`, `cuid`, `ali_uname`, `jd_uname`, `vip_uname`, and `line`.
+identifiers | obj | Identifiers of the customer that you want to add in type and value. Supported types: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, `fbId` `mobile`, `tmall_uname`, `cuid`, `ali_uname`, `jd_uname`, `vip_uname`, and `line`.
 profiles | fields | Custom field details (only that configured for the organization)
 extendedFields | obj | Extended field details of the customer in key:value pairs. You can only pass extended fields that are enabled for your org with the respective datatypes for values.
 fields | obj | Custom field details of the customer in key:value pairs.
@@ -411,7 +440,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE&identifierNa
             "gender":"Male",
             "city":"Bangalore"
          },
-         "customerIdentifiers":[  
+         "identifiers":[  
             {  
                "type":"email",
                "value":"tom.sawyer@example.com"
@@ -518,7 +547,7 @@ profiles | obj | Profile information of the customer.
 meta | obj | Additional information of the identifier.
 Firstname | string | First name of the customer.
 Lastname | string | Last name of the customer.
-customerIdentifiers | obj | Identifiers of the customer that you want to add in type and value. Supported types: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, `fbId` `mobile`, `tmall_uname`, `cuid`, `ali_uname`, `jd_uname`, `vip_uname`, and `line`.
+identifiers | obj | Identifiers of the customer that you want to add in type and value. Supported types: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, `fbId` `mobile`, `tmall_uname`, `cuid`, `ali_uname`, `jd_uname`, `vip_uname`, and `line`.
 profiles | fields | Custom field details (only that configured for the organization)
 extendedFields | obj | Extended field details of the customer in key:value pairs. You can only pass extended fields that are enabled for your org with the respective datatypes for values.
 fields | obj | Custom field details of the customer in key:value pairs.
@@ -544,7 +573,7 @@ pointsExpiryDate | date-time | Expiry date and time of the points issued. Suppor
 
 
 
-## Update Customer Identifiers
+## Update Customer Identifiers/Issue Card
 
 > Sample Request
 
@@ -555,30 +584,50 @@ https://us.api.capillarytech.com/v2/customers/418/changeIdentifier?source=WECHAT
 
 ```json
 {
-"add": [{
-"type": "wechat",
-"value": "ray11"
-}],
-"remove": [{
-"type": "email",
-"value": "tom.sawyer@example.com"
-}]
+    "add": [
+        {
+            "type": "wechat",
+            "value": "ray11"
+        }
+    ],
+    "remove": [
+        {
+            "type": "email",
+            "value": "tom.sawyer@example.com"
+        }
+    ]
 }
 ```
+
+> Sample POST Request (to Issue Card)
+
+```json
+{
+  "add": [
+    {
+      "value": "TTM001110000000001ZS",
+      "type": "cardnumber",
+      "seriesId": 19,
+      "statusLabel": "ACTIVE"
+    }
+  ]
+}
+```
+
 
 > Sample Response
 
 ```json
 {
-"success": true,
-"warnings":[]
+    "createdId": 382756026,
+    "warnings": []
 }
 ```
 
 
-Allows adding/removing identifiers of a customer in different sources, i.e., you can either add a new identifier or remove an existing identifier of a customer in a source.
+Lets you add/remove identifiers or loyalty cards of a customer across sources.
 
-**Identifiers**: "mobile", "email", "externalId", "wechat","martjackId", "fbId" "mobile", "tmall_uname", "cuid", "ali_uname", "jd_uname", "vip_uname", "line" 
+**Identifiers**: `mobile`, `email`, `externalId`, `wechat`, `martjackId`, `fbId`, `tmall_uname`, `cuid`, `ali_uname`, `jd_uname`, `vip_uname`, `line`. 
 
 Limitations of the customer identifier update API:
 * Only identifiers can be updated using this API
@@ -612,6 +661,8 @@ Parameter | Type | Description
 customerId* | int | Unique ID of the customer whose identifiers need to be updated
 source* | enum | Source in which you want to update customer identifier(s) - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE. For sources that support multiple accounts, you also need to provide the associated account id.
 accountId** | string | Account for which you want to update the customer identifier (Required only for sources with multiple accounts)
+seriesId | int | Series ID of the card that you want to add or remove.
+statusLabel | enum | Status of the card. Value: ACTIVE (to activate a card).
 
 
 <aside class="notice">Parameters marked with * are mandatory. acountId** is required for sources with multiple accounts.</aside>
@@ -621,8 +672,8 @@ Attributes | Type | Description
 ---------- | ---- | -----------
 add** | obj | New identifier that you want to add to the existing account. Pass the identifiers as a key value pair.<br><code>{“type": "wechat", "value": "TS11"}</code>
 remove** | obj | Existing Identifier that you want to remove from the specified account. <code>{"type": "email", "value": "tom.sawyer@example.com"}</code>
-type* | enum | Type of the identifier that you want to add or remove. For example, email, mobile, and wechat.
-value* | string | Value of the specified `type`. For example, if `type` is email, then pass the email id that you want to add or remove in `value`.
+type* | enum | Type of the identifier that you want to add or remove. Value: `cardnumber`, `email`, `mobile`, and `wechat`.
+value* | string | Value of the specified `type`. For example, if `type` is email, then pass the email id that you want to add or remove in `value`; for `cardNumber` pass card number to add or remove.
 
 <aside class="notice">Parameters marked with * are mandatory and any one among the parameters marked with ** is required.</aside>
 
@@ -812,7 +863,7 @@ Parameter | Datatype | Description
 --------- | -------- | -----------
 source* | enum | Specify the source from which you want to fetch the customer details. Values: FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, ALL
 accountId | string | Specify the account id of the specific source if the source has multiple accounts. `accountId` is required for sources with multiple accounts such as WeChat or Facebook.
-identifierName* | enum | Identifier based on which you want to fetch the customer id. **Values**: "mobile", "email", "externalId", "wechat","martjackId", or "fbId"
+identifierName* | enum | Identifier based on which you want to fetch the customer id. **Values**: `mobile`, `email`, `externalId`, `cardnumber`, `wechat`, `martjackId`,`fbId`.
 identifierValue* | string | Pass the respective identifier value.
 
 
@@ -867,8 +918,18 @@ https://eu.api.capillarytech.com/v2/customers/17742?source=WECHAT&accountId=2223
                "Gender": "Male",
                "Favorite Color": "Green"
            },
-           "customerIdentifiers": [
+           "identifiers": [
                {
+                   "type": "line",
+                   "value": "lineAS6"
+               },
+               {
+                   "type": "cardNumber",
+                   "value": "TTM001110000000002ZS",
+                   "seriesId": 19,
+                   "statusLabel": "ACTIVE"
+               },
+			   {
                    "type": "email",
                    "value": "tom.sawyer@example.com"
                }
@@ -909,10 +970,6 @@ https://eu.api.capillarytech.com/v2/customers/17742?source=WECHAT&accountId=2223
        "lifetimePurchases": 230
    },
    "segments": {
-   },
-    "extendedFields": {
-       "ethnicity": "Bangalore",
-       "religion": "Hindu"
    },
      "extendedFields": {
         "city": "Bangalore",
@@ -996,7 +1053,7 @@ https://eu.api.capillarytech.com/v2/customers/17742?source=WECHAT&accountId=2223
 ```
  
  
-> When embed=mlp, you will see each loyalty program details of the customer.
+> When embed=mlp, you will see the details of each loyalty program of the customer.
  
 ```json
 ...
@@ -1039,7 +1096,7 @@ https://eu.api.capillarytech.com/v2/customers/17742?source=WECHAT&accountId=2223
 ...
 ```
 
-> embed=promotionalPoints, to see summary of customer promotional points
+> embed=promotionalPoints, to see the summary of customer's promotional points
  
 ```json
 ...
@@ -1154,8 +1211,8 @@ Code | Description
 8012 | Invalid source passed.
 
 
-## Fetch Customer Details (Identifier)
-Retrieves details of a customer by any of the identifiers (mobile number, email ID, or external ID).
+## Fetch Customer Details (by Identifier)
+Retrieves details of a customer by any of the identifiers (mobile number, email ID, external ID, or card number).
 
 
 
@@ -1193,7 +1250,17 @@ https://eu.api.capillarytech.com/v2/customers/lookup/customerDetails?source=WECH
             },
             "fields": {},
             "identifiers": [
+                 {
+                    "type": "line",
+                    "value": "lineAS6"
+                },
                 {
+                    "type": "cardNumber",
+                    "value": "TTM001110000000002ZS",
+                    "seriesId": 19,
+                    "statusLabel": "ACTIVE"
+                },
+				{
                     "type": "mobile",
                     "value": "919999000001"
                 }
@@ -1271,7 +1338,7 @@ Batch Support | No
 ### Request Query Parameters
 Parameter | Datatype | Description
 --------- | -------- | -----------
-identifierName* | enum | Identifier type used to get customer details. Values: `mobile`, `email`, `externalId`.
+identifierName* | enum | Identifier type used to get customer details. Values: `mobile`, `email`, `externalId`, `cardnumber`.
 identifierValue* | string | Value of the identifierName passed. For example, `externalId=externalId123`
 source* | enum | Source from which you want to fetch details. Value: `INSTORE`, `MARTJACK`, `WECHAT`, `ALL`. ( to fetch details from all sources. For sources with multiple accounts, you also need to pass the specific accountId.
 accountId** |  string | For sources with multiple accounts, pass the specific accountId.
@@ -1388,7 +1455,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
             "channel": "EMAIL",
             "accountId": "",
             "priority": "BULK",
-            "type": "OPTOUT"
+            "type": "OPTOUT",
 			"orgUnitId": 200031782,
 			"sourceName": "INSTORE"
         },
@@ -1396,7 +1463,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
             "channel": "MOBILE",
             "accountId": "",
             "priority": "BULK",
-            "type": "OPTOUT"
+            "type": "OPTOUT",
 			"orgUnitId": 200031782,
 			"sourceName": "INSTORE"
         }, 
@@ -1499,7 +1566,6 @@ sourceName | Source in which the identifier is registered. Values: `INSTORE`, `F
 > Sample Request
 
 ```html
-
 https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 ```
 
@@ -1681,7 +1747,7 @@ http://us.api.capillarytech.com/v2/customers/368881003/retroRequest
         {
             "id": 5,
             "status": "REJECTED",
-            "enteredBy": {
+            "addedBy": {
                 "id": 15091433,
                 "code": "till.india1",
                 "description": "",
@@ -1694,7 +1760,7 @@ http://us.api.capillarytech.com/v2/customers/368881003/retroRequest
                 "currencyId": 0,
                 "languageId": 0
             },
-            "enteredByParent": {
+            "addedByParent": {
                 "id": 15091431,
                 "code": "store_india",
                 "description": "",
@@ -1707,7 +1773,7 @@ http://us.api.capillarytech.com/v2/customers/368881003/retroRequest
                 "currencyId": 23,
                 "languageId": 148
             },
-            "enteredBy": {
+            "updatedBy": {
                 "id": 8730028,
                 "code": "Patel",
                 "name": "Nayan Kumar",
@@ -1735,7 +1801,7 @@ http://us.api.capillarytech.com/v2/customers/368881003/retroRequest
         {
             "id": 4,
             "status": "APPROVED",
-            "enteredBy": {
+            "addedBy": {
                 "id": 15091433,
                 "code": "till.india1",
                 "description": "",
@@ -1748,7 +1814,7 @@ http://us.api.capillarytech.com/v2/customers/368881003/retroRequest
                 "currencyId": 0,
                 "languageId": 0
             },
-            "enteredByParent": {
+            "addedByParent": {
                 "id": 15091431,
                 "code": "store_india",
                 "description": "",
@@ -1761,7 +1827,7 @@ http://us.api.capillarytech.com/v2/customers/368881003/retroRequest
                 "currencyId": 23,
                 "languageId": 148
             },
-            "enteredBy": {
+            "updatedBy": {
                 "id": 8730028,
                 "code": "Patel",
                 "name": "Nayan Kumar",
@@ -1787,62 +1853,9 @@ http://us.api.capillarytech.com/v2/customers/368881003/retroRequest
             "oneStep": false
         },
         {
-            "id": 3,
-            "status": "REJECTED",
-            "enteredBy": {
-                "id": 15091433,
-                "code": "till.india1",
-                "description": "",
-                "name": "till.india1",
-                "type": "TILL",
-                "adminType": "GENERAL",
-                "isActive": true,
-                "isOuEnabled": false,
-                "timeZoneId": 0,
-                "currencyId": 0,
-                "languageId": 0
-            },
-            "enteredByParent": {
-                "id": 15091431,
-                "code": "store_india",
-                "description": "",
-                "name": "StoreIndia",
-                "type": "STORE",
-                "adminType": "GENERAL",
-                "isActive": true,
-                "isOuEnabled": false,
-                "timeZoneId": 0,
-                "currencyId": 23,
-                "languageId": 148
-            },
-            "enteredBy": {
-                "id": 15091437,
-                "code": "till.sg",
-                "description": "",
-                "name": "till.sg",
-                "type": "TILL",
-                "adminType": "GENERAL",
-                "isActive": true,
-                "isOuEnabled": false,
-                "timeZoneId": 0,
-                "currencyId": 23,
-                "languageId": 148
-            },
-            "addedOn": "2019-07-22T14:30:23+05:30",
-            "updatedOn": "2019-07-22T14:31:56+05:30",
-            "userId": 9113108,
-            "requestId": 116669,
-            "baseType": "RETRO",
-            "transactionId": 2863,
-            "warnings": [
-            ],
-            "reqAdd": true,
-            "oneStep": false
-        },
-        {
             "id": 2,
             "status": "APPROVED",
-            "enteredBy": {
+            "addedBy": {
                 "id": 15091433,
                 "code": "till.india1",
                 "description": "",
@@ -1855,7 +1868,7 @@ http://us.api.capillarytech.com/v2/customers/368881003/retroRequest
                 "currencyId": 0,
                 "languageId": 0
             },
-            "enteredByParent": {
+            "addedByParent": {
                 "id": 15091431,
                 "code": "store_india",
                 "description": "",
@@ -1868,7 +1881,7 @@ http://us.api.capillarytech.com/v2/customers/368881003/retroRequest
                 "currencyId": 23,
                 "languageId": 148
             },
-            "enteredBy": {
+            "updatedBy": {
                 "id": 15091437,
                 "code": "till.sg",
                 "description": "",
@@ -1887,60 +1900,6 @@ http://us.api.capillarytech.com/v2/customers/368881003/retroRequest
             "requestId": 116668,
             "baseType": "RETRO",
             "transactionId": 2862,
-            "warnings": [
-            ],
-            "reqAdd": true,
-            "oneStep": false
-        },
-        {
-            "id": 1,
-            "status": "REJECTED",
-            "enteredBy": {
-                "id": 15091433,
-                "code": "till.india1",
-                "description": "",
-                "name": "till.india1",
-                "type": "TILL",
-                "adminType": "GENERAL",
-                "isActive": true,
-                "isOuEnabled": false,
-                "timeZoneId": 0,
-                "currencyId": 0,
-                "languageId": 0
-            },
-            "enteredByParent": {
-                "id": 15091431,
-                "code": "store_india",
-                "description": "",
-                "name": "StoreIndia",
-                "type": "STORE",
-                "adminType": "GENERAL",
-                "isActive": true,
-                "isOuEnabled": false,
-                "timeZoneId": 0,
-                "currencyId": 23,
-                "languageId": 148
-            },
-            "enteredBy": {
-                "id": 8730028,
-                "code": "Patel",
-                "name": "Nayan Kumar",
-                "type": "ADMIN_USER",
-                "adminType": "GENERAL",
-                "isActive": true,
-                "isOuEnabled": false,
-                "timeZoneId": 0,
-                "currencyId": 0,
-                "languageId": 0
-            },
-            "addedOn": "2015-07-22T14:06:14+05:30",
-            "updatedOn": "2015-10-13T16:12:43+05:30",
-            "userId": 9113108,
-            "requestId": 116663,
-            "baseType": "RETRO",
-            "reason": "_memcare(\"Insufficient validation from requestor d",
-            "comments": "Sample comments;",
-            "transactionId": 2861,
             "warnings": [
             ],
             "reqAdd": true,
@@ -1967,7 +1926,7 @@ Batch Support | No
 
 ### Request URL
 
-`https://{host}/v2/customers/{customerId}/retroRequest?{query parameters}`
+`https://{host}/v2/customers/{customerId}/retroRequest?{queryParameters}`
 
 
 ### Request Query Parameters
@@ -2109,6 +2068,7 @@ Retrieves the history of goodwill points of a customer.
 http://api.capillary.co.in/v2/customers/343040815/goodwillRequest
 ```
 
+> Sample Response
 
 ```json
 {
@@ -2120,7 +2080,7 @@ http://api.capillary.co.in/v2/customers/343040815/goodwillRequest
     "data": [
         {
             "id": 43114,
-            "enteredBy": {
+            "addedBy": {
                 "id": 15000449,
                 "code": "1371622280_919866643044",
                 "description": "",
@@ -2133,7 +2093,7 @@ http://api.capillary.co.in/v2/customers/343040815/goodwillRequest
                 "currencyId": 0,
                 "languageId": 0
             },
-            "enteredBy": {
+            "updatedBy": {
                 "id": 15000449,
                 "code": "1371622280_919866643044",
                 "description": "",
@@ -2246,7 +2206,285 @@ http://api.capillary.co.in/v2/customers/343040815/coupons
 
 ```json
 
-
+{
+    "entity": [
+        {
+            "id": 33267197,
+            "seriesId": 14162,
+            "series": {
+                "id": 14162,
+                "orgId": 50074,
+                "description": "Mobile Push offer 1",
+                "discountCode": "MobilePush",
+                "validTillDate": "2118-09-10T16:09:02+05:30",
+                "validDaysFromCreation": 30,
+                "expiryStrategyValue": 200,
+                "maxCreate": 1000,
+                "maxRedeem": -1,
+                "isTransferrable": false,
+                "anyUser": false,
+                "sameUserMultipleRedeem": false,
+                "isReferralExistingUsersAllowed": false,
+                "isMultipleUseAllowed": false,
+                "isValidationRequired": false,
+                "isValidWithDiscountedItem": false,
+                "createdBy": 4,
+                "numIssued": 78,
+                "numRedeemed": 6,
+                "createdOn": "2018-09-10T14:45:06+05:30",
+                "lastUsed": "2019-10-31T16:47:39+05:30",
+                "seriesCode": "GM0V3HXC",
+                "smsTemplate": "{{full_name}} Your Coupon code {{voucher}} Expires on {{valid_days_from_create}} {{optout}}",
+                "isSMSDisabled": false,
+                "isUpdateProductData": false,
+                "info": "Mobile Push offer 1",
+                "isMultipleVouchersPerUserAllowed": true,
+                "doNotResendExistingVoucher": true,
+                "mutualExclusiveSeriesIds": "[]",
+                "storeIdsJson": "[-1]",
+                "isDvsEnabled": false,
+                "dvsExpiryDate": "2019-11-30T00:00:00+05:30",
+                "priority": 0,
+                "shortSMSTemplate": "Hello {{cust_name}}, your voucher code is {{voucher_code}}",
+                "maxVouchersPerUser": -1,
+                "minDaysBetweenVouchers": -1,
+                "maxReferralsPerReferee": -1,
+                "discountUpto": 0,
+                "discountValue": 10,
+                "dvsItems": "false",
+                "redemptionRange": "{\"dom\":[\"-1\"],\"dow\":[\"-1\"],\"hours\":[\"-1\"]}",
+                "minBillAmount": 0,
+                "maxBillAmount": 9007199254740991,
+                "redeemAtStore": "[-1]",
+                "campaignId": -1,
+                "tag": "Mobile Push offer 1",
+                "maxRedemptionsInSeriesPerUser": -1,
+                "minDaysBetweenRedemption": -1,
+                "redemptionValidFrom": "1970-01-01T05:30:00+05:30",
+                "sourceOrgId": -1,
+                "issueToLoyalty": false,
+                "redeemStoreType": "redeemable_stores",
+                "offlineRedeemType": false,
+                "isOldFlowEnabled": false,
+                "isPreRedeemEventRequired": false,
+                "brands": [],
+                "products": [],
+                "categories": [],
+                "termsAndConditions": "T&C apply",
+                "signalRedemptionEvent": true,
+                "syncToClient": false,
+                "showPinCode": false,
+                "validRedemptionOrgEntityDetails": {
+                    "concepts": [],
+                    "zones": [],
+                    "stores": [],
+                    "tills": []
+                },
+                "seriesType": "LOYALTY",
+                "clientHandlingType": "DISC_CODE",
+                "expiryStrategyType": "DAYS",
+                "discountOn": "BILL",
+                "discountType": "PERC",
+                "dvsExpiryDateFormat": "2019-11-30",
+                "updateProductData": false,
+                "validTilldateFormat": "2118-09-10",
+                "redemptionValidFromFormat": "1970-01-01"
+            },
+            "code": "ER07BCJ8",
+            "description": "Mobile Push offer 1",
+            "createdDate": "2019-10-31T17:15:02+05:30",
+            "validTill": "2020-05-18T23:59:59+05:30",
+            "isRedeemed": false,
+            "issuedTo": 343040815,
+            "issuedBy": 50006796,
+            "orgId": 50074,
+            "refId": 0,
+            "issuedAt": {
+                "id": 50006795,
+                "code": "storecode",
+                "description": "webenagestore",
+                "name": "webstore1",
+                "type": "STORE",
+                "adminType": "GENERAL",
+                "isOrgUnit": false
+            },
+            "status": {
+                "statusCode": {
+                    "status": true,
+                    "code": 700,
+                    "message": "Coupon Resent"
+                },
+                "warnings": [],
+                "warningsAsStatusCode": [],
+                "code": 700,
+                "success": true,
+                "message": "Coupon Resent"
+            },
+            "couponDiscountType": "PERC",
+            "issuedOn": "2019-10-31T17:15:02+05:30",
+            "activeFrom": "2019-10-31T00:00:00+05:30",
+            "redemptionsLeft": -1,
+            "couponStatus": {
+                "statusCode": {
+                    "status": true,
+                    "code": 200,
+                    "message": "Success"
+                },
+                "warnings": [],
+                "warningsAsStatusCode": [],
+                "code": 200,
+                "success": true,
+                "message": "Success"
+            },
+            "redemptionInfo": [],
+            "discountType": false,
+            "discountValue": 10,
+            "discountUpto": 0,
+            "redeemed": false,
+            "seriesName": "Mobile Push offer 1",
+            "trimmedCode": "ER07BCJ8"
+        },
+        {
+            "id": 33267195,
+            "seriesId": 14162,
+            "series": {
+                "id": 14162,
+                "orgId": 50074,
+                "description": "Mobile Push offer 1",
+                "discountCode": "MobilePush",
+                "validTillDate": "2118-09-10T16:09:02+05:30",
+                "validDaysFromCreation": 30,
+                "expiryStrategyValue": 200,
+                "maxCreate": 1000,
+                "maxRedeem": -1,
+                "isTransferrable": false,
+                "anyUser": false,
+                "sameUserMultipleRedeem": false,
+                "isReferralExistingUsersAllowed": false,
+                "isMultipleUseAllowed": false,
+                "isValidationRequired": false,
+                "isValidWithDiscountedItem": false,
+                "createdBy": 4,
+                "numIssued": 78,
+                "numRedeemed": 6,
+                "createdOn": "2018-09-10T14:45:06+05:30",
+                "lastUsed": "2019-10-31T16:47:39+05:30",
+                "seriesCode": "GM0V3HXC",
+                "smsTemplate": "{{full_name}} Your Coupon code {{voucher}} Expires on {{valid_days_from_create}} {{optout}}",
+                "isSMSDisabled": false,
+                "isUpdateProductData": false,
+                "info": "Mobile Push offer 1",
+                "isMultipleVouchersPerUserAllowed": true,
+                "doNotResendExistingVoucher": true,
+                "mutualExclusiveSeriesIds": "[]",
+                "storeIdsJson": "[-1]",
+                "isDvsEnabled": false,
+                "dvsExpiryDate": "2019-11-30T00:00:00+05:30",
+                "priority": 0,
+                "shortSMSTemplate": "Hello {{cust_name}}, your voucher code is {{voucher_code}}",
+                "maxVouchersPerUser": -1,
+                "minDaysBetweenVouchers": -1,
+                "maxReferralsPerReferee": -1,
+                "discountUpto": 0,
+                "discountValue": 10,
+                "dvsItems": "false",
+                "redemptionRange": "{\"dom\":[\"-1\"],\"dow\":[\"-1\"],\"hours\":[\"-1\"]}",
+                "minBillAmount": 0,
+                "maxBillAmount": 9007199254740991,
+                "redeemAtStore": "[-1]",
+                "campaignId": -1,
+                "tag": "Mobile Push offer 1",
+                "maxRedemptionsInSeriesPerUser": -1,
+                "minDaysBetweenRedemption": -1,
+                "redemptionValidFrom": "1970-01-01T05:30:00+05:30",
+                "sourceOrgId": -1,
+                "issueToLoyalty": false,
+                "redeemStoreType": "redeemable_stores",
+                "offlineRedeemType": false,
+                "isOldFlowEnabled": false,
+                "isPreRedeemEventRequired": false,
+                "brands": [],
+                "products": [],
+                "categories": [],
+                "termsAndConditions": "T&C apply",
+                "signalRedemptionEvent": true,
+                "syncToClient": false,
+                "showPinCode": false,
+                "validRedemptionOrgEntityDetails": {
+                    "concepts": [],
+                    "zones": [],
+                    "stores": [],
+                    "tills": []
+                },
+                "seriesType": "LOYALTY",
+                "clientHandlingType": "DISC_CODE",
+                "expiryStrategyType": "DAYS",
+                "discountOn": "BILL",
+                "discountType": "PERC",
+                "dvsExpiryDateFormat": "2019-11-30",
+                "updateProductData": false,
+                "validTilldateFormat": "2118-09-10",
+                "redemptionValidFromFormat": "1970-01-01"
+            },
+            "code": "H306ORH2",
+            "description": "Mobile Push offer 1",
+            "createdDate": "2019-10-31T17:14:49+05:30",
+            "validTill": "2020-05-18T23:59:59+05:30",
+            "isRedeemed": false,
+            "issuedTo": 343040815,
+            "issuedBy": 50006796,
+            "orgId": 50074,
+            "refId": 0,
+            "issuedAt": {
+                "id": 50006795,
+                "code": "storecode",
+                "description": "webenagestore",
+                "name": "webstore1",
+                "type": "STORE",
+                "adminType": "GENERAL",
+                "isOrgUnit": false
+            },
+            "status": {
+                "statusCode": {
+                    "status": true,
+                    "code": 700,
+                    "message": "Coupon Resent"
+                },
+                "warnings": [],
+                "warningsAsStatusCode": [],
+                "code": 700,
+                "success": true,
+                "message": "Coupon Resent"
+            },
+            "couponDiscountType": "PERC",
+            "issuedOn": "2019-10-31T17:14:49+05:30",
+            "activeFrom": "2019-10-31T00:00:00+05:30",
+            "redemptionsLeft": -1,
+            "couponStatus": {
+                "statusCode": {
+                    "status": true,
+                    "code": 200,
+                    "message": "Success"
+                },
+                "warnings": [],
+                "warningsAsStatusCode": [],
+                "code": 200,
+                "success": true,
+                "message": "Success"
+            },
+            "redemptionInfo": [],
+            "discountType": false,
+            "discountValue": 10,
+            "discountUpto": 0,
+            "redeemed": false,
+            "seriesName": "Mobile Push offer 1",
+            "trimmedCode": "H306ORH2"
+        }
+    ],
+    "warnings": [],
+    "errors": [],
+    "success": true
+}
 ```
 
 
@@ -2269,6 +2507,39 @@ Batch Support | No
 Parameter | Datatype | Description
 --------- | -------- | -----------
 customerId* | long | Unique ID of the customer to fetch coupons.
+
+
+
+## Update Customer Card Status
+
+Lets you deactivate a customers membership card.
+
+> Sample Request
+
+```html
+
+```
+
+
+
+
+
+### Request URL
+`https://{host}/v2/customers/{userId}?source={source}`
+
+### Request Query Parameter
+Parameter | Datatype | Description
+--------- | -------- | -----------
+userId* | long | Unique ID of the customer whose card status has to be updated. 
+source* | int | Unique ID of the card series to update.
+
+### Request Body Parameters
+Parameter | Datatype | Description
+--------- | -------- | -----------
+cardNumber* | string | Card number to update status.
+cardStatus* | enum | New status of the card. Value: `BLOCKED` to block an active card.
+
+
 
 
 ## Response Codes

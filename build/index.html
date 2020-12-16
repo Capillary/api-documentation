@@ -134,6 +134,7 @@
 <h2 id="q3-releases-2020">Q3 Releases (2020)</h2>
 
 <ul>
+<li><strong>Card Loyalty</strong> : APIs to create card series, generate cards, and retrieve card details. For more details see, </li>
 <li><strong>Support for store identifiers in the header for oAuth2 authentication</strong> : Earlier, only TILL information could be passed in the API header for attribution of events such as registration, transaction, etc. In case of centralized POS integrations, this caused an additional overhead of maintaining store - TILL mapping at the integration end. This can be avoided now by passing store identifiers directly in the API request.</li>
 </ul>
 
@@ -515,68 +516,90 @@ https://us.api.capillarytech.com/v2/customers?source=MOBILE_APP<span class="err"
 <blockquote>
 <p>Sample POST Request</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w"> 
-   </span><span class="nt">"loyaltyInfo"</span><span class="p">:{</span><span class="w"> 
-      </span><span class="nt">"loyaltyType"</span><span class="p">:</span><span class="s2">"loyalty"</span><span class="w">
-   </span><span class="p">},</span><span class="w">
-   </span><span class="nt">"associatedWith"</span><span class="p">:</span><span class="s2">"bukl.till"</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"profiles"</span><span class="p">:[</span><span class="w"> 
-      </span><span class="p">{</span><span class="w"> 
-         </span><span class="nt">"commChannels"</span><span class="p">:[</span><span class="w"> 
-            </span><span class="p">{</span><span class="w"> 
-               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"mobilePush"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"meta"</span><span class="p">:{</span><span class="w"> 
-                  </span><span class="nt">"lastViewedDate"</span><span class="p">:</span><span class="s2">"2019-10-10T22:04:38+05:30"</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"residence"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"office"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-               </span><span class="p">},</span><span class="w">
-               </span><span class="nt">"verified"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"primary"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"abc123456"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">  
-               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"91901000001"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"primary"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"verified"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"meta"</span><span class="p">:{</span><span class="w">  
-                 </span><span class="nt">"lastViewedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"residence"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-                  </span><span class="nt">"office"</span><span class="p">:</span><span class="kc">false</span><span class="w">
-               </span><span class="p">}</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-         </span><span class="p">],</span><span class="w">
-         </span><span class="nt">"firstName"</span><span class="p">:</span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"lastName"</span><span class="p">:</span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"customerIdentifiers"</span><span class="p">:[</span><span class="w"> 
-            </span><span class="p">{</span><span class="w"> 
-               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"tom.sawyer@example.com"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w"> 
-               </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
-               </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"91901000001"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-         </span><span class="p">],</span><span class="w">
-         </span><span class="nt">"source"</span><span class="p">:</span><span class="s2">"MOBILE_APP"</span><span class="p">,</span><span class="w">
-         </span><span class="nt">"fields"</span><span class="p">:{</span><span class="w"> 
-            </span><span class="nt">"employee"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"dateofbirth"</span><span class="p">:</span><span class="s2">"22-10-2000"</span><span class="w">
-         </span><span class="p">},</span><span class="w">
-         </span><span class="nt">"accountId"</span><span class="p">:</span><span class="s2">"400"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-   </span><span class="p">],</span><span class="w">
-   </span><span class="nt">"extendedFields"</span><span class="p">:{</span><span class="w"> 
-      </span><span class="nt">"gender"</span><span class="p">:</span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"city"</span><span class="p">:</span><span class="s2">"Bangalore"</span><span class="w">
-   </span><span class="p">},</span><span class="w">
-   </span><span class="nt">"loyaltyProgramEnrollments"</span><span class="p">:[{</span><span class="w">
-     </span><span class="nt">"programId"</span><span class="p">:</span><span class="mi">1016</span><span class="p">,</span><span class="w">
-     </span><span class="nt">"tierNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">234</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"loyaltyPoints"</span><span class="p">:</span><span class="w"> </span><span class="mi">75</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"tierExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-11T16:36:17+05:30"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"pointsExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-11T16:36:17+05:30"</span><span class="w">
-</span><span class="p">}]</span><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"loyaltyInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"loyaltyType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"loyalty"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"associatedWith"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bukl.till"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"profiles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"identifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"919010000022"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cuid"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cuid_91901000002"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unionId"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unionId_91901000002"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cardnumber"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test123112121"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"statusLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACTIVE"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"commChannels"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobilePush"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"lastViewedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-10T22:04:38+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"residence"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"office"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="nt">"verified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"primary"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc123456"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91901000001"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"primary"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"lastViewedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"residence"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"office"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"identifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom.sawyer@example.com"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91901000001"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MOBILE_APP"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"employee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"dateofbirth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22-10-2000"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"400"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bangalore"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"loyaltyProgramEnrollments"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1016</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"tierNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">234</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"loyaltyPoints"</span><span class="p">:</span><span class="w"> </span><span class="mi">75</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"tierExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-11T16:36:17+05:30"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"pointsExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-11T16:36:17+05:30"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -634,6 +657,8 @@ https://us.api.capillarytech.com/v2/customers?source=MOBILE_APP<span class="err"
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Lets you register customers in the org&rsquo;s loyalty program or just register their identifiers across sources such as InStore, Facebook,Webengage, WeChat, Martjack, TMall, Taobao, JD, ecommerce, Line, Website, and Mobile app. You can also add customer-level extended and custom field details.</p>
+
+<p>With this API, you can also issue loyalty card to the customer.</p>
 
 <aside class="notice">
 
@@ -735,9 +760,19 @@ Extended fields are either associated to verticals or to a generic category (ava
 <td>Meta information of the customer.</td>
 </tr>
 <tr>
-<td>customerIdentifiers*</td>
+<td>identifiers*</td>
 <td>obj</td>
-<td>Identifiers of the customer in type and value. Supported types: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>, <code class="prettyprint">fbId</code> <code class="prettyprint">mobile</code>, <code class="prettyprint">tmall_uname</code>, <code class="prettyprint">cuid</code>, <code class="prettyprint">ali_uname</code>, <code class="prettyprint">jd_uname</code>, <code class="prettyprint">vip_uname</code>, <code class="prettyprint">mobilePush</code>, and <code class="prettyprint">line</code>.</td>
+<td>Identifiers of the customer in type and value.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>enum</td>
+<td>Type of the customer identifier. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>, <code class="prettyprint">fbId</code> <code class="prettyprint">mobile</code>, <code class="prettyprint">tmall_uname</code>, <code class="prettyprint">cuid</code>, <code class="prettyprint">ali_uname</code>, <code class="prettyprint">jd_uname</code>, <code class="prettyprint">vip_uname</code>, <code class="prettyprint">mobilePush</code>, and <code class="prettyprint">line</code>, and <code class="prettyprint">card</code> (to issue loyalty card to the customers through registration).</td>
+</tr>
+<tr>
+<td>value</td>
+<td>string</td>
+<td>Value of the specified identifier. For the <code class="prettyprint">type</code> card, <code class="prettyprint">value</code> is card number.</td>
 </tr>
 <tr>
 <td>commChannels</td>
@@ -833,7 +868,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
             </span><span class="nt">"gender"</span><span class="p">:</span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"city"</span><span class="p">:</span><span class="s2">"Bangalore"</span><span class="w">
          </span><span class="p">},</span><span class="w">
-         </span><span class="nt">"customerIdentifiers"</span><span class="p">:[</span><span class="w">  
+         </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w">  
             </span><span class="p">{</span><span class="w">  
                </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
                </span><span class="nt">"value"</span><span class="p">:</span><span class="mi">919111111111</span><span class="w">
@@ -1053,7 +1088,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <td>Last name of the customer.</td>
 </tr>
 <tr>
-<td>customerIdentifiers</td>
+<td>identifiers</td>
 <td>obj</td>
 <td>Identifiers of the customer that you want to add in type and value. Supported types: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>, <code class="prettyprint">fbId</code> <code class="prettyprint">mobile</code>, <code class="prettyprint">tmall_uname</code>, <code class="prettyprint">cuid</code>, <code class="prettyprint">ali_uname</code>, <code class="prettyprint">jd_uname</code>, <code class="prettyprint">vip_uname</code>, and <code class="prettyprint">line</code>.</td>
 </tr>
@@ -1127,7 +1162,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
             </span><span class="nt">"gender"</span><span class="p">:</span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"city"</span><span class="p">:</span><span class="s2">"Bangalore"</span><span class="w">
          </span><span class="p">},</span><span class="w">
-         </span><span class="nt">"customerIdentifiers"</span><span class="p">:[</span><span class="w">  
+         </span><span class="nt">"identifiers"</span><span class="p">:[</span><span class="w">  
             </span><span class="p">{</span><span class="w">  
                </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
                </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"tom.sawyer@example.com"</span><span class="w">
@@ -1319,7 +1354,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <td>Last name of the customer.</td>
 </tr>
 <tr>
-<td>customerIdentifiers</td>
+<td>identifiers</td>
 <td>obj</td>
 <td>Identifiers of the customer that you want to add in type and value. Supported types: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>, <code class="prettyprint">fbId</code> <code class="prettyprint">mobile</code>, <code class="prettyprint">tmall_uname</code>, <code class="prettyprint">cuid</code>, <code class="prettyprint">ali_uname</code>, <code class="prettyprint">jd_uname</code>, <code class="prettyprint">vip_uname</code>, and <code class="prettyprint">line</code>.</td>
 </tr>
@@ -1372,7 +1407,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
 
-<h2 id="update-customer-identifiers">Update Customer Identifiers</h2>
+<h2 id="update-customer-identifiers-issue-card">Update Customer Identifiers/Issue Card</h2>
 
 <blockquote>
 <p>Sample Request</p>
@@ -1383,27 +1418,45 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <p>Sample POST Request</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-</span><span class="nt">"add"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wechat"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ray11"</span><span class="w">
-</span><span class="p">}],</span><span class="w">
-</span><span class="nt">"remove"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
-</span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-</span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom.sawyer@example.com"</span><span class="w">
-</span><span class="p">}]</span><span class="w">
+    </span><span class="nt">"add"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wechat"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ray11"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"remove"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom.sawyer@example.com"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample POST Request (to Issue Card)</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"add"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TTM001110000000001ZS"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cardnumber"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"statusLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACTIVE"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>Sample Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-</span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-</span><span class="nt">"warnings"</span><span class="p">:[]</span><span class="w">
+    </span><span class="nt">"createdId"</span><span class="p">:</span><span class="w"> </span><span class="mi">382756026</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Allows adding/removing identifiers of a customer in different sources, i.e., you can either add a new identifier or remove an existing identifier of a customer in a source.</p>
+<p>Lets you add/remove identifiers or loyalty cards of a customer across sources.</p>
 
-<p><strong>Identifiers</strong>: &ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;externalId&rdquo;, &ldquo;wechat&rdquo;,&ldquo;martjackId&rdquo;, &ldquo;fbId&rdquo; &ldquo;mobile&rdquo;, &ldquo;tmall_uname&rdquo;, &ldquo;cuid&rdquo;, &ldquo;ali_uname&rdquo;, &ldquo;jd_uname&rdquo;, &ldquo;vip_uname&rdquo;, &ldquo;line&rdquo; </p>
+<p><strong>Identifiers</strong>: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">wechat</code>, <code class="prettyprint">martjackId</code>, <code class="prettyprint">fbId</code>, <code class="prettyprint">tmall_uname</code>, <code class="prettyprint">cuid</code>, <code class="prettyprint">ali_uname</code>, <code class="prettyprint">jd_uname</code>, <code class="prettyprint">vip_uname</code>, <code class="prettyprint">line</code>. </p>
 
 <p>Limitations of the customer identifier update API:
 * Only identifiers can be updated using this API
@@ -1472,6 +1525,16 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <td>string</td>
 <td>Account for which you want to update the customer identifier (Required only for sources with multiple accounts)</td>
 </tr>
+<tr>
+<td>seriesId</td>
+<td>int</td>
+<td>Series ID of the card that you want to add or remove.</td>
+</tr>
+<tr>
+<td>statusLabel</td>
+<td>enum</td>
+<td>Status of the card. Value: ACTIVE (to activate a card).</td>
+</tr>
 </tbody></table>
 
 <aside class="notice">Parameters marked with * are mandatory. acountId** is required for sources with multiple accounts.</aside>
@@ -1498,12 +1561,12 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <tr>
 <td>type*</td>
 <td>enum</td>
-<td>Type of the identifier that you want to add or remove. For example, email, mobile, and wechat.</td>
+<td>Type of the identifier that you want to add or remove. Value: <code class="prettyprint">cardnumber</code>, <code class="prettyprint">email</code>, <code class="prettyprint">mobile</code>, and <code class="prettyprint">wechat</code>.</td>
 </tr>
 <tr>
 <td>value*</td>
 <td>string</td>
-<td>Value of the specified <code class="prettyprint">type</code>. For example, if <code class="prettyprint">type</code> is email, then pass the email id that you want to add or remove in <code class="prettyprint">value</code>.</td>
+<td>Value of the specified <code class="prettyprint">type</code>. For example, if <code class="prettyprint">type</code> is email, then pass the email id that you want to add or remove in <code class="prettyprint">value</code>; for <code class="prettyprint">cardNumber</code> pass card number to add or remove.</td>
 </tr>
 </tbody></table>
 
@@ -1798,7 +1861,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <tr>
 <td>identifierName*</td>
 <td>enum</td>
-<td>Identifier based on which you want to fetch the customer id. <strong>Values</strong>: &ldquo;mobile&rdquo;, &ldquo;email&rdquo;, &ldquo;externalId&rdquo;, &ldquo;wechat&rdquo;,&ldquo;martjackId&rdquo;, or &ldquo;fbId&rdquo;</td>
+<td>Identifier based on which you want to fetch the customer id. <strong>Values</strong>: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">cardnumber</code>, <code class="prettyprint">wechat</code>, <code class="prettyprint">martjackId</code>,<code class="prettyprint">fbId</code>.</td>
 </tr>
 <tr>
 <td>identifierValue*</td>
@@ -1875,7 +1938,17 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
                </span><span class="nt">"Gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
                </span><span class="nt">"Favorite Color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Green"</span><span class="w">
            </span><span class="p">},</span><span class="w">
-           </span><span class="nt">"customerIdentifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+           </span><span class="nt">"identifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                   </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"line"</span><span class="p">,</span><span class="w">
+                   </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lineAS6"</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                   </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cardNumber"</span><span class="p">,</span><span class="w">
+                   </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TTM001110000000002ZS"</span><span class="p">,</span><span class="w">
+                   </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w">
+                   </span><span class="nt">"statusLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACTIVE"</span><span class="w">
+               </span><span class="p">},</span><span class="w">
                </span><span class="p">{</span><span class="w">
                    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
                    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom.sawyer@example.com"</span><span class="w">
@@ -1917,10 +1990,6 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
        </span><span class="nt">"lifetimePurchases"</span><span class="p">:</span><span class="w"> </span><span class="mi">230</span><span class="w">
    </span><span class="p">},</span><span class="w">
    </span><span class="nt">"segments"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-   </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-       </span><span class="nt">"ethnicity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bangalore"</span><span class="p">,</span><span class="w">
-       </span><span class="nt">"religion"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hindu"</span><span class="w">
    </span><span class="p">},</span><span class="w">
      </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bangalore"</span><span class="p">,</span><span class="w">
@@ -2001,7 +2070,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 </span><span class="err">...</span><span class="w">
 </span></code></pre>
 <blockquote>
-<p>When embed=mlp, you will see each loyalty program details of the customer.</p>
+<p>When embed=mlp, you will see the details of each loyalty program of the customer.</p>
 </blockquote>
 <pre class="highlight json"><code><span class="err">...</span><span class="w">
 </span><span class="s2">"loyaltyProgramDetails"</span><span class="err">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -2043,7 +2112,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 </span><span class="err">...</span><span class="w">
 </span></code></pre>
 <blockquote>
-<p>embed=promotionalPoints, to see summary of customer promotional points</p>
+<p>embed=promotionalPoints, to see the summary of customer&rsquo;s promotional points</p>
 </blockquote>
 <pre class="highlight json"><code><span class="err">...</span><span class="w">
 </span><span class="s2">"promotionalPoints"</span><span class="err">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -2229,9 +2298,9 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 </tr>
 </tbody></table>
 
-<h2 id="fetch-customer-details-identifier">Fetch Customer Details (Identifier)</h2>
+<h2 id="fetch-customer-details-by-identifier">Fetch Customer Details (by Identifier)</h2>
 
-<p>Retrieves details of a customer by any of the identifiers (mobile number, email ID, or external ID).</p>
+<p>Retrieves details of a customer by any of the identifiers (mobile number, email ID, external ID, or card number).</p>
 
 <blockquote>
 <p>Sample Request</p>
@@ -2266,6 +2335,16 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
             </span><span class="p">},</span><span class="w">
             </span><span class="nt">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
             </span><span class="nt">"identifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                 </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"line"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lineAS6"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cardNumber"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TTM001110000000002ZS"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"statusLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACTIVE"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
                 </span><span class="p">{</span><span class="w">
                     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
                     </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"919999000001"</span><span class="w">
@@ -2368,7 +2447,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <tr>
 <td>identifierName*</td>
 <td>enum</td>
-<td>Identifier type used to get customer details. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>.</td>
+<td>Identifier type used to get customer details. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">cardnumber</code>.</td>
 </tr>
 <tr>
 <td>identifierValue*</td>
@@ -2522,16 +2601,16 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
             </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EMAIL"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
             </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BULK"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTOUT"</span><span class="w">
-            </span><span class="s2">"orgUnitId"</span><span class="err">:</span><span class="w"> </span><span class="mi">200031782</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTOUT"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"orgUnitId"</span><span class="p">:</span><span class="w"> </span><span class="mi">200031782</span><span class="p">,</span><span class="w">
             </span><span class="nt">"sourceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSTORE"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"channel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MOBILE"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
             </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BULK"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTOUT"</span><span class="w">
-            </span><span class="s2">"orgUnitId"</span><span class="err">:</span><span class="w"> </span><span class="mi">200031782</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPTOUT"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"orgUnitId"</span><span class="p">:</span><span class="w"> </span><span class="mi">200031782</span><span class="p">,</span><span class="w">
             </span><span class="nt">"sourceName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSTORE"</span><span class="w">
         </span><span class="p">},</span><span class="w"> 
         </span><span class="p">{</span><span class="w">
@@ -2673,8 +2752,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight html"><code>
-https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 </code></pre>
 <blockquote>
 <p>Sample Response</p>
@@ -2909,7 +2987,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
             </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REJECTED"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"addedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091433</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.india1"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2922,7 +3000,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
                 </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"enteredByParent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"addedByParent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091431</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"store_india"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2935,7 +3013,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
                 </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">148</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8730028</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Patel"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nayan Kumar"</span><span class="p">,</span><span class="w">
@@ -2963,7 +3041,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
             </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"APPROVED"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"addedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091433</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.india1"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2976,7 +3054,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
                 </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"enteredByParent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"addedByParent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091431</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"store_india"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -2989,7 +3067,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
                 </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">148</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8730028</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Patel"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nayan Kumar"</span><span class="p">,</span><span class="w">
@@ -3015,62 +3093,9 @@ Also, check the following configurations for maximum days allowed and minimum ti
             </span><span class="nt">"oneStep"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REJECTED"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091433</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.india1"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.india1"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"isOuEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"enteredByParent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091431</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"store_india"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"StoreIndia"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STORE"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"isOuEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">148</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091437</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.sg"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.sg"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"isOuEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">148</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"addedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-22T14:30:23+05:30"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-07-22T14:31:56+05:30"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">9113108</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="mi">116669</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"baseType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RETRO"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"transactionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2863</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="p">],</span><span class="w">
-            </span><span class="nt">"reqAdd"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"oneStep"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
             </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"APPROVED"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"addedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091433</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.india1"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -3083,7 +3108,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
                 </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"enteredByParent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"addedByParent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091431</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"store_india"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -3096,7 +3121,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
                 </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">148</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091437</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.sg"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -3115,60 +3140,6 @@ Also, check the following configurations for maximum days allowed and minimum ti
             </span><span class="nt">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="mi">116668</span><span class="p">,</span><span class="w">
             </span><span class="nt">"baseType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RETRO"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"transactionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2862</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-            </span><span class="p">],</span><span class="w">
-            </span><span class="nt">"reqAdd"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"oneStep"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REJECTED"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091433</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.india1"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"till.india1"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"isOuEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"enteredByParent"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15091431</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"store_india"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"StoreIndia"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STORE"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"isOuEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">148</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">8730028</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Patel"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Nayan Kumar"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADMIN_USER"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"isOuEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-                </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"addedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-07-22T14:06:14+05:30"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2015-10-13T16:12:43+05:30"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">9113108</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"requestId"</span><span class="p">:</span><span class="w"> </span><span class="mi">116663</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"baseType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RETRO"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"_memcare(\"Insufficient validation from requestor d"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"comments"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sample comments;"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"transactionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2861</span><span class="p">,</span><span class="w">
             </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
             </span><span class="p">],</span><span class="w">
             </span><span class="nt">"reqAdd"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
@@ -3217,7 +3188,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/customers/{customerId}/retroRequest?{query parameters}</code></p>
+<p><code class="prettyprint">https://{host}/v2/customers/{customerId}/retroRequest?{queryParameters}</code></p>
 
 <h3 id="request-query-parameters">Request Query Parameters</h3>
 
@@ -3452,7 +3423,11 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <p>Sample Request</p>
 </blockquote>
 <pre class="highlight html"><code>http://api.capillary.co.in/v2/customers/343040815/goodwillRequest
-</code></pre><pre class="highlight json"><code><span class="p">{</span><span class="w">
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
         </span><span class="nt">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
@@ -3461,7 +3436,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
     </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">43114</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"addedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15000449</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1371622280_919866643044"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -3474,7 +3449,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
                 </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"updatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
                 </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15000449</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1371622280_919866643044"</span><span class="p">,</span><span class="w">
                 </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -3625,7 +3600,285 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <p>Sample Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="w">
-
+</span><span class="p">{</span><span class="w">
+    </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">33267197</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="w"> </span><span class="mi">14162</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"series"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">14162</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50074</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mobile Push offer 1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"discountCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MobilePush"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"validTillDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2118-09-10T16:09:02+05:30"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"validDaysFromCreation"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"expiryStrategyValue"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"maxCreate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"maxRedeem"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isTransferrable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"anyUser"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"sameUserMultipleRedeem"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isReferralExistingUsersAllowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isMultipleUseAllowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isValidationRequired"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isValidWithDiscountedItem"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"numIssued"</span><span class="p">:</span><span class="w"> </span><span class="mi">78</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"numRedeemed"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-10T14:45:06+05:30"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"lastUsed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-31T16:47:39+05:30"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"seriesCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GM0V3HXC"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"smsTemplate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{full_name}} Your Coupon code {{voucher}} Expires on {{valid_days_from_create}} {{optout}}"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isSMSDisabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isUpdateProductData"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mobile Push offer 1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isMultipleVouchersPerUserAllowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"doNotResendExistingVoucher"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"mutualExclusiveSeriesIds"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[]"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"storeIdsJson"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[-1]"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isDvsEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dvsExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-30T00:00:00+05:30"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"shortSMSTemplate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello {{cust_name}}, your voucher code is {{voucher_code}}"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"maxVouchersPerUser"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"minDaysBetweenVouchers"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"maxReferralsPerReferee"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"discountUpto"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"discountValue"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dvsItems"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"redemptionRange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{\"dom\":[\"-1\"],\"dow\":[\"-1\"],\"hours\":[\"-1\"]}"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"minBillAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"maxBillAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">9007199254740991</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"redeemAtStore"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[-1]"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"campaignId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mobile Push offer 1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"maxRedemptionsInSeriesPerUser"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"minDaysBetweenRedemption"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"redemptionValidFrom"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01T05:30:00+05:30"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"sourceOrgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"issueToLoyalty"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"redeemStoreType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"redeemable_stores"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"offlineRedeemType"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isOldFlowEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isPreRedeemEventRequired"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"brands"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"products"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"categories"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"termsAndConditions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"T&amp;C apply"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"signalRedemptionEvent"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"syncToClient"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"showPinCode"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"validRedemptionOrgEntityDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"concepts"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                    </span><span class="nt">"zones"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                    </span><span class="nt">"stores"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                    </span><span class="nt">"tills"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nt">"seriesType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LOYALTY"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"clientHandlingType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DISC_CODE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"expiryStrategyType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DAYS"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"discountOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BILL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"discountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PERC"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dvsExpiryDateFormat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-30"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"updateProductData"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"validTilldateFormat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2118-09-10"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"redemptionValidFromFormat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ER07BCJ8"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mobile Push offer 1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-31T17:15:02+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"validTill"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-18T23:59:59+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"isRedeemed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"issuedTo"</span><span class="p">:</span><span class="w"> </span><span class="mi">343040815</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"issuedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50074</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"refId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"issuedAt"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006795</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"storecode"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"webenagestore"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"webstore1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STORE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isOrgUnit"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">700</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Coupon Resent"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"warningsAsStatusCode"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">700</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Coupon Resent"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"couponDiscountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PERC"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"issuedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-31T17:15:02+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"activeFrom"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-31T00:00:00+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"redemptionsLeft"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"couponStatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"warningsAsStatusCode"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"redemptionInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"discountType"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"discountValue"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"discountUpto"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"redeemed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"seriesName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mobile Push offer 1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"trimmedCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ER07BCJ8"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">33267195</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="w"> </span><span class="mi">14162</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"series"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">14162</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50074</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mobile Push offer 1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"discountCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MobilePush"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"validTillDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2118-09-10T16:09:02+05:30"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"validDaysFromCreation"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"expiryStrategyValue"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"maxCreate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"maxRedeem"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isTransferrable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"anyUser"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"sameUserMultipleRedeem"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isReferralExistingUsersAllowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isMultipleUseAllowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isValidationRequired"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isValidWithDiscountedItem"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"numIssued"</span><span class="p">:</span><span class="w"> </span><span class="mi">78</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"numRedeemed"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-09-10T14:45:06+05:30"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"lastUsed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-31T16:47:39+05:30"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"seriesCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GM0V3HXC"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"smsTemplate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{{full_name}} Your Coupon code {{voucher}} Expires on {{valid_days_from_create}} {{optout}}"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isSMSDisabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isUpdateProductData"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"info"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mobile Push offer 1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isMultipleVouchersPerUserAllowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"doNotResendExistingVoucher"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"mutualExclusiveSeriesIds"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[]"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"storeIdsJson"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[-1]"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isDvsEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dvsExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-30T00:00:00+05:30"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"shortSMSTemplate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hello {{cust_name}}, your voucher code is {{voucher_code}}"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"maxVouchersPerUser"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"minDaysBetweenVouchers"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"maxReferralsPerReferee"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"discountUpto"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"discountValue"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dvsItems"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"redemptionRange"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{\"dom\":[\"-1\"],\"dow\":[\"-1\"],\"hours\":[\"-1\"]}"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"minBillAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"maxBillAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">9007199254740991</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"redeemAtStore"</span><span class="p">:</span><span class="w"> </span><span class="s2">"[-1]"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"campaignId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"tag"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mobile Push offer 1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"maxRedemptionsInSeriesPerUser"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"minDaysBetweenRedemption"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"redemptionValidFrom"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01T05:30:00+05:30"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"sourceOrgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"issueToLoyalty"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"redeemStoreType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"redeemable_stores"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"offlineRedeemType"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isOldFlowEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isPreRedeemEventRequired"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"brands"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"products"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"categories"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"termsAndConditions"</span><span class="p">:</span><span class="w"> </span><span class="s2">"T&amp;C apply"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"signalRedemptionEvent"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"syncToClient"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"showPinCode"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"validRedemptionOrgEntityDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"concepts"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                    </span><span class="nt">"zones"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                    </span><span class="nt">"stores"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                    </span><span class="nt">"tills"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nt">"seriesType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LOYALTY"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"clientHandlingType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DISC_CODE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"expiryStrategyType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DAYS"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"discountOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BILL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"discountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PERC"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"dvsExpiryDateFormat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-11-30"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"updateProductData"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"validTilldateFormat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2118-09-10"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"redemptionValidFromFormat"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1970-01-01"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"H306ORH2"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mobile Push offer 1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-31T17:14:49+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"validTill"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-05-18T23:59:59+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"isRedeemed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"issuedTo"</span><span class="p">:</span><span class="w"> </span><span class="mi">343040815</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"issuedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50074</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"refId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"issuedAt"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006795</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"storecode"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"webenagestore"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"webstore1"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STORE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"isOrgUnit"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">700</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Coupon Resent"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"warningsAsStatusCode"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">700</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Coupon Resent"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"couponDiscountType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PERC"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"issuedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-31T17:14:49+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"activeFrom"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-31T00:00:00+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"redemptionsLeft"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"couponStatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"statusCode"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"warningsAsStatusCode"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"redemptionInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="nt">"discountType"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"discountValue"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"discountUpto"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"redeemed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"seriesName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mobile Push offer 1"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"trimmedCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"H306ORH2"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <h3 id="resource-information">Resource Information</h3>
 
@@ -3670,6 +3923,61 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>customerId*</td>
 <td>long</td>
 <td>Unique ID of the customer to fetch coupons.</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-customer-card-status">Update Customer Card Status</h2>
+
+<p>Lets you deactivate a customers membership card.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>
+</code></pre>
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/customers/{userId}?source={source}</code></p>
+
+<h3 id="request-query-parameter">Request Query Parameter</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>userId*</td>
+<td>long</td>
+<td>Unique ID of the customer whose card status has to be updated.</td>
+</tr>
+<tr>
+<td>source*</td>
+<td>int</td>
+<td>Unique ID of the card series to update.</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>cardNumber*</td>
+<td>string</td>
+<td>Card number to update status.</td>
+</tr>
+<tr>
+<td>cardStatus*</td>
+<td>enum</td>
+<td>New status of the card. Value: <code class="prettyprint">BLOCKED</code> to block an active card.</td>
 </tr>
 </tbody></table>
 
@@ -5261,7 +5569,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-28T17:04:13+05:30"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"enteredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
             </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
             </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobilepush.1"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
@@ -7214,7 +7522,7 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/redeemFile/253
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">{host1}//coupon/api/v1/upload/redeemFile/{couponSeriesId}</code></p>
+<p><code class="prettyprint">{host1}/coupon/api/v1/upload/redeemFile/{couponSeriesId}</code></p>
 
 <h3 id="header-required">Header Required</h3>
 
@@ -7267,19 +7575,24 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/redeemFile/253
 <td>Unique identifier of the customer to update redeemed coupons. Values: <code class="prettyprint">MOBILE</code>, <code class="prettyprint">EXTERNAL_ID</code>, <code class="prettyprint">EMAIL</code>, <code class="prettyprint">USER_ID</code>.</td>
 </tr>
 <tr>
-<td>couponIdentifier</td>
+<td>couponIdentifier*</td>
 <td>enum</td>
 <td>Coupon identifier used. Value: <code class="prettyprint">COUPON_ID</code>, <code class="prettyprint">COUPON_CODE</code>.</td>
 </tr>
 <tr>
 <td>file*</td>
 <td>file</td>
-<td>The CSV file that contains information of redeemed coupons. Each row in CSV file can contain following fields(columns marked with * are mandatory).<br/><br/> -  <strong>Customer identifier</strong>* : Field used to identify the customer, it can be userId, mobile, email or externalId. (userId will have more preference over the other customer identifiers, in case of multiple values)<br/> - <strong>Coupon identifier</strong>* : Field used to identify the redeemed coupon, It can be couponId, couponCode. (couponId has more preference over couponCode in case of multiple values)<br/> - <strong>Redeemed date in milliseconds</strong>* : Coupon redeemed time in Epoch<br/> - <strong>Redeemed at</strong>* : Coupon redeemed till’s Id<br/> - <strong>Bill Id</strong> : Transaction Id<br/> - <strong>Bill Number</strong> : Transaction Number Details.<br/><br/><strong>Sample file content:</strong><br/> - <em>File content sample 1</em>:<br/>&nbsp; &nbsp; &nbsp; &nbsp;redeemed date in millis, redeemed at, user id, coupon id, bill id, bill number, details<br/>&nbsp; &nbsp; &nbsp; &nbsp; 1603128622000,50015497,23599838,23456,1603128596000,1603128596000,<br/>&nbsp; &nbsp; &nbsp; &nbsp;luci_auto_15039.<br/> - <em>File content sample 2</em>:<br/>&nbsp; &nbsp; &nbsp; &nbsp;redeemed date in millis, redeemed at, mobile, coupon code ,bill id, bill number, details<br/>&nbsp; &nbsp; &nbsp; &nbsp;1603128622000,50015497,9876543210,ABCDEF1,1603128596000,1603128596000,<br/>&nbsp; &nbsp; &nbsp; &nbsp;luci_auto_15039</td>
+<td>The CSV file that contains information of redeemed coupons. Each row in CSV file can contain following fields(columns marked with * are mandatory).<br/><br/> -  <strong>Customer identifier</strong>* : Field used to identify the customer, it can be userId, mobile, email or externalId. (userId will have more preference over the other customer identifiers, in case of multiple values)<br/> - <strong>Coupon identifier</strong>* : Field used to identify the redeemed coupon, It can be couponId, couponCode. (couponId has more preference over couponCode in case of multiple values)<br/> - <strong>Redeemed date in milliseconds</strong>* : Coupon redeemed time in Epoch<br/> - <strong>Redeemed at</strong>* : Coupon redeemed till’s Id<br/> - <strong>Bill Id</strong> : Transaction Id<br/> - <strong>Bill Number</strong> : Transaction Number Details.<br/><br/><strong>Sample file content:</strong><br/> - <em>File content sample 1</em>:<br/>&nbsp; &nbsp; &nbsp; &nbsp;redeemed date in millis, redeemed at, user id, coupon id, bill id, bill number, details<br/>&nbsp; &nbsp; &nbsp; &nbsp; 1603128622000,50015497,23599838,23456,1603128596000<br/>&nbsp; &nbsp; &nbsp; &nbsp;luci_auto_15039.<br/> - <em>File content sample 2</em>:<br/>&nbsp; &nbsp; &nbsp; &nbsp;redeemed date in millis, redeemed at, mobile, coupon code ,bill id, bill number, details<br/>&nbsp; &nbsp; &nbsp; &nbsp;1603128622000,50015497,9876543210,ABCDEF1,1603128596000<br/>&nbsp; &nbsp; &nbsp; &nbsp;luci_auto_15039</td>
 </tr>
 <tr>
 <td>uploadHeaders*</td>
 <td>int</td>
 <td>The sequence (starts from 0) of the columns in the attached csv file. This field accepts stringified JSON. <br>Key name for columns are as follows:<br/><br/>Key name for the columns are as follows<br/> - <strong>Customer identifier</strong>* : Key name for this field varies according to the customerIdentifier param.<br/>&nbsp; &nbsp; &nbsp; &nbsp;MOBILE : mobile<br/>&nbsp; &nbsp; &nbsp; &nbsp;EXTERNAL_ID: externalId<br/>&nbsp; &nbsp; &nbsp; &nbsp;EMAIL: email<br/>&nbsp; &nbsp; &nbsp; &nbsp;USER_ID: userId<br/> - <strong>Coupon identifier</strong>* :  Key name for this field varies according to the couponIdentifier param.<br/>&nbsp; &nbsp; &nbsp; &nbsp;COUPON_ID: couponId<br/>&nbsp; &nbsp; &nbsp; &nbsp;COUPON_CODE: couponCode<br/> - <strong>Redeemed date in milliseconds</strong>* : redeemedDateInMillis<br/> - <strong>Redeemed at</strong>* : redeemedAt<br/> - <strong>Bill Id</strong> : billId<br/> - <strong>Bill Number</strong> : billNumber<br/> - <strong>Details</strong> : details<br/><br/>For the above file samples, the uploadHeaders will be -<br/>&nbsp; &nbsp; &nbsp; &nbsp;<em>Sample 1</em> - {&lsquo;redeemedDateInMillis&rsquo;: 0, &#39;redeemedAt&rsquo;: 1, &#39;billNumber&rsquo;: 5, &#39;couponId&rsquo;: 3,<br/>&nbsp; &nbsp; &nbsp; &nbsp;&#39;userId&rsquo;: 2, &#39;billId&rsquo;: 4, &#39;details&rsquo;: 6}<br/>&nbsp; &nbsp; &nbsp; &nbsp;<em>Sample 2</em> - {&#39;redeemedDateInMillis&rsquo;: 0, &#39;redeemedAt&rsquo;: 1, &#39;billNumber&rsquo;: 5, &#39;couponCode&rsquo;: 3,<br/>&nbsp; &nbsp; &nbsp; &nbsp;mobile: 2, &#39;billId&rsquo;: 4, &#39;details&rsquo;: 6}</td>
+</tr>
+<tr>
+<td>Details</td>
+<td>string</td>
+<td>Any additional details or notes to capture for redeemed coupon upload.</td>
 </tr>
 </tbody></table>
 
@@ -7393,7 +7706,7 @@ eyJraWQiOiJrMSIsImFsZyI6IlJTMjU2In0.eyJpc3MiOiJDYXBpbGxhcnkiLCJleHAiOjE2MDMyNjQ4
 </thead><tbody>
 <tr>
 <td>couponSeriesId*</td>
-<td>int</td>
+<td>long</td>
 <td>The ID of coupon series for which you want to get the status.</td>
 </tr>
 </tbody></table>
@@ -7498,25 +7811,27 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 </tr>
 </tbody></table>
 
+<h3 id="headers-required">Headers Required</h3>
+
 <table><thead>
 <tr>
-<th></th>
-<th></th>
+<th>Header</th>
+<th>Value</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>Content-Type</td>
+<td>Content-Type*</td>
 <td>application/json</td>
 </tr>
 <tr>
-<td>x-cap-api-oauth-token</td>
+<td>x-cap-api-oauth-token*</td>
 <td>Generated authentication token</td>
 </tr>
 </tbody></table>
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/coupon/api/v1/upload/getUploadRedeemedCouponStatus/{couponSeriedId}</code> </p>
+<p><code class="prettyprint">https://{host}/coupon/api/v1/upload/getUploadRedeemedCouponStatus/{couponSeriesId}</code> </p>
 
 <h3 id="request-parameters">Request Parameters</h3>
 
@@ -7535,6 +7850,26 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 </tbody></table>
 
 <aside class="notice"> The parameter marked with * is mandatory. </aside>
+
+<h2 id="response-codes">Response Codes</h2>
+
+<p>Error Codes</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Incorrect or invalid input.</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Unable to post or retrieve details.</td>
+</tr>
+</tbody></table>
 
           <h1 id="points">Points</h1>
 
@@ -7555,6 +7890,7 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"pointsTobeTransferred"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"groupProgramTransfer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"fromCustomerIdentifier"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MOBILE"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7799497290"</span><span class="w">
@@ -7996,6 +8332,7 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w"> 
    </span><span class="nt">"pointsTobeTransferred"</span><span class="p">:</span><span class="mi">123</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"groupProgramTransfer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"fromCustomerIdentifier"</span><span class="p">:{</span><span class="w"> 
       </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"MOBILE"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"7799000000"</span><span class="w">
@@ -15222,6 +15559,762 @@ password* | Specify your preferred new password</p>
 </tr>
 </tbody></table>
 
+          <h1 id="card-loyalty-membership">Card Loyalty/Membership</h1>
+
+<p>Card enables orgs to run card based loyalty memberships with multiple card types. A customer can have multiple cards of a same series or different series as intended by the org.</p>
+
+<p><code class="prettyprint">Card Series</code> represents different types of cards a brand. For example, Value Card, Premium card, Digital Card, and Physical Card. A card series stores information such as card series name, card type, card numbers config details, and expiry details.</p>
+
+<p>A card is a physical or digital card and associated to a Card Series. A card stores information such as issued date, expiry date, store or source account from which the card is issued, and current status.</p>
+
+<p>Cards are specific to customers and not to source accounts. A customer can have multiple cards of the same card series. Issuing a card means linking a card to a customer. A card to be issued to a customer can be any of the following types.
+* Issuing a digital or virtual card.
+* Issuing a physical card generated in Capillary.
+* Issuing a physical card that is not generated in Capillary.</p>
+
+<h2 id="create-card-series">Create Card Series</h2>
+
+<p>Lets you create a new card series for the org.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/card/series
+</code></pre>
+<blockquote>
+<p>Sample Post Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"2platin34"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"card series create"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"PHYSICAL"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"expiryDays"</span><span class="p">:</span><span class="mi">355</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"entity"</span><span class="p">:</span><span class="mi">19</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/card/series</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v2/card/series</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code*</td>
+<td>string</td>
+<td>A valid code (supports up to 50 characters) for the card series. Only alpha-numeric is allowed.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>Description of the  coupon series.</td>
+</tr>
+<tr>
+<td>type*</td>
+<td>enum</td>
+<td>Type of the card. Value <code class="prettyprint">PHYSICAL</code> (for physical cards), <code class="prettyprint">DIGITAL</code> (for digital or soft copies)</td>
+</tr>
+<tr>
+<td>expiryDays*</td>
+<td>int</td>
+<td>Validity of the card series in number of days from the day of issual.</td>
+</tr>
+</tbody></table>
+
+<p><aside class="notice">Parameters marked with * are mandatory. </aside></p>
+
+<h2 id="get-card-series-details">Get Card Series Details</h2>
+
+<p>Retrieves the details of a specific card series.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/card/series/10
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"expiryDays"</span><span class="p">:</span><span class="mi">355</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"lastUpdateBy"</span><span class="p">:</span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"3#$%^&amp;*1"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="s2">"2020-11-04T12:19:38+05:30"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"card series create"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"isActive"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">50074</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"PHYSICAL"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w"> </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/card/series/{seriesId}</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/card/series/{seriesId}</code></p>
+
+<h3 id="request-query-parameter">Request Query Parameter</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>seriesId*</td>
+<td>int</td>
+<td>Unique ID of the series to retrieve.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> The Parameter marked with * is mandatory. </aside>
+
+<h2 id="update-card-series">Update Card Series</h2>
+
+<p>Lets you update the details of an existing card series.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/card/series/10
+</code></pre>
+<blockquote>
+<p>Sample PUT Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Titanium Card for DemoOrg"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"DIGITAL"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"cardGenerationConfiguration"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"prefix"</span><span class="p">:</span><span class="s2">"TTM00111"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"suffix"</span><span class="p">:</span><span class="s2">"ZS"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"length"</span><span class="p">:</span><span class="mi">10</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"lastUpdateBy"</span><span class="p">:</span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"cardGenerationConfiguration"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"lastUpdatedBy"</span><span class="p">:</span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">50074</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="mi">19</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"suffix"</span><span class="p">:</span><span class="s2">"ZS"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"prefix"</span><span class="p">:</span><span class="s2">"TTM00111"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"length"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"LUHNAlGO"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Titanium Card for DemoOrg"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">19</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">50074</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"DIGITAL"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/card/series/{seriesId}</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>PUT</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/card/series/{seriesId}</code></p>
+
+<h3 id="request-query-parameter">Request Query Parameter</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>seriesId*</td>
+<td>int</td>
+<td>Unique ID of the card series to update.</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>Description of the Card Series.</td>
+</tr>
+<tr>
+<td>type*</td>
+<td>enum</td>
+<td>Type of the card series.  Values: <code class="prettyprint">PHYSICAL</code> (physical card), <code class="prettyprint">DIGITAL</code> (digital card or soft copy)</td>
+</tr>
+<tr>
+<td>prefix</td>
+<td>string</td>
+<td>Characters to start with in a card number.</td>
+</tr>
+<tr>
+<td>suffix</td>
+<td>string</td>
+<td>Characters to end with in a card number.</td>
+</tr>
+<tr>
+<td>length*</td>
+<td>int</td>
+<td>Length of the card.</td>
+</tr>
+<tr>
+<td>cardGenerationEnabled</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to enable auto generating card, pass <code class="prettyprint">false</code> to manually generate card numbers.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> All parameters marked with * are mandatory. </aside>
+
+<h2 id="deactivate-card-series">Deactivate Card Series</h2>
+
+<p>Lets you deactivate an active card series.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/card/series
+</code></pre>
+<blockquote>
+<p>Sample PUT Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"isActive"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DIGITAL"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"cardGenerationConfiguration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"suffix"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"length"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"lastUpdateBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"cardGenerationConfiguration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"suffix"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"length"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50074</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DIGITAL"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/card/series/{seriesId}</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>PUT</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/card/series/{seriesId}</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>seriesId*</td>
+<td>int</td>
+<td>Unique ID of the card series to issue cards (Query parameter).</td>
+</tr>
+<tr>
+<td>isActive*</td>
+<td>enum</td>
+<td>Pass <code class="prettyprint">0</code> to deactivate the card series.</td>
+</tr>
+<tr>
+<td>count*</td>
+<td>int</td>
+<td>Number of cards to generate.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> All parameters marked with * are mandatory. </aside>
+
+<h2 id="generate-cards">Generate Cards</h2>
+
+<p>Lets you generate cards for a card series in bulk.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/card/generate
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"count"</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"statusLabel"</span><span class="p">:</span><span class="s2">"NOT_ISSUED"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"entity"</span><span class="p">:[</span><span class="w">
+      </span><span class="s2">"TTM001113542235716ZS"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"TTM001118022074654ZS"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"TTM001113042076596ZS"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"TTM001116982717633ZS"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"TTM001118982988139ZS"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"TTM001113572706062ZS"</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/card/generate</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/card/generate</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>seriesId*</td>
+<td>int</td>
+<td>Unique ID of the card series to issue cards.</td>
+</tr>
+<tr>
+<td>count*</td>
+<td>int</td>
+<td>Number of cards to generate.</td>
+</tr>
+<tr>
+<td>statusLabel*</td>
+<td>string</td>
+<td>Current user defined status of the card. Check your user defined values for the system values (not issued, active, inactive, deleted, expired).</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> All parameters marked with * are mandatory. </aside>
+
+<h2 id="get-card-generation-log">Get Card Generation Log</h2>
+
+<p>Retrieves the log of cards generated for a specific card series. It also retrieves <code class="prettyprint">fileHandle</code> using which you can download the history from S3 server.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/card/generation/logs/10
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"entity"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="nt">"count"</span><span class="p">:</span><span class="mi">56</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"date"</span><span class="p">:</span><span class="s2">"2020-11-04T12:47:53+05:30"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"fileHandle"</span><span class="p">:</span><span class="s2">"7aed5630-15ea-477c-bd35-d71200b22272"</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">46</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">50074</span><span class="p">,</span><span class="w">
+         </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="mi">10</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/card/generation/logs/{seriesId}</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/card/generation/logs/{seriesId}</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>seriesId*</td>
+<td>int</td>
+<td>Unique ID of the card series to retrieve log.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> The parameter marked with * is mandatory. </aside>
+
+<h2 id="create-card-without-customer-tagging">Create Card (without Customer Tagging)</h2>
+
+<p>Lets you create or add a card of a series. The card will not have any customer tagging.</p>
+
+<aside class="notice">Use this API to add an existing card that is not linked to a customer. </aside>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/card
+</code></pre>
+<blockquote>
+<p>Sample Post Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"cardNumber"</span><span class="p">:</span><span class="s2">"test123112121"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"statusLabel"</span><span class="p">:</span><span class="s2">"NOT_ISSUED"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="nt">"entity"</span><span class="p">:</span><span class="mi">550271</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/card</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/card</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>seriesId*</td>
+<td>int</td>
+<td>Card Series ID from which you want to generate card.</td>
+</tr>
+<tr>
+<td>cardNumber*</td>
+<td>string</td>
+<td>Unique number of the card as per the card series configuration.</td>
+</tr>
+<tr>
+<td>statusLabel*</td>
+<td>string</td>
+<td>Current user defined status of the card. Check your user defined values for the system values (not issued, active, inactive, deleted, expired).</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> Parameter marked with * is mandatory. </aside>
+
+<h2 id="get-card-details">Get Card Details</h2>
+
+<p>Retrieves the details of a specific card.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/card?number=test123112121
+
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"cardNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test123112121"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50074</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"statusInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-11-04"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-11-04"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">550271</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">550260</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"labelId"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50074</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOT_ISSUED"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOT_ISSUED"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/card?number={cardNmber}</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/card?number={cardNumber}</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>cardNmber*</td>
+<td>int</td>
+<td>Card number to retrieve details.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> The parameter marked with * is  mandatory. </aside>
+
           <h1 id="other-apis-org-level">Other APIs (Org Level)</h1>
 
 <p>This section provides all other APIs that are not in any of the resources mentioned above.</p>
@@ -16098,7 +17191,7 @@ position | boolean | Specify the position order of the extended field on the UI.
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
  </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"01099-james"</span><span class="p">,</span><span class="w">
- </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"William James "</span><span class="p">,</span><span class="w">
+ </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"William James"</span><span class="p">,</span><span class="w">
  </span><span class="nt">"storeId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50007863</span><span class="p">,</span><span class="w">
  </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -16142,7 +17235,7 @@ position | boolean | Specify the position order of the extended field on the UI.
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://&lt;cluster url&gt;v2/orgEntity/associate</code></p>
+<p><code class="prettyprint">https://{host}/v2/orgEntity/associate</code></p>
 
 <h2 id="retrieve-org-loyalty-programs">Retrieve Org Loyalty Programs</h2>
 
@@ -28709,7 +29802,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
           <h1 id="marvel-rewards">Marvel Rewards</h1>
 
-<p>Rewards are incentives issued customers from a specific org. Rewards could be in the form of either points and coupons. Again, coupons are categorized into the following types.
+<p>Rewards are incentives issued customers from a specific org. Rewards could be in the form of either points and coupons. Again, coupons are categorized into physical and digital vouchers.
 * <strong>Vouchers</strong>: Digital coupons generated against redeeming customer points. For example, redeem 50 points for 10% off coupon. 
 * <strong>Physical voucher</strong>: Physical coupons generated against redeeming customer points. For example, redeem 150 points for flat 150 off coupon.
 * <strong>Free voucher</strong>: Digital coupons generated without any points redemption.</p>
@@ -29370,7 +30463,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/core/v1/user/rewards/issue</code></td>
+<td><code class="prettyprint">/mobile/v2/api/marvel/rewards/issue/</code></td>
 </tr>
 <tr>
 <td>HTTP Method</td>
@@ -29424,6 +30517,29 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </tr>
 </tbody></table>
 
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id*</td>
+<td>long</td>
+<td>Unique ID of the reward that you want to issue.</td>
+</tr>
+<tr>
+<td>tillID</td>
+<td>long</td>
+<td>Till code that you want to associate with the rewards.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">The parameter marked with * is mandatory.</aside>
+
 <h3 id="request-body-parameters">Request Body Parameters</h3>
 
 <table><thead>
@@ -29444,19 +30560,9 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>Name of the brand associated with the reward.</td>
 </tr>
 <tr>
-<td>id*</td>
-<td>long</td>
-<td>Unique ID of the reward that you want to issue.</td>
-</tr>
-<tr>
 <td>transactionNumber*</td>
 <td>string</td>
 <td>Unique transaction number of the issual.</td>
-</tr>
-<tr>
-<td>tillID</td>
-<td>long</td>
-<td>Till code that you want to associate with the rewards.</td>
 </tr>
 </tbody></table>
 

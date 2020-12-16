@@ -19,6 +19,7 @@ https://eu.api.capillarytech.com/v2/points/isTransferrable
 ```json
 {
   "pointsTobeTransferred": 10,
+  "groupProgramTransfer": "false",
   "fromCustomerIdentifier": {
     "type": "MOBILE",
     "value": "7799497290"
@@ -371,6 +372,7 @@ https://eu.api.capillarytech.com/v2/points/transfer
 ```json
 { 
    "pointsTobeTransferred":123,
+   "groupProgramTransfer": "false",
    "fromCustomerIdentifier":{ 
       "type":"MOBILE",
       "value":"7799000000"

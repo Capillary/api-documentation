@@ -386,7 +386,7 @@ HTTP Method  | POST
 Batch Support  | No
 
 ### Request URL
-`{host1}//coupon/api/v1/upload/redeemFile/{couponSeriesId}`
+`{host1}/coupon/api/v1/upload/redeemFile/{couponSeriesId}`
 
 
 ### Header Required
@@ -409,9 +409,10 @@ couponSeriesId* | long | Unique ID of the coupon series for which you need to up
 Parameter | Datatype | Description
 --------- | -------- | -----------
 customerIdentifier* | enum | Unique identifier of the customer to update redeemed coupons. Values: `MOBILE`, `EXTERNAL_ID`, `EMAIL`, `USER_ID`.
-couponIdentifier | enum | Coupon identifier used. Value: `COUPON_ID`, `COUPON_CODE`.
-file* | file | The CSV file that contains information of redeemed coupons. Each row in CSV file can contain following fields(columns marked with * are mandatory).<br/><br/> -  **Customer identifier*** : Field used to identify the customer, it can be userId, mobile, email or externalId. (userId will have more preference over the other customer identifiers, in case of multiple values)<br/> - **Coupon identifier*** : Field used to identify the redeemed coupon, It can be couponId, couponCode. (couponId has more preference over couponCode in case of multiple values)<br/> - **Redeemed date in milliseconds*** : Coupon redeemed time in Epoch<br/> - **Redeemed at*** : Coupon redeemed till’s Id<br/> - **Bill Id** : Transaction Id<br/> - **Bill Number** : Transaction Number Details.<br/><br/>**Sample file content:**<br/> - *File content sample 1*:<br/>&nbsp; &nbsp; &nbsp; &nbsp;redeemed date in millis, redeemed at, user id, coupon id, bill id, bill number, details<br/>&nbsp; &nbsp; &nbsp; &nbsp; 1603128622000,50015497,23599838,23456,1603128596000,1603128596000,<br/>&nbsp; &nbsp; &nbsp; &nbsp;luci_auto_15039.<br/> - *File content sample 2*:<br/>&nbsp; &nbsp; &nbsp; &nbsp;redeemed date in millis, redeemed at, mobile, coupon code ,bill id, bill number, details<br/>&nbsp; &nbsp; &nbsp; &nbsp;1603128622000,50015497,9876543210,ABCDEF1,1603128596000,1603128596000,<br/>&nbsp; &nbsp; &nbsp; &nbsp;luci_auto_15039
+couponIdentifier* | enum | Coupon identifier used. Value: `COUPON_ID`, `COUPON_CODE`.
+file* | file | The CSV file that contains information of redeemed coupons. Each row in CSV file can contain following fields(columns marked with * are mandatory).<br/><br/> -  **Customer identifier*** : Field used to identify the customer, it can be userId, mobile, email or externalId. (userId will have more preference over the other customer identifiers, in case of multiple values)<br/> - **Coupon identifier*** : Field used to identify the redeemed coupon, It can be couponId, couponCode. (couponId has more preference over couponCode in case of multiple values)<br/> - **Redeemed date in milliseconds*** : Coupon redeemed time in Epoch<br/> - **Redeemed at*** : Coupon redeemed till’s Id<br/> - **Bill Id** : Transaction Id<br/> - **Bill Number** : Transaction Number Details.<br/><br/>**Sample file content:**<br/> - *File content sample 1*:<br/>&nbsp; &nbsp; &nbsp; &nbsp;redeemed date in millis, redeemed at, user id, coupon id, bill id, bill number, details<br/>&nbsp; &nbsp; &nbsp; &nbsp; 1603128622000,50015497,23599838,23456,1603128596000<br/>&nbsp; &nbsp; &nbsp; &nbsp;luci_auto_15039.<br/> - *File content sample 2*:<br/>&nbsp; &nbsp; &nbsp; &nbsp;redeemed date in millis, redeemed at, mobile, coupon code ,bill id, bill number, details<br/>&nbsp; &nbsp; &nbsp; &nbsp;1603128622000,50015497,9876543210,ABCDEF1,1603128596000<br/>&nbsp; &nbsp; &nbsp; &nbsp;luci_auto_15039
 uploadHeaders* | int | The sequence (starts from 0) of the columns in the attached csv file. This field accepts stringified JSON. <br>Key name for columns are as follows:<br/><br/>Key name for the columns are as follows<br/> - **Customer identifier*** : Key name for this field varies according to the customerIdentifier param.<br/>&nbsp; &nbsp; &nbsp; &nbsp;MOBILE : mobile<br/>&nbsp; &nbsp; &nbsp; &nbsp;EXTERNAL_ID: externalId<br/>&nbsp; &nbsp; &nbsp; &nbsp;EMAIL: email<br/>&nbsp; &nbsp; &nbsp; &nbsp;USER_ID: userId<br/> - **Coupon identifier*** :  Key name for this field varies according to the couponIdentifier param.<br/>&nbsp; &nbsp; &nbsp; &nbsp;COUPON_ID: couponId<br/>&nbsp; &nbsp; &nbsp; &nbsp;COUPON_CODE: couponCode<br/> - **Redeemed date in milliseconds*** : redeemedDateInMillis<br/> - **Redeemed at*** : redeemedAt<br/> - **Bill Id** : billId<br/> - **Bill Number** : billNumber<br/> - **Details** : details<br/><br/>For the above file samples, the uploadHeaders will be -<br/>&nbsp; &nbsp; &nbsp; &nbsp;*Sample 1* - {'redeemedDateInMillis': 0, 'redeemedAt': 1, 'billNumber': 5, 'couponId': 3,<br/>&nbsp; &nbsp; &nbsp; &nbsp;'userId': 2, 'billId': 4, 'details': 6}<br/>&nbsp; &nbsp; &nbsp; &nbsp;*Sample 2* - {'redeemedDateInMillis': 0, 'redeemedAt': 1, 'billNumber': 5, 'couponCode': 3,<br/>&nbsp; &nbsp; &nbsp; &nbsp;mobile: 2, 'billId': 4, 'details': 6}
+Details | string | Any additional details or notes to capture for redeemed coupon upload.
 
 
 <aside class="notice"> All parameters marked with * are mandatory. </aside>
@@ -495,7 +496,7 @@ x-cap-api-oauth-token | Generated authentication token
 
 Parameter | Datatype | Description
 --------- | -------- | -----------
-couponSeriesId* | int |The ID of coupon series for which you want to get the status.
+couponSeriesId* | long |The ID of coupon series for which you want to get the status.
 
 <aside class="notice"> The pParameter marked with * is mandatory. </aside>
 
@@ -581,15 +582,18 @@ Authentication | [OAuth](https://capillary.github.io/v1.1-API-Documentation/?xml
 API Version | v1
 Batch Support | No
 
-| | |
---------- | ----------- |
-Content-Type | application/json
-x-cap-api-oauth-token | Generated authentication token
+
+### Headers Required
+
+Header | Value
+------- | -----
+Content-Type* | application/json
+x-cap-api-oauth-token* | Generated authentication token
 
 
 ### Request URL
 
-`https://{host}/coupon/api/v1/upload/getUploadRedeemedCouponStatus/{couponSeriedId}` 
+`https://{host}/coupon/api/v1/upload/getUploadRedeemedCouponStatus/{couponSeriesId}` 
 
 ### Request Parameters
 
@@ -600,4 +604,14 @@ couponSeriesId* | int |The ID of coupon series for which the user wants to know 
 <aside class="notice"> The parameter marked with * is mandatory. </aside>
 
 
+
+## Response Codes
+
+
+Error Codes
+
+Code | Description
+---- | -----------
+400 | Incorrect or invalid input.
+500 | Unable to post or retrieve details.
 
