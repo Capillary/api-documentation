@@ -75,6 +75,7 @@ currencyCode | string | ISO currency code that you want to update. For example `
 
 
 
+
 ## Generate External IDs
 
 > Sample Request
@@ -854,6 +855,85 @@ Batch Support | No
 `https://{host}/v2/orgEntity/associate`
 
 
+
+## Add Store
+
+Lets admins to add store to an org.
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/orgEntity/store
+```
+
+> Sample POST Request
+
+```json
+{
+    "code": "Demostore11",
+    "description": "Mobile Push demo store",
+    "name": "Demo Store",
+    "type": "STORE",
+    "adminType": "admin",
+    "isActive": true,
+    "timeZoneId": 191,
+    "currencyId": 23,
+    "languageId": "",
+    "parentZoneId": 300001744,
+    "externalIds": [
+        "Ex-9399"
+    ],
+    "email": "demostore@example.com",
+    "mobile": "917262178832",
+    "landline": "",
+    "latitude": "",
+    "longitude": "",
+    "address": "",
+    "cityId": 0,
+    "areaId": 0
+}
+```
+
+> Sample Response
+
+```json
+{
+    "createdId": 50026755,
+    "warnings": []
+}
+```
+
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `orgEntity/store`
+Authentication | Yes
+HTTP Method | POST
+Batch Support | No
+
+
+### Request URL
+`https://{host}/v2/orgEntity/store`
+
+
+### Request Body Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | ------------
+code* | string | Unique code of the store (alphanumeric)
+name* | string | Name of the store.
+description | string | Brief information about the store.
+type | enum | Type of the entity. Value: Pass `STORE`.
+adminType | enum | Type of the store. Value: Pass `GENERAL` for a normal store, `ADMIN` for an admin store.
+isActive | boolean | Pass `true` to make the store active, `false` to inactivate a store.
+timeZoneId | long | Base time-zone ID of the store.
+currencyId | int | Base currency ID of the store based on the location.
+languageId | long | Base currency ID of the store.
+parentZoneId | long | Associated parent zone ID of the store. 
+externalIds | array | External IDs of the store.
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
 
 
 ## Retrieve Org Loyalty Programs

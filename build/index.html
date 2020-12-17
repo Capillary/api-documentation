@@ -10434,15 +10434,18 @@ https://us.api.capillarytech.com/v2/org/9081/sources
     </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Allows adding a source account to the org. Currently, the following sources are supported:
-* Facebook
-* WEB_ENGAGE
-* WECHAT<br>
-* INSTORE<br>
-* MARTJACK<br>
-* TMALL<br>
-* TAOBAO<br>
-* JD</p>
+<p>Allows adding a source account to the org. Currently, the following sources are supported:</p>
+
+<ul>
+<li>Facebook</li>
+<li>WEB_ENGAGE</li>
+<li>WECHAT<br></li>
+<li>INSTORE<br></li>
+<li>MARTJACK<br></li>
+<li>TMALL<br></li>
+<li>TAOBAO<br></li>
+<li>JD</li>
+</ul>
 
 <h3 id="resource-information">Resource Information</h3>
 
@@ -17236,6 +17239,148 @@ position | boolean | Specify the position order of the extended field on the UI.
 <h3 id="request-url">Request URL</h3>
 
 <p><code class="prettyprint">https://{host}/v2/orgEntity/associate</code></p>
+
+<h2 id="add-store">Add Store</h2>
+
+<p>Lets admins to add store to an org.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/orgEntity/store
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Demostore11"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Mobile Push demo store"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Demo Store"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STORE"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="mi">191</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"parentZoneId"</span><span class="p">:</span><span class="w"> </span><span class="mi">300001744</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"externalIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="s2">"Ex-9399"</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demostore@example.com"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"917262178832"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"landline"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"latitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"longitude"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"cityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"areaId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"createdId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50026755</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">orgEntity/store</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/orgEntity/store</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>code*</td>
+<td>string</td>
+<td>Unique code of the store (alphanumeric)</td>
+</tr>
+<tr>
+<td>name*</td>
+<td>string</td>
+<td>Name of the store.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>Brief information about the store.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>enum</td>
+<td>Type of the entity. Value: Pass <code class="prettyprint">STORE</code>.</td>
+</tr>
+<tr>
+<td>adminType</td>
+<td>enum</td>
+<td>Type of the store. Value: Pass <code class="prettyprint">GENERAL</code> for a normal store, <code class="prettyprint">ADMIN</code> for an admin store.</td>
+</tr>
+<tr>
+<td>isActive</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to make the store active, <code class="prettyprint">false</code> to inactivate a store.</td>
+</tr>
+<tr>
+<td>timeZoneId</td>
+<td>long</td>
+<td>Base time-zone ID of the store.</td>
+</tr>
+<tr>
+<td>currencyId</td>
+<td>int</td>
+<td>Base currency ID of the store based on the location.</td>
+</tr>
+<tr>
+<td>languageId</td>
+<td>long</td>
+<td>Base currency ID of the store.</td>
+</tr>
+<tr>
+<td>parentZoneId</td>
+<td>long</td>
+<td>Associated parent zone ID of the store.</td>
+</tr>
+<tr>
+<td>externalIds</td>
+<td>array</td>
+<td>External IDs of the store.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
 
 <h2 id="retrieve-org-loyalty-programs">Retrieve Org Loyalty Programs</h2>
 
