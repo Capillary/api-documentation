@@ -58,7 +58,7 @@ Batch Support | No
 
 
 ### Request URL
-`https://<Respective cluster’s API URL>/v2/staff`
+`https://{host}/v2/staff`
 
 **Additional Headers Required**
 
@@ -228,7 +228,7 @@ Batch Support | No
 
 
 ### Request URL
-`https://<Respective cluster’s API URL>/v2/staff/validate`
+`https://{host}/v2/staff/validate`
 
 **Additional Headers Required**
 
@@ -251,7 +251,7 @@ otp | Specify the one time password received on the specified identifierType
 
 Code | Description
 ---- | -----------
-1700  | Authentication service error. Invalid otp 
+1700 | Authentication service error. Invalid OTP 
 1009 |  Invalid identifier details passed
 1008 |  Invalid identifier type passed
 
@@ -326,9 +326,9 @@ Batch Support | No
 
 
 ### Request URL
-1. `https://<Respective cluster’s API URL>/v2/staff/changeidentifier/sendotp`
+1. `https://{host}/v2/staff/changeidentifier/sendotp`
 
-2. `https://<Respective cluster’s API URL>/v2/staff/changeidentifier`
+2. `https://{host}/v2/staff/changeidentifier`
 
 
 
@@ -402,7 +402,7 @@ Batch Support | No
 
 
 ### Request URL
-`https://<Respective cluster’s API URL>/v2/staff/transfer`
+`https://{host}/v2/staff/transfer`
 
 **Additional Headers Required**
 
@@ -505,7 +505,7 @@ Retrieve registered staff users of a specific store or zone. Accessible only to 
 ### Resource Information
 Info | Value
 ---- | ----- 
-URI | `/staff/getUsersList?<Request param>=<values>`
+URI | `/staff/getUsersList?{requestParam}={paramValues}`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
@@ -514,7 +514,7 @@ Batch Support | No
 
 
 ### Request URL
-`https://<Respective cluster’s API URL>/v2/staff/getUsersList?<Request Param>=<value>`
+`https://{host}/v2/staff/getUsersList?{requestParam}={paramValues}`
 
 **Additional Headers Required**
 
@@ -580,7 +580,7 @@ Batch Support | No
 
 
 ### Request URL
-`https://<Respective cluster’s API URL>/v2/staff/delete`
+`https://{host}/v2/staff/delete`
 
 **Additional Headers Required**
 
@@ -638,7 +638,7 @@ Batch Support | No
 
 
 ### Request URL
-`https://<Respective cluster’s API URL>/v2/staff/accessToken`
+`https://{host}/v2/staff/accessToken`
 
 
 
@@ -692,7 +692,7 @@ Batch Support | No
 
 
 ### Request URL
-`https://<Respective cluster’s API URL>/v2/staff/changePassword`
+`https://{host}/v2/staff/changePassword`
 
 **Additional Header required for access token based authentication**
 
@@ -740,7 +740,7 @@ Retrieves the details of a specific staff.
 ### Resource Information
 |  | |
 ---|---| 
-URI | `/staff/users?<identifier>=<value>`
+URI | `/staff/users?username={username}`
 Rate Limited? | Yes
 Authentication | Yes
 Response Formats | JSON
@@ -749,7 +749,7 @@ Batch Support | No
 
 
 ### Request URL
-`https://<Respective cluster’s API URL>/v2/staff/users?<identifier>=<value>`
+`https://{host}/v2/staff/users?username={username}`
 
 ### Request Parameter
 Parameter | Description
@@ -836,7 +836,7 @@ HTTP Methods | POST
 Batch Support | No
 
 ### Request URL
-`https://<Respective cluster’s API URL>/v2/staff/edit`
+`https://{host}/v2/staff/edit`
 
 ### Request Attributes
 Attribute | Description
@@ -889,7 +889,7 @@ Batch Support | No
 
 
 ### Request URL
-`https://<Respective cluster’s API URL>/v2/staff/logout`
+`https://{host}/v2/staff/logout`
 
 
 

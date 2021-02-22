@@ -29,12 +29,23 @@ https://us.api.capillarytech.com/v2/card/series
 > Sample Post Request
 
 ```json
+# 
 {
-   "code":"2platin34",
-   "description":"card series create",
-   "type":"PHYSICAL",
-   "expiryDays":355
+  "code":"pet",
+  "name":"platinum Card",
+  "type":"PHYSICAL",
+  "expiryDays": 365,
+  "cardGenerationConfiguration":{
+    "prefix":"PET3",
+    "suffix": "2020",
+    "offset":100,
+    "length":16,
+    "type" : "DEFAULT"
+  },
+    "cardGenerationEnabled":true,
+    "isActive":true
 }
+
 ```
 
 > Sample Response
@@ -63,10 +74,20 @@ Batch Support | No
 ### Request Body Parameters
 Parameter | Datatype | Description
 --------- | -------- | -----------
- code* | string | A valid code (supports up to 50 characters) for the card series. Only alpha-numeric is allowed.
- description | string | Description of the  coupon series.
- type* | enum | Type of the card. Value `PHYSICAL` (for physical cards), `DIGITAL` (for digital or soft copies)
- expiryDays* | int | Validity of the card series in number of days from the day of issual.
+code* | string | A valid code (supports up to 50 characters) for the card series. Only alpha-numeric is allowed.
+name* | string | Name of the card series.
+type* | enum | Type of the card. Value `PHYSICAL` (for physical cards), `DIGITAL` (for digital or soft copies)
+expiryDays* | int | Validity of the card series in number of days from the day of issual.
+cardGenerationEnabled | boolean | Pass `true` enable generating automatically for the series, `false` to manually generate cards.
+isActive | boolean | Pass `true` to activate the series. 
+cardGenerationConfiguration | obj | Configurations of the card series.
+prefix | string | Starting characters for cards of the series.
+suffix | string | Ending characters for cards of the series.
+offset | int | 
+length | int | Length of the cards of the series.
+type | enum | DEFAULT
+
+
  
  <aside class="notice">Parameters marked with * are mandatory. </aside>
  
@@ -86,18 +107,28 @@ https://us.api.capillarytech.com/v2/card/series/10
 
 ```json
 {
-   "expiryDays":355,
-   "lastUpdateBy":50006796,
-   "cardGenerationEnabled":false,
-   "code":"3#$%^&*1",
-   "createdBy":50006796,
-   "createdOn":"2020-11-04T12:19:38+05:30",
-   "description":"card series create",
-   "id":10,
-   "isActive":true,
-   "orgId":50074,
-   "type":"PHYSICAL",
-   "warnings":[ ]
+    "expiryDays": 1000,
+    "lastUpdateBy": 75029724,
+    "maxActiveCardsPerCustomer": 0,
+    "cardGenerationConfiguration": {
+        "lastUpdatedBy": 75029724,
+        "orgId": 100458,
+        "seriesId": 6,
+        "suffix": "2021",
+        "prefix": "PETRON3",
+        "length": 20,
+        "type": "DEFAULT"
+    },
+    "cardGenerationEnabled": true,
+    "code": "VAL3",
+    "createdBy": 75029724,
+    "createdOn": "2020-11-27T09:12:13Z",
+    "name": "Petron Value Card 3.1",
+    "id": 6,
+    "isActive": false,
+    "orgId": 100458,
+    "type": "PHYSICAL",
+    "warnings": []
 }
 ```
 
@@ -418,6 +449,8 @@ https://us.api.capillarytech.com/v2/card
 > Sample Post Request
 
 ```json
+
+
 {
    "seriesId":10,
    "cardNumber":"test123112121",

@@ -69,17 +69,7 @@ https://us.api.capillarytech.com/v2/customers?source=MOBILE_APP&accountId=400
             "office": false
           }
         }
-      ],
-      "identifiers": [
-        {
-          "type": "email",
-          "value": "tom.sawyer@example.com"
-        },
-        {
-          "type": "mobile",
-          "value": "91901000001"
-        }
-      ],
+      ],	
       "source": "MOBILE_APP",
       "fields": {
         "employee": "true",
@@ -341,10 +331,15 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT&accountId=22232
 
 ```json
 {
-"createdId": 329,
-"warnings":[] 
+	"createdId": 162116213,
+	"warnings": [],
+	"sideEffects": [
+	{
+	"awardedPoints": 25,
+	"type": "points"
+	}
+  ]
 }
-
 ```
 
 Allows updating customer details on any source - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE or LINE. You can update profile information, extended field values, communication details, custom field values, and loyalty status (only non loyalty to loyalty).
@@ -527,8 +522,8 @@ Parameter | Datatype | Description
 --------- | -------- | -----------
 identifierName* | enum | Identifier you use to update customer details. Values: `mobile`, `email`, `externalId`.
 identifierValue* | string | The respective identifier value. For example if `identifierName` is email, then the `identifierValue` needs to be the email ID of the customer.
-source* | Specify the source in which you want to update the customer details - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, MOBILE_APP. For sources with multiple accounts such as WECHAT, FACEBOOK, MOBILE_APP, or LINE, you also need to provide the respective account id.
-accountId** | Account in which you want to update the customer details (Required only for sources with multiple accounts)
+source* | enum | Specify the source in which you want to update the customer details - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, MOBILE_APP. For sources with multiple accounts such as WECHAT, FACEBOOK, MOBILE_APP, or LINE, you also need to provide the respective account id.
+accountId** | string | Account in which you want to update the customer details (Required only for sources with multiple accounts)
 
 <aside class="notice">Parameters marked with * are mandatory.</aside>
 
@@ -1364,38 +1359,46 @@ http://eu.api.capillarytech.com/v2/customers/29372667/loyaltyDetails
 {
     "data": [
         {
-            "redeemed": 200,
-            "expired": 0,
-            "returned": 1100.2139892578125,
-            "adjusted": 50,
-            "lifetimePoints": 500,
-            "loyaltyPoints": 350,
-            "cumulativePurchases": 8500,
-            "loyaltyId": 52350728,
-            "currentSlab": "Gold",
-            "nextSlab": "Platinum",
-            "nextSlabSerialNumber": 3,
-            "nextSlabDescription": "Platinum tier",
-            "slabSNo": 2,
-            "slabExpiryDate": "2117-12-29T23:59:59+05:30",
-            "programId": 1219
-        },
-        {
-            "redeemed": 2500,
-            "expired": 300,
-            "returned": 102.68399810791016,
-            "adjusted": 30,
-            "lifetimePoints": 5000,
-            "loyaltyPoints": 2200,
-            "cumulativePurchases": 43560,
-            "loyaltyId": 52350728,
-            "currentSlab": "Platinum",
-            "nextSlab": "Star",
-            "nextSlabSerialNumber": -1,
-            "nextSlabDescription": "Top level tier",
+            "redeemed": 40.11,
+            "expired": 0.0,
+            "returned": 0.0,
+            "adjusted": 0.0,
+            "lifetimePoints": 1050.0,
+            "loyaltyPoints": 1009.89,
+            "cumulativePurchases": 9500.0,
+            "loyaltyId": 86637581,
+            "currentSlab": "SILVER",
+            "nextSlab": "GOLD",
+            "nextSlabSerialNumber": 2,
+            "nextSlabDescription": "GOLD",
             "slabSNo": 1,
-            "slabExpiryDate": "2117-12-29T23:59:59+05:30",
-            "programId": 1223
+            "slabExpiryDate": "2120-11-10T23:59:59+05:30",
+            "programId": 622,
+            "delayedPoints": 0.0,
+            "delayedReturnedPoints": 250.0,
+            "totalAvailablePoints": 1009.89,
+            "totalReturnedPoints": 250.0,
+            "linkedPartnerPrograms": [
+                {
+                    "partnerProgramId": 5,
+                    "partnerProgramName": "1stProgram",
+                    "partnerProgramDescription": "1stProgram",
+                    "partnerTierNumber": 1,
+                    "partnerTierName": "1stSlab",
+                    "partnerTierExpiryDate": "2022-12-29T23:59:59+05:30",
+                    "partnerMembershipId": "916215776456",
+                    "partnerProgramType": "EXTERNAL",
+                    "tierBased": true
+                },
+                {
+                    "partnerProgramId": 11,
+                    "partnerProgramName": "NoTierPartnerProgram",
+                    "partnerProgramDescription": "NoTierPartnerProgram",
+                    "partnerMembershipId": "916215776456",
+                    "partnerProgramType": "EXTERNAL",
+                    "tierBased": false
+                }
+            ]
         }
     ],
     "warnings": [],

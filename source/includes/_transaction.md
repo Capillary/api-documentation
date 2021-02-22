@@ -62,6 +62,7 @@ https://eu.intouch.capillarytech.com/v2/transactions/bulk
     "accountId": "",
     "type": "REGULAR",
     "billNumber": "num-668288857749",
+	"billingDate": "2020-12-28T10:18:01.534Z",
     "discount": "10",
     "billAmount": "200",
     "note": "this is test",
@@ -99,6 +100,8 @@ https://eu.intouch.capillarytech.com/v2/transactions/bulk
       {
         "itemCode": "sku_486741_2",
         "amount": 100.5,
+		"description": "sample description",
+		"discount": 0,
         "rate": 100.5,
         "qty": 1,
         "extendedFields": {
@@ -109,6 +112,8 @@ https://eu.intouch.capillarytech.com/v2/transactions/bulk
       {
         "itemCode": "sku_486741_2",
         "amount": 100.5,
+		"description": "sample description",
+		"discount": 0,
         "rate": 100.5,
         "qty": 1,
         "extendedFields": {
@@ -173,6 +178,7 @@ https://eu.intouch.capillarytech.com/v2/transactions/bulk
       {
         "itemCode": "sku_486741_8",
         "amount": 100.5,
+		"discount": 0,
         "rate": 100.5,
         "qty": 1,
         "extendedFields": {
@@ -353,6 +359,7 @@ https://eu.intouch.capillarytech.com/v2/transactions/bulk
     "type": "RETURN",
     "returnType": "LINE_ITEM",
     "billNumber": "num-6682818",
+	"billingDate": "2020-12-28T10:18:01.534Z",
     "discount": "10",
     "billAmount": "210",
     "paymentModes": [
@@ -807,8 +814,9 @@ type* | enum | Type of transaction. Supported value: `REGULAR` for loyalty trans
 returnType** | enum | For a return transaction, pass the return type. Value: `AMOUNT`, `FULL`, `LINE_ITEM`, `CANCELLED`.
 billAmount* | double | Net transaction amount.
 billNumber* |  string | Unique transaction number. The uniqueness either at till, store, or org, depends on the configuration `CONF_LOYALTY_BILL_NUMBER_UNIQUE_IN_DAYS` set on InTouch **Settings** > **System & Deployment** > **InTouch POS Configuration** > **Billing**.  
+billingDate | date-time | Date and time of the transaction in the `YYYY-MM-DDTHH:MM:SSZ` format.
 currency | string | ISO currency code of the transaction. Org's base currency is considered by default. For example, `INR` for Indian Rupee, `SGD` for Singapore Dollar, `EUR` for Euro, `IQD` for Iraqi Dinar.
-discount | double | Discount availed for the transaction (discount amount).
+discount | double | Discount availed for the transaction or line item (discount amount) .
 grossAmount | double | Transaction amount before discount.
 note | string | Additional information about the transaction.
 lineItemsV2 | obj | Details of line-items.
@@ -837,13 +845,13 @@ customFields | obj | Details of transaction level or transaction line-item level
 redemptions | obj | Details of points and coupon redemptions for the  transaction.
 pointsRedemptions | array | Unique points redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]
 couponRedemptions | array | Unique coupon redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]
-loyaltyPromotionIdentifiers | array | 
-id | - | --
 paymentModes | obj | Payment details used for the transaction. 
 mode | string | Mode of payment.
 value | double | Amount paid through the current mode.
 notes |string | Additional information related to the payment mode.
 attributes | obj | Attributes of the payment mode in names and value pairs.
+loyaltyPromotionIdentifiers | array | 
+id | - | --
       
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>

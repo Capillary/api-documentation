@@ -229,10 +229,12 @@ Allows fetching recent OTP issued to a customer. For now, OTP is issued for rede
 | | |
 --------- | ----------- |
 URI	| `/otp`
-Rate Limited? | Yes
+Rate Limited? | Yes (10 OTPs per user per day)
 Authentication | Yes
 HTTP Method | GET
 Batch Support | No
+
+<aside class="notice">By default, there is a limit of 10 OTPs per day for an user. However, this can be modified for an org if required. </aside> 
 
 ### Request URL
 
@@ -275,6 +277,7 @@ Code | Description
 
 Code | Description
 ---- | -----------
+429 | Rate limit exceeded. A maximum of 10 OTPs can be generated for an user per day. However, the limit can be changed if required.
 600 | Invalid or null `action` passed.
 601 | Invalid or null `entity_type` passed.
 602 | Invalid or null `entity_value` passed.

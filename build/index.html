@@ -568,17 +568,7 @@ https://us.api.capillarytech.com/v2/customers?source=MOBILE_APP<span class="err"
             </span><span class="nt">"office"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
           </span><span class="p">}</span><span class="w">
         </span><span class="p">}</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="nt">"identifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom.sawyer@example.com"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91901000001"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="p">],</span><span class="w">
+      </span><span class="p">],</span><span class="w">    
       </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MOBILE_APP"</span><span class="p">,</span><span class="w">
       </span><span class="nt">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"employee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
@@ -939,10 +929,15 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <p>Sample Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-</span><span class="nt">"createdId"</span><span class="p">:</span><span class="w"> </span><span class="mi">329</span><span class="p">,</span><span class="w">
-</span><span class="nt">"warnings"</span><span class="p">:[]</span><span class="w"> 
+    </span><span class="nt">"createdId"</span><span class="p">:</span><span class="w"> </span><span class="mi">162116213</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"sideEffects"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"awardedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mi">25</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"points"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
-
 </span></code></pre>
 <p>Allows updating customer details on any source - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE or LINE. You can update profile information, extended field values, communication details, custom field values, and loyalty status (only non loyalty to loyalty).</p>
 
@@ -1277,13 +1272,13 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 </tr>
 <tr>
 <td>source*</td>
+<td>enum</td>
 <td>Specify the source in which you want to update the customer details - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, MOBILE_APP. For sources with multiple accounts such as WECHAT, FACEBOOK, MOBILE_APP, or LINE, you also need to provide the respective account id.</td>
-<td></td>
 </tr>
 <tr>
 <td>accountId**</td>
+<td>string</td>
 <td>Account in which you want to update the customer details (Required only for sources with multiple accounts)</td>
-<td></td>
 </tr>
 </tbody></table>
 
@@ -2486,38 +2481,46 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"redeemed"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"expired"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"returned"</span><span class="p">:</span><span class="w"> </span><span class="mf">1100.2139892578125</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"adjusted"</span><span class="p">:</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"lifetimePoints"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"loyaltyPoints"</span><span class="p">:</span><span class="w"> </span><span class="mi">350</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"cumulativePurchases"</span><span class="p">:</span><span class="w"> </span><span class="mi">8500</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"loyaltyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">52350728</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"currentSlab"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gold"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"nextSlab"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Platinum"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"nextSlabSerialNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"nextSlabDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Platinum tier"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"slabSNo"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"slabExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2117-12-29T23:59:59+05:30"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1219</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"redeemed"</span><span class="p">:</span><span class="w"> </span><span class="mi">2500</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"expired"</span><span class="p">:</span><span class="w"> </span><span class="mi">300</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"returned"</span><span class="p">:</span><span class="w"> </span><span class="mf">102.68399810791016</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"adjusted"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"lifetimePoints"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"loyaltyPoints"</span><span class="p">:</span><span class="w"> </span><span class="mi">2200</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"cumulativePurchases"</span><span class="p">:</span><span class="w"> </span><span class="mi">43560</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"loyaltyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">52350728</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"currentSlab"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Platinum"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"nextSlab"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Star"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"nextSlabSerialNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"nextSlabDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Top level tier"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"redeemed"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.11</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"expired"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"returned"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"adjusted"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lifetimePoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">1050.0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"loyaltyPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">1009.89</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cumulativePurchases"</span><span class="p">:</span><span class="w"> </span><span class="mf">9500.0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"loyaltyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">86637581</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"currentSlab"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SILVER"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"nextSlab"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOLD"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"nextSlabSerialNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"nextSlabDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOLD"</span><span class="p">,</span><span class="w">
             </span><span class="nt">"slabSNo"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"slabExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2117-12-29T23:59:59+05:30"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1223</span><span class="w">
+            </span><span class="nt">"slabExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2120-11-10T23:59:59+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">622</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"delayedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"delayedReturnedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">250.0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"totalAvailablePoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">1009.89</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"totalReturnedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">250.0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"linkedPartnerPrograms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"partnerProgramId"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"partnerProgramName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1stProgram"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"partnerProgramDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1stProgram"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"partnerTierNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"partnerTierName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1stSlab"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"partnerTierExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-12-29T23:59:59+05:30"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"partnerMembershipId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"916215776456"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"partnerProgramType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXTERNAL"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"tierBased"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"partnerProgramId"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"partnerProgramName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NoTierPartnerProgram"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"partnerProgramDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NoTierPartnerProgram"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"partnerMembershipId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"916215776456"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"partnerProgramType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXTERNAL"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"tierBased"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
     </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
@@ -4533,6 +4536,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
     </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REGULAR"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"billNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"num-668288857749"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"billingDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-28T10:18:01.534Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"billAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this is test"</span><span class="p">,</span><span class="w">
@@ -4570,6 +4574,8 @@ Also, check the following configurations for maximum days allowed and minimum ti
       </span><span class="p">{</span><span class="w">
         </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_2"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample description"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
         </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -4580,6 +4586,8 @@ Also, check the following configurations for maximum days allowed and minimum ti
       </span><span class="p">{</span><span class="w">
         </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_2"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample description"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
         </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -4644,6 +4652,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
       </span><span class="p">{</span><span class="w">
         </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_8"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
         </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
         </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -4823,6 +4832,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RETURN"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"returnType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LINE_ITEM"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"billNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"num-6682818"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"billingDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-12-28T10:18:01.534Z"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"billAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"210"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"paymentModes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -5347,6 +5357,11 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>Unique transaction number. The uniqueness either at till, store, or org, depends on the configuration <code class="prettyprint">CONF_LOYALTY_BILL_NUMBER_UNIQUE_IN_DAYS</code> set on InTouch <strong>Settings</strong> &gt; <strong>System &amp; Deployment</strong> &gt; <strong>InTouch POS Configuration</strong> &gt; <strong>Billing</strong>.</td>
 </tr>
 <tr>
+<td>billingDate</td>
+<td>date-time</td>
+<td>Date and time of the transaction in the <code class="prettyprint">YYYY-MM-DDTHH:MM:SSZ</code> format.</td>
+</tr>
+<tr>
 <td>currency</td>
 <td>string</td>
 <td>ISO currency code of the transaction. Org&rsquo;s base currency is considered by default. For example, <code class="prettyprint">INR</code> for Indian Rupee, <code class="prettyprint">SGD</code> for Singapore Dollar, <code class="prettyprint">EUR</code> for Euro, <code class="prettyprint">IQD</code> for Iraqi Dinar.</td>
@@ -5354,7 +5369,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <tr>
 <td>discount</td>
 <td>double</td>
-<td>Discount availed for the transaction (discount amount).</td>
+<td>Discount availed for the transaction or line item (discount amount) .</td>
 </tr>
 <tr>
 <td>grossAmount</td>
@@ -5497,16 +5512,6 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>Unique coupon redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]</td>
 </tr>
 <tr>
-<td>loyaltyPromotionIdentifiers</td>
-<td>array</td>
-<td></td>
-</tr>
-<tr>
-<td>id</td>
-<td>-</td>
-<td>&ndash;</td>
-</tr>
-<tr>
 <td>paymentModes</td>
 <td>obj</td>
 <td>Payment details used for the transaction.</td>
@@ -5530,6 +5535,16 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>attributes</td>
 <td>obj</td>
 <td>Attributes of the payment mode in names and value pairs.</td>
+</tr>
+<tr>
+<td>loyaltyPromotionIdentifiers</td>
+<td>array</td>
+<td></td>
+</tr>
+<tr>
+<td>id</td>
+<td>-</td>
+<td>&ndash;</td>
 </tr>
 </tbody></table>
 
@@ -6830,7 +6845,7 @@ If the email template is not specified, the validation code will be sent in the 
 </tr>
 <tr>
 <td>Rate Limited?</td>
-<td>Yes</td>
+<td>Yes (10 OTPs per user per day)</td>
 </tr>
 <tr>
 <td>Authentication</td>
@@ -6845,6 +6860,8 @@ If the email template is not specified, the validation code will be sent in the 
 <td>No</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">By default, there is a limit of 10 OTPs per day for an user. However, this can be modified for an org if required. </aside> 
 
 <h3 id="request-url">Request URL</h3>
 
@@ -6948,6 +6965,10 @@ If the email template is not specified, the validation code will be sent in the 
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>429</td>
+<td>Rate limit exceeded. A maximum of 10 OTPs can be generated for an user per day. However, the limit can be changed if required.</td>
+</tr>
 <tr>
 <td>600</td>
 <td>Invalid or null <code class="prettyprint">action</code> passed.</td>
@@ -10900,7 +10921,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staff</code></p>
+<p><code class="prettyprint">https://{host}/v2/staff</code></p>
 
 <p><strong>Additional Headers Required</strong></p>
 
@@ -11196,7 +11217,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staff/validate</code></p>
+<p><code class="prettyprint">https://{host}/v2/staff/validate</code></p>
 
 <p><strong>Additional Headers Required</strong></p>
 
@@ -11250,7 +11271,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 </thead><tbody>
 <tr>
 <td>1700</td>
-<td>Authentication service error. Invalid otp</td>
+<td>Authentication service error. Invalid OTP</td>
 </tr>
 <tr>
 <td>1009</td>
@@ -11346,8 +11367,8 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <h3 id="request-url">Request URL</h3>
 
 <ol>
-<li><p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staff/changeidentifier/sendotp</code></p></li>
-<li><p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staff/changeidentifier</code></p></li>
+<li><p><code class="prettyprint">https://{host}/v2/staff/changeidentifier/sendotp</code></p></li>
+<li><p><code class="prettyprint">https://{host}/v2/staff/changeidentifier</code></p></li>
 </ol>
 
 <h3 id="response-codes">Response Codes</h3>
@@ -11462,7 +11483,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staff/transfer</code></p>
+<p><code class="prettyprint">https://{host}/v2/staff/transfer</code></p>
 
 <p><strong>Additional Headers Required</strong></p>
 
@@ -11590,7 +11611,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/staff/getUsersList?&lt;Request param&gt;=&lt;values&gt;</code></td>
+<td><code class="prettyprint">/staff/getUsersList?{requestParam}={paramValues}</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -11616,7 +11637,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staff/getUsersList?&lt;Request Param&gt;=&lt;value&gt;</code></p>
+<p><code class="prettyprint">https://{host}/v2/staff/getUsersList?{requestParam}={paramValues}</code></p>
 
 <p><strong>Additional Headers Required</strong></p>
 
@@ -11721,7 +11742,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staff/delete</code></p>
+<p><code class="prettyprint">https://{host}/v2/staff/delete</code></p>
 
 <p><strong>Additional Headers Required</strong></p>
 
@@ -11820,7 +11841,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staff/accessToken</code></p>
+<p><code class="prettyprint">https://{host}/v2/staff/accessToken</code></p>
 
 <h2 id="change-staff-account-password">Change Staff Account Password</h2>
 
@@ -11889,7 +11910,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staff/changePassword</code></p>
+<p><code class="prettyprint">https://{host}/v2/staff/changePassword</code></p>
 
 <p><strong>Additional Header required for access token based authentication</strong></p>
 
@@ -11940,7 +11961,7 @@ password* | Specify your preferred new password</p>
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/staff/users?&lt;identifier&gt;=&lt;value&gt;</code></td>
+<td><code class="prettyprint">/staff/users?username={username}</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -11966,7 +11987,7 @@ password* | Specify your preferred new password</p>
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staff/users?&lt;identifier&gt;=&lt;value&gt;</code></p>
+<p><code class="prettyprint">https://{host}/v2/staff/users?username={username}</code></p>
 
 <h3 id="request-parameter">Request Parameter</h3>
 
@@ -12087,7 +12108,7 @@ password* | Specify your preferred new password</p>
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staff/edit</code></p>
+<p><code class="prettyprint">https://{host}/v2/staff/edit</code></p>
 
 <h3 id="request-attributes">Request Attributes</h3>
 
@@ -12191,7 +12212,7 @@ password* | Specify your preferred new password</p>
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://&lt;Respective cluster’s API URL&gt;/v2/staff/logout</code></p>
+<p><code class="prettyprint">https://{host}/v2/staff/logout</code></p>
 
           <h1 id="leads-lms">Leads (LMS)</h1>
 
@@ -15587,12 +15608,23 @@ password* | Specify your preferred new password</p>
 <blockquote>
 <p>Sample Post Request</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-   </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"2platin34"</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"card series create"</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"PHYSICAL"</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"expiryDays"</span><span class="p">:</span><span class="mi">355</span><span class="w">
+<pre class="highlight json"><code><span class="err">#</span><span class="w"> 
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"pet"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"platinum Card"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"PHYSICAL"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"expiryDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">365</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"cardGenerationConfiguration"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"prefix"</span><span class="p">:</span><span class="s2">"PET3"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"suffix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"offset"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"length"</span><span class="p">:</span><span class="mi">16</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"DEFAULT"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"isActive"</span><span class="p">:</span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
+
 </span></code></pre>
 <blockquote>
 <p>Sample Response</p>
@@ -15649,9 +15681,9 @@ password* | Specify your preferred new password</p>
 <td>A valid code (supports up to 50 characters) for the card series. Only alpha-numeric is allowed.</td>
 </tr>
 <tr>
-<td>description</td>
+<td>name*</td>
 <td>string</td>
-<td>Description of the  coupon series.</td>
+<td>Name of the card series.</td>
 </tr>
 <tr>
 <td>type*</td>
@@ -15662,6 +15694,46 @@ password* | Specify your preferred new password</p>
 <td>expiryDays*</td>
 <td>int</td>
 <td>Validity of the card series in number of days from the day of issual.</td>
+</tr>
+<tr>
+<td>cardGenerationEnabled</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> enable generating automatically for the series, <code class="prettyprint">false</code> to manually generate cards.</td>
+</tr>
+<tr>
+<td>isActive</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to activate the series.</td>
+</tr>
+<tr>
+<td>cardGenerationConfiguration</td>
+<td>obj</td>
+<td>Configurations of the card series.</td>
+</tr>
+<tr>
+<td>prefix</td>
+<td>string</td>
+<td>Starting characters for cards of the series.</td>
+</tr>
+<tr>
+<td>suffix</td>
+<td>string</td>
+<td>Ending characters for cards of the series.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>length</td>
+<td>int</td>
+<td>Length of the cards of the series.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>enum</td>
+<td>DEFAULT</td>
 </tr>
 </tbody></table>
 
@@ -15680,18 +15752,28 @@ password* | Specify your preferred new password</p>
 <p>Sample Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-   </span><span class="nt">"expiryDays"</span><span class="p">:</span><span class="mi">355</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"lastUpdateBy"</span><span class="p">:</span><span class="mi">50006796</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"3#$%^&amp;*1"</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="mi">50006796</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="s2">"2020-11-04T12:19:38+05:30"</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"card series create"</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"isActive"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"orgId"</span><span class="p">:</span><span class="mi">50074</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"PHYSICAL"</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w"> </span><span class="p">]</span><span class="w">
+    </span><span class="nt">"expiryDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"lastUpdateBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"maxActiveCardsPerCustomer"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"cardGenerationConfiguration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100458</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"suffix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PETRON3"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"length"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEFAULT"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAL3"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-11-27T09:12:13Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Petron Value Card 3.1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100458</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PHYSICAL"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <h3 id="resource-information">Resource Information</h3>
@@ -16164,7 +16246,9 @@ password* | Specify your preferred new password</p>
 <blockquote>
 <p>Sample Post Request</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="w">
+
+</span><span class="p">{</span><span class="w">
    </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
    </span><span class="nt">"cardNumber"</span><span class="p">:</span><span class="s2">"test123112121"</span><span class="p">,</span><span class="w">
    </span><span class="nt">"statusLabel"</span><span class="p">:</span><span class="s2">"NOT_ISSUED"</span><span class="w">
@@ -16317,6 +16401,529 @@ password* | Specify your preferred new password</p>
 </tbody></table>
 
 <aside class="notice"> The parameter marked with * is  mandatory. </aside>
+
+          <h1 id="partner-program">Partner Program</h1>
+
+<h2 id="link-partner-program">Link Partner Program</h2>
+
+<p>Adds loyalty customer to an org&rsquo;s external program or supplementary program.</p>
+
+<aside class="notice">You can add only registered customers of the org.</aside>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/partnerProgram/linkCustomer
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"linkCustomers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6215000000"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"linkToPartnerPrograms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"partnerProgramName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1stProgram"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"customerPartnerReference"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"partnerMembershipId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"621000000"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"partnerTierName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1stSlab"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"partnerTierExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-12-29T23:59:59+05:30"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"partnerProgramName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NoTierPartnerProgram"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"customerPartnerReference"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"partnerMembershipId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91621000000"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"partnerProgramName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2ndProgram"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"customerPartnerReference"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"partnerMembershipId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"621000000"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"partnerTierName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1stSlab"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"partnerTierExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-12-29T23:59:59+05:30"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">{</span><span class="w">
+  </span><span class="nt">"linkCustomers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"919740390055"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"linkToPartnerPrograms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"partnerProgramName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apparel-Partner"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"customerPartnerReference"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"partnerMembershipId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"App-919886886886"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"partnerTierName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bronze"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"partnerTierExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-12-29T23:59:59+05:30"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"linkCustomers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">382741349</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"916215000000"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"916215000000@mail.com"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"X916215776456"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer successfully retrieved"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"linkToPartnerPrograms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"partnerProgramName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1stProgram"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"partnerLinkStatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"partnerProgramName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NoTierPartnerProgram"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"partnerLinkStatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"partnerProgramName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2ndProgram"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"partnerLinkStatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/partnerProgram/linkCustomer</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Rate Limited</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/partnerProgram/linkCustomer</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>customer*</td>
+<td>obj</td>
+<td>Details of the customer that need to link.</td>
+</tr>
+<tr>
+<td>mobile*</td>
+<td>string</td>
+<td>Mobile number of the customer.</td>
+</tr>
+<tr>
+<td>email</td>
+<td>string</td>
+<td>Email ID of the customer.</td>
+</tr>
+<tr>
+<td>externalId</td>
+<td>string</td>
+<td>External ID of the customer.</td>
+</tr>
+<tr>
+<td>linkToPartnerPrograms*</td>
+<td>obj</td>
+<td>Details of the destination partner program.</td>
+</tr>
+<tr>
+<td>partnerProgramName*</td>
+<td>string</td>
+<td>Name of the partner program.</td>
+</tr>
+<tr>
+<td>customerPartnerReference*</td>
+<td>obj</td>
+<td>Loyalty details of the customer with respect to the partner program.</td>
+</tr>
+<tr>
+<td>partnerMembershipId*</td>
+<td>string</td>
+<td>Unique membership ID of the customer as per the partner program.</td>
+</tr>
+<tr>
+<td>partnerTierName**</td>
+<td>string</td>
+<td>Name of the tier associated with the customer. Required for tier based partner program.</td>
+</tr>
+<tr>
+<td>partnerTierExpiryDate</td>
+<td>date-time</td>
+<td>Expiry date and time of the tier.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
+
+<h2 id="update-partner-program">Update Partner Program</h2>
+
+<p>Lets you update tier details of a customer in one or more partner programs. </p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>http://eu.intouch.capillarytech.com/v2/partnerProgram/customerPartnerProgramUpdate
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"customersPartnerUpdates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"919740000000"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"partnerProgramUpdates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"partnerProgramName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Apparel-Partner"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"updateType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UPGRADE"</span><span class="p">,</span><span class="w">
+          </span><span class="nt">"updateDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"updatedTierName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Silver"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"updatedTierExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-12-29T23:59:59+05:30"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</span><span class="nt">"customersPartnerUpdates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">382741349</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"916215000000"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"916215000000@mail.com"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"X916215000000"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer successfully retrieved"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="nt">"partnerProgramUpdates"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"partnerProgramName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1stProgram"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"updateType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UPGRADE"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"updateStatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+ </span><span class="p">],</span><span class="w">
+</span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+ </span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/partnerProgram/customerPartnerProgramUpdate</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Rate Limited</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>Yes (for 1 customer)</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/partnerProgram/customerPartnerProgramUpdate</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>customer*</td>
+<td>obj</td>
+<td>Details of the customer whose details need to update.</td>
+</tr>
+<tr>
+<td>mobile**</td>
+<td>string</td>
+<td>Mobile number of the customer.</td>
+</tr>
+<tr>
+<td>email**</td>
+<td>string</td>
+<td>Email ID of the customer.</td>
+</tr>
+<tr>
+<td>externalId**</td>
+<td>string</td>
+<td>External ID of the customer.</td>
+</tr>
+<tr>
+<td>linkToPartnerPrograms*</td>
+<td>obj</td>
+<td>Details of the destination partner program.</td>
+</tr>
+<tr>
+<td>partnerProgramName*</td>
+<td>string</td>
+<td>Name of the partner program.</td>
+</tr>
+<tr>
+<td>customerPartnerReference*</td>
+<td>obj</td>
+<td>Loyalty details of the customer with respect to the partner program.</td>
+</tr>
+<tr>
+<td>partnerMembershipId*</td>
+<td>string</td>
+<td>Unique membership ID of the customer as per the partner program.</td>
+</tr>
+<tr>
+<td>partnerTierName*</td>
+<td>string</td>
+<td>Name of the new tier.</td>
+</tr>
+<tr>
+<td>partnerTierExpiryDate</td>
+<td>date-time</td>
+<td>Expiry date and time of the new tier.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory, any one among the parameters marked with ** is required. </aside>
+
+<h2 id="delink-partner-program">Delink Partner Program</h2>
+
+<p>Lets you remove a customer from one or more partner programs.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/partnerProgram/deLinkCustomer
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"deLinkCustomers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="mi">919800000000</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="nt">"deLinkFromPartnerPrograms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"partnerProgramName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1stProgram"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="nt">"partnerProgramName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"p3e1"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"deLinkCustomers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">382741349</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"916215000000"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"916215000000@mail.com"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"X916215000000"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer successfully retrieved"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"deLinkFromPartnerPrograms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"partnerProgramName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1stProgram"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"partnerDeLinkStatus"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="p">,</span><span class="w">
+                        </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/partnerProgram/deLinkCustomer</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Rate Limited</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/partnerProgram/deLinkCustomer</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>customer*</td>
+<td>obj</td>
+<td>Details of the customer whose account needs to remove from the partner program.</td>
+</tr>
+<tr>
+<td>mobile**</td>
+<td>string</td>
+<td>Mobile number of the customer.</td>
+</tr>
+<tr>
+<td>email**</td>
+<td>string</td>
+<td>Email ID of the customer.</td>
+</tr>
+<tr>
+<td>externalId**</td>
+<td>string</td>
+<td>External ID of the customer.</td>
+</tr>
+<tr>
+<td>deLinkFromPartnerPrograms</td>
+<td>obj</td>
+<td>Details of loyalty programs from which the customer needs to remove</td>
+</tr>
+<tr>
+<td>partnerProgramName*</td>
+<td>string</td>
+<td>Name of the partner program from which the customer needs to remove.</td>
+</tr>
+<tr>
+<td>customerPartnerReference*</td>
+<td>obj</td>
+<td>Loyalty details of the customer with respect to the partner program.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory, at least one among the parameters marked with ** is required. </aside>
 
           <h1 id="other-apis-org-level">Other APIs (Org Level)</h1>
 
@@ -17242,7 +17849,7 @@ position | boolean | Specify the position order of the extended field on the UI.
 
 <h2 id="add-store">Add Store</h2>
 
-<p>Lets admins to add store to an org.</p>
+<p>Lets admins to add a store to an org.</p>
 
 <blockquote>
 <p>Sample Request</p>
@@ -17382,7 +17989,7 @@ position | boolean | Specify the position order of the extended field on the UI.
 
 <aside class="notice">Parameters marked with * are mandatory.</aside>
 
-<h2 id="retrieve-org-loyalty-programs">Retrieve Org Loyalty Programs</h2>
+<h2 id="get-org-loyalty-programs">Get Org Loyalty Programs</h2>
 
 <blockquote>
 <p>Sample Request</p>
@@ -17393,24 +18000,80 @@ position | boolean | Specify the position order of the extended field on the UI.
 <p>Sample Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-   </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-       </span><span class="p">{</span><span class="w">
-           </span><span class="nt">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1124</span><span class="p">,</span><span class="w">
-           </span><span class="nt">"programName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DefaultLoyaltyProgram"</span><span class="p">,</span><span class="w">
-           </span><span class="nt">"pointsToCurrencyRatio"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-           </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
-       </span><span class="p">},</span><span class="w">
-       </span><span class="p">{</span><span class="w">
-           </span><span class="nt">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1254</span><span class="p">,</span><span class="w">
-           </span><span class="nt">"programName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SouthLoyaltyProgram"</span><span class="p">,</span><span class="w">
-           </span><span class="nt">"pointsToCurrencyRatio"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-           </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-       </span><span class="p">}</span><span class="w">
-   </span><span class="p">],</span><span class="w">
-   </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-   </span><span class="p">],</span><span class="w">
-   </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-   </span><span class="p">]</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">622</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"programName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CLIENT_MERGEDefaultProgram"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"pointsToCurrencyRatio"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.111</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"programDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default program for CLIENT_MERGE"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"partnerPrograms"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"partnerProgramId"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"partnerProgramName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1stProgram"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"partnerProgramDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1stProgram"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"partnerProgramTiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nt">"tierNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                            </span><span class="nt">"tierName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1stSlab"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nt">"tierNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                            </span><span class="nt">"tierName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2ndSlab"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nt">"tierNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+                            </span><span class="nt">"tierName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"3rdSlab"</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nt">"pointsExchangeRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"partnerProgramType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXTERNAL"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"membershipPeriodValue"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"tierBased"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"partnerProgramId"</span><span class="p">:</span><span class="w"> </span><span class="mi">48</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"partnerProgramName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Demo_Partner_Program"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"partnerProgramDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Demo program"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"partnerProgramTiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nt">"tierNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                            </span><span class="nt">"tierName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Silver"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="p">{</span><span class="w">
+                            </span><span class="nt">"tierNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                            </span><span class="nt">"tierName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gold"</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">],</span><span class="w">
+                    </span><span class="nt">"pointsExchangeRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"partnerProgramType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXTERNAL"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"membershipPeriodValue"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"tierBased"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"partnerProgramId"</span><span class="p">:</span><span class="w"> </span><span class="mi">49</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"partnerProgramName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DemoSupplementaryProgram"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"partnerProgramDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Demo Supplementary program."</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"pointsExchangeRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"partnerProgramType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUPPLEMENTARY"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"membershipPeriodType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DAYS"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"membershipPeriodValue"</span><span class="p">:</span><span class="w"> </span><span class="mi">365</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"tierBased"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="nt">"partnerProgramId"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"partnerProgramName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NoTierPartnerProgram"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"partnerProgramDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NoTierPartnerProgram"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"pointsExchangeRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"partnerProgramType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXTERNAL"</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"membershipPeriodValue"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="nt">"tierBased"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="nt">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <p>Retrieves all the active loyalty programs of the org.</p>
@@ -17444,6 +18107,57 @@ position | boolean | Specify the position order of the extended field on the UI.
 <h3 id="request-url">Request URL</h3>
 
 <p><code class="prettyprint">https://{host}/v2/organization/programs</code></p>
+
+<h3 id="response-parameters">Response Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>programId</td>
+<td>long</td>
+<td>Unique ID of the loyalty program.</td>
+</tr>
+<tr>
+<td>programName</td>
+<td>string</td>
+<td>Name of the partner program.</td>
+</tr>
+<tr>
+<td>pointsToCurrencyRatio</td>
+<td>double</td>
+<td>Points to currency conversion ratio of the default program configured for the program.</td>
+</tr>
+<tr>
+<td>programDescription</td>
+<td>string</td>
+<td>Description of the program.</td>
+</tr>
+<tr>
+<td>pointsExchangeRate</td>
+<td>double</td>
+<td>Points to currency conversion ratio configured for the external program.</td>
+</tr>
+<tr>
+<td>partnerProgramType</td>
+<td>enum</td>
+<td>Type of the program - external, supplementary, or default.</td>
+</tr>
+<tr>
+<td>membershipPeriodValue</td>
+<td>int</td>
+<td>Membership validity of the program.</td>
+</tr>
+<tr>
+<td>tierBased</td>
+<td>boolean</td>
+<td>Whether the program is tier based (<code class="prettyprint">true</code>) or membership based (<code class="prettyprint">false</code>).</td>
+</tr>
+</tbody></table>
 
 <h2 id="feed-scan-event">Feed (Scan Event)</h2>
 

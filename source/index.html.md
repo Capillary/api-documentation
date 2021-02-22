@@ -28,6 +28,7 @@ includes:
   - leads
   - userGroup
   - cardLoyalty
+  - partnerProgram
   - OrganizationSource
   - storeCare
   - events

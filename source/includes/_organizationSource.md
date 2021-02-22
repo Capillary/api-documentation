@@ -858,7 +858,7 @@ Batch Support | No
 
 ## Add Store
 
-Lets admins to add store to an org.
+Lets admins to add a store to an org.
 
 > Sample Request
 
@@ -936,7 +936,7 @@ externalIds | array | External IDs of the store.
 <aside class="notice">Parameters marked with * are mandatory.</aside>
 
 
-## Retrieve Org Loyalty Programs
+## Get Org Loyalty Programs
 
 > Sample Request
 
@@ -947,24 +947,80 @@ https://us.api.capillarytech.com/v2/organization/programs
 
 ```json
 {
-   "data": [
-       {
-           "programId": 1124,
-           "programName": "DefaultLoyaltyProgram",
-           "pointsToCurrencyRatio": 1,
-           "default": true
-       },
-       {
-           "programId": 1254,
-           "programName": "SouthLoyaltyProgram",
-           "pointsToCurrencyRatio": 1,
-           "default": false
-       }
-   ],
-   "warnings": [
-   ],
-   "errors": [
-   ]
+    "data": [
+        {
+            "programId": 622,
+            "programName": "CLIENT_MERGEDefaultProgram",
+            "pointsToCurrencyRatio": 0.111,
+            "programDescription": "Default program for CLIENT_MERGE",
+            "partnerPrograms": [
+                {
+                    "partnerProgramId": 5,
+                    "partnerProgramName": "1stProgram",
+                    "partnerProgramDescription": "1stProgram",
+                    "partnerProgramTiers": [
+                        {
+                            "tierNumber": 1,
+                            "tierName": "1stSlab"
+                        },
+                        {
+                            "tierNumber": 2,
+                            "tierName": "2ndSlab"
+                        },
+                        {
+                            "tierNumber": 3,
+                            "tierName": "3rdSlab"
+                        }
+                    ],
+                    "pointsExchangeRate": 1.0,
+                    "partnerProgramType": "EXTERNAL",
+                    "membershipPeriodValue": 0,
+                    "tierBased": true
+                },
+                {
+                    "partnerProgramId": 48,
+                    "partnerProgramName": "Demo_Partner_Program",
+                    "partnerProgramDescription": "Demo program",
+                    "partnerProgramTiers": [
+                        {
+                            "tierNumber": 1,
+                            "tierName": "Silver"
+                        },
+                        {
+                            "tierNumber": 2,
+                            "tierName": "Gold"
+                        }
+                    ],
+                    "pointsExchangeRate": 1.0,
+                    "partnerProgramType": "EXTERNAL",
+                    "membershipPeriodValue": 0,
+                    "tierBased": true
+                },
+                {
+                    "partnerProgramId": 49,
+                    "partnerProgramName": "DemoSupplementaryProgram",
+                    "partnerProgramDescription": "Demo Supplementary program.",
+                    "pointsExchangeRate": 1.0,
+                    "partnerProgramType": "SUPPLEMENTARY",
+                    "membershipPeriodType": "DAYS",
+                    "membershipPeriodValue": 365,
+                    "tierBased": false
+                },
+                {
+                    "partnerProgramId": 11,
+                    "partnerProgramName": "NoTierPartnerProgram",
+                    "partnerProgramDescription": "NoTierPartnerProgram",
+                    "pointsExchangeRate": 1.0,
+                    "partnerProgramType": "EXTERNAL",
+                    "membershipPeriodValue": 0,
+                    "tierBased": false
+                }
+            ],
+            "default": true
+        }
+    ],
+    "warnings": [],
+    "errors": []
 }
 ```
 
@@ -982,6 +1038,22 @@ Batch Support | No
 
 ### Request URL
 `https://{host}/v2/organization/programs`
+
+
+### Response Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+programId | long | Unique ID of the loyalty program.
+programName | string | Name of the partner program.
+pointsToCurrencyRatio | double | Points to currency conversion ratio of the default program configured for the program.
+programDescription | string | Description of the program.
+pointsExchangeRate | double | Points to currency conversion ratio configured for the external program.
+partnerProgramType | enum | Type of the program - external, supplementary, or default.
+membershipPeriodValue | int | Membership validity of the program.
+tierBased | boolean | Whether the program is tier based (`true`) or membership based (`false`).
+
+
 
 
 
