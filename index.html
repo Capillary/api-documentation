@@ -6036,6 +6036,636 @@ Also, check the following configurations for maximum days allowed and minimum ti
 
 <aside class="notice">The parameter marked with * is mandatory.</aside>
 
+<h2 id="response-codes">Response Codes</h2>
+
+<p>Error Codes</p>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>500</td>
+<td>Unable to retrieve transaction.</td>
+</tr>
+<tr>
+<td>601</td>
+<td>Transaction failed. Transaction amount, quantity, rate, or discount is invalid.</td>
+</tr>
+<tr>
+<td>602</td>
+<td>Transaction number is invalid.</td>
+</tr>
+<tr>
+<td>603</td>
+<td>Points are already used (Deprecated).</td>
+</tr>
+<tr>
+<td>604</td>
+<td>Transaction number already exists.</td>
+</tr>
+<tr>
+<td>605</td>
+<td>Invalid transaction type passed. Only <code class="prettyprint">regular</code>, <code class="prettyprint">return</code>, <code class="prettyprint">not_interested</code>, and <code class="prettyprint">not_interested_return</code> are supported.</td>
+</tr>
+<tr>
+<td>606</td>
+<td>Customer identifier is not passed. Please enter customer’s mobile or email or external id to process.</td>
+</tr>
+<tr>
+<td>607</td>
+<td>No transaction id passed. Please pass the transaction id to process.</td>
+</tr>
+<tr>
+<td>608</td>
+<td>Unable to add transaction.</td>
+</tr>
+<tr>
+<td>609</td>
+<td>Update failed. Please verify all the fields.</td>
+</tr>
+<tr>
+<td>610</td>
+<td>Unable to register. Please verify all the fields.</td>
+</tr>
+<tr>
+<td>611</td>
+<td>Customer not found.</td>
+</tr>
+<tr>
+<td>614</td>
+<td>Transaction is already cancelled.</td>
+</tr>
+<tr>
+<td>615</td>
+<td>Transaction details are not passed.</td>
+</tr>
+<tr>
+<td>616</td>
+<td>Item code already exists.</td>
+</tr>
+<tr>
+<td>617</td>
+<td>Invalid attribute for the item.</td>
+</tr>
+<tr>
+<td>618</td>
+<td>Customer is marked as fraud.</td>
+</tr>
+<tr>
+<td>619</td>
+<td>Transaction id is not provided.</td>
+</tr>
+<tr>
+<td>620</td>
+<td>Transaction id is invalid.</td>
+</tr>
+<tr>
+<td>621</td>
+<td>Transaction date is invalid. Transaction date should be within the accepted past or future date range limit.</td>
+</tr>
+<tr>
+<td>622</td>
+<td>Unable to add line-item.</td>
+</tr>
+<tr>
+<td>623</td>
+<td>Unable to trigger other related events for the transaction.</td>
+</tr>
+<tr>
+<td>624</td>
+<td>Unable to process return-transaction. You can make a return only after adding a transaction.</td>
+</tr>
+<tr>
+<td>625</td>
+<td>Transaction number does not exist.</td>
+</tr>
+<tr>
+<td>626</td>
+<td>Unable to return transaction. The quantity of returned items are more than purchased items.</td>
+</tr>
+<tr>
+<td>627</td>
+<td>Quantity cannot be negative.</td>
+</tr>
+<tr>
+<td>628</td>
+<td>Invalid return transaction type.</td>
+</tr>
+<tr>
+<td>629</td>
+<td>The return quantity of the item is more than available quantity.</td>
+</tr>
+<tr>
+<td>630</td>
+<td>The return amount is more than the transaction/line-item amount.</td>
+</tr>
+<tr>
+<td>631</td>
+<td>Transaction amount cannot be negative.</td>
+</tr>
+<tr>
+<td>632</td>
+<td>Cannot return the transaction with return type LINE_ITEM because the type AMOUNT has already been used for returning the same transaction.</td>
+</tr>
+<tr>
+<td>633</td>
+<td>The entire transaction is already returned.</td>
+</tr>
+<tr>
+<td>634</td>
+<td>This transaction is already returned.</td>
+</tr>
+<tr>
+<td>635</td>
+<td>Cannot return the transaction with the return type AMOUNT because the type LINE_ITEM has been used for returning the same transaction.</td>
+</tr>
+<tr>
+<td>636</td>
+<td>The transaction is already returned with the return type as LINE_ITEM. You can process return for other items only with return type LINE_ITEM.</td>
+</tr>
+<tr>
+<td>637</td>
+<td>Unable to revert points issued to the customer (for return transaction). Please try again later.</td>
+</tr>
+<tr>
+<td>638</td>
+<td>Unable to return transaction. The transaction is already returned with type LINE_ITEM. Hence, you cannot use the type AMOUNT for the same transaction.</td>
+</tr>
+<tr>
+<td>639</td>
+<td>Unable to return full transaction. A part of the transaction or complete transaction is already returned.</td>
+</tr>
+<tr>
+<td>640</td>
+<td>Points or coupons are not redeemed for this transaction.</td>
+</tr>
+<tr>
+<td>641</td>
+<td>No customer found.</td>
+</tr>
+<tr>
+<td>642</td>
+<td>Redemption failed. An error occurred in points/coupon redemption.</td>
+</tr>
+<tr>
+<td>643</td>
+<td>Invalid transaction. The transaction date exceeds the accepted future date limit.</td>
+</tr>
+<tr>
+<td>644</td>
+<td>Invalid transaction. The transaction date cannot be less than the accepted past date limit.</td>
+</tr>
+<tr>
+<td>645</td>
+<td>Transaction addition failed for not interested.</td>
+</tr>
+<tr>
+<td>646</td>
+<td>Customer registration failed. The email id is invalid.</td>
+</tr>
+<tr>
+<td>647</td>
+<td>Customer registration failed. Email id is already assigned to another customer.</td>
+</tr>
+<tr>
+<td>648</td>
+<td>Customer registration failed. Mobile number is already assigned to another customer.</td>
+</tr>
+<tr>
+<td>649</td>
+<td>Customer registration failed. Mobile number is invalid.</td>
+</tr>
+<tr>
+<td>650</td>
+<td>Customer registration failed. Mobile number is not accepted as a unique identifier.</td>
+</tr>
+<tr>
+<td>651</td>
+<td>Customer registration failed. Mobile number is required for registration.</td>
+</tr>
+<tr>
+<td>652</td>
+<td>Customer registration failed. Mobile number/email id/external id is invalid.</td>
+</tr>
+<tr>
+<td>653</td>
+<td>Customer registration failed. External id is already assigned to another customer.</td>
+</tr>
+<tr>
+<td>654</td>
+<td>Customer registration failed. External id is not accepted as a unique identifier.</td>
+</tr>
+<tr>
+<td>655</td>
+<td>Customer registration failed. Customer is not registered in loyalty program.</td>
+</tr>
+<tr>
+<td>656</td>
+<td>No customer found.</td>
+</tr>
+<tr>
+<td>657</td>
+<td>Customer registration failed. Registration in EUP failed.</td>
+</tr>
+<tr>
+<td>658</td>
+<td>Customer registration failed. Only email id is not sufficient for registration.</td>
+</tr>
+<tr>
+<td>659</td>
+<td>Customer registration failed. Please enter email id to register.</td>
+</tr>
+<tr>
+<td>660</td>
+<td>Customer registration failed. Registration date exceeds the accepted past or future date limit.</td>
+</tr>
+<tr>
+<td>661</td>
+<td>Amount of the line-item amount cannot be negative.</td>
+</tr>
+<tr>
+<td>662</td>
+<td>Value of a line cannot be negative.</td>
+</tr>
+<tr>
+<td>663</td>
+<td>Rate of a line-item cannot be negative</td>
+</tr>
+<tr>
+<td>664</td>
+<td>Discount of a line-item cannot be negative.</td>
+</tr>
+<tr>
+<td>665</td>
+<td>Gross amount of the transaction cannot be negative.</td>
+</tr>
+<tr>
+<td>666</td>
+<td>Discount cannot be negative.</td>
+</tr>
+<tr>
+<td>667</td>
+<td>Unable to find the transaction ID for this customer.</td>
+</tr>
+<tr>
+<td>668</td>
+<td>Unable to find the transaction number for this customer.</td>
+</tr>
+<tr>
+<td>669</td>
+<td>Unable to update custom field.</td>
+</tr>
+<tr>
+<td>670</td>
+<td>Transaction id/number is not provided.</td>
+</tr>
+<tr>
+<td>671</td>
+<td>Invalid Store or TILL code.</td>
+</tr>
+<tr>
+<td>672</td>
+<td>Batch limit exceeded.</td>
+</tr>
+<tr>
+<td>673</td>
+<td>Returning of transactions is not allowed.</td>
+</tr>
+<tr>
+<td>674</td>
+<td>Returning of line item is not allowed.</td>
+</tr>
+<tr>
+<td>675</td>
+<td>Returning of transaction amount is not allowed.</td>
+</tr>
+<tr>
+<td>676</td>
+<td>Returning of a complete transaction amount is not allowed.</td>
+</tr>
+<tr>
+<td>677</td>
+<td>Unable to process. Please enter a transaction number for returning a transaction.</td>
+</tr>
+<tr>
+<td>678</td>
+<td>Amount of returned item is more than purchased item.</td>
+</tr>
+<tr>
+<td>679</td>
+<td>Line-item(s) to be returned is not specified.</td>
+</tr>
+<tr>
+<td>680</td>
+<td>No transactions of the specific customer were found.</td>
+</tr>
+<tr>
+<td>681</td>
+<td>Transactions are blocked for this customer.</td>
+</tr>
+<tr>
+<td>682</td>
+<td>Currency conversion is disabled for the org.</td>
+</tr>
+<tr>
+<td>683</td>
+<td>Failed to call new bill event EMF.</td>
+</tr>
+<tr>
+<td>684</td>
+<td>Failed EMF new bill DVS event.</td>
+</tr>
+<tr>
+<td>685</td>
+<td>Field length too long.</td>
+</tr>
+<tr>
+<td>686</td>
+<td>Unable to add transaction.</td>
+</tr>
+<tr>
+<td>687</td>
+<td>Points activities are queued and will be updated later.</td>
+</tr>
+<tr>
+<td>688</td>
+<td>No matching line-item found for return.</td>
+</tr>
+<tr>
+<td>689</td>
+<td>Points processing failed</td>
+</tr>
+<tr>
+<td>690</td>
+<td>Points processing failed</td>
+</tr>
+<tr>
+<td>691</td>
+<td>Points processing failed</td>
+</tr>
+<tr>
+<td>692</td>
+<td>Points processing failed</td>
+</tr>
+<tr>
+<td>693</td>
+<td>Points processing failed</td>
+</tr>
+<tr>
+<td>694</td>
+<td>Points processing failed</td>
+</tr>
+<tr>
+<td>695</td>
+<td>Invalid configuration. Please report to the Capillary Support.</td>
+</tr>
+<tr>
+<td>696</td>
+<td>Points processing failed</td>
+</tr>
+<tr>
+<td>697</td>
+<td>Points processing failed</td>
+</tr>
+<tr>
+<td>698</td>
+<td>Points processing failed.</td>
+</tr>
+<tr>
+<td>699</td>
+<td>Invalid configuration. Please report to the Capillary Support.</td>
+</tr>
+<tr>
+<td>710</td>
+<td>Return bill event failed from EMF.</td>
+</tr>
+<tr>
+<td>820</td>
+<td>Current operation is not allowed. The customer is marked as fraud.</td>
+</tr>
+<tr>
+<td>1101</td>
+<td>Invalid loyalty program ID passed.</td>
+</tr>
+<tr>
+<td>1102</td>
+<td>Invalid currency conversion ratio passed.</td>
+</tr>
+<tr>
+<td>1103</td>
+<td>Invalid shipping store code passed.</td>
+</tr>
+<tr>
+<td>1623</td>
+<td>Transaction type is invalid.</td>
+</tr>
+<tr>
+<td>1624</td>
+<td>Insufficient parameters passed to fetch transaction.</td>
+</tr>
+<tr>
+<td>1625</td>
+<td>Target type is not specified.</td>
+</tr>
+<tr>
+<td>1626</td>
+<td>The requested transaction type cannot be changed.</td>
+</tr>
+<tr>
+<td>1627</td>
+<td>The transaction is already marked as retro.</td>
+</tr>
+<tr>
+<td>1628</td>
+<td>Transaction id is invalid.</td>
+</tr>
+<tr>
+<td>1629</td>
+<td>Client signature is required to perform this action.</td>
+</tr>
+<tr>
+<td>1631</td>
+<td>Retro transaction is not enabled for your organization.</td>
+</tr>
+<tr>
+<td>1632</td>
+<td>Registration date is too older than the transaction date. See the retro configuration set for your organization.</td>
+</tr>
+<tr>
+<td>1633</td>
+<td>The duration between registration and transaction mapping exceeds the limit set.</td>
+</tr>
+<tr>
+<td>1634</td>
+<td>Return type is invalid.</td>
+</tr>
+<tr>
+<td>1635</td>
+<td>Please pass line-items that need to be returned.</td>
+</tr>
+<tr>
+<td>1636</td>
+<td>Transaction status is invalid.</td>
+</tr>
+<tr>
+<td>9601</td>
+<td>Failed to add line-item.</td>
+</tr>
+<tr>
+<td>9602</td>
+<td>Failed to add credit notes.</td>
+</tr>
+<tr>
+<td>9603</td>
+<td>Failed to add payment more details (tender).</td>
+</tr>
+<tr>
+<td>9604</td>
+<td>Failed to add custom fields</td>
+</tr>
+<tr>
+<td>9605</td>
+<td>Base currency is not set for the org.</td>
+</tr>
+<tr>
+<td>9606</td>
+<td>Currency not passed for the transaction.</td>
+</tr>
+<tr>
+<td>9607</td>
+<td>Payment mode (tender) not found.</td>
+</tr>
+<tr>
+<td>9608</td>
+<td>Line-item with the item code {x} passed is marked as outlier.</td>
+</tr>
+<tr>
+<td>9609</td>
+<td>Invalid payment attribute passed.</td>
+</tr>
+<tr>
+<td>9610</td>
+<td>New bill event failed. Points are not awarded.</td>
+</tr>
+<tr>
+<td>9611</td>
+<td>Transaction is marked as outlier.</td>
+</tr>
+<tr>
+<td>9612</td>
+<td>Unable to save credit notes.</td>
+</tr>
+<tr>
+<td>9613</td>
+<td>Invalid payment attribute.</td>
+</tr>
+<tr>
+<td>9614</td>
+<td>Multiple loyalty bills found to be returned.</td>
+</tr>
+<tr>
+<td>9615</td>
+<td>Validity (in days) for return policy is not defined.</td>
+</tr>
+<tr>
+<td>9616</td>
+<td>Single loyalty bill found. Allowing regular return.</td>
+</tr>
+</tbody></table>
+
+<h3 id="warnings">Warnings :</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>687</td>
+<td>Points activities are queued and will be updated later.</td>
+</tr>
+<tr>
+<td>688</td>
+<td>No line item found matching for return.</td>
+</tr>
+<tr>
+<td>669</td>
+<td>Invalid custom field.</td>
+</tr>
+<tr>
+<td>1105</td>
+<td>Returnable days should be greater than -1.</td>
+</tr>
+<tr>
+<td>9601</td>
+<td>Unable to add line item.</td>
+</tr>
+<tr>
+<td>9602</td>
+<td>Unable to add credit note.</td>
+</tr>
+<tr>
+<td>9603</td>
+<td>Unable to add payment mode details.</td>
+</tr>
+<tr>
+<td>9604</td>
+<td>Unable to add custom fields.</td>
+</tr>
+<tr>
+<td>9605</td>
+<td>Base currency is not set for the org.</td>
+</tr>
+<tr>
+<td>9606</td>
+<td>Transaction currency is not passed.</td>
+</tr>
+<tr>
+<td>9607</td>
+<td>Payment mode (tender) is not found.</td>
+</tr>
+<tr>
+<td>9608</td>
+<td>Line item with item code {x} is marked as outlier.</td>
+</tr>
+<tr>
+<td>9609</td>
+<td>Invalid payment attribute value.</td>
+</tr>
+<tr>
+<td>9610</td>
+<td>New bill event is failed. Points are not awarded.</td>
+</tr>
+<tr>
+<td>9611</td>
+<td>Transaction is marked as outlier.</td>
+</tr>
+<tr>
+<td>9612</td>
+<td>Unable to save the credit notes</td>
+</tr>
+<tr>
+<td>9613</td>
+<td>Invalid payment attribute.</td>
+</tr>
+<tr>
+<td>9614</td>
+<td>Multiple loyalty transactions found to be returned.</td>
+</tr>
+<tr>
+<td>9615</td>
+<td>Return policy days are not defined.</td>
+</tr>
+<tr>
+<td>9616</td>
+<td>Single loyalty transaction found. Allowing regular return.</td>
+</tr>
+</tbody></table>
+
           <h1 id="customer-labels">Customer Labels</h1>
 
 <p>Customer labels are used for tagging customers based on their activities or loyalty histories. Tags are used in loyalty, campaigns and Essential Insights. You can add new labels and tag labels to customers using APIs of organization and customers mentioned here.</p>
