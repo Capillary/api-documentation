@@ -238,17 +238,36 @@
 
 <h3 id="process-1-basic-authentication">Process 1: Basic Authentication</h3>
 
-<p>Authorization Header is used for validating authentication credentials. The Authorization Header is constructed as shown below:</p>
+<p>You can either pass the <code class="prettyprint">Authorization</code> Header or use Till ID and password for authentication through Basic Auth. </p>
+
+<h4 id="authorization-header">Authorization Header</h4>
+
+<p>Construct the authorization header as mentioned below - pass the Base64 decoded form of username and md5 formatted password.</p>
 
 <p><code class="prettyprint">Authorization: Basic &lt;Base64 encoded (username: md5(password)&gt;</code></p>
 
-<p>In the Authorization Header pass the Base64 decoded form of username and md5 formatted password.</p>
+<p>For example, if the username or TILL ID is <code class="prettyprint">store.server123</code> and the password is &lsquo;server123&rsquo;, md5 of the password</p>
 
-<p>For example, if the username is “store.server” and the password is &lsquo;server123&rsquo;, md5 of the password is 8a16a6b70505eb1f1ff7cdc0cd5559a7</p>
+<p>For example, if the username is <code class="prettyprint">store.server</code> and the password is &#39;server123&rsquo;, </p>
 
-<p>Encode the username and md5 password to Base64, then the header is formed as shown below</p>
+<ul>
+<li>md5 encryption of the password (server123) is <code class="prettyprint">8a16a6b70505eb1f1ff7cdc0cd5559a7</code>.</li>
+<li>Base 64 of the encrypted password is <code class="prettyprint">c3RvcmUuc2VydmVyOjhhMTZhNmI3MDUwNWViMWYxZmY3Y2RjMGNkNTU1OWE3</code>.</li>
+</ul>
+
+<p>So the Authentication Header is </p>
 
 <p><code class="prettyprint">Authorization: Basic c3RvcmUuc2VydmVyOjhhMTZhNmI3MDUwNWViMWYxZmY3Y2RjMGNkNTU1OWE3</code></p>
+
+<h4 id="username-amp-password">Username &amp; Password</h4>
+
+<p>To use username and password for authentication, pass TILL ID as username and md5 hash encrypted password.</p>
+
+<p>Consider the preceding example:
+username: store.server
+Password: md5 hash (server123) which is 8a16a6b70505eb1f1ff7cdc0cd5559a7</p>
+
+<aside class="notice">You can create TILL credentials in Organization Setup. To know more see <a href="https://support.capillarytech.com/a/solutions/articles/4000028057?lang=en&portalId=44632#Add-Till" target="_blank">Add TILL</a> </aside>
 
 <p>Now, v2 API supports submitting requests on behalf of other TILLs (active TILLs). In db the combination of attribution_lookup and lookup_code are mapped to TILL ids and org ids. When a new POST request is placed with the combination of a lookup name and lookup code, the data will be inserted in the db on behalf of the TILL that is mapped to the specified combination. </p>
 
@@ -6512,7 +6531,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </tr>
 <tr>
 <td>8015</td>
-<td>Customer not found for the given identifiers.</td>
+<td>No customer found for the given identifiers.</td>
 </tr>
 <tr>
 <td>8084</td>
@@ -9122,7 +9141,9 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 
 <aside class="notice">All parameters marked by * are mandatory. </aside>
 
-<h2 id="error-codes">Error Codes</h2>
+<h2 id="response-codes">Response Codes</h2>
+
+<h3 id="error-codes">Error Codes</h3>
 
 <table><thead>
 <tr>
@@ -9199,6 +9220,22 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 <td>Points you are trying to redeem are less than the minimum points allowed.</td>
 </tr>
 <tr>
+<td>872</td>
+<td>Unable to fetch points-to-currency conversion ratio.</td>
+</tr>
+<tr>
+<td>873</td>
+<td>Invalid transaction number passed.</td>
+</tr>
+<tr>
+<td>876</td>
+<td>Points are redeemable but unable to generate OTP.</td>
+</tr>
+<tr>
+<td>877</td>
+<td>Unable to allocate points.</td>
+</tr>
+<tr>
 <td>886</td>
 <td>Unable to process points. Please try again later.</td>
 </tr>
@@ -9227,8 +9264,12 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 <td>Invalid configuration. Please report to capillary support.</td>
 </tr>
 <tr>
+<td>900</td>
+<td>Pending events present in queue for this user. Queue size-{0},failed event -{1},reason -{2},status code -{3}.</td>
+</tr>
+<tr>
 <td>901</td>
-<td>Invalid points or points redemption Id passed.</td>
+<td>Invalid points or points redemption ID.</td>
 </tr>
 <tr>
 <td>902</td>
@@ -9241,6 +9282,10 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 <tr>
 <td>904</td>
 <td>Invalid customer details passed.</td>
+</tr>
+<tr>
+<td>905</td>
+<td>points redemption reversal is disabled for the org.</td>
 </tr>
 </tbody></table>
 
