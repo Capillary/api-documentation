@@ -12604,12 +12604,66 @@ Attribute | Description
 &mdash;&mdash;&mdash; | &mdash;&mdash;&mdash;&ndash;
 password* | Specify your preferred new password</p>
 
+<h2 id="get-access-token">Get Access Token</h2>
+
+<p>Generates access token for a staff.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staff/accessToken
+
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"M7ZuIxtfYy7xwZUN2ZfgjNy78GF9vU1rPd4U3Lwh5EJJ33OTFMuTutnH5_4g-Qi-"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/staff/accessToken</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes (staff user&rsquo;s)</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>POST (No POST body required)</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/staff?username={username}</code></p>
+
 <h2 id="get-staff-details">Get Staff Details</h2>
 
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staff/users?username=timjames
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staff?username=timjames
 
 </code></pre>
 <blockquote>
@@ -12644,7 +12698,7 @@ password* | Specify your preferred new password</p>
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/staff/users?username={username}</code></td>
+<td><code class="prettyprint">/staff?username={username}</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -12652,7 +12706,7 @@ password* | Specify your preferred new password</p>
 </tr>
 <tr>
 <td>Authentication</td>
-<td>Yes</td>
+<td>Yes (admin accessToken)</td>
 </tr>
 <tr>
 <td>Response Formats</td>
@@ -12670,7 +12724,25 @@ password* | Specify your preferred new password</p>
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/staff/users?username={username}</code></p>
+<p><code class="prettyprint">https://{host}/v2/staff?username={username}</code></p>
+
+<h3 id="additional-headers-required">Additional Headers Required</h3>
+
+<table><thead>
+<tr>
+<th>Header</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>X-CAP-API-ACCESS-TOKEN*</td>
+<td>Unique access token of the org&rsquo;s admin.</td>
+</tr>
+<tr>
+<td>X-CAP-API-AUTH-ORG-ID*</td>
+<td>Unique ID of the org in which the user is available.</td>
+</tr>
+</tbody></table>
 
 <h3 id="request-parameter">Request Parameter</h3>
 
@@ -12681,8 +12753,8 @@ password* | Specify your preferred new password</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>user identifier*</td>
-<td>Pass any one identifier (username, mobile, email or the unique id generated for the user (refId)) of the user that you want to fetch in the format <identifier>=<value>. <strong>Identifiers</strong>: username, mobile, email, refId</td>
+<td>identifier*</td>
+<td>Pass any one identifier (username, mobile, email or the unique id generated for the user (refId)) of the user that you want to fetch in the format <identifier>=<value>. <strong>Identifiers</strong>: username, mobile, email, refId.</td>
 </tr>
 </tbody></table>
 
@@ -12700,7 +12772,7 @@ password* | Specify your preferred new password</p>
 </tr>
 </tbody></table>
 
-<h2 id="edit-staff-user-details">Edit Staff User Details</h2>
+<h2 id="edit-staff-details">Edit Staff Details</h2>
 
 <blockquote>
 <p>Sample Request</p>
