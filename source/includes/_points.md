@@ -449,7 +449,9 @@ code* | string | Pass the OTP received by the `fromCustomer` for the current poi
 
 
 
-## Error Codes
+## Response Codes
+
+### Error Codes
 
 Code | Description
 ---- | -----------
@@ -470,6 +472,10 @@ Code | Description
 818 | Current points are less than points requested for redemption.
 819 | Points to redeem exceeds the threshold limit (maximum points that can be redeemed in a transaction).
 821 | Points you are trying to redeem are less than the minimum points allowed.
+872 | Unable to fetch points-to-currency conversion ratio.
+873 | Invalid transaction number passed.
+876 | Points are redeemable but unable to generate OTP.
+877 | Unable to allocate points.
 886 | Unable to process points. Please try again later.
 887 | Unable to process points. Please try again later.
 888 | Invalid configuration. Please report to capillary support.
@@ -477,7 +483,9 @@ Code | Description
 896 | Unable to process points. Please try again later.
 898 | Unable to process points. Please try again later.
 899 | Invalid configuration. Please report to capillary support.
-901 | Invalid points or points redemption Id passed.
+900 | Pending events present in queue for this user. Queue size-{0},failed event -{1},reason -{2},status code -{3}.
+901 | Invalid points or points redemption ID.
 902	| Redemption ID does not exist.
 903 | Unable to redeem points.
 904 | Invalid customer details passed.
+905 | points redemption reversal is disabled for the org.

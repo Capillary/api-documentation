@@ -129,17 +129,38 @@ Can be used for POS integrations where API requests come to Capillary server dir
 
 
 ### Process 1: Basic Authentication
-Authorization Header is used for validating authentication credentials. The Authorization Header is constructed as shown below:
+You can either pass the `Authorization` Header or use Till ID and password for authentication through Basic Auth. 
+
+#### Authorization Header
+
+Construct the authorization header as mentioned below - pass the Base64 decoded form of username and md5 formatted password.
+
 
 `Authorization: Basic <Base64 encoded (username: md5(password)>`
 
-In the Authorization Header pass the Base64 decoded form of username and md5 formatted password.
+For example, if the username or TILL ID is `store.server123` and the password is 'server123', md5 of the password
 
-For example, if the username is “store.server” and the password is 'server123', md5 of the password is 8a16a6b70505eb1f1ff7cdc0cd5559a7
 
-Encode the username and md5 password to Base64, then the header is formed as shown below
+
+
+For example, if the username is `store.server` and the password is 'server123', 
+
+* md5 encryption of the password (server123) is `8a16a6b70505eb1f1ff7cdc0cd5559a7`.
+* Base 64 of the encrypted password is `c3RvcmUuc2VydmVyOjhhMTZhNmI3MDUwNWViMWYxZmY3Y2RjMGNkNTU1OWE3`.
+
+So the Authentication Header is 
 
 `Authorization: Basic c3RvcmUuc2VydmVyOjhhMTZhNmI3MDUwNWViMWYxZmY3Y2RjMGNkNTU1OWE3`
+
+#### Username & Password
+
+To use username and password for authentication, pass TILL ID as username and md5 hash encrypted password.
+
+Consider the preceding example:
+username: store.server
+Password: md5 hash (server123) which is 8a16a6b70505eb1f1ff7cdc0cd5559a7
+
+<aside class="notice">You can create TILL credentials in Organization Setup. To know more see <a href="https://support.capillarytech.com/a/solutions/articles/4000028057?lang=en&portalId=44632#Add-Till" target="_blank">Add TILL</a> </aside>
 
 Now, v2 API supports submitting requests on behalf of other TILLs (active TILLs). In db the combination of attribution_lookup and lookup_code are mapped to TILL ids and org ids. When a new POST request is placed with the combination of a lookup name and lookup code, the data will be inserted in the db on behalf of the TILL that is mapped to the specified combination. 
 

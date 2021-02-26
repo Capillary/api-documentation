@@ -52,7 +52,6 @@ Lets admin users create a staff account for your organization.
 URI | `v2/staff`
 Rate Limited? | Yes
 Authentication | Yes
-Response Formats | JSON
 HTTP Methods | POST
 Batch Support | No
 
@@ -137,7 +136,6 @@ This API issues OTP to validate mobile number/email id. This is also used to aut
 URI | `v2/staff/sendOtp?otp_type="<otp type>"`
 Rate Limited? | Yes
 Authentication | Yes
-Response Formats | JSON
 HTTP Methods | POST
 Batch Support | No
 
@@ -222,7 +220,6 @@ Lets admin users validate OTP sent to the staff's registered mobile number or em
 URI | `/staff/validate`
 Rate Limited? | Yes
 Authentication | Yes
-Response Formats | JSON
 HTTP Methods | POST
 Batch Support | No
 
@@ -320,7 +317,6 @@ Info | Value
 URI | `/staff/changeidentifier/sendotp`, `/staff/changeidentifier/`
 Rate Limited? | Yes
 Authentication | Yes
-Response Formats | JSON
 HTTP Methods | POST
 Batch Support | No
 
@@ -396,7 +392,6 @@ Info | Value
 URI | `/staff/transfer`
 Rate Limited? | Yes
 Authentication | Yes
-Response Formats | JSON
 HTTP Methods | POST
 Batch Support | No
 
@@ -508,7 +503,6 @@ Info | Value
 URI | `/staff/getUsersList?{requestParam}={paramValues}`
 Rate Limited? | Yes
 Authentication | Yes
-Response Formats | JSON
 HTTP Methods | GET
 Batch Support | No
 
@@ -574,7 +568,6 @@ Info | Value
 URI | `/staff/delete`
 Rate Limited? | Yes
 Authentication | Yes
-Response Formats | JSON
 HTTP Methods | POST
 Batch Support | No
 
@@ -602,43 +595,7 @@ Code | Description
 1009 |  Invalid identifier details passed 
 
 
-## Get Access Token
-> Sample Request
 
-```html
-https://us.api.capillarytech.com/v2/staff/accessToken
-```
-
-> Sample Response
-
-```json
-{
-   "entity":"6F0-ZTOYwp4P7b6ngXx5UkDDYXm2J82mP5xxYDQ_BCV_epool6uOif_xQ7IkMNhO",
-   "warnings":[
-
-   ],
-   "errors":[
-
-   ],
-   "success":true
-}
-```
-
-Generates access token of the current staff. Use the staff login credentials to authenticate. 
-
-### Resource Information
-Info | Value
----- | ----- 
-URI | `/staff/accessToken`
-Rate Limited? | Yes
-Authentication | Yes
-Response Formats | JSON
-HTTP Methods | POST
-Batch Support | No
-
-
-### Request URL
-`https://{host}/v2/staff/accessToken`
 
 
 
@@ -686,7 +643,6 @@ Lets you change the password of the staff using the associated Auth or AccessTok
 URI | `/staff/changePassword`
 Rate Limited? | Yes
 Authentication | Yes
-Response Formats | JSON
 HTTP Methods | POST
 Batch Support | No
 
@@ -699,10 +655,52 @@ Batch Support | No
 `X-CAP-API-ACCESS-TOKEN` : The access token of the staff user
 
 
-Request Attribute
+### Request Attribute
+
 Attribute | Description
 --------- | -----------
 password* | Specify your preferred new password
+
+
+
+## Get Access Token
+
+Generates access token for a staff.
+
+> Sample Request
+
+```html
+https://us.api.capillarytech.com/v2/staff/accessToken
+
+```
+
+> Sample Response
+
+```json
+{
+    "entity": "M7ZuIxtfYy7xwZUN2ZfgjNy78GF9vU1rPd4U3Lwh5EJJ33OTFMuTutnH5_4g-Qi-",
+    "warnings": [],
+    "errors": [],
+    "success": true
+}
+``` 
+
+### Resource Information
+|  | |
+---|---| 
+URI | `/staff/accessToken`
+Rate Limited? | Yes
+Authentication | Yes (staff user's)
+HTTP Methods | POST (No POST body required)
+Batch Support | No
+
+
+### Request URL
+`https://{host}/v2/staff/accessToken`
+
+
+
+
 
 
 ## Get Staff Details 
@@ -710,7 +708,7 @@ password* | Specify your preferred new password
 > Sample Request
 
 ```html
-https://us.api.capillarytech.com/v2/staff/users?username=timjames
+https://us.api.capillarytech.com/v2/staff?username=timjames
 
 ```
 
@@ -740,21 +738,29 @@ Retrieves the details of a specific staff.
 ### Resource Information
 |  | |
 ---|---| 
-URI | `/staff/users?username={username}`
+URI | `/staff?username={username}`
 Rate Limited? | Yes
-Authentication | Yes
-Response Formats | JSON
+Authentication | Yes (admin accessToken)
 HTTP Methods | GET
 Batch Support | No
 
 
 ### Request URL
-`https://{host}/v2/staff/users?username={username}`
+`https://{host}/v2/staff?username={username}`
+
+### Additional Headers Required
+
+Header | Description
+------ | -----------
+X-CAP-API-ACCESS-TOKEN* | Unique access token of the org's admin.
+X-CAP-API-AUTH-ORG-ID* |  Unique ID of the org in which the user is available.
+
+
 
 ### Request Parameter
 Parameter | Description
 --------- | -----------
-user identifier* | Pass any one identifier (username, mobile, email or the unique id generated for the user (refId)) of the user that you want to fetch in the format <identifier>=<value>. **Identifiers**: username, mobile, email, refId
+identifier* | Pass any one identifier (username, mobile, email or the unique id generated for the user (refId)) of the user that you want to fetch in the format <identifier>=<value>. **Identifiers**: username, mobile, email, refId.
 
 
 ### Error Code
@@ -764,7 +770,7 @@ Code | Description
 1009 | Invalid identifier details passed
 
 
-## Edit Staff User Details
+## Edit Staff Details
 
 > Sample Request
 
@@ -831,7 +837,6 @@ Updates profile information of the respective staff user. You can use direct log
 URI | `/staff/edit`
 Rate Limited? | Yes
 Authentication | Yes
-Response Formats | JSON
 HTTP Methods | POST
 Batch Support | No
 
@@ -841,7 +846,7 @@ Batch Support | No
 ### Request Attributes
 Attribute | Description
 -------- | -----------
-id/username/mobile/email | Pass any of the staff identifier. Id is the unique id generated for the staff user
+id/username/mobile/email* | Pass any of the staff identifier. Id is the unique id generated for the staff user
 firstname | First name of the user
 lastname | Last name of the user
 title | Role or Designation of the user
@@ -883,7 +888,6 @@ Logs out the current staff user's access token (only for token based authenticat
 URI | `/staff/logout`
 Rate Limited? | Yes
 Authentication | Yes
-Response Formats | JSON
 HTTP Methods | GET
 Batch Support | No
 

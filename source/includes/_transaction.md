@@ -1299,3 +1299,173 @@ type* | enum | Type of transaction to fetch. Value: REGULAR, RETURN.
 <aside class="notice">The parameter marked with * is mandatory.</aside>
 
 
+## Response Codes
+
+### Error Codes
+
+Code | Description
+---- | ----------
+500 | Unable to retrieve transaction.
+601 | Transaction failed. Transaction amount, quantity, rate, or discount is invalid.
+602 | Transaction number is invalid.
+603 | Points are already used (Deprecated).
+604 | Transaction number already exists.
+605 | Invalid transaction type passed. Only `regular`, `return`, `not_interested`, and `not_interested_return` are supported.
+606 | Customer identifier is not passed. Please enter customer’s mobile or email or external id to process.
+607 | No transaction id passed. Please pass the transaction id to process.
+608 | Unable to add transaction.
+609 | Update failed. Please verify all the fields.
+610 | Unable to register. Please verify all the fields.
+611 | Customer not found.
+614 | Transaction is already cancelled.
+615 | Transaction details are not passed.
+616 | Item code already exists.
+617 | Invalid attribute for the item.
+618 | Customer is marked as fraud.
+619 | Transaction id is not provided.
+620 | Transaction id is invalid.
+621 | Transaction date is invalid. Transaction date should be within the accepted past or future date range limit.
+622 | Unable to add line-item.
+623 | Unable to trigger other related events for the transaction.
+624 | Unable to process return-transaction. You can make a return only after adding a transaction.
+625 | Transaction number does not exist.
+626 | Unable to return transaction. The quantity of returned items are more than purchased items.
+627 | Quantity cannot be negative.
+628 | Invalid return transaction type.
+629 | The return quantity of the item is more than available quantity.
+630 | The return amount is more than the transaction/line-item amount.
+631 | Transaction amount cannot be negative.
+632 | Cannot return the transaction with return type LINE_ITEM because the type AMOUNT has already been used for returning the same transaction.
+633 | The entire transaction is already returned.
+634 | This transaction is already returned.
+635 | Cannot return the transaction with the return type AMOUNT because the type LINE_ITEM has been used for returning the same transaction.
+636 | The transaction is already returned with the return type as LINE_ITEM. You can process return for other items only with return type LINE_ITEM.
+637 | Unable to revert points issued to the customer (for return transaction). Please try again later.
+638 | Unable to return transaction. The transaction is already returned with type LINE_ITEM. Hence, you cannot use the type AMOUNT for the same transaction.
+639 | Unable to return full transaction. A part of the transaction or complete transaction is already returned.
+640 | Points or coupons are not redeemed for this transaction.
+641 | No customer found.
+642 | Redemption failed. An error occurred in points/coupon redemption.
+643 | Invalid transaction. The transaction date exceeds the accepted future date limit.
+644 | Invalid transaction. The transaction date cannot be less than the accepted past date limit.
+645 | Transaction addition failed for not interested.
+646 | Customer registration failed. The email id is invalid.
+647 | Customer registration failed. Email id is already assigned to another customer.
+648 | Customer registration failed. Mobile number is already assigned to another customer.
+649 | Customer registration failed. Mobile number is invalid.
+650 | Customer registration failed. Mobile number is not accepted as a unique identifier.
+651 | Customer registration failed. Mobile number is required for registration.
+652 | Customer registration failed. Mobile number/email id/external id is invalid.
+653 | Customer registration failed. External id is already assigned to another customer.
+654 | Customer registration failed. External id is not accepted as a unique identifier.
+655 | Customer registration failed. Customer is not registered in loyalty program.
+656 | No customer found.
+657 | Customer registration failed. Registration in EUP failed.
+658 | Customer registration failed. Only email id is not sufficient for registration.
+659 | Customer registration failed. Please enter email id to register.
+660 | Customer registration failed. Registration date exceeds the accepted past or future date limit.
+661 | Amount of the line-item amount cannot be negative.
+662 | Value of a line cannot be negative.
+663 | Rate of a line-item cannot be negative
+664 | Discount of a line-item cannot be negative.
+665 | Gross amount of the transaction cannot be negative.
+666 | Discount cannot be negative.
+667 | Unable to find the transaction ID for this customer.
+668 | Unable to find the transaction number for this customer.
+669 | Unable to update custom field.
+670 | Transaction id/number is not provided.
+671 | Invalid Store or TILL code.
+672 | Batch limit exceeded.
+673 | Returning of transactions is not allowed.
+674 | Returning of line item is not allowed.
+675 | Returning of transaction amount is not allowed.
+676 | Returning of a complete transaction amount is not allowed.
+677 | Unable to process. Please enter a transaction number for returning a transaction.
+678 | Amount of returned item is more than purchased item.
+679 | Line-item(s) to be returned is not specified.
+680 | No transactions of the specific customer were found.
+681 | Transactions are blocked for this customer.
+682 | Currency conversion is disabled for the org.
+683 | Failed to call new bill event EMF.
+684 | Failed EMF new bill DVS event.
+685 | Field length too long.
+686 | Unable to add transaction.
+687 | Points activities are queued and will be updated later.
+688 | No matching line-item found for return.
+689 | Points processing failed
+690 | Points processing failed
+691 | Points processing failed
+692 | Points processing failed
+693 | Points processing failed
+694 | Points processing failed
+695 | Invalid configuration. Please report to the Capillary Support.
+696 | Points processing failed
+697 | Points processing failed
+698 | Points processing failed.
+699 | Invalid configuration. Please report to the Capillary Support.
+710 | Return bill event failed from EMF.
+820 | Current operation is not allowed. The customer is marked as fraud.
+1101 | Invalid loyalty program ID passed.
+1102 | Invalid currency conversion ratio passed.
+1103 | Invalid shipping store code passed.
+1623 | Transaction type is invalid.
+1624 | Insufficient parameters passed to fetch transaction.
+1625 | Target type is not specified.
+1626 | The requested transaction type cannot be changed.
+1627 | The transaction is already marked as retro.
+1628 | Transaction id is invalid.
+1629 | Client signature is required to perform this action.
+1631 | Retro transaction is not enabled for your organization.
+1632 | Registration date is too older than the transaction date. See the retro configuration set for your organization.
+1633 | The duration between registration and transaction mapping exceeds the limit set.
+1634 | Return type is invalid.
+1635 | Please pass line-items that need to be returned.
+1636 | Transaction status is invalid.
+8015 | No customer found for the given identifiers.
+8084 | Unable to send customer details.
+9601 | Failed to add line-item.
+9602 | Failed to add credit notes.
+9603 | Failed to add payment more details (tender).
+9604 | Failed to add custom fields
+9605 | Base currency is not set for the org.
+9606 | Currency not passed for the transaction.
+9607 | Payment mode (tender) not found.
+9608 | Line-item with the item code {x} passed is marked as outlier.
+9609 | Invalid payment attribute passed.
+9610 | New bill event failed. Points are not awarded.
+9611 | Transaction is marked as outlier.
+9612 | Unable to save credit notes.
+9613 | Invalid payment attribute.
+9614 | Multiple loyalty bills found to be returned.
+9615 | Validity (in days) for return policy is not defined.
+9616 | Single loyalty bill found. Allowing regular return.
+
+
+
+
+### Warnings
+
+Code | Description
+---- | -----------
+687 | Points activities are queued and will be updated later.
+688 | No line item found matching for return.
+669 | Invalid custom field.
+1105 | Returnable days should be greater than -1.
+9601 | Unable to add line item. 
+9602 | Unable to add credit note.
+9603 | Unable to add payment mode details.
+9604 | Unable to add custom fields.
+9605 | Base currency is not set for the org.
+9606 | Transaction currency is not passed.
+9607 | Payment mode (tender) is not found.
+9608 | Line item with item code {x} is marked as outlier. 
+9609 | Invalid payment attribute value.
+9610 | New bill event is failed. Points are not awarded.
+9611 | Transaction is marked as outlier.
+9612 | Unable to save the credit notes
+9613 | Invalid payment attribute.
+9614 | Multiple loyalty transactions found to be returned.
+9615 | Return policy days are not defined.
+9616 | Single loyalty transaction found. Allowing regular return.
+
+

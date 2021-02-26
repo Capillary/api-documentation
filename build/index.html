@@ -238,17 +238,36 @@
 
 <h3 id="process-1-basic-authentication">Process 1: Basic Authentication</h3>
 
-<p>Authorization Header is used for validating authentication credentials. The Authorization Header is constructed as shown below:</p>
+<p>You can either pass the <code class="prettyprint">Authorization</code> Header or use Till ID and password for authentication through Basic Auth. </p>
+
+<h4 id="authorization-header">Authorization Header</h4>
+
+<p>Construct the authorization header as mentioned below - pass the Base64 decoded form of username and md5 formatted password.</p>
 
 <p><code class="prettyprint">Authorization: Basic &lt;Base64 encoded (username: md5(password)&gt;</code></p>
 
-<p>In the Authorization Header pass the Base64 decoded form of username and md5 formatted password.</p>
+<p>For example, if the username or TILL ID is <code class="prettyprint">store.server123</code> and the password is &lsquo;server123&rsquo;, md5 of the password</p>
 
-<p>For example, if the username is “store.server” and the password is &lsquo;server123&rsquo;, md5 of the password is 8a16a6b70505eb1f1ff7cdc0cd5559a7</p>
+<p>For example, if the username is <code class="prettyprint">store.server</code> and the password is &#39;server123&rsquo;, </p>
 
-<p>Encode the username and md5 password to Base64, then the header is formed as shown below</p>
+<ul>
+<li>md5 encryption of the password (server123) is <code class="prettyprint">8a16a6b70505eb1f1ff7cdc0cd5559a7</code>.</li>
+<li>Base 64 of the encrypted password is <code class="prettyprint">c3RvcmUuc2VydmVyOjhhMTZhNmI3MDUwNWViMWYxZmY3Y2RjMGNkNTU1OWE3</code>.</li>
+</ul>
+
+<p>So the Authentication Header is </p>
 
 <p><code class="prettyprint">Authorization: Basic c3RvcmUuc2VydmVyOjhhMTZhNmI3MDUwNWViMWYxZmY3Y2RjMGNkNTU1OWE3</code></p>
+
+<h4 id="username-amp-password">Username &amp; Password</h4>
+
+<p>To use username and password for authentication, pass TILL ID as username and md5 hash encrypted password.</p>
+
+<p>Consider the preceding example:
+username: store.server
+Password: md5 hash (server123) which is 8a16a6b70505eb1f1ff7cdc0cd5559a7</p>
+
+<aside class="notice">You can create TILL credentials in Organization Setup. To know more see <a href="https://support.capillarytech.com/a/solutions/articles/4000028057?lang=en&portalId=44632#Add-Till" target="_blank">Add TILL</a> </aside>
 
 <p>Now, v2 API supports submitting requests on behalf of other TILLs (active TILLs). In db the combination of attribution_lookup and lookup_code are mapped to TILL ids and org ids. When a new POST request is placed with the combination of a lookup name and lookup code, the data will be inserted in the db on behalf of the TILL that is mapped to the specified combination. </p>
 
@@ -6036,6 +6055,644 @@ Also, check the following configurations for maximum days allowed and minimum ti
 
 <aside class="notice">The parameter marked with * is mandatory.</aside>
 
+<h2 id="response-codes">Response Codes</h2>
+
+<h3 id="error-codes">Error Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>500</td>
+<td>Unable to retrieve transaction.</td>
+</tr>
+<tr>
+<td>601</td>
+<td>Transaction failed. Transaction amount, quantity, rate, or discount is invalid.</td>
+</tr>
+<tr>
+<td>602</td>
+<td>Transaction number is invalid.</td>
+</tr>
+<tr>
+<td>603</td>
+<td>Points are already used (Deprecated).</td>
+</tr>
+<tr>
+<td>604</td>
+<td>Transaction number already exists.</td>
+</tr>
+<tr>
+<td>605</td>
+<td>Invalid transaction type passed. Only <code class="prettyprint">regular</code>, <code class="prettyprint">return</code>, <code class="prettyprint">not_interested</code>, and <code class="prettyprint">not_interested_return</code> are supported.</td>
+</tr>
+<tr>
+<td>606</td>
+<td>Customer identifier is not passed. Please enter customer’s mobile or email or external id to process.</td>
+</tr>
+<tr>
+<td>607</td>
+<td>No transaction id passed. Please pass the transaction id to process.</td>
+</tr>
+<tr>
+<td>608</td>
+<td>Unable to add transaction.</td>
+</tr>
+<tr>
+<td>609</td>
+<td>Update failed. Please verify all the fields.</td>
+</tr>
+<tr>
+<td>610</td>
+<td>Unable to register. Please verify all the fields.</td>
+</tr>
+<tr>
+<td>611</td>
+<td>Customer not found.</td>
+</tr>
+<tr>
+<td>614</td>
+<td>Transaction is already cancelled.</td>
+</tr>
+<tr>
+<td>615</td>
+<td>Transaction details are not passed.</td>
+</tr>
+<tr>
+<td>616</td>
+<td>Item code already exists.</td>
+</tr>
+<tr>
+<td>617</td>
+<td>Invalid attribute for the item.</td>
+</tr>
+<tr>
+<td>618</td>
+<td>Customer is marked as fraud.</td>
+</tr>
+<tr>
+<td>619</td>
+<td>Transaction id is not provided.</td>
+</tr>
+<tr>
+<td>620</td>
+<td>Transaction id is invalid.</td>
+</tr>
+<tr>
+<td>621</td>
+<td>Transaction date is invalid. Transaction date should be within the accepted past or future date range limit.</td>
+</tr>
+<tr>
+<td>622</td>
+<td>Unable to add line-item.</td>
+</tr>
+<tr>
+<td>623</td>
+<td>Unable to trigger other related events for the transaction.</td>
+</tr>
+<tr>
+<td>624</td>
+<td>Unable to process return-transaction. You can make a return only after adding a transaction.</td>
+</tr>
+<tr>
+<td>625</td>
+<td>Transaction number does not exist.</td>
+</tr>
+<tr>
+<td>626</td>
+<td>Unable to return transaction. The quantity of returned items are more than purchased items.</td>
+</tr>
+<tr>
+<td>627</td>
+<td>Quantity cannot be negative.</td>
+</tr>
+<tr>
+<td>628</td>
+<td>Invalid return transaction type.</td>
+</tr>
+<tr>
+<td>629</td>
+<td>The return quantity of the item is more than available quantity.</td>
+</tr>
+<tr>
+<td>630</td>
+<td>The return amount is more than the transaction/line-item amount.</td>
+</tr>
+<tr>
+<td>631</td>
+<td>Transaction amount cannot be negative.</td>
+</tr>
+<tr>
+<td>632</td>
+<td>Cannot return the transaction with return type LINE_ITEM because the type AMOUNT has already been used for returning the same transaction.</td>
+</tr>
+<tr>
+<td>633</td>
+<td>The entire transaction is already returned.</td>
+</tr>
+<tr>
+<td>634</td>
+<td>This transaction is already returned.</td>
+</tr>
+<tr>
+<td>635</td>
+<td>Cannot return the transaction with the return type AMOUNT because the type LINE_ITEM has been used for returning the same transaction.</td>
+</tr>
+<tr>
+<td>636</td>
+<td>The transaction is already returned with the return type as LINE_ITEM. You can process return for other items only with return type LINE_ITEM.</td>
+</tr>
+<tr>
+<td>637</td>
+<td>Unable to revert points issued to the customer (for return transaction). Please try again later.</td>
+</tr>
+<tr>
+<td>638</td>
+<td>Unable to return transaction. The transaction is already returned with type LINE_ITEM. Hence, you cannot use the type AMOUNT for the same transaction.</td>
+</tr>
+<tr>
+<td>639</td>
+<td>Unable to return full transaction. A part of the transaction or complete transaction is already returned.</td>
+</tr>
+<tr>
+<td>640</td>
+<td>Points or coupons are not redeemed for this transaction.</td>
+</tr>
+<tr>
+<td>641</td>
+<td>No customer found.</td>
+</tr>
+<tr>
+<td>642</td>
+<td>Redemption failed. An error occurred in points/coupon redemption.</td>
+</tr>
+<tr>
+<td>643</td>
+<td>Invalid transaction. The transaction date exceeds the accepted future date limit.</td>
+</tr>
+<tr>
+<td>644</td>
+<td>Invalid transaction. The transaction date cannot be less than the accepted past date limit.</td>
+</tr>
+<tr>
+<td>645</td>
+<td>Transaction addition failed for not interested.</td>
+</tr>
+<tr>
+<td>646</td>
+<td>Customer registration failed. The email id is invalid.</td>
+</tr>
+<tr>
+<td>647</td>
+<td>Customer registration failed. Email id is already assigned to another customer.</td>
+</tr>
+<tr>
+<td>648</td>
+<td>Customer registration failed. Mobile number is already assigned to another customer.</td>
+</tr>
+<tr>
+<td>649</td>
+<td>Customer registration failed. Mobile number is invalid.</td>
+</tr>
+<tr>
+<td>650</td>
+<td>Customer registration failed. Mobile number is not accepted as a unique identifier.</td>
+</tr>
+<tr>
+<td>651</td>
+<td>Customer registration failed. Mobile number is required for registration.</td>
+</tr>
+<tr>
+<td>652</td>
+<td>Customer registration failed. Mobile number/email id/external id is invalid.</td>
+</tr>
+<tr>
+<td>653</td>
+<td>Customer registration failed. External id is already assigned to another customer.</td>
+</tr>
+<tr>
+<td>654</td>
+<td>Customer registration failed. External id is not accepted as a unique identifier.</td>
+</tr>
+<tr>
+<td>655</td>
+<td>Customer registration failed. Customer is not registered in loyalty program.</td>
+</tr>
+<tr>
+<td>656</td>
+<td>No customer found.</td>
+</tr>
+<tr>
+<td>657</td>
+<td>Customer registration failed. Registration in EUP failed.</td>
+</tr>
+<tr>
+<td>658</td>
+<td>Customer registration failed. Only email id is not sufficient for registration.</td>
+</tr>
+<tr>
+<td>659</td>
+<td>Customer registration failed. Please enter email id to register.</td>
+</tr>
+<tr>
+<td>660</td>
+<td>Customer registration failed. Registration date exceeds the accepted past or future date limit.</td>
+</tr>
+<tr>
+<td>661</td>
+<td>Amount of the line-item amount cannot be negative.</td>
+</tr>
+<tr>
+<td>662</td>
+<td>Value of a line cannot be negative.</td>
+</tr>
+<tr>
+<td>663</td>
+<td>Rate of a line-item cannot be negative</td>
+</tr>
+<tr>
+<td>664</td>
+<td>Discount of a line-item cannot be negative.</td>
+</tr>
+<tr>
+<td>665</td>
+<td>Gross amount of the transaction cannot be negative.</td>
+</tr>
+<tr>
+<td>666</td>
+<td>Discount cannot be negative.</td>
+</tr>
+<tr>
+<td>667</td>
+<td>Unable to find the transaction ID for this customer.</td>
+</tr>
+<tr>
+<td>668</td>
+<td>Unable to find the transaction number for this customer.</td>
+</tr>
+<tr>
+<td>669</td>
+<td>Unable to update custom field.</td>
+</tr>
+<tr>
+<td>670</td>
+<td>Transaction id/number is not provided.</td>
+</tr>
+<tr>
+<td>671</td>
+<td>Invalid Store or TILL code.</td>
+</tr>
+<tr>
+<td>672</td>
+<td>Batch limit exceeded.</td>
+</tr>
+<tr>
+<td>673</td>
+<td>Returning of transactions is not allowed.</td>
+</tr>
+<tr>
+<td>674</td>
+<td>Returning of line item is not allowed.</td>
+</tr>
+<tr>
+<td>675</td>
+<td>Returning of transaction amount is not allowed.</td>
+</tr>
+<tr>
+<td>676</td>
+<td>Returning of a complete transaction amount is not allowed.</td>
+</tr>
+<tr>
+<td>677</td>
+<td>Unable to process. Please enter a transaction number for returning a transaction.</td>
+</tr>
+<tr>
+<td>678</td>
+<td>Amount of returned item is more than purchased item.</td>
+</tr>
+<tr>
+<td>679</td>
+<td>Line-item(s) to be returned is not specified.</td>
+</tr>
+<tr>
+<td>680</td>
+<td>No transactions of the specific customer were found.</td>
+</tr>
+<tr>
+<td>681</td>
+<td>Transactions are blocked for this customer.</td>
+</tr>
+<tr>
+<td>682</td>
+<td>Currency conversion is disabled for the org.</td>
+</tr>
+<tr>
+<td>683</td>
+<td>Failed to call new bill event EMF.</td>
+</tr>
+<tr>
+<td>684</td>
+<td>Failed EMF new bill DVS event.</td>
+</tr>
+<tr>
+<td>685</td>
+<td>Field length too long.</td>
+</tr>
+<tr>
+<td>686</td>
+<td>Unable to add transaction.</td>
+</tr>
+<tr>
+<td>687</td>
+<td>Points activities are queued and will be updated later.</td>
+</tr>
+<tr>
+<td>688</td>
+<td>No matching line-item found for return.</td>
+</tr>
+<tr>
+<td>689</td>
+<td>Points processing failed</td>
+</tr>
+<tr>
+<td>690</td>
+<td>Points processing failed</td>
+</tr>
+<tr>
+<td>691</td>
+<td>Points processing failed</td>
+</tr>
+<tr>
+<td>692</td>
+<td>Points processing failed</td>
+</tr>
+<tr>
+<td>693</td>
+<td>Points processing failed</td>
+</tr>
+<tr>
+<td>694</td>
+<td>Points processing failed</td>
+</tr>
+<tr>
+<td>695</td>
+<td>Invalid configuration. Please report to the Capillary Support.</td>
+</tr>
+<tr>
+<td>696</td>
+<td>Points processing failed</td>
+</tr>
+<tr>
+<td>697</td>
+<td>Points processing failed</td>
+</tr>
+<tr>
+<td>698</td>
+<td>Points processing failed.</td>
+</tr>
+<tr>
+<td>699</td>
+<td>Invalid configuration. Please report to the Capillary Support.</td>
+</tr>
+<tr>
+<td>710</td>
+<td>Return bill event failed from EMF.</td>
+</tr>
+<tr>
+<td>820</td>
+<td>Current operation is not allowed. The customer is marked as fraud.</td>
+</tr>
+<tr>
+<td>1101</td>
+<td>Invalid loyalty program ID passed.</td>
+</tr>
+<tr>
+<td>1102</td>
+<td>Invalid currency conversion ratio passed.</td>
+</tr>
+<tr>
+<td>1103</td>
+<td>Invalid shipping store code passed.</td>
+</tr>
+<tr>
+<td>1623</td>
+<td>Transaction type is invalid.</td>
+</tr>
+<tr>
+<td>1624</td>
+<td>Insufficient parameters passed to fetch transaction.</td>
+</tr>
+<tr>
+<td>1625</td>
+<td>Target type is not specified.</td>
+</tr>
+<tr>
+<td>1626</td>
+<td>The requested transaction type cannot be changed.</td>
+</tr>
+<tr>
+<td>1627</td>
+<td>The transaction is already marked as retro.</td>
+</tr>
+<tr>
+<td>1628</td>
+<td>Transaction id is invalid.</td>
+</tr>
+<tr>
+<td>1629</td>
+<td>Client signature is required to perform this action.</td>
+</tr>
+<tr>
+<td>1631</td>
+<td>Retro transaction is not enabled for your organization.</td>
+</tr>
+<tr>
+<td>1632</td>
+<td>Registration date is too older than the transaction date. See the retro configuration set for your organization.</td>
+</tr>
+<tr>
+<td>1633</td>
+<td>The duration between registration and transaction mapping exceeds the limit set.</td>
+</tr>
+<tr>
+<td>1634</td>
+<td>Return type is invalid.</td>
+</tr>
+<tr>
+<td>1635</td>
+<td>Please pass line-items that need to be returned.</td>
+</tr>
+<tr>
+<td>1636</td>
+<td>Transaction status is invalid.</td>
+</tr>
+<tr>
+<td>8015</td>
+<td>No customer found for the given identifiers.</td>
+</tr>
+<tr>
+<td>8084</td>
+<td>Unable to send customer details.</td>
+</tr>
+<tr>
+<td>9601</td>
+<td>Failed to add line-item.</td>
+</tr>
+<tr>
+<td>9602</td>
+<td>Failed to add credit notes.</td>
+</tr>
+<tr>
+<td>9603</td>
+<td>Failed to add payment more details (tender).</td>
+</tr>
+<tr>
+<td>9604</td>
+<td>Failed to add custom fields</td>
+</tr>
+<tr>
+<td>9605</td>
+<td>Base currency is not set for the org.</td>
+</tr>
+<tr>
+<td>9606</td>
+<td>Currency not passed for the transaction.</td>
+</tr>
+<tr>
+<td>9607</td>
+<td>Payment mode (tender) not found.</td>
+</tr>
+<tr>
+<td>9608</td>
+<td>Line-item with the item code {x} passed is marked as outlier.</td>
+</tr>
+<tr>
+<td>9609</td>
+<td>Invalid payment attribute passed.</td>
+</tr>
+<tr>
+<td>9610</td>
+<td>New bill event failed. Points are not awarded.</td>
+</tr>
+<tr>
+<td>9611</td>
+<td>Transaction is marked as outlier.</td>
+</tr>
+<tr>
+<td>9612</td>
+<td>Unable to save credit notes.</td>
+</tr>
+<tr>
+<td>9613</td>
+<td>Invalid payment attribute.</td>
+</tr>
+<tr>
+<td>9614</td>
+<td>Multiple loyalty bills found to be returned.</td>
+</tr>
+<tr>
+<td>9615</td>
+<td>Validity (in days) for return policy is not defined.</td>
+</tr>
+<tr>
+<td>9616</td>
+<td>Single loyalty bill found. Allowing regular return.</td>
+</tr>
+</tbody></table>
+
+<h3 id="warnings">Warnings</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>687</td>
+<td>Points activities are queued and will be updated later.</td>
+</tr>
+<tr>
+<td>688</td>
+<td>No line item found matching for return.</td>
+</tr>
+<tr>
+<td>669</td>
+<td>Invalid custom field.</td>
+</tr>
+<tr>
+<td>1105</td>
+<td>Returnable days should be greater than -1.</td>
+</tr>
+<tr>
+<td>9601</td>
+<td>Unable to add line item.</td>
+</tr>
+<tr>
+<td>9602</td>
+<td>Unable to add credit note.</td>
+</tr>
+<tr>
+<td>9603</td>
+<td>Unable to add payment mode details.</td>
+</tr>
+<tr>
+<td>9604</td>
+<td>Unable to add custom fields.</td>
+</tr>
+<tr>
+<td>9605</td>
+<td>Base currency is not set for the org.</td>
+</tr>
+<tr>
+<td>9606</td>
+<td>Transaction currency is not passed.</td>
+</tr>
+<tr>
+<td>9607</td>
+<td>Payment mode (tender) is not found.</td>
+</tr>
+<tr>
+<td>9608</td>
+<td>Line item with item code {x} is marked as outlier.</td>
+</tr>
+<tr>
+<td>9609</td>
+<td>Invalid payment attribute value.</td>
+</tr>
+<tr>
+<td>9610</td>
+<td>New bill event is failed. Points are not awarded.</td>
+</tr>
+<tr>
+<td>9611</td>
+<td>Transaction is marked as outlier.</td>
+</tr>
+<tr>
+<td>9612</td>
+<td>Unable to save the credit notes</td>
+</tr>
+<tr>
+<td>9613</td>
+<td>Invalid payment attribute.</td>
+</tr>
+<tr>
+<td>9614</td>
+<td>Multiple loyalty transactions found to be returned.</td>
+</tr>
+<tr>
+<td>9615</td>
+<td>Return policy days are not defined.</td>
+</tr>
+<tr>
+<td>9616</td>
+<td>Single loyalty transaction found. Allowing regular return.</td>
+</tr>
+</tbody></table>
+
           <h1 id="customer-labels">Customer Labels</h1>
 
 <p>Customer labels are used for tagging customers based on their activities or loyalty histories. Tags are used in loyalty, campaigns and Essential Insights. You can add new labels and tag labels to customers using APIs of organization and customers mentioned here.</p>
@@ -8484,7 +9141,9 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 
 <aside class="notice">All parameters marked by * are mandatory. </aside>
 
-<h2 id="error-codes">Error Codes</h2>
+<h2 id="response-codes">Response Codes</h2>
+
+<h3 id="error-codes">Error Codes</h3>
 
 <table><thead>
 <tr>
@@ -8561,6 +9220,22 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 <td>Points you are trying to redeem are less than the minimum points allowed.</td>
 </tr>
 <tr>
+<td>872</td>
+<td>Unable to fetch points-to-currency conversion ratio.</td>
+</tr>
+<tr>
+<td>873</td>
+<td>Invalid transaction number passed.</td>
+</tr>
+<tr>
+<td>876</td>
+<td>Points are redeemable but unable to generate OTP.</td>
+</tr>
+<tr>
+<td>877</td>
+<td>Unable to allocate points.</td>
+</tr>
+<tr>
 <td>886</td>
 <td>Unable to process points. Please try again later.</td>
 </tr>
@@ -8589,8 +9264,12 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 <td>Invalid configuration. Please report to capillary support.</td>
 </tr>
 <tr>
+<td>900</td>
+<td>Pending events present in queue for this user. Queue size-{0},failed event -{1},reason -{2},status code -{3}.</td>
+</tr>
+<tr>
 <td>901</td>
-<td>Invalid points or points redemption Id passed.</td>
+<td>Invalid points or points redemption ID.</td>
 </tr>
 <tr>
 <td>902</td>
@@ -8603,6 +9282,10 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 <tr>
 <td>904</td>
 <td>Invalid customer details passed.</td>
+</tr>
+<tr>
+<td>905</td>
+<td>points redemption reversal is disabled for the org.</td>
 </tr>
 </tbody></table>
 
@@ -10906,10 +11589,6 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
 <td>HTTP Methods</td>
 <td>POST</td>
 </tr>
@@ -11070,10 +11749,6 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
 <td>HTTP Methods</td>
 <td>POST</td>
 </tr>
@@ -11200,10 +11875,6 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <tr>
 <td>Authentication</td>
 <td>Yes</td>
-</tr>
-<tr>
-<td>Response Formats</td>
-<td>JSON</td>
 </tr>
 <tr>
 <td>HTTP Methods</td>
@@ -11351,10 +12022,6 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
 <td>HTTP Methods</td>
 <td>POST</td>
 </tr>
@@ -11466,10 +12133,6 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <tr>
 <td>Authentication</td>
 <td>Yes</td>
-</tr>
-<tr>
-<td>Response Formats</td>
-<td>JSON</td>
 </tr>
 <tr>
 <td>HTTP Methods</td>
@@ -11622,10 +12285,6 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
 <td>HTTP Methods</td>
 <td>GET</td>
 </tr>
@@ -11727,10 +12386,6 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
 <td>HTTP Methods</td>
 <td>POST</td>
 </tr>
@@ -11781,67 +12436,6 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <td>Invalid identifier details passed</td>
 </tr>
 </tbody></table>
-
-<h2 id="get-access-token">Get Access Token</h2>
-
-<blockquote>
-<p>Sample Request</p>
-</blockquote>
-<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staff/accessToken
-</code></pre>
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-   </span><span class="nt">"entity"</span><span class="p">:</span><span class="s2">"6F0-ZTOYwp4P7b6ngXx5UkDDYXm2J82mP5xxYDQ_BCV_epool6uOif_xQ7IkMNhO"</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"warnings"</span><span class="p">:[</span><span class="w">
-
-   </span><span class="p">],</span><span class="w">
-   </span><span class="nt">"errors"</span><span class="p">:[</span><span class="w">
-
-   </span><span class="p">],</span><span class="w">
-   </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>Generates access token of the current staff. Use the staff login credentials to authenticate. </p>
-
-<h3 id="resource-information">Resource Information</h3>
-
-<table><thead>
-<tr>
-<th>Info</th>
-<th>Value</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URI</td>
-<td><code class="prettyprint">/staff/accessToken</code></td>
-</tr>
-<tr>
-<td>Rate Limited?</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>Authentication</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
-<td>HTTP Methods</td>
-<td>POST</td>
-</tr>
-<tr>
-<td>Batch Support</td>
-<td>No</td>
-</tr>
-</tbody></table>
-
-<h3 id="request-url">Request URL</h3>
-
-<p><code class="prettyprint">https://{host}/v2/staff/accessToken</code></p>
 
 <h2 id="change-staff-account-password">Change Staff Account Password</h2>
 
@@ -11895,10 +12489,6 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
 <td>HTTP Methods</td>
 <td>POST</td>
 </tr>
@@ -11916,17 +12506,80 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 
 <p><code class="prettyprint">X-CAP-API-ACCESS-TOKEN</code> : The access token of the staff user</p>
 
-<p>Request Attribute
-Attribute | Description
-&mdash;&mdash;&mdash; | &mdash;&mdash;&mdash;&ndash;
-password* | Specify your preferred new password</p>
+<h3 id="request-attribute">Request Attribute</h3>
+
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>password*</td>
+<td>Specify your preferred new password</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-access-token">Get Access Token</h2>
+
+<p>Generates access token for a staff.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staff/accessToken
+
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"entity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"M7ZuIxtfYy7xwZUN2ZfgjNy78GF9vU1rPd4U3Lwh5EJJ33OTFMuTutnH5_4g-Qi-"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/staff/accessToken</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes (staff user&rsquo;s)</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>POST (No POST body required)</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/staff/accessToken</code></p>
 
 <h2 id="get-staff-details">Get Staff Details</h2>
 
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staff/users?username=timjames
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/staff?username=timjames
 
 </code></pre>
 <blockquote>
@@ -11961,7 +12614,7 @@ password* | Specify your preferred new password</p>
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/staff/users?username={username}</code></td>
+<td><code class="prettyprint">/staff?username={username}</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -11969,11 +12622,7 @@ password* | Specify your preferred new password</p>
 </tr>
 <tr>
 <td>Authentication</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>Response Formats</td>
-<td>JSON</td>
+<td>Yes (admin accessToken)</td>
 </tr>
 <tr>
 <td>HTTP Methods</td>
@@ -11987,7 +12636,25 @@ password* | Specify your preferred new password</p>
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/staff/users?username={username}</code></p>
+<p><code class="prettyprint">https://{host}/v2/staff?username={username}</code></p>
+
+<h3 id="additional-headers-required">Additional Headers Required</h3>
+
+<table><thead>
+<tr>
+<th>Header</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>X-CAP-API-ACCESS-TOKEN*</td>
+<td>Unique access token of the org&rsquo;s admin.</td>
+</tr>
+<tr>
+<td>X-CAP-API-AUTH-ORG-ID*</td>
+<td>Unique ID of the org in which the user is available.</td>
+</tr>
+</tbody></table>
 
 <h3 id="request-parameter">Request Parameter</h3>
 
@@ -11998,8 +12665,8 @@ password* | Specify your preferred new password</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>user identifier*</td>
-<td>Pass any one identifier (username, mobile, email or the unique id generated for the user (refId)) of the user that you want to fetch in the format <identifier>=<value>. <strong>Identifiers</strong>: username, mobile, email, refId</td>
+<td>identifier*</td>
+<td>Pass any one identifier (username, mobile, email or the unique id generated for the user (refId)) of the user that you want to fetch in the format <identifier>=<value>. <strong>Identifiers</strong>: username, mobile, email, refId.</td>
 </tr>
 </tbody></table>
 
@@ -12017,7 +12684,7 @@ password* | Specify your preferred new password</p>
 </tr>
 </tbody></table>
 
-<h2 id="edit-staff-user-details">Edit Staff User Details</h2>
+<h2 id="edit-staff-details">Edit Staff Details</h2>
 
 <blockquote>
 <p>Sample Request</p>
@@ -12093,10 +12760,6 @@ password* | Specify your preferred new password</p>
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
 <td>HTTP Methods</td>
 <td>POST</td>
 </tr>
@@ -12119,7 +12782,7 @@ password* | Specify your preferred new password</p>
 </tr>
 </thead><tbody>
 <tr>
-<td>id/username/mobile/email</td>
+<td>id/username/mobile/email*</td>
 <td>Pass any of the staff identifier. Id is the unique id generated for the staff user</td>
 </tr>
 <tr>
@@ -12195,10 +12858,6 @@ password* | Specify your preferred new password</p>
 <tr>
 <td>Authentication</td>
 <td>Yes</td>
-</tr>
-<tr>
-<td>Response Formats</td>
-<td>JSON</td>
 </tr>
 <tr>
 <td>HTTP Methods</td>
