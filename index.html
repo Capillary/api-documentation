@@ -4292,10 +4292,6 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>No transactions or recommendations found for the customer.</td>
 </tr>
 <tr>
-<td>1053</td>
-<td>Preferred store specified is not found.</td>
-</tr>
-<tr>
 <td>1060</td>
 <td>Batch limit exceeded.</td>
 </tr>
@@ -4404,6 +4400,40 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>Failed to update customer details.</td>
 </tr>
 <tr>
+<td>91009</td>
+<td>Retrieved survivor account for the requested merge victim.</td>
+</tr>
+<tr>
+<td>91010</td>
+<td>Downgrade strategy is not configured.</td>
+</tr>
+<tr>
+<td>91020</td>
+<td>Invalid TILL passed for registration.</td>
+</tr>
+<tr>
+<td>91021</td>
+<td>Invalid attribution TILL passed.</td>
+</tr>
+<tr>
+<td>91022</td>
+<td>Failed to update subscription for {x} channel and priority {y}.</td>
+</tr>
+</tbody></table>
+
+<h3 id="warning-codes">Warning Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1053</td>
+<td>Preferred store specified is not found.</td>
+</tr>
+<tr>
 <td>91001</td>
 <td>Failed to get point details.</td>
 </tr>
@@ -4413,7 +4443,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </tr>
 <tr>
 <td>91003</td>
-<td>Validation failed.</td>
+<td>Failed to validate.</td>
 </tr>
 <tr>
 <td>91004</td>
@@ -4421,7 +4451,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </tr>
 <tr>
 <td>91005</td>
-<td>{x} is Primary Key, {y} cannot be updated.</td>
+<td>{x} is primary identifier and cannot be updated.</td>
 </tr>
 <tr>
 <td>91006</td>
@@ -4429,15 +4459,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </tr>
 <tr>
 <td>91007</td>
-<td>{x} is already occupied by some other user, ignoring it.</td>
-</tr>
-<tr>
-<td>91009</td>
-<td>Retrieved survivor account for the requested merge victim.</td>
-</tr>
-<tr>
-<td>91010</td>
-<td>Downgrade strategy is not configured.</td>
+<td>Failed to register. {x} already exists for some other user.</td>
 </tr>
 <tr>
 <td>91011</td>
@@ -4474,18 +4496,6 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <tr>
 <td>91019</td>
 <td>Unable to load Web Engage notifications.</td>
-</tr>
-<tr>
-<td>91020</td>
-<td>Invalid TILL passed for registration.</td>
-</tr>
-<tr>
-<td>91021</td>
-<td>Invalid attribution TILL passed.</td>
-</tr>
-<tr>
-<td>91022</td>
-<td>Failed to update subscription for {x} channel and priority {y}.</td>
 </tr>
 </tbody></table>
 
@@ -4564,8 +4574,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
     </span><span class="nt">"paymentModes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BankNameAPI"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value_6555444"</span><span class="w">
+          </span><span class="nt">"wallet_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cliq Cash"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes_6555444"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CHECKAPI"</span><span class="p">,</span><span class="w">
@@ -4716,8 +4725,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
     </span><span class="nt">"paymentModes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BankNameAPI"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value_6555444"</span><span class="w">
+          </span><span class="nt">"BankNameAPI"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value_6555444"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes_6555444"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CHECKAPI"</span><span class="p">,</span><span class="w">
@@ -4857,8 +4865,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
     </span><span class="nt">"paymentModes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CASH"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"210"</span><span class="w">
+          </span><span class="nt">"CASH"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
@@ -4920,7 +4927,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"identifierType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"identifierValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"919740390065"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"identifierValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"919740000000"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
         </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -5553,17 +5560,12 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <tr>
 <td>attributes</td>
 <td>obj</td>
-<td>Attributes of the payment mode in names and value pairs.</td>
+<td>Attributes of the payment mode as name-value pairs.</td>
 </tr>
 <tr>
 <td>loyaltyPromotionIdentifiers</td>
 <td>array</td>
 <td></td>
-</tr>
-<tr>
-<td>id</td>
-<td>-</td>
-<td>&ndash;</td>
 </tr>
 </tbody></table>
 
@@ -9220,22 +9222,6 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 <td>Points you are trying to redeem are less than the minimum points allowed.</td>
 </tr>
 <tr>
-<td>872</td>
-<td>Unable to fetch points-to-currency conversion ratio.</td>
-</tr>
-<tr>
-<td>873</td>
-<td>Invalid transaction number passed.</td>
-</tr>
-<tr>
-<td>876</td>
-<td>Points are redeemable but unable to generate OTP.</td>
-</tr>
-<tr>
-<td>877</td>
-<td>Unable to allocate points.</td>
-</tr>
-<tr>
 <td>886</td>
 <td>Unable to process points. Please try again later.</td>
 </tr>
@@ -9262,6 +9248,32 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 <tr>
 <td>899</td>
 <td>Invalid configuration. Please report to capillary support.</td>
+</tr>
+</tbody></table>
+
+<h3 id="warning-codes">Warning Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>872</td>
+<td>Unable to fetch points-to-currency conversion ratio.</td>
+</tr>
+<tr>
+<td>873</td>
+<td>Invalid transaction number passed.</td>
+</tr>
+<tr>
+<td>876</td>
+<td>Points are redeemable but unable to generate OTP.</td>
+</tr>
+<tr>
+<td>877</td>
+<td>Unable to allocate points.</td>
 </tr>
 <tr>
 <td>900</td>
