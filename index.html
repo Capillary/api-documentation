@@ -17596,6 +17596,94 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 
 <aside class="notice">Parameters marked with * are mandatory, at least one among the parameters marked with ** is required. </aside>
 
+<h2 id="response-codes">Response Codes</h2>
+
+<h3 id="error-codes">Error Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>2001</td>
+<td>Cannot process the partner program event.</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>Cannot proceed if <code class="prettyprint">updateDetails</code>, <code class="prettyprint">updatedTierName</code>, or <code class="prettyprint">partnerProgramName</code> is empty or null.</td>
+</tr>
+<tr>
+<td>2003</td>
+<td>Partner tier expiry date should not be a past date.</td>
+</tr>
+<tr>
+<td>2004</td>
+<td>Link the customer with the partner program.</td>
+</tr>
+<tr>
+<td>2005</td>
+<td>Customer is already linked with the partner program.</td>
+</tr>
+<tr>
+<td>2005</td>
+<td>Enroll the customer in the Loyalty Program.</td>
+</tr>
+<tr>
+<td>2006</td>
+<td>Cannot find the partner program.</td>
+</tr>
+<tr>
+<td>2007</td>
+<td>Cannot find the partner program tier.</td>
+</tr>
+<tr>
+<td>2008</td>
+<td>Cannot process if partner program limit is more than <code class="prettyprint">50</code>.</td>
+</tr>
+<tr>
+<td>2009</td>
+<td>updateType  supports only UPDATE, RENEW, DOWNGRADE.</td>
+</tr>
+<tr>
+<td>2010</td>
+<td>Partner program events are presented in a queue for the user.</td>
+</tr>
+<tr>
+<td>2011</td>
+<td>Cannot find partner program activity for the customer.</td>
+</tr>
+<tr>
+<td>2012</td>
+<td>Cannot fetch partner program activity.</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>Input time interval should be less than a year for activity history.</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>Invalid input. Activity type passed should be <code class="prettyprint">LINKINGUPDATES</code> or <code class="prettyprint">BENEFITSAVAILED</code>.</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>Cannot allow the date parameter if <code class="prettyprint">activityType</code> = <code class="prettyprint">linkingUpdates</code>.</td>
+</tr>
+<tr>
+<td>2016</td>
+<td>Incorrect benefit name.</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>Benefits count should be more than <code class="prettyprint">0</code>.</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>Cannot add benefits to supplementary membership.</td>
+</tr>
+</tbody></table>
+
           <h1 id="other-apis-org-level">Other APIs (Org Level)</h1>
 
 <p>This section provides all other APIs that are not in any of the resources mentioned above.</p>
