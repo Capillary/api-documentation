@@ -244,7 +244,7 @@
 
 <p>Construct the authorization header as mentioned below - pass the Base64 decoded form of username and md5 formatted password.</p>
 
-<p><code class="prettyprint">Authorization: Basic &lt;Base64 encoded (username: md5(password)&gt;</code></p>
+<p><code class="prettyprint">Authorization: Basic &lt;Base64 encoded (username:md5(password)&gt;</code></p>
 
 <p>For example, if the username or TILL ID is <code class="prettyprint">store.server123</code> and the password is &lsquo;server123&rsquo;, md5 of the password</p>
 
@@ -252,7 +252,7 @@
 
 <ul>
 <li>md5 encryption of the password (server123) is <code class="prettyprint">8a16a6b70505eb1f1ff7cdc0cd5559a7</code>.</li>
-<li>Base 64 of the encrypted password is <code class="prettyprint">c3RvcmUuc2VydmVyOjhhMTZhNmI3MDUwNWViMWYxZmY3Y2RjMGNkNTU1OWE3</code>.</li>
+<li>Base 64 (store.server:8a16a6b70505eb1f1ff7cdc0cd5559a7) is <code class="prettyprint">c3RvcmUuc2VydmVyOjhhMTZhNmI3MDUwNWViMWYxZmY3Y2RjMGNkNTU1OWE3</code>.</li>
 </ul>
 
 <p>So the Authentication Header is </p>
@@ -323,7 +323,7 @@ Password: md5 hash (server123) which is 8a16a6b70505eb1f1ff7cdc0cd5559a7</p>
 
 <h4 id="endpoint">Endpoint</h4>
 
-<p><code class="prettyprint">https://{host}/v3/oauth/token/generate</code></p>
+<p><code class="prettyprint">{host}/v3/oauth/token/generate</code></p>
 
 <h4 id="post-request-schema">POST Request Schema</h4>
 
@@ -445,7 +445,7 @@ Password: md5 hash (server123) which is 8a16a6b70505eb1f1ff7cdc0cd5559a7</p>
 </thead><tbody>
 <tr>
 <td>Host</td>
-<td>The server to which the API calls are made, usually the cluster URL. <br> <strong>India</strong>: apac.api.capillary.co.in <br> <strong>APAC2</strong>: apac2.api.capillarytech.com <br><strong>EU</strong>: eu.api.capillarytech.com <br><strong>US</strong>: us.api.capillarytech.com <br><strong>China</strong>: cdn-api.capillarytech.cn.com [or] api.capillarytech.cn.com</td>
+<td>The server to which the API calls are made, usually the cluster URL. <br> <strong>India</strong>: https://apac.api.capillary.co.in <br> <strong>APAC2</strong>: https://apac2.api.capillarytech.com <br><strong>EU</strong>: https://eu.api.capillarytech.com <br><strong>US</strong>: https://us.api.capillarytech.com <br><strong>China</strong>: https://cdn-api.capillarytech.cn.com [or] https://api.capillarytech.cn.com</td>
 </tr>
 <tr>
 <td>BasePath</td>
@@ -744,7 +744,7 @@ Extended fields are either associated to verticals or to a generic category (ava
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/customers?source={SourceName}&amp;accountId={accountId}</code></p>
+<p><code class="prettyprint">{host}/v2/customers?source={SourceName}&amp;accountId={accountId}</code></p>
 
 <h3 id="request-query-parameters">Request Query Parameters</h3>
 
@@ -1028,10 +1028,10 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 
 <p>For sources with single accounts</p>
 
-<p><code class="prettyprint">https://{host}/v2/customers/{customerId}?source={sourceName}</code></p>
+<p><code class="prettyprint">{host}/v2/customers/{customerId}?source={sourceName}</code></p>
 
 <p>For sources with multiple accounts
-<code class="prettyprint">https://{host}/v2/customers/{customerId}?source={sourceName}&amp;accountId={accountId}</code></p>
+<code class="prettyprint">{host}/v2/customers/{customerId}?source={sourceName}&amp;accountId={accountId}</code></p>
 
 <h3 id="request-query-parameters">Request Query Parameters</h3>
 
@@ -1288,7 +1288,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 
 <p>For sources with single accounts</p>
 
-<p><code class="prettyprint">https://{host}/v2/customers/lookup?source={sourceName}?&amp;accountId={accountId}&amp;identifierName={identifierName}&amp;identifierValue={IdentifierValue}</code></p>
+<p><code class="prettyprint">{host}/v2/customers/lookup?source={sourceName}?&amp;accountId={accountId}&amp;identifierName={identifierName}&amp;identifierValue={IdentifierValue}</code></p>
 
 <h3 id="request-query-parameters">Request Query Parameters</h3>
 
@@ -1531,7 +1531,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/customers/{customerId}/changeIdentifier?source={source}&amp;accountId={accountId}</code></p>
+<p><code class="prettyprint">{host}/v2/customers/{customerId}/changeIdentifier?source={source}&amp;accountId={accountId}</code></p>
 
 <aside class="notice">The new identifier that you want to update should be unique across the source (for sources with single accounts) and unique across the account (for sources with multiple accounts).</aside>
 
@@ -1807,7 +1807,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/customers/search?q={search keyword}</code></p>
+<p><code class="prettyprint">{host}/v2/customers/search?q={search keyword}</code></p>
 
 <h3 id="request-parameter">Request Parameter</h3>
 
@@ -1871,7 +1871,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/customers/lookup?source={SourceName}&amp;accountId={accountId}&amp;identifierName={IdentifierName}&amp;identifierValue={IdentifierValue}</code></p>
+<p><code class="prettyprint">{host}/v2/customers/lookup?source={SourceName}&amp;accountId={accountId}&amp;identifierName={IdentifierName}&amp;identifierValue={IdentifierValue}</code></p>
 
 <h3 id="request-parameter">Request Parameter</h3>
 
@@ -2241,7 +2241,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/customers/{customerId}?source={sourceName}&amp;accountId={accountId}</code></p>
+<p><code class="prettyprint">{host}/v2/customers/{customerId}?source={sourceName}&amp;accountId={accountId}</code></p>
 
 <p>To fetch customer details from a specific account of a source (source with multiple accounts), you need to provide the respective account id.</p>
 
@@ -2467,7 +2467,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/customers/lookup/customerDetails?source={source}&amp;accountId={accountId}&amp;identifierName={identifierName}&amp;identifierValue={identifierValue}&amp;embed={embedParameterName}</code></p>
+<p><code class="prettyprint">{host}/v2/customers/lookup/customerDetails?source={source}&amp;accountId={accountId}&amp;identifierName={identifierName}&amp;identifierValue={identifierValue}&amp;embed={embedParameterName}</code></p>
 
 <h3 id="request-query-parameters">Request Query Parameters</h3>
 
@@ -2596,7 +2596,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/customers/{customerId}/loyaltyDetails</code></p>
+<p><code class="prettyprint">{host}/v2/customers/{customerId}/loyaltyDetails</code></p>
 
 <h3 id="request-parameters">Request Parameters</h3>
 
@@ -2751,7 +2751,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/customers/{customerId}/subscriptions</code></p>
+<p><code class="prettyprint">{host}/v2/customers/{customerId}/subscriptions</code></p>
 
 <h3 id="request-parameters">Request Parameters</h3>
 
@@ -2861,7 +2861,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/customers/{customerId}/subscriptions</code></p>
+<p><code class="prettyprint">{host}/v2/customers/{customerId}/subscriptions</code></p>
 
 <h3 id="request-query-parameters">Request Query Parameters</h3>
 
@@ -2975,7 +2975,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/customers/{userId}/pointsTransfers</code></p>
+<p><code class="prettyprint">{host}/v2/customers/{userId}/pointsTransfers</code></p>
 
 <h3 id="request-query-parameters">Request Query Parameters</h3>
 
@@ -3230,7 +3230,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/customers/{customerId}/retroRequest?{queryParameters}</code></p>
+<p><code class="prettyprint">{host}/v2/customers/{customerId}/retroRequest?{queryParameters}</code></p>
 
 <h3 id="request-query-parameters">Request Query Parameters</h3>
 
@@ -3382,7 +3382,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 
 <h3 id="request-url">Request URL</h3>
 
-<p>`https://{host}/v2/customers/{customerId}/changeRequest?queryParams</p>
+<p>`{host}/v2/customers/{customerId}/changeRequest?queryParams</p>
 
 <h3 id="request-query-parameters">Request Query Parameters</h3>
 
@@ -3589,7 +3589,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 
 <h3 id="request-url">Request URL</h3>
 
-<p>`https://{host}/v2/customers/{customerId}/goodwillRequest</p>
+<p>`{host}/v2/customers/{customerId}/goodwillRequest</p>
 
 <h3 id="request-query-parameters">Request Query Parameters</h3>
 
@@ -3950,7 +3950,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/customers/{customerId}/coupons</code></p>
+<p><code class="prettyprint">{host}/v2/customers/{customerId}/coupons</code></p>
 
 <h3 id="request-query-parameters">Request Query Parameters</h3>
 
@@ -3979,7 +3979,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </code></pre>
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/customers/{userId}?source={source}</code></p>
+<p><code class="prettyprint">{host}/v2/customers/{userId}?source={source}</code></p>
 
 <h3 id="request-query-parameter">Request Query Parameter</h3>
 
@@ -5331,7 +5331,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/transactions/bulk</code></p>
+<p><code class="prettyprint">{host}/v2/transactions/bulk</code></p>
 
 <h3 id="request-body-parameters">Request Body Parameters</h3>
 
@@ -6052,7 +6052,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/transactions/{id}</code></p>
+<p><code class="prettyprint">{host}/v2/transactions/{id}</code></p>
 
 <h3 id="request-query-parameters">Request Query Parameters</h3>
 
@@ -16420,7 +16420,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <tr>
 <td>offset</td>
 <td>int</td>
-<td></td>
+<td>Number of rows to be ignored from the top.</td>
 </tr>
 <tr>
 <td>length</td>
