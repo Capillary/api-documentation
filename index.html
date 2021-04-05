@@ -16313,31 +16313,31 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 
           <h1 id="card-loyalty-membership">Card Loyalty/Membership</h1>
 
-<p>Card enables orgs to run card based loyalty memberships with multiple card types. A customer can have multiple cards of a same series or different series as intended by the org.</p>
+<p>Card enables orgs to run card based loyalty memberships with multiple card types. A customer can have multiple cards of a same or different series as intended by the org.</p>
 
-<p><code class="prettyprint">Card Series</code> represents different types of cards a brand. For example, Value Card, Premium card, Digital Card, and Physical Card. A card series stores information such as card series name, card type, card numbers config details, and expiry details.</p>
+<p><code class="prettyprint">Card Series</code> represents different types of cards of a brand. For example, Value Card, Premium card, Digital Card, and Physical Card. A card series stores information such as card series name, card type, card numbers, config details, and expiry details.</p>
 
-<p>A card is a physical or digital card and associated to a Card Series. A card stores information such as issued date, expiry date, store or source account from which the card is issued, and current status.</p>
+<p>A card is either physical or digital and is associated with a Card Series. A card stores information such as issued date, expiry date, store or source account from which the card is issued, and current status.</p>
 
 <p>Cards are specific to customers and not to source accounts. A customer can have multiple cards of the same card series. Issuing a card means linking a card to a customer. The following are the different types of cards supported.</p>
 
 <ul>
-<li>Issuing a digital or virtual card.</li>
-<li>Issuing a physical card generated in Capillary.</li>
-<li><p>Issuing a physical card that is not generated in Capillary.</p></li>
-<li><p>Create physical/digital card series with auto card generation enabled.</p></li>
-<li><p>Create physical/digital card series with auto card generation enabled.</p></li>
-<li><p>Add customer using card attributes. Also, issue external card to customer.</p></li>
+<li>Create auto-generated physical/digital cards for a series.
+
+<ul>
+<li>Issue cards when a customer is registered (supports org level or OU level)</li>
+</ul></li>
+<li>Create manually generated physical/digital cards for a series.</li>
+<li>Issue external cards (that are not created in Capillary) </li>
 </ul>
 
 <h2 id="create-card-series">Create Card Series</h2>
 
-<p>Lets you create a new card series for the org. The following are the different types of Cards</p>
+<p>Lets you create a new card series for the org. With this API, you can do the following:</p>
 
 <ul>
-<li>Create physical/digital card series with auto card generation enabled.</li>
-<li>Card issual on different actions org or OU level registrations.<br></li>
-<li>Create physical/digital card series with auto card generation disabled. </li>
+<li>Create auto-generated physical/digital cards for a series.</li>
+<li>Create physical/digital card series with auto card generation disabled.</li>
 </ul>
 
 <blockquote>
@@ -16456,12 +16456,12 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <tr>
 <td>expiryDays*</td>
 <td>int</td>
-<td>Validity of the card series in number of days from the day of issual.</td>
+<td>Validity of the card series in number of days from the issued date.</td>
 </tr>
 <tr>
 <td>cardExpiryEnabled</td>
 <td>boolean</td>
-<td>Set <code class="prettyprint">true</code> to enable card card expiry. If this is <code class="prettyprint">false</code>, <code class="prettyprint">expiryDays</code> is not applicable.</td>
+<td>Set <code class="prettyprint">true</code> to enable card expiry. If this is <code class="prettyprint">false</code>, <code class="prettyprint">expiryDays</code> is not applicable.</td>
 </tr>
 <tr>
 <td>cardGenerationConfiguration</td>
@@ -16496,7 +16496,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <tr>
 <td>cardGenerationEnabled</td>
 <td>boolean</td>
-<td>Pass <code class="prettyprint">true</code> enable generating automatically for the series, <code class="prettyprint">false</code> to manually generate cards.</td>
+<td>Pass <code class="prettyprint">true</code> to auto-generate cards for the for the series, <code class="prettyprint">false</code> to manually generate cards.</td>
 </tr>
 <tr>
 <td>isActive</td>
@@ -16506,7 +16506,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <tr>
 <td>trigger</td>
 <td>enum</td>
-<td>When to generate cards from this series. Values <code class="prettyprint">REGISTRATION</code> (to issue card automatically when a new customer is registered), <code class="prettyprint">SERIES_ID</code> (to generate cards when the series code is passed during registration), <code class="prettyprint">OU_ID</code> (to generate cards when a customer is registered at a specific OU, makes a transaction or update profile for the first time and mention the desired <code class="prettyprint">conceptCode</code>).</td>
+<td>When to generate cards from this series. Values <code class="prettyprint">REGISTRATION</code> (to issue card automatically when a new customer is registered), <code class="prettyprint">SERIES_ID</code> (to generate cards when the series code is passed during registration), <code class="prettyprint">OU_ID</code> (to generate cards when a customer is registered at a specific OU, makes a transaction or updates profile for the first time and mention the desired <code class="prettyprint">conceptCode</code>).</td>
 </tr>
 <tr>
 <td>conceptCode**</td>
