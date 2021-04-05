@@ -634,6 +634,17 @@ https://us.api.capillarytech.com/v2/customers?source=MOBILE_APP<span class="err"
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
+<p>Sample Schema to issue external cardStatus</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w"> </span><span class="err">...</span><span class="w"> 
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cardnumber"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"EXTERNALCARD9875692"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"seriesCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOLDPHY98"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+ </span><span class="err">...</span><span class="w">
+</span></code></pre>
+<blockquote>
 <p>Sample Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -804,6 +815,21 @@ Extended fields are either associated to verticals or to a generic category (ava
 <td>value</td>
 <td>string</td>
 <td>Value of the specified identifier. For the <code class="prettyprint">type</code> card, <code class="prettyprint">value</code> is card number.</td>
+</tr>
+<tr>
+<td>seriesId</td>
+<td>int</td>
+<td>Card series ID (for card series generated in Capillary). Required for the identifier <code class="prettyprint">type</code>,  <code class="prettyprint">card</code>.</td>
+</tr>
+<tr>
+<td>seriesCode</td>
+<td>string</td>
+<td>Unique card series code (for external card series). Applicable for the identifier <code class="prettyprint">type</code>,  <code class="prettyprint">card</code>.</td>
+</tr>
+<tr>
+<td>statusLabel</td>
+<td>string</td>
+<td>User defined card status. Required for the identifier <code class="prettyprint">type</code>,  <code class="prettyprint">card</code>.</td>
 </tr>
 <tr>
 <td>commChannels</td>
@@ -1494,10 +1520,13 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 
 <p><strong>Identifiers</strong>: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">wechat</code>, <code class="prettyprint">martjackId</code>, <code class="prettyprint">fbId</code>, <code class="prettyprint">tmall_uname</code>, <code class="prettyprint">cuid</code>, <code class="prettyprint">ali_uname</code>, <code class="prettyprint">jd_uname</code>, <code class="prettyprint">vip_uname</code>, <code class="prettyprint">line</code>. </p>
 
-<p>Limitations of the customer identifier update API:
-* Only identifiers can be updated using this API
-* Identifiers should be unique within a source for single account sources and unique within an account for multiple account sources.
-* If an identifier that you add already exists in a different source/account, the account will be automatically merged into the existing account maintaining different entries of each source. The new account will be a victim account and the existing account is a survivor account.</p>
+<p>Limitations of the customer identifier update API:</p>
+
+<ul>
+<li>Only identifiers can be updated using this API</li>
+<li>Identifiers should be unique within a source for single account sources and unique within an account for multiple account sources.</li>
+<li>If an identifier that you add already exists in a different source/account, the account will be automatically merged into the existing account maintaining different entries of each source. The new account will be a victim account and the existing account is a survivor account.</li>
+</ul>
 
 <h3 id="prerequisites">Prerequisites</h3>
 
@@ -16290,14 +16319,26 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 
 <p>A card is a physical or digital card and associated to a Card Series. A card stores information such as issued date, expiry date, store or source account from which the card is issued, and current status.</p>
 
-<p>Cards are specific to customers and not to source accounts. A customer can have multiple cards of the same card series. Issuing a card means linking a card to a customer. A card to be issued to a customer can be any of the following types.
-* Issuing a digital or virtual card.
-* Issuing a physical card generated in Capillary.
-* Issuing a physical card that is not generated in Capillary.</p>
+<p>Cards are specific to customers and not to source accounts. A customer can have multiple cards of the same card series. Issuing a card means linking a card to a customer. The following are the different types of cards supported.</p>
+
+<ul>
+<li>Issuing a digital or virtual card.</li>
+<li>Issuing a physical card generated in Capillary.</li>
+<li><p>Issuing a physical card that is not generated in Capillary.</p></li>
+<li><p>Create physical/digital card series with auto card generation enabled.</p></li>
+<li><p>Create physical/digital card series with auto card generation enabled.</p></li>
+<li><p>Add customer using card attributes. Also, issue external card to customer.</p></li>
+</ul>
 
 <h2 id="create-card-series">Create Card Series</h2>
 
-<p>Lets you create a new card series for the org.</p>
+<p>Lets you create a new card series for the org. The following are the different types of Cards</p>
+
+<ul>
+<li>Create physical/digital card series with auto card generation enabled.</li>
+<li>Card issual on different actions org or OU level registrations.<br></li>
+<li>Create physical/digital card series with auto card generation disabled. </li>
+</ul>
 
 <blockquote>
 <p>Sample Request</p>
@@ -16307,23 +16348,46 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <blockquote>
 <p>Sample Post Request</p>
 </blockquote>
-<pre class="highlight json"><code><span class="err">#</span><span class="w"> 
-</span><span class="p">{</span><span class="w">
-  </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"pet"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"platinum Card"</span><span class="p">,</span><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"PLAPHY3"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Gold Card"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"PHYSICAL"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"expiryDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">365</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"expiryDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"cardExpiryEnabled"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="nt">"cardGenerationConfiguration"</span><span class="p">:{</span><span class="w">
-    </span><span class="nt">"prefix"</span><span class="p">:</span><span class="s2">"PET3"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"suffix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"offset"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"prefix"</span><span class="p">:</span><span class="s2">"PLAT2"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"suffix"</span><span class="p">:</span><span class="s2">"2020"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"length"</span><span class="p">:</span><span class="mi">16</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"DEFAULT"</span><span class="w">
+    </span><span class="nt">"method"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"DEFAULT"</span><span class="w">
   </span><span class="p">},</span><span class="w">
     </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"isActive"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+    </span><span class="nt">"isActive"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"trigger"</span><span class="p">:</span><span class="s2">"SERIES_ID"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"maxActiveCardsPerCustomer"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
+</span></code></pre>
+<blockquote>
+<p>Sample POST - Trigger on OU Events</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"GOLDDIF6"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Gold Card 6"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"DIGITAL"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"expiryDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"cardExpiryEnabled"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"cardGenerationConfiguration"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"prefix"</span><span class="p">:</span><span class="s2">"GOLD6"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"suffix"</span><span class="p">:</span><span class="s2">"2020"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"length"</span><span class="p">:</span><span class="mi">16</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"method"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"DEFAULT"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"isActive"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"trigger"</span><span class="p">:</span><span class="s2">"OU_ID"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"conceptCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo.brand"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"maxActiveCardsPerCustomer"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>Sample Response</p>
@@ -16377,7 +16441,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <tr>
 <td>code*</td>
 <td>string</td>
-<td>A valid code (supports up to 50 characters) for the card series. Only alpha-numeric is allowed.</td>
+<td>Unique code (supports up to 50 characters) for the card series. Only alpha-numeric is allowed.</td>
 </tr>
 <tr>
 <td>name*</td>
@@ -16395,14 +16459,9 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <td>Validity of the card series in number of days from the day of issual.</td>
 </tr>
 <tr>
-<td>cardGenerationEnabled</td>
+<td>cardExpiryEnabled</td>
 <td>boolean</td>
-<td>Pass <code class="prettyprint">true</code> enable generating automatically for the series, <code class="prettyprint">false</code> to manually generate cards.</td>
-</tr>
-<tr>
-<td>isActive</td>
-<td>boolean</td>
-<td>Pass <code class="prettyprint">true</code> to activate the series.</td>
+<td>Set <code class="prettyprint">true</code> to enable card card expiry. If this is <code class="prettyprint">false</code>, <code class="prettyprint">expiryDays</code> is not applicable.</td>
 </tr>
 <tr>
 <td>cardGenerationConfiguration</td>
@@ -16430,98 +16489,38 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <td>Length of the cards of the series.</td>
 </tr>
 <tr>
-<td>type</td>
+<td>method</td>
 <td>enum</td>
-<td>DEFAULT</td>
-</tr>
-</tbody></table>
-
-<p><aside class="notice">Parameters marked with * are mandatory. </aside></p>
-
-<h2 id="get-card-series-details">Get Card Series Details</h2>
-
-<p>Retrieves the details of a specific card series.</p>
-
-<blockquote>
-<p>Sample Request</p>
-</blockquote>
-<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/card/series/10
-</code></pre>
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"expiryDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"lastUpdateBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"maxActiveCardsPerCustomer"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cardGenerationConfiguration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100458</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"suffix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PETRON3"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"length"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEFAULT"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAL3"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-11-27T09:12:13Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Petron Value Card 3.1"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100458</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PHYSICAL"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<h3 id="resource-information">Resource Information</h3>
-
-<table><thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URI</td>
-<td><code class="prettyprint">v2/card/series/{seriesId}</code></td>
+<td>The card generation method. For now, only <code class="prettyprint">DEFAULT</code> is supported.</td>
 </tr>
 <tr>
-<td>HTTP Method</td>
-<td>POST</td>
+<td>cardGenerationEnabled</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> enable generating automatically for the series, <code class="prettyprint">false</code> to manually generate cards.</td>
 </tr>
 <tr>
-<td>API Version</td>
-<td>v2</td>
+<td>isActive</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to activate the series.</td>
 </tr>
 <tr>
-<td>Batch Support</td>
-<td>No</td>
+<td>trigger</td>
+<td>enum</td>
+<td>When to generate cards from this series. Values <code class="prettyprint">REGISTRATION</code> (to issue card automatically when a new customer is registered), <code class="prettyprint">SERIES_ID</code> (to generate cards when the series code is passed during registration), <code class="prettyprint">OU_ID</code> (to generate cards when a customer is registered at a specific OU, makes a transaction or update profile for the first time and mention the desired <code class="prettyprint">conceptCode</code>).</td>
 </tr>
-</tbody></table>
-
-<h3 id="request-url">Request URL</h3>
-
-<p><code class="prettyprint">https://{host}/v2/card/series/{seriesId}</code></p>
-
-<h3 id="request-query-parameter">Request Query Parameter</h3>
-
-<table><thead>
 <tr>
-<th>Parameter</th>
-<th>Datatype</th>
-<th>Description</th>
+<td>conceptCode**</td>
+<td>string</td>
+<td>Concept code associated with the card series. The concept is identified by the associated Till Code.</td>
 </tr>
-</thead><tbody>
 <tr>
-<td>seriesId*</td>
+<td>maxActiveCardsPerCustomer</td>
 <td>int</td>
-<td>Unique ID of the series to retrieve.</td>
+<td>Limit active cards per customer from the current card series.</td>
 </tr>
 </tbody></table>
 
-<aside class="notice"> The Parameter marked with * is mandatory. </aside>
+<aside class="notice">Parameters marked with * are mandatory. conceptCode is required for the OU based trigger (OU_ID).</aside>
 
 <h2 id="update-card-series">Update Card Series</h2>
 
@@ -16536,15 +16535,23 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <p>Sample PUT Request</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-   </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Titanium Card for DemoOrg"</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"DIGITAL"</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"cardGenerationConfiguration"</span><span class="p">:{</span><span class="w">
-      </span><span class="nt">"prefix"</span><span class="p">:</span><span class="s2">"TTM00111"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"suffix"</span><span class="p">:</span><span class="s2">"ZS"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"length"</span><span class="p">:</span><span class="mi">10</span><span class="w">
-   </span><span class="p">},</span><span class="w">
-   </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+  </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"GOLDPHY23"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Gold Card 23"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"PHYSICAL"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"expiryDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"cardExpiryEnabled"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"cardGenerationConfiguration"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"prefix"</span><span class="p">:</span><span class="s2">"GOLD2"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"suffix"</span><span class="p">:</span><span class="s2">"2020"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"length"</span><span class="p">:</span><span class="mi">16</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"method"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"DEFAULT"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"isActive"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"trigger"</span><span class="p">:</span><span class="s2">"SERIES_ID"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"maxActiveCardsPerCustomer"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
 </span><span class="p">}</span><span class="w">
+
 </span></code></pre>
 <blockquote>
 <p>Sample Response</p>
@@ -16626,6 +16633,16 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 </tr>
 </thead><tbody>
 <tr>
+<td>code</td>
+<td>string</td>
+<td>Unique code (supports up to 50 characters) for the card series. Only alpha-numeric is allowed.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Name of the card series.</td>
+</tr>
+<tr>
 <td>description</td>
 <td>string</td>
 <td>Description of the Card Series.</td>
@@ -16655,9 +16672,280 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <td>boolean</td>
 <td>Pass <code class="prettyprint">true</code> to enable auto generating card, pass <code class="prettyprint">false</code> to manually generate card numbers.</td>
 </tr>
+<tr>
+<td>expiryDays*</td>
+<td>int</td>
+<td>Validity of the card series in number of days from the day of issual.</td>
+</tr>
+<tr>
+<td>cardExpiryEnabled</td>
+<td>boolean</td>
+<td>Set <code class="prettyprint">true</code> to enable card card expiry. If this is <code class="prettyprint">false</code>, <code class="prettyprint">expiryDays</code> is not applicable.</td>
+</tr>
+<tr>
+<td>cardGenerationConfiguration</td>
+<td>obj</td>
+<td>Configurations of the card series.</td>
+</tr>
+<tr>
+<td>prefix</td>
+<td>string</td>
+<td>Starting characters for cards of the series.</td>
+</tr>
+<tr>
+<td>suffix</td>
+<td>string</td>
+<td>Ending characters for cards of the series.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>int</td>
+<td>Number of rows to be ignored from the top.</td>
+</tr>
+<tr>
+<td>length</td>
+<td>int</td>
+<td>Length of the cards of the series.</td>
+</tr>
+<tr>
+<td>method</td>
+<td>enum</td>
+<td>The card generation method. For now, only <code class="prettyprint">DEFAULT</code> is supported.</td>
+</tr>
+<tr>
+<td>cardGenerationEnabled</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> enable generating automatically for the series, <code class="prettyprint">false</code> to manually generate cards.</td>
+</tr>
+<tr>
+<td>isActive</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to activate the series, <code class="prettyprint">false</code> to deactivate the series.</td>
+</tr>
+<tr>
+<td>trigger</td>
+<td>enum</td>
+<td>When to generate cards from this series. Values <code class="prettyprint">REGISTRATION</code> (to issue card automatically when a new customer is registered), <code class="prettyprint">SERIES_ID</code> (to generate cards when the series code is passed during registration), <code class="prettyprint">OU_ID</code> (to generate cards when a customer is registered at a specific OU, makes a transaction or update profile for the first time and mention the desired <code class="prettyprint">conceptCode</code>).</td>
+</tr>
+<tr>
+<td>conceptCode**</td>
+<td>string</td>
+<td>Concept code associated with the card series. The concept is identified by the associated Till Code.</td>
+</tr>
+<tr>
+<td>maxActiveCardsPerCustomer</td>
+<td>int</td>
+<td>Limit active cards per customer from the current card series.</td>
+</tr>
 </tbody></table>
 
 <aside class="notice"> All parameters marked with * are mandatory. </aside>
+
+<h2 id="get-all-card-series-details">Get All Card Series Details</h2>
+
+<p>Retrieves the details of all card series of the org.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/card/series/get/all
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-04-02T17:53:27+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"trigger"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REGISTRATION"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"expiryDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cardExpiryEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastUpdateBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"maxActiveCardsPerCustomer"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cardGenerationConfiguration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50074</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="w"> </span><span class="mi">132</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"suffix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOLD5"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"length"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEFAULT"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"orgUnitId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOLDDIG5"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-04-02T17:53:27+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gold Card 5"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">132</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50074</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DIGITAL"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-11-12T20:16:29+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"trigger"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SERIES_ID"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"expiryDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">355</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cardExpiryEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastUpdateBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"maxActiveCardsPerCustomer"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"orgUnitId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"goldseries"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-11-12T20:16:30+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"card series create"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50074</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DIGITAL"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-03-30T17:28:45+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"trigger"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SERIES_ID"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"expiryDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cardExpiryEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastUpdateBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"maxActiveCardsPerCustomer"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cardGenerationConfiguration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50074</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="w"> </span><span class="mi">131</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"suffix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PLAT2"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"length"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEFAULT"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"orgUnitId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PLAPHY3"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-03-30T17:28:45+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gold Card"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">131</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50074</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PHYSICAL"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/card/series/get/all</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/card/series/get/all</code></p>
+
+<h2 id="get-card-series-details">Get Card Series Details</h2>
+
+<p>Retrieves the details of a specific card series.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/card/series/10
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"expiryDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"lastUpdateBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"maxActiveCardsPerCustomer"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"cardGenerationConfiguration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100458</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"suffix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PETRON3"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"length"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEFAULT"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAL3"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-11-27T09:12:13Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Petron Value Card 3.1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100458</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PHYSICAL"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/card/series/{seriesId}</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/card/series/{seriesId}</code></p>
+
+<h3 id="request-query-parameter">Request Query Parameter</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>seriesId*</td>
+<td>int</td>
+<td>Unique ID of the series to retrieve.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> The Parameter marked with * is mandatory. </aside>
 
 <h2 id="deactivate-card-series">Deactivate Card Series</h2>
 
@@ -16666,21 +16954,27 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/card/series
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/card/series/132
 </code></pre>
 <blockquote>
 <p>Sample PUT Request</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"isActive"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DIGITAL"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cardGenerationConfiguration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"suffix"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"length"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"PHYSICAL"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"expiryDays"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"cardExpiryEnabled"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"cardGenerationConfiguration"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"prefix"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"suffix"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"length"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"method"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"DEFAULT"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"isActive"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"trigger"</span><span class="p">:</span><span class="s2">"SEIES_ID"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"maxActiveCardsPerCustomer"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -16695,7 +16989,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">132</span><span class="p">,</span><span class="w">
     </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50074</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DIGITAL"</span><span class="p">,</span><span class="w">
@@ -16744,7 +17038,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <tr>
 <td>seriesId*</td>
 <td>int</td>
-<td>Unique ID of the card series to issue cards (Query parameter).</td>
+<td>Unique ID of the card series to deactivate (Path parameter).</td>
 </tr>
 <tr>
 <td>isActive*</td>
@@ -16752,9 +17046,9 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <td>Pass <code class="prettyprint">0</code> to deactivate the card series.</td>
 </tr>
 <tr>
-<td>count*</td>
-<td>int</td>
-<td>Number of cards to generate.</td>
+<td>type*</td>
+<td>enum</td>
+<td>Type of cards of the series - <code class="prettyprint">PHYSICAL</code>, <code class="prettyprint">DIGITAL</code>.</td>
 </tr>
 </tbody></table>
 
