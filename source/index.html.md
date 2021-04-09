@@ -136,7 +136,7 @@ You can either pass the `Authorization` Header or use Till ID and password for a
 Construct the authorization header as mentioned below - pass the Base64 decoded form of username and md5 formatted password.
 
 
-`Authorization: Basic <Base64 encoded (username: md5(password)>`
+`Authorization: Basic <Base64 encoded (username:md5(password)>`
 
 For example, if the username or TILL ID is `store.server123` and the password is 'server123', md5 of the password
 
@@ -146,7 +146,7 @@ For example, if the username or TILL ID is `store.server123` and the password is
 For example, if the username is `store.server` and the password is 'server123', 
 
 * md5 encryption of the password (server123) is `8a16a6b70505eb1f1ff7cdc0cd5559a7`.
-* Base 64 of the encrypted password is `c3RvcmUuc2VydmVyOjhhMTZhNmI3MDUwNWViMWYxZmY3Y2RjMGNkNTU1OWE3`.
+* Base 64 (store.server:8a16a6b70505eb1f1ff7cdc0cd5559a7) is `c3RvcmUuc2VydmVyOjhhMTZhNmI3MDUwNWViMWYxZmY3Y2RjMGNkNTU1OWE3`.
 
 So the Authentication Header is 
 
@@ -196,7 +196,7 @@ Authentication Required? | No
 Batch Support? | No
 
 #### Endpoint
-`https://{host}/v3/oauth/token/generate`
+`{host}/v3/oauth/token/generate`
 
 #### POST Request Schema
 
@@ -263,7 +263,12 @@ For example, to get transaction details, you can use the following details. Befo
 
 **Headers**
 
-Accept | application/json Content-Type | application/json X-CAP-API-OAUTH-TOKEN | eyJraWQiOiJrMSIsImFsZyI6IlJTMjU2In0.wiOlwiV1JJ…
+| | |
+--------- | ----------- |
+Accept | application/json 
+Content-Type | application/json 
+X-CAP-API-OAUTH-TOKEN | eyJraWQiOiJrMSIsImFsZyI6IlJTMjU2In0.wiOlwiV1JJ…
+
 
 > Sample Request URL
 
@@ -272,14 +277,15 @@ https://eu.api.capillarytech.com/v2/transaction/38233952?type=REGULAR
 ```
 
 
+## Request Information
 
+### Request URL	
 
-### Request URL Format	
 `https://{host}/v2/{resource}/{endpoint}?{query params}`
 
 Entry | Description
 ----- | -----------
-Host | The server to which the API calls are made, usually the cluster URL. <br> **India**: apac.api.capillary.co.in <br> **APAC2**: apac2.api.capillarytech.com <br>**EU**: eu.api.capillarytech.com <br>**US**: us.api.capillarytech.com <br>**China**: cdn-api.capillarytech.cn.com [or] api.capillarytech.cn.com
+Host | The server to which the API calls are made, usually the cluster URL. <br> **India**: https://apac.api.capillary.co.in <br> **APAC2**: https://apac2.api.capillarytech.com <br>**EU**: https://eu.api.capillarytech.com <br>**US**: https://us.api.capillarytech.com <br>**China**: https://cdn-api.capillarytech.cn.com [or] https://api.capillarytech.cn.com 
 BasePath | v2 or v3(API version)
 Resource | Provide the appropriate entity based on the action to be performed. **Supported Resources**: customers, communications, coupon, organization, points, product, store, transaction, goodwill requests, add events, integration resources, referral, request and other resources.
 HTTP Methods | The Capillary Cloud REST APIs support the standard HTTP methods GET, PUT, DELETE and POST.
@@ -287,8 +293,12 @@ Response Format | JSON. All V2 and V3 APIs support only JSON response.
 
 
 
-## Response Codes
-The following are global success and error codes. The response codes of each resource are provided in the respective sections.
+## HTTP Status Codes
+
+<aside class="notice">There are two types of failure cases - Errors and Warnings. Errors occur when the main activity fails - it could be due to internal error or incorrect input. Warnings occur when the primary activity is succeeded, but the secondary activity/activities failed. </aside> 
+
+These are the standard codes that that provided the result of a client request. The response codes for each resource are provided in the respective sections.
+
 
 Code | Description
 ---- | -----------

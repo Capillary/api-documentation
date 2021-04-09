@@ -244,7 +244,7 @@
 
 <p>Construct the authorization header as mentioned below - pass the Base64 decoded form of username and md5 formatted password.</p>
 
-<p><code class="prettyprint">Authorization: Basic &lt;Base64 encoded (username: md5(password)&gt;</code></p>
+<p><code class="prettyprint">Authorization: Basic &lt;Base64 encoded (username:md5(password)&gt;</code></p>
 
 <p>For example, if the username or TILL ID is <code class="prettyprint">store.server123</code> and the password is &lsquo;server123&rsquo;, md5 of the password</p>
 
@@ -252,7 +252,7 @@
 
 <ul>
 <li>md5 encryption of the password (server123) is <code class="prettyprint">8a16a6b70505eb1f1ff7cdc0cd5559a7</code>.</li>
-<li>Base 64 of the encrypted password is <code class="prettyprint">c3RvcmUuc2VydmVyOjhhMTZhNmI3MDUwNWViMWYxZmY3Y2RjMGNkNTU1OWE3</code>.</li>
+<li>Base 64 (store.server:8a16a6b70505eb1f1ff7cdc0cd5559a7) is <code class="prettyprint">c3RvcmUuc2VydmVyOjhhMTZhNmI3MDUwNWViMWYxZmY3Y2RjMGNkNTU1OWE3</code>.</li>
 </ul>
 
 <p>So the Authentication Header is </p>
@@ -323,7 +323,7 @@ Password: md5 hash (server123) which is 8a16a6b70505eb1f1ff7cdc0cd5559a7</p>
 
 <h4 id="endpoint">Endpoint</h4>
 
-<p><code class="prettyprint">https://{host}/v3/oauth/token/generate</code></p>
+<p><code class="prettyprint">{host}/v3/oauth/token/generate</code></p>
 
 <h4 id="post-request-schema">POST Request Schema</h4>
 
@@ -408,14 +408,34 @@ Password: md5 hash (server123) which is 8a16a6b70505eb1f1ff7cdc0cd5559a7</p>
 
 <p><strong>Headers</strong></p>
 
-<p>Accept | application/json Content-Type | application/json X-CAP-API-OAUTH-TOKEN | eyJraWQiOiJrMSIsImFsZyI6IlJTMjU2In0.wiOlwiV1JJ…</p>
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Accept</td>
+<td>application/json</td>
+</tr>
+<tr>
+<td>Content-Type</td>
+<td>application/json</td>
+</tr>
+<tr>
+<td>X-CAP-API-OAUTH-TOKEN</td>
+<td>eyJraWQiOiJrMSIsImFsZyI6IlJTMjU2In0.wiOlwiV1JJ…</td>
+</tr>
+</tbody></table>
 
 <blockquote>
 <p>Sample Request URL</p>
 </blockquote>
 <pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/transaction/38233952?type=REGULAR
 </code></pre>
-<h3 id="request-url-format">Request URL Format</h3>
+<h2 id="request-information">Request Information</h2>
+
+<h3 id="request-url">Request URL</h3>
 
 <p><code class="prettyprint">https://{host}/v2/{resource}/{endpoint}?{query params}</code></p>
 
@@ -427,7 +447,7 @@ Password: md5 hash (server123) which is 8a16a6b70505eb1f1ff7cdc0cd5559a7</p>
 </thead><tbody>
 <tr>
 <td>Host</td>
-<td>The server to which the API calls are made, usually the cluster URL. <br> <strong>India</strong>: apac.api.capillary.co.in <br> <strong>APAC2</strong>: apac2.api.capillarytech.com <br><strong>EU</strong>: eu.api.capillarytech.com <br><strong>US</strong>: us.api.capillarytech.com <br><strong>China</strong>: cdn-api.capillarytech.cn.com [or] api.capillarytech.cn.com</td>
+<td>The server to which the API calls are made, usually the cluster URL. <br> <strong>India</strong>: https://apac.api.capillary.co.in <br> <strong>APAC2</strong>: https://apac2.api.capillarytech.com <br><strong>EU</strong>: https://eu.api.capillarytech.com <br><strong>US</strong>: https://us.api.capillarytech.com <br><strong>China</strong>: https://cdn-api.capillarytech.cn.com [or] https://api.capillarytech.cn.com</td>
 </tr>
 <tr>
 <td>BasePath</td>
@@ -447,9 +467,11 @@ Password: md5 hash (server123) which is 8a16a6b70505eb1f1ff7cdc0cd5559a7</p>
 </tr>
 </tbody></table>
 
-<h2 id="response-codes">Response Codes</h2>
+<h2 id="http-status-codes">HTTP Status Codes</h2>
 
-<p>The following are global success and error codes. The response codes of each resource are provided in the respective sections.</p>
+<aside class="notice">There are two types of failure cases - Errors and Warnings. Errors occur when the main activity fails - it could be due to internal error or incorrect input. Warnings occur when the primary activity is succeeded, but the secondary activity/activities failed. </aside> 
+
+<p>These are the standard codes that that provided the result of a client request. The response codes for each resource are provided in the respective sections.</p>
 
 <table><thead>
 <tr>
@@ -612,6 +634,17 @@ https://us.api.capillarytech.com/v2/customers?source=MOBILE_APP<span class="err"
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
+<p>Sample Schema to issue external cardStatus</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w"> </span><span class="err">...</span><span class="w"> 
+  </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cardnumber"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"value"</span><span class="p">:</span><span class="s2">"EXTERNALCARD9875692"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"seriesCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOLDPHY98"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+ </span><span class="err">...</span><span class="w">
+</span></code></pre>
+<blockquote>
 <p>Sample Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -724,7 +757,7 @@ Extended fields are either associated to verticals or to a generic category (ava
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/customers?source={SourceName}&amp;accountId={accountId}</code></p>
+<p><code class="prettyprint">{host}/v2/customers?source={SourceName}&amp;accountId={accountId}</code></p>
 
 <h3 id="request-query-parameters">Request Query Parameters</h3>
 
@@ -784,6 +817,21 @@ Extended fields are either associated to verticals or to a generic category (ava
 <td>Value of the specified identifier. For the <code class="prettyprint">type</code> card, <code class="prettyprint">value</code> is card number.</td>
 </tr>
 <tr>
+<td>seriesId</td>
+<td>int</td>
+<td>Card series ID (for card series generated in Capillary). Required for the identifier <code class="prettyprint">type</code>,  <code class="prettyprint">card</code>.</td>
+</tr>
+<tr>
+<td>seriesCode</td>
+<td>string</td>
+<td>Unique card series code (for external card series). Applicable for the identifier <code class="prettyprint">type</code>,  <code class="prettyprint">card</code>.</td>
+</tr>
+<tr>
+<td>statusLabel</td>
+<td>string</td>
+<td>User defined card status. Required for the identifier <code class="prettyprint">type</code>,  <code class="prettyprint">card</code>.</td>
+</tr>
+<tr>
 <td>commChannels</td>
 <td>obj</td>
 <td>Available communication channels of the customer. Value: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">wechat</code>, <code class="prettyprint">ios</code>, <code class="prettyprint">android</code>, <code class="prettyprint">line</code>, <code class="prettyprint">mobilePush</code>.</td>
@@ -799,14 +847,14 @@ Extended fields are either associated to verticals or to a generic category (ava
 <td>Last name of the customer.</td>
 </tr>
 <tr>
-<td>attributionV2</td>
 <td>createDate</td>
+<td>date-time</td>
 <td>Time and date of registration in <code class="prettyprint">YYYY-MM-DDTHH:MM:SS+HH:MM</code> format. Example: 2016-06-23T19:11:18+08:00</td>
 </tr>
 <tr>
 <td>associatedWith</td>
-<td></td>
-<td>The TILL code to which you want to associate the customer</td>
+<td>string</td>
+<td>The TILL code associated with the customer registration.</td>
 </tr>
 <tr>
 <td>extendedFields</td>
@@ -940,8 +988,8 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
     </span><span class="nt">"primary"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"verified"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="nt">"meta"</span><span class="p">:{</span><span class="w">
-      </span><span class="err">“lastViewedDate”</span><span class="w"> </span><span class="err">:</span><span class="w"> </span><span class="nt">"2019-10-25"</span><span class="w">
-    </span><span class="err">}</span><span class="w">
+      </span><span class="nt">"lastViewedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-25"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -1008,10 +1056,10 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 
 <p>For sources with single accounts</p>
 
-<p><code class="prettyprint">https://{host}/v2/customers/{customerId}?source={sourceName}</code></p>
+<p><code class="prettyprint">{host}/v2/customers/{customerId}?source={sourceName}</code></p>
 
 <p>For sources with multiple accounts
-<code class="prettyprint">https://{host}/v2/customers/{customerId}?source={sourceName}&amp;accountId={accountId}</code></p>
+<code class="prettyprint">{host}/v2/customers/{customerId}?source={sourceName}&amp;accountId={accountId}</code></p>
 
 <h3 id="request-query-parameters">Request Query Parameters</h3>
 
@@ -1268,7 +1316,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 
 <p>For sources with single accounts</p>
 
-<p><code class="prettyprint">https://{host}/v2/customers/lookup?source={sourceName}?&amp;accountId={accountId}&amp;identifierName={identifierName}&amp;identifierValue={IdentifierValue}</code></p>
+<p><code class="prettyprint">{host}/v2/customers/lookup?source={sourceName}?&amp;accountId={accountId}&amp;identifierName={identifierName}&amp;identifierValue={IdentifierValue}</code></p>
 
 <h3 id="request-query-parameters">Request Query Parameters</h3>
 
@@ -1472,10 +1520,13 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 
 <p><strong>Identifiers</strong>: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">wechat</code>, <code class="prettyprint">martjackId</code>, <code class="prettyprint">fbId</code>, <code class="prettyprint">tmall_uname</code>, <code class="prettyprint">cuid</code>, <code class="prettyprint">ali_uname</code>, <code class="prettyprint">jd_uname</code>, <code class="prettyprint">vip_uname</code>, <code class="prettyprint">line</code>. </p>
 
-<p>Limitations of the customer identifier update API:
-* Only identifiers can be updated using this API
-* Identifiers should be unique within a source for single account sources and unique within an account for multiple account sources.
-* If an identifier that you add already exists in a different source/account, the account will be automatically merged into the existing account maintaining different entries of each source. The new account will be a victim account and the existing account is a survivor account.</p>
+<p>Limitations of the customer identifier update API:</p>
+
+<ul>
+<li>Only identifiers can be updated using this API</li>
+<li>Identifiers should be unique within a source for single account sources and unique within an account for multiple account sources.</li>
+<li>If an identifier that you add already exists in a different source/account, the account will be automatically merged into the existing account maintaining different entries of each source. The new account will be a victim account and the existing account is a survivor account.</li>
+</ul>
 
 <h3 id="prerequisites">Prerequisites</h3>
 
@@ -1511,7 +1562,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/customers/{customerId}/changeIdentifier?source={source}&amp;accountId={accountId}</code></p>
+<p><code class="prettyprint">{host}/v2/customers/{customerId}/changeIdentifier?source={source}&amp;accountId={accountId}</code></p>
 
 <aside class="notice">The new identifier that you want to update should be unique across the source (for sources with single accounts) and unique across the account (for sources with multiple accounts).</aside>
 
@@ -1787,7 +1838,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/customers/search?q={search keyword}</code></p>
+<p><code class="prettyprint">{host}/v2/customers/search?q={search keyword}</code></p>
 
 <h3 id="request-parameter">Request Parameter</h3>
 
@@ -1851,7 +1902,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/customers/lookup?source={SourceName}&amp;accountId={accountId}&amp;identifierName={IdentifierName}&amp;identifierValue={IdentifierValue}</code></p>
+<p><code class="prettyprint">{host}/v2/customers/lookup?source={SourceName}&amp;accountId={accountId}&amp;identifierName={IdentifierName}&amp;identifierValue={IdentifierValue}</code></p>
 
 <h3 id="request-parameter">Request Parameter</h3>
 
@@ -2221,7 +2272,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/customers/{customerId}?source={sourceName}&amp;accountId={accountId}</code></p>
+<p><code class="prettyprint">{host}/v2/customers/{customerId}?source={sourceName}&amp;accountId={accountId}</code></p>
 
 <p>To fetch customer details from a specific account of a source (source with multiple accounts), you need to provide the respective account id.</p>
 
@@ -2447,7 +2498,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/customers/lookup/customerDetails?source={source}&amp;accountId={accountId}&amp;identifierName={identifierName}&amp;identifierValue={identifierValue}&amp;embed={embedParameterName}</code></p>
+<p><code class="prettyprint">{host}/v2/customers/lookup/customerDetails?source={source}&amp;accountId={accountId}&amp;identifierName={identifierName}&amp;identifierValue={identifierValue}&amp;embed={embedParameterName}</code></p>
 
 <h3 id="request-query-parameters">Request Query Parameters</h3>
 
@@ -2576,7 +2627,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/customers/{customerId}/loyaltyDetails</code></p>
+<p><code class="prettyprint">{host}/v2/customers/{customerId}/loyaltyDetails</code></p>
 
 <h3 id="request-parameters">Request Parameters</h3>
 
@@ -2731,7 +2782,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/customers/{customerId}/subscriptions</code></p>
+<p><code class="prettyprint">{host}/v2/customers/{customerId}/subscriptions</code></p>
 
 <h3 id="request-parameters">Request Parameters</h3>
 
@@ -2841,7 +2892,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/customers/{customerId}/subscriptions</code></p>
+<p><code class="prettyprint">{host}/v2/customers/{customerId}/subscriptions</code></p>
 
 <h3 id="request-query-parameters">Request Query Parameters</h3>
 
@@ -2955,7 +3006,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/customers/{userId}/pointsTransfers</code></p>
+<p><code class="prettyprint">{host}/v2/customers/{userId}/pointsTransfers</code></p>
 
 <h3 id="request-query-parameters">Request Query Parameters</h3>
 
@@ -3210,7 +3261,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/customers/{customerId}/retroRequest?{queryParameters}</code></p>
+<p><code class="prettyprint">{host}/v2/customers/{customerId}/retroRequest?{queryParameters}</code></p>
 
 <h3 id="request-query-parameters">Request Query Parameters</h3>
 
@@ -3362,7 +3413,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 
 <h3 id="request-url">Request URL</h3>
 
-<p>`https://{host}/v2/customers/{customerId}/changeRequest?queryParams</p>
+<p>`{host}/v2/customers/{customerId}/changeRequest?queryParams</p>
 
 <h3 id="request-query-parameters">Request Query Parameters</h3>
 
@@ -3569,7 +3620,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 
 <h3 id="request-url">Request URL</h3>
 
-<p>`https://{host}/v2/customers/{customerId}/goodwillRequest</p>
+<p>`{host}/v2/customers/{customerId}/goodwillRequest</p>
 
 <h3 id="request-query-parameters">Request Query Parameters</h3>
 
@@ -3930,7 +3981,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/customers/{customerId}/coupons</code></p>
+<p><code class="prettyprint">{host}/v2/customers/{customerId}/coupons</code></p>
 
 <h3 id="request-query-parameters">Request Query Parameters</h3>
 
@@ -3959,7 +4010,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </code></pre>
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/customers/{userId}?source={source}</code></p>
+<p><code class="prettyprint">{host}/v2/customers/{userId}?source={source}</code></p>
 
 <h3 id="request-query-parameter">Request Query Parameter</h3>
 
@@ -4292,10 +4343,6 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>No transactions or recommendations found for the customer.</td>
 </tr>
 <tr>
-<td>1053</td>
-<td>Preferred store specified is not found.</td>
-</tr>
-<tr>
 <td>1060</td>
 <td>Batch limit exceeded.</td>
 </tr>
@@ -4404,6 +4451,40 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>Failed to update customer details.</td>
 </tr>
 <tr>
+<td>91009</td>
+<td>Retrieved survivor account for the requested merge victim.</td>
+</tr>
+<tr>
+<td>91010</td>
+<td>Downgrade strategy is not configured.</td>
+</tr>
+<tr>
+<td>91020</td>
+<td>Invalid TILL passed for registration.</td>
+</tr>
+<tr>
+<td>91021</td>
+<td>Invalid attribution TILL passed.</td>
+</tr>
+<tr>
+<td>91022</td>
+<td>Failed to update subscription for {x} channel and priority {y}.</td>
+</tr>
+</tbody></table>
+
+<h3 id="warning-codes">Warning Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>1053</td>
+<td>Preferred store specified is not found.</td>
+</tr>
+<tr>
 <td>91001</td>
 <td>Failed to get point details.</td>
 </tr>
@@ -4413,7 +4494,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </tr>
 <tr>
 <td>91003</td>
-<td>Validation failed.</td>
+<td>Failed to validate.</td>
 </tr>
 <tr>
 <td>91004</td>
@@ -4421,7 +4502,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </tr>
 <tr>
 <td>91005</td>
-<td>{x} is Primary Key, {y} cannot be updated.</td>
+<td>{x} is primary identifier and cannot be updated.</td>
 </tr>
 <tr>
 <td>91006</td>
@@ -4429,15 +4510,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </tr>
 <tr>
 <td>91007</td>
-<td>{x} is already occupied by some other user, ignoring it.</td>
-</tr>
-<tr>
-<td>91009</td>
-<td>Retrieved survivor account for the requested merge victim.</td>
-</tr>
-<tr>
-<td>91010</td>
-<td>Downgrade strategy is not configured.</td>
+<td>Failed to register. {x} already exists for some other user.</td>
 </tr>
 <tr>
 <td>91011</td>
@@ -4475,18 +4548,6 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>91019</td>
 <td>Unable to load Web Engage notifications.</td>
 </tr>
-<tr>
-<td>91020</td>
-<td>Invalid TILL passed for registration.</td>
-</tr>
-<tr>
-<td>91021</td>
-<td>Invalid attribution TILL passed.</td>
-</tr>
-<tr>
-<td>91022</td>
-<td>Failed to update subscription for {x} channel and priority {y}.</td>
-</tr>
 </tbody></table>
 
           <h1 id="transaction">Transaction</h1>
@@ -4501,7 +4562,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <li><strong>Mixed</strong>: A transaction that involves both regular and return is termed as mixed transaction.</li>
 </ul>
 
-<h2 id="add-or-return-transaction">Add or Return Transaction</h2>
+<h2 id="add-or-return-transaction-bulk">Add or Return Transaction (Bulk)</h2>
 
 <p>Lets you add or return one or more loyalty transactions to the Capillary system.</p>
 
@@ -4564,8 +4625,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
     </span><span class="nt">"paymentModes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BankNameAPI"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value_6555444"</span><span class="w">
+          </span><span class="nt">"wallet_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cliq Cash"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes_6555444"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CHECKAPI"</span><span class="p">,</span><span class="w">
@@ -4716,8 +4776,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
     </span><span class="nt">"paymentModes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BankNameAPI"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value_6555444"</span><span class="w">
+          </span><span class="nt">"BankNameAPI"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value_6555444"</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes_6555444"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CHECKAPI"</span><span class="p">,</span><span class="w">
@@ -4857,8 +4916,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
     </span><span class="nt">"paymentModes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CASH"</span><span class="p">,</span><span class="w">
-          </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"210"</span><span class="w">
+          </span><span class="nt">"CASH"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
@@ -4920,7 +4978,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
     </span><span class="p">{</span><span class="w">
       </span><span class="nt">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="nt">"identifierType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"identifierValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"919740390065"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"identifierValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"919740000000"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
         </span><span class="nt">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
         </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -5304,7 +5362,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/transactions/bulk</code></p>
+<p><code class="prettyprint">{host}/v2/transactions/bulk</code></p>
 
 <h3 id="request-body-parameters">Request Body Parameters</h3>
 
@@ -5553,17 +5611,12 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <tr>
 <td>attributes</td>
 <td>obj</td>
-<td>Attributes of the payment mode in names and value pairs.</td>
+<td>Attributes of the payment mode as name-value pairs.</td>
 </tr>
 <tr>
 <td>loyaltyPromotionIdentifiers</td>
 <td>array</td>
 <td></td>
-</tr>
-<tr>
-<td>id</td>
-<td>-</td>
-<td>&ndash;</td>
 </tr>
 </tbody></table>
 
@@ -5589,6 +5642,374 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>Date and time of the transaction in <code class="prettyprint">HH-MM-DDThh:mm:ssTZD</code></td>
 </tr>
 </tbody></table>
+
+<h2 id="add-transaction">Add Transaction</h2>
+
+<p>Lets you add a new transaction or return an existing transaction.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/transactions?source=instore<span class="err">&amp;</span>identifierValue=GOLD400000000000000022020<span class="err">&amp;</span>identifierName=cardnumber<span class="err">&amp;</span>accountId=
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REGULAR"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"billNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"num-1234"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"billAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this is test"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"grossAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"110"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"deliveryStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHIPPED"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"paymentModes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BankNameAPI"</span><span class="p">,</span><span class="w"> 
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value_6555444"</span><span class="w">
+            </span><span class="p">},</span><span class="w"> 
+            </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes_6555444"</span><span class="p">,</span><span class="w"> 
+            </span><span class="nt">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CHECKAPI"</span><span class="p">,</span><span class="w"> 
+            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"500"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w"> 
+  </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"ship_first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ram"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"ship_last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Singh"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"checkin_date"</span><span class="p">:</span><span class="s2">"2010-06-04 21:08:12"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"checkout_date"</span><span class="p">:</span><span class="s2">"2010-06-05 21:08:12"</span><span class="w">
+
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"customFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"paymentmode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cash"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"lineItemsV2"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_234_2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_{{sku}}_10"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">  
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/v2/transactions?{queryParams}</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Rate Limited</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v2/transactions?source={source}&amp;identifierName={identifierName}&amp;identifierValue={identifierValue}&amp;accountId={accountId}</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifierName*</td>
+<td>enum</td>
+<td>Pass any of the registered identifier name of the customer. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>, or <code class="prettyprint">fbId</code> (Facebook ID), cardnumber.</td>
+</tr>
+<tr>
+<td>identifierValue*</td>
+<td>string</td>
+<td>Pass the respective identifier value. For example if <code class="prettyprint">identifierType</code> is mobile, <code class="prettyprint">identifierValue</code> is mobile number.</td>
+</tr>
+<tr>
+<td>source*</td>
+<td>enum</td>
+<td>Pass the source from which the transaction is made. Values: <code class="prettyprint">INSTORE</code>( for InStore), <code class="prettyprint">WECHAT</code> (WeChat), <code class="prettyprint">MARTJACK</code>(AnywhereCommerce), <code class="prettyprint">WEB_ENGAGE</code> (Web-engage integration), ECOMMERCE (ECOMMERCE), <code class="prettyprint">JD</code> (JD), <code class="prettyprint">TAOBAO</code> (Taobao), <code class="prettyprint">TMALL</code> (TMall), <code class="prettyprint">FACEBOOK</code> (Facebook), <code class="prettyprint">WEBSITE</code> (other website), <code class="prettyprint">OTHERS</code> (any other source).</td>
+</tr>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>For sources with multiple accounts (such as MARTJACK, WECHAT), pass the respective account ID.</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type*</td>
+<td>enum</td>
+<td>Type of transaction. Supported value: <code class="prettyprint">REGULAR</code> for loyalty transactions. &#39;RETURN&rsquo; for return transactions. Currently, there is no not-interested transactions support in V2.</td>
+</tr>
+<tr>
+<td>returnType**</td>
+<td>enum</td>
+<td>For a return transaction, pass the return type. Value: <code class="prettyprint">AMOUNT</code>, <code class="prettyprint">FULL</code>, <code class="prettyprint">LINE_ITEM</code>, <code class="prettyprint">CANCELLED</code>.</td>
+</tr>
+<tr>
+<td>billAmount*</td>
+<td>double</td>
+<td>Net transaction amount.</td>
+</tr>
+<tr>
+<td>billNumber*</td>
+<td>string</td>
+<td>Unique transaction number. The uniqueness either at till, store, or org, depends on the configuration <code class="prettyprint">CONF_LOYALTY_BILL_NUMBER_UNIQUE_IN_DAYS</code> set on InTouch <strong>Settings</strong> &gt; <strong>System &amp; Deployment</strong> &gt; <strong>InTouch POS Configuration</strong> &gt; <strong>Billing</strong>.</td>
+</tr>
+<tr>
+<td>billingDate</td>
+<td>date-time</td>
+<td>Date and time of the transaction in the <code class="prettyprint">YYYY-MM-DDTHH:MM:SSZ</code> format.</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>ISO currency code of the transaction. Org&rsquo;s base currency is considered by default. For example, <code class="prettyprint">INR</code> for Indian Rupee, <code class="prettyprint">SGD</code> for Singapore Dollar, <code class="prettyprint">EUR</code> for Euro, <code class="prettyprint">IQD</code> for Iraqi Dinar.</td>
+</tr>
+<tr>
+<td>discount</td>
+<td>double</td>
+<td>Discount availed for the transaction or line item (discount amount) .</td>
+</tr>
+<tr>
+<td>grossAmount</td>
+<td>double</td>
+<td>Transaction amount before discount.</td>
+</tr>
+<tr>
+<td>extendedFields</td>
+<td>obj</td>
+<td>Valid transaction level extended field details in name and value pairs. You can also pass line-item level extended field details in <code class="prettyprint">line_item</code> object.</td>
+</tr>
+<tr>
+<td>currencyCode</td>
+<td>string</td>
+<td>ISO currency code of the transaction. For example, <code class="prettyprint">INR</code> for Indian Rupee, SGD for Singapore Dollar, <code class="prettyprint">EUR</code> for Euro, <code class="prettyprint">IQD</code> for Iraqi Dinar.</td>
+</tr>
+<tr>
+<td>addWithLocalCurrency</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to add a transaction in local currency.</td>
+</tr>
+<tr>
+<td>deliveryStatus</td>
+<td>enum</td>
+<td>Delivery status of the item. Values: DELIVERED, SHIPPED.</td>
+</tr>
+<tr>
+<td>note</td>
+<td>string</td>
+<td>Additional information about the transaction.</td>
+</tr>
+<tr>
+<td>lineItemsV2</td>
+<td>obj</td>
+<td>Details of line-items.</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>double</td>
+<td>Net transaction amount</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>One or two liner description of the line-item.</td>
+</tr>
+<tr>
+<td>itemCode</td>
+<td>string</td>
+<td>Unique code of the transaction line-item.</td>
+</tr>
+<tr>
+<td>qty</td>
+<td>double</td>
+<td>Quantity of the current line-item.</td>
+</tr>
+<tr>
+<td>rate</td>
+<td>double</td>
+<td>Price of each line-item.</td>
+</tr>
+<tr>
+<td>serial</td>
+<td>string</td>
+<td>Serial number of the line-item.</td>
+</tr>
+<tr>
+<td>returnable</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> if the item can be returned.</td>
+</tr>
+<tr>
+<td>returnableDays</td>
+<td>int</td>
+<td>Maximum number of days in which the item is allowed to return.</td>
+</tr>
+<tr>
+<td>customFields</td>
+<td>obj</td>
+<td>Transaction or line-item level custom field details.</td>
+</tr>
+<tr>
+<td>imgUrl</td>
+<td>string</td>
+<td>URL of the product image.</td>
+</tr>
+<tr>
+<td>attributes</td>
+<td>obj</td>
+<td>Attributes of the product in name-value pairs.</td>
+</tr>
+<tr>
+<td>comboDetails</td>
+<td>obj</td>
+<td>Details of combo or bundle items. For example, buy 1 shirt get one free, shirt+pant, pack of 5 soaps</td>
+</tr>
+<tr>
+<td>itemCode</td>
+<td>string</td>
+<td>Unique line-item code.</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>double</td>
+<td>Quantity of the current combo item.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>One or two liner description of add-on, split, or combo item.</td>
+</tr>
+<tr>
+<td>value</td>
+<td>double</td>
+<td>Item price excluding discount.</td>
+</tr>
+<tr>
+<td>comboType</td>
+<td>string</td>
+<td>Type of the combo. For example, buy 1 shirt get one free, shirt+pant, pack of 5 soaps.</td>
+</tr>
+<tr>
+<td>addOnDetails</td>
+<td>obj</td>
+<td>Details of add-on item.</td>
+</tr>
+<tr>
+<td>splitDetails</td>
+<td>obj</td>
+<td>Details of split item.</td>
+</tr>
+<tr>
+<td>parentBillNumber</td>
+<td>string</td>
+<td>Details of the actual transaction number. This is applicable only for return transactions.</td>
+</tr>
+<tr>
+<td>purchaseTime</td>
+<td>date-time</td>
+<td>Date and time of purchase in <code class="prettyprint">YYYY-MM-DDTHH:MM:SS</code> format.</td>
+</tr>
+<tr>
+<td>customFields</td>
+<td>obj</td>
+<td>Details of transaction level or transaction line-item level custom fields.</td>
+</tr>
+<tr>
+<td>redemptions</td>
+<td>obj</td>
+<td>Details of points and coupon redemptions for the  transaction.</td>
+</tr>
+<tr>
+<td>pointsRedemptions</td>
+<td>array</td>
+<td>Unique points redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]</td>
+</tr>
+<tr>
+<td>couponRedemptions</td>
+<td>array</td>
+<td>Unique coupon redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]</td>
+</tr>
+<tr>
+<td>paymentModes</td>
+<td>obj</td>
+<td>Payment details used for the transaction.</td>
+</tr>
+<tr>
+<td>mode</td>
+<td>string</td>
+<td>Mode of payment.</td>
+</tr>
+<tr>
+<td>value</td>
+<td>double</td>
+<td>Amount paid through the current mode.</td>
+</tr>
+<tr>
+<td>notes</td>
+<td>string</td>
+<td>Additional information related to the payment mode.</td>
+</tr>
+<tr>
+<td>attributes</td>
+<td>obj</td>
+<td>Attributes of the payment mode as name-value pairs.</td>
+</tr>
+<tr>
+<td>loyaltyPromotionIdentifiers</td>
+<td>array</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
 
 <h2 id="get-transaction-details">Get Transaction Details</h2>
 
@@ -6030,7 +6451,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/transactions/{id}</code></p>
+<p><code class="prettyprint">{host}/v2/transactions/{id}</code></p>
 
 <h3 id="request-query-parameters">Request Query Parameters</h3>
 
@@ -6390,14 +6811,6 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>Currency conversion is disabled for the org.</td>
 </tr>
 <tr>
-<td>683</td>
-<td>Failed to call new bill event EMF.</td>
-</tr>
-<tr>
-<td>684</td>
-<td>Failed EMF new bill DVS event.</td>
-</tr>
-<tr>
 <td>685</td>
 <td>Field length too long.</td>
 </tr>
@@ -6456,10 +6869,6 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <tr>
 <td>699</td>
 <td>Invalid configuration. Please report to the Capillary Support.</td>
-</tr>
-<tr>
-<td>710</td>
-<td>Return bill event failed from EMF.</td>
 </tr>
 <tr>
 <td>820</td>
@@ -6612,6 +7021,18 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </tr>
 </thead><tbody>
 <tr>
+<td>625</td>
+<td>Transaction number does not exist. If the config <code class="prettyprint">CONF_ALLOW_NOT_EXISTING_BILL_RETURN</code>is enabled, the transaction is saved with a warning.</td>
+</tr>
+<tr>
+<td>683</td>
+<td>Failed to call new bill event EMF.</td>
+</tr>
+<tr>
+<td>684</td>
+<td>Failed EMF new bill DVS event.</td>
+</tr>
+<tr>
 <td>687</td>
 <td>Points activities are queued and will be updated later.</td>
 </tr>
@@ -6622,6 +7043,10 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <tr>
 <td>669</td>
 <td>Invalid custom field.</td>
+</tr>
+<tr>
+<td>710</td>
+<td>Return bill event failed from EMF.</td>
 </tr>
 <tr>
 <td>1105</td>
@@ -6692,6 +7117,8 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>Single loyalty transaction found. Allowing regular return.</td>
 </tr>
 </tbody></table>
+
+<aside class="notice"> The error code `625` could also appear in warning if the configuration `CONF_ALLOW_NOT_EXISTING_BILL_RETURN` is enabled. However, this is a very special case for a code that could appear as a error or warning.</aside>
 
           <h1 id="customer-labels">Customer Labels</h1>
 
@@ -9220,22 +9647,6 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 <td>Points you are trying to redeem are less than the minimum points allowed.</td>
 </tr>
 <tr>
-<td>872</td>
-<td>Unable to fetch points-to-currency conversion ratio.</td>
-</tr>
-<tr>
-<td>873</td>
-<td>Invalid transaction number passed.</td>
-</tr>
-<tr>
-<td>876</td>
-<td>Points are redeemable but unable to generate OTP.</td>
-</tr>
-<tr>
-<td>877</td>
-<td>Unable to allocate points.</td>
-</tr>
-<tr>
 <td>886</td>
 <td>Unable to process points. Please try again later.</td>
 </tr>
@@ -9262,6 +9673,32 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 <tr>
 <td>899</td>
 <td>Invalid configuration. Please report to capillary support.</td>
+</tr>
+</tbody></table>
+
+<h3 id="warning-codes">Warning Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>872</td>
+<td>Unable to fetch points-to-currency conversion ratio.</td>
+</tr>
+<tr>
+<td>873</td>
+<td>Invalid transaction number passed.</td>
+</tr>
+<tr>
+<td>876</td>
+<td>Points are redeemable but unable to generate OTP.</td>
+</tr>
+<tr>
+<td>877</td>
+<td>Unable to allocate points.</td>
 </tr>
 <tr>
 <td>900</td>
@@ -16244,20 +16681,32 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 
           <h1 id="card-loyalty-membership">Card Loyalty/Membership</h1>
 
-<p>Card enables orgs to run card based loyalty memberships with multiple card types. A customer can have multiple cards of a same series or different series as intended by the org.</p>
+<p>Card enables orgs to run card based loyalty memberships with multiple card types. A customer can have multiple cards of a same or different series as intended by the org.</p>
 
-<p><code class="prettyprint">Card Series</code> represents different types of cards a brand. For example, Value Card, Premium card, Digital Card, and Physical Card. A card series stores information such as card series name, card type, card numbers config details, and expiry details.</p>
+<p><code class="prettyprint">Card Series</code> represents different types of cards of a brand. For example, Value Card, Premium card, Digital Card, and Physical Card. A card series stores information such as card series name, card type, card numbers, config details, and expiry details.</p>
 
-<p>A card is a physical or digital card and associated to a Card Series. A card stores information such as issued date, expiry date, store or source account from which the card is issued, and current status.</p>
+<p>A card is either physical or digital and is associated with a Card Series. A card stores information such as issued date, expiry date, store or source account from which the card is issued, and current status.</p>
 
-<p>Cards are specific to customers and not to source accounts. A customer can have multiple cards of the same card series. Issuing a card means linking a card to a customer. A card to be issued to a customer can be any of the following types.
-* Issuing a digital or virtual card.
-* Issuing a physical card generated in Capillary.
-* Issuing a physical card that is not generated in Capillary.</p>
+<p>Cards are specific to customers and not to source accounts. A customer can have multiple cards of the same card series. Issuing a card means linking a card to a customer. The following are the different types of cards supported.</p>
+
+<ul>
+<li>Create auto-generated physical/digital cards for a series.
+
+<ul>
+<li>Issue cards when a customer is registered (supports org level or OU level)</li>
+</ul></li>
+<li>Create manually generated physical/digital cards for a series.</li>
+<li>Issue external cards (that are not created in Capillary) </li>
+</ul>
 
 <h2 id="create-card-series">Create Card Series</h2>
 
-<p>Lets you create a new card series for the org.</p>
+<p>Lets you create a new card series for the org. With this API, you can do the following:</p>
+
+<ul>
+<li>Create auto-generated physical/digital cards for a series.</li>
+<li>Create physical/digital card series with auto card generation disabled.</li>
+</ul>
 
 <blockquote>
 <p>Sample Request</p>
@@ -16267,23 +16716,46 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <blockquote>
 <p>Sample Post Request</p>
 </blockquote>
-<pre class="highlight json"><code><span class="err">#</span><span class="w"> 
-</span><span class="p">{</span><span class="w">
-  </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"pet"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"platinum Card"</span><span class="p">,</span><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"PLAPHY3"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Gold Card"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"PHYSICAL"</span><span class="p">,</span><span class="w">
-  </span><span class="nt">"expiryDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">365</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"expiryDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"cardExpiryEnabled"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
   </span><span class="nt">"cardGenerationConfiguration"</span><span class="p">:{</span><span class="w">
-    </span><span class="nt">"prefix"</span><span class="p">:</span><span class="s2">"PET3"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"suffix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"offset"</span><span class="p">:</span><span class="mi">100</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"prefix"</span><span class="p">:</span><span class="s2">"PLAT2"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"suffix"</span><span class="p">:</span><span class="s2">"2020"</span><span class="p">,</span><span class="w">
     </span><span class="nt">"length"</span><span class="p">:</span><span class="mi">16</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"DEFAULT"</span><span class="w">
+    </span><span class="nt">"method"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"DEFAULT"</span><span class="w">
   </span><span class="p">},</span><span class="w">
     </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"isActive"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+    </span><span class="nt">"isActive"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"trigger"</span><span class="p">:</span><span class="s2">"SERIES_ID"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"maxActiveCardsPerCustomer"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
 </span><span class="p">}</span><span class="w">
 
+</span></code></pre>
+<blockquote>
+<p>Sample POST - Trigger on OU Events</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"GOLDDIF6"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Gold Card 6"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"DIGITAL"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"expiryDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"cardExpiryEnabled"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"cardGenerationConfiguration"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"prefix"</span><span class="p">:</span><span class="s2">"GOLD6"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"suffix"</span><span class="p">:</span><span class="s2">"2020"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"length"</span><span class="p">:</span><span class="mi">16</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"method"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"DEFAULT"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"isActive"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"trigger"</span><span class="p">:</span><span class="s2">"OU_ID"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"conceptCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo.brand"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"maxActiveCardsPerCustomer"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>Sample Response</p>
@@ -16337,7 +16809,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <tr>
 <td>code*</td>
 <td>string</td>
-<td>A valid code (supports up to 50 characters) for the card series. Only alpha-numeric is allowed.</td>
+<td>Unique code (supports up to 50 characters) for the card series. Only alpha-numeric is allowed.</td>
 </tr>
 <tr>
 <td>name*</td>
@@ -16352,17 +16824,12 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <tr>
 <td>expiryDays*</td>
 <td>int</td>
-<td>Validity of the card series in number of days from the day of issual.</td>
+<td>Validity of the card series in number of days from the issued date.</td>
 </tr>
 <tr>
-<td>cardGenerationEnabled</td>
+<td>cardExpiryEnabled</td>
 <td>boolean</td>
-<td>Pass <code class="prettyprint">true</code> enable generating automatically for the series, <code class="prettyprint">false</code> to manually generate cards.</td>
-</tr>
-<tr>
-<td>isActive</td>
-<td>boolean</td>
-<td>Pass <code class="prettyprint">true</code> to activate the series.</td>
+<td>Set <code class="prettyprint">true</code> to enable card expiry. If this is <code class="prettyprint">false</code>, <code class="prettyprint">expiryDays</code> is not applicable.</td>
 </tr>
 <tr>
 <td>cardGenerationConfiguration</td>
@@ -16382,7 +16849,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <tr>
 <td>offset</td>
 <td>int</td>
-<td></td>
+<td>Number of rows to be ignored from the top.</td>
 </tr>
 <tr>
 <td>length</td>
@@ -16390,98 +16857,38 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <td>Length of the cards of the series.</td>
 </tr>
 <tr>
-<td>type</td>
+<td>method</td>
 <td>enum</td>
-<td>DEFAULT</td>
-</tr>
-</tbody></table>
-
-<p><aside class="notice">Parameters marked with * are mandatory. </aside></p>
-
-<h2 id="get-card-series-details">Get Card Series Details</h2>
-
-<p>Retrieves the details of a specific card series.</p>
-
-<blockquote>
-<p>Sample Request</p>
-</blockquote>
-<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/card/series/10
-</code></pre>
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"expiryDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"lastUpdateBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"maxActiveCardsPerCustomer"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cardGenerationConfiguration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100458</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"suffix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PETRON3"</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"length"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEFAULT"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAL3"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-11-27T09:12:13Z"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Petron Value Card 3.1"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100458</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PHYSICAL"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<h3 id="resource-information">Resource Information</h3>
-
-<table><thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URI</td>
-<td><code class="prettyprint">v2/card/series/{seriesId}</code></td>
+<td>The card generation method. For now, only <code class="prettyprint">DEFAULT</code> is supported.</td>
 </tr>
 <tr>
-<td>HTTP Method</td>
-<td>POST</td>
+<td>cardGenerationEnabled</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to auto-generate cards for the for the series, <code class="prettyprint">false</code> to manually generate cards.</td>
 </tr>
 <tr>
-<td>API Version</td>
-<td>v2</td>
+<td>isActive</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to activate the series.</td>
 </tr>
 <tr>
-<td>Batch Support</td>
-<td>No</td>
+<td>trigger</td>
+<td>enum</td>
+<td>When to generate cards from this series. Values <code class="prettyprint">REGISTRATION</code> (to issue card automatically when a new customer is registered), <code class="prettyprint">SERIES_ID</code> (to generate cards when the series code is passed during registration), <code class="prettyprint">OU_ID</code> (to generate cards when a customer is registered at a specific OU, makes a transaction or updates profile for the first time and mention the desired <code class="prettyprint">conceptCode</code>).</td>
 </tr>
-</tbody></table>
-
-<h3 id="request-url">Request URL</h3>
-
-<p><code class="prettyprint">https://{host}/v2/card/series/{seriesId}</code></p>
-
-<h3 id="request-query-parameter">Request Query Parameter</h3>
-
-<table><thead>
 <tr>
-<th>Parameter</th>
-<th>Datatype</th>
-<th>Description</th>
+<td>conceptCode**</td>
+<td>string</td>
+<td>Concept code associated with the card series. The concept is identified by the associated Till Code.</td>
 </tr>
-</thead><tbody>
 <tr>
-<td>seriesId*</td>
+<td>maxActiveCardsPerCustomer</td>
 <td>int</td>
-<td>Unique ID of the series to retrieve.</td>
+<td>Limit active cards per customer from the current card series.</td>
 </tr>
 </tbody></table>
 
-<aside class="notice"> The Parameter marked with * is mandatory. </aside>
+<aside class="notice">Parameters marked with * are mandatory. conceptCode is required for the OU based trigger (OU_ID).</aside>
 
 <h2 id="update-card-series">Update Card Series</h2>
 
@@ -16496,15 +16903,23 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <p>Sample PUT Request</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-   </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Titanium Card for DemoOrg"</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"DIGITAL"</span><span class="p">,</span><span class="w">
-   </span><span class="nt">"cardGenerationConfiguration"</span><span class="p">:{</span><span class="w">
-      </span><span class="nt">"prefix"</span><span class="p">:</span><span class="s2">"TTM00111"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"suffix"</span><span class="p">:</span><span class="s2">"ZS"</span><span class="p">,</span><span class="w">
-      </span><span class="nt">"length"</span><span class="p">:</span><span class="mi">10</span><span class="w">
-   </span><span class="p">},</span><span class="w">
-   </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+  </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">"GOLDPHY23"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Gold Card 23"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"PHYSICAL"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"expiryDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">500</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"cardExpiryEnabled"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"cardGenerationConfiguration"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"prefix"</span><span class="p">:</span><span class="s2">"GOLD2"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"suffix"</span><span class="p">:</span><span class="s2">"2020"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"length"</span><span class="p">:</span><span class="mi">16</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"method"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"DEFAULT"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"isActive"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"trigger"</span><span class="p">:</span><span class="s2">"SERIES_ID"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"maxActiveCardsPerCustomer"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
 </span><span class="p">}</span><span class="w">
+
 </span></code></pre>
 <blockquote>
 <p>Sample Response</p>
@@ -16586,6 +17001,16 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 </tr>
 </thead><tbody>
 <tr>
+<td>code</td>
+<td>string</td>
+<td>Unique code (supports up to 50 characters) for the card series. Only alpha-numeric is allowed.</td>
+</tr>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Name of the card series.</td>
+</tr>
+<tr>
 <td>description</td>
 <td>string</td>
 <td>Description of the Card Series.</td>
@@ -16615,9 +17040,280 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <td>boolean</td>
 <td>Pass <code class="prettyprint">true</code> to enable auto generating card, pass <code class="prettyprint">false</code> to manually generate card numbers.</td>
 </tr>
+<tr>
+<td>expiryDays*</td>
+<td>int</td>
+<td>Validity of the card series in number of days from the day of issual.</td>
+</tr>
+<tr>
+<td>cardExpiryEnabled</td>
+<td>boolean</td>
+<td>Set <code class="prettyprint">true</code> to enable card card expiry. If this is <code class="prettyprint">false</code>, <code class="prettyprint">expiryDays</code> is not applicable.</td>
+</tr>
+<tr>
+<td>cardGenerationConfiguration</td>
+<td>obj</td>
+<td>Configurations of the card series.</td>
+</tr>
+<tr>
+<td>prefix</td>
+<td>string</td>
+<td>Starting characters for cards of the series.</td>
+</tr>
+<tr>
+<td>suffix</td>
+<td>string</td>
+<td>Ending characters for cards of the series.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>int</td>
+<td>Number of rows to be ignored from the top.</td>
+</tr>
+<tr>
+<td>length</td>
+<td>int</td>
+<td>Length of the cards of the series.</td>
+</tr>
+<tr>
+<td>method</td>
+<td>enum</td>
+<td>The card generation method. For now, only <code class="prettyprint">DEFAULT</code> is supported.</td>
+</tr>
+<tr>
+<td>cardGenerationEnabled</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> enable generating automatically for the series, <code class="prettyprint">false</code> to manually generate cards.</td>
+</tr>
+<tr>
+<td>isActive</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to activate the series, <code class="prettyprint">false</code> to deactivate the series.</td>
+</tr>
+<tr>
+<td>trigger</td>
+<td>enum</td>
+<td>When to generate cards from this series. Values <code class="prettyprint">REGISTRATION</code> (to issue card automatically when a new customer is registered), <code class="prettyprint">SERIES_ID</code> (to generate cards when the series code is passed during registration), <code class="prettyprint">OU_ID</code> (to generate cards when a customer is registered at a specific OU, makes a transaction or update profile for the first time and mention the desired <code class="prettyprint">conceptCode</code>).</td>
+</tr>
+<tr>
+<td>conceptCode**</td>
+<td>string</td>
+<td>Concept code associated with the card series. The concept is identified by the associated Till Code.</td>
+</tr>
+<tr>
+<td>maxActiveCardsPerCustomer</td>
+<td>int</td>
+<td>Limit active cards per customer from the current card series.</td>
+</tr>
 </tbody></table>
 
 <aside class="notice"> All parameters marked with * are mandatory. </aside>
+
+<h2 id="get-all-card-series-details">Get All Card Series Details</h2>
+
+<p>Retrieves the details of all card series of the org.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/card/series/get/all
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-04-02T17:53:27+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"trigger"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REGISTRATION"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"expiryDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cardExpiryEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastUpdateBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"maxActiveCardsPerCustomer"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cardGenerationConfiguration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50074</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="w"> </span><span class="mi">132</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"suffix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOLD5"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"length"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEFAULT"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"orgUnitId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOLDDIG5"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-04-02T17:53:27+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gold Card 5"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">132</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50074</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DIGITAL"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-11-12T20:16:29+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"trigger"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SERIES_ID"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"expiryDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">355</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cardExpiryEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastUpdateBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"maxActiveCardsPerCustomer"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"orgUnitId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"goldseries"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-11-12T20:16:30+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"card series create"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50074</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DIGITAL"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-03-30T17:28:45+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"trigger"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SERIES_ID"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"expiryDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cardExpiryEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"lastUpdateBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"maxActiveCardsPerCustomer"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cardGenerationConfiguration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50074</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="w"> </span><span class="mi">131</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"suffix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PLAT2"</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"length"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+                </span><span class="nt">"method"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEFAULT"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="nt">"orgUnitId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PLAPHY3"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-03-30T17:28:45+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Gold Card"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">131</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50074</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PHYSICAL"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/card/series/get/all</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/card/series/get/all</code></p>
+
+<h2 id="get-card-series-details">Get Card Series Details</h2>
+
+<p>Retrieves the details of a specific card series.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/card/series/10
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"expiryDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">1000</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"lastUpdateBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"maxActiveCardsPerCustomer"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"cardGenerationConfiguration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100458</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"seriesId"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"suffix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PETRON3"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"length"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEFAULT"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"VAL3"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-11-27T09:12:13Z"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Petron Value Card 3.1"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100458</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PHYSICAL"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/card/series/{seriesId}</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/card/series/{seriesId}</code></p>
+
+<h3 id="request-query-parameter">Request Query Parameter</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>seriesId*</td>
+<td>int</td>
+<td>Unique ID of the series to retrieve.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> The Parameter marked with * is mandatory. </aside>
 
 <h2 id="deactivate-card-series">Deactivate Card Series</h2>
 
@@ -16626,21 +17322,27 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/card/series
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/card/series/132
 </code></pre>
 <blockquote>
 <p>Sample PUT Request</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"isActive"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DIGITAL"</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"cardGenerationConfiguration"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="nt">"prefix"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"suffix"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-        </span><span class="nt">"length"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="nt">"code"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="s2">"PHYSICAL"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"expiryDays"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"cardExpiryEnabled"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"cardGenerationConfiguration"</span><span class="p">:{</span><span class="w">
+    </span><span class="nt">"prefix"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"suffix"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"length"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"method"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"DEFAULT"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+    </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"isActive"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"trigger"</span><span class="p">:</span><span class="s2">"SEIES_ID"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"maxActiveCardsPerCustomer"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -16655,7 +17357,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
     </span><span class="p">},</span><span class="w">
     </span><span class="nt">"cardGenerationEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">132</span><span class="p">,</span><span class="w">
     </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
     </span><span class="nt">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50074</span><span class="p">,</span><span class="w">
     </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DIGITAL"</span><span class="p">,</span><span class="w">
@@ -16704,7 +17406,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <tr>
 <td>seriesId*</td>
 <td>int</td>
-<td>Unique ID of the card series to issue cards (Query parameter).</td>
+<td>Unique ID of the card series to deactivate (Path parameter).</td>
 </tr>
 <tr>
 <td>isActive*</td>
@@ -16712,9 +17414,9 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <td>Pass <code class="prettyprint">0</code> to deactivate the card series.</td>
 </tr>
 <tr>
-<td>count*</td>
-<td>int</td>
-<td>Number of cards to generate.</td>
+<td>type*</td>
+<td>enum</td>
+<td>Type of cards of the series - <code class="prettyprint">PHYSICAL</code>, <code class="prettyprint">DIGITAL</code>.</td>
 </tr>
 </tbody></table>
 
@@ -17583,6 +18285,94 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 </tbody></table>
 
 <aside class="notice">Parameters marked with * are mandatory, at least one among the parameters marked with ** is required. </aside>
+
+<h2 id="response-codes">Response Codes</h2>
+
+<h3 id="error-codes">Error Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>2001</td>
+<td>Cannot process the partner program event.</td>
+</tr>
+<tr>
+<td>2002</td>
+<td>Cannot proceed if <code class="prettyprint">updateDetails</code>, <code class="prettyprint">updatedTierName</code>, or <code class="prettyprint">partnerProgramName</code> is empty or null.</td>
+</tr>
+<tr>
+<td>2003</td>
+<td>Partner tier expiry date should not be a past date.</td>
+</tr>
+<tr>
+<td>2004</td>
+<td>Link the customer with the partner program.</td>
+</tr>
+<tr>
+<td>2005</td>
+<td>Customer is already linked with the partner program.</td>
+</tr>
+<tr>
+<td>2005</td>
+<td>Enroll the customer in the Loyalty Program.</td>
+</tr>
+<tr>
+<td>2006</td>
+<td>Cannot find the partner program.</td>
+</tr>
+<tr>
+<td>2007</td>
+<td>Cannot find the partner program tier.</td>
+</tr>
+<tr>
+<td>2008</td>
+<td>Cannot process if partner program limit is more than <code class="prettyprint">50</code>.</td>
+</tr>
+<tr>
+<td>2009</td>
+<td>updateType  supports only UPDATE, RENEW, DOWNGRADE.</td>
+</tr>
+<tr>
+<td>2010</td>
+<td>Partner program events are presented in a queue for the user.</td>
+</tr>
+<tr>
+<td>2011</td>
+<td>Cannot find partner program activity for the customer.</td>
+</tr>
+<tr>
+<td>2012</td>
+<td>Cannot fetch partner program activity.</td>
+</tr>
+<tr>
+<td>2013</td>
+<td>Input time interval should be less than a year for activity history.</td>
+</tr>
+<tr>
+<td>2014</td>
+<td>Invalid input. Activity type passed should be <code class="prettyprint">LINKINGUPDATES</code> or <code class="prettyprint">BENEFITSAVAILED</code>.</td>
+</tr>
+<tr>
+<td>2015</td>
+<td>Cannot allow the date parameter if <code class="prettyprint">activityType</code> = <code class="prettyprint">linkingUpdates</code>.</td>
+</tr>
+<tr>
+<td>2016</td>
+<td>Incorrect benefit name.</td>
+</tr>
+<tr>
+<td>2017</td>
+<td>Benefits count should be more than <code class="prettyprint">0</code>.</td>
+</tr>
+<tr>
+<td>2018</td>
+<td>Cannot add benefits to supplementary membership.</td>
+</tr>
+</tbody></table>
 
           <h1 id="other-apis-org-level">Other APIs (Org Level)</h1>
 
@@ -28248,7 +29038,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </tr>
 <tr>
 <td>Authentication</td>
-<td>Yes</td>
+<td>No</td>
 </tr>
 <tr>
 <td>HTTP Method</td>
@@ -28262,7 +29052,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">{WebhookWRL}</code></p>
+<p><code class="prettyprint">{WebhookURL}</code></p>
 
 <h3 id="request-body-parameters">Request Body Parameters</h3>
 
@@ -28276,17 +29066,17 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <tr>
 <td>event_name</td>
 <td>string</td>
-<td>Name of the event that you want to push</td>
+<td>Name of the event for which you want to push the data.</td>
 </tr>
 <tr>
 <td>mobile</td>
-<td></td>
-<td></td>
+<td>string</td>
+<td>Mobile number of the customer.</td>
 </tr>
 <tr>
 <td>till</td>
 <td>string</td>
-<td>TILL id associated to the event</td>
+<td>TILL ID associated with the event.</td>
 </tr>
 </tbody></table>
 

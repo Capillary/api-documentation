@@ -6761,14 +6761,14 @@ https://1dzb567pwd.execute-api.us-east-2.amazonaws.com/nightly/webhooks/34b94vf9
 --------- | ----------- |
 URI | `{webhookURL}`
 Rate Limited? | Yes
-Authentication | Yes
+Authentication | No
 HTTP Method | POST
 Batch Support | No
 
 
 ### Request URL
 
-`{WebhookWRL}`
+`{WebhookURL}`
 
 
 
@@ -6776,9 +6776,9 @@ Batch Support | No
 
 Parameter | Type | Description
 --------- | ---- | -----------
-event_name | string | Name of the event that you want to push
-mobile | | 
-till | string | TILL id associated to the event
+event_name | string | Name of the event for which you want to push the data.
+mobile | string | Mobile number of the customer.
+till | string | TILL ID associated with the event.
 
 
 

@@ -94,6 +94,17 @@ https://us.api.capillarytech.com/v2/customers?source=MOBILE_APP&accountId=400
 }
 ```
 
+> Sample Schema to issue external cardStatus
+
+```json
+ ... 
+  {
+    "type": "cardnumber",
+    "value":"EXTERNALCARD9875692",
+    "seriesCode": "GOLDPHY98"
+  }
+ ...
+```
 
 
 
@@ -200,7 +211,7 @@ Batch Support | No
 
 ### Request URL
 
-`https://{host}/v2/customers?source={SourceName}&accountId={accountId}`
+`{host}/v2/customers?source={SourceName}&accountId={accountId}`
 
 ### Request Query Parameters
 Parameter | Type | Description
@@ -218,11 +229,14 @@ profiles | obj | Meta information of the customer.
 identifiers* | obj | Identifiers of the customer in type and value. 
 type | enum | Type of the customer identifier. Values: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, `fbId` `mobile`, `tmall_uname`, `cuid`, `ali_uname`, `jd_uname`, `vip_uname`, `mobilePush`, and `line`, and `card` (to issue loyalty card to the customers through registration).
 value | string | Value of the specified identifier. For the `type` card, `value` is card number.
+seriesId | int | Card series ID (for card series generated in Capillary). Required for the identifier `type`,  `card`.
+seriesCode | string | Unique card series code (for external card series). Applicable for the identifier `type`,  `card`.
+statusLabel | string | User defined card status. Required for the identifier `type`,  `card`.
 commChannels | obj | Available communication channels of the customer. Value: `mobile`, `email`, `wechat`, `ios`, `android`, `line`, `mobilePush`.
 Firstname | string | First name of the customer.
 Lastname | string | Last name of the customer.
-attributionV2 | createDate | Time and date of registration in `YYYY-MM-DDTHH:MM:SS+HH:MM` format. Example: 2016-06-23T19:11:18+08:00
-associatedWith |  | The TILL code to which you want to associate the customer
+createDate | date-time | Time and date of registration in `YYYY-MM-DDTHH:MM:SS+HH:MM` format. Example: 2016-06-23T19:11:18+08:00
+associatedWith | string | The TILL code associated with the customer registration.
 extendedFields | obj | Customer level extended field details of the customer in key:value pairs. You can only pass extended fields that are enabled for your org with the respective datatypes for values.
 fields | obj | Custom field details of customers in key-value pairs.
 lastViewedDate** | Date | Date when the customer recently opened the app. Applicable for the channel `mobilePush`.
@@ -322,7 +336,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT&accountId=22232
     "primary":true,
     "verified":true,
     "meta":{
-      “lastViewedDate” : "2019-10-25"
+      "lastViewedDate": "2019-10-25"
     }
 }
 ````
@@ -371,10 +385,10 @@ Batch Support | No
 ### Request URL
 For sources with single accounts
 
-`https://{host}/v2/customers/{customerId}?source={sourceName}`
+`{host}/v2/customers/{customerId}?source={sourceName}`
 
 For sources with multiple accounts
-`https://{host}/v2/customers/{customerId}?source={sourceName}&accountId={accountId}`
+`{host}/v2/customers/{customerId}?source={sourceName}&accountId={accountId}`
 
 ### Request Query Parameters
 Parameter | Description
@@ -513,7 +527,7 @@ Batch Support | No
 ### Request URL
 For sources with single accounts
 
-`https://{host}/v2/customers/lookup?source={sourceName}?&accountId={accountId}&identifierName={identifierName}&identifierValue={IdentifierValue}`
+`{host}/v2/customers/lookup?source={sourceName}?&accountId={accountId}&identifierName={identifierName}&identifierValue={IdentifierValue}`
 
 
 
@@ -625,6 +639,7 @@ Lets you add/remove identifiers or loyalty cards of a customer across sources.
 **Identifiers**: `mobile`, `email`, `externalId`, `wechat`, `martjackId`, `fbId`, `tmall_uname`, `cuid`, `ali_uname`, `jd_uname`, `vip_uname`, `line`. 
 
 Limitations of the customer identifier update API:
+
 * Only identifiers can be updated using this API
 * Identifiers should be unique within a source for single account sources and unique within an account for multiple account sources.
 * If an identifier that you add already exists in a different source/account, the account will be automatically merged into the existing account maintaining different entries of each source. The new account will be a victim account and the existing account is a survivor account.
@@ -645,7 +660,7 @@ Batch Support | No
 
 
 ### Request URL
-`https://{host}/v2/customers/{customerId}/changeIdentifier?source={source}&accountId={accountId}`
+`{host}/v2/customers/{customerId}/changeIdentifier?source={source}&accountId={accountId}`
 
 <aside class="notice">The new identifier that you want to update should be unique across the source (for sources with single accounts) and unique across the account (for sources with multiple accounts).</aside>
 
@@ -806,7 +821,7 @@ Batch Support | No
 
 
 ### Request URL
-`https://{host}/v2/customers/search?q={search keyword}`
+`{host}/v2/customers/search?q={search keyword}`
 
 
 ### Request Parameter
@@ -850,7 +865,7 @@ Batch Support | No
 
 
 ### Request URL
-`https://{host}/v2/customers/lookup?source={SourceName}&accountId={accountId}&identifierName={IdentifierName}&identifierValue={IdentifierValue}`
+`{host}/v2/customers/lookup?source={SourceName}&accountId={accountId}&identifierName={IdentifierName}&identifierValue={IdentifierValue}`
 
 
 ### Request Parameter
@@ -1169,7 +1184,7 @@ Batch Support | No
 
 
 ### Request URL
-`https://{host}/v2/customers/{customerId}?source={sourceName}&accountId={accountId}`
+`{host}/v2/customers/{customerId}?source={sourceName}&accountId={accountId}`
 
 To fetch customer details from a specific account of a source (source with multiple accounts), you need to provide the respective account id.
 
@@ -1327,7 +1342,7 @@ Batch Support | No
 
 
 ### Request URL
-`https://{host}/v2/customers/lookup/customerDetails?source={source}&accountId={accountId}&identifierName={identifierName}&identifierValue={identifierValue}&embed={embedParameterName}`
+`{host}/v2/customers/lookup/customerDetails?source={source}&accountId={accountId}&identifierName={identifierName}&identifierValue={identifierValue}&embed={embedParameterName}`
 
 
 ### Request Query Parameters
@@ -1421,7 +1436,7 @@ Batch Support | No
 
 
 ### Request URL
-`https://{host}/v2/customers/{customerId}/loyaltyDetails`
+`{host}/v2/customers/{customerId}/loyaltyDetails`
 
 ### Request Parameters
 Parameter | Description
@@ -1548,7 +1563,7 @@ HTTP Method | POST
 Batch Support | No
 
 ### Request URL
-`https://{host}/v2/customers/{customerId}/subscriptions`
+`{host}/v2/customers/{customerId}/subscriptions`
 
 ### Request Parameters
 Parameter | Description
@@ -1619,7 +1634,7 @@ HTTP Method | GET
 Batch Support | No
 
 ### Request URL
-`https://{host}/v2/customers/{customerId}/subscriptions`
+`{host}/v2/customers/{customerId}/subscriptions`
 
 ### Request Query Parameters
 Parameter | Description
@@ -1704,7 +1719,7 @@ Batch Support | No
 
 ### Request URL
 
-`https://{host}/v2/customers/{userId}/pointsTransfers`
+`{host}/v2/customers/{userId}/pointsTransfers`
 
 ### Request Query Parameters
 
@@ -1929,7 +1944,7 @@ Batch Support | No
 
 ### Request URL
 
-`https://{host}/v2/customers/{customerId}/retroRequest?{queryParameters}`
+`{host}/v2/customers/{customerId}/retroRequest?{queryParameters}`
 
 
 ### Request Query Parameters
@@ -2037,7 +2052,7 @@ Batch Support | No
 
 ### Request URL
 
-`https://{host}/v2/customers/{customerId}/changeRequest?queryParams
+`{host}/v2/customers/{customerId}/changeRequest?queryParams
 
 ### Request Query Parameters
 
@@ -2178,7 +2193,7 @@ Batch Support | No
 
 ### Request URL
 
-`https://{host}/v2/customers/{customerId}/goodwillRequest
+`{host}/v2/customers/{customerId}/goodwillRequest
 
 ### Request Query Parameters
 
@@ -2502,7 +2517,7 @@ Batch Support | No
 
 ### Request URL
 
-`https://{host}/v2/customers/{customerId}/coupons`
+`{host}/v2/customers/{customerId}/coupons`
 
 
 ### Request Query Parameters
@@ -2528,7 +2543,7 @@ Lets you deactivate a customers membership card.
 
 
 ### Request URL
-`https://{host}/v2/customers/{userId}?source={source}`
+`{host}/v2/customers/{userId}?source={source}`
 
 ### Request Query Parameter
 Parameter | Datatype | Description
@@ -2547,7 +2562,8 @@ cardStatus* | enum | New status of the card. Value: `BLOCKED` to block an active
 
 ## Response Codes
 ### Success Codes
- Code |Description
+
+Code |Description
 ------|-----------
  1000  | Customer registered successfully. 
   | Customer retrieved successfully.
@@ -2568,107 +2584,112 @@ cardStatus* | enum | New status of the card. Value: `BLOCKED` to block an active
  | Ticket added successfully.
 
 ### Error Codes
- Code  | Description
+
+Code  | Description
 -----  | -----------
- 500  | All requests failed due to errors.
- 400  | Input is invalid. Please check request parameters or input xml/json; No identifier provided to get loyalty users.
- 618  | Not allowed - customer is marked as fraud.
- 816  | Customer not found for organization.
- 1001 | Unable to register. Invalid mobile number.
- 1002 | Unable to register. Invalid email id.
- 1003 | Unable to register. Invalid external id.
- 1004 | Failed to populate store.
- 1006 | Unable to register. Mobile number is required.
- 1007 | Unable to register customer. No valid primary identifier mobile number, email ID, or external ID passed. 
- 1008/ 1038  | Unable to register with external id.
- 1009 | Unable to add registered customer to MLM.
- 1010 | Unable to update loyalty points of the customer.
- 1011 | Cannot find customer for provided identifier.
- 1012 | Cannot find customer with the provided mobile number/external ID/e-mail ID.
- 1013 | Customer is not registered for the loyalty Program.
- 1014 | Customer is registered already.
- 1015 | No identifier provided to get loyalty users.
- 1016 | Unable to register. Email provided already exists for some other user.
- 1017 | Provided Custom Field is invalid.
- 1018 | Unable to update custom field.
- 1019 | Mobile number or external id is required along with the email Id to register.
- 1020 | The customer is not registered for loyalty program.
- 1021 | Invalid validation code.
- 1023 | Unable to register customer to loyalty program.
- 1024 | Unable to update customer profile.
- 1025 | Mandatory fields are not matching for customer identity update.
- 1026 | Count of optional fields match is less than required.
- 1027 | Field name provided for verification is invalid.
- 1028 | No customer notes are available.
- 1029 | Unable to retrieve customer preferences.
- 1030 | Unable to update customer preferences.
- 1031 | No preferences set for this customer.
- 1032 | A customer already exists with the same mobile number.
- 1033 | A customer already exists with the same external id.
- 1034 | Unable to register. Registration date is not within the allowed past or future date limit. 
- 1035 | Unable to update few customer preferences.
- 1036 | One or more notes could not be added/updated for customer.
- 1037 | Unable to add/update customer notes.
- 1039 | Unable to register. Email ID is required. 
- 1041 | Customer id change request failed.
- 1042 | Invalid mobile no/email id/external id.
- 1043 | Unable to register. Customer’s external id is required.
- 1044 | You do not have sufficient permission to view the customer details.
- 1045 | No valid identifier (mobile/email) passed for non-loyalty customer. 
- 1046 | Conversion of loyalty customer to non-loyalty is not allowed.
- 1047 | Customer's primary identifier not matching with other identifiers.
- 1048 | Customer’s email id is required to convert to loyalty customer.
- 1049 | Customer’s external id is required to convert to loyalty customer. 
- 1051 | No transactions or recommendations found for the customer.
- 1053 | Preferred store specified is not found.
- 1060 | Batch limit exceeded.
- 1062 | Invalid Test & Control status.
- 1088 | Unable to issue points. Please report to capillary support.
- 1099 | Unable to fetch tracker data for the customer.
- 1101 | Invalid channel type.
- 1102 | Invalid priority type. 
- 1103 | Invalid scope. 
- 1104 | Invalid identifier or no identifier passed.
- 1105 | Multiple scopes are not allowed.
- 1106 | Invalid subscription status passed.
- 1107 | Invalid campaign id passed. 
- 1108 | Invalid outbox id passed.
- 1109 | Unable to add, update or fetch subscription details.
- 1150  | Invalid store ID passed.
- 1110 | Unable to update subscription details.
- 1222 | Internal error occurred with the referral system.
- 1202 | Invalid campaign token.
- 1203 | Invalid campaign configured.
- 1204 | The customer may not be eligible for the referral program.
- 1205 | Unable to find the referrer in the specific campaign.
- 1206 | Failed to add referral. Referral type is not supported. 
- 1222 | Internal error occurred with the referral system.
- 1301 | A ticket already exists with the same subject.
- 1302 | Ticket registration failed.
- 1303 | Ticket subject should not be empty.
- 10001  | Failed to add customer.
- 10002  | Failed to update customer details.
- 91001  | Failed to get point details.
- 91002  | Failed to get subscription details.
- 91003  | Validation failed.
- 91004  | Failed to get segmentation details.
- 91005  | {x} is Primary Key, {y} cannot be updated.
- 91006  | {x} update is not allowed.
- 91007  | {x} is already occupied by some other user, ignoring it. 
- 91009  | Retrieved survivor account for the requested merge victim. 
- 91010  | Downgrade strategy is not configured. 
- 91011  | Customer is already in the lowest slab. 
- 91012  | Customer is already in the highest slab.
- 91013  | Call to Points Engine for tier upgrade criteria has failed {x}.
- 91014  | Call to Points Engine for tier renewal criteria has failed {x}.
- 91015  | Failed to update extended fields; or field {x} length too long.
- 91016  | WECHAT profile is not available for the customer.
- 91017  | WEB_ENGAGE profile is not available for the customer.
- 91018  | Unable to load WeChat notifications.
- 91019  | Unable to load Web Engage notifications.
- 91020  | Invalid TILL passed for registration.
- 91021  | Invalid attribution TILL passed.
- 91022  | Failed to update subscription for {x} channel and priority {y}.
+500  | All requests failed due to errors.
+400  | Input is invalid. Please check request parameters or input xml/json; No identifier provided to get loyalty users.
+618  | Not allowed - customer is marked as fraud.
+816  | Customer not found for organization.
+1001 | Unable to register. Invalid mobile number.
+1002 | Unable to register. Invalid email id.
+1003 | Unable to register. Invalid external id.
+1004 | Failed to populate store.
+1006 | Unable to register. Mobile number is required.
+1007 | Unable to register customer. No valid primary identifier mobile number, email ID, or external ID passed. 
+1008/ 1038  | Unable to register with external id.
+1009 | Unable to add registered customer to MLM.
+1010 | Unable to update loyalty points of the customer.
+1011 | Cannot find customer for provided identifier.
+1012 | Cannot find customer with the provided mobile number/external ID/e-mail ID.
+1013 | Customer is not registered for the loyalty Program.
+1014 | Customer is registered already.
+1015 | No identifier provided to get loyalty users.
+1016 | Unable to register. Email provided already exists for some other user.
+1017 | Provided Custom Field is invalid.
+1018 | Unable to update custom field.
+1019 | Mobile number or external id is required along with the email Id to register.
+1020 | The customer is not registered for loyalty program.
+1021 | Invalid validation code.
+1023 | Unable to register customer to loyalty program.
+1024 | Unable to update customer profile.
+1025 | Mandatory fields are not matching for customer identity update.
+1026 | Count of optional fields match is less than required.
+1027 | Field name provided for verification is invalid.
+1028 | No customer notes are available.
+1029 | Unable to retrieve customer preferences.
+1030 | Unable to update customer preferences.
+1031 | No preferences set for this customer.
+1032 | A customer already exists with the same mobile number.
+1033 | A customer already exists with the same external id.
+1034 | Unable to register. Registration date is not within the allowed past or future date limit. 
+1035 | Unable to update few customer preferences.
+1036 | One or more notes could not be added/updated for customer.
+1037 | Unable to add/update customer notes.
+1039 | Unable to register. Email ID is required. 
+1041 | Customer id change request failed.
+1042 | Invalid mobile no/email id/external id.
+1043 | Unable to register. Customer’s external id is required.
+1044 | You do not have sufficient permission to view the customer details.
+1045 | No valid identifier (mobile/email) passed for non-loyalty customer. 
+1046 | Conversion of loyalty customer to non-loyalty is not allowed.
+1047 | Customer's primary identifier not matching with other identifiers.
+1048 | Customer’s email id is required to convert to loyalty customer.
+1049 | Customer’s external id is required to convert to loyalty customer. 
+1051 | No transactions or recommendations found for the customer.
+1060 | Batch limit exceeded.
+1062 | Invalid Test & Control status.
+1088 | Unable to issue points. Please report to capillary support.
+1099 | Unable to fetch tracker data for the customer.
+1101 | Invalid channel type.
+1102 | Invalid priority type. 
+1103 | Invalid scope. 
+1104 | Invalid identifier or no identifier passed.
+1105 | Multiple scopes are not allowed.
+1106 | Invalid subscription status passed.
+1107 | Invalid campaign id passed. 
+1108 | Invalid outbox id passed.
+1109 | Unable to add, update or fetch subscription details.
+1150  | Invalid store ID passed.
+1110 | Unable to update subscription details.
+1222 | Internal error occurred with the referral system.
+1202 | Invalid campaign token.
+1203 | Invalid campaign configured.
+1204 | The customer may not be eligible for the referral program.
+1205 | Unable to find the referrer in the specific campaign.
+1206 | Failed to add referral. Referral type is not supported. 
+1222 | Internal error occurred with the referral system.
+1301 | A ticket already exists with the same subject.
+1302 | Ticket registration failed.
+1303 | Ticket subject should not be empty.
+10001  | Failed to add customer.
+10002  | Failed to update customer details. 
+91009  | Retrieved survivor account for the requested merge victim. 
+91010  | Downgrade strategy is not configured.
+91020  | Invalid TILL passed for registration.
+91021  | Invalid attribution TILL passed.
+91022  | Failed to update subscription for {x} channel and priority {y}.
 
 
 
+### Warning Codes
+
+Code  | Description
+-----  | -----------
+1053 | Preferred store specified is not found.
+91001  | Failed to get point details.
+91002  | Failed to get subscription details.
+91003  | Failed to validate.
+91004  | Failed to get segmentation details.
+91005  | {x} is primary identifier and cannot be updated.
+91006  | {x} update is not allowed. 
+91007  | Failed to register. {x} already exists for some other user.
+91011  | Customer is already in the lowest slab. 
+91012  | Customer is already in the highest slab.
+91013  | Call to Points Engine for tier upgrade criteria has failed {x}.
+91014  | Call to Points Engine for tier renewal criteria has failed {x}.
+91015  | Failed to update extended fields; or field {x} length too long.
+91016  | WECHAT profile is not available for the customer.
+91017  | WEB_ENGAGE profile is not available for the customer.
+91018  | Unable to load WeChat notifications.
+91019  | Unable to load Web Engage notifications.

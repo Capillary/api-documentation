@@ -11,7 +11,7 @@ Transactions are classified into the following types:
 
 
 
-## Add or Return Transaction
+## Add or Return Transaction (Bulk)
 
 Lets you add or return one or more loyalty transactions to the Capillary system.
 
@@ -71,8 +71,7 @@ https://eu.intouch.capillarytech.com/v2/transactions/bulk
     "paymentModes": [
       {
         "attributes": {
-          "name": "BankNameAPI",
-          "value": "value_6555444"
+          "wallet_type": "Cliq Cash"
         },
         "notes": "notes_6555444",
         "mode": "CHECKAPI",
@@ -223,8 +222,7 @@ https://eu.intouch.capillarytech.com/v2/transactions/bulk
     "paymentModes": [
       {
         "attributes": {
-          "name": "BankNameAPI",
-          "value": "value_6555444"
+          "BankNameAPI": "value_6555444"
         },
         "notes": "notes_6555444",
         "mode": "CHECKAPI",
@@ -365,8 +363,7 @@ https://eu.intouch.capillarytech.com/v2/transactions/bulk
     "paymentModes": [
       {
         "attributes": {
-          "name": "CASH",
-          "value": "210"
+          "CASH": "200"
         }
       }
     ],
@@ -430,7 +427,7 @@ https://eu.intouch.capillarytech.com/v2/transactions/bulk
     {
       "result": {
         "identifierType": "mobile",
-        "identifierValue": "919740390065",
+        "identifierValue": "919740000000",
         "source": "INSTORE",
         "accountId": "",
         "extendedFields": {
@@ -796,7 +793,7 @@ Rate Limited | Yes
 
 ### Request URL
 
-`https://{host}/v2/transactions/bulk`
+`{host}/v2/transactions/bulk`
 
 ### Request Body Parameters
 
@@ -849,9 +846,8 @@ paymentModes | obj | Payment details used for the transaction.
 mode | string | Mode of payment.
 value | double | Amount paid through the current mode.
 notes |string | Additional information related to the payment mode.
-attributes | obj | Attributes of the payment mode in names and value pairs.
+attributes | obj | Attributes of the payment mode as name-value pairs.
 loyaltyPromotionIdentifiers | array | 
-id | - | --
       
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
@@ -863,6 +859,157 @@ Parameter | Datatype | Description
 --------- | -------- | -----------
 entityId | long | Unique transaction ID generated.
 billingDate | date-time | Date and time of the transaction in `HH-MM-DDThh:mm:ssTZD`
+
+
+
+## Add Transaction
+
+Lets you add a new transaction or return an existing transaction.
+
+
+> Sample Request
+
+```html
+https://us.api.capillarytech.com/v2/transactions?source=instore&identifierValue=GOLD400000000000000022020&identifierName=cardnumber&accountId=
+```
+
+> Sample Response
+
+```json
+{
+  "type": "REGULAR",
+  "billNumber": "num-1234",
+  "discount": "10",
+  "billAmount": "200",
+  "note": "this is test",
+  "grossAmount": "110",
+  "deliveryStatus": "SHIPPED",
+    "paymentModes": [
+        {
+            "attributes": {
+                "name": "BankNameAPI", 
+                "value": "value_6555444"
+            }, 
+            "notes": "notes_6555444", 
+            "mode": "CHECKAPI", 
+            "value": "500"
+        }
+    ], 
+  "extendedFields": {
+    "ship_first_name": "Ram",
+    "ship_last_name": "Singh",
+    "checkin_date":"2010-06-04 21:08:12",
+    "checkout_date":"2010-06-05 21:08:12"
+    
+  },
+  "customFields": {
+    "paymentmode": "cash"
+  },
+  "lineItemsV2": [
+    {
+      "itemCode": "sku_234_2",
+      "amount": 100.5,
+      "rate": 100.5,
+      "qty": 1.0,
+      "extendedFields": {
+        "MetalRate": "22.02",
+        "GrossWeight": "10.50"
+      }
+    },
+    {
+      "itemCode": "sku_{{sku}}_10",
+      "amount": 100.5,
+      "rate": 100.5,
+      "qty": 1.0,
+      "extendedFields": {
+        "MetalRate": "22.02",
+        "GrossWeight": "10.50"
+      }
+    }
+  ]
+}  
+```
+
+### Resource Information
+
+| | |
+--------- | ----------- |
+URI | `/v2/transactions?{queryParams}`
+HTTP Method | POST
+API Version | v2
+Batch Support | Yes
+Rate Limited | Yes
+
+
+### Request URL
+
+`{host}/v2/transactions?source={source}&identifierName={identifierName}&identifierValue={identifierValue}&accountId={accountId}`
+
+### Request Query Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+identifierName* | enum | Pass any of the registered identifier name of the customer. Values: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, or `fbId` (Facebook ID), cardnumber.
+identifierValue* | string | Pass the respective identifier value. For example if `identifierType` is mobile, `identifierValue` is mobile number.
+source* | enum | Pass the source from which the transaction is made. Values: `INSTORE`( for InStore), `WECHAT` (WeChat), `MARTJACK`(AnywhereCommerce), `WEB_ENGAGE` (Web-engage integration), ECOMMERCE (ECOMMERCE), `JD` (JD), `TAOBAO` (Taobao), `TMALL` (TMall), `FACEBOOK` (Facebook), `WEBSITE` (other website), `OTHERS` (any other source).
+accountId | string | For sources with multiple accounts (such as MARTJACK, WECHAT), pass the respective account ID.
+
+### Request Body Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+type* | enum | Type of transaction. Supported value: `REGULAR` for loyalty transactions. 'RETURN' for return transactions. Currently, there is no not-interested transactions support in V2.
+returnType** | enum | For a return transaction, pass the return type. Value: `AMOUNT`, `FULL`, `LINE_ITEM`, `CANCELLED`.
+billAmount* | double | Net transaction amount.
+billNumber* |  string | Unique transaction number. The uniqueness either at till, store, or org, depends on the configuration `CONF_LOYALTY_BILL_NUMBER_UNIQUE_IN_DAYS` set on InTouch **Settings** > **System & Deployment** > **InTouch POS Configuration** > **Billing**.  
+billingDate | date-time | Date and time of the transaction in the `YYYY-MM-DDTHH:MM:SSZ` format.
+currency | string | ISO currency code of the transaction. Org's base currency is considered by default. For example, `INR` for Indian Rupee, `SGD` for Singapore Dollar, `EUR` for Euro, `IQD` for Iraqi Dinar.
+discount | double | Discount availed for the transaction or line item (discount amount) .
+grossAmount | double | Transaction amount before discount.
+extendedFields | obj | Valid transaction level extended field details in name and value pairs. You can also pass line-item level extended field details in `line_item` object.
+currencyCode | string | ISO currency code of the transaction. For example, `INR` for Indian Rupee, SGD for Singapore Dollar, `EUR` for Euro, `IQD` for Iraqi Dinar.
+addWithLocalCurrency | boolean | Pass `true` to add a transaction in local currency.
+deliveryStatus | enum | Delivery status of the item. Values: DELIVERED, SHIPPED.
+note | string | Additional information about the transaction.
+lineItemsV2 | obj | Details of line-items.
+amount | double | Net transaction amount
+description | string | One or two liner description of the line-item.
+itemCode | string | Unique code of the transaction line-item.
+qty | double | Quantity of the current line-item.
+rate | double | Price of each line-item.
+serial | string | Serial number of the line-item.
+returnable | boolean | Pass `true` if the item can be returned.
+returnableDays | int | Maximum number of days in which the item is allowed to return. 
+customFields | obj | Transaction or line-item level custom field details.
+imgUrl | string | URL of the product image.
+attributes | obj | Attributes of the product in name-value pairs.
+comboDetails | obj | Details of combo or bundle items. For example, buy 1 shirt get one free, shirt+pant, pack of 5 soaps
+itemCode | string | Unique line-item code.
+quantity | double | Quantity of the current combo item.
+description | string | One or two liner description of add-on, split, or combo item.
+value | double | Item price excluding discount.
+comboType | string | Type of the combo. For example, buy 1 shirt get one free, shirt+pant, pack of 5 soaps.
+addOnDetails | obj | Details of add-on item.
+splitDetails | obj | Details of split item.
+parentBillNumber | string | Details of the actual transaction number. This is applicable only for return transactions.
+purchaseTime | date-time | Date and time of purchase in `YYYY-MM-DDTHH:MM:SS` format.
+customFields | obj | Details of transaction level or transaction line-item level custom fields.
+redemptions | obj | Details of points and coupon redemptions for the  transaction.
+pointsRedemptions | array | Unique points redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]
+couponRedemptions | array | Unique coupon redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]
+paymentModes | obj | Payment details used for the transaction. 
+mode | string | Mode of payment.
+value | double | Amount paid through the current mode.
+notes |string | Additional information related to the payment mode.
+attributes | obj | Attributes of the payment mode as name-value pairs.
+loyaltyPromotionIdentifiers | array | 
+      
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
+
+
+
+
 
 
 
@@ -1287,7 +1434,7 @@ Rate Limited | Yes
 Batch Support | NA
 
 ### Request URL
-`https://{host}/v2/transactions/{id}`
+`{host}/v2/transactions/{id}`
 
 
 ### Request Query Parameters
@@ -1295,6 +1442,7 @@ Parameter | Datatype | Description
 --------- | -------- | -----------
 id* | long | Unique transaction id to fetch details.
 type* | enum | Type of transaction to fetch. Value: REGULAR, RETURN.
+
 
 <aside class="notice">The parameter marked with * is mandatory.</aside>
 
@@ -1386,8 +1534,6 @@ Code | Description
 680 | No transactions of the specific customer were found.
 681 | Transactions are blocked for this customer.
 682 | Currency conversion is disabled for the org.
-683 | Failed to call new bill event EMF.
-684 | Failed EMF new bill DVS event.
 685 | Field length too long.
 686 | Unable to add transaction.
 687 | Points activities are queued and will be updated later.
@@ -1403,7 +1549,6 @@ Code | Description
 697 | Points processing failed
 698 | Points processing failed.
 699 | Invalid configuration. Please report to the Capillary Support.
-710 | Return bill event failed from EMF.
 820 | Current operation is not allowed. The customer is marked as fraud.
 1101 | Invalid loyalty program ID passed.
 1102 | Invalid currency conversion ratio passed.
@@ -1447,9 +1592,13 @@ Code | Description
 
 Code | Description
 ---- | -----------
+625 | Transaction number does not exist. If the config `CONF_ALLOW_NOT_EXISTING_BILL_RETURN`is enabled, the transaction is saved with a warning.
+683 | Failed to call new bill event EMF.
+684 | Failed EMF new bill DVS event.
 687 | Points activities are queued and will be updated later.
 688 | No line item found matching for return.
 669 | Invalid custom field.
+710 | Return bill event failed from EMF.
 1105 | Returnable days should be greater than -1.
 9601 | Unable to add line item. 
 9602 | Unable to add credit note.
@@ -1468,4 +1617,6 @@ Code | Description
 9615 | Return policy days are not defined.
 9616 | Single loyalty transaction found. Allowing regular return.
 
+
+<aside class="notice"> The error code `625` could also appear in warning if the configuration `CONF_ALLOW_NOT_EXISTING_BILL_RETURN` is enabled. However, this is a very special case for a code that could appear as a error or warning.</aside>
 

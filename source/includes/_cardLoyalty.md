@@ -1,23 +1,28 @@
 # Card Loyalty/Membership
 
-Card enables orgs to run card based loyalty memberships with multiple card types. A customer can have multiple cards of a same series or different series as intended by the org.
+Card enables orgs to run card based loyalty memberships with multiple card types. A customer can have multiple cards of a same or different series as intended by the org.
 
-`Card Series` represents different types of cards a brand. For example, Value Card, Premium card, Digital Card, and Physical Card. A card series stores information such as card series name, card type, card numbers config details, and expiry details.
+`Card Series` represents different types of cards of a brand. For example, Value Card, Premium card, Digital Card, and Physical Card. A card series stores information such as card series name, card type, card numbers, config details, and expiry details.
 
-A card is a physical or digital card and associated to a Card Series. A card stores information such as issued date, expiry date, store or source account from which the card is issued, and current status.
+A card is either physical or digital and is associated with a Card Series. A card stores information such as issued date, expiry date, store or source account from which the card is issued, and current status.
 
-Cards are specific to customers and not to source accounts. A customer can have multiple cards of the same card series. Issuing a card means linking a card to a customer. A card to be issued to a customer can be any of the following types.
-* Issuing a digital or virtual card.
-* Issuing a physical card generated in Capillary.
-* Issuing a physical card that is not generated in Capillary.
+Cards are specific to customers and not to source accounts. A customer can have multiple cards of the same card series. Issuing a card means linking a card to a customer. The following are the different types of cards supported.
 
 
+* Create auto-generated physical/digital cards for a series.
+ * Issue cards when a customer is registered (supports org level or OU level)
+* Create manually generated physical/digital cards for a series.
+* Issue external cards (that are not created in Capillary) 
 
 
 
 ## Create Card Series
 
-Lets you create a new card series for the org.
+Lets you create a new card series for the org. With this API, you can do the following:
+
+* Create auto-generated physical/digital cards for a series.
+* Create physical/digital card series with auto card generation disabled.
+ 
 
 
 > Sample Request
@@ -29,23 +34,47 @@ https://us.api.capillarytech.com/v2/card/series
 > Sample Post Request
 
 ```json
-# 
 {
-  "code":"pet",
-  "name":"platinum Card",
+  "code":"PLAPHY3",
+  "name":"Gold Card",
   "type":"PHYSICAL",
-  "expiryDays": 365,
+  "expiryDays": 1000,
+  "cardExpiryEnabled":true,
   "cardGenerationConfiguration":{
-    "prefix":"PET3",
-    "suffix": "2020",
-    "offset":100,
+  	"prefix":"PLAT2",
+  	"suffix":"2020",
     "length":16,
-    "type" : "DEFAULT"
+    "method" : "DEFAULT"
   },
     "cardGenerationEnabled":true,
-    "isActive":true
+    "isActive":true,
+    "trigger":"SERIES_ID",
+    "maxActiveCardsPerCustomer": 5
 }
 
+```
+
+> Sample POST - Trigger on OU Events
+
+```json
+{
+  "code":"GOLDDIF6",
+  "name":"Gold Card 6",
+  "type":"DIGITAL",
+  "expiryDays": 1000,
+  "cardExpiryEnabled":false,
+  "cardGenerationConfiguration":{
+  	"prefix":"GOLD6",
+  	"suffix":"2020",
+    "length":16,
+    "method" : "DEFAULT"
+  },
+    "cardGenerationEnabled":true,
+    "isActive":true,
+    "trigger":"OU_ID",
+    "conceptCode": "demo.brand",
+    "maxActiveCardsPerCustomer": 5
+}
 ```
 
 > Sample Response
@@ -74,84 +103,26 @@ Batch Support | No
 ### Request Body Parameters
 Parameter | Datatype | Description
 --------- | -------- | -----------
-code* | string | A valid code (supports up to 50 characters) for the card series. Only alpha-numeric is allowed.
+code* | string | Unique code (supports up to 50 characters) for the card series. Only alpha-numeric is allowed.
 name* | string | Name of the card series.
 type* | enum | Type of the card. Value `PHYSICAL` (for physical cards), `DIGITAL` (for digital or soft copies)
-expiryDays* | int | Validity of the card series in number of days from the day of issual.
-cardGenerationEnabled | boolean | Pass `true` enable generating automatically for the series, `false` to manually generate cards.
-isActive | boolean | Pass `true` to activate the series. 
+expiryDays* | int | Validity of the card series in number of days from the issued date.
+cardExpiryEnabled | boolean | Set `true` to enable card expiry. If this is `false`, `expiryDays` is not applicable.
 cardGenerationConfiguration | obj | Configurations of the card series.
 prefix | string | Starting characters for cards of the series.
 suffix | string | Ending characters for cards of the series.
-offset | int | 
+offset | int | Number of rows to be ignored from the top.
 length | int | Length of the cards of the series.
-type | enum | DEFAULT
-
+method | enum | The card generation method. For now, only `DEFAULT` is supported.
+cardGenerationEnabled | boolean | Pass `true` to auto-generate cards for the for the series, `false` to manually generate cards.
+isActive | boolean | Pass `true` to activate the series. 
+trigger | enum | When to generate cards from this series. Values `REGISTRATION` (to issue card automatically when a new customer is registered), `SERIES_ID` (to generate cards when the series code is passed during registration), `OU_ID` (to generate cards when a customer is registered at a specific OU, makes a transaction or updates profile for the first time and mention the desired `conceptCode`).
+conceptCode** | string | Concept code associated with the card series. The concept is identified by the associated Till Code.
+maxActiveCardsPerCustomer | int | Limit active cards per customer from the current card series.
 
  
- <aside class="notice">Parameters marked with * are mandatory. </aside>
- 
- 
-## Get Card Series Details
- 
-Retrieves the details of a specific card series.
+<aside class="notice">Parameters marked with * are mandatory. conceptCode is required for the OU based trigger (OU_ID).</aside>
 
-
-> Sample Request
-
-```html
-https://us.api.capillarytech.com/v2/card/series/10
-```
-
-> Sample Response
-
-```json
-{
-    "expiryDays": 1000,
-    "lastUpdateBy": 75029724,
-    "maxActiveCardsPerCustomer": 0,
-    "cardGenerationConfiguration": {
-        "lastUpdatedBy": 75029724,
-        "orgId": 100458,
-        "seriesId": 6,
-        "suffix": "2021",
-        "prefix": "PETRON3",
-        "length": 20,
-        "type": "DEFAULT"
-    },
-    "cardGenerationEnabled": true,
-    "code": "VAL3",
-    "createdBy": 75029724,
-    "createdOn": "2020-11-27T09:12:13Z",
-    "name": "Petron Value Card 3.1",
-    "id": 6,
-    "isActive": false,
-    "orgId": 100458,
-    "type": "PHYSICAL",
-    "warnings": []
-}
-```
-
-### Resource Information
-
-| | |
---------- | ----------- |
-URI | `v2/card/series/{seriesId}`
-HTTP Method | POST
-API Version | v2
-Batch Support | No
-
-### Request URL
-`https://{host}/v2/card/series/{seriesId}`
-
-
-### Request Query Parameter
-
-Parameter | Datatype | Description
---------- | -------- | -----------
-seriesId* | int | Unique ID of the series to retrieve.
-
-<aside class="notice"> The Parameter marked with * is mandatory. </aside>
 
 
 
@@ -170,15 +141,23 @@ https://us.api.capillarytech.com/v2/card/series/10
 
 ```json
 {
-   "description":"Titanium Card for DemoOrg",
-   "type":"DIGITAL",
-   "cardGenerationConfiguration":{
-      "prefix":"TTM00111",
-      "suffix":"ZS",
-      "length":10
-   },
-   "cardGenerationEnabled":true
+  "code":"GOLDPHY23",
+  "name":"Gold Card 23",
+  "type":"PHYSICAL",
+  "expiryDays": 500,
+  "cardExpiryEnabled":true,
+  "cardGenerationConfiguration":{
+  	"prefix":"GOLD2",
+  	"suffix":"2020",
+    "length":16,
+    "method" : "DEFAULT"
+  },
+    "cardGenerationEnabled":true,
+    "isActive":true,
+    "trigger":"SERIES_ID",
+    "maxActiveCardsPerCustomer": 3
 }
+
 ```
 
 > Sample Response
@@ -226,14 +205,201 @@ seriesId* | int | Unique ID of the card series to update.
 ### Request Body Parameters
 Parameter | Datatype | Description
 --------- | -------- | -----------
+code | string | Unique code (supports up to 50 characters) for the card series. Only alpha-numeric is allowed.
+name | string | Name of the card series.
 description | string | Description of the Card Series.
 type* | enum | Type of the card series.  Values: `PHYSICAL` (physical card), `DIGITAL` (digital card or soft copy)
 prefix | string | Characters to start with in a card number. 
 suffix | string | Characters to end with in a card number. 
 length* | int | Length of the card.
 cardGenerationEnabled | boolean | Pass `true` to enable auto generating card, pass `false` to manually generate card numbers.
+expiryDays* | int | Validity of the card series in number of days from the day of issual.
+cardExpiryEnabled | boolean | Set `true` to enable card card expiry. If this is `false`, `expiryDays` is not applicable.
+cardGenerationConfiguration | obj | Configurations of the card series.
+prefix | string | Starting characters for cards of the series.
+suffix | string | Ending characters for cards of the series.
+offset | int | Number of rows to be ignored from the top.
+length | int | Length of the cards of the series.
+method | enum | The card generation method. For now, only `DEFAULT` is supported.
+cardGenerationEnabled | boolean | Pass `true` enable generating automatically for the series, `false` to manually generate cards.
+isActive | boolean | Pass `true` to activate the series, `false` to deactivate the series.
+trigger | enum | When to generate cards from this series. Values `REGISTRATION` (to issue card automatically when a new customer is registered), `SERIES_ID` (to generate cards when the series code is passed during registration), `OU_ID` (to generate cards when a customer is registered at a specific OU, makes a transaction or update profile for the first time and mention the desired `conceptCode`).
+conceptCode** | string | Concept code associated with the card series. The concept is identified by the associated Till Code.
+maxActiveCardsPerCustomer | int | Limit active cards per customer from the current card series.
  
 <aside class="notice"> All parameters marked with * are mandatory. </aside>
+
+
+## Get All Card Series Details
+ 
+Retrieves the details of all card series of the org.
+
+
+> Sample Request
+
+```html
+https://us.api.capillarytech.com/v2/card/series/get/all
+```
+
+> Sample Response
+
+```json
+{
+    "data": [
+        {
+            "lastUpdatedOn": "2021-04-02T17:53:27+05:30",
+            "trigger": "REGISTRATION",
+            "expiryDays": 1000,
+            "cardExpiryEnabled": true,
+            "lastUpdateBy": 50006796,
+            "maxActiveCardsPerCustomer": 5,
+            "cardGenerationConfiguration": {
+                "lastUpdatedBy": 50006796,
+                "orgId": 50074,
+                "seriesId": 132,
+                "suffix": "2020",
+                "prefix": "GOLD5",
+                "length": 16,
+                "method": "DEFAULT"
+            },
+            "orgUnitId": 0,
+            "cardGenerationEnabled": true,
+            "code": "GOLDDIG5",
+            "createdBy": 50006796,
+            "createdOn": "2021-04-02T17:53:27+05:30",
+            "name": "Gold Card 5",
+            "id": 132,
+            "isActive": true,
+            "orgId": 50074,
+            "type": "DIGITAL"
+        },
+        {
+            "lastUpdatedOn": "2020-11-12T20:16:29+05:30",
+            "trigger": "SERIES_ID",
+            "expiryDays": 355,
+            "cardExpiryEnabled": true,
+            "lastUpdateBy": 50006796,
+            "maxActiveCardsPerCustomer": 0,
+            "orgUnitId": 0,
+            "cardGenerationEnabled": false,
+            "code": "goldseries",
+            "createdBy": 50006796,
+            "createdOn": "2020-11-12T20:16:30+05:30",
+            "name": "card series create",
+            "id": 28,
+            "isActive": true,
+            "orgId": 50074,
+            "type": "DIGITAL"
+        },
+        {
+            "lastUpdatedOn": "2021-03-30T17:28:45+05:30",
+            "trigger": "SERIES_ID",
+            "expiryDays": 1000,
+            "cardExpiryEnabled": true,
+            "lastUpdateBy": 50006796,
+            "maxActiveCardsPerCustomer": 5,
+            "cardGenerationConfiguration": {
+                "lastUpdatedBy": 50006796,
+                "orgId": 50074,
+                "seriesId": 131,
+                "suffix": "2020",
+                "prefix": "PLAT2",
+                "length": 16,
+                "method": "DEFAULT"
+            },
+            "orgUnitId": 0,
+            "cardGenerationEnabled": true,
+            "code": "PLAPHY3",
+            "createdBy": 50006796,
+            "createdOn": "2021-03-30T17:28:45+05:30",
+            "name": "Gold Card",
+            "id": 131,
+            "isActive": true,
+            "orgId": 50074,
+            "type": "PHYSICAL"
+        }
+    ],
+    "warnings": [],
+    "errors": []
+}
+```
+
+### Resource Information
+
+| | |
+--------- | ----------- |
+URI | `v2/card/series/get/all`
+HTTP Method | GET
+API Version | v2
+Batch Support | No
+
+### Request URL
+`https://{host}/v2/card/series/get/all`
+
+
+
+ 
+## Get Card Series Details
+ 
+Retrieves the details of a specific card series.
+
+
+> Sample Request
+
+```html
+https://us.api.capillarytech.com/v2/card/series/10
+```
+
+> Sample Response
+
+```json
+{
+    "expiryDays": 1000,
+    "lastUpdateBy": 75029724,
+    "maxActiveCardsPerCustomer": 0,
+    "cardGenerationConfiguration": {
+        "lastUpdatedBy": 75029724,
+        "orgId": 100458,
+        "seriesId": 6,
+        "suffix": "2021",
+        "prefix": "PETRON3",
+        "length": 20,
+        "type": "DEFAULT"
+    },
+    "cardGenerationEnabled": true,
+    "code": "VAL3",
+    "createdBy": 75029724,
+    "createdOn": "2020-11-27T09:12:13Z",
+    "name": "Petron Value Card 3.1",
+    "id": 6,
+    "isActive": false,
+    "orgId": 100458,
+    "type": "PHYSICAL",
+    "warnings": []
+}
+```
+
+### Resource Information
+
+| | |
+--------- | ----------- |
+URI | `v2/card/series/{seriesId}`
+HTTP Method | GET
+API Version | v2
+Batch Support | No
+
+### Request URL
+`https://{host}/v2/card/series/{seriesId}`
+
+
+### Request Query Parameter
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+seriesId* | int | Unique ID of the series to retrieve.
+
+<aside class="notice"> The Parameter marked with * is mandatory. </aside>
+
 
 
 ## Deactivate Card Series
@@ -244,22 +410,28 @@ Lets you deactivate an active card series.
 > Sample Request
 
 ```html
-https://us.api.capillarytech.com/v2/card/series
+https://us.api.capillarytech.com/v2/card/series/132
 ```
 
 > Sample PUT Request
 
 ```json
 {
-    "description": "",
-    "isActive":0,
-    "type": "DIGITAL",
-    "cardGenerationConfiguration": {
-        "prefix": "",
-        "suffix": "",
-        "length": 10
-    },
-    "cardGenerationEnabled": false
+  "code":"",
+  "name":"",
+  "type":"PHYSICAL",
+  "expiryDays": "",
+  "cardExpiryEnabled":true,
+  "cardGenerationConfiguration":{
+  	"prefix":"",
+  	"suffix":"",
+    "length":"",
+    "method" : "DEFAULT"
+  },
+    "cardGenerationEnabled":false,
+    "isActive":false,
+    "trigger":"SEIES_ID",
+    "maxActiveCardsPerCustomer": 3
 }
 ```
 
@@ -275,7 +447,7 @@ https://us.api.capillarytech.com/v2/card/series
     },
     "cardGenerationEnabled": false,
     "description": "",
-    "id": 18,
+    "id": 132,
     "isActive": false,
     "orgId": 50074,
     "type": "DIGITAL",
@@ -300,9 +472,9 @@ Batch Support | No
 ### Request Body Parameters
 Parameter | Datatype | Description
 --------- | -------- | -----------
-seriesId* | int | Unique ID of the card series to issue cards (Query parameter).
+seriesId* | int | Unique ID of the card series to deactivate (Path parameter).
 isActive* | enum | Pass `0` to deactivate the card series. 
-count* | int | Number of cards to generate.
+type* | enum | Type of cards of the series - `PHYSICAL`, `DIGITAL`.
  
 <aside class="notice"> All parameters marked with * are mandatory. </aside>
 
