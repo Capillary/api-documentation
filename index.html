@@ -4562,7 +4562,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <li><strong>Mixed</strong>: A transaction that involves both regular and return is termed as mixed transaction.</li>
 </ul>
 
-<h2 id="add-or-return-transaction">Add or Return Transaction</h2>
+<h2 id="add-or-return-transaction-bulk">Add or Return Transaction (Bulk)</h2>
 
 <p>Lets you add or return one or more loyalty transactions to the Capillary system.</p>
 
@@ -5642,6 +5642,374 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>Date and time of the transaction in <code class="prettyprint">HH-MM-DDThh:mm:ssTZD</code></td>
 </tr>
 </tbody></table>
+
+<h2 id="add-transaction">Add Transaction</h2>
+
+<p>Lets you add a new transaction or return an existing transaction.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/transactions?source=instore<span class="err">&amp;</span>identifierValue=GOLD400000000000000022020<span class="err">&amp;</span>identifierName=cardnumber<span class="err">&amp;</span>accountId=
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REGULAR"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"billNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"num-1234"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"billAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this is test"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"grossAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"110"</span><span class="p">,</span><span class="w">
+  </span><span class="nt">"deliveryStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHIPPED"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"paymentModes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BankNameAPI"</span><span class="p">,</span><span class="w"> 
+                </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value_6555444"</span><span class="w">
+            </span><span class="p">},</span><span class="w"> 
+            </span><span class="nt">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes_6555444"</span><span class="p">,</span><span class="w"> 
+            </span><span class="nt">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CHECKAPI"</span><span class="p">,</span><span class="w"> 
+            </span><span class="nt">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"500"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w"> 
+  </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"ship_first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ram"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"ship_last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Singh"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"checkin_date"</span><span class="p">:</span><span class="s2">"2010-06-04 21:08:12"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"checkout_date"</span><span class="p">:</span><span class="s2">"2010-06-05 21:08:12"</span><span class="w">
+
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"customFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="nt">"paymentmode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cash"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="nt">"lineItemsV2"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_234_2"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="nt">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_{{sku}}_10"</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="nt">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+        </span><span class="nt">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">  
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/v2/transactions?{queryParams}</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Rate Limited</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v2/transactions?source={source}&amp;identifierName={identifierName}&amp;identifierValue={identifierValue}&amp;accountId={accountId}</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifierName*</td>
+<td>enum</td>
+<td>Pass any of the registered identifier name of the customer. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>, or <code class="prettyprint">fbId</code> (Facebook ID), cardnumber.</td>
+</tr>
+<tr>
+<td>identifierValue*</td>
+<td>string</td>
+<td>Pass the respective identifier value. For example if <code class="prettyprint">identifierType</code> is mobile, <code class="prettyprint">identifierValue</code> is mobile number.</td>
+</tr>
+<tr>
+<td>source*</td>
+<td>enum</td>
+<td>Pass the source from which the transaction is made. Values: <code class="prettyprint">INSTORE</code>( for InStore), <code class="prettyprint">WECHAT</code> (WeChat), <code class="prettyprint">MARTJACK</code>(AnywhereCommerce), <code class="prettyprint">WEB_ENGAGE</code> (Web-engage integration), ECOMMERCE (ECOMMERCE), <code class="prettyprint">JD</code> (JD), <code class="prettyprint">TAOBAO</code> (Taobao), <code class="prettyprint">TMALL</code> (TMall), <code class="prettyprint">FACEBOOK</code> (Facebook), <code class="prettyprint">WEBSITE</code> (other website), <code class="prettyprint">OTHERS</code> (any other source).</td>
+</tr>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>For sources with multiple accounts (such as MARTJACK, WECHAT), pass the respective account ID.</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type*</td>
+<td>enum</td>
+<td>Type of transaction. Supported value: <code class="prettyprint">REGULAR</code> for loyalty transactions. &#39;RETURN&rsquo; for return transactions. Currently, there is no not-interested transactions support in V2.</td>
+</tr>
+<tr>
+<td>returnType**</td>
+<td>enum</td>
+<td>For a return transaction, pass the return type. Value: <code class="prettyprint">AMOUNT</code>, <code class="prettyprint">FULL</code>, <code class="prettyprint">LINE_ITEM</code>, <code class="prettyprint">CANCELLED</code>.</td>
+</tr>
+<tr>
+<td>billAmount*</td>
+<td>double</td>
+<td>Net transaction amount.</td>
+</tr>
+<tr>
+<td>billNumber*</td>
+<td>string</td>
+<td>Unique transaction number. The uniqueness either at till, store, or org, depends on the configuration <code class="prettyprint">CONF_LOYALTY_BILL_NUMBER_UNIQUE_IN_DAYS</code> set on InTouch <strong>Settings</strong> &gt; <strong>System &amp; Deployment</strong> &gt; <strong>InTouch POS Configuration</strong> &gt; <strong>Billing</strong>.</td>
+</tr>
+<tr>
+<td>billingDate</td>
+<td>date-time</td>
+<td>Date and time of the transaction in the <code class="prettyprint">YYYY-MM-DDTHH:MM:SSZ</code> format.</td>
+</tr>
+<tr>
+<td>currency</td>
+<td>string</td>
+<td>ISO currency code of the transaction. Org&rsquo;s base currency is considered by default. For example, <code class="prettyprint">INR</code> for Indian Rupee, <code class="prettyprint">SGD</code> for Singapore Dollar, <code class="prettyprint">EUR</code> for Euro, <code class="prettyprint">IQD</code> for Iraqi Dinar.</td>
+</tr>
+<tr>
+<td>discount</td>
+<td>double</td>
+<td>Discount availed for the transaction or line item (discount amount) .</td>
+</tr>
+<tr>
+<td>grossAmount</td>
+<td>double</td>
+<td>Transaction amount before discount.</td>
+</tr>
+<tr>
+<td>extendedFields</td>
+<td>obj</td>
+<td>Valid transaction level extended field details in name and value pairs. You can also pass line-item level extended field details in <code class="prettyprint">line_item</code> object.</td>
+</tr>
+<tr>
+<td>currencyCode</td>
+<td>string</td>
+<td>ISO currency code of the transaction. For example, <code class="prettyprint">INR</code> for Indian Rupee, SGD for Singapore Dollar, <code class="prettyprint">EUR</code> for Euro, <code class="prettyprint">IQD</code> for Iraqi Dinar.</td>
+</tr>
+<tr>
+<td>addWithLocalCurrency</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to add a transaction in local currency.</td>
+</tr>
+<tr>
+<td>deliveryStatus</td>
+<td>enum</td>
+<td>Delivery status of the item. Values: DELIVERED, SHIPPED.</td>
+</tr>
+<tr>
+<td>note</td>
+<td>string</td>
+<td>Additional information about the transaction.</td>
+</tr>
+<tr>
+<td>lineItemsV2</td>
+<td>obj</td>
+<td>Details of line-items.</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>double</td>
+<td>Net transaction amount</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>One or two liner description of the line-item.</td>
+</tr>
+<tr>
+<td>itemCode</td>
+<td>string</td>
+<td>Unique code of the transaction line-item.</td>
+</tr>
+<tr>
+<td>qty</td>
+<td>double</td>
+<td>Quantity of the current line-item.</td>
+</tr>
+<tr>
+<td>rate</td>
+<td>double</td>
+<td>Price of each line-item.</td>
+</tr>
+<tr>
+<td>serial</td>
+<td>string</td>
+<td>Serial number of the line-item.</td>
+</tr>
+<tr>
+<td>returnable</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> if the item can be returned.</td>
+</tr>
+<tr>
+<td>returnableDays</td>
+<td>int</td>
+<td>Maximum number of days in which the item is allowed to return.</td>
+</tr>
+<tr>
+<td>customFields</td>
+<td>obj</td>
+<td>Transaction or line-item level custom field details.</td>
+</tr>
+<tr>
+<td>imgUrl</td>
+<td>string</td>
+<td>URL of the product image.</td>
+</tr>
+<tr>
+<td>attributes</td>
+<td>obj</td>
+<td>Attributes of the product in name-value pairs.</td>
+</tr>
+<tr>
+<td>comboDetails</td>
+<td>obj</td>
+<td>Details of combo or bundle items. For example, buy 1 shirt get one free, shirt+pant, pack of 5 soaps</td>
+</tr>
+<tr>
+<td>itemCode</td>
+<td>string</td>
+<td>Unique line-item code.</td>
+</tr>
+<tr>
+<td>quantity</td>
+<td>double</td>
+<td>Quantity of the current combo item.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>One or two liner description of add-on, split, or combo item.</td>
+</tr>
+<tr>
+<td>value</td>
+<td>double</td>
+<td>Item price excluding discount.</td>
+</tr>
+<tr>
+<td>comboType</td>
+<td>string</td>
+<td>Type of the combo. For example, buy 1 shirt get one free, shirt+pant, pack of 5 soaps.</td>
+</tr>
+<tr>
+<td>addOnDetails</td>
+<td>obj</td>
+<td>Details of add-on item.</td>
+</tr>
+<tr>
+<td>splitDetails</td>
+<td>obj</td>
+<td>Details of split item.</td>
+</tr>
+<tr>
+<td>parentBillNumber</td>
+<td>string</td>
+<td>Details of the actual transaction number. This is applicable only for return transactions.</td>
+</tr>
+<tr>
+<td>purchaseTime</td>
+<td>date-time</td>
+<td>Date and time of purchase in <code class="prettyprint">YYYY-MM-DDTHH:MM:SS</code> format.</td>
+</tr>
+<tr>
+<td>customFields</td>
+<td>obj</td>
+<td>Details of transaction level or transaction line-item level custom fields.</td>
+</tr>
+<tr>
+<td>redemptions</td>
+<td>obj</td>
+<td>Details of points and coupon redemptions for the  transaction.</td>
+</tr>
+<tr>
+<td>pointsRedemptions</td>
+<td>array</td>
+<td>Unique points redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]</td>
+</tr>
+<tr>
+<td>couponRedemptions</td>
+<td>array</td>
+<td>Unique coupon redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]</td>
+</tr>
+<tr>
+<td>paymentModes</td>
+<td>obj</td>
+<td>Payment details used for the transaction.</td>
+</tr>
+<tr>
+<td>mode</td>
+<td>string</td>
+<td>Mode of payment.</td>
+</tr>
+<tr>
+<td>value</td>
+<td>double</td>
+<td>Amount paid through the current mode.</td>
+</tr>
+<tr>
+<td>notes</td>
+<td>string</td>
+<td>Additional information related to the payment mode.</td>
+</tr>
+<tr>
+<td>attributes</td>
+<td>obj</td>
+<td>Attributes of the payment mode as name-value pairs.</td>
+</tr>
+<tr>
+<td>loyaltyPromotionIdentifiers</td>
+<td>array</td>
+<td></td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
 
 <h2 id="get-transaction-details">Get Transaction Details</h2>
 
