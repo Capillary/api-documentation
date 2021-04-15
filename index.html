@@ -4051,7 +4051,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </tr>
 <tr>
 <td>Batch Support</td>
-<td>No</td>
+<td>Yes</td>
 </tr>
 </tbody></table>
 
@@ -4110,176 +4110,6 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>statusLabel*</td>
 <td>enum</td>
 <td>New status of the card. Value: <code class="prettyprint">ACTIVE</code>.</td>
-</tr>
-</tbody></table>
-
-<h2 id="update-customer-card-status">Update Customer Card Status</h2>
-
-<p>Lets you deactivate a customers membership card.</p>
-
-<blockquote>
-<p>Sample Request</p>
-</blockquote>
-<pre class="highlight html"><code>
-</code></pre>
-<h3 id="request-url">Request URL</h3>
-
-<p><code class="prettyprint">{host}/v2/customers/{userId}?source={source}</code></p>
-
-<h3 id="request-query-parameter">Request Query Parameter</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Datatype</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>userId*</td>
-<td>long</td>
-<td>Unique ID of the customer whose card status has to be updated.</td>
-</tr>
-<tr>
-<td>source*</td>
-<td>int</td>
-<td>Unique ID of the card series to update.</td>
-</tr>
-</tbody></table>
-
-<h3 id="request-body-parameters">Request Body Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Datatype</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
-
-<h2 id="get-card-status-changes-log">Get Card Status Changes Log</h2>
-
-<p>Retrieves the log of status changes of a card number.</p>
-
-<blockquote>
-<p>Sample Request</p>
-</blockquote>
-<pre class="highlight html"><code>
-</code></pre>
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="err">https://eu.api.capillarytech.com/v</span><span class="mi">2</span><span class="err">/card/statusLog?number=GOLD</span><span class="mi">00000000000001012020</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-01-10"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-01-10T10:39:19Z"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10609</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CARD GENERATED"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOT_ISSUED"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-01-10"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-01-10T10:40:25Z"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10609</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACTIVE"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACTIVE"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-01-10"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-01-10T12:01:39Z"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10609</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUSPENDED"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUSPENDED"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-01-10"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-01-10T12:02:00Z"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10609</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACTIVE"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACTIVE"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="nt">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="nt">"autoUpdateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-01-10"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-01-10T12:02:39Z"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">10609</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXPIRED"</span><span class="p">,</span><span class="w">
-            </span><span class="nt">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"EXPIRED"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<h3 id="resource-information">Resource Information</h3>
-
-<table><thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URI</td>
-<td><code class="prettyprint">/statusLog?number={cardNumber}</code></td>
-</tr>
-<tr>
-<td>Rate Limited?</td>
-<td>Yes (1000 per hour)</td>
-</tr>
-<tr>
-<td>HTTP Methods</td>
-<td>POST</td>
-</tr>
-<tr>
-<td>Batch Support</td>
-<td>No</td>
-</tr>
-</tbody></table>
-
-<h3 id="request-url">Request URL</h3>
-
-<p><code class="prettyprint">{host}/v2/customers/statusLog?number={cardNumber}</code></p>
-
-<h3 id="request-query-parameter">Request Query Parameter</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Datatype</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>number</td>
-<td>string</td>
-<td>Card number to see the status change log.</td>
 </tr>
 </tbody></table>
 
@@ -18248,6 +18078,82 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <h3 id="request-url">Request URL</h3>
 
 <p><code class="prettyprint">{host}/v2/genericStatus/card/labels</code></p>
+
+<h2 id="expire-or-delete-a-card">Expire or Delete a Card</h2>
+
+<p>Lets you expire an active card of a customer.</p>
+
+<ul>
+<li>A generated card cannot be expired or deleted.</li>
+<li>An expired card cannot be deleted.</li>
+</ul>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/card
+</code></pre>
+<blockquote>
+<p>Sample PUT Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"cardNumber"</span><span class="p">:</span><span class="s2">"GOLD00000000000003002020"</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"statusLabel"</span><span class="p">:</span><span class="s2">"EXPIRED"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/v2/card</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes (1000 per hour)</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>PUT</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>cardNumber*</td>
+<td>string</td>
+<td>Card number to expire or delete.</td>
+</tr>
+<tr>
+<td>statusLabel*</td>
+<td>string</td>
+<td>New custom status label related to expire to expire the card, and delete to delete the card.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
 
 <h2 id="get-card-status-changes-log">Get Card Status Changes Log</h2>
 
@@ -34147,7 +34053,7 @@ https://eu.api.capillarytech.com/api_gateway/v1/recommendations/item/similar-att
 <tr>
 <td>model*</td>
 <td>enum</td>
-<td><code class="prettyprint">similar-attribute</code> to get products with similar product attributes as per the <code class="prettyprint">SKU</code> item. <br> <code class="prettyprint">similar-btab**</code> to get products that are are frequently bought along with the <code class="prettyprint">SKU</code> item passed.</td>
+<td><code class="prettyprint">similar-attribute</code> to get products with similar product attributes as per the <code class="prettyprint">SKU</code> item. <br> <code class="prettyprint">similar-btab</code> to get products that are are frequently bought along with the <code class="prettyprint">SKU</code> item passed.</td>
 </tr>
 </tbody></table>
 
