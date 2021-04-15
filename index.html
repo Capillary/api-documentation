@@ -17242,7 +17242,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <tr>
 <td>description</td>
 <td>string</td>
-<td>Description of the Card Series.</td>
+<td>Description of the card series.</td>
 </tr>
 <tr>
 <td>type*</td>
@@ -17788,7 +17788,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 </tr>
 <tr>
 <td>HTTP Method</td>
-<td>POST</td>
+<td>GET</td>
 </tr>
 <tr>
 <td>API Version</td>
@@ -18341,7 +18341,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 </tr>
 <tr>
 <td>HTTP Methods</td>
-<td>POST</td>
+<td>GET</td>
 </tr>
 <tr>
 <td>Batch Support</td>
@@ -33793,6 +33793,857 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <tr>
 <td>8010</td>
 <td>User reward is partially successful (in case of batch issual).</td>
+</tr>
+</tbody></table>
+
+          <h1 id="recommendations">Recommendations</h1>
+
+<p>The recommendation engine predicts the list of suitable products for a customer based on his/her previous orders, frequent orders, search items, trending products, cart items, and other user activities. </p>
+
+<h2 id="get-user-recommendation">GET User Recommendation</h2>
+
+<p>Retrieves the list of recommended products of a user based past activities (previous orders, frequent orders, search items, and trending items. </p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>
+https://eu.api.capillarytech.com/api_gateway/v1/recommendations/user/you-may-also-like?utype=user_id<span class="err">&amp;</span>uvalue=123456<span class="err">&amp;</span>limit=5<span class="err">&amp;</span>offset=0<span class="err">&amp;</span>categories
+
+</code></pre>
+<blockquote>
+<p>Sample Response for you-may-also-like model</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+   </span><span class="nt">"status"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"code"</span><span class="p">:</span><span class="mi">200</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"group"</span><span class="p">:</span><span class="s2">"TEST"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"boxType"</span><span class="p">:</span><span class="s2">"you-may-also-like"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"totalResults"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"recommendedItems"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"items"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"sku"</span><span class="p">:</span><span class="s2">"564714"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"score"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rank"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"values"</span><span class="p">:{</span><span class="w">
+               </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"T-Shirts"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Reebok T-Shirts"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"categories"</span><span class="p">:[</span><span class="w">
+                  </span><span class="s2">"Shirts"</span><span class="w">
+               </span><span class="p">],</span><span class="w">
+               </span><span class="nt">"image"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"smallImage"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"productUrl"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"sku"</span><span class="p">:</span><span class="s2">"564716"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"score"</span><span class="p">:</span><span class="mi">9</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rank"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"values"</span><span class="p">:{</span><span class="w">
+               </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Trackpants"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Puma Trackpants"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"categories"</span><span class="p">:[</span><span class="w">
+                  </span><span class="s2">"Bottomwear"</span><span class="w">
+               </span><span class="p">],</span><span class="w">
+               </span><span class="nt">"image"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"smallImage"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"productUrl"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>Sample Response for trending model</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+   </span><span class="nt">"status"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"code"</span><span class="p">:</span><span class="mi">200</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"group"</span><span class="p">:</span><span class="s2">"TEST"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"boxType"</span><span class="p">:</span><span class="s2">"trending"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"totalResults"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"recommendedItems"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"items"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"sku"</span><span class="p">:</span><span class="s2">"564714"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"score"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rank"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"values"</span><span class="p">:{</span><span class="w">
+               </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"T-Shirts"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Reebok T-Shirts"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"categories"</span><span class="p">:[</span><span class="w">
+                  </span><span class="s2">"Shirts"</span><span class="w">
+               </span><span class="p">],</span><span class="w">
+               </span><span class="nt">"image"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"smallImage"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"productUrl"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"sku"</span><span class="p">:</span><span class="s2">"564716"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"score"</span><span class="p">:</span><span class="mi">9</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rank"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"values"</span><span class="p">:{</span><span class="w">
+               </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Trackpants"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Puma Trackpants"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"categories"</span><span class="p">:[</span><span class="w">
+                  </span><span class="s2">"Bottomwear"</span><span class="w">
+               </span><span class="p">],</span><span class="w">
+               </span><span class="nt">"image"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"smallImage"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"productUrl"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>Sample Response for buy-it-again model</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+   </span><span class="nt">"status"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"code"</span><span class="p">:</span><span class="mi">200</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"group"</span><span class="p">:</span><span class="s2">"TEST"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"boxType"</span><span class="p">:</span><span class="s2">"buy-it-again"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"totalResults"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"recommendedItems"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"items"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"sku"</span><span class="p">:</span><span class="s2">"564714"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"score"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rank"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"values"</span><span class="p">:{</span><span class="w">
+               </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"T-Shirts"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Reebok T-Shirts"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"categories"</span><span class="p">:[</span><span class="w">
+                  </span><span class="s2">"Shirts"</span><span class="w">
+               </span><span class="p">],</span><span class="w">
+               </span><span class="nt">"image"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"smallImage"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"productUrl"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"sku"</span><span class="p">:</span><span class="s2">"564716"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"score"</span><span class="p">:</span><span class="mi">9</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rank"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"values"</span><span class="p">:{</span><span class="w">
+               </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Trackpants"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Puma Trackpants"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"categories"</span><span class="p">:[</span><span class="w">
+                  </span><span class="s2">"Bottomwear"</span><span class="w">
+               </span><span class="p">],</span><span class="w">
+               </span><span class="nt">"image"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"smallImage"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"productUrl"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/api_gateway/v1/recommendations/user/{model}?{queryparam}</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v1</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/api_gateway/v1/recommendations/user/{model}?{queryparam}</code></p>
+
+<h3 id="request-headers">Request Headers</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>X-CAP-API-AUTH-ENTITY-ID*</td>
+<td>string</td>
+<td>Unique Till ID used for authentication.</td>
+</tr>
+<tr>
+<td>X-CAP-API-AUTH-ORG-ID*</td>
+<td>string</td>
+<td>Unique Org ID used for authentication.</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-path-parameter">Request Path Parameter</h3>
+
+<table><thead>
+<tr>
+<th>Model</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>model*</td>
+<td>enum</td>
+<td>Recommendation type to fetch results. <br> <code class="prettyprint">you-may-also-like</code> to retrieve product recommendations on the user&rsquo;s currently viewing products (during online shopping). <br> <code class="prettyprint">trending</code> to retrieve recommended products based on previous orders, searches, items viewed, and other user activities. <br><code class="prettyprint">buy-it-again</code> to retrieve products that were bought by the user earlier (for reordering).</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameter marked with * is mandatory.</aside>
+
+<h3 id="request-query-parameter">Request Query Parameter</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>utype</td>
+<td>enum</td>
+<td>Identifier type to identify customer. Value: <code class="prettyprint">user_id</code>, <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>.</td>
+</tr>
+<tr>
+<td>uvalue*</td>
+<td>string</td>
+<td>The unique identifier value of the <code class="prettyprint">utype</code>. For example, if <code class="prettyprint">utype=mobile</code>, <code class="prettyprint">uvalue=918484484484</code> (mobile number).</td>
+</tr>
+<tr>
+<td>limit*</td>
+<td>string</td>
+<td>Limit the number of results to retrieve. You can retrieve a maximum of 25 results.</td>
+</tr>
+<tr>
+<td>offset*</td>
+<td>int</td>
+<td>Number of results to ignore from top (where the recommendations array to start fetching). Set <code class="prettyprint">0</code> to ignore the first result, <code class="prettyprint">1</code> to ignore the first two results and so on.</td>
+</tr>
+<tr>
+<td>categories</td>
+<td>array</td>
+<td>Filter recommended products by one or more categories. Pass comma separated category codes. Maximum of <code class="prettyprint">10</code> categories are supported. Example: <code class="prettyprint">categories=Shirts,Bottomwear</code></td>
+</tr>
+<tr>
+<td>stores</td>
+<td>array</td>
+<td>Filter products by stores. Pass comma separated store codes. Max limit is 10. Example: <code class="prettyprint">stores=store.1,store.2</code></td>
+</tr>
+<tr>
+<td>deviceLocation</td>
+<td>array</td>
+<td>-NA-</td>
+</tr>
+<tr>
+<td>deviceType</td>
+<td>string</td>
+<td>-NA-</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> Parameters marked with * are mandatory. </aside>
+
+<h2 id="get-item-recommendation">GET Item Recommendation</h2>
+
+<p>Retrieves product recommendations based on the product attribute. </p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>
+https://eu.api.capillarytech.com/api_gateway/v1/recommendations/item/similar-attribute/?sku=654123<span class="err">&amp;</span>limit=5<span class="err">&amp;</span>offset=0<span class="err">&amp;</span>categories
+
+</code></pre>
+<blockquote>
+<p>Sample Response (of similar-attribute model)</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+   </span><span class="nt">"status"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"code"</span><span class="p">:</span><span class="mi">200</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"group"</span><span class="p">:</span><span class="s2">"TEST"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"boxType"</span><span class="p">:</span><span class="s2">"similar-attribute"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"totalResults"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"recommendedItems"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"items"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"sku"</span><span class="p">:</span><span class="s2">"654123"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"score"</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rank"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"values"</span><span class="p">:{</span><span class="w">
+               </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Sports Shoes"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Reebok Sports Shoes"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"categories"</span><span class="p">:[</span><span class="w">
+                  </span><span class="s2">"Shoes"</span><span class="w">
+               </span><span class="p">],</span><span class="w">
+               </span><span class="nt">"image"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"smallImage"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"productUrl"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"sku"</span><span class="p">:</span><span class="s2">"654123"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"score"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rank"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"values"</span><span class="p">:{</span><span class="w">
+               </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Shorts"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Reebok Shorts"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"categories"</span><span class="p">:[</span><span class="w">
+                  </span><span class="s2">"Bottomwear"</span><span class="w">
+               </span><span class="p">],</span><span class="w">
+               </span><span class="nt">"image"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"smallImage"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"productUrl"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>Sample Response (similar-btab model)</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+   </span><span class="nt">"status"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"code"</span><span class="p">:</span><span class="mi">200</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"group"</span><span class="p">:</span><span class="s2">"TEST"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"boxType"</span><span class="p">:</span><span class="s2">"similar-btab"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"totalResults"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"recommendedItems"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"items"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"sku"</span><span class="p">:</span><span class="s2">"654123"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"score"</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rank"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"values"</span><span class="p">:{</span><span class="w">
+               </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Sports Shoes"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Reebok Sports Shoes"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"categories"</span><span class="p">:[</span><span class="w">
+                  </span><span class="s2">"Shoes"</span><span class="w">
+               </span><span class="p">],</span><span class="w">
+               </span><span class="nt">"image"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"smallImage"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"productUrl"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"sku"</span><span class="p">:</span><span class="s2">"654123"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"score"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rank"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"values"</span><span class="p">:{</span><span class="w">
+               </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"Shorts"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"Reebok Shorts"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"categories"</span><span class="p">:[</span><span class="w">
+                  </span><span class="s2">"Bottomwear"</span><span class="w">
+               </span><span class="p">],</span><span class="w">
+               </span><span class="nt">"image"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"smallImage"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"productUrl"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/api_gateway/v1/recommendations/item/{model}?{queryparam}</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v1</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/api_gateway/v1/recommendations/item/{model}?{queryparam}</code></p>
+
+<h3 id="request-headers">Request Headers</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>X-CAP-API-AUTH-ENTITY-ID*</td>
+<td>string</td>
+<td>Unique <code class="prettyprint">Till ID</code> used for the authentication.</td>
+</tr>
+<tr>
+<td>X-CAP-API-AUTH-ORG-ID*</td>
+<td>string</td>
+<td>Unique <code class="prettyprint">Org ID</code> used for the authentication.</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-path-parameter">Request Path Parameter</h3>
+
+<table><thead>
+<tr>
+<th>Model</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>model*</td>
+<td>enum</td>
+<td><code class="prettyprint">similar-attribute</code> to get products with similar product attributes as per the <code class="prettyprint">SKU</code> item. <br> <code class="prettyprint">similar-btab**</code> to get products that are are frequently bought along with the <code class="prettyprint">SKU</code> item passed.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> Pass any one among the models marked with ** is mandatory. </aside>
+
+<h3 id="request-query-parameter">Request Query Parameter</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>sku*</td>
+<td>string</td>
+<td>The unique stock keeping unit code by which you want to fetch product recommendations.</td>
+</tr>
+<tr>
+<td>limit*</td>
+<td>string</td>
+<td>Limit the number of results to retrieve. You can retrieve a maximum of 25 results.</td>
+</tr>
+<tr>
+<td>offset*</td>
+<td>int</td>
+<td>Number of results to ignore from top (where the recommendations array to start fetching). Set <code class="prettyprint">0</code> to ignore the first result, <code class="prettyprint">1</code> to ignore the first two results and so on.</td>
+</tr>
+<tr>
+<td>categories</td>
+<td>array</td>
+<td>Filter recommended products by one or more categories. Pass comma separated category codes. Maximum of <code class="prettyprint">10</code> categories are supported. Example: <code class="prettyprint">categories=Shirts,Bottomwear</code></td>
+</tr>
+<tr>
+<td>stores</td>
+<td>array</td>
+<td>Filter products by stores. Pass comma separated store codes. Max limit is 10. Example: <code class="prettyprint">stores=store.1,store.2</code>.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> Parameters marked with * are mandatory. </aside>
+
+<h2 id="get-cart-recommendation">GET Cart Recommendation</h2>
+
+<p>Retrieves the recommended products based on the current cart items. </p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/cart/frequently-bought-together/?cartparam={"000000000000010242": 1}<span class="err">&amp;</span>limit=5<span class="err">&amp;</span>offset=0<span class="err">&amp;</span>categories
+</code></pre>
+<blockquote>
+<p>Sample Response (frequently-bought-together model)</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+   </span><span class="nt">"status"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"success"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="nt">"code"</span><span class="p">:</span><span class="mi">200</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="nt">"group"</span><span class="p">:</span><span class="s2">"TEST"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"boxType"</span><span class="p">:</span><span class="s2">"frequently-bought-together"</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"totalResults"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
+   </span><span class="nt">"recommendedItems"</span><span class="p">:{</span><span class="w">
+      </span><span class="nt">"items"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"sku"</span><span class="p">:</span><span class="s2">"000000000000010242"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"score"</span><span class="p">:</span><span class="mi">652</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rank"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"values"</span><span class="p">:{</span><span class="w">
+               </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"SKU name Not Defined"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"SKU Description Not Defined"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"categories"</span><span class="p">:[</span><span class="w">
+                  </span><span class="s2">"Category Not Defined"</span><span class="w">
+               </span><span class="p">],</span><span class="w">
+               </span><span class="nt">"image"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"smallImage"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"productUrl"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"sku"</span><span class="p">:</span><span class="s2">"000000000000010242"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"score"</span><span class="p">:</span><span class="mi">644</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rank"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"values"</span><span class="p">:{</span><span class="w">
+               </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"SKU name Not Defined"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"SKU Description Not Defined"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"categories"</span><span class="p">:[</span><span class="w">
+                  </span><span class="s2">"Category Not Defined"</span><span class="w">
+               </span><span class="p">],</span><span class="w">
+               </span><span class="nt">"image"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"smallImage"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"productUrl"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"sku"</span><span class="p">:</span><span class="s2">"000000000000010242"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"score"</span><span class="p">:</span><span class="mi">607</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rank"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"values"</span><span class="p">:{</span><span class="w">
+               </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"SKU name Not Defined"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"SKU Description Not Defined"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"categories"</span><span class="p">:[</span><span class="w">
+                  </span><span class="s2">"Category Not Defined"</span><span class="w">
+               </span><span class="p">],</span><span class="w">
+               </span><span class="nt">"image"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"smallImage"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"productUrl"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"sku"</span><span class="p">:</span><span class="s2">"000000000000010242"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"score"</span><span class="p">:</span><span class="mi">590</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rank"</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"values"</span><span class="p">:{</span><span class="w">
+               </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"SKU name Not Defined"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"SKU Description Not Defined"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"categories"</span><span class="p">:[</span><span class="w">
+                  </span><span class="s2">"Category Not Defined"</span><span class="w">
+               </span><span class="p">],</span><span class="w">
+               </span><span class="nt">"image"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"smallImage"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"productUrl"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"sku"</span><span class="p">:</span><span class="s2">"000000000000010242"</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"score"</span><span class="p">:</span><span class="mi">551</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"rank"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"values"</span><span class="p">:{</span><span class="w">
+               </span><span class="nt">"name"</span><span class="p">:</span><span class="s2">"SKU name Not Defined"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"description"</span><span class="p">:</span><span class="s2">"SKU Description Not Defined"</span><span class="p">,</span><span class="w">
+               </span><span class="nt">"categories"</span><span class="p">:[</span><span class="w">
+                  </span><span class="s2">"Category Not Defined"</span><span class="w">
+               </span><span class="p">],</span><span class="w">
+               </span><span class="nt">"image"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"smallImage"</span><span class="p">:{</span><span class="w">
+                  </span><span class="nt">"label"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="nt">"url"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="nt">"productUrl"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">api_gateway/v1/recommendations/cart/{model}?{queryparam}</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v1</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/api_gateway/v1/recommendations/cart/{model}?{queryparam}</code></p>
+
+<h3 id="request-headers">Request Headers</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>X-CAP-API-AUTH-ENTITY-ID*</td>
+<td>string</td>
+<td>Unique Till ID used for the authentication.</td>
+</tr>
+<tr>
+<td>X-CAP-API-AUTH-ORG-ID*</td>
+<td>string</td>
+<td>Unique Org ID used for the authentication.</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-path-parameter">Request Path Parameter</h3>
+
+<table><thead>
+<tr>
+<th>Model</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>model*</td>
+<td>enum</td>
+<td>Pass <code class="prettyprint">frequently-bought-together</code> to get products that were frequently bought along with the items in the cart. For example, if the cart has mobile, the recommended item could be mobile case.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> Parameter marked with * is mandatory.</aside>
+
+<h3 id="request-query-parameter">Request Query Parameter</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>cartparam*</td>
+<td>string</td>
+<td>Object type to identify the cart items - {sku1:quantity,sku2:quantity}. For example,`cartparam={&ldquo;000000000000010242&rdquo;:1,000000000000080246&quot;:5}</td>
+</tr>
+<tr>
+<td>limit*</td>
+<td>string</td>
+<td>Limit the number of results to retrieve. You can retrieve a maximum of 25 results.</td>
+</tr>
+<tr>
+<td>offset*</td>
+<td>int</td>
+<td>Number of results to ignore from top (where the recommendations array to start fetching). Set <code class="prettyprint">0</code> to ignore the first result, <code class="prettyprint">1</code> to ignore the first two results and so on.</td>
+</tr>
+<tr>
+<td>categories</td>
+<td>array</td>
+<td>Filter recommended products by one or more categories. Pass comma separated category codes. Maximum of <code class="prettyprint">10</code> categories are supported. Example: <code class="prettyprint">categories=Shirts,Bottomwear</code></td>
+</tr>
+<tr>
+<td>stores</td>
+<td>array</td>
+<td>Filter products by stores. Pass comma separated store codes. Max limit is 10. Example: <code class="prettyprint">stores=store.1,store.2</code>.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> Parameters marked with * are mandatory. </aside>
+
+<aside class="notice"> Parameters marked with * are mandatory. </aside>
+
+<h2 id="status-codes">Status Codes</h2>
+
+<h3 id="error-codes">Error Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Client sent an invalid request — such as lacking required request body or parameter. For example, SKU is an object that MUST use keys that match the regular expression: <code class="prettyprint">^[a-zA-Z0-9\.\-_]+$</code>, the count is not a positive integer.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Client failed to authenticate with the server due to invalid or missing authentication details.</td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden error refers that the client is authenticated but does not have permission to access the requested resource.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>The requested resource does not exist. For example, SKU does not exist in the database.</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Invalid HTTP method.</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Currently, the Store filter is not implemented.</td>
 </tr>
 </tbody></table>
 
