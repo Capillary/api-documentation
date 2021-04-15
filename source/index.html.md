@@ -36,6 +36,7 @@ includes:
   - eventNotifications
   - authEngine
   - rewards
+  - recommendations
 
 search: true
 ---

@@ -207,7 +207,7 @@ Parameter | Datatype | Description
 --------- | -------- | -----------
 code | string | Unique code (supports up to 50 characters) for the card series. Only alpha-numeric is allowed.
 name | string | Name of the card series.
-description | string | Description of the Card Series.
+description | string | Description of the card series.
 type* | enum | Type of the card series.  Values: `PHYSICAL` (physical card), `DIGITAL` (digital card or soft copy)
 prefix | string | Characters to start with in a card number. 
 suffix | string | Characters to end with in a card number. 
@@ -585,7 +585,7 @@ https://us.api.capillarytech.com/v2/card/generation/logs/10
 | | |
 --------- | ----------- |
 URI | `v2/card/generation/logs/{seriesId}`
-HTTP Method | POST
+HTTP Method | GET
 API Version | v2
 Batch Support | No
 
@@ -601,32 +601,23 @@ seriesId* | int | Unique ID of the card series to retrieve log.
 
 
 
+## Add Card Number to a Card Series
 
-
-
-
-## Create Card (without Customer Tagging)
-
-Lets you create or add a card of a series. The card will not have any customer tagging.
-
-<aside class="notice">Use this API to add an existing card that is not linked to a customer. </aside>
-
+Lets you add a new card number to a card series. Once the card is added, you can issue it to a customer using customers `/changeIdentifier` API.
 
 > Sample Request
 
 ```html
-https://us.api.capillarytech.com/v2/card
+https://eu.api.capillarytech.com/v2/card
 ```
 
-> Sample Post Request
+> Sample POST Request
 
 ```json
-
-
 {
-   "seriesId":10,
-   "cardNumber":"test123112121",
-   "statusLabel":"NOT_ISSUED"
+  "seriesId":15,
+  "cardNumber":"EXTERNALCARD99123450233",
+  "statusLabel":"CARD GENERATED"
 }
 ```
 
@@ -634,12 +625,13 @@ https://us.api.capillarytech.com/v2/card
 
 ```json
 {
-   "entity":550271,
-   "warnings":[
-      
-   ]
+    "entity": 72453,
+    "warnings": []
 }
 ```
+
+
+
 
 ### Resource Information
 
@@ -704,7 +696,7 @@ https://us.api.capillarytech.com/v2/card?number=test123112121
 
 | | |
 --------- | ----------- |
-URI | `v2/card?number={cardNmber}`
+URI | `/v2/card?number={cardNmber}`
 HTTP Method | GET
 API Version | v2
 Batch Support | No
@@ -718,3 +710,424 @@ Parameter | Datatype | Description
 cardNmber* | int | Card number to retrieve details.
  
 <aside class="notice"> The parameter marked with * is  mandatory. </aside>
+
+
+
+## Set Status Labels
+
+
+Lets you add or map custom status labels to the default labels.
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/genericStatus/card/labels
+```
+
+
+> Sample POST Request
+
+```json
+[
+	{
+	"status" :"NOT_ISSUED",
+	"label":"CARD GENERATED" 
+	},
+	{
+	"status" :"NOT_ISSUED",
+  	"label":"CARD PRINTED" 
+	},
+	{
+	"status" :"NOT_ISSUED",
+	"label":"CARD DISTRIBUTED"
+	},
+	{
+	"status" :"ACTIVE",
+  	"label":"CARD ISSUED"
+	},
+	{
+	"status" :"EXPIRED",
+  	"label":"CARD EXPIRED"
+	}
+]
+```
+
+> Sample Response
+
+```json
+
+```
+
+
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/v2/genericStatus/card/labels`
+Rate Limited? | Yes (1000 per hour)
+HTTP Methods | POST
+Batch Support | NA
+
+### Request URL
+
+`{host}/v2/genericStatus/card/labels`
+
+
+### Request Body Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+status* | enum | Default status to which custom status label needs to be added.
+label* | string | Custom label name for the default status.
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
+
+
+
+## Get Default Status Labels
+
+
+Retrieves the default status labels of cards.
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/genericStatus/card/labels
+```
+
+
+> Sample Response
+
+```json
+{
+    "data": [
+        {
+            "createdOn": "2020-11-27",
+            "description": "default",
+            "entityStatusId": 1,
+            "id": 14,
+            "isActive": true,
+            "label": "NOT_ISSUED",
+            "orgId": 100459,
+            "updatedOn": "2020-11-27",
+            "status": "NOT_ISSUED",
+            "type": "CARD",
+            "actions": {},
+            "default": false
+        },
+        {
+            "createdOn": "2020-11-27",
+            "description": "default",
+            "entityStatusId": 2,
+            "id": 15,
+            "isActive": true,
+            "label": "ACTIVE",
+            "orgId": 100459,
+            "updatedOn": "2020-11-27",
+            "status": "ACTIVE",
+            "type": "CARD",
+            "actions": {},
+            "default": false
+        },
+        {
+            "createdOn": "2020-11-27",
+            "description": "default",
+            "entityStatusId": 3,
+            "id": 16,
+            "isActive": true,
+            "label": "EXPIRED",
+            "orgId": 100459,
+            "updatedOn": "2020-11-27",
+            "status": "EXPIRED",
+            "type": "CARD",
+            "actions": {},
+            "default": false
+        },
+        {
+            "createdOn": "2020-11-27",
+            "entityStatusId": 3,
+            "id": 22,
+            "isActive": true,
+            "label": "CARD EXPIRED",
+            "orgId": 100459,
+            "updatedOn": "2020-11-27",
+            "status": "EXPIRED",
+            "type": "CARD",
+            "actions": {},
+            "default": false
+        },
+        {
+            "createdOn": "2021-01-12",
+            "entityStatusId": 4,
+            "id": 23,
+            "isActive": true,
+            "label": "CARD BLOCKED",
+            "orgId": 100459,
+            "updatedOn": "2021-01-12",
+            "status": "SUSPENDED",
+            "type": "CARD",
+            "actions": {},
+            "default": true
+        },
+        {
+            "createdOn": "2021-01-12",
+            "entityStatusId": 2,
+            "id": 24,
+            "isActive": true,
+            "label": "NEW CARD",
+            "orgId": 100459,
+            "updatedOn": "2021-01-12",
+            "status": "ACTIVE",
+            "type": "CARD",
+            "actions": {},
+            "default": true
+        },
+        {
+            "createdOn": "2021-01-12",
+            "entityStatusId": 11,
+            "id": 25,
+            "isActive": true,
+            "label": "CARD DELETED",
+            "orgId": 100459,
+            "updatedOn": "2021-01-12",
+            "status": "DELETED",
+            "type": "CARD",
+            "actions": {},
+            "default": true
+        },
+        {
+            "createdOn": "2021-01-12",
+            "entityStatusId": 1,
+            "id": 26,
+            "isActive": true,
+            "label": "CARD GENERAETED",
+            "orgId": 100459,
+            "updatedOn": "2021-01-12",
+            "status": "NOT_ISSUED",
+            "type": "CARD",
+            "actions": {},
+            "default": true
+        },
+        {
+            "createdOn": "2021-01-12",
+            "description": "default",
+            "entityStatusId": 11,
+            "id": 27,
+            "isActive": true,
+            "label": "DELETED",
+            "orgId": 100459,
+            "updatedOn": "2021-01-12",
+            "status": "DELETED",
+            "type": "CARD",
+            "actions": {},
+            "default": false
+        }
+    ],
+    "warnings": [],
+    "errors": []
+}
+```
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/v2/genericStatus/card/labels`
+Rate Limited? | Yes (1000 per hour)
+HTTP Methods | GET
+Batch Support | NA
+
+### Request URL
+
+`{host}/v2/genericStatus/card/labels`
+
+
+## Get Card Status Changes Log
+
+Retrieves the log of status changes of a card number.
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/card/statusLog?number=GOLD00000000000001012020
+```
+
+> Sample Response
+
+```json
+{
+    "data": [
+        {
+            "reason": "",
+            "createdBy": 0,
+            "actions": [],
+            "autoUpdateTime": "2021-01-10",
+            "createdOn": "2021-01-10T10:39:19Z",
+            "entityId": 10609,
+            "isActive": false,
+            "label": "CARD GENERATED",
+            "status": "NOT_ISSUED"
+        },
+        {
+            "reason": "",
+            "createdBy": 0,
+            "actions": [],
+            "autoUpdateTime": "2021-01-10",
+            "createdOn": "2021-01-10T10:40:25Z",
+            "entityId": 10609,
+            "isActive": false,
+            "label": "ACTIVE",
+            "status": "ACTIVE"
+        },
+        {
+            "reason": "",
+            "createdBy": 0,
+            "actions": [],
+            "autoUpdateTime": "2021-01-10",
+            "createdOn": "2021-01-10T12:01:39Z",
+            "entityId": 10609,
+            "isActive": false,
+            "label": "SUSPENDED",
+            "status": "SUSPENDED"
+        },
+        {
+            "reason": "",
+            "createdBy": 0,
+            "actions": [],
+            "autoUpdateTime": "2021-01-10",
+            "createdOn": "2021-01-10T12:02:00Z",
+            "entityId": 10609,
+            "isActive": false,
+            "label": "ACTIVE",
+            "status": "ACTIVE"
+        },
+        {
+            "reason": "",
+            "createdBy": 0,
+            "actions": [],
+            "autoUpdateTime": "2021-01-10",
+            "createdOn": "2021-01-10T12:02:39Z",
+            "entityId": 10609,
+            "isActive": true,
+            "label": "EXPIRED",
+            "status": "EXPIRED"
+        }
+    ],
+    "warnings": [],
+    "errors": []
+}
+```
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `v2/card/statusLog?number={cardNumber}`
+Rate Limited? | Yes (1000 per hour)
+HTTP Methods | GET
+Batch Support | No
+
+
+### Request URL
+`{host}/v2/card/statusLog?number={cardNumber}`
+
+### Request Query Parameter
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+number* | string | Card number to see the status change log.
+
+
+
+## Set Max Active Cards per Customer
+
+Lets you set maximum number of active cards a customer can have from the org.
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/organization/configs
+```
+
+> Sample POST Request
+
+```json
+{
+  "keyName": "CONF_MAX_CARDS_PER_ORG",
+  "value": "6",
+  "scope":"ORG"
+}
+
+```
+
+
+> Sample Response
+
+```json
+{
+    "id": 1290976,
+    "entityId": 100458,
+    "keyName": "CONF_MAX_CARDS_PER_ORG",
+    "value": "6",
+    "warnings": []
+}
+```
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `v2/organization/configs`
+Rate Limited? | Yes (1000 per hour)
+HTTP Methods | POST
+Batch Support | No
+
+
+### Request URL
+`{host}/v2/organization/configs`
+
+### Request Body Parameter
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+keyName* | enum | Pass `CONF_MAX_CARDS_PER_ORG`
+value* | int | Limit the count of active cards per customer.
+scope* | enum | Scope of the configuration. Pass `ORG` for org level configuration.
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
+
+
+
+
+## Get Max Active Cards Configured per Customer
+
+Retrieves the configured maximum number of cards active cards per customer.
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/organization/configs/CONF_MAX_CARDS_PER_ORG
+```
+
+
+
+> Sample Response
+
+```json
+{
+    "entityId": 100458,
+    "keyName": "CONF_MAX_CARDS_PER_ORG",
+    "value": "6",
+    "scope": "ORG",
+    "warnings": []
+}
+```
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/v2/organization/configs/CONF_MAX_CARDS_PER_ORG`
+Rate Limited? | Yes (1000 per hour)
+HTTP Methods | GET
+Batch Support | No
+
+
+### Request URL
+`{host}/v2/organization/configs/CONF_MAX_CARDS_PER_ORG`

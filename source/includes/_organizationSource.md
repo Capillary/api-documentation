@@ -1150,3 +1150,100 @@ sku | SKU of the scanned item
 promotionCode | The coupon code of the promotion (Place holder for future use case. Not implemented yet)
 details | Details of the event item
 id/mobile/email/externalId* | Pass any one of the customer's unique identifier 
+
+
+
+## Set Max Active Cards per Customer
+
+Lets you set maximum number of active cards a customer can have from the org.
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/organization/configs
+```
+
+> Sample POST Request
+
+```json
+{
+  "keyName": "CONF_MAX_CARDS_PER_ORG",
+  "value": "6",
+  "scope":"ORG"
+}
+
+```
+
+
+> Sample Response
+
+```json
+{
+    "id": 1290976,
+    "entityId": 100458,
+    "keyName": "CONF_MAX_CARDS_PER_ORG",
+    "value": "6",
+    "warnings": []
+}
+```
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `v2/organization/configs`
+Rate Limited? | Yes (1000 per hour)
+HTTP Methods | POST
+Batch Support | No
+
+
+### Request URL
+`{host}/v2/organization/configs`
+
+### Request Body Parameter
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+keyName* | enum | Pass `CONF_MAX_CARDS_PER_ORG`
+value* | int | Limit the count of active cards per customer.
+scope* | enum | Scope of the configuration. Pass `ORG` for org level configuration.
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
+
+
+
+
+## Get Max Active Cards Configured per Customer
+
+Retrieves the configured maximum number of cards active cards per customer.
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/organization/configs/CONF_MAX_CARDS_PER_ORG
+```
+
+
+
+> Sample Response
+
+```json
+{
+    "entityId": 100458,
+    "keyName": "CONF_MAX_CARDS_PER_ORG",
+    "value": "6",
+    "scope": "ORG",
+    "warnings": []
+}
+```
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/v2/organization/configs/CONF_MAX_CARDS_PER_ORG`
+Rate Limited? | Yes (1000 per hour)
+HTTP Methods | GET
+Batch Support | No
+
+
+### Request URL
+`{host}/v2/organization/configs/CONF_MAX_CARDS_PER_ORG`

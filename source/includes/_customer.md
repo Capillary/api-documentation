@@ -2528,6 +2528,73 @@ customerId* | long | Unique ID of the customer to fetch coupons.
 
 
 
+
+## Issue Card to an Existing Customer
+
+Lets you issue card to a loyalty customer. To issue an external or manually generated card, you need to first add the card using `/v2/card` API. To issue auto-generated card, you first need to issue the card using `card/generate` API. 
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/customers/161670039/changeIdentifier?source=INSTORE
+```
+
+> Sample POST Request
+
+```json
+{
+  "add": [
+    {
+      "value": "GOLD00000000000001032021",
+      "type": "cardnumber",
+      "statusLabel": "ACTIVE"
+    }
+  ]
+}
+```
+
+> Sample Response
+
+```json
+{
+    "createdId": 161670961,
+    "warnings": []
+}
+```
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/{userId}/changeIdentifier?`
+Rate Limited? | Yes (1000 per hour)
+HTTP Methods | POST
+Batch Support | No
+
+
+### Request URL
+`{host}/v2/customers/{userId}/changeIdentifier?source={source}&accountId={accountId}`
+
+### Request Query Parameter
+Parameter | Datatype | Description
+--------- | -------- | -----------
+userId* | long | Unique ID of the customer to issue card. 
+source* | enum | Source from which the card is issued. Value: `INSTORE`, `FACEBOOK`, `WEB_ENGAGE`, `WECHAT`, `INSTORE`, `MARTJACK`, `TMALL`, `TAOBAO`, `JD`, `ECOMMERCE`, `WEBSITE`, `LINE`, `MOBILE_APP`.
+accountId** | string | Unique ID of the source account. Required for sources with multiple account IDs.
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
+
+
+
+
+
+### Request Body Parameters
+Parameter | Datatype | Description
+--------- | -------- | -----------
+value* | string | Card number to issue or tag to the customer.
+type* | enum | Pass `cardnumber` to issue card.
+statusLabel* | enum | New status of the card. Value: `ACTIVE`.
+
+
 ## Update Customer Card Status
 
 Lets you deactivate a customers membership card.
@@ -2554,10 +2621,107 @@ source* | int | Unique ID of the card series to update.
 ### Request Body Parameters
 Parameter | Datatype | Description
 --------- | -------- | -----------
-cardNumber* | string | Card number to update status.
-cardStatus* | enum | New status of the card. Value: `BLOCKED` to block an active card.
 
 
+
+## Get Card Status Changes Log
+
+Retrieves the log of status changes of a card number.
+
+> Sample Request
+
+```html
+
+```
+
+> Sample Response
+
+```json
+https://eu.api.capillarytech.com/v2/card/statusLog?number=GOLD00000000000001012020
+```
+
+> Sample Response
+
+```json
+{
+    "data": [
+        {
+            "reason": "",
+            "createdBy": 0,
+            "actions": [],
+            "autoUpdateTime": "2021-01-10",
+            "createdOn": "2021-01-10T10:39:19Z",
+            "entityId": 10609,
+            "isActive": false,
+            "label": "CARD GENERATED",
+            "status": "NOT_ISSUED"
+        },
+        {
+            "reason": "",
+            "createdBy": 0,
+            "actions": [],
+            "autoUpdateTime": "2021-01-10",
+            "createdOn": "2021-01-10T10:40:25Z",
+            "entityId": 10609,
+            "isActive": false,
+            "label": "ACTIVE",
+            "status": "ACTIVE"
+        },
+        {
+            "reason": "",
+            "createdBy": 0,
+            "actions": [],
+            "autoUpdateTime": "2021-01-10",
+            "createdOn": "2021-01-10T12:01:39Z",
+            "entityId": 10609,
+            "isActive": false,
+            "label": "SUSPENDED",
+            "status": "SUSPENDED"
+        },
+        {
+            "reason": "",
+            "createdBy": 0,
+            "actions": [],
+            "autoUpdateTime": "2021-01-10",
+            "createdOn": "2021-01-10T12:02:00Z",
+            "entityId": 10609,
+            "isActive": false,
+            "label": "ACTIVE",
+            "status": "ACTIVE"
+        },
+        {
+            "reason": "",
+            "createdBy": 0,
+            "actions": [],
+            "autoUpdateTime": "2021-01-10",
+            "createdOn": "2021-01-10T12:02:39Z",
+            "entityId": 10609,
+            "isActive": true,
+            "label": "EXPIRED",
+            "status": "EXPIRED"
+        }
+    ],
+    "warnings": [],
+    "errors": []
+}
+```
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/statusLog?number={cardNumber}`
+Rate Limited? | Yes (1000 per hour)
+HTTP Methods | POST
+Batch Support | No
+
+
+### Request URL
+`{host}/v2/customers/statusLog?number={cardNumber}`
+
+### Request Query Parameter
+Parameter | Datatype | Description
+--------- | -------- | -----------
+number | string | Card number to see the status change log.
 
 
 ## Response Codes
