@@ -1904,7 +1904,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 
 <p><code class="prettyprint">{host}/v2/customers/lookup?source={SourceName}&amp;accountId={accountId}&amp;identifierName={IdentifierName}&amp;identifierValue={IdentifierValue}</code></p>
 
-<h3 id="request-parameter">Request Parameter</h3>
+<h3 id="request-query-parameters">Request Query Parameters</h3>
 
 <table><thead>
 <tr>
@@ -4665,7 +4665,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <pre class="highlight html"><code>https://eu.intouch.capillarytech.com/v2/transactions/bulk
 </code></pre>
 <blockquote>
-<p>Sample POST Request (POST Transaction)</p>
+<p>Sample POST Request (of Add Transaction)</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
@@ -5712,7 +5712,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <pre class="highlight html"><code>https://us.api.capillarytech.com/v2/transactions?source=instore<span class="err">&amp;</span>identifierValue=GOLD400000000000000022020<span class="err">&amp;</span>identifierName=cardnumber<span class="err">&amp;</span>accountId=
 </code></pre>
 <blockquote>
-<p>Sample Response</p>
+<p>Sample POST Request</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REGULAR"</span><span class="p">,</span><span class="w">
@@ -5766,6 +5766,22 @@ Also, check the following configurations for maximum days allowed and minimum ti
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">  
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="nt">"createdId"</span><span class="p">:</span><span class="w"> </span><span class="mi">355607703</span><span class="p">,</span><span class="w">
+    </span><span class="nt">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="nt">"sideEffects"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="nt">"rawAwardedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">400.000</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"awardedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mi">400</span><span class="p">,</span><span class="w">
+            </span><span class="nt">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"points"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <h3 id="resource-information">Resource Information</h3>
 
@@ -9846,7 +9862,7 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://&lt;cluster url&gt;/v2/survey</code></p>
+<p><code class="prettyprint">{host}/v2/survey</code></p>
 
 <h3 id="request-attributes">Request Attributes</h3>
 
@@ -9939,9 +9955,9 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://&lt;cluster url&gt;/v2/survey?extRefId=&lt;value&gt;</code></p>
+<p><code class="prettyprint">{host}/v2/survey?extRefId=&lt;value&gt;</code></p>
 
-<p><code class="prettyprint">http://&lt;cluster url&gt;/v2/survey?surveyId=&lt;value&gt;</code></p>
+<p><code class="prettyprint">{host}/v2/survey?surveyId=&lt;value&gt;</code></p>
 
 <h3 id="request-attributes">Request Attributes</h3>
 
@@ -10022,7 +10038,7 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td>/survey/questions?{surveyId/extRefId}</td>
+<td><code class="prettyprint">/survey/questions?{surveyId/extRefId}</code></td>
 </tr>
 <tr>
 <td>Authentication</td>
@@ -10040,9 +10056,9 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://&lt;cluster url&gt;/v2/survey/questions?surveyId={survey id}</code></p>
+<p><code class="prettyprint">{host}/v2/survey/questions?surveyId={survey id}</code></p>
 
-<p><code class="prettyprint">http://&lt;cluster url&gt;/v2/survey/questions?extRefId={external reference id}</code></p>
+<p><code class="prettyprint">{host}/v2/survey/questions?extRefId={external reference id}</code></p>
 
 <h3 id="request-attributes">Request Attributes</h3>
 
@@ -10141,7 +10157,7 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://&lt;cluster url&gt;/v2/survey/question?questionId={value}</code></p>
+<p><code class="prettyprint">{host}/v2/survey/question?questionId={value}</code></p>
 
 <h3 id="request-attributes">Request Attributes</h3>
 
@@ -10235,7 +10251,7 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td>/survey/responses?surveyId/extRefId={value}</td>
+<td><code class="prettyprint">/survey/responses?surveyId/extRefId={value}</code></td>
 </tr>
 <tr>
 <td>Authentication</td>
@@ -10253,9 +10269,9 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://&lt;cluster url&gt;/v2/survey/responses?surveyId={survey id}</code></p>
+<p><code class="prettyprint">{host}/v2/survey/responses?surveyId={survey id}</code></p>
 
-<p><code class="prettyprint">http://&lt;cluster url&gt;/v2/survey/responses?extRefId={external reference id}</code></p>
+<p><code class="prettyprint">{host}/v2/survey/responses?extRefId={external reference id}</code></p>
 
 <h3 id="request-attributes">Request Attributes</h3>
 
@@ -10307,7 +10323,7 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 <pre class="highlight html"><code>http://us.api.capillarytech.com/v2/survey/responses?responseId=173
 </code></pre>
 <blockquote>
-<p>Sample POST Request</p>
+<p>Sample PUT Request</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
         </span><span class="nt">"fieldValue"</span><span class="p">:</span><span class="s2">"Very happy with the after sales support"</span><span class="w">
@@ -10334,7 +10350,7 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td>/survey/responses?responseId={value}</td>
+<td><code class="prettyprint">/survey/responses?responseId={value}</code></td>
 </tr>
 <tr>
 <td>Authentication</td>
@@ -10352,7 +10368,7 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://&lt;cluster url&gt;/v2/survey/responses?responseId={value}</code></p>
+<p><code class="prettyprint">{host}/v2/survey/responses?responseId={value}</code></p>
 
 <h3 id="request-attributes">Request Attributes</h3>
 
@@ -10402,7 +10418,7 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td>/survey?{surveyId/extRefId}</td>
+<td><code class="prettyprint">/survey?{surveyId/extRefId}</code></td>
 </tr>
 <tr>
 <td>Authentication</td>
@@ -10420,7 +10436,7 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 
 <h3 id="request-url">Request URL</h3>
 
-<p>http://<cluster url>/v2/survey?{surveyId/extRefId}={value}</p>
+<p><code class="prettyprint">{host}/v2/survey?{surveyId/extRefId}={value}</code></p>
 
 <h3 id="request-attributes">Request Attributes</h3>
 
@@ -10531,7 +10547,7 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td>/survey/questions?<surveyId/extRefId>={value}</td>
+<td><code class="prettyprint">/survey/questions?{surveyId/extRefId}={value}</code></td>
 </tr>
 <tr>
 <td>Authentication</td>
@@ -10549,9 +10565,9 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://&lt;cluster url&gt;/v2/survey/questions/surveyId=&lt;survey id&gt;</code></p>
+<p><code class="prettyprint">{host}/v2/survey/questions/surveyId={surveyId}</code></p>
 
-<p><code class="prettyprint">http://&lt;cluster url&gt;/v2/survey/questions/extRefId=&lt;external reference id&gt;</code></p>
+<p><code class="prettyprint">{host}/v2/survey/questions/extRefId={externalReferenceId}</code></p>
 
 <h3 id="request-parameters">Request Parameters</h3>
 
@@ -10604,7 +10620,7 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td>/survey/questions/{survey question Id}</td>
+<td><code class="prettyprint">/survey/questions/{survey question Id}</code></td>
 </tr>
 <tr>
 <td>Authentication</td>
@@ -10622,7 +10638,7 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://&lt;Cluster URL&gt;/v2/survey/questions/&lt;survey question id&gt;</code></p>
+<p><code class="prettyprint">{host}/v2/survey/questions/{survey question id}</code></p>
 
 <h3 id="request-parameter">Request Parameter</h3>
 
@@ -10685,7 +10701,7 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://&lt;cluster url&gt;/v2/survey/questions/lookup/&lt;question external id&gt;</code></p>
+<p><code class="prettyprint">{host}/v2/survey/questions/lookup/&lt;question external id&gt;</code></p>
 
 <h3 id="request-parameters">Request Parameters</h3>
 
@@ -10736,7 +10752,7 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td>/responses/{response id}</td>
+<td><code class="prettyprint">/responses/{responseId}</code></td>
 </tr>
 <tr>
 <td>Authentication</td>
@@ -10754,7 +10770,7 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">http://&lt;Cluster URL&gt;/v2/survey/responses/&lt;response id&gt;</code></p>
+<p><code class="prettyprint">{host}/v2/survey/responses/{responseId}</code></p>
 
 <h3 id="request-parameters">Request Parameters</h3>
 
@@ -15386,7 +15402,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <pre class="highlight html"><code>https://us.ap.capillarytech.com/v2/usergroups/1
 </code></pre>
 <blockquote>
-<p>Sample POST Request</p>
+<p>Sample Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -15501,7 +15517,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/usergroups?identifierName=mobile<span class="err">&amp;</span>identifierValue=919740000000<span class="err">&amp;</span>loyaltyDetails=true
 </code></pre>
 <blockquote>
-<p>Sample POST Request</p>
+<p>Sample Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
    </span><span class="nt">"id"</span><span class="p">:</span><span class="mi">2876</span><span class="p">,</span><span class="w">
@@ -15746,7 +15762,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <pre class="highlight html"><code>https://us.api.capillarytech.com/v2/usergroups/1
 </code></pre>
 <blockquote>
-<p>Sample POST Request</p>
+<p>Sample PUT Request</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
@@ -17032,7 +17048,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/card/series/{seriesId}</code></p>
+<p><code class="prettyprint">{host}/v2/card/series/{seriesId}</code></p>
 
 <h3 id="request-query-parameter">Request Query Parameter</h3>
 
@@ -17287,7 +17303,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/card/series/get/all</code></p>
+<p><code class="prettyprint">{host}/v2/card/series/get/all</code></p>
 
 <h2 id="get-card-series-details">Get Card Series Details</h2>
 
@@ -17354,7 +17370,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/card/series/{seriesId}</code></p>
+<p><code class="prettyprint">{host}/v2/card/series/{seriesId}</code></p>
 
 <h3 id="request-query-parameter">Request Query Parameter</h3>
 
@@ -17451,7 +17467,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/card/series/{seriesId}</code></p>
+<p><code class="prettyprint">{host}/v2/card/series/{seriesId}</code></p>
 
 <h3 id="request-body-parameters">Request Body Parameters</h3>
 
@@ -17544,7 +17560,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/card/generate</code></p>
+<p><code class="prettyprint">{host}/v2/card/generate</code></p>
 
 <h3 id="request-body-parameters">Request Body Parameters</h3>
 
@@ -17632,7 +17648,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/card/generation/logs/{seriesId}</code></p>
+<p><code class="prettyprint">{host}/v2/card/generation/logs/{seriesId}</code></p>
 
 <h3 id="request-query-parameters">Request Query Parameters</h3>
 
@@ -17706,7 +17722,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/card</code></p>
+<p><code class="prettyprint">{host}/v2/card</code></p>
 
 <h3 id="request-body-parameters">Request Body Parameters</h3>
 
@@ -17796,7 +17812,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/card?number={cardNumber}</code></p>
+<p><code class="prettyprint">{host}/v2/card?number={cardNumber}</code></p>
 
 <h3 id="request-query-parameters">Request Query Parameters</h3>
 
@@ -19231,17 +19247,59 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 
 <h3 id="request-body-parameters">Request Body Parameters</h3>
 
-<p>Attribute | Datatype | Description
-&mdash;&mdash;&mdash; | &mdash;&mdash;&mdash;&ndash;
-extendedFieldId* | long | Specify the unique id of the extended field that you want to show/hide
-createdOn | date | Date on which the field is created in <code class="prettyprint">YYYY-MM-DD</code> format.
-createdBy | string | Unique id of the user that created the extended field.
-modifiedOn | date | Date when the extended field is updated (usually the Current date)
-modifiedBy | date | Unique id of the user that modified the extended field.
-hideDisplay* | boolen | Pass <code class="prettyprint">true</code> to hide the extended field on UI, <code class="prettyprint">false</code> to show extended field.
-mandatory | boolen | Pass <code class="prettyprint">true</code> to make the extended a mandatory option on the UI, <code class="prettyprint">false</code> to make it an optional field.
-updatable | boolean | Specify <code class="prettyprint">true</code> to allow updating extended field values once entered, <code class="prettyprint">false</code> to disable updating extended field values
-position | boolean | Specify the position order of the extended field on the UI.</p>
+<table><thead>
+<tr>
+<th>Attribute</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>extendedFieldId*</td>
+<td>long</td>
+<td>Specify the unique id of the extended field that you want to show/hide</td>
+</tr>
+<tr>
+<td>createdOn</td>
+<td>date</td>
+<td>Date on which the field is created in <code class="prettyprint">YYYY-MM-DD</code> format.</td>
+</tr>
+<tr>
+<td>createdBy</td>
+<td>string</td>
+<td>Unique id of the user that created the extended field.</td>
+</tr>
+<tr>
+<td>modifiedOn</td>
+<td>date</td>
+<td>Date when the extended field is updated (usually the Current date)</td>
+</tr>
+<tr>
+<td>modifiedBy</td>
+<td>date</td>
+<td>Unique id of the user that modified the extended field.</td>
+</tr>
+<tr>
+<td>hideDisplay*</td>
+<td>boolen</td>
+<td>Pass <code class="prettyprint">true</code> to hide the extended field on UI, <code class="prettyprint">false</code> to show extended field.</td>
+</tr>
+<tr>
+<td>mandatory</td>
+<td>boolen</td>
+<td>Pass <code class="prettyprint">true</code> to make the extended a mandatory option on the UI, <code class="prettyprint">false</code> to make it an optional field.</td>
+</tr>
+<tr>
+<td>updatable</td>
+<td>boolean</td>
+<td>Specify <code class="prettyprint">true</code> to allow updating extended field values once entered, <code class="prettyprint">false</code> to disable updating extended field values</td>
+</tr>
+<tr>
+<td>position</td>
+<td>boolean</td>
+<td>Specify the position order of the extended field on the UI.</td>
+</tr>
+</tbody></table>
 
 <h2 id="retrieve-org-extended-fields">Retrieve Org Extended Fields</h2>
 
@@ -28011,7 +28069,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <p><code class="prettyprint">http://{host}/v2/events/running_status?eventId={eventId}</code></p>
 
-<h3 id="request-body-parameters">Request Body Parameters</h3>
+<h3 id="request-query-parameters">Request Query Parameters</h3>
 
 <table><thead>
 <tr>
@@ -29935,7 +29993,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <pre class="highlight html"><code>http://us.api.capillarytech.com/v2/events/webhook/disable
 </code></pre>
 <blockquote>
-<p>Sample POST Request</p>
+<p>Sample PUT Request</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"webHookId"</span><span class="p">:</span><span class="s2">"722e78ea-07dd-4dc9-9f85-004279cc2a7d"</span><span class="w">
@@ -30197,10 +30255,10 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight html"><code>http://nightly.capillary.in/v3/integrations/clients
+<pre class="highlight html"><code>http://eu.api.capillarytech.com/v3/integrations/clients
 </code></pre>
 <blockquote>
-<p>Sample POST Request</p>
+<p>Sample Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="nt">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -30732,11 +30790,9 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <pre class="highlight html"><code>https://eu.api.capillarytech.com/v3/integrations/clients/AAyjgiPapXefvmBEw7810dSio
 </code></pre>
 <blockquote>
-<p>Sample POST Request</p>
+<p>Sample PUT Request</p>
 </blockquote>
-<pre class="highlight json"><code><span class="w">
-
-</span><span class="p">{</span><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="nt">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sample description"</span><span class="p">,</span><span class="w">
   </span><span class="nt">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NewName2"</span><span class="p">,</span><span class="w">
 </span><span class="nt">"expirationTokenTime"</span><span class="p">:</span><span class="w"> </span><span class="mi">600</span><span class="p">,</span><span class="w">
@@ -31261,7 +31317,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <pre class="highlight html"><code>https://eu.intouch.capillarytech.com/v3/webHooks/eventMetaData
 </code></pre>
 <blockquote>
-<p>Sample POST Request</p>
+<p>Sample PUT Request</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
  </span><span class="nt">"eventNames"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
