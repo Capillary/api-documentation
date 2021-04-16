@@ -33709,11 +33709,11 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <p>The following are the host URLs (rcmd_host) for <code class="prettyprint">recommendations</code>. </p>
 
 <ul>
-<li>India: https://recommender-api-engine.incrm.cc.capillarytech.com</li>
-<li>Singapore: https://recommender-api-engine.sgcrm.cc.capillarytech.com</li>
-<li>EU https://recommender-api-engine.eucrm.cc.capillarytech.com</li>
-<li>Testing: https://recommender-api-engine.crm-nightly-new.cc.capillarytech.com</li>
-<li>Staging: https://recommender-api-engine.crm-staging-new.cc.capillarytech.com</li>
+<li>India: <code class="prettyprint">https://incrm.cc.capillarytech.com</code></li>
+<li>Singapore: <code class="prettyprint">https://sgcrm.cc.capillarytech.com</code></li>
+<li>EU: <code class="prettyprint">https://eucrm.cc.capillarytech.com</code></li>
+<li>Testing: <code class="prettyprint">https://crm-staging-new.cc.capillarytech.com</code></li>
+<li>Staging: <code class="prettyprint">https://crm-nightly-new.cc.capillarytech.com</code></li>
 </ul>
 
 <h2 id="get-user-recommendation">GET User Recommendation</h2>
@@ -33724,11 +33724,11 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <p>Sample Request</p>
 </blockquote>
 <pre class="highlight html"><code>
-https://eu.api.capillarytech.com/api_gateway/v1/recommendations/user/you-may-also-like?utype=user_id<span class="err">&amp;</span>uvalue=123456<span class="err">&amp;</span>limit=5<span class="err">&amp;</span>offset=0<span class="err">&amp;</span>categories
+https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/user/you-may-also-like?utype=user_id<span class="err">&amp;</span>uvalue=123456<span class="err">&amp;</span>limit=5<span class="err">&amp;</span>offset=0<span class="err">&amp;</span>categories
 
 </code></pre>
 <blockquote>
-<p>Sample Response for you-may-also-like model</p>
+<p>Sample Response (for you-may-also-like model)</p>
 </blockquote>
 <pre class="highlight json"><code><span class="w">
 </span><span class="p">{</span><span class="w">
@@ -33922,7 +33922,7 @@ https://eu.api.capillarytech.com/api_gateway/v1/recommendations/user/you-may-als
 <p>Sample Request</p>
 </blockquote>
 <pre class="highlight html"><code>
-https://eu.api.capillarytech.com/api_gateway/v1/recommendations/item/similar-attribute/?sku=654123<span class="err">&amp;</span>limit=5<span class="err">&amp;</span>offset=0<span class="err">&amp;</span>categories
+https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/item/similar-attribute/?sku=654123<span class="err">&amp;</span>limit=5<span class="err">&amp;</span>offset=0<span class="err">&amp;</span>categories
 
 </code></pre>
 <blockquote>
