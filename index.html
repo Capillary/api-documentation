@@ -8196,7 +8196,7 @@ If the email template is not specified, the validation code will be sent in the 
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight html"><code>http://api.capillary.co.in/v2/coupon/redeem 
+<pre class="highlight html"><code>http://eu.api.capillarytech.com/v2/coupon/redeem 
 
 </code></pre>
 <blockquote>
@@ -8631,16 +8631,35 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000<
 </span></code></pre>
 <h3 id="resource-information">Resource Information</h3>
 
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">coupon/series</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
 <p>​
-​
-| | |
-&mdash;&mdash;&mdash; | &mdash;&mdash;&mdash;&ndash; |
-URI | <code class="prettyprint">coupon/series</code>
-HTTP Method | POST
-API Version | v2
-Batch Support | No
-Rate Limited? | No
-​
 ​
 ​</p>
 
@@ -8659,6 +8678,41 @@ Rate Limited? | No
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>customPropertyMap</td>
+<td>obj</td>
+<td></td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>Brief description of the card series.</td>
+</tr>
+<tr>
+<td>discountCode</td>
+<td>string</td>
+<td>Discount code</td>
+</tr>
+<tr>
+<td>validTillDate</td>
+<td>date-time</td>
+<td>Validity of the card series in UTC timestamp. Format: YYYY-MM-DDTHH:MM:SS+/-(time-zone).</td>
+</tr>
+<tr>
+<td>expiryStrategyValue</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>maxCreate</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>maxRedeem</td>
+<td>int</td>
+<td>Limit number of coupons to redeem</td>
+</tr>
 </tbody></table>
 
 <h2 id="issue-coupon-to-customer-single">Issue Coupon to Customer (Single)</h2>
@@ -9552,7 +9606,6 @@ Rate Limited? | No
 <h3 id="resource-information">Resource Information</h3>
 
 <p>​
-​
 | | |
 &mdash;&mdash;&mdash; | &mdash;&mdash;&mdash;&ndash; |
 URI | <code class="prettyprint">/coupon/series?ids={offerId}</code>
