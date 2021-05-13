@@ -205,7 +205,7 @@ Lets you update details such as event names and SLAs of an existing Webhook acco
 https://eu.intouch.capillarytech.com/v3/webHooks/eventMetaData
 ```
 
-> Sample POST Request
+> Sample PUT Request
 
 ```json
 {

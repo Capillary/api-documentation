@@ -9,7 +9,148 @@ Following are the predefined enum values for `type` and `status` respectively.
 * Enums for status :  OPEN, WON, LOST, ON_HOLD, DELETED
 
 
+## Get Lead Status Log
+Retrieves the status change log of a specific lead. 
+​
+​
+> Sample Request
+​
+```html
+​
+https://us.api.capillarytech.com/v2/leads/12/statusLog
+​
+```
+​
+​
+​
+> Sample Response
+​
+```json
+​
+{
+    "data": [
+        {
+            "id": 23,
+            "userId": 90486525,
+            "leadId": 12,
+            "status": "OPEN",
+            "createdBy": 75029724,
+            "createdOn": "2019-02-20T15:33:11Z",
+            "reasonId": 3,
+            "reason": "APICALL"
+        },
+        {
+            "id": 24,
+            "userId": 90486525,
+            "leadId": 12,
+            "status": "ON_HOLD",
+            "createdBy": 75029724,
+            "createdOn": "2019-02-20T15:33:11Z",
+            "reasonId": 4,
+            "reason": "NOT PICKING CALL"
+        }
+    ],
+    "warnings": [],
+    "errors": []
+}
+​
+```
+​
+### Resource Information
+​
+| | |
+--------- | ----------- |
+URI | `v2/leads/{leadId}/statusLog`
+HTTP Method | GET
+API Version | v2
+Rate Limited | Yes
+Batch Support | No
+​
+​
+### Request URL
+`https://{host}/v2/leads/{leadId}/statusLog`
+​
+​
+### Request Path Parameters
+Parameter | Datatype | Description
+--------- | -------- | -----------
+leadId* | long | Unique ID of the lead.
+ 
+<aside class="notice"> Parameter marked with * is mandatory. </aside>
+​
+​
+​
+## Get Lead follow-ups
 
+Retrieves the follow ups of a specific lead.
+​
+​
+> Sample Request
+​
+```html
+​
+https://us.api.capillarytech.com/v2/leads/12/followups
+​
+```
+​
+​
+​
+> Sample Response
+​
+```json
+​
+{
+    "data": [
+        {
+            "id": 23,
+            "userId": 90486525,
+            "leadId": 12,
+            "notes": "notes 1",
+            "createdBy": 75029724,
+            "createdOn": "2019-02-20T15:33:11Z",
+            "followedUpBy": 75029724,
+            "followedUpOn": "2018-10-04T07:15:00Z",
+            "scheduledFollowUp": "2018-10-04T07:00:00Z"
+        },
+        {
+            "id": 24,
+            "userId": 90486525,
+            "leadId": 12,
+            "notes": "notes 2",
+            "createdBy": 75029724,
+            "createdOn": "2019-02-20T15:33:11Z",
+            "followedUpBy": 75029724,
+            "followedUpOn": "2018-10-04T07:15:00Z",
+            "scheduledFollowUp": "2018-10-04T07:00:00Z"
+        }
+    ],
+    "warnings": [],
+    "errors": []
+}
+​
+```
+​
+### Resource Information
+​
+| | |
+--------- | ----------- |
+URI | `v2/leads/{leadId}/followups`
+HTTP Method | GET
+API Version | v2
+Rate Limited | Yes
+Batch Support | No
+​
+​
+### Request URL
+`https://{host}/v2/leads/{leadId}/followups`
+​
+​
+### Request Path Parameters
+Parameter | Datatype | Description
+--------- | -------- | -----------
+leadId* | long | Unique ID of the lead.
+ 
+<aside class="notice"> Parameter marked with * is mandatory. </aside>
 
 
 

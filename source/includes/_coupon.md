@@ -215,6 +215,1002 @@ details=extended | - | Retrieves the details of coupon configurations (set on ca
 <aside class="warning"> You can pass either coupon ID or coupon code. Any one parameter is required.</aside>
 
 
+## Create Card Series
+
+Lets you create a new card series.
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/coupon/series
+```
+
+> Sample POST Request
+
+```json
+{
+    "CouponSeriesV2": {
+        "customPropertyMap": {
+            "key1": "custom property 1",
+            "key2": "val2",
+            "standard_terms_and_conditions" : "terms and condtion"
+        },
+        "description": "DIWALI 10% OFF",
+        "discountCode": "XYZ123",
+        "validTillDate": "2021-05-10T00:00:00+05:30",
+        "expiryStrategyValue": 1,
+        "maxCreate": -1,
+        "maxRedeem": -1,
+        "anyUser": false,
+        "sameUserMultipleRedeem": false,
+        "isReferralExistingUsersAllowed": false,
+        "isMultipleUseAllowed": false,
+        "isValidWithDiscountedItem": true,
+        "smsTemplate" : "Hi {{first_name}} {{last_name}} your voucher code {{voucher}}is valid {{valid_days_from_create}}. {{fullname}} {{offer_name}}",
+        "isSMSDisabled": false,
+        "info": "Evil coupon",
+        "isMultipleVouchersPerUserAllowed": true,
+        "doNotResendExistingVoucher": true,
+        "mutualExclusiveSeriesIds": "[]",
+        "maxVouchersPerUser": 11,
+        "minDaysBetweenVouchers": 23,
+        "discountValue": 500,
+        "redemptionRange": "{\"dom\" : [1], \"dow\": [1], \"hours\": [1]}",
+        "minBillAmount": 100,
+        "maxBillAmount": 20000,
+        "maxRedemptionsInSeriesPerUser": 122,
+        "minDaysBetweenRedemption": 962,
+        "redemptionValidFrom": "2020-11-18T00:00:00+05:30",
+        "productInfo": [
+        ],
+        "redemptionOrgEntityDetails": [
+        ],
+        "targetUserDetails": {
+            "validMaxUserTransactionLimit": 1,
+            "validUserRegistrationStartTime": 0,
+            "validUserRegistrationEndTime": 10000
+        },
+        "redemptionValidAfterDays": 22,
+        "alphaNumeric": true,
+        "randomCodeLength": 10,
+        "resendMessageEnabled": true,
+        "clientHandlingType": "DISC_CODE",
+        "expiryStrategyType": "SERIES_EXPIRY",
+        "discountType": "ABS"
+    }
+}
+```
+
+> Sample Response
+
+```json
+{
+    "id": 86066,
+    "orgId": 100458,
+    "description": "DIWALI 10% OFF",
+    "discountCode": "XYZ123",
+    "validTillDate": "2021-05-09T00:00:00Z",
+    "validDaysFromCreation": 30,
+    "expiryStrategyValue": 1,
+    "maxCreate": -1,
+    "maxRedeem": -1,
+    "isTransferrable": false,
+    "anyUser": false,
+    "sameUserMultipleRedeem": false,
+    "isReferralExistingUsersAllowed": false,
+    "isMultipleUseAllowed": false,
+    "isValidationRequired": false,
+    "isValidWithDiscountedItem": true,
+    "createdBy": 75040399,
+    "numIssued": 0,
+    "numRedeemed": 0,
+    "createdOn": "2021-05-13T11:11:42Z",
+    "lastUsed": "2021-05-13T11:11:41Z",
+    "seriesCode": "453163F75E8C4A2EAA2E",
+    "smsTemplate": "Hi {{first_name}} {{last_name}} your voucher code {{voucher}}is valid {{valid_days_from_create}}. {{fullname}} {{offer_name}}",
+    "isSMSDisabled": false,
+    "info": "Evil coupon",
+    "isMultipleVouchersPerUserAllowed": true,
+    "doNotResendExistingVoucher": true,
+    "mutualExclusiveSeriesIds": "[]",
+    "storeIdsJson": "[-1]",
+    "isDvsEnabled": false,
+    "dvsExpiryDate": "2021-05-13T00:00:00Z",
+    "priority": 0,
+    "shortSMSTemplate": "Hello {{cust_name}}, your voucher code is {{voucher_code}}",
+    "maxVouchersPerUser": 11,
+    "minDaysBetweenVouchers": 23,
+    "maxReferralsPerReferee": -1,
+    "discountUpto": 0,
+    "discountValue": 500,
+    "dvsItems": "items",
+    "redemptionRange": "{\"dom\" : [1], \"dow\": [1], \"hours\": [1]}",
+    "minBillAmount": 100,
+    "maxBillAmount": 20000,
+    "redeemAtStore": "[-1]",
+    "campaignId": -1,
+    "tag": "DIWALI 10% OFF",
+    "maxRedemptionsInSeriesPerUser": 122,
+    "minDaysBetweenRedemption": 962,
+    "redemptionValidFrom": "2020-11-17T00:00:00Z",
+    "sourceOrgId": -1,
+    "issueToLoyalty": false,
+    "redeemStoreType": "redeemable_stores",
+    "offlineRedeemType": false,
+    "isOldFlowEnabled": false,
+    "isPreRedeemEventRequired": false,
+    "termsAndConditions": "T&C",
+    "signalRedemptionEvent": false,
+    "syncToClient": false,
+    "showPinCode": false,
+    "targetUserDetails": {
+        "validMaxUserTransactionLimit": 1,
+        "validUserRegistrationStartTime": 0,
+        "validUserRegistrationEndTime": 10000
+    },
+    "numUploadedNonIssued": 0,
+    "numUploadedTotal": 0,
+    "redemptionValidAfterDays": 22,
+    "ownedBy": "NONE",
+    "ownerId": -1,
+    "ownerValidity": 0,
+    "alphaNumeric": true,
+    "shortCodeLength": 0,
+    "randomCodeLength": 10,
+    "fixedExpiryDate": 1620518400000,
+    "numTotal": 0,
+    "latestIssualTime": 0,
+    "latestRedemptionTime": 0,
+    "resendMessageEnabled": true,
+    "seriesType": "UNDEFINED",
+    "clientHandlingType": "DISC_CODE",
+    "expiryStrategyType": "SERIES_EXPIRY",
+    "discountOn": "BILL",
+    "discountType": "ABS",
+    "updateProductData": false,
+    "externalIssual": false,
+    "warnings": []
+}
+```
+
+
+
+
+### Resource Information
+​
+​
+| | |
+--------- | ----------- |
+URI | `coupon/series`
+HTTP Method | POST
+API Version | v2
+Batch Support | No
+Rate Limited? | No
+​
+​
+​
+### Request URL
+​
+​
+`https://{host}/v2/coupon/series`
+
+
+
+
+### Request Body Parameters
+
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+
+
+
+
+
+
+
+
+## Issue Coupon to Customer (Single)
+
+Lets you issue a coupon from a coupon series to a customer.
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/coupon/issue
+```
+
+> Sample POST Request
+
+```json
+{
+"seriesId":12313,
+"customer":
+
+{ 
+    "id":126080386, 
+    "mobile":"", 
+    "externalId":"", 
+    "email":"" 
+}
+}
+```
+
+> Sample Response
+
+```json
+{
+    "code": "MGU9Y4PM",
+    "seriesId": 12313,
+    "description": "10 units",
+    "discountCode": "NO_VALUE",
+    "validTill": "2119-07-10T00:00:00Z",
+    "discountType": "ABS",
+    "discountValue": 10.0,
+    "discountUpto": 0.0,
+    "discountOn": "BILL",
+    "detailedInfo": "10 units",
+    "customer": {
+        "id": 126080386,
+        "profiles": [
+            {
+                "firstName": "test",
+                "lastName": "test",
+                "fields": {},
+                "identifiers": [
+                    {
+                        "type": "mobile",
+                        "value": "917500000005"
+                    },
+                    {
+                        "type": "email",
+                        "value": "tom.sawyer@example.com"
+                    }
+                ],
+                "commChannels": [],
+                "userId": 126080386,
+                "accountId": "",
+                "autoUpdateTime": "2021-05-12T15:06:57Z",
+                "identifiersAll": [
+                    {
+                        "type": "mobile",
+                        "value": "917500000005"
+                    },
+                    {
+                        "type": "email",
+                        "value": "tom.sawyer@example.com"
+                    }
+                ]
+            }
+        ]
+    },
+    "redemptionCount": 0,
+    "id": 0,
+    "warnings": []
+}
+```
+
+
+### Resource Information
+​
+​
+| | |
+--------- | ----------- |
+URI | `coupon/issue`
+HTTP Method | POST
+API Version | v2
+Batch Support | No
+Rate Limited? | No
+​
+​
+​
+### Request URL
+​
+​
+`https://{host}/v2/coupon/issue`
+
+
+
+
+### Request Body Parameters
+
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+seriesId* | array | Pass coupon series ID (offerIds from which you want to issue coupon.
+customer* | obj | Details of customer to whom the coupons need to send.
+id** | long | Unique ID of the customer.
+mobile** | string | Unique mobile number of the customer.
+email** | string | Unique email ID of the customer.
+externalId** | string | Unique external ID of the customer.
+
+<aside class="notice">Parameters marked with * are mandatory. Any one among the parameters marked with ** is mandatory. </aside> 
+
+
+
+
+
+
+
+## Issue Coupons to Customer (Bulk)
+
+Lets you issue coupons from one or more coupon series to a customer.
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/coupon/bulk/issue?source=INSTORE
+```
+
+> Sample POST Request
+
+```json
+{
+"seriesIds" :[84093,12313],
+
+"customer":
+
+  { 
+   "id":"126080386"
+  }
+}
+```
+
+> Sample Response
+
+```json
+{
+    "response": [
+        {
+            "entityId": 12313,
+            "result": {
+                "code": "L8H04VOZ",
+                "seriesId": 12313,
+                "description": "10 units",
+                "discountCode": "NO_VALUE",
+                "validTill": "2119-07-10T00:00:00Z",
+                "discountType": "ABS",
+                "discountValue": 10.0,
+                "discountUpto": 0.0,
+                "discountOn": "BILL",
+                "detailedInfo": "10 units",
+                "redemptionCount": 0,
+                "id": 0
+            },
+            "errors": [],
+            "warnings": []
+        },
+        {
+            "entityId": 84093,
+            "result": {
+                "code": "U6ER8MJ5",
+                "seriesId": 84093,
+                "description": "Test Marvel",
+                "discountCode": "NO_VALUE",
+                "validTill": "2021-05-31T00:00:00Z",
+                "discountType": "ABS",
+                "discountValue": 100.0,
+                "discountUpto": 0.0,
+                "discountOn": "BILL",
+                "detailedInfo": "Test Marvel",
+                "redemptionCount": 0,
+                "id": 0
+            },
+            "errors": [],
+            "warnings": []
+        }
+    ],
+    "totalCount": 2,
+    "failureCount": 0
+}
+```
+
+
+### Resource Information
+​
+​
+| | |
+--------- | ----------- |
+URI | `coupon/bulk/issue?source={source}&accountId={accountId}`
+HTTP Method | POST
+API Version | v2
+Batch Support | Yes (coupons)
+Rate Limited? | No
+​
+​
+​
+### Request URL
+​
+​
+`https://{host}/v2/coupon?{paramName}={paramValue}`
+
+
+
+### Request Query Parameters
+
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+source* | enum | Registered source of the customer.
+accountId** | string | Account ID for sources with multiple accounts. Required for multi-source accounts.
+
+<aside class="notice">The parameter marked with * are mandatory.</aside> 
+
+
+
+### Request Body Parameters
+
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+seriesIds* | array | Pass coupon series IDs (offerIds) from which you want to issue coupons.
+customer* | obj | Details of customer to whom the coupons need to send.
+id** | long | Unique ID of the customer.
+mobile** | string | Unique mobile number of the customer.
+email** | string | Unique email ID of the customer.
+externalId** | string | Unique external ID of the customer.
+
+<aside class="notice">Parameters marked with * are mandatory. Any one among the parameters marked with ** is mandatory. </aside> 
+
+
+
+
+## Redeem Coupon (Single)
+
+Lets you redeem a customer's coupon against transaction.
+
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/coupon/redeem
+```
+
+> Sample POST Request
+
+```json
+{
+  "redemptionRequestList": [
+    
+    {
+      "code": "MGU9Y4PM"
+    }
+  ],
+  "user": {
+    "mobile": "917575757575"
+  },
+  "transactionNumber": "ZDCsdss",
+  "billAmount": "2000",
+  "redemptionTime": "2020-06-12"
+}
+```
+
+
+> Sample Response
+
+```json
+{
+    "redemption": [
+        {
+            "id": 369455787,
+            "currencyInput": false,
+            "localToBaseCurrencyExchangeRate": 0,
+            "warnings": [],
+            "appendedErrorMessage": "",
+            "code": "MGU9Y4PM",
+            "discountCode": "NO_VALUE",
+            "seriesCode": 12313,
+            "isAbsolute": true,
+            "couponValue": 10.0,
+            "redemptionStatus": {
+                "statusCode": {
+                    "status": true,
+                    "message": "Coupon processing successful",
+                    "code": 700
+                },
+                "warnings": [],
+                "warningsAsStatusCode": [],
+                "message": "Coupon processing successful",
+                "code": 700,
+                "success": true
+            },
+            "discountType": "ABS",
+            "discountValue": 10,
+            "discountUpto": 0
+        }
+    ],
+    "redemptionStatus": {
+        "status": true,
+        "message": "Coupon processing successful",
+        "code": 700
+    },
+    "customer": {
+        "id": 126080386,
+        "profiles": [
+            {
+                "firstName": "test",
+                "lastName": "test",
+                "fields": {},
+                "identifiers": [
+                    {
+                        "type": "mobile",
+                        "value": "917500000000"
+                    },
+                    {
+                        "type": "email",
+                        "value": "tom.sawyer@test.com"
+                    }
+                ],
+                "commChannels": [],
+                "userId": 126080386,
+                "accountId": "",
+                "autoUpdateTime": "2021-05-12T15:18:01Z",
+                "identifiersAll": [
+                    {
+                        "type": "mobile",
+                        "value": "917500000000"
+                    },
+                    {
+                        "type": "email",
+                        "value": "tom.sawyer@test.com"
+                    }
+                ]
+            }
+        ]
+    },
+    "warnings": []
+}
+```
+
+
+### Resource Information
+​
+​
+| | |
+--------- | ----------- |
+URI | `coupon/redeem`
+HTTP Method | POST
+API Version | v2
+Batch Support | No
+Rate Limited? | No
+​
+​
+​
+### Request URL
+​
+​
+`https://{host}/v2/coupon/redeem`
+
+
+
+
+### Request Body Parameters
+
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+redemptionRequestList | obj | Coupon details to redeem.
+code | string | Coupon code to redeem.
+redemptionTime | date-time | Date and time of redemption in `YYYY-MM-DD HH:MM:SS` format.
+transactionNumber | string | Transaction number for which the coupon(s) needs to be redeemed.
+billAmount* | double | Transaction amount for which the coupon is redeemed.
+user* | obj | Details of the customer that redeems the coupon(s).
+id** | long | Unique ID of the customer.
+mobile** | string | Unique mobile number of the customer.
+email** | string | Unique email ID of the customer.
+externalId** | string | Unique external ID of the customer.
+
+<aside class="notice">Parameters marked with * are mandatory. Any one among the parameters marked with ** is mandatory. </aside> 
+
+
+
+
+
+
+## Redeem Customer Coupons (Bulk)
+
+Lets you redeem one or more coupons of a customer.
+
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/coupon/bulk/redeem?source=INSTORE
+```
+
+> Sample POST Request
+
+```json
+{
+  "redemptionRequestList": [
+    {
+      "code": "U6ER8MJ5"
+    },
+	{
+      "code": "U6ER8MH9"
+    }
+  ],
+  "redemptionTime": "2021-05-12 19:18:30",
+  "transactionNumber": "numbr9435064964",
+  "user": {
+    "id": 126080386
+  },
+  "billAmount": "2000"
+}
+```
+
+
+> Sample Response
+
+```json
+{
+    "response": [
+        {
+            "entityId": 369454015,
+            "result": {
+                "id": 369454015,
+                "currencyInput": false,
+                "localToBaseCurrencyExchangeRate": 0,
+                "warnings": [],
+                "appendedErrorMessage": "",
+                "code": "U6ER8MJ5",
+                "discountCode": "NO_VALUE",
+                "seriesCode": 84093,
+                "isAbsolute": true,
+                "couponValue": 100.0,
+                "redemptionStatus": {
+                    "statusCode": {
+                        "status": true,
+                        "message": "Coupon processing successful",
+                        "code": 700
+                    },
+                    "warnings": [],
+                    "warningsAsStatusCode": [],
+                    "message": "Coupon processing successful",
+                    "code": 700,
+                    "success": true
+                },
+                "discountType": "ABS",
+                "discountValue": 100,
+                "discountUpto": 0
+            },
+            "errors": []
+        }
+    ],
+    "totalCount": 1,
+    "failureCount": 0
+}
+```
+
+
+### Resource Information
+​
+​
+| | |
+--------- | ----------- |
+URI | `coupon/bulk/redeem?source={source}&accountId={accountId}`
+HTTP Method | POST
+API Version | v2
+Batch Support | Yes (coupons)
+Rate Limited? | No
+​
+​
+​
+### Request URL
+​
+​
+`https://{host}/v2/coupon/bulk/redeem?{paramName}={paramValue}`
+
+
+
+### Request Query Parameters
+
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+source* | enum | Registered source of the customer.
+accountId** | string | Account ID for sources with multiple accounts. Required for multi-source accounts.
+
+<aside class="notice">The parameter marked with * are mandatory.</aside> 
+
+
+### Request Body Parameters
+
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+redemptionRequestList | obj | List of coupons to redeem.
+code | string | Coupon code to redeem.
+redemptionTime | date-time | Date and time of redemption in `YYYY-MM-DD HH:MM:SS` format.
+transactionNumber | string | Transaction number for which the coupon(s) needs to be redeemed.
+billAmount* | double | Transaction amount for which the coupon is redeemed.
+user* | obj | Details of the customer that redeems the coupon(s).
+id** | long | Unique ID of the customer.
+mobile** | string | Unique mobile number of the customer.
+email** | string | Unique email ID of the customer.
+externalId** | string | Unique external ID of the customer.
+
+<aside class="notice">Parameters marked with * are mandatory. Any one among the parameters marked with ** is mandatory. </aside> 
+
+
+
+
+
+
+
+## Get Coupon Details
+
+Retrieves the details of one or more coupons.
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/coupon?issuedToIds=126080386&issuedToIds=108573800
+```
+
+> Sample Response
+
+```json
+{
+    "data": [
+        {
+            "code": "1R7IOF17",
+            "seriesId": 84093,
+            "description": "Test Marvel",
+            "discountCode": "NO_VALUE",
+            "validTill": "2021-05-31T00:00:00Z",
+            "discountType": "ABS",
+            "discountValue": 100.0,
+            "discountUpto": 0.0,
+            "discountOn": "BILL",
+            "detailedInfo": "Test Marvel"
+        },
+        {
+            "code": "RNPQCPXI",
+            "seriesId": 84093,
+            "description": "Test Marvel",
+            "discountCode": "NO_VALUE",
+            "validTill": "2021-05-31T00:00:00Z",
+            "discountType": "ABS",
+            "discountValue": 100.0,
+            "discountUpto": 0.0,
+            "discountOn": "BILL",
+            "detailedInfo": "Test Marvel"
+        },
+        {
+            "code": "Z0452RAQ",
+            "seriesId": 84093,
+            "description": "Test Marvel",
+            "discountCode": "NO_VALUE",
+            "validTill": "2021-05-31T00:00:00Z",
+            "discountType": "ABS",
+            "discountValue": 100.0,
+            "discountUpto": 0.0,
+            "discountOn": "BILL",
+            "detailedInfo": "Test Marvel"
+        },
+        {
+            "code": "L6O2E1Q7",
+            "seriesId": 84093,
+            "description": "Test Marvel",
+            "discountCode": "NO_VALUE",
+            "validTill": "2021-05-31T00:00:00Z",
+            "discountType": "ABS",
+            "discountValue": 100.0,
+            "discountUpto": 0.0,
+            "discountOn": "BILL",
+            "detailedInfo": "Test Marvel"
+        },
+        {
+            "code": "HZXK4CFS",
+            "seriesId": 12646,
+            "description": "Welcome ",
+            "discountCode": "NO_VALUE",
+            "validTill": "2119-09-09T00:00:00Z",
+            "discountType": "PERC",
+            "discountValue": 15.0,
+            "discountUpto": 0.0,
+            "discountOn": "BILL",
+            "detailedInfo": "Welcome "
+        }
+    ],
+    "warnings": [],
+    "errors": []
+}
+```
+
+### Resource Information
+​
+​
+| | |
+--------- | ----------- |
+URI | `/coupon?{paramName}={paramValue}`
+HTTP Method | GET
+API Version | v2
+Batch Support | Yes
+Rate Limited? | No
+​
+​
+​
+### Request URL
+​
+​
+`https://{host}/v2/coupon?{paramName}={paramValue}`
+
+
+
+### Request Query Parameters
+
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+issuedToIds** | array | Fetch coupons issued to specific customers. Pass customer IDs to fetch. Example: `?issuedToIds=126080386&issuedToIds=108573800`
+couponIds** | array | Fetch coupon details by coupon IDs. Example: `?couponIds=126080386&issuedToIds=108573800`.
+couponCodes** | array | Fetch coupon details by coupon codes.
+
+<aside class="notice">Any one among the parameters marked with * is mandatory. </aside>
+
+
+
+## Get Coupon Series Details
+
+Retrieves the details of one or more coupon series.
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/coupon/series?ids=18426
+```
+
+> Sample Response
+
+```json
+{
+    "entity": [
+        {
+            "id": 18426,
+            "orgId": 100458,
+            "description": "Test Offer 20",
+            "discountCode": "NO_VALUE",
+            "validTillDate": "2120-02-11T10:23:17Z",
+            "validDaysFromCreation": 30,
+            "expiryStrategyValue": 1,
+            "maxCreate": -1,
+            "maxRedeem": -1,
+            "isTransferrable": false,
+            "anyUser": false,
+            "sameUserMultipleRedeem": false,
+            "isReferralExistingUsersAllowed": false,
+            "isMultipleUseAllowed": false,
+            "isValidationRequired": false,
+            "isValidWithDiscountedItem": false,
+            "createdBy": 75016470,
+            "numIssued": 48847,
+            "numRedeemed": 1,
+            "createdOn": "2020-02-11T10:24:01Z",
+            "lastUsed": "2020-02-11T10:24:01Z",
+            "seriesCode": "6LQG2MOU",
+            "smsTemplate": "Summer19",
+            "isSMSDisabled": false,
+            "info": "Test Offer 20",
+            "isMultipleVouchersPerUserAllowed": false,
+            "doNotResendExistingVoucher": true,
+            "mutualExclusiveSeriesIds": "[]",
+            "storeIdsJson": "[-1]",
+            "isDvsEnabled": false,
+            "dvsExpiryDate": "2020-03-12T00:00:00Z",
+            "priority": 0,
+            "shortSMSTemplate": "Hello {{cust_name}}, your voucher code is {{voucher_code}}",
+            "maxVouchersPerUser": 1,
+            "minDaysBetweenVouchers": -1,
+            "maxReferralsPerReferee": -1,
+            "discountUpto": 0,
+            "discountValue": 20,
+            "dvsItems": "false",
+            "redemptionRange": "{\"dom\":[\"-1\"],\"dow\":[\"-1\"],\"hours\":[\"-1\"]}",
+            "minBillAmount": 0,
+            "maxBillAmount": 9007199254740991,
+            "redeemAtStore": "[-1]",
+            "campaignId": -1,
+            "tag": "Test Offer 20",
+            "maxRedemptionsInSeriesPerUser": -1,
+            "minDaysBetweenRedemption": -1,
+            "redemptionValidFrom": "1970-01-01T00:00:00Z",
+            "sourceOrgId": -1,
+            "issueToLoyalty": false,
+            "redeemStoreType": "redeemable_stores",
+            "offlineRedeemType": false,
+            "isOldFlowEnabled": false,
+            "isPreRedeemEventRequired": false,
+            "termsAndConditions": "T&C apply",
+            "signalRedemptionEvent": true,
+            "syncToClient": false,
+            "showPinCode": false,
+            "numUploadedNonIssued": 0,
+            "numUploadedTotal": 0,
+            "redemptionValidAfterDays": 0,
+            "ownedBy": "LOYALTY",
+            "ownerId": 469,
+            "ownerValidity": 4737090197000,
+            "alphaNumeric": true,
+            "shortCodeLength": 0,
+            "randomCodeLength": 8,
+            "fixedExpiryDate": 0,
+            "numTotal": -1,
+            "latestIssualTime": 1587993924000,
+            "latestRedemptionTime": 1581513319000,
+            "resendMessageEnabled": true,
+            "seriesType": "LOYALTY",
+            "clientHandlingType": "DISC_CODE",
+            "expiryStrategyType": "SERIES_EXPIRY",
+            "discountOn": "BILL",
+            "discountType": "PERC",
+            "externalIssual": false,
+            "updateProductData": false
+        }
+    ],
+    "warnings": []
+}
+```
+
+
+
+### Resource Information
+​
+​
+| | |
+--------- | ----------- |
+URI | `/coupon/series?ids={offerId}`
+HTTP Method | GET
+API Version | v2
+Batch Support | Yes
+Rate Limited? | No
+​
+​
+​
+### Request URL
+​
+​
+`https://{host}/v2/coupon/series?ids={offerId}`
+
+
+
+### Request Query Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+ids* | array | Unique offer IDs that you want to fetch. Example: `?ids=18426&ids=84516`
+
+<aside class="notice">The parameter marked with * is mandatory.</aside>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

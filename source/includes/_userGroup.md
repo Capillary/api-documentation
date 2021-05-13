@@ -299,7 +299,7 @@ Retrieves the details of a specific user group.
 https://us.ap.capillarytech.com/v2/usergroups/1
 ```
 
-> Sample POST Request
+> Sample Response
 
 ```json
 {
@@ -387,7 +387,7 @@ Retrieves the details of a specific user group and group loyalty information usi
 https://eu.api.capillarytech.com/v2/usergroups?identifierName=mobile&identifierValue=919740000000&loyaltyDetails=true
 ```
 
-> Sample POST Request
+> Sample Response
 
 ```json
 {
@@ -601,7 +601,7 @@ Lets you update the admin user for a specific user group.
 https://us.api.capillarytech.com/v2/usergroups/1
 ```
 
-> Sample POST Request
+> Sample PUT Request
 
 ```json
 {

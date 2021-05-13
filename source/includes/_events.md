@@ -5017,7 +5017,7 @@ Batch Support | No
 
 
 
-### Request Body Parameters
+### Request Query Parameters
 
 Parameter | Type | Description
 --------- | ---- | -----------
@@ -6844,7 +6844,7 @@ Lets you disable a specific Webhook account.
 http://us.api.capillarytech.com/v2/events/webhook/disable
 ```
 
-> Sample POST Request
+> Sample PUT Request
 
 ```json
 {

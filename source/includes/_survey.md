@@ -43,7 +43,7 @@ HTTP Method | POST
 Batch Support | No
 
 ### Request URL
-`http://<cluster url>/v2/survey`
+`{host}/v2/survey`
 
 ### Request Attributes
 
@@ -99,9 +99,9 @@ HTTP Method | PUT
 Batch Support | No
 
 ### Request URL
-`http://<cluster url>/v2/survey?extRefId=<value>`
+`{host}/v2/survey?extRefId=<value>`
 
-`http://<cluster url>/v2/survey?surveyId=<value>`
+`{host}/v2/survey?surveyId=<value>`
 
 ### Request Attributes
 
@@ -171,15 +171,15 @@ Allows adding questions to an existing survey.
 ### Resource Information
 Information | Value
 ----------- | -----
-URI | /survey/questions?{surveyId/extRefId}
+URI | `/survey/questions?{surveyId/extRefId}`
 Authentication | Yes
 HTTP Method | POST
 Batch Support | Yes
 
 ### Request URL
-`http://<cluster url>/v2/survey/questions?surveyId={survey id}`
+`{host}/v2/survey/questions?surveyId={survey id}`
 
-`http://<cluster url>/v2/survey/questions?extRefId={external reference id}`
+`{host}/v2/survey/questions?extRefId={external reference id}`
 
 ### Request Attributes
 
@@ -238,7 +238,7 @@ HTTP Method | PUT
 Batch Support | No
 
 ### Request URL
-`http://<cluster url>/v2/survey/question?questionId={value}`
+`{host}/v2/survey/question?questionId={value}`
 
 
 ### Request Attributes
@@ -251,31 +251,6 @@ question* | Specify the updated survey question
 fieldOptions | Specify the new options you want to have for the question. Not applicable for TextBlock, TextAreaBlock
 params | 
 isActive | Add or remove a question. Value: true/false
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -339,15 +314,15 @@ Allows you to add customer responses to a survey.
 ### Resource Information
 Information | Value
 ----------- | -----
-URI | /survey/responses?surveyId/extRefId={value}
+URI | `/survey/responses?surveyId/extRefId={value}`
 Authentication | Yes
 HTTP Method | POST
 Batch Support | Yes
 
 ### Request URL
-`http://<cluster url>/v2/survey/responses?surveyId={survey id}`
+`{host}/v2/survey/responses?surveyId={survey id}`
 
-`http://<cluster url>/v2/survey/responses?extRefId={external reference id}`
+`{host}/v2/survey/responses?extRefId={external reference id}`
 
 ### Request Attributes
 
@@ -375,7 +350,7 @@ responseChannel | Specify the response channel - Email, Call Center, Social, or 
 http://us.api.capillarytech.com/v2/survey/responses?responseId=173
 ```
 
-> Sample POST Request
+> Sample PUT Request
 
 ```json
 {
@@ -398,13 +373,14 @@ Lets you update an existing response of a survey.
 ### Resource Information
 Information | Value
 ----------- | -----
-URI | /survey/responses?responseId={value}
+URI | `/survey/responses?responseId={value}`
 Authentication | Yes
 HTTP Method | PUT
 Batch Support | No
 
 ### Request URL
-`http://<cluster url>/v2/survey/responses?responseId={value}`
+
+`{host}/v2/survey/responses?responseId={value}`
 
 ### Request Attributes
 
@@ -458,13 +434,14 @@ Retrieves the details of a specific survey.
 ### Resource Information
 Information | Value
 ----------- | -----
-URI | /survey?{surveyId/extRefId}
+URI | `/survey?{surveyId/extRefId}`
 Authentication | Yes
 HTTP Method | GET
 Batch Support | No
 
 ### Request URL
-http://<cluster url>/v2/survey?{surveyId/extRefId}={value}
+
+`{host}/v2/survey?{surveyId/extRefId}={value}`
 
 ### Request Attributes
 
@@ -560,16 +537,16 @@ Retrieves all questions of a specific survey.
 ### Resource Information
 Information | Value
 ----------- | -----
-URI | /survey/questions?<surveyId/extRefId>={value}
+URI | `/survey/questions?{surveyId/extRefId}={value}`
 Authentication | Yes
 HTTP Method | GET
 Batch Support | No
 
 ### Request URL
 
-`http://<cluster url>/v2/survey/questions/surveyId=<survey id>`
+`{host}/v2/survey/questions/surveyId={surveyId}`
 
-`http://<cluster url>/v2/survey/questions/extRefId=<external reference id>`
+`{host}/v2/survey/questions/extRefId={externalReferenceId}`
 
 
 ### Request Parameters
@@ -611,14 +588,14 @@ Retrieves details of a specific question.
 ### Resource Information
 Information | Value
 ----------- | -----
-URI | /survey/questions/{survey question Id} 
+URI | `/survey/questions/{survey question Id}` 
 Authentication | Yes
 HTTP Method | GET
 Batch Support | No
 
 
 ### Request URL
-`http://<Cluster URL>/v2/survey/questions/<survey question id>`
+`{host}/v2/survey/questions/{survey question id}`
 
 ### Request Parameter
 Parameter | Description
@@ -659,7 +636,7 @@ HTTP Method | GET
 Batch Support | No
 
 ### Request URL
-`http://<cluster url>/v2/survey/questions/lookup/<question external id>`
+`{host}/v2/survey/questions/lookup/<question external id>`
 
 
 ### Request Parameters
@@ -701,14 +678,14 @@ Retrieves the details of a specific survey response.
 ### Resource Information
 Information | Value
 ----------- | -----
-URI | /responses/{response id}
+URI | `/responses/{responseId}`
 Authentication | Yes
 HTTP Method | GET
 Batch Support | No
 
 
 ### Request URL
-`http://<Cluster URL>/v2/survey/responses/<response id>`
+`{host}/v2/survey/responses/{responseId}`
 
 
 ### Request Parameters

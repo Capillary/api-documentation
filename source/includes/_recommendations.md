@@ -1,11 +1,26 @@
 # Recommendations
 
-The recommendation engine predicts the list of suitable products for a customer based on his/her previous orders, frequent orders, search items, trending products, cart items, and other user activities. 
+The recommendation engine predicts the list of suitable products for a customer based on his/her previous orders, frequent orders, search items, trending products, cart items, and other user activities.
+
+The following are the host URLs (rcmd_host) for `recommendations`. 
+
+
+* India: `https://incrm.cc.capillarytech.com`
+* Singapore: `https://sgcrm.cc.capillarytech.com`
+* EU: `https://eucrm.cc.capillarytech.com`
+* Testing: `https://crm-staging-new.cc.capillarytech.com`
+* Staging: `https://crm-nightly-new.cc.capillarytech.com`
+
+
+
+
+
+
 
 
 ## GET User Recommendation
 
-Retrieves the list of recommended products of a user based past activities (previous orders, frequent orders, search items, and trending items. 
+Retrieves the list of recommended products of a user based on past activities such as orders, frequent orders, search items, and trending items. 
 
 
 
@@ -13,13 +28,13 @@ Retrieves the list of recommended products of a user based past activities (prev
 
 ```html
 
-https://eu.api.capillarytech.com/api_gateway/v1/recommendations/user/you-may-also-like?utype=user_id&uvalue=123456&limit=5&offset=0&categories
+https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/user/you-may-also-like?utype=user_id&uvalue=123456&limit=5&offset=0&categories
 
 ```
 
 
 
-> Sample Response for you-may-also-like model
+> Sample Response (for you-may-also-like model)
 
 
 ```json
@@ -83,134 +98,6 @@ https://eu.api.capillarytech.com/api_gateway/v1/recommendations/user/you-may-als
 ```
 
 
-
-> Sample Response for trending model
-
-
-```json
-
-{
-   "status":{
-      "success":true,
-      "code":200
-   },
-   "group":"TEST",
-   "boxType":"trending",
-   "totalResults":2,
-   "recommendedItems":{
-      "items":[
-         {
-            "sku":"564714",
-            "score":10,
-            "rank":1,
-            "values":{
-               "name":"T-Shirts",
-               "description":"Reebok T-Shirts",
-               "categories":[
-                  "Shirts"
-               ],
-               "image":{
-                  "label":"",
-                  "url":""
-               },
-               "smallImage":{
-                  "label":"",
-                  "url":""
-               },
-               "productUrl":""
-            }
-         },
-         {
-            "sku":"564716",
-            "score":9,
-            "rank":2,
-            "values":{
-               "name":"Trackpants",
-               "description":"Puma Trackpants",
-               "categories":[
-                  "Bottomwear"
-               ],
-               "image":{
-                  "label":"",
-                  "url":""
-               },
-               "smallImage":{
-                  "label":"",
-                  "url":""
-               },
-               "productUrl":""
-            }
-         }
-      ]
-   }
-}
-
-```
-
-
-> Sample Response for buy-it-again model
-
-
-```json
-
-{
-   "status":{
-      "success":true,
-      "code":200
-   },
-   "group":"TEST",
-   "boxType":"buy-it-again",
-   "totalResults":2,
-   "recommendedItems":{
-      "items":[
-         {
-            "sku":"564714",
-            "score":10,
-            "rank":1,
-            "values":{
-               "name":"T-Shirts",
-               "description":"Reebok T-Shirts",
-               "categories":[
-                  "Shirts"
-               ],
-               "image":{
-                  "label":"",
-                  "url":""
-               },
-               "smallImage":{
-                  "label":"",
-                  "url":""
-               },
-               "productUrl":""
-            }
-         },
-         {
-            "sku":"564716",
-            "score":9,
-            "rank":2,
-            "values":{
-               "name":"Trackpants",
-               "description":"Puma Trackpants",
-               "categories":[
-                  "Bottomwear"
-               ],
-               "image":{
-                  "label":"",
-                  "url":""
-               },
-               "smallImage":{
-                  "label":"",
-                  "url":""
-               },
-               "productUrl":""
-            }
-         }
-      ]
-   }
-}
-
-```
-
 ### Resource Information
 
 
@@ -225,7 +112,7 @@ Rate Limited? | No
 ### Request URL
 
 
-`https://{host}/api_gateway/v1/recommendations/user/{model}?{queryparam}`
+`https://{rcmd_host}/api_gateway/v1/recommendations/user/{model}?{queryparam}`
 
 
 
@@ -275,7 +162,7 @@ Retrieves product recommendations based on the product attribute.
 
 ```html
 
-https://eu.api.capillarytech.com/api_gateway/v1/recommendations/item/similar-attribute/?sku=654123&limit=5&offset=0&categories
+https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/item/similar-attribute/?sku=654123&limit=5&offset=0&categories
 
 ```
 
@@ -346,70 +233,6 @@ https://eu.api.capillarytech.com/api_gateway/v1/recommendations/item/similar-att
 
 
 
-> Sample Response (similar-btab model)
-
-
-```json
-
-{
-   "status":{
-      "success":true,
-      "code":200
-   },
-   "group":"TEST",
-   "boxType":"similar-btab",
-   "totalResults":1,
-   "recommendedItems":{
-      "items":[
-         {
-            "sku":"654123",
-            "score":20,
-            "rank":1,
-            "values":{
-               "name":"Sports Shoes",
-               "description":"Reebok Sports Shoes",
-               "categories":[
-                  "Shoes"
-               ],
-               "image":{
-                  "label":"",
-                  "url":""
-               },
-               "smallImage":{
-                  "label":"",
-                  "url":""
-               },
-               "productUrl":""
-            }
-         },
-         {
-            "sku":"654123",
-            "score":10,
-            "rank":2,
-            "values":{
-               "name":"Shorts",
-               "description":"Reebok Shorts",
-               "categories":[
-                  "Bottomwear"
-               ],
-               "image":{
-                  "label":"",
-                  "url":""
-               },
-               "smallImage":{
-                  "label":"",
-                  "url":""
-               },
-               "productUrl":""
-            }
-         }
-      ]
-   }
-}
-
-
-```
-
 ### Resource Information
 
 
@@ -426,7 +249,7 @@ Rate Limited? | No
 ### Request URL
 
 
-`https://{host}/api_gateway/v1/recommendations/item/{model}?{queryparam}`
+`https://{rcmd_host}/api_gateway/v1/recommendations/item/{model}?{queryparam}`
 
 
 ### Request Headers
@@ -442,9 +265,9 @@ X-CAP-API-AUTH-ORG-ID* | string | Unique `Org ID` used for the authentication.
 
 Model | Datatype | Description
 --------- | -------- | -----------
-model* | enum | `similar-attribute` to get products with similar product attributes as per the `SKU` item. <br> `similar-btab**` to get products that are are frequently bought along with the `SKU` item passed.
+model* | enum | `similar-attribute` to get products with similar product attributes as per the `SKU` item. <br> `similar-btab` to get products that are are frequently bought along with the `SKU` item passed.
 
-<aside class="notice"> Pass any one among the models marked with ** is mandatory. </aside>
+<aside class="notice"> Parameter marked with * is mandatory. </aside>
 
 ### Request Query Parameter 
 
@@ -462,7 +285,7 @@ stores | array | Filter products by stores. Pass comma separated store codes. Ma
 
 ## GET Cart Recommendation
 
-Retrieves the recommended products based on the current cart items. 
+Retrieves the recommended products of a specific cart items. 
 
 
 
@@ -615,7 +438,7 @@ Rate Limited? | No
 ### Request URL
 
 
-`https://{host}/api_gateway/v1/recommendations/cart/{model}?{queryparam}`
+`https://{rcmd_host}/api_gateway/v1/recommendations/cart/{model}?{queryparam}`
 
 
 ### Request Headers
@@ -633,19 +456,18 @@ Model | Datatype | Description
 --------- | -------- | -----------
 model* | enum | Pass `frequently-bought-together` to get products that were frequently bought along with the items in the cart. For example, if the cart has mobile, the recommended item could be mobile case. 
 
-<aside class="notice"> Parameter marked with * is mandatory.</aside>
+<aside class="notice"> The parameter marked with * is mandatory.</aside>
 
 ### Request Query Parameter 
 
 Parameter | Datatype | Description
 --------- | -------- | -----------
-cartparam* | string |  Object type to identify the cart items - {sku1:quantity,sku2:quantity}. For example,`cartparam={"000000000000010242":1,000000000000080246":5}
+cartparam* | string |  Object type to identify the cart items in SKU:quantity pairs - {sku1:quantity,sku2:quantity}. For example,`cartparam={"000000000000010242":1,000000000000080246":5}`
 limit* | string | Limit the number of results to retrieve. You can retrieve a maximum of 25 results.
 offset* | int | Number of results to ignore from top (where the recommendations array to start fetching). Set `0` to ignore the first result, `1` to ignore the first two results and so on.
 categories | array | Filter recommended products by one or more categories. Pass comma separated category codes. Maximum of `10` categories are supported. Example: `categories=Shirts,Bottomwear`
 stores | array | Filter products by stores. Pass comma separated store codes. Max limit is 10. Example: `stores=store.1,store.2`.
 
-<aside class="notice"> Parameters marked with * are mandatory. </aside>
 
 
 <aside class="notice"> Parameters marked with * are mandatory. </aside>

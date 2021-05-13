@@ -868,7 +868,7 @@ Batch Support | No
 `{host}/v2/customers/lookup?source={SourceName}&accountId={accountId}&identifierName={IdentifierName}&identifierValue={IdentifierValue}`
 
 
-### Request Parameter
+### Request Query Parameters
 Parameter | Datatype | Description
 --------- | -------- | -----------
 source* | enum | Specify the source from which you want to fetch the customer details. Values: FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, ALL
@@ -2568,7 +2568,7 @@ https://eu.api.capillarytech.com/v2/customers/161670039/changeIdentifier?source=
 URI | `/{userId}/changeIdentifier?`
 Rate Limited? | Yes (1000 per hour)
 HTTP Methods | POST
-Batch Support | No
+Batch Support | Yes
 
 
 ### Request URL
@@ -2595,133 +2595,8 @@ type* | enum | Pass `cardnumber` to issue card.
 statusLabel* | enum | New status of the card. Value: `ACTIVE`.
 
 
-## Update Customer Card Status
-
-Lets you deactivate a customers membership card.
-
-> Sample Request
-
-```html
-
-```
 
 
-
-
-
-### Request URL
-`{host}/v2/customers/{userId}?source={source}`
-
-### Request Query Parameter
-Parameter | Datatype | Description
---------- | -------- | -----------
-userId* | long | Unique ID of the customer whose card status has to be updated. 
-source* | int | Unique ID of the card series to update.
-
-### Request Body Parameters
-Parameter | Datatype | Description
---------- | -------- | -----------
-
-
-
-## Get Card Status Changes Log
-
-Retrieves the log of status changes of a card number.
-
-> Sample Request
-
-```html
-
-```
-
-> Sample Response
-
-```json
-https://eu.api.capillarytech.com/v2/card/statusLog?number=GOLD00000000000001012020
-```
-
-> Sample Response
-
-```json
-{
-    "data": [
-        {
-            "reason": "",
-            "createdBy": 0,
-            "actions": [],
-            "autoUpdateTime": "2021-01-10",
-            "createdOn": "2021-01-10T10:39:19Z",
-            "entityId": 10609,
-            "isActive": false,
-            "label": "CARD GENERATED",
-            "status": "NOT_ISSUED"
-        },
-        {
-            "reason": "",
-            "createdBy": 0,
-            "actions": [],
-            "autoUpdateTime": "2021-01-10",
-            "createdOn": "2021-01-10T10:40:25Z",
-            "entityId": 10609,
-            "isActive": false,
-            "label": "ACTIVE",
-            "status": "ACTIVE"
-        },
-        {
-            "reason": "",
-            "createdBy": 0,
-            "actions": [],
-            "autoUpdateTime": "2021-01-10",
-            "createdOn": "2021-01-10T12:01:39Z",
-            "entityId": 10609,
-            "isActive": false,
-            "label": "SUSPENDED",
-            "status": "SUSPENDED"
-        },
-        {
-            "reason": "",
-            "createdBy": 0,
-            "actions": [],
-            "autoUpdateTime": "2021-01-10",
-            "createdOn": "2021-01-10T12:02:00Z",
-            "entityId": 10609,
-            "isActive": false,
-            "label": "ACTIVE",
-            "status": "ACTIVE"
-        },
-        {
-            "reason": "",
-            "createdBy": 0,
-            "actions": [],
-            "autoUpdateTime": "2021-01-10",
-            "createdOn": "2021-01-10T12:02:39Z",
-            "entityId": 10609,
-            "isActive": true,
-            "label": "EXPIRED",
-            "status": "EXPIRED"
-        }
-    ],
-    "warnings": [],
-    "errors": []
-}
-```
-
-### Resource Information
-| | |
---------- | ----------- |
-URI | `/statusLog?number={cardNumber}`
-Rate Limited? | Yes (1000 per hour)
-HTTP Methods | POST
-Batch Support | No
-
-
-### Request URL
-`{host}/v2/customers/statusLog?number={cardNumber}`
-
-### Request Query Parameter
-Parameter | Datatype | Description
---------- | -------- | -----------
-number | string | Card number to see the status change log.
 
 
 ## Response Codes

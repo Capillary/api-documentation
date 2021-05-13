@@ -51,7 +51,7 @@ The `transaction/add` API lets you do the following.
 https://eu.intouch.capillarytech.com/v2/transactions/bulk
 ```
 
-> Sample POST Request (POST Transaction)
+> Sample POST Request (of Add Transaction)
 
 ```json
 [
@@ -873,7 +873,7 @@ Lets you add a new transaction or return an existing transaction.
 https://us.api.capillarytech.com/v2/transactions?source=instore&identifierValue=GOLD400000000000000022020&identifierName=cardnumber&accountId=
 ```
 
-> Sample Response
+> Sample POST Request
 
 ```json
 {
@@ -928,6 +928,23 @@ https://us.api.capillarytech.com/v2/transactions?source=instore&identifierValue=
     }
   ]
 }  
+```
+
+> Sample Response
+
+```json
+{
+    "createdId": 355607703,
+    "warnings": [],
+    "errors": [],
+    "sideEffects": [
+        {
+            "rawAwardedPoints": 400.000,
+            "awardedPoints": 400,
+            "type": "points"
+        }
+    ]
+}
 ```
 
 ### Resource Information

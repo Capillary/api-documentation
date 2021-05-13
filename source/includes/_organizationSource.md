@@ -150,6 +150,7 @@ http://us.intouch.capillarytech.com/v2/entity/extended_field_config
 This API lets you show or hide a specific extended field on your org's InTouch account.
 
 ### Resource Information
+
 | | |
 --------- | ----------- |
 URI | `/entity/extended_field_config`
@@ -170,7 +171,7 @@ Batch Support | No
 
 ### Request Body Parameters
 Attribute | Datatype | Description
---------- | -----------
+--------- | -------- | -----------
 extendedFieldId* | long | Specify the unique id of the extended field that you want to show/hide
 createdOn | date | Date on which the field is created in `YYYY-MM-DD` format.
 createdBy | string | Unique id of the user that created the extended field.
@@ -183,7 +184,7 @@ position | boolean | Specify the position order of the extended field on the UI.
 
 
 
-## Retrieve Org Extended Fields
+## Get Org Extended Fields
 
 
 > Sample Request
@@ -943,6 +944,7 @@ externalIds | array | External IDs of the store.
 ```html
 https://us.api.capillarytech.com/v2/organization/programs
 ```
+
 > Sample Response
 
 ```json
@@ -1247,3 +1249,419 @@ Batch Support | No
 
 ### Request URL
 `{host}/v2/organization/configs/CONF_MAX_CARDS_PER_ORG`
+
+
+
+## Get Org Sources
+​
+Retrieves all sources configured for the org along with the supported communication channels for each source. 
+​
+​
+​
+> Sample Request
+​
+```html
+​
+https://us.api.capillarytech.com/v2/meta/sources
+​
+```
+​
+​
+​
+​
+> Sample Response 
+​
+```json
+​
+{
+   "data":[
+      {
+         "id":1,
+         "name":"Facebook",
+         "commChannels":[
+            "email",
+            "mobile"
+         ]
+      },
+      {
+         "id":2,
+         "name":"WEB_ENGAGE",
+         "commChannels":[
+            "android",
+            "email",
+            "ios",
+            "mobile"
+         ]
+      },
+      {
+         "id":3,
+         "name":"WECHAT",
+         "commChannels":[
+            "email",
+            "mobile",
+            "wechat"
+         ]
+      },
+      {
+         "id":5,
+         "name":"INSTORE",
+         "commChannels":[
+            "email",
+            "mobile",
+            "postmail",
+            "whatsapp"
+         ]
+      },
+      {
+         "id":6,
+         "name":"MARTJACK",
+         "commChannels":[
+            "email",
+            "whatsapp"
+         ]
+      },
+      {
+         "id":7,
+         "name":"TMALL",
+         "commChannels":[
+            "mobile"
+         ]
+      },
+      {
+         "id":8,
+         "name":"TAOBAO",
+         "commChannels":[
+            "email"
+         ]
+      },
+      {
+         "id":9,
+         "name":"JD",
+         "commChannels":[
+            "email"
+         ]
+      },
+      {
+         "id":10,
+         "name":"ECOMMERCE",
+         "commChannels":[
+            "email",
+            "mobile",
+            "whatsapp"
+         ]
+      },
+      {
+         "id":11,
+         "name":"WEBSITE",
+         "commChannels":[
+            "android",
+            "email",
+            "ios",
+            "mobile",
+            "wechat",
+            "whatsapp"
+         ]
+      },
+      {
+         "id":12,
+         "name":"LINE",
+         "commChannels":[
+            "email",
+            "line"
+         ]
+      },
+      {
+         "id":13,
+         "name":"XIAOHONGSHU",
+         "commChannels":[
+            "mobile"
+         ]
+      },
+      {
+         "id":14,
+         "name":"GLOBAL_SCANNER",
+         "commChannels":[
+            "email"
+         ]
+      },
+      {
+         "id":15,
+         "name":"SUNING",
+         "commChannels":[
+            "email",
+            "mobile"
+         ]
+      },
+      {
+         "id":16,
+         "name":"PINDUODUO",
+         "commChannels":[
+            "email",
+            "mobile"
+         ]
+      },
+      {
+         "id":17,
+         "name":"KAOLA",
+         "commChannels":[
+            "email"
+         ]
+      },
+      {
+         "id":18,
+         "name":"MOBILE_APP",
+         "commChannels":[
+            "android",
+            "ios",
+            "whatsapp"
+         ]
+      },
+      {
+         "id":19,
+         "name":"WHATSAPP",
+         "commChannels":[
+            "whatsapp"
+         ]
+      },
+      {
+         "id":20,
+         "name":"Linkedin",
+         "commChannels":[
+            
+         ]
+      },
+      {
+         "id":21,
+         "name":"SMS",
+         "commChannels":[
+            
+         ]
+      },
+      {
+         "id":22,
+         "name":"Indiamart",
+         "commChannels":[
+            
+         ]
+      },
+      {
+         "id":23,
+         "name":"VIBER",
+         "commChannels":[
+            "viber"
+         ]
+      },
+      {
+         "id":24,
+         "name":"MPUSH_FCM",
+         "commChannels":[
+            "android",
+            "ios"
+         ]
+      }
+   ],
+   "warnings":[
+      
+   ],
+   "errors":[
+      
+   ]
+}
+​
+```
+​
+​
+### Resource Information
+​
+​
+| | |
+--------- | ----------- |
+URI | `v2/meta/sources`
+HTTP Method | GET
+API Version | v2
+Batch Support | No
+Rate Limited? | No
+​
+​
+​
+### Request URL
+​
+​
+`https://{host}/v2/meta/sources`
+​
+​
+​
+​
+​
+​
+​
+​
+​
+## Get Source Configurations
+​
+Retrieves the configuration details of a specific source. 
+​
+​
+​
+> Sample Request
+​
+```html
+​
+https://us.api.capillarytech.com/v2/org/100458/sources/2/configs
+​
+```
+​
+​
+​
+​
+> Sample Response 
+​
+```json
+​
+{
+    "data": [
+        {
+            "id": 11,
+            "name": "licenseCode",
+            "type": "string",
+            "label": "License Code",
+            "sourceId": 2,
+            "defaultValue": "",
+            "displayOrder": 1,
+            "attribution": {
+                "createDate": "2017-03-02",
+                "modifiedDate": "2017-03-02"
+            }
+        },
+        {
+            "id": 12,
+            "name": "accessToken",
+            "type": "string",
+            "label": "Access Token",
+            "sourceId": 2,
+            "defaultValue": "",
+            "displayOrder": 2,
+            "attribution": {
+                "createDate": "2017-03-02",
+                "modifiedDate": "2017-03-02"
+            }
+        },
+        {
+            "id": 13,
+            "name": "android",
+            "type": "bool",
+            "label": "Android",
+            "sourceId": 2,
+            "defaultValue": "",
+            "displayOrder": 3,
+            "attribution": {
+                "createDate": "2017-03-02",
+                "modifiedDate": "2017-03-02"
+            }
+        },
+        {
+            "id": 14,
+            "name": "ios",
+            "type": "bool",
+            "label": "IOS",
+            "sourceId": 2,
+            "defaultValue": "",
+            "displayOrder": 4,
+            "attribution": {
+                "createDate": "2017-03-02",
+                "modifiedDate": "2017-03-02"
+            }
+        },
+        {
+            "id": 15,
+            "name": "validTill",
+            "type": "list",
+            "label": "Valid Till Name",
+            "sourceId": 2,
+            "defaultValue": "",
+            "displayOrder": 5,
+            "attribution": {
+                "createDate": "2017-03-02",
+                "modifiedDate": "2017-03-02"
+            }
+        },
+        {
+            "id": 16,
+            "name": "loginIdentifierType",
+            "type": "list",
+            "label": "Account linking identifier",
+            "sourceId": 2,
+            "defaultValue": "",
+            "displayOrder": 6,
+            "attribution": {
+                "createDate": "2017-03-02",
+                "modifiedDate": "2017-03-02"
+            }
+        },
+        {
+            "id": 24,
+            "name": "trans_campaign_id",
+            "type": "string",
+            "label": "trans_campaign_id",
+            "sourceId": 2,
+            "defaultValue": "",
+            "displayOrder": 0,
+            "attribution": {
+                "createDate": "2017-04-04",
+                "modifiedDate": "2017-04-04"
+            }
+        },
+        {
+            "id": 28,
+            "name": "deeplink",
+            "type": "list",
+            "label": "Deep Link",
+            "sourceId": 2,
+            "defaultValue": "",
+            "displayOrder": 7,
+            "attribution": {
+                "createDate": "2017-06-22",
+                "modifiedDate": "2017-06-22"
+            }
+        }
+    ],
+    "warnings": [],
+    "errors": []
+}
+​
+```
+​
+​
+### Resource Information
+​
+​
+| | |
+--------- | ----------- |
+URI | `v2/org/{orgId}/sources/{sourceId}/configs`
+HTTP Method | GET
+API Version | v2
+Batch Support | No
+Rate Limited? | No
+​
+​
+​
+### Request URL
+​
+​
+`https://{host}/v2/org/{orgId}/sources/{sourceId}/configs`
+​
+​
+​
+​
+​
+​
+### Request Path Parameters
+​
+Parameter | Datatype | Description
+--------- | -------- | -----------
+orgId* | int | Unique code to identify the organization. 
+sourceId* | int | Unique ID of the source to fetch configurations.   
+​
+​
+​
+<aside class="notice"> Parameters marked with * are mandatory. </aside>

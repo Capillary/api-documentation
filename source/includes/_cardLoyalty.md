@@ -195,7 +195,7 @@ API Version | v2
 Batch Support | No
 
 ### Request URL
-`https://{host}/v2/card/series/{seriesId}`
+`{host}/v2/card/series/{seriesId}`
 
 ### Request Query Parameter
 Parameter | Datatype | Description
@@ -334,7 +334,7 @@ API Version | v2
 Batch Support | No
 
 ### Request URL
-`https://{host}/v2/card/series/get/all`
+`{host}/v2/card/series/get/all`
 
 
 
@@ -389,7 +389,7 @@ API Version | v2
 Batch Support | No
 
 ### Request URL
-`https://{host}/v2/card/series/{seriesId}`
+`{host}/v2/card/series/{seriesId}`
 
 
 ### Request Query Parameter
@@ -467,7 +467,7 @@ API Version | v2
 Batch Support | No
 
 ### Request URL
-`https://{host}/v2/card/series/{seriesId}`
+`{host}/v2/card/series/{seriesId}`
 
 ### Request Body Parameters
 Parameter | Datatype | Description
@@ -532,7 +532,7 @@ API Version | v2
 Batch Support | No
 
 ### Request URL
-`https://{host}/v2/card/generate`
+`{host}/v2/card/generate`
 
 ### Request Body Parameters
 Parameter | Datatype | Description
@@ -590,7 +590,7 @@ API Version | v2
 Batch Support | No
 
 ### Request URL
-`https://{host}/v2/card/generation/logs/{seriesId}`
+`{host}/v2/card/generation/logs/{seriesId}`
 
 ### Request Query Parameters
 Parameter | Datatype | Description
@@ -643,7 +643,7 @@ API Version | v2
 Batch Support | No
 
 ### Request URL
-`https://{host}/v2/card`
+`{host}/v2/card`
 
 ### Request Body Parameters
 Parameter | Datatype | Description
@@ -702,7 +702,7 @@ API Version | v2
 Batch Support | No
 
 ### Request URL
-`https://{host}/v2/card?number={cardNumber}`
+`{host}/v2/card?number={cardNumber}`
 
 ### Request Query Parameters
 Parameter | Datatype | Description
@@ -939,6 +939,54 @@ Batch Support | NA
 ### Request URL
 
 `{host}/v2/genericStatus/card/labels`
+
+
+## Expire or Delete a Card
+
+Lets you expire an active card of a customer.
+
+* A generated card cannot be expired or deleted.
+* An expired card cannot be deleted.
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/card
+```
+
+> Sample PUT Request
+
+```json
+{
+	"cardNumber":"GOLD00000000000003002020",
+	"statusLabel":"EXPIRED"
+}
+```
+
+
+> Sample Response
+
+```json
+
+```
+
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/v2/card`
+Rate Limited? | Yes (1000 per hour)
+HTTP Methods | PUT
+Batch Support | No
+
+
+### Request Body Parameters
+Parameter | Datatype | Description
+--------- | -------- | -----------
+cardNumber* | string | Card number to expire or delete.
+statusLabel* | string | New custom status label related to expire to expire the card, and delete to delete the card.
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
 
 
 ## Get Card Status Changes Log

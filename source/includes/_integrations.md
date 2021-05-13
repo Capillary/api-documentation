@@ -11,10 +11,10 @@ Retrieves different scopes available for client creation configured for the orga
 > Sample Request
 
 ```html
-http://nightly.capillary.in/v3/integrations/clients
+http://eu.api.capillarytech.com/v3/integrations/clients
 ```
 
-> Sample POST Request
+> Sample Response
 
 ```json
 {
@@ -385,11 +385,9 @@ Lets you update permissions, client name, description, token expiry, and default
 https://eu.api.capillarytech.com/v3/integrations/clients/AAyjgiPapXefvmBEw7810dSio
 ```
 
-> Sample POST Request
+> Sample PUT Request
 
 ```json
-
-
 {
   "description": "Sample description",
   "name": "NewName2",
