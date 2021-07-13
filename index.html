@@ -8782,7 +8782,7 @@ If the email template is not specified, the validation code will be sent in the 
 <tr>
 <td>maxRedeem</td>
 <td>int</td>
-<td>Limit number of coupons to redeem</td>
+<td>Limit number of coupons to redeem.</td>
 </tr>
 <tr>
 <td>isTransferrable</td>
@@ -8814,50 +8814,217 @@ If the email template is not specified, the validation code will be sent in the 
 <td>boolean</td>
 <td></td>
 </tr>
+<tr>
+<td>isValidWithDiscountedItem</td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>createdBy</td>
+<td>long</td>
+<td>Unique ID of the admin who created the coupon series.</td>
+</tr>
+<tr>
+<td>numIssued</td>
+<td>int</td>
+<td>Number of coupons to be issued from the coupon series.</td>
+</tr>
+<tr>
+<td>numRedeemed</td>
+<td>int</td>
+<td>Number of coupons to be redeemed from the coupon series.</td>
+</tr>
+<tr>
+<td>createdOn</td>
+<td>date-time</td>
+<td>Date and time of series creation in `YYYY-MM-DDThh:mm:ssZ&quot;,</td>
+</tr>
+<tr>
+<td>lastUsed</td>
+<td>date-time</td>
+<td></td>
+</tr>
+<tr>
+<td>seriesCode</td>
+<td>string</td>
+<td>Unique alpha-numeric code of the coupon series.</td>
+</tr>
+<tr>
+<td>smsTemplate</td>
+<td>string</td>
+<td>Message to be sent to issue a coupon from the series. Use predefined tags in the  message wherever required. For example,  <code class="prettyprint">first_name</code>, <code class="prettyprint">last_name</code>, <code class="prettyprint">voucher</code>  (for voucher code) and so on.</td>
+</tr>
+<tr>
+<td>isSMSDisabled</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to disable sending coupon related SMS to audience.</td>
+</tr>
+<tr>
+<td>info</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>isMultipleVouchersPerUserAllowed</td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>doNotResendExistingVoucher</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>mutualExclusiveSeriesIds</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>storeIdsJson</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>isDvsEnabled</td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>dvsExpiryDate</td>
+<td>date-time</td>
+<td>Date and time of</td>
+</tr>
+<tr>
+<td>priority</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>shortSMSTemplate</td>
+<td>string</td>
+<td>Short message to send to users. Pass <code class="prettyprint">voucher_code</code> to insert coupon code in the message.</td>
+</tr>
+<tr>
+<td>maxVouchersPerUser</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>minDaysBetweenVouchers</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>maxReferralsPerReferee</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>discountUpto</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>discountValue</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>dvsItems</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>redemptionRange</td>
+<td></td>
+<td><code class="prettyprint">&quot;{\&quot;dom\&quot; : [1], \&quot;dow\&quot;: [1], \&quot;hours\&quot;: [1]}&quot;</code></td>
+</tr>
+<tr>
+<td>minBillAmount</td>
+<td>double</td>
+<td>Minimum transaction amount for which the coupon redemption is applicable.</td>
+</tr>
+<tr>
+<td>maxBillAmount</td>
+<td>double</td>
+<td>Maximum transaction amount for which the coupon redemption is applicable.</td>
+</tr>
+<tr>
+<td>redeemAtStore</td>
+<td>array</td>
+<td></td>
+</tr>
+<tr>
+<td>campaignId</td>
+<td>long</td>
+<td>Unique ID of the campaign associated with the series.</td>
+</tr>
+<tr>
+<td>tag</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>maxRedemptionsInSeriesPerUser</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>minDaysBetweenRedemption</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>redemptionValidFrom</td>
+<td>date-time</td>
+<td></td>
+</tr>
+<tr>
+<td>issueToLoyalty</td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>redeemStoreType</td>
+<td>enum</td>
+<td>redeemable_stores&quot;,</td>
+</tr>
+<tr>
+<td>offlineRedeemType</td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>isOldFlowEnabled</td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>isPreRedeemEventRequired</td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>termsAndConditions</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>signalRedemptionEvent</td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>syncToClient</td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>showPinCode</td>
+<td>boolean</td>
+<td></td>
+</tr>
 </tbody></table>
-
-<p>isValidWithDiscountedItem&quot;: true,
-createdBy | long | Unique ID of the admin who created the coupon series.
-numIssued | int  | Number of coupons to be issued from the coupon series.
-numRedeemed | int | Number of coupons to be redeemed from the coupon series.
-createdOn | date-time | Date and time of series creation in <code class="prettyprint">YYYY-MM-DDThh:mm:ssZ&quot;,
-lastUsed | date-time | 
-seriesCode | string | Unique alpha-numeric code of the coupon series.
-smsTemplate | string | Message to be sent to issue a coupon from the series. Use predefined tags in the  message wherever required. For example,</code>first_name<code class="prettyprint">,</code>last_name<code class="prettyprint">,</code>voucher<code class="prettyprint">(for voucher code) and so on.
-isSMSDisabled | boolean | Pass</code>true<code class="prettyprint">to disable sending coupon related SMS to audience.
-info | string | 
-isMultipleVouchersPerUserAllowed | boolean | 
-doNotResendExistingVoucher | | 
-mutualExclusiveSeriesIds | | 
-storeIdsJson | | 
-isDvsEnabled | boolean  | 
-dvsExpiryDate | date-time | Date and time of 
-priority | int | 
-shortSMSTemplate | string | Short message to send to users. Pass</code>voucher_code` to insert coupon code in the message.
-maxVouchersPerUser | | 
-minDaysBetweenVouchers | | 
-maxReferralsPerReferee | | 
-discountUpto | | 
-discountValue | | 
-dvsItems | | 
-redemptionRange |  | &ldquo;: &rdquo;{\&ldquo;dom\&rdquo; : [1], \&ldquo;dow\&rdquo;: [1], \&ldquo;hours\&rdquo;: [1]}&ldquo;,
-minBillAmount | double | Minimum transaction amount for which the coupon redemption is applicable.
-maxBillAmount | double | Maximum transaction amount for which the coupon redemption is applicable.
-redeemAtStore | array | 
-campaignId | long | Unique ID of the campaign associated with the series.
-tag | string | 
-maxRedemptionsInSeriesPerUser | int | &rdquo;: 122,
-minDaysBetweenRedemption | int | &ldquo;: 962,
-redemptionValidFrom | date-time | &rdquo;: &ldquo;2020-11-17T00:00:00Z&rdquo;,
-issueToLoyalty | boolean | false,
-redeemStoreType | enum | redeemable_stores&quot;,
-offlineRedeemType | boolean | false,
-isOldFlowEnabled | boolean | false,
-isPreRedeemEventRequired | boolean | false,
-termsAndConditions | string | 
-signalRedemptionEvent | boolean | &ldquo;: false
-syncToClient | boolean | 
-showPinCode | boolean | </p>
 
 <h2 id="update-coupon-series">Update coupon Series</h2>
 
