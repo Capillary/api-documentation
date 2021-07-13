@@ -18,7 +18,7 @@ For any other coupon related APIs, please use v1.1 APIs.
 > Sample Request
 
 ```html
-http://api.capillary.co.in/v2/coupon/redeem 
+http://eu.api.capillarytech.com/v2/coupon/redeem 
 
 ```
 
@@ -115,8 +115,10 @@ code* | string | Coupon code to be redeemed.
 
 
 ## Check if Coupon is Redeemable
+
+> Sample Request
+
 ```html
-# Sample Request
 http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000&code=6B88U6ED,V080OLI6&details=false
 ```
 > Sample Response
@@ -193,12 +195,17 @@ http://us.intouch.capillarytech.com/v2/coupon/is_redeemable?mobile=917601000000&
 Lets you check whether a set of coupons can be redeemed or not.
 
 ### Resource Information
+
 | | |
 --------- | ----------- |
 URI | `/is_redeemable?{customerIdentifier}&code={value1},{value2}...&details={true/extended}`
-Authentication  | Yes
-HTTP Method  | GET
-Batch Support  | Yes
+HTTP Method | GET
+API Version | v2
+Batch Support | Yes
+
+
+
+
 
 ### Request URL
 `http://{host}/v2/coupon/is_redeemable?{customerIdentifier}&code={value1},{value2}...&details={true/extended}`
@@ -215,9 +222,68 @@ details=extended | - | Retrieves the details of coupon configurations (set on ca
 <aside class="warning"> You can pass either coupon ID or coupon code. Any one parameter is required.</aside>
 
 
-## Create Card Series
+## Reactivate Redeemed Coupon
 
-Lets you create a new card series.
+> Sample Request
+
+```html
+http://eu.api.capillarytech.com/v2/coupon/reactivate
+
+```
+
+> Sample POST Request
+
+```json
+{
+ "redemptionIds": [
+   83146
+ ]
+}
+```
+
+
+> Sample Response
+
+```json
+{
+   "warnings": [],
+   "errors": [],
+   "success": true
+}
+
+```
+
+### Resource Information
+
+| | |
+--------- | ----------- |
+URI | `/reactivate`
+HTTP Method | POST
+API Version | v2
+Batch Support | Yes
+
+
+
+
+
+### Request URL
+`http://{host}/v2/coupon/reactivate`
+
+### Request Body Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+redemptionIds* | array | Pass the redemption id to reactivate. To reactivate multiple redeemed coupons, pass each value in a separate line with comma separated values.
+
+<aside class="notice">The parameter marked with * is mandatory. </aside>
+
+
+
+
+
+## Create coupon Series
+
+Lets you create a new coupon series for the org.
 
 > Sample Request
 
@@ -377,15 +443,14 @@ https://eu.api.capillarytech.com/v2/coupon/series
 
 
 ### Resource Information
-​
-​
 | | |
 --------- | ----------- |
 URI | `coupon/series`
 HTTP Method | POST
 API Version | v2
 Batch Support | No
-Rate Limited? | No
+
+
 ​
 ​
 ​
@@ -402,9 +467,239 @@ Rate Limited? | No
 
 Parameter | Datatype | Description
 --------- | -------- | -----------
+customPropertyMap | obj | 
+description | string | Brief description of the card series.
+discountCode | string | Discount code 
+validTillDate | date-time | Validity of the card series in UTC timestamp. Format: YYYY-MM-DDTHH:MM:SS+/-(time-zone). 
+expiryStrategyValue | int | 
+maxCreate | int | 
+maxRedeem | int | Limit number of coupons to redeem.
+isTransferrable | boolean | Pass `true` if the recipient can transfer the coupon to someone else.
+anyUser | boolean | Pass `true` if any customer can redeem the coupon, pass `false` only if the customer who received the coupon can only redeem it.
+sameUserMultipleRedeem | boolean | Pass `true` to allow users to redeem the coupon multiple times.
+isReferralExistingUsersAllowed | boolean | 
+isMultipleUseAllowed | boolean | 
+isValidationRequired | boolean | 
+isValidWithDiscountedItem | boolean | 
+createdBy | long | Unique ID of the admin who created the coupon series.
+numIssued | int  | Number of coupons to be issued from the coupon series.
+numRedeemed | int | Number of coupons to be redeemed from the coupon series.
+createdOn | date-time | Date and time of series creation in `YYYY-MM-DDThh:mm:ssZ",
+lastUsed | date-time | 
+seriesCode | string | Unique alpha-numeric code of the coupon series.
+smsTemplate | string | Message to be sent to issue a coupon from the series. Use predefined tags in the  message wherever required. For example,  `first_name`, `last_name`, `voucher`  (for voucher code) and so on.
+isSMSDisabled | boolean | Pass `true` to disable sending coupon related SMS to audience.
+info | string | 
+isMultipleVouchersPerUserAllowed | boolean | 
+doNotResendExistingVoucher | | 
+mutualExclusiveSeriesIds | | 
+storeIdsJson | | 
+isDvsEnabled | boolean  | 
+dvsExpiryDate | date-time | Date and time of 
+priority | int | 
+shortSMSTemplate | string | Short message to send to users. Pass `voucher_code` to insert coupon code in the message.
+maxVouchersPerUser | | 
+minDaysBetweenVouchers | | 
+maxReferralsPerReferee | | 
+discountUpto | | 
+discountValue | | 
+dvsItems | | 
+redemptionRange |  | `"{\"dom\" : [1], \"dow\": [1], \"hours\": [1]}"`
+minBillAmount | double | Minimum transaction amount for which the coupon redemption is applicable.
+maxBillAmount | double | Maximum transaction amount for which the coupon redemption is applicable.
+redeemAtStore | array | 
+campaignId | long | Unique ID of the campaign associated with the series.
+tag | string | 
+maxRedemptionsInSeriesPerUser | int | 
+minDaysBetweenRedemption | int | 
+redemptionValidFrom | date-time | 
+issueToLoyalty | boolean | 
+redeemStoreType | enum | redeemable_stores",
+offlineRedeemType | boolean | 
+isOldFlowEnabled | boolean | 
+isPreRedeemEventRequired | boolean | 
+termsAndConditions | string | 
+signalRedemptionEvent | boolean | 
+syncToClient | boolean | 
+showPinCode | boolean | 
 
 
 
+
+
+
+## Update coupon Series
+
+Lets you update an existing coupon series.
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/coupon/series/
+```
+
+> Sample POST Request
+
+```json
+{
+  "customPropertyMap": {},
+  "id": 0,
+  "additionalDescription": "string",
+  "orgId": 0,
+  "description": "string",
+  "discountCode": "string",
+  "validTillDate": "2021-05-24T09:18:59.261Z",
+  "validDaysFromCreation": 0,
+  "expiryStrategyValue": 0,
+  "maxCreate": 0,
+  "maxRedeem": 0,
+  "isTransferrable": false,
+  "anyUser": false,
+  "sameUserMultipleRedeem": false,
+  "isReferralExistingUsersAllowed": false,
+  "isMultipleUseAllowed": false,
+  "isValidationRequired": false,
+  "isValidWithDiscountedItem": false,
+  "createdBy": 0,
+  "numIssued": 0,
+  "numRedeemed": 0,
+  "createdOn": "2021-05-24T09:18:59.261Z",
+  "lastUsed": "2021-05-24T09:18:59.261Z",
+  "seriesCode": "string",
+  "smsTemplate": "string",
+  "isSMSDisabled": false,
+  "info": "string",
+  "isMultipleVouchersPerUserAllowed": false,
+  "doNotResendExistingVoucher": false,
+  "mutualExclusiveSeriesIds": "string",
+  "storeIdsJson": "string",
+  "isDvsEnabled": false,
+  "dvsExpiryDate": "2021-05-24T09:18:59.261Z",
+  "priority": 0,
+  "shortSMSTemplate": "string",
+  "maxVouchersPerUser": 0,
+  "minDaysBetweenVouchers": 0,
+  "maxReferralsPerReferee": 0,
+  "discountUpto": 0,
+  "discountValue": 0,
+  "dvsItems": "string",
+  "redemptionRange": "string",
+  "minBillAmount": 0,
+  "maxBillAmount": 0,
+  "redeemAtStore": "string",
+  "campaignId": 0,
+  "tag": "string",
+  "maxRedemptionsInSeriesPerUser": 0,
+  "minDaysBetweenRedemption": 0,
+  "redemptionValidFrom": "2021-05-24T09:18:59.261Z",
+  "sourceOrgId": 0,
+  "issueToLoyalty": false,
+  "redeemStoreType": "string",
+  "offlineRedeemType": false,
+  "isOldFlowEnabled": false,
+  "isPreRedeemEventRequired": false,
+  "productInfo": [
+    {
+      "productType": "string",
+      "productIds": [
+        0
+      ]
+    }
+  ],
+  "termsAndConditions": "string",
+  "signalRedemptionEvent": false,
+  "syncToClient": false,
+  "showPinCode": false,
+  "purpose": "string",
+  "metadata": "string",
+  "couponSeriesAudience": [
+    {
+      "audienceId": 0,
+      "audienceName": "string",
+      "customerCount": 0,
+      "audienceGroupVersionId": 0
+    }
+  ],
+  "redemptionOrgEntityDetails": [
+    {
+      "redemptionOrgEntityType": "string",
+      "orgEntityId": 0
+    }
+  ],
+  "targetUserDetails": {
+    "validMaxUserTransactionLimit": 0,
+    "validUserRegistrationStartTime": 0,
+    "validUserRegistrationEndTime": 0
+  },
+  "couponUploadInfo": [
+    {
+      "jobId": 0,
+      "uploadStatus": "string",
+      "createdOn": 0,
+      "updatedOn": 0,
+      "errorFileUrl": "string",
+      "successFileUrl": "string",
+      "uploadedFileUrl": "string",
+      "totalUploadedCount": 0,
+      "actualRowCount": 0,
+      "errorCount": 0,
+      "uploadedFileName": "string",
+      "audienceGroupId": 0,
+      "audienceGroupVersionId": 0
+    }
+  ],
+  "numUploadedNonIssued": 0,
+  "numUploadedTotal": 0,
+  "redemptionValidAfterDays": 0,
+  "ownedBy": "string",
+  "ownerId": 0,
+  "redemptionOrgEntityType": "string",
+  "ownerValidity": 0,
+  "alphaNumeric": false,
+  "shortCodeLength": 0,
+  "randomCodeLength": 0,
+  "fixedExpiryDate": 0,
+  "numTotal": 0,
+  "latestIssualTime": 0,
+  "latestRedemptionTime": 0,
+  "genericCode": "string",
+  "resendMessageEnabled": false,
+  "campaignName": "string",
+  "seriesType": "string",
+  "clientHandlingType": "string",
+  "expiryStrategyType": "string",
+  "discountOn": "string",
+  "discountType": "string",
+  "externalIssual": false,
+  "updateProductData": false
+}
+```
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `coupon/series/{id}`
+HTTP Method | PUT
+API Version | v2
+Batch Support | No
+
+
+
+​
+​
+​
+### Request URL
+​
+​
+`https://{host}/v2/coupon/series`
+
+
+
+### Request Body Parameters
+
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
 
 
 
@@ -492,8 +787,6 @@ https://eu.api.capillarytech.com/v2/coupon/issue
 
 
 ### Resource Information
-​
-​
 | | |
 --------- | ----------- |
 URI | `coupon/issue`
@@ -607,15 +900,15 @@ https://eu.api.capillarytech.com/v2/coupon/bulk/issue?source=INSTORE
 
 
 ### Resource Information
-​
-​
 | | |
 --------- | ----------- |
 URI | `coupon/bulk/issue?source={source}&accountId={accountId}`
 HTTP Method | POST
-API Version | v2
-Batch Support | Yes (coupons)
-Rate Limited? | No
+API Version | Yes
+Batch Support | No
+
+
+
 ​
 ​
 ​
@@ -764,8 +1057,6 @@ https://eu.api.capillarytech.com/v2/coupon/redeem
 
 
 ### Resource Information
-​
-​
 | | |
 --------- | ----------- |
 URI | `coupon/redeem`
@@ -777,8 +1068,7 @@ Rate Limited? | No
 ​
 ​
 ### Request URL
-​
-​
+
 `https://{host}/v2/coupon/redeem`
 
 
@@ -884,10 +1174,8 @@ https://eu.api.capillarytech.com/v2/coupon/bulk/redeem?source=INSTORE
 
 
 ### Resource Information
-​
-​
 | | |
---------- | ----------- |
+--------- | ----------- | 
 URI | `coupon/bulk/redeem?source={source}&accountId={accountId}`
 HTTP Method | POST
 API Version | v2
@@ -898,16 +1186,13 @@ Rate Limited? | No
 ​
 ### Request URL
 ​
-​
 `https://{host}/v2/coupon/bulk/redeem?{paramName}={paramValue}`
 
 
 
 ### Request Query Parameters
-
-
-Parameter | Datatype | Description
---------- | -------- | -----------
+| | |
+--------- | ----------- |
 source* | enum | Registered source of the customer.
 accountId** | string | Account ID for sources with multiple accounts. Required for multi-source accounts.
 
@@ -1020,8 +1305,6 @@ https://eu.api.capillarytech.com/v2/coupon?issuedToIds=126080386&issuedToIds=108
 ```
 
 ### Resource Information
-​
-​
 | | |
 --------- | ----------- |
 URI | `/coupon?{paramName}={paramValue}`
@@ -1029,12 +1312,10 @@ HTTP Method | GET
 API Version | v2
 Batch Support | Yes
 Rate Limited? | No
-​
-​
-​
+
 ### Request URL
-​
-​
+
+
 `https://{host}/v2/coupon?{paramName}={paramValue}`
 
 
@@ -1156,21 +1437,16 @@ https://eu.api.capillarytech.com/v2/coupon/series?ids=18426
 
 
 ### Resource Information
-​
-​
 | | |
 --------- | ----------- |
 URI | `/coupon/series?ids={offerId}`
 HTTP Method | GET
 API Version | v2
 Batch Support | Yes
-Rate Limited? | No
-​
 ​
 ​
 ### Request URL
-​
-​
+
 `https://{host}/v2/coupon/series?ids={offerId}`
 
 

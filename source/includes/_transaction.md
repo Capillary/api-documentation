@@ -55,294 +55,293 @@ https://eu.intouch.capillarytech.com/v2/transactions/bulk
 
 ```json
 [
-  {
-    "identifierType": "mobile",
-    "identifierValue": "919740000000",
-    "source": "INSTORE",
-    "accountId": "",
-    "type": "REGULAR",
-    "billNumber": "num-668288857749",
-	"billingDate": "2020-12-28T10:18:01.534Z",
-    "discount": "10",
-    "billAmount": "200",
-    "note": "this is test",
-    "grossAmount": "110",
-    "deliveryStatus": "SHIPPED",
-    "paymentModes": [
-      {
-        "attributes": {
-          "wallet_type": "Cliq Cash"
-        },
-        "notes": "notes_6555444",
-        "mode": "CHECKAPI",
-        "value": "500"
-      }
-    ],
-	"redemptions": {
-   "pointsRedemptions": [
-		123453,
-		345673
-	],
-   "couponRedemptions": [
-		727272, 
-		237878
-	]
- },
-    "extendedFields": {
-      "ship_first_name": "22.02",
-      "ship_last_name": "10.50"
-    },
-    "customFields": {
-      "trans_cf_a": "abc"
-    },
-    "lineItemsV2": [
-      {
-        "itemCode": "sku_486741_2",
-        "amount": 100.5,
-		"description": "sample description",
-		"discount": 0,
-        "rate": 100.5,
-        "qty": 1,
-        "extendedFields": {
-          "MetalRate": "22.02",
-          "GrossWeight": "10.50"
-        }
+   {
+      "identifierType":"mobile",
+      "identifierValue":"919740000000",
+      "source":"INSTORE",
+      "accountId":"",
+      "type":"REGULAR",
+      "billNumber":"num-668288857749",
+      "billingDate":"2020-12-28T10:18:01.534Z",
+      "discount":"10",
+      "billAmount":"200",
+      "note":"this is test",
+      "grossAmount":"110",
+      "deliveryStatus":"SHIPPED",
+      "paymentModes":[
+         {
+            "mode":"Card Payment",
+            "value":"5104",
+            "attributes":{
+               "card_type":"Visa"
+            }
+         }
+      ],
+      "redemptions":{
+         "pointsRedemptions":[
+            123453,
+            345673
+         ],
+         "couponRedemptions":[
+            727272,
+            237878
+         ]
       },
-      {
-        "itemCode": "sku_486741_2",
-        "amount": 100.5,
-		"description": "sample description",
-		"discount": 0,
-        "rate": 100.5,
-        "qty": 1,
-        "extendedFields": {
-          "MetalRate": "22.02",
-          "GrossWeight": "10.50"
-        }
+      "extendedFields":{
+         "ship_first_name":"22.02",
+         "ship_last_name":"10.50"
       },
-      {
-        "itemCode": "sku_486741_3",
-        "amount": 100.5,
-        "rate": 100.5,
-        "qty": 1,
-        "extendedFields": {
-          "gender": "Male",
-          "marital_status": "Married"
-        },
-        "customFields": {
-          "cashierid": "jim2345",
-          "city": "Bangalore"
-        }
+      "customFields":{
+         "trans_cf_a":"abc"
       },
-      {
-        "itemCode": "sku_486741_4",
-        "amount": 100.5,
-        "rate": 100.5,
-        "qty": 1,
-        "extendedFields": {
-          "MetalRate": "22.02",
-          "GrossWeight": "10.50"
-        }
+      "lineItemsV2":[
+         {
+            "itemCode":"sku_486741_2",
+            "amount":100.5,
+            "description":"sample description",
+            "discount":0,
+            "rate":100.5,
+            "qty":1,
+            "extendedFields":{
+               "MetalRate":"22.02",
+               "GrossWeight":"10.50"
+            }
+         },
+         {
+            "itemCode":"sku_486741_2",
+            "amount":100.5,
+            "description":"sample description",
+            "discount":0,
+            "rate":100.5,
+            "qty":1,
+            "extendedFields":{
+               "MetalRate":"22.02",
+               "GrossWeight":"10.50"
+            }
+         },
+         {
+            "itemCode":"sku_486741_3",
+            "amount":100.5,
+            "rate":100.5,
+            "qty":1,
+            "extendedFields":{
+               "gender":"Male",
+               "marital_status":"Married"
+            },
+            "customFields":{
+               "cashierid":"jim2345",
+               "city":"Bangalore"
+            }
+         },
+         {
+            "itemCode":"sku_486741_4",
+            "amount":100.5,
+            "rate":100.5,
+            "qty":1,
+            "extendedFields":{
+               "MetalRate":"22.02",
+               "GrossWeight":"10.50"
+            }
+         },
+         {
+            "itemCode":"sku_486741_5",
+            "amount":100.5,
+            "rate":100.5,
+            "qty":1,
+            "extendedFields":{
+               "MetalRate":"22.02",
+               "GrossWeight":"10.50"
+            }
+         },
+         {
+            "itemCode":"sku_486741_6",
+            "amount":100.5,
+            "rate":100.5,
+            "qty":1,
+            "extendedFields":{
+               "MetalRate":"22.02",
+               "GrossWeight":"10.50"
+            }
+         },
+         {
+            "itemCode":"sku_486741_7",
+            "amount":100.5,
+            "rate":100.5,
+            "qty":1,
+            "extendedFields":{
+               "MetalRate":"22.02",
+               "GrossWeight":"10.50"
+            }
+         },
+         {
+            "itemCode":"sku_486741_8",
+            "amount":100.5,
+            "discount":0,
+            "rate":100.5,
+            "qty":1,
+            "extendedFields":{
+               "MetalRate":"22.02",
+               "GrossWeight":"10.50"
+            }
+         },
+         {
+            "itemCode":"sku_486741_9",
+            "amount":100.5,
+            "rate":100.5,
+            "qty":1,
+            "extendedFields":{
+               "MetalRate":"22.02",
+               "GrossWeight":"10.50"
+            }
+         },
+         {
+            "itemCode":"sku_486741_10",
+            "amount":100.5,
+            "rate":100.5,
+            "qty":1,
+            "extendedFields":{
+               "MetalRate":"22.02",
+               "GrossWeight":"10.50"
+            }
+         }
+      ]
+   },
+   {
+      "identifierType":"mobile",
+      "identifierValue":"919740000000",
+      "source":"INSTORE",
+      "accountId":"",
+      "type":"REGULAR",
+      "billNumber":"num-668288857765",
+      "discount":"10",
+      "billAmount":"200",
+      "note":"this is test",
+      "grossAmount":"110",
+      "deliveryStatus":"SHIPPED",
+      "paymentModes":[
+         {
+            "attributes":{
+               "BankNameAPI":"value_6555444"
+            },
+            "notes":"notes_6555444",
+            "mode":"CHECKAPI",
+            "value":"500"
+         }
+      ],
+      "extendedFields":{
+         "ship_first_name":"22.02",
+         "ship_last_name":"10.50"
       },
-      {
-        "itemCode": "sku_486741_5",
-        "amount": 100.5,
-        "rate": 100.5,
-        "qty": 1,
-        "extendedFields": {
-          "MetalRate": "22.02",
-          "GrossWeight": "10.50"
-        }
+      "customFields":{
+         "trans_cf_a":"abc"
       },
-      {
-        "itemCode": "sku_486741_6",
-        "amount": 100.5,
-        "rate": 100.5,
-        "qty": 1,
-        "extendedFields": {
-          "MetalRate": "22.02",
-          "GrossWeight": "10.50"
-        }
-      },
-      {
-        "itemCode": "sku_486741_7",
-        "amount": 100.5,
-        "rate": 100.5,
-        "qty": 1,
-        "extendedFields": {
-          "MetalRate": "22.02",
-          "GrossWeight": "10.50"
-        }
-      },
-      {
-        "itemCode": "sku_486741_8",
-        "amount": 100.5,
-		"discount": 0,
-        "rate": 100.5,
-        "qty": 1,
-        "extendedFields": {
-          "MetalRate": "22.02",
-          "GrossWeight": "10.50"
-        }
-      },
-      {
-        "itemCode": "sku_486741_9",
-        "amount": 100.5,
-        "rate": 100.5,
-        "qty": 1,
-        "extendedFields": {
-          "MetalRate": "22.02",
-          "GrossWeight": "10.50"
-        }
-      },
-      {
-        "itemCode": "sku_486741_10",
-        "amount": 100.5,
-        "rate": 100.5,
-        "qty": 1,
-        "extendedFields": {
-          "MetalRate": "22.02",
-          "GrossWeight": "10.50"
-        }
-      }
-    ]
-  },
-  {
-    "identifierType": "mobile",
-    "identifierValue": "919740000000",
-    "source": "INSTORE",
-    "accountId": "",
-    "type": "REGULAR",
-    "billNumber": "num-668288857765",
-    "discount": "10",
-    "billAmount": "200",
-    "note": "this is test",
-    "grossAmount": "110",
-    "deliveryStatus": "SHIPPED",
-    "paymentModes": [
-      {
-        "attributes": {
-          "BankNameAPI": "value_6555444"
-        },
-        "notes": "notes_6555444",
-        "mode": "CHECKAPI",
-        "value": "500"
-      }
-    ],
-    "extendedFields": {
-      "ship_first_name": "22.02",
-      "ship_last_name": "10.50"
-    },
-    "customFields": {
-      "trans_cf_a": "abc"
-    },
-    "lineItemsV2": [
-      {
-        "itemCode": "sku_486741_2",
-        "amount": 100.5,
-        "rate": 100.5,
-        "qty": 1,
-        "extendedFields": {
-          "MetalRate": "22.02",
-          "GrossWeight": "10.50"
-        }
-      },
-      {
-        "itemCode": "sku_486741_2",
-        "amount": 100.5,
-        "rate": 100.5,
-        "qty": 1,
-        "extendedFields": {
-          "MetalRate": "22.02",
-          "GrossWeight": "10.50"
-        }
-      },
-      {
-        "itemCode": "sku_486741_3",
-        "amount": 100.5,
-        "rate": 100.5,
-        "qty": 1,
-        "extendedFields": {
-          "MetalRate": "22.02",
-          "GrossWeight": "10.50"
-        }
-      },
-      {
-        "itemCode": "sku_486741_4",
-        "amount": 100.5,
-        "rate": 100.5,
-        "qty": 1,
-        "extendedFields": {
-          "MetalRate": "22.02",
-          "GrossWeight": "10.50"
-        }
-      },
-      {
-        "itemCode": "sku_486741_5",
-        "amount": 100.5,
-        "rate": 100.5,
-        "qty": 1,
-        "extendedFields": {
-          "MetalRate": "22.02",
-          "GrossWeight": "10.50"
-        }
-      },
-      {
-        "itemCode": "sku_486741_6",
-        "amount": 100.5,
-        "rate": 100.5,
-        "qty": 1,
-        "extendedFields": {
-          "MetalRate": "22.02",
-          "GrossWeight": "10.50"
-        }
-      },
-      {
-        "itemCode": "sku_486741_7",
-        "amount": 100.5,
-        "rate": 100.5,
-        "qty": 1,
-        "extendedFields": {
-          "MetalRate": "22.02",
-          "GrossWeight": "10.50"
-        }
-      },
-      {
-        "itemCode": "sku_486741_8",
-        "amount": 100.5,
-        "rate": 100.5,
-        "qty": 1,
-        "extendedFields": {
-          "gender": "Male",
-          "marital_status": "Married"
-        },
-        "customFields": {
-          "cashierid": "jim2345",
-          "city": "Bangalore"
-        }
-      },
-      {
-        "itemCode": "sku_486741_9",
-        "amount": 100.5,
-        "rate": 100.5,
-        "qty": 1,
-        "extendedFields": {
-          "MetalRate": "22.02",
-          "GrossWeight": "10.50"
-        }
-      },
-      {
-        "itemCode": "sku_486741_10",
-        "amount": 100.5,
-        "rate": 100.5,
-        "qty": 1,
-        "extendedFields": {
-          "MetalRate": "22.02",
-          "GrossWeight": "10.50"
-        }
-      }
-    ]
-  }
+      "lineItemsV2":[
+         {
+            "itemCode":"sku_486741_2",
+            "amount":100.5,
+            "rate":100.5,
+            "qty":1,
+            "extendedFields":{
+               "MetalRate":"22.02",
+               "GrossWeight":"10.50"
+            }
+         },
+         {
+            "itemCode":"sku_486741_2",
+            "amount":100.5,
+            "rate":100.5,
+            "qty":1,
+            "extendedFields":{
+               "MetalRate":"22.02",
+               "GrossWeight":"10.50"
+            }
+         },
+         {
+            "itemCode":"sku_486741_3",
+            "amount":100.5,
+            "rate":100.5,
+            "qty":1,
+            "extendedFields":{
+               "MetalRate":"22.02",
+               "GrossWeight":"10.50"
+            }
+         },
+         {
+            "itemCode":"sku_486741_4",
+            "amount":100.5,
+            "rate":100.5,
+            "qty":1,
+            "extendedFields":{
+               "MetalRate":"22.02",
+               "GrossWeight":"10.50"
+            }
+         },
+         {
+            "itemCode":"sku_486741_5",
+            "amount":100.5,
+            "rate":100.5,
+            "qty":1,
+            "extendedFields":{
+               "MetalRate":"22.02",
+               "GrossWeight":"10.50"
+            }
+         },
+         {
+            "itemCode":"sku_486741_6",
+            "amount":100.5,
+            "rate":100.5,
+            "qty":1,
+            "extendedFields":{
+               "MetalRate":"22.02",
+               "GrossWeight":"10.50"
+            }
+         },
+         {
+            "itemCode":"sku_486741_7",
+            "amount":100.5,
+            "rate":100.5,
+            "qty":1,
+            "extendedFields":{
+               "MetalRate":"22.02",
+               "GrossWeight":"10.50"
+            }
+         },
+         {
+            "itemCode":"sku_486741_8",
+            "amount":100.5,
+            "rate":100.5,
+            "qty":1,
+            "extendedFields":{
+               "gender":"Male",
+               "marital_status":"Married"
+            },
+            "customFields":{
+               "cashierid":"jim2345",
+               "city":"Bangalore"
+            }
+         },
+         {
+            "itemCode":"sku_486741_9",
+            "amount":100.5,
+            "rate":100.5,
+            "qty":1,
+            "extendedFields":{
+               "MetalRate":"22.02",
+               "GrossWeight":"10.50"
+            }
+         },
+         {
+            "itemCode":"sku_486741_10",
+            "amount":100.5,
+            "rate":100.5,
+            "qty":1,
+            "extendedFields":{
+               "MetalRate":"22.02",
+               "GrossWeight":"10.50"
+            }
+         }
+      ]
+   }
 ]
 ```
 
@@ -881,18 +880,17 @@ https://us.api.capillarytech.com/v2/transactions?source=instore&identifierValue=
   "billNumber": "num-1234",
   "discount": "10",
   "billAmount": "200",
-  "note": "this is test",
+  "note": "This is test",
   "grossAmount": "110",
   "deliveryStatus": "SHIPPED",
     "paymentModes": [
         {
-            "attributes": {
-                "name": "BankNameAPI", 
-                "value": "value_6555444"
-            }, 
-            "notes": "notes_6555444", 
-            "mode": "CHECKAPI", 
-            "value": "500"
+          "mode": "Card Payment",
+          "value": 5104,
+		  "notes": "Sample notes",
+          "attributes": {
+             "card_type": "Visa"
+           }
         }
     ], 
   "extendedFields": {
@@ -900,7 +898,6 @@ https://us.api.capillarytech.com/v2/transactions?source=instore&identifierValue=
     "ship_last_name": "Singh",
     "checkin_date":"2010-06-04 21:08:12",
     "checkout_date":"2010-06-05 21:08:12"
-    
   },
   "customFields": {
     "paymentmode": "cash"
@@ -917,7 +914,7 @@ https://us.api.capillarytech.com/v2/transactions?source=instore&identifierValue=
       }
     },
     {
-      "itemCode": "sku_{{sku}}_10",
+      "itemCode": "sku_sdf_10",
       "amount": 100.5,
       "rate": 100.5,
       "qty": 1.0,

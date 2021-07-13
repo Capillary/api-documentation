@@ -286,7 +286,7 @@ https://eu.api.capillarytech.com/v2/transaction/38233952?type=REGULAR
 
 Entry | Description
 ----- | -----------
-Host | The server to which the API calls are made, usually the cluster URL. <br> **India**: https://apac.api.capillary.co.in <br> **APAC2**: https://apac2.api.capillarytech.com <br>**EU**: https://eu.api.capillarytech.com <br>**US**: https://us.api.capillarytech.com <br>**China**: https://cdn-api.capillarytech.cn.com [or] https://api.capillarytech.cn.com 
+Host | The server to which the API calls are made, usually the cluster URL. <br> **India**: https://apac.api.capillarytech.com <br> **APAC2**: https://apac2.api.capillarytech.com <br>**EU**: https://eu.api.capillarytech.com <br>**US**: https://us.api.capillarytech.com <br>**China**: https://cdn-api.capillarytech.cn.com [or] https://api.capillarytech.cn.com 
 BasePath | v2 or v3(API version)
 Resource | Provide the appropriate entity based on the action to be performed. **Supported Resources**: customers, communications, coupon, organization, points, product, store, transaction, goodwill requests, add events, integration resources, referral, request and other resources.
 HTTP Methods | The Capillary Cloud REST APIs support the standard HTTP methods GET, PUT, DELETE and POST.
