@@ -13183,21 +13183,21 @@ https://us.api.capillarytech.com/v2/customer/walkin?till_code=kn.003<span class=
 <p>This API lets you add a vertical to an org. </p>
 
 <blockquote>
-<p>Sample Request
-<code class="prettyprint">html
-https://us.api.capillarytech.com/v2/verticals
-</code></p>
-
-<p>Sample Post Request
-<code class="prettyprint">json
-{
-   &quot;orgId&quot;:100458,
-   &quot;verticalId&quot;:11,
-   &quot;verticalName&quot;:&quot;Apparel&quot;,
-   &quot;isActive&quot;:true
-}
-</code></p>
-
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/verticals
+</code></pre>
+<blockquote>
+<p>Sample Post Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"orgId"</span><span class="p">:</span><span class="mi">100458</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"verticalId"</span><span class="p">:</span><span class="mi">11</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"verticalName"</span><span class="p">:</span><span class="s2">"Apparel"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"isActive"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
 <p>Sample Response </p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -13398,8 +13398,8 @@ https://us.api.capillarytech.com/v2/verticals/meta
 
 <table><thead>
 <tr>
-<th>Information</th>
-<th>Value</th>
+<th></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
@@ -13425,11 +13425,16 @@ https://us.api.capillarytech.com/v2/verticals/meta
 <p><code class="prettyprint">htpps://{host}/v2/verticals/meta</code></p>
 
 <h2 id="retrieve-verticals-enabled-for-the-org">Retrieve Verticals Enabled for the Org</h2>
-<pre class="highlight html"><code># Sample Request
-https://us.api.capillarytech.com/v2/verticals
-</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
 
-</span><span class="p">{</span><span class="w">
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/verticals
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
         </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
