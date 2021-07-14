@@ -2512,12 +2512,12 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <tr>
 <td>identifierName*</td>
 <td>enum</td>
-<td>Identifier type used to get customer details. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">cardnumber</code>.</td>
+<td>Identifier type used to get customer details. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">cardnumber</code>, <code class="prettyprint">cardExternalId</code>.</td>
 </tr>
 <tr>
 <td>identifierValue*</td>
 <td>string</td>
-<td>Value of the identifierName passed. For example, <code class="prettyprint">externalId=externalId123</code></td>
+<td>Value of the identifierName passed. For example, <code class="prettyprint">identifierName=cardExternalId&amp;identifierValue=cardUUID123</code></td>
 </tr>
 <tr>
 <td>source*</td>
@@ -13180,139 +13180,154 @@ https://us.api.capillarytech.com/v2/customer/walkin?till_code=kn.003<span class=
 
 <h2 id="add-vertical">Add Vertical</h2>
 
-<p>​
-This API lets you add a vertical to an org. 
-​
-​
-​</p>
+<p>This API lets you add a vertical to an org. </p>
 
 <blockquote>
-<p>Sample Request
-​
-<code class="prettyprint">html
-​
-https://us.api.capillarytech.com/v2/verticals
-​
-</code>
-​
-Sample Post Request
-​
-<code class="prettyprint">json
-​
-{
-   &quot;orgId&quot;:100458,
-   &quot;verticalId&quot;:11,
-   &quot;verticalName&quot;:&quot;Apparel&quot;,
-   &quot;isActive&quot;:true
-}
-​
-</code>
-​
-​
-Sample Response 
-​
-&ldquo;`json
-​
-{
-   &quot;entity&rdquo;:true,
-   &ldquo;warnings&rdquo;:[</p>
+<p>Sample Request</p>
 </blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/verticals
+</code></pre>
+<blockquote>
+<p>Sample Post Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"orgId"</span><span class="p">:</span><span class="mi">100458</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"verticalId"</span><span class="p">:</span><span class="mi">11</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"verticalName"</span><span class="p">:</span><span class="s2">"Apparel"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"isActive"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response </p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"entity"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"warnings"</span><span class="p">:[</span><span class="w">
 
-<p>]
-}
-​
-&ldquo;`
-​
-​</p>
-
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <h3 id="resource-information">Resource Information</h3>
 
-<p>​
-​
-| | |
-&mdash;&mdash;&mdash; | &mdash;&mdash;&mdash;&ndash; |
-URI | <code class="prettyprint">v2/verticals</code>
-HTTP Method | POST
-API Version | v2
-Batch Support | No
-Rate Limited? | No
-​
-​
-​</p>
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/verticals</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+</tbody></table>
 
 <h3 id="request-url">Request URL</h3>
 
-<p>​
-​
-<code class="prettyprint">https://{host}/v2/verticals</code>
-​
-​
-​
-​
-​
-​</p>
+<p><code class="prettyprint">https://{host}/v2/verticals</code></p>
 
 <h3 id="request-body-parameters">Request Body Parameters</h3>
 
-<p>​
-Parameter | Datatype | Description
-&mdash;&mdash;&mdash; | &mdash;&mdash;&ndash; | &mdash;&mdash;&mdash;&ndash;
-orgId | int | Unique ID of the org for which you want to add a vertical. 
-verticalId* | int | Unique ID of the vertical to add. 
-verticalName | string | Name of the vertical.
-isActive* | boolean | Pass &lsquo;true<code class="prettyprint">to activate the vertical for an org. The default value is</code>true`.
-​
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orgId</td>
+<td>int</td>
+<td>Unique ID of the org for which you want to add a vertical.</td>
+</tr>
+<tr>
+<td>verticalId*</td>
+<td>int</td>
+<td>Unique ID of the vertical to add.</td>
+</tr>
+<tr>
+<td>verticalName</td>
+<td>string</td>
+<td>Name of the vertical.</td>
+</tr>
+<tr>
+<td>isActive*</td>
+<td>boolean</td>
+<td>Pass &lsquo;true<code class="prettyprint">to activate the vertical for an org. The default value is</code>true`.</td>
+</tr>
+</tbody></table>
+
 <aside class="notice"> Parameter marked with * is mandatory. </aside>
-​
-​</p>
 
 <h2 id="remove-vertical">Remove Vertical</h2>
 
-<p>​
-This API removes a vertical from the org. 
-​
-​
-​</p>
+<p>This API removes a vertical from the org. </p>
 
 <blockquote>
-<p>Sample Request
-​
-<code class="prettyprint">html
-​
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>
 https://us.api.capillarytech.com/v2/verticals/11
-​
-</code>
-​
-​
-​
-​
-Sample Response 
-​
-<code class="prettyprint">json
-​
-{
-    &quot;orgId&quot;: 100458,
-    &quot;verticalId&quot;: 11,
-    &quot;isActive&quot;: true,
-    &quot;warnings&quot;: []
-}
-​
-</code>
-​
-​</p>
 
+</code></pre>
+<blockquote>
+<p>Sample Response </p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100458</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"verticalId"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
 <h3 id="resource-information">Resource Information</h3>
 
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/verticals/(vericalId)</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>DELETE</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
 <p>​
-​
-| | |
-&mdash;&mdash;&mdash; | &mdash;&mdash;&mdash;&ndash; |
-URI | <code class="prettyprint">v2/verticals/(vericalId)</code>
-HTTP Method | DELETE
-API Version | v2
-Batch Support | No
-Rate Limited? | No
-​
 ​
 ​</p>
 
@@ -13320,25 +13335,25 @@ Rate Limited? | No
 
 <p>​
 ​
-<code class="prettyprint">https://{host}/v2/verticals/{verticalId}</code>
-​
-​
-​
-​
-​
-​</p>
+<code class="prettyprint">https://{host}/v2/verticals/{verticalId}</code></p>
 
 <h3 id="request-path-parameters">Request Path Parameters</h3>
 
-<p>​
-Parameter | Datatype | Description
-&mdash;&mdash;&mdash; | &mdash;&mdash;&ndash; | &mdash;&mdash;&mdash;&ndash;
-verticalId* | int | Unique ID of the vertical to delete. 
-​
-​
-​
-<aside class="notice"> Parameter marked with * is mandatory. </aside></p>
-</blockquote>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>verticalId*</td>
+<td>int</td>
+<td>Unique ID of the vertical to delete.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> Parameter marked with * is mandatory. </aside>
 
 <h2 id="retrieve-all-verticals-available-for-the-org">Retrieve All Verticals Available for the Org</h2>
 <pre class="highlight html"><code># Sample Request
@@ -13383,8 +13398,8 @@ https://us.api.capillarytech.com/v2/verticals/meta
 
 <table><thead>
 <tr>
-<th>Information</th>
-<th>Value</th>
+<th></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
@@ -13410,11 +13425,16 @@ https://us.api.capillarytech.com/v2/verticals/meta
 <p><code class="prettyprint">htpps://{host}/v2/verticals/meta</code></p>
 
 <h2 id="retrieve-verticals-enabled-for-the-org">Retrieve Verticals Enabled for the Org</h2>
-<pre class="highlight html"><code># Sample Request
-https://us.api.capillarytech.com/v2/verticals
-</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
 
-</span><span class="p">{</span><span class="w">
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/verticals
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
         </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
@@ -19793,6 +19813,7 @@ Batch Support | No
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="w">
   </span><span class="s2">"cardNumber"</span><span class="p">:</span><span class="s2">"EXTERNALCARD99123450233"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cardExternalId"</span><span class="p">:</span><span class="s2">"externalCardRe123"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"statusLabel"</span><span class="p">:</span><span class="s2">"CARD GENERATED"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -20204,6 +20225,111 @@ Batch Support | No
 <h3 id="request-url">Request URL</h3>
 
 <p><code class="prettyprint">{host}/v2/genericStatus/card/labels</code></p>
+
+<h2 id="add-external-reference-id-to-card">Add External Reference ID to Card</h2>
+
+<p>Lets you update an external reference ID to a card.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/card
+</code></pre>
+<blockquote>
+<p>Sample PUT Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"cardNumber"</span><span class="p">:</span><span class="s2">"GOLD00000000000003002020"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cardExternalId"</span><span class="p">:</span><span class="s2">"externalId123"</span><span class="w">
+    </span><span class="s2">"statusLabel"</span><span class="p">:</span><span class="s2">"EXPIRED"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">    </span><span class="s2">"cardId"</span><span class="p">:</span><span class="w"> </span><span class="mi">66996</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"customerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">98662653</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cardExternalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"externalId123"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cardNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOLD500000000000554572020"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100458</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">75040399</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"statusLabelInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-11-27"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"default"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"entityStatusId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACTIVE"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100458</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-11-27"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACTIVE"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CARD"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="s2">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"transactionNotAllowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No update in status label"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">3039</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/v2/card</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes (1000 per hour)</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>PUT</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>cardNumber*</td>
+<td>string</td>
+<td>Card number to update.</td>
+</tr>
+<tr>
+<td>cardExternalId*</td>
+<td>string</td>
+<td>External reference ID to be tagged.</td>
+</tr>
+<tr>
+<td>statusLabel*</td>
+<td>string</td>
+<td>Current or new custom status label (required to update status labels.)</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
 
 <h2 id="expire-or-delete-a-card">Expire or Delete a Card</h2>
 
@@ -36300,6 +36426,379 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <td>User reward is partially successful (in case of batch issual).</td>
 </tr>
 </tbody></table>
+
+          <h1 id="promotions">Promotions</h1>
+
+<h2 id="create-promotion">Create Promotion</h2>
+
+<p>Lets you create a promotion for a specific loyalty program. 
+​
+​</p>
+
+<blockquote>
+<p>Sample Request
+​
+<code class="prettyprint">html
+​
+https://api.capillary.co.in/api_gateway/loyalty/v1/programs/{programId}/promotions/add/simple
+​
+</code>
+​
+​
+Sample POST Request
+​
+<code class="prettyprint">json
+​
+{
+    &quot;id&quot;: 59,
+    &quot;name&quot;: &quot;promo demo postman&quot;,
+    &quot;programId&quot;: 1745,
+    &quot;startDate&quot;: &quot;2021-06-15T12:00:00+01:00&quot;,
+    &quot;endDate&quot;: &quot;2022-01-01T12:00:00+01:00&quot;,
+    &quot;allocatePointsOn&quot;: &quot;BILL&quot;,
+    &quot;identifier&quot;: &quot;new_test_promotion_for_119&quot;,
+    &quot;eventName&quot;: &quot;TRANSACTIONADD&quot;,
+    &quot;metadata&quot;: [
+        {
+            &quot;key&quot;: &quot;&quot;,
+            &quot;value&quot;: &quot;&quot;
+        }
+    ],
+    &quot;allocationActions&quot;: [
+        {
+            &quot;A1&quot;: {
+                &quot;allocation&quot;: {
+                    &quot;type&quot;: &quot;FIXED&quot;,
+                    &quot;value&quot;: 1.25
+                },
+                &quot;expiry&quot;: {
+                    &quot;type&quot;: &quot;DAYS&quot;,
+                    &quot;value&quot;: 2
+                },
+                &quot;rounding&quot;: &quot;ROUND&quot;
+            }
+        }
+    ],
+    &quot;qualifyingConditions&quot;: [
+        {
+            &quot;C1&quot;: {
+                &quot;kpi&quot;: &quot;value&quot;,
+                &quot;params&quot;: null,
+                &quot;matchValue&quot;: &quot;100&quot;,
+                &quot;entity&quot;: &quot;BILL&quot;,
+                &quot;operator&quot;: &quot;GREATER_THAN&quot;
+            }
+        }
+    ],
+    &quot;conditionExpression&quot;: &quot;C1&quot;,
+    &quot;allocationRule&quot;: [
+        {
+            &quot;allocation_ref&quot;: &quot;A1&quot;
+        }
+    ],
+    &quot;limits&quot;: {
+        &quot;pointsPerCustomer&quot;: -1,
+        &quot;numberOfTimesPerCustomer&quot;: -1,
+        &quot;totalPointsInPromotion&quot;: -1
+    }
+}
+​
+</code>
+​
+​
+Sample Response
+​
+<code class="prettyprint">json
+​
+{
+    &quot;status&quot;: {
+        &quot;code&quot;: 200,
+        &quot;message&quot;: &quot;success&quot;
+    },
+    &quot;validationErrors&quot;: null,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 12525,
+            &quot;name&quot;: &quot;promo demo postman&quot;,
+            &quot;programId&quot;: 1745,
+            &quot;startDate&quot;: &quot;2021-06-15T00:00:00.612+05:30&quot;,
+            &quot;endDate&quot;: &quot;2022-01-01T23:59:59.612+05:30&quot;,
+            &quot;identifier&quot;: &quot;new_test_promotion_for_119&quot;,
+            &quot;eventName&quot;: &quot;TRANSACTIONADD&quot;,
+            &quot;metadata&quot;: [
+                {
+                    &quot;key&quot;: &quot;key&quot;,
+                    &quot;value&quot;: &quot;value&quot;,
+                    &quot;isBrandDefined&quot;: &quot;false&quot;
+                }
+            ],
+            &quot;unsavedMetadataList&quot;: null,
+            &quot;allocatePointsOn&quot;: &quot;BILL&quot;,
+            &quot;allocationActions&quot;: [
+                {
+                    &quot;A1&quot;: {
+                        &quot;allocation&quot;: {
+                            &quot;type&quot;: &quot;FIXED&quot;,
+                            &quot;value&quot;: 1.25
+                        },
+                        &quot;expiry&quot;: {
+                            &quot;type&quot;: &quot;DAYS&quot;,
+                            &quot;value&quot;: &quot;2&quot;
+                        },
+                        &quot;rounding&quot;: &quot;ROUND&quot;
+                    }
+                }
+            ],
+            &quot;qualifyingConditions&quot;: null,
+            &quot;conditionExpression&quot;: null,
+            &quot;allocationRule&quot;: null,
+            &quot;limits&quot;: {
+                &quot;pointsPerCustomer&quot;: -1,
+                &quot;numberOfTimesPerCustomer&quot;: -1,
+                &quot;totalPointsInPromotion&quot;: -1
+            },
+            &quot;active&quot;: true
+        }
+    ]
+}
+​
+</code>
+​
+​</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<p>​
+| | |
+&mdash;&mdash;&mdash; | &mdash;&mdash;&mdash;&ndash; |
+URI | <code class="prettyprint">api_gateway/loyalty/v1/programs/{programId}/promotions/add/simple?{queryparam}={value}</code>
+HTTP Method | POST
+API Version | v1
+Rate Limited | Yes
+Batch Support | No
+​
+​
+​</p>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/api_gateway/loyalty/v1/programs/{programId}/promotions/add/simple</code>
+​
+​
+​</p>
+
+<h3 id="request-post-parameters">Request POST Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id*</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>name*</td>
+<td>string</td>
+<td>Unique name of the promotion.</td>
+</tr>
+<tr>
+<td>programId*</td>
+<td>int</td>
+<td>Unique ID of the loyalty program to associate with the promotion. You can create multiple promotions under a single loyalty program.</td>
+</tr>
+<tr>
+<td>startDate*</td>
+<td>date-time</td>
+<td>Validity of the promotion. Pass the date range in <code class="prettyprint">startDate</code> and <code class="prettyprint">endDate</code> (ISO standard - <code class="prettyprint">yyyy-mm-ddThh:mm:ss.s+z</code>).</td>
+</tr>
+<tr>
+<td>endDate*</td>
+<td>date-time</td>
+<td>Validity of the promotion. Pass the ISO date range in <code class="prettyprint">startDate</code> and <code class="prettyprint">endDate</code> (ISO standard - <code class="prettyprint">yyyy-mm-ddThh:mm:ss.s+z</code>).</td>
+</tr>
+<tr>
+<td>allocatePointsOn</td>
+<td>string</td>
+<td>Enter event action name that generates promotional points. For example,  <code class="prettyprint">Bill</code>.</td>
+</tr>
+<tr>
+<td>identifier*</td>
+<td>string</td>
+<td>Unique identifier of the promotion.</td>
+</tr>
+<tr>
+<td>eventName*</td>
+<td>enum</td>
+<td>Name of the event to associate with the promotion. For example, <code class="prettyprint">TRANSACTIONADD</code>, <code class="prettyprint">CUSTOMERUPDATE</code>, <code class="prettyprint">OfferScan</code>, <code class="prettyprint">spinTheWheel</code>, and more.</td>
+</tr>
+<tr>
+<td>metadata</td>
+<td>obj</td>
+<td>Enter meta information of the promotion in key and value.</td>
+</tr>
+<tr>
+<td>allocationActions</td>
+<td>obj</td>
+<td>Allocation attributes like allocation type, expiry days, and more.</td>
+</tr>
+<tr>
+<td>qualifyingConditions</td>
+<td>array</td>
+<td>Array of different conditions like KPI, parameters, and more.</td>
+</tr>
+<tr>
+<td>conditionExpression</td>
+<td>string</td>
+<td>Name of the condition that is passed in <code class="prettyprint">qualifyingConditions</code>.</td>
+</tr>
+<tr>
+<td>allocationRule</td>
+<td>array</td>
+<td>Set the condition to generate the promotional points.</td>
+</tr>
+<tr>
+<td>limits</td>
+<td>obj</td>
+<td>Set the maximum number of promotional points issued to a customer during a specific promotion period. Set the maximum number of times points can be issued to a customer during a promotion period. Set the total number of points that can be generated during a promotion period.</td>
+</tr>
+</tbody></table>
+</blockquote>
+
+<aside class="notice"> Parameter marked with * is mandatory. </aside>
+
+<p>​
+​
+​</p>
+
+<h2 id="get-promotion-details">Get Promotion Details</h2>
+
+<p>Retrieves the promotion details.
+​
+​
+​</p>
+
+<blockquote>
+<p>Sample Request
+​
+<code class="prettyprint">html
+​
+https://api.capillary.co.in/api_gateway/loyalty/v1/programs/1745/promotions/12525
+​
+</code>
+​
+​
+​
+Sample Response
+​
+<code class="prettyprint">json
+​
+{
+    &quot;status&quot;: {
+        &quot;code&quot;: 200,
+        &quot;message&quot;: &quot;success&quot;
+    },
+    &quot;validationErrors&quot;: null,
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 12525,
+            &quot;name&quot;: &quot;promo demo postman&quot;,
+            &quot;programId&quot;: 1745,
+            &quot;startDate&quot;: &quot;2021-06-15T00:00+05:30&quot;,
+            &quot;endDate&quot;: &quot;2022-01-01T23:59:59+05:30&quot;,
+            &quot;identifier&quot;: &quot;new_test_promotion_for_119&quot;,
+            &quot;eventName&quot;: &quot;TRANSACTIONADD&quot;,
+            &quot;metadata&quot;: [
+                {
+                    &quot;key&quot;: &quot;key&quot;,
+                    &quot;value&quot;: &quot;value&quot;,
+                    &quot;isBrandDefined&quot;: &quot;false&quot;
+                }
+            ],
+            &quot;unsavedMetadataList&quot;: null,
+            &quot;allocatePointsOn&quot;: &quot;BILL&quot;,
+            &quot;allocationActions&quot;: [
+                {
+                    &quot;A1&quot;: {
+                        &quot;allocation&quot;: {
+                            &quot;type&quot;: &quot;FIXED&quot;,
+                            &quot;value&quot;: 1.25
+                        },
+                        &quot;expiry&quot;: {
+                            &quot;type&quot;: &quot;DAYS&quot;,
+                            &quot;value&quot;: &quot;2&quot;
+                        },
+                        &quot;rounding&quot;: &quot;ROUND&quot;
+                    }
+                }
+            ],
+            &quot;qualifyingConditions&quot;: null,
+            &quot;conditionExpression&quot;: null,
+            &quot;allocationRule&quot;: null,
+            &quot;limits&quot;: {
+                &quot;pointsPerCustomer&quot;: -1,
+                &quot;numberOfTimesPerCustomer&quot;: -1,
+                &quot;totalPointsInPromotion&quot;: -1
+            },
+            &quot;active&quot;: true
+        }
+    ]
+}
+​
+</code>
+​
+​
+​</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<p>​
+| | |
+&mdash;&mdash;&mdash; | &mdash;&mdash;&mdash;&ndash; |
+URI | <code class="prettyprint">api_gateway/loyalty/v1/programs/(programId)/promotions/{promotionId}</code>
+HTTP Method | GET
+API Version | v1
+Authentication | Yes
+Rate Limited | Yes
+Batch Support | No
+​
+​
+​</p>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/api_gateway/loyalty/v1/programs/(programId)/promotions/{promotionId}</code>
+​
+​
+​</p>
+
+<h3 id="request-path-parameters">Request Path Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>programId*</td>
+<td>int</td>
+<td>Unique ID of the loyalty program.You can fetch multiple promotions that run under a single loyalty program.</td>
+</tr>
+<tr>
+<td>promotionId*</td>
+<td>int</td>
+<td>Unique ID of the loyalty promotion.</td>
+</tr>
+</tbody></table>
+</blockquote>
+
+<aside class="notice"> Parameter marked with * is mandatory. </aside>
 
           <h1 id="recommendations">Recommendations</h1>
 

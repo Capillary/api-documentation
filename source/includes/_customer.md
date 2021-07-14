@@ -1348,8 +1348,8 @@ Batch Support | No
 ### Request Query Parameters
 Parameter | Datatype | Description
 --------- | -------- | -----------
-identifierName* | enum | Identifier type used to get customer details. Values: `mobile`, `email`, `externalId`, `cardnumber`.
-identifierValue* | string | Value of the identifierName passed. For example, `externalId=externalId123`
+identifierName* | enum | Identifier type used to get customer details. Values: `mobile`, `email`, `externalId`, `cardnumber`, `cardExternalId`.
+identifierValue* | string | Value of the identifierName passed. For example, `identifierName=cardExternalId&identifierValue=cardUUID123`
 source* | enum | Source from which you want to fetch details. Value: `INSTORE`, `MARTJACK`, `WECHAT`, `ALL`. ( to fetch details from all sources. For sources with multiple accounts, you also need to pass the specific accountId.
 accountId** |  string | For sources with multiple accounts, pass the specific accountId.
 embed | enum | To include the details of a specific entity in response. Value: `points`, `subscriptions`, `mlp`, `promotionalPoints`, `expirySchedules`, `expiredPoints`. For example, `embed=expiredPoints` retrieves the summary of expired points of the customer. <br>Usage: <code>{host}/v2/customers/{CustomerId}/source=INSTORE&&embed=points</code>.

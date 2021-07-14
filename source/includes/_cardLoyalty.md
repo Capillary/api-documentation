@@ -617,6 +617,7 @@ https://eu.api.capillarytech.com/v2/card
 {
   "seriesId":15,
   "cardNumber":"EXTERNALCARD99123450233",
+  "cardExternalId":"externalCardRe123",
   "statusLabel":"CARD GENERATED"
 }
 ```
@@ -939,6 +940,88 @@ Batch Support | NA
 ### Request URL
 
 `{host}/v2/genericStatus/card/labels`
+
+
+
+
+## Add External Reference ID to Card
+
+Lets you update an external reference ID to a card.
+
+
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/card
+```
+
+> Sample PUT Request
+
+```json
+{
+	"cardNumber":"GOLD00000000000003002020",
+	"cardExternalId":"externalId123"
+	"statusLabel":"EXPIRED"
+}
+```
+
+
+> Sample Response
+
+```json
+    "cardId": 66996,
+    "customerId": 98662653,
+    "cardExternalId": "externalId123",
+    "cardNumber": "GOLD500000000000554572020",
+    "orgId": 100458,
+    "entityId": 75040399,
+    "statusLabelInfo": {
+        "createdOn": "2020-11-27",
+        "description": "default",
+        "entityStatusId": 2,
+        "id": 15,
+        "isActive": true,
+        "label": "ACTIVE",
+        "orgId": 100458,
+        "updatedOn": "2020-11-27",
+        "status": "ACTIVE",
+        "type": "CARD",
+        "actions": {},
+        "default": false
+    },
+    "transactionNotAllowed": false,
+    "warnings": [
+        {
+            "status": false,
+            "message": "No update in status label",
+            "code": 3039
+        }
+    ]
+}
+```
+
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/v2/card`
+Rate Limited? | Yes (1000 per hour)
+HTTP Methods | PUT
+Batch Support | No
+
+
+### Request Body Parameters
+Parameter | Datatype | Description
+--------- | -------- | -----------
+cardNumber* | string | Card number to update.
+cardExternalId* | string | External reference ID to be tagged.
+statusLabel* | string | Current or new custom status label (required to update status labels.)
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
+
+
+
 
 
 ## Expire or Delete a Card

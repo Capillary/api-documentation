@@ -6,50 +6,38 @@ Vertical represents the type of business. For example, apparel, jewelry, and e-c
 
 
 ## Add Vertical
-​
 This API lets you add a vertical to an org. 
-​
-​
-​
+
 > Sample Request
-​
+
 ```html
-​
 https://us.api.capillarytech.com/v2/verticals
-​
 ```
-​
+
 > Sample Post Request
-​
+
 ```json
-​
 {
    "orgId":100458,
    "verticalId":11,
    "verticalName":"Apparel",
    "isActive":true
 }
-​
 ```
-​
-​
+
 > Sample Response 
-​
+
 ```json
-​
 {
    "entity":true,
    "warnings":[
       
    ]
 }
-​
 ```
-​
-​
+
 ### Resource Information
-​
-​
+
 | | |
 --------- | ----------- |
 URI | `v2/verticals`
@@ -57,65 +45,49 @@ HTTP Method | POST
 API Version | v2
 Batch Support | No
 Rate Limited? | No
-​
-​
-​
+
 ### Request URL
-​
-​
+
 `https://{host}/v2/verticals`
-​
-​
-​
-​
-​
-​
+
 ### Request Body Parameters
-​
+
 Parameter | Datatype | Description
 --------- | -------- | -----------
 orgId | int | Unique ID of the org for which you want to add a vertical. 
 verticalId* | int | Unique ID of the vertical to add. 
 verticalName | string | Name of the vertical.
 isActive* | boolean | Pass 'true` to activate the vertical for an org. The default value is `true`.
-​
+
 <aside class="notice"> Parameter marked with * is mandatory. </aside>
-​
-​
+
 ## Remove Vertical
-​
+
 This API removes a vertical from the org. 
-​
-​
-​
+
 > Sample Request
-​
+
 ```html
-​
+
 https://us.api.capillarytech.com/v2/verticals/11
-​
+
 ```
-​
-​
-​
-​
+
 > Sample Response 
-​
+
 ```json
-​
+
 {
     "orgId": 100458,
     "verticalId": 11,
     "isActive": true,
     "warnings": []
 }
-​
+
 ```
-​
-​
+
 ### Resource Information
-​
-​
+
 | | |
 --------- | ----------- |
 URI | `v2/verticals/(vericalId)`
@@ -130,20 +102,15 @@ Rate Limited? | No
 ​
 ​
 `https://{host}/v2/verticals/{verticalId}`
-​
-​
-​
-​
-​
-​
+
+
 ### Request Path Parameters
-​
+
 Parameter | Datatype | Description
 --------- | -------- | -----------
 verticalId* | int | Unique ID of the vertical to delete. 
-​
-​
-​
+
+
 <aside class="notice"> Parameter marked with * is mandatory. </aside>
 
 
@@ -196,8 +163,8 @@ Retrieves the list of all verticals available for the org. This include both act
 
 ### Resource Information
 
-Information | Value
------------ | -----
+| | |
+--------- | ----------- |
 URI | `/verticals/meta`
 Authentication | Yes
 HTTP Method | GET
@@ -211,14 +178,15 @@ Batch Support | NA
 
 ## Retrieve Verticals Enabled for the Org 
 
+> Sample Request
+
 ```html
-# Sample Request
 https://us.api.capillarytech.com/v2/verticals
 ```
 
-```json
-# Sample Response
+> Sample Response
 
+```json
 {
     "pagination": {
         "limit": 10,
@@ -276,10 +244,6 @@ Batch Support | NA
 
 ### Request URL
 `htpps://{host}/v2/verticals`
-
-
-
-
 
 
 
