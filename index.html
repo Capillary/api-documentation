@@ -1751,7 +1751,9 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 </tr>
 </tbody></table>
 
-<h2 id="associate-fleet-with-customer-company">Associate Fleet with Customer/Company</h2>
+<h2 id="associate-customer-with-customer-hierarchy">Associate Customer with Customer/Hierarchy</h2>
+
+<p>Lets you batch register customer or associate customer with company or hierarchy. The batch support is to register parent and child customer at the same time.</p>
 
 <blockquote>
 <p>Sample Request</p>
@@ -2662,7 +2664,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 </tr>
 <tr>
 <td>Batch Support</td>
-<td>Yes</td>
+<td>No</td>
 </tr>
 </tbody></table>
 
@@ -2762,7 +2764,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <tr>
 <td>roleCode</td>
 <td>string</td>
-<td>Pre defined role code - Role of the customer/company in the hierarchy.</td>
+<td>Pre defined role code - Role of the customer in the hierarchy.</td>
 </tr>
 <tr>
 <td>parentCustomer</td>
@@ -2777,7 +2779,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <tr>
 <td>childCustomers</td>
 <td>obj</td>
-<td>Profiles of the child customers/companies.</td>
+<td>Profiles of the child customers.</td>
 </tr>
 <tr>
 <td>externalId</td>
@@ -2787,17 +2789,17 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <tr>
 <td>profiles</td>
 <td>obj</td>
-<td>Details of the customer or company to associate.</td>
+<td>Details of the customer to associate.</td>
 </tr>
 <tr>
 <td>Firstname</td>
 <td>string</td>
-<td>First name of the customer or company.</td>
+<td>First name of the customer.</td>
 </tr>
 <tr>
 <td>Lastname</td>
 <td>string</td>
-<td>Last name of the customer or company.</td>
+<td>Last name of the customer.</td>
 </tr>
 <tr>
 <td>identifiers*</td>
@@ -3317,22 +3319,22 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <tr>
 <td>childCustomers</td>
 <td>obj</td>
-<td>Details of child customers/company.</td>
+<td>Details of child customers.</td>
 </tr>
 <tr>
 <td>profiles</td>
 <td>obj</td>
-<td>Details of the customer or company to associate.</td>
+<td>Details of the customer to associate.</td>
 </tr>
 <tr>
 <td>Firstname</td>
 <td>string</td>
-<td>First name of the customer or company.</td>
+<td>First name of the customer.</td>
 </tr>
 <tr>
 <td>Lastname</td>
 <td>string</td>
-<td>Last name of the customer or company.</td>
+<td>Last name of the customer.</td>
 </tr>
 <tr>
 <td>identifiers*</td>
@@ -3637,8 +3639,8 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 </tr>
 <tr>
 <td>sortOrder</td>
+<td>enum</td>
 <td>Sort the results in ascending, <code class="prettyprint">ASC</code> or descending, <code class="prettyprint">DESC</code> order of sortBy</td>
-<td></td>
 </tr>
 </tbody></table>
 
@@ -39444,7 +39446,7 @@ https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/item/similar-a
 <li><strong>Group Permissions</strong>: Allows setting up Loyalty permissions such as points redemption and points transfer for each member of the group based on the role. </li>
 </ul>
 
-<h3 id="create-fleet-hierarchy">Create Fleet Hierarchy</h3>
+<h2 id="create-fleet-hierarchy">Create Fleet Hierarchy</h2>
 
 <p>Lets you create the business hierarchy for the org.</p>
 
@@ -39641,7 +39643,7 @@ https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/item/similar-a
 <tr>
 <td>pointsAggregationRole</td>
 <td>boolean</td>
-<td>Set both  <code class="prettyprint">pointsAggregationRole</code> and <code class="prettyprint">autoGroupCreationEnabled</code> to true, to create a group implicitly and the user in the current role becomes the owner of the group. All other users associated with this user in the hierarchy get automatically added and become members of the group. <br> For example, assume A-&gt;B-&gt;C-&gt;D  are the roles in a hierarchy with A being the parent of B and so on. If <code class="prettyprint">pointsAggregationRole</code> is set to true for role C, whenever a user with role C gets registered, a group is automatically created. User in role C will be the owner of the group and all the users associated with him in roles A,B,D are automatically added as members of the group.</td>
+<td>To create a group implicitly, set both <code class="prettyprint">pointsAggregationRole</code> and <code class="prettyprint">autoGroupCreationEnabled</code> to true. <br>The user in the current role will become the owner of the group. All the other users conjoined with the user in the hierarchy will be included automatically and become the members of the group.<br><strong>Example</strong>: Assume A &gt; B &gt; C &gt; D as the roles in a hierarchy.<br>A is the parent of B. B is the parent of C. C is the parent of D.<br>Set <code class="prettyprint">pointsAggregationRole</code> to true for the role C to get a user registered.<br>The group is also automatically created along with this command. The user in role C will now be the owner of the group. <br>All the users associated with the user C, in roles A, B and D are also automatically added as members of the group.</td>
 </tr>
 <tr>
 <td>autoGroupCreationEnabled</td>
@@ -39662,7 +39664,7 @@ https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/item/similar-a
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
 
-<h3 id="update-fleet-hierarchy">Update Fleet Hierarchy</h3>
+<h2 id="update-fleet-hierarchy">Update Fleet Hierarchy</h2>
 
 <p>Lets you update an existing business hierarchy for the org.</p>
 
@@ -39830,12 +39832,12 @@ https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/item/similar-a
 <tr>
 <td>maxChild</td>
 <td>long</td>
-<td>Maximum number of</td>
+<td>Maximum number of child users allowed for the parent role.</td>
 </tr>
 <tr>
 <td>permissions</td>
-<td>Array</td>
-<td>Permissions granted to the role. For example, Points transfer, Points redemption. These specified permissions are applicable to all users in the current role.</td>
+<td>array</td>
+<td>Permissions granted to the role. Values: <code class="prettyprint">earn_points</code>, <code class="prettyprint">burn_points</code>. These specified permissions are applicable to all users in the current role.</td>
 </tr>
 <tr>
 <td>permissionCode</td>
@@ -40109,8 +40111,8 @@ https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/item/similar-a
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight json"><code><span class="err">https</span><span class="p">:</span><span class="err">//us.api.capillarytech.com/v</span><span class="mi">2</span><span class="err">/fleetHierarchy/all</span><span class="w">
-</span></code></pre>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/fleetHierarchy/all
+</code></pre>
 <blockquote>
 <p>Sample Response</p>
 </blockquote>
@@ -41145,117 +41147,6 @@ https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/item/similar-a
 <td>Sort the results in ascending (<code class="prettyprint">asc</code>) or descending (<code class="prettyprint">desc</code>) order of the chosen <code class="prettyprint">soryBy</code></td>
 </tr>
 </tbody></table>
-
-<h2 id="get-group-company-audit-log-fleet-audit-log">Get Group Company Audit Log (Fleet Audit Log)</h2>
-
-<p>Retrieves the log of a specific company or hierarchy audit.</p>
-
-<blockquote>
-<p>Sample Request</p>
-</blockquote>
-<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/auditLog?entityType=FLEET_COMPANY<span class="err">&amp;</span>entityId=66
-</code></pre>
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-   </span><span class="s2">"entity"</span><span class="p">:[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-         </span><span class="s2">"entityState"</span><span class="p">:</span><span class="s2">"(createdBy:15071481, createdOn:Tue Jun 15 12:19:33 IST 2021, externalId:ex-81816585, fleetHierarchyId:15, id:66, name:name-81816585, orgId:1231, updatedBy:15071481)"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"changedProperties"</span><span class="p">:[</span><span class="w">
-            </span><span class="s2">"createdOn"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"updatedBy"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"isActive"</span><span class="w">
-         </span><span class="p">],</span><span class="w">
-         </span><span class="s2">"action"</span><span class="p">:</span><span class="s2">"UPDATE"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"triggeredOn"</span><span class="p">:</span><span class="s2">"2021-06-15T12:19:41+05:30"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-         </span><span class="s2">"entityState"</span><span class="p">:</span><span class="s2">"(createdBy:15071481, createdOn:Tue Jun 15 12:19:33 IST 2021, externalId:ex-81816585, fleetHierarchyId:15, id:66, isActive:true, name:name-81816585, orgId:1231)"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"changedProperties"</span><span class="p">:[</span><span class="w">
-            </span><span class="s2">"fleetHierarchyId"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"createdBy"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"externalId"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"isActive"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"createdOn"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"orgId"</span><span class="w">
-         </span><span class="p">],</span><span class="w">
-         </span><span class="s2">"action"</span><span class="p">:</span><span class="s2">"INITIAL"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"triggeredOn"</span><span class="p">:</span><span class="s2">"2021-06-15T12:19:33+05:30"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-   </span><span class="p">],</span><span class="w">
-   </span><span class="s2">"warnings"</span><span class="p">:[</span><span class="w">
-
-   </span><span class="p">],</span><span class="w">
-   </span><span class="s2">"errors"</span><span class="p">:[</span><span class="w">
-
-   </span><span class="p">],</span><span class="w">
-   </span><span class="s2">"success"</span><span class="p">:</span><span class="kc">true</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<h3 id="resource-information">Resource Information</h3>
-
-<table><thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URI</td>
-<td><code class="prettyprint">/auditLog?entityType={entityType}&amp;entityId={entityId}</code></td>
-</tr>
-<tr>
-<td>Authentication</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>HTTP Method</td>
-<td>GET</td>
-</tr>
-<tr>
-<td>Rate Limited?</td>
-<td>No</td>
-</tr>
-<tr>
-<td>Batch Support</td>
-<td>No</td>
-</tr>
-</tbody></table>
-
-<ul>
-<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
-<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
-</ul>
-
-<h3 id="request-url">Request URL</h3>
-
-<p><code class="prettyprint">{host}/v2/companies?externalId={externalId}</code></p>
-
-<h3 id="request-query-parameters">Request Query Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Datatype</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>entityType*</td>
-<td>enum</td>
-<td>Log details to fetch. Values: Pass <code class="prettyprint">FLEET_HIERARCHY</code> to fetch hierarchy audit log, <code class="prettyprint">FLEET_COMPANY</code> to fetch company audit log.</td>
-</tr>
-<tr>
-<td>entityId*</td>
-<td>enum</td>
-<td>Unique ID of the specified <code class="prettyprint">entityType</code> to fetch.</td>
-</tr>
-</tbody></table>
-
-<aside class="notice">Parameters marked with * are mandatory. </aside>
 
 <h2 id="response-codes">Response Codes</h2>
 
