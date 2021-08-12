@@ -41162,101 +41162,91 @@ https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/item/similar-a
 
 <h2 id="create-promotion">Create Promotion</h2>
 
-<p>Lets you create a specific promotion program - Card or Catalog based. 
-​</p>
+<p>Lets you create a specific promotion program - Card or Catalog based. </p>
 
 <blockquote>
-<p>Sample Request
-​
-<code class="prettyprint">html
-https://us.api.capillarytech.com/promotion-management/promotions
-</code>
-​
-​
-​
-Sample POST Request for Generic Cart Promotion
-​
-<code class="prettyprint">json
-{
-   &quot;name&quot;:&quot;POSdebug&quot;,
-   &quot;orgId&quot;:50672,
-   &quot;priority&quot;:0,
-   &quot;active&quot;:true,
-   &quot;messageLabel&quot;:&quot;test!&quot;,
-   &quot;type&quot;:&quot;POS&quot;,
-   &quot;timeCriteria&quot;:null,
-   &quot;storeCriteria&quot;:null,
-   &quot;condition&quot;:{
-      &quot;type&quot;:&quot;CART&quot;,
-      &quot;cartCondition&quot;:{
-         &quot;kpi&quot;:&quot;SUBTOTAL&quot;,
-         &quot;operator&quot;:&quot;GREATER_THAN_OR_EQUAL&quot;,
-         &quot;value&quot;:&quot;1500.000000&quot;
-      },
-      &quot;productCondition&quot;:null,
-      &quot;comboProductCondition&quot;:null
-   },
-   &quot;action&quot;:{
-      &quot;type&quot;:&quot;CART_BASED&quot;,
-      &quot;cartBasedAction&quot;:{
-         &quot;type&quot;:&quot;PERCENTAGE&quot;,
-         &quot;value&quot;:&quot;10.000000&quot;
-      },
-      &quot;productBasedAction&quot;:null,
-      &quot;fixedPriceAction&quot;:null,
-      &quot;freeProductAction&quot;:null
-   },
-   &quot;createdBy&quot;:15000449,
-   &quot;createdOn&quot;:1625639059945,
-   &quot;lastUpdatedBy&quot;:15000449,
-   &quot;lastUpdatedOn&quot;:1625639059945,
-   &quot;startDate&quot;:1624256511786,
-   &quot;endDate&quot;:1627669800000,
-   &quot;campaignId&quot;:1036475,
-   &quot;loyaltyEarningExpiryDays&quot;:null,
-   &quot;maxEarningPerCustomer&quot;:null,
-   &quot;earningCriteria&quot;:null,
-   &quot;promotionRestrictions&quot;:null,
-   &quot;earnLimitedToSpecificAudience&quot;:false,
-   &quot;customFieldValues&quot;:null,
-   &quot;onEarnCommunicationChannels&quot;:null
-}
-</code></p>
+<p>Sample Request</p>
 </blockquote>
-
-<p>​</p>
-
+<pre class="highlight html"><code>https://us.api.capillarytech.com/promotion-management/promotions
+</code></pre>
 <blockquote>
-<p>Sample POST for Normal Product Promotion
-​
-<code class="prettyprint">json
-{
-...
-   &quot;condition&quot;:{
-      &quot;type&quot;:&quot;PRODUCT&quot;,
-      &quot;cartCondition&quot;:null,
-      &quot;productCondition&quot;:{
-         &quot;criteriaList&quot;:[
-            {
-               &quot;entity&quot;:&quot;SKU&quot;,
-               &quot;operator&quot;:&quot;IN&quot;,
-               &quot;values&quot;:[
-                  &quot;samosa&quot;,
-                  &quot;chai&quot;
-               ],
-               &quot;attributeName&quot;:null
-            }
-         ],
-         &quot;kpi&quot;:&quot;QUANITITY&quot;,
-         &quot;value&quot;:&quot;1.000000&quot;,
-         &quot;operator&quot;:&quot;EQUALS&quot;
-      }
-   }
-...
-}
-</code>
-​
-Sample Request for Free Product Promotion</p>
+<p>Sample POST Request for Generic Cart Promotion</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"POSdebug"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"orgId"</span><span class="p">:</span><span class="mi">50672</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"priority"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"messageLabel"</span><span class="p">:</span><span class="s2">"test!"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"POS"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"timeCriteria"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"storeCriteria"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"condition"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"CART"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cartCondition"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"kpi"</span><span class="p">:</span><span class="s2">"SUBTOTAL"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"operator"</span><span class="p">:</span><span class="s2">"GREATER_THAN_OR_EQUAL"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"1500.000000"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"productCondition"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"comboProductCondition"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"action"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"CART_BASED"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cartBasedAction"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"PERCENTAGE"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"10.000000"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"productBasedAction"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"fixedPriceAction"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"freeProductAction"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="mi">15000449</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="mi">1625639059945</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"lastUpdatedBy"</span><span class="p">:</span><span class="mi">15000449</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"lastUpdatedOn"</span><span class="p">:</span><span class="mi">1625639059945</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"startDate"</span><span class="p">:</span><span class="mi">1624256511786</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"endDate"</span><span class="p">:</span><span class="mi">1627669800000</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"campaignId"</span><span class="p">:</span><span class="mi">1036475</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"loyaltyEarningExpiryDays"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"maxEarningPerCustomer"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"earningCriteria"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"promotionRestrictions"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"earnLimitedToSpecificAudience"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"customFieldValues"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"onEarnCommunicationChannels"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample POST for Normal Product Promotion</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+</span><span class="err">...</span><span class="w">
+   </span><span class="s2">"condition"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"PRODUCT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cartCondition"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"productCondition"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"criteriaList"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"entity"</span><span class="p">:</span><span class="s2">"SKU"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"operator"</span><span class="p">:</span><span class="s2">"IN"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"values"</span><span class="p">:[</span><span class="w">
+                  </span><span class="s2">"samosa"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"chai"</span><span class="w">
+               </span><span class="p">],</span><span class="w">
+               </span><span class="s2">"attributeName"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"kpi"</span><span class="p">:</span><span class="s2">"QUANITITY"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"1.000000"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"operator"</span><span class="p">:</span><span class="s2">"EQUALS"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="err">...</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Request for Free Product Promotion</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
 </span><span class="err">...</span><span class="w">
@@ -41370,66 +41360,63 @@ Sample Request for Free Product Promotion</p>
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
-<p>Sample POST for Customer Promotion
-​
-&ldquo;`json</p>
+<p>Sample POST for Customer Promotion</p>
 </blockquote>
-
-<p>​{
-&hellip;
-   &quot;condition&rdquo;:{
-      &ldquo;type&rdquo;:&ldquo;PRODUCT&rdquo;,
-      &ldquo;cartCondition&rdquo;:null,
-      &ldquo;productCondition&rdquo;:{
-         &ldquo;criteriaList&rdquo;:[
-            {
-               &ldquo;entity&rdquo;:&ldquo;CATEGORY&rdquo;,
-               &ldquo;operator&rdquo;:&ldquo;IN&rdquo;,
-               &ldquo;values&rdquo;:[
-                  &ldquo;50672_category1&rdquo;,
-                  &ldquo;My test2&rdquo;
-               ],
-               &ldquo;attributeName&rdquo;:null
-            }
-         ],
-         &ldquo;kpi&rdquo;:&ldquo;AMOUNT&rdquo;,
-         &ldquo;value&rdquo;:&ldquo;500.000000&rdquo;,
-         &ldquo;operator&rdquo;:&ldquo;GREATER_THAN&rdquo;
-      },
-      &ldquo;comboProductCondition&rdquo;:null
-   },
-   &ldquo;action&rdquo;:{
-      &ldquo;type&rdquo;:&ldquo;PRODUCT_BASED&rdquo;,
-      &ldquo;cartBasedAction&rdquo;:null,
-      &ldquo;productBasedAction&rdquo;:{
-         &ldquo;productBasedCondition&rdquo;:{
-            &ldquo;type&rdquo;:&ldquo;PRODUCT&rdquo;,
-            &ldquo;cartCondition&rdquo;:null,
-            &ldquo;productCondition&rdquo;:{
-               &ldquo;criteriaList&rdquo;:[
-                  {
-                     &ldquo;entity&rdquo;:&ldquo;CATEGORY&rdquo;,
-                     &ldquo;operator&rdquo;:&ldquo;IN&rdquo;,
-                     &ldquo;values&rdquo;:[
-                        &ldquo;50672_category1&rdquo;,
-                        &ldquo;My test2&rdquo;
-                     ],
-                     &ldquo;attributeName&rdquo;:null
-                  }
-               ],
-               &ldquo;kpi&rdquo;:&ldquo;NONE&rdquo;,
-               &ldquo;value&rdquo;:&ldquo;0.000000&rdquo;,
-               &ldquo;operator&rdquo;:&ldquo;NONE&rdquo;
-            },
-            &ldquo;comboProductCondition&rdquo;:null
-         },
-         &ldquo;type&rdquo;:&ldquo;ABSOLUTE&rdquo;,
-         &ldquo;value&rdquo;:&ldquo;100.000000&rdquo;
-      }
-  }
-}
-&ldquo;`</p>
-
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+</span><span class="err">...</span><span class="w">
+   </span><span class="s2">"condition"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"PRODUCT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cartCondition"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"productCondition"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"criteriaList"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"entity"</span><span class="p">:</span><span class="s2">"CATEGORY"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"operator"</span><span class="p">:</span><span class="s2">"IN"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"values"</span><span class="p">:[</span><span class="w">
+                  </span><span class="s2">"50672_category1"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"My test2"</span><span class="w">
+               </span><span class="p">],</span><span class="w">
+               </span><span class="s2">"attributeName"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"kpi"</span><span class="p">:</span><span class="s2">"AMOUNT"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"500.000000"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"operator"</span><span class="p">:</span><span class="s2">"GREATER_THAN"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"comboProductCondition"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"action"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"PRODUCT_BASED"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"cartBasedAction"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"productBasedAction"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"productBasedCondition"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"PRODUCT"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cartCondition"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"productCondition"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"criteriaList"</span><span class="p">:[</span><span class="w">
+                  </span><span class="p">{</span><span class="w">
+                     </span><span class="s2">"entity"</span><span class="p">:</span><span class="s2">"CATEGORY"</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"operator"</span><span class="p">:</span><span class="s2">"IN"</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"values"</span><span class="p">:[</span><span class="w">
+                        </span><span class="s2">"50672_category1"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"My test2"</span><span class="w">
+                     </span><span class="p">],</span><span class="w">
+                     </span><span class="s2">"attributeName"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">],</span><span class="w">
+               </span><span class="s2">"kpi"</span><span class="p">:</span><span class="s2">"NONE"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"0.000000"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"operator"</span><span class="p">:</span><span class="s2">"NONE"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"comboProductCondition"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"ABSOLUTE"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"100.000000"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <blockquote>
 <p>Sample POST for Reward Promotion</p>
 </blockquote>
@@ -41540,29 +41527,39 @@ Sample Request for Free Product Promotion</p>
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>​
-​</p>
-
 <h3 id="resource-information">Resource Information</h3>
 
-<p>​
-| | |
-&mdash;&mdash;&mdash; | &mdash;&mdash;&mdash;&ndash; |
-URI | <code class="prettyprint">promotion-management/promotions</code>
-HTTP Method | POST
-API Version | v1
-Rate Limited | Yes
-Batch Support | No
-​
-​
-​</p>
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">promotion-management/promotions</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v1</td>
+</tr>
+<tr>
+<td>Rate Limited</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">{host}/v1/promotion-management/promotions</code>
-​
-​
-​</p>
+<p><code class="prettyprint">{host}/v1/promotion-management/promotions</code></p>
 
 <h3 id="request-body-parameters">Request Body Parameters</h3>
 
@@ -41807,9 +41804,6 @@ Batch Support | No
 
 <aside class="notice"> Parameter marked with * is mandatory. </aside>
 
-<p>​
-​</p>
-
 <h2 id="update-promotion-details">Update Promotion Details</h2>
 
 <blockquote>
@@ -41877,107 +41871,109 @@ Batch Support | No
             </span><span class="s2">"campaignId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2013</span><span class="w">
         </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>​</p>
-
 <h2 id="get-promotion-details">Get Promotion Details</h2>
 
-<p>Retrieves the promotion details.
-​
-​
-​</p>
+<p>Retrieves the promotion details.</p>
 
 <blockquote>
-<p>Sample Request
-​
-<code class="prettyprint">html
-https://api.capillary.co.in/api_gateway/loyalty/v1/programs/1745/promotions/12525
-</code>
-​
-​
-​
-Sample Response
-​
-<code class="prettyprint">json
-​
-{
-    &quot;status&quot;: {
-        &quot;code&quot;: 200,
-        &quot;message&quot;: &quot;success&quot;
-    },
-    &quot;validationErrors&quot;: null,
-    &quot;data&quot;: [
-        {
-            &quot;id&quot;: 12525,
-            &quot;name&quot;: &quot;promo demo postman&quot;,
-            &quot;programId&quot;: 1745,
-            &quot;startDate&quot;: &quot;2021-06-15T00:00+05:30&quot;,
-            &quot;endDate&quot;: &quot;2022-01-01T23:59:59+05:30&quot;,
-            &quot;identifier&quot;: &quot;new_test_promotion_for_119&quot;,
-            &quot;eventName&quot;: &quot;TRANSACTIONADD&quot;,
-            &quot;metadata&quot;: [
-                {
-                    &quot;key&quot;: &quot;key&quot;,
-                    &quot;value&quot;: &quot;value&quot;,
-                    &quot;isBrandDefined&quot;: &quot;false&quot;
-                }
-            ],
-            &quot;unsavedMetadataList&quot;: null,
-            &quot;allocatePointsOn&quot;: &quot;BILL&quot;,
-            &quot;allocationActions&quot;: [
-                {
-                    &quot;A1&quot;: {
-                        &quot;allocation&quot;: {
-                            &quot;type&quot;: &quot;FIXED&quot;,
-                            &quot;value&quot;: 1.25
-                        },
-                        &quot;expiry&quot;: {
-                            &quot;type&quot;: &quot;DAYS&quot;,
-                            &quot;value&quot;: &quot;2&quot;
-                        },
-                        &quot;rounding&quot;: &quot;ROUND&quot;
-                    }
-                }
-            ],
-            &quot;qualifyingConditions&quot;: null,
-            &quot;conditionExpression&quot;: null,
-            &quot;allocationRule&quot;: null,
-            &quot;limits&quot;: {
-                &quot;pointsPerCustomer&quot;: -1,
-                &quot;numberOfTimesPerCustomer&quot;: -1,
-                &quot;totalPointsInPromotion&quot;: -1
-            },
-            &quot;active&quot;: true
-        }
-    ]
-}
-​
-</code>
-​
-​
-​</p>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://api.capillary.co.in/api_gateway/loyalty/v1/programs/1745/promotions/12525
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"validationErrors"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12525</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"promo demo postman"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1745</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-15T00:00+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-01T23:59:59+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"identifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new_test_promotion_for_119"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"eventName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRANSACTIONADD"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"key"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"isBrandDefined"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"unsavedMetadataList"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"allocatePointsOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BILL"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"allocationActions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"A1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"allocation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FIXED"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"expiry"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DAYS"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"rounding"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ROUND"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"qualifyingConditions"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"conditionExpression"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"allocationRule"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"limits"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"pointsPerCustomer"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"numberOfTimesPerCustomer"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"totalPointsInPromotion"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 
+</span></code></pre>
 <h3 id="resource-information">Resource Information</h3>
 
-<p>​
-| | |
-&mdash;&mdash;&mdash; | &mdash;&mdash;&mdash;&ndash; |
-URI | <code class="prettyprint">api_gateway/loyalty/v1/programs/(programId)/promotions/{promotionId}</code>
-HTTP Method | GET
-API Version | v1
-Authentication | Yes
-Rate Limited | Yes
-Batch Support | No
-​
-​
-​</p>
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">api_gateway/loyalty/v1/programs/(programId)/promotions/{promotionId}</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v1</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Rate Limited</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
 
 <h3 id="request-url">Request URL</h3>
-</blockquote>
 
-<p><code class="prettyprint">https://{host}/api_gateway/loyalty/v1/programs/(programId)/promotions/{promotionId}</code>
-​
-​
-​</p>
+<p><code class="prettyprint">https://{host}/api_gateway/loyalty/v1/programs/(programId)/promotions/{promotionId}</code></p>
 
 <h3 id="request-path-parameters">Request Path Parameters</h3>
 
