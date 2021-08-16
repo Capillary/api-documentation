@@ -651,6 +651,7 @@ Parameter | Datatype | Description
 --------- | -------- | -----------
 seriesId* | int | Card Series ID from which you want to generate card.
 cardNumber* | string | Unique number of the card as per the card series configuration.
+cardExternalId | string | External reference ID of the card.
 statusLabel* | string | Current user defined status of the card. Check your user defined values for the system values (not issued, active, inactive, deleted, expired). 
 
 <aside class="notice"> Parameter marked with * is mandatory. </aside>

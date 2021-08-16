@@ -28,8 +28,9 @@ includes:
   - leads
   - userGroup
   - cardLoyalty
+  - groupLoyalty
   - partnerProgram
-  - OrganizationSource
+  - organizationSource
   - storeCare
   - events
   - integrations
@@ -38,6 +39,7 @@ includes:
   - rewards
   - promotions
   - recommendations
+  - cartPromotions
 
 search: true
 ---

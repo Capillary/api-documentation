@@ -1,4 +1,4 @@
-# Promotions
+# Loyalty Promotions
 
 ## Create Promotion
 Lets you create a promotion for a specific loyalty program. 

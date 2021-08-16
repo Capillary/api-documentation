@@ -710,7 +710,1557 @@ CODE | DESCRIPTION
 
 
 
-## Fetch Customers (Advanced Customer Search)
+
+## Associate Customer with Customer/Hierarchy
+
+Lets you batch register customers or associate a customer with company or hierarchy. This API registers parent and child customers (if not registered), and  associates the customer with hierarchy code, company role, parent and child customers.
+
+> Sample Request
+
+```html
+https://us.api.capillarytech.com/v2/customers/bulk
+```
+
+
+> Sample POST Request (Associate Child with Parent)
+
+```json
+[
+   {
+      "profiles":[
+         {
+            "firstName":"Capillary",
+            "lastName":"Customer",
+            "identifiers":[
+               {
+                  "type":"mobile",
+                  "value":"917979000000"
+               },
+               {
+                  "type":"cuid",
+                  "value":"cuid_917979000000"
+               },
+               {
+                  "type":"unionId",
+                  "value":"unionId_917979000000"
+               },
+               {
+                  "type":"cardnumber",
+                  "cardExternalId":"carduuid_710000",
+                  "value":"card_710000",
+                  "seriesCode":"FleetCard1",
+                  "statusLabel":"ACTIVE",
+                  "extendedFields":{
+                     "custom_card_name":"64346srt34532323",
+                     "vehicle_number":"879976453431adsgfsf"
+                  }
+               }
+            ],
+            "commChannels":[
+               {
+                  "type":"mobile",
+                  "value":"9020000000",
+                  "primary":true,
+                  "verified":true
+               },
+               {
+                  "type":"email",
+                  "value":"tom.sawyer@mail.com",
+                  "primary":true,
+                  "verified":true
+               }
+            ],
+            "fields":{
+               "gender":"MALE",
+               "city":"city0"
+            },
+            "source":"WECHAT",
+            "accountId":"WECHAT-CM"
+         }
+      ],
+      "extendedFields":{
+         "gender":"Male",
+         "city":"city_6878387"
+      },
+      "loyaltyInfo":{
+         "loyaltyType":"loyalty"
+      },
+      "referralCode":"",
+      "associationDetails":{
+         "hierarchyCode":"code-association2",
+         "roleCode":"FA",
+         "childCustomers":[
+            {
+               "profiles":[
+                  {
+                     "firstName":"Capillary",
+                     "lastName":"Customer",
+                     "identifiers":[
+                        {
+                           "type":"mobile",
+                           "value":"{{mobile2}}"
+                        },
+                        {
+                           "type":"cuid",
+                           "value":"cuid_{{mobile2}}"
+                        },
+                        {
+                           "type":"unionId",
+                           "value":"unionId_{{mobile2}}"
+                        }
+                     ],
+                     "commChannels":[
+                        {
+                           "type":"mobile",
+                           "value":"{{mobile2}}",
+                           "primary":true,
+                           "verified":true
+                        },
+                        {
+                           "type":"email",
+                           "value":"{{mobile2}}@mail.com",
+                           "primary":true,
+                           "verified":true
+                        }
+                     ],
+                     "fields":{
+                        "gender":"MALE",
+                        "city":"city0"
+                     },
+                     "source":"WECHAT",
+                     "accountId":"WECHAT-CM"
+                  }
+               ],
+               "extendedFields":{
+                  "gender":"Male",
+                  "city":"city_6878387"
+               }
+            },
+            {
+               "profiles":[
+                  {
+                     "firstName":"Capillary",
+                     "lastName":"Customer",
+                     "identifiers":[
+                        {
+                           "type":"mobile",
+                           "value":"{{mobile3}}"
+                        },
+                        {
+                           "type":"cuid",
+                           "value":"cuid_{{mobile3}}"
+                        },
+                        {
+                           "type":"unionId",
+                           "value":"unionId_{{mobile3}}"
+                        }
+                     ],
+                     "commChannels":[
+                        {
+                           "type":"mobile",
+                           "value":"{{mobile3}}",
+                           "primary":true,
+                           "verified":true
+                        },
+                        {
+                           "type":"email",
+                           "value":"{{mobile3}}@mail.com",
+                           "primary":true,
+                           "verified":true
+                        }
+                     ],
+                     "fields":{
+                        "gender":"MALE",
+                        "city":"city0"
+                     },
+                     "source":"WECHAT",
+                     "accountId":"WECHAT-CM"
+                  }
+               ],
+               "extendedFields":{
+                  "gender":"Male",
+                  "city":"city_6878387"
+               }
+            }
+         ],
+         "fleetCompany":{
+            "externalId":"ex917471949194"
+         },
+         "childRoleCode":"FC"
+      }
+   }
+]
+```
+
+> Sample POST Request (Associate Child to Parent )
+
+```json
+...
+{
+   "associationDetails":{
+      "hierarchyCode":"code-association2",
+      "roleCode":"FC",
+      "parentCustomer":{
+         "profiles":[
+            {
+               "firstName":"慧慧",
+               "lastName":"慧慧",
+               "identifiers":[
+                  {
+                     "type":"mobile",
+                     "value":"917875000000"
+                  },
+                  {
+                     "type":"cuid",
+                     "value":"cuid_917875000000"
+                  },
+                  {
+                     "type":"unionId",
+                     "value":"unionId_917875000000"
+                  }
+               ],
+               "commChannels":[
+                  {
+                     "type":"mobile",
+                     "value":"917685000000",
+                     "primary":true,
+                     "verified":true
+                  },
+                  {
+                     "type":"email",
+                     "value":"917685000000@mail.com",
+                     "primary":true,
+                     "verified":true
+                  }
+               ],
+               "source":"WECHAT",
+               "accountId":"WECHAT-CM"
+            }
+         ],
+         "extendedFields":{
+            "gender":"Male",
+            "city":"city_6878387"
+         }
+      },
+      "fleetCompany":{
+         "externalId":"ex91747000000"
+      }
+   }
+}
+```
+
+
+
+> Sample Response
+
+```json
+[
+   {
+      "entity":{
+         "id":409966467,
+         "profiles":[
+            {
+               "firstName":"Capillary",
+               "lastName":"Customer",
+               "attribution":{
+                  "createDate":"2021-07-30T11:25:21+05:30",
+                  "createdBy":{
+                     "id":15071481,
+                     "code":"cm.1",
+                     "description":"",
+                     "name":"cm.1",
+                     "type":"TILL",
+                     "adminType":"GENERAL",
+                     "isActive":true,
+                     "isOuEnabled":true,
+                     "timeZoneId":0,
+                     "currencyId":95,
+                     "languageId":-1
+                  },
+                  "modifiedBy":{
+                     "id":15071481,
+                     "code":"cm.1",
+                     "description":"",
+                     "name":"cm.1",
+                     "type":"TILL",
+                     "adminType":"GENERAL",
+                     "isActive":true,
+                     "isOuEnabled":true,
+                     "timeZoneId":0,
+                     "currencyId":95,
+                     "languageId":-1
+                  },
+                  "modifiedDate":"2021-07-30T11:25:21+05:30"
+               },
+               "fields":{
+                  "gender":"MALE"
+               },
+               "identifiers":[
+                  {
+                     "type":"mobile",
+                     "value":"917979015462"
+                  },
+                  {
+                     "type":"cuid",
+                     "value":"cuid_917979015462"
+                  },
+                  {
+                     "type":"cardnumber",
+                     "value":"card_917979015462",
+                     "seriesCode":"FleetCard1",
+                     "statusLabel":"ACTIVE",
+                     "cardExternalId":"carduuid_917979015462",
+                     "extendedFields":{
+                        "custom_card_name":"64346srt34532323",
+                        "vehicle_number":"879976453431adsgfsf"
+                     }
+                  },
+                  {
+                     "type":"unionId",
+                     "value":"unionId_917979000000"
+                  }
+               ],
+               "commChannels":[
+                  {
+                     "type":"mobile",
+                     "value":"917979000000",
+                     "primary":true,
+                     "verified":true,
+                     "meta":{
+                        "residence":false,
+                        "office":false
+                     },
+                     "attributes":{
+                        
+                     }
+                  },
+                  {
+                     "type":"email",
+                     "value":"917979000000@mail.com",
+                     "primary":true,
+                     "verified":true,
+                     "meta":{
+                        "residence":false,
+                        "office":false
+                     },
+                     "attributes":{
+                        
+                     }
+                  }
+               ],
+               "source":"WECHAT",
+               "userId":409966467,
+               "accountId":"WECHAT-CM",
+               "conflictingProfileList":[
+                  
+               ],
+               "autoUpdateTime":"2021-07-30T11:25:21+05:30",
+               "identifiersAll":[
+                  {
+                     "type":"mobile",
+                     "value":"917979015462"
+                  },
+                  {
+                     "type":"cuid",
+                     "value":"cuid_917979015462"
+                  },
+                  {
+                     "type":"cardnumber",
+                     "value":"card_917979015462",
+                     "seriesCode":"FleetCard1",
+                     "statusLabel":"ACTIVE",
+                     "cardExternalId":"carduuid_917979015462",
+                     "extendedFields":{
+                        "custom_card_name":"64346srt34532323",
+                        "vehicle_number":"879976453431adsgfsf"
+                     }
+                  },
+                  {
+                     "type":"unionId",
+                     "value":"unionId_917979015462"
+                  }
+               ]
+            }
+         ],
+         "loyaltyInfo":{
+            "loyaltyType":"loyalty"
+         },
+         "segments":{
+            
+         },
+         "referralCode":"",
+         "associationDetails":{
+            "hierarchyCode":"code-association2",
+            "hierarchyId":21,
+            "roleCode":"FA",
+            "childCustomers":[
+               {
+                  "profiles":[
+                     {
+                        "firstName":"Capillary",
+                        "lastName":"Customer",
+                        "attribution":{
+                           "createDate":"2021-07-30T11:25:21+05:30",
+                           "createdBy":{
+                              "id":15071481,
+                              "code":"cm.1",
+                              "description":"",
+                              "name":"cm.1",
+                              "type":"TILL",
+                              "adminType":"GENERAL",
+                              "isActive":true,
+                              "isOuEnabled":true,
+                              "timeZoneId":0,
+                              "currencyId":95,
+                              "languageId":-1
+                           },
+                           "modifiedBy":{
+                              "id":15071481,
+                              "code":"cm.1",
+                              "description":"",
+                              "name":"cm.1",
+                              "type":"TILL",
+                              "adminType":"GENERAL",
+                              "isActive":true,
+                              "isOuEnabled":true,
+                              "timeZoneId":0,
+                              "currencyId":95,
+                              "languageId":-1
+                           },
+                           "modifiedDate":"2021-07-30T11:25:21+05:30"
+                        },
+                        "fields":{
+                           "gender":"MALE"
+                        },
+                        "identifiers":[
+                           {
+                              "type":"cuid",
+                              "value":"cuid_91553000000"
+                           },
+                           {
+                              "type":"unionId",
+                              "value":"unionId_91553000000"
+                           },
+                           {
+                              "type":"cardnumber",
+                              "value":"regcm0000000000182412"
+                           }
+                        ],
+                        "commChannels":[
+                           {
+                              "type":"email",
+                              "value":"91553000000@mail.com",
+                              "primary":true,
+                              "verified":true,
+                              "meta":{
+                                 "residence":false,
+                                 "office":false
+                              },
+                              "attributes":{
+                                 
+                              }
+                           }
+                        ],
+                        "source":"WECHAT",
+                        "userId":409966468,
+                        "accountId":"WECHAT-CM",
+                        "conflictingProfileList":[
+                           
+                        ],
+                        "autoUpdateTime":"2021-07-30T11:25:21+05:30",
+                        "identifiersAll":[
+                           {
+                              "type":"cuid",
+                              "value":"cuid_91553000000"
+                           },
+                           {
+                              "type":"unionId",
+                              "value":"unionId_91553000000"
+                           },
+                           {
+                              "type":"cardnumber",
+                              "value":"regcm0000000000182412"
+                           }
+                        ]
+                     }
+                  ],
+                  "extendedFields":{
+                     "city":"city_6878387",
+                     "gender":"Male"
+                  }
+               },
+               {
+                  "profiles":[
+                     {
+                        "firstName":"Capillary",
+                        "lastName":"Customer",
+                        "attribution":{
+                           "createDate":"2021-07-30T11:25:21+05:30",
+                           "createdBy":{
+                              "id":15071481,
+                              "code":"cm.1",
+                              "description":"",
+                              "name":"cm.1",
+                              "type":"TILL",
+                              "adminType":"GENERAL",
+                              "isActive":true,
+                              "isOuEnabled":true,
+                              "timeZoneId":0,
+                              "currencyId":95,
+                              "languageId":-1
+                           },
+                           "modifiedBy":{
+                              "id":15071481,
+                              "code":"cm.1",
+                              "description":"",
+                              "name":"cm.1",
+                              "type":"TILL",
+                              "adminType":"GENERAL",
+                              "isActive":true,
+                              "isOuEnabled":true,
+                              "timeZoneId":0,
+                              "currencyId":95,
+                              "languageId":-1
+                           },
+                           "modifiedDate":"2021-07-30T11:25:21+05:30"
+                        },
+                        "fields":{
+                           "gender":"MALE"
+                        },
+                        "identifiers":[
+                           {
+                              "type":"mobile",
+                              "value":"916894126424"
+                           },
+                           {
+                              "type":"cuid",
+                              "value":"cuid_916894126424"
+                           },
+                           {
+                              "type":"cardnumber",
+                              "value":"regcm0000000000182413"
+                           },
+                           {
+                              "type":"unionId",
+                              "value":"unionId_916894126424"
+                           }
+                        ],
+                        "commChannels":[
+                           {
+                              "type":"email",
+                              "value":"916894126424@mail.com",
+                              "primary":true,
+                              "verified":true,
+                              "meta":{
+                                 "residence":false,
+                                 "office":false
+                              },
+                              "attributes":{
+                                 
+                              }
+                           },
+                           {
+                              "type":"mobile",
+                              "value":"916894126424",
+                              "primary":true,
+                              "verified":true,
+                              "meta":{
+                                 "residence":false,
+                                 "office":false
+                              },
+                              "attributes":{
+                                 
+                              }
+                           }
+                        ],
+                        "source":"WECHAT",
+                        "userId":409966469,
+                        "accountId":"WECHAT-CM",
+                        "conflictingProfileList":[
+                           
+                        ],
+                        "autoUpdateTime":"2021-07-30T11:25:21+05:30",
+                        "identifiersAll":[
+                           {
+                              "type":"mobile",
+                              "value":"916894126424"
+                           },
+                           {
+                              "type":"cuid",
+                              "value":"cuid_916894126424"
+                           },
+                           {
+                              "type":"cardnumber",
+                              "value":"regcm0000000000182413"
+                           },
+                           {
+                              "type":"unionId",
+                              "value":"unionId_916894126424"
+                           }
+                        ]
+                     }
+                  ],
+                  "extendedFields":{
+                     "city":"city_6878387",
+                     "gender":"Male"
+                  }
+               }
+            ],
+            "fleetCompany":{
+               "externalId":"ex917471949194",
+               "companyId":71
+            },
+            "childRoleCode":"FC",
+            "skipLevelAllowed":false,
+            "new":true,
+            "childCustomer":false
+         },
+         "extendedFields":{
+            "city":"city_6878387",
+            "gender":"Male"
+         },
+         "warnings":[
+            {
+               "status":false,
+               "code":19223,
+               "message":"Points processing failed"
+            }
+         ]
+      },
+      "childEntities":[
+         {
+            "id":409966468,
+            "profiles":[
+               {
+                  "firstName":"Capillary",
+                  "lastName":"Customer",
+                  "attribution":{
+                     "createDate":"2021-07-30T11:25:21+05:30",
+                     "createdBy":{
+                        "id":15071481,
+                        "code":"cm.1",
+                        "description":"",
+                        "name":"cm.1",
+                        "type":"TILL",
+                        "adminType":"GENERAL",
+                        "isActive":true,
+                        "isOuEnabled":true,
+                        "timeZoneId":0,
+                        "currencyId":95,
+                        "languageId":-1
+                     },
+                     "modifiedBy":{
+                        "id":15071481,
+                        "code":"cm.1",
+                        "description":"",
+                        "name":"cm.1",
+                        "type":"TILL",
+                        "adminType":"GENERAL",
+                        "isActive":true,
+                        "isOuEnabled":true,
+                        "timeZoneId":0,
+                        "currencyId":95,
+                        "languageId":-1
+                     },
+                     "modifiedDate":"2021-07-30T11:25:21+05:30"
+                  },
+                  "fields":{
+                     "gender":"MALE"
+                  },
+                  "identifiers":[
+                     {
+                        "type":"cuid",
+                        "value":"cuid_91553015360"
+                     },
+                     {
+                        "type":"unionId",
+                        "value":"unionId_91553015360"
+                     },
+                     {
+                        "type":"cardnumber",
+                        "value":"regcm0000000000182412"
+                     }
+                  ],
+                  "commChannels":[
+                     {
+                        "type":"email",
+                        "value":"91553015360@mail.com",
+                        "primary":true,
+                        "verified":true,
+                        "meta":{
+                           "residence":false,
+                           "office":false
+                        },
+                        "attributes":{
+                           
+                        }
+                     }
+                  ],
+                  "source":"WECHAT",
+                  "userId":409966468,
+                  "accountId":"WECHAT-CM",
+                  "conflictingProfileList":[
+                     
+                  ],
+                  "autoUpdateTime":"2021-07-30T11:25:21+05:30",
+                  "identifiersAll":[
+                     {
+                        "type":"cuid",
+                        "value":"cuid_91553015360"
+                     },
+                     {
+                        "type":"unionId",
+                        "value":"unionId_91553015360"
+                     },
+                     {
+                        "type":"cardnumber",
+                        "value":"regcm0000000000182412"
+                     }
+                  ]
+               }
+            ],
+            "loyaltyInfo":{
+               "loyaltyType":"loyalty"
+            },
+            "segments":{
+               
+            },
+            "associationDetails":{
+               "hierarchyId":21,
+               "roleCode":"FC",
+               "fleetCompany":{
+                  "externalId":"ex917471949194",
+                  "companyId":71
+               },
+               "parentRoleId":83,
+               "skipLevelAllowed":false,
+               "new":true,
+               "childCustomer":true
+            },
+            "extendedFields":{
+               "city":"city_6878387",
+               "gender":"Male"
+            },
+            "warnings":[
+               {
+                  "status":false,
+                  "code":8056,
+                  "message":"Invalid mobile"
+               },
+               {
+                  "status":false,
+                  "code":8058,
+                  "message":"Invalid mobile in comm channel"
+               },
+               {
+                  "status":false,
+                  "code":19223,
+                  "message":"Points processing failed"
+               }
+            ]
+         },
+         {
+            "id":409966469,
+            "profiles":[
+               {
+                  "firstName":"Capillary",
+                  "lastName":"Customer",
+                  "attribution":{
+                     "createDate":"2021-07-30T11:25:21+05:30",
+                     "createdBy":{
+                        "id":15071481,
+                        "code":"cm.1",
+                        "description":"",
+                        "name":"cm.1",
+                        "type":"TILL",
+                        "adminType":"GENERAL",
+                        "isActive":true,
+                        "isOuEnabled":true,
+                        "timeZoneId":0,
+                        "currencyId":95,
+                        "languageId":-1
+                     },
+                     "modifiedBy":{
+                        "id":15071481,
+                        "code":"cm.1",
+                        "description":"",
+                        "name":"cm.1",
+                        "type":"TILL",
+                        "adminType":"GENERAL",
+                        "isActive":true,
+                        "isOuEnabled":true,
+                        "timeZoneId":0,
+                        "currencyId":95,
+                        "languageId":-1
+                     },
+                     "modifiedDate":"2021-07-30T11:25:21+05:30"
+                  },
+                  "fields":{
+                     "gender":"MALE"
+                  },
+                  "identifiers":[
+                     {
+                        "type":"mobile",
+                        "value":"916894126424"
+                     },
+                     {
+                        "type":"cuid",
+                        "value":"cuid_916894126424"
+                     },
+                     {
+                        "type":"cardnumber",
+                        "value":"regcm0000000000182413"
+                     },
+                     {
+                        "type":"unionId",
+                        "value":"unionId_916894126424"
+                     }
+                  ],
+                  "commChannels":[
+                     {
+                        "type":"email",
+                        "value":"916894126424@mail.com",
+                        "primary":true,
+                        "verified":true,
+                        "meta":{
+                           "residence":false,
+                           "office":false
+                        },
+                        "attributes":{
+                           
+                        }
+                     },
+                     {
+                        "type":"mobile",
+                        "value":"916894126424",
+                        "primary":true,
+                        "verified":true,
+                        "meta":{
+                           "residence":false,
+                           "office":false
+                        },
+                        "attributes":{
+                           
+                        }
+                     }
+                  ],
+                  "source":"WECHAT",
+                  "userId":409966469,
+                  "accountId":"WECHAT-CM",
+                  "conflictingProfileList":[
+                     
+                  ],
+                  "autoUpdateTime":"2021-07-30T11:25:21+05:30",
+                  "identifiersAll":[
+                     {
+                        "type":"mobile",
+                        "value":"916894126424"
+                     },
+                     {
+                        "type":"cuid",
+                        "value":"cuid_916894126424"
+                     },
+                     {
+                        "type":"cardnumber",
+                        "value":"regcm0000000000182413"
+                     },
+                     {
+                        "type":"unionId",
+                        "value":"unionId_916894126424"
+                     }
+                  ]
+               }
+            ],
+            "loyaltyInfo":{
+               "loyaltyType":"loyalty"
+            },
+            "segments":{
+               
+            },
+            "associationDetails":{
+               "hierarchyId":21,
+               "roleCode":"FC",
+               "fleetCompany":{
+                  "externalId":"ex9174710000",
+                  "companyId":71
+               },
+               "parentRoleId":83,
+               "skipLevelAllowed":false,
+               "new":true,
+               "childCustomer":true
+            },
+            "extendedFields":{
+               "city":"city_6878387",
+               "gender":"Male"
+            },
+            "warnings":[
+               {
+                  "status":false,
+                  "code":19223,
+                  "message":"Points processing failed"
+               }
+            ]
+         }
+      ],
+      "childCount":2,
+      "childFailureCount":0,
+      "childSuccessCount":2
+   }
+]
+```
+
+
+
+	
+
+
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `customers/bulk`
+Authentication | Yes
+HTTP Method | POST
+Batch Support | No
+
+
+
+### Request URL
+
+`{host}/v2/customers/bulk`
+
+
+### Request Body Parameters
+
+Parameter | Type | Description
+--------- | ----- | -----------
+loyaltyType* | enum | Loyalty status of the customer. Value: `loyalty`, `non_loyalty`.
+profiles | obj | Meta information of the customer.
+identifiers* | obj | Identifiers of the customer in type and value. 
+type | enum | Type of the customer identifier. Values: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, `fbId` `mobile`, `tmall_uname`, `cuid`, `ali_uname`, `jd_uname`, `vip_uname`, `mobilePush`, and `line`, and `card` (to issue loyalty card to the customers through registration).
+value | string | Value of the specified identifier. For the `type` card, `value` is card number.
+seriesId | int | Card series ID (for card series generated in Capillary). Required for the identifier `type`,  `card`.
+seriesCode | string | Unique card series code (for external card series). Applicable for the identifier `type`,  `card`.
+statusLabel | string | User defined card status. Required for the identifier `type`,  `card`.
+lastViewedDate** | Date | Date when the customer recently opened the app. Applicable for the channel `mobilePush`.
+loyaltyProgramEnrollments | obj | Lets you enroll new customers in the loyalty program.
+programId | int | Unique ID of the loyalty program in which you want to enroll.
+tierNumber | int | Sequence number of the tier that you want to allocate to the customer. For example, `1` for the lowest tier, `2` for the subsequent tier, and so on.
+loyaltyPoints | int | Loyalty points to credit in customer's account.
+tierExpiryDate | date-time | Expiry date and time of the specified tier. Supported Format: YYYY-MM-DDTHH:MM:SS+/-(time-zone).
+pointsExpiryDate | date-time | Expiry date and time of the points issued. Supported Format: YYYY-MM-DDTHH:MM:SS+/-(time-zone).
+hierarchyCode | string | Unique code of the hierarchy to associate with the customer/company. All configurations set for the hierarchy will be applicable to the customer/company.
+roleCode | string | Pre defined role code - Role of the customer in the hierarchy.
+parentCustomer | obj | User profile of the parent customer.
+fleetCompany | obj | Details of the company the customer is associated with.
+childCustomers | obj | Profiles of the child customers.
+externalId | string | External ID of the company.
+profiles | obj | Details of the customer to associate.
+Firstname | string | First name of the customer.
+Lastname | string | Last name of the customer.
+identifiers* | obj | Identifiers of the customer in type and value. 
+type | enum | Type of the customer identifier. Values: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, `fbId` `mobile`, `tmall_uname`, `cuid`, `ali_uname`, `jd_uname`, `vip_uname`, `mobilePush`, and `line`, and `card` (to issue loyalty card to the customers through registration).
+value | string | Value of the specified identifier. For the `type` card, `value` is card number.
+commChannels | obj | Available communication channels of the customer. Value: `mobile`, `email`, `wechat`, `ios`, `android`, `line`, `mobilePush`.
+Firstname | string | First name of the customer.
+Lastname | string | Last name of the customer.
+createDate | date-time | Time and date of registration in `YYYY-MM-DDTHH:MM:SS+HH:MM` format. Example: 2016-06-23T19:11:18+08:00
+associatedWith | string | The TILL code associated with the customer registration.
+extendedFields | obj | Customer level extended field details of the customer in key:value pairs. You can only pass extended fields that are enabled for your org with the respective datatypes for values.
+fields | obj | Custom field details of customers in key-value pairs.
+
+
+
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
+
+
+
+
+
+
+## Update Association Details (for Customer/Company)
+
+
+
+Lets you update group customer details.
+
+```html
+http://eu.api.capillarytech.com/v2/customers/bulk?source=WECHAT&accountId=WECHAT-CM
+```
+
+> Sample PUT Request
+
+```json
+[{
+  "profiles": [
+    {
+       "firstName": "Tom",
+      "lastName": "Sawyer",
+      "identifiers": [
+        {
+          "type": "mobile",
+          "value": "915905000000"
+        },
+        {
+          "type": "cuid",
+          "value": "cuid_915905000000"
+        },
+        {
+          "type": "unionId",
+          "value": "unionId_915905000000"
+        }
+      ],
+      "commChannels": [
+        {
+          "type": "mobile",
+          "value": "915905000000",
+          "primary": true,
+          "verified": true
+        },
+        {
+          "type": "email",
+          "value": "915905000000@mail.com",
+          "primary": true,
+          "verified": true
+        }
+      ],
+      "source": "WECHAT",
+      "accountId": "WECHAT-CM"
+    }
+  ],
+  "extendedFields": {
+    "gender": "Male",
+    "city": "city_6878387"
+  },
+  "loyaltyInfo": {
+    "loyaltyType": "loyalty"
+  },
+  "referralCode": "",
+  "associationDetails": {
+    "hierarchyCode": "code-association2",
+      "roleCode": "FA",
+    "parentCustomer": 
+      {
+        "profiles": [
+          {
+            "firstName": "Jim",
+      	    "lastName": "Solace",
+            "identifiers": [
+              {
+                "type": "mobile",
+                "value": "919905000000"
+              },
+              {
+                "type": "cuid",
+                "value": "cuid_919905000000"
+              },
+              {
+                "type": "unionId",
+                "value": "unionId_919905000000"
+              }
+            ],
+            "commChannels": [
+              {
+                "type": "mobile",
+                "value": "919905000000",
+                "primary": true,
+                "verified": true
+              },
+              {
+                "type": "email",
+                "value": "919905000000@mail.com",
+                "primary": true,
+                "verified": true
+              }
+            ],
+            "source": "WECHAT",
+            "accountId": "WECHAT-CM"
+          }
+        ],
+        "extendedFields": {
+          "gender": "Male",
+          "city": "city_6878387"
+        }
+      },
+    "fleetCompany": {
+      "externalId": "ex917471000000"
+    }
+  }
+}]
+```
+
+> Sample Response
+
+```json
+[
+   {
+      "profiles":[
+         {
+            "firstName":"Tom",
+            "lastName":"Sawyer",
+            "attribution":{
+               "createDate":"2021-08-03T17:05:38+05:30",
+               "createdBy":{
+                  
+               },
+               "modifiedBy":{
+                  
+               },
+               "modifiedDate":"2021-08-03T17:05:38+05:30"
+            },
+            "fields":{
+               
+            },
+            "identifiers":[
+               {
+                  "type":"unionId",
+                  "value":"unionId_915905000000"
+               },
+               {
+                  "type":"cuid",
+                  "value":"cuid_915905000000"
+               },
+               {
+                  "type":"mobile",
+                  "value":"915905000000"
+               }
+            ],
+            "commChannels":[
+               {
+                  "type":"email",
+                  "value":"915905000000@mail.com",
+                  "primary":true,
+                  "verified":true,
+                  "meta":{
+                     "residence":false,
+                     "office":false
+                  },
+                  "attributes":{
+                     
+                  }
+               },
+               {
+                  "type":"mobile",
+                  "value":"915905000000",
+                  "primary":true,
+                  "verified":true,
+                  "meta":{
+                     "residence":false,
+                     "office":false
+                  },
+                  "attributes":{
+                     
+                  }
+               }
+            ],
+            "source":"WECHAT",
+            "accountId":"WECHAT-CM",
+            "conflictingProfileList":[
+               
+            ],
+            "autoUpdateTime":"2021-08-03T17:05:38+05:30",
+            "identifiersAll":[
+               {
+                  "type":"unionId",
+                  "value":"unionId_915905000000"
+               },
+               {
+                  "type":"cuid",
+                  "value":"cuid_915905000000"
+               },
+               {
+                  "type":"mobile",
+                  "value":"915905000000"
+               }
+            ]
+         }
+      ],
+      "loyaltyInfo":{
+         "loyaltyType":"loyalty"
+      },
+      "segments":{
+         
+      },
+      "referralCode":"",
+      "associationDetails":{
+         "hierarchyCode":"code-association2",
+         "roleCode":"FA",
+         "parentCustomer":{
+            "profiles":[
+               {
+                  "firstName":"Jim",
+                  "lastName":"Solace",
+                  "attribution":{
+                     "createDate":"2021-08-03T17:05:38+05:30",
+                     "createdBy":{
+                        
+                     },
+                     "modifiedBy":{
+                        
+                     },
+                     "modifiedDate":"2021-08-03T17:05:38+05:30"
+                  },
+                  "fields":{
+                     
+                  },
+                  "identifiers":[
+                     {
+                        "type":"cuid",
+                        "value":"cuid_919905000000"
+                     },
+                     {
+                        "type":"unionId",
+                        "value":"unionId_919905000000"
+                     },
+                     {
+                        "type":"mobile",
+                        "value":"919905000000"
+                     }
+                  ],
+                  "commChannels":[
+                     {
+                        "type":"mobile",
+                        "value":"919905000000",
+                        "primary":true,
+                        "verified":true,
+                        "meta":{
+                           "residence":false,
+                           "office":false
+                        },
+                        "attributes":{
+                           
+                        }
+                     },
+                     {
+                        "type":"email",
+                        "value":"919905000000@mail.com",
+                        "primary":true,
+                        "verified":true,
+                        "meta":{
+                           "residence":false,
+                           "office":false
+                        },
+                        "attributes":{
+                           
+                        }
+                     }
+                  ],
+                  "source":"WECHAT",
+                  "accountId":"WECHAT-CM",
+                  "conflictingProfileList":[
+                     
+                  ],
+                  "autoUpdateTime":"2021-08-03T17:05:38+05:30",
+                  "identifiersAll":[
+                     {
+                        "type":"cuid",
+                        "value":"cuid_919905000000"
+                     },
+                     {
+                        "type":"unionId",
+                        "value":"unionId_919905000000"
+                     },
+                     {
+                        "type":"mobile",
+                        "value":"919905000000"
+                     }
+                  ]
+               }
+            ],
+            "extendedFields":{
+               "city":"city_6878387",
+               "gender":"Male"
+            }
+         },
+         "fleetCompany":{
+            "externalId":"ex917471000000"
+         },
+         "skipLevelAllowed":false,
+         "new":true,
+         "childCustomer":false
+      },
+      "extendedFields":{
+         "city":"city_6878387",
+         "gender":"Male"
+      },
+      "errors":[
+         {}
+      ]
+   }
+]
+```
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/bulk?{queryParam}={paramValue}'
+Authentication | Yes
+HTTP Method | PUT
+Batch Support | Yes
+
+
+### Request URL
+
+`{host}/v2/customers/search?{queryParam}={paramValue}`
+
+
+### Request Query Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+source* | enum | Source on which the customer details need to be updated Values: FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, ALL.
+accountId** | string | The account id of the specific source. Required for sources with multiple accounts such as WeChat or Facebook.
+
+### Request Body Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+### Request Body Parameters
+Parameter | Type | Description
+--------- | ----- | -----------
+loyaltyType* | enum | Loyalty status of the customer. Value: `loyalty`, `non_loyalty`.
+profiles | obj | Meta information of the customer.
+identifiers* | obj | Identifiers of the customer in type and value. 
+type | enum | Type of the customer identifier. Values: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, `fbId` `mobile`, `tmall_uname`, `cuid`, `ali_uname`, `jd_uname`, `vip_uname`, `mobilePush`, and `line`, and `card` (to issue loyalty card to the customers through registration).
+value | string | Value of the specified identifier. For the `type` card, `value` is card number.
+seriesId | int | Card series ID (for card series generated in Capillary). Required for the identifier `type`,  `card`.
+seriesCode | string | Unique card series code (for external card series). Applicable for the identifier `type`,  `card`.
+statusLabel | string | User defined card status. Required for the identifier `type`,  `card`.
+lastViewedDate** | Date | Date when the customer recently opened the app. Applicable for the channel `mobilePush`.
+loyaltyProgramEnrollments | obj | Lets you enroll new customers in the loyalty program.
+programId | int | Unique ID of the loyalty program in which you want to enroll.
+tierNumber | int | Sequence number of the tier that you want to allocate to the customer. For example, `1` for the lowest tier, `2` for the subsequent tier, and so on.
+loyaltyPoints | int | Loyalty points to credit in customer's account.
+tierExpiryDate | date-time | Expiry date and time of the specified tier. Supported Format: YYYY-MM-DDTHH:MM:SS+/-(time-zone).
+pointsExpiryDate | date-time | Expiry date and time of the points issued. Supported Format: YYYY-MM-DDTHH:MM:SS+/-(time-zone).
+hierarchyCode | string | Unique code of the hierarchy to associate with the customer/company.
+roleCode | string | Pre defined role code.
+childCustomers | obj | Details of child customers.
+profiles | obj | Details of the customer to associate.
+Firstname | string | First name of the customer.
+Lastname | string | Last name of the customer.
+identifiers* | obj | Identifiers of the customer in type and value. 
+type | enum | Type of the customer identifier. Values: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, `fbId` `mobile`, `tmall_uname`, `cuid`, `ali_uname`, `jd_uname`, `vip_uname`, `mobilePush`, and `line`, and `card` (to issue loyalty card to the customers through registration).
+value | string | Value of the specified identifier. For the `type` card, `value` is card number.
+commChannels | obj | Available communication channels of the customer. Value: `mobile`, `email`, `wechat`, `ios`, `android`, `line`, `mobilePush`.
+Firstname | string | First name of the customer.
+Lastname | string | Last name of the customer.
+createDate | date-time | Time and date of registration in `YYYY-MM-DDTHH:MM:SS+HH:MM` format. Example: 2016-06-23T19:11:18+08:00
+associatedWith | string | The TILL code associated with the customer registration.
+extendedFields | obj | Customer level extended field details of the customer in key:value pairs. You can only pass extended fields that are enabled for your org with the respective datatypes for values.
+fields | obj | Custom field details of customers in key-value pairs.
+fleetCompany | obj | Details of 
+externalId | string | External ID of the company.
+
+
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
+
+
+
+
+
+## Get Customers (Group Loyalty)
+
+Retrieves all child customers for a parent customer.
+
+> Sample Request
+
+```html
+http://eu.api.capillarytech.com/v2/customers/bulk?source=WECHAT&accountId=WECHAT-CM&associationEntityType=parentCustomer&associationEntityIdentifierType=mobile&associationEntityIdentifierValue=917169721931&limit=10&offset=0&sortOrder=DESC
+```
+
+> Sample Response
+
+```json
+{
+   "entity":{
+      "customers":[
+         {
+            "profiles":[
+               {
+                  "firstName":"Capillary",
+                  "lastName":"Customer",
+                  "fields":{
+                     "gender":"MALE"
+                  },
+                  "identifiers":[
+                     {
+                        "type":"cardnumber",
+                        "value":"regcm0000000000182418"
+                     },
+                     {
+                        "type":"cuid",
+                        "value":"cuid_91677872472"
+                     },
+                     {
+                        "type":"unionId",
+                        "value":"unionId_91677872472"
+                     }
+                  ],
+                  "commChannels":[
+                     {
+                        "type":"email",
+                        "value":"91677872472@mail.com",
+                        "primary":true,
+                        "verified":true,
+                        "meta":{
+                           "residence":false,
+                           "office":false
+                        },
+                        "attributes":{
+                           
+                        }
+                     }
+                  ],
+                  "source":"WECHAT",
+                  "userId":409967645,
+                  "accountId":"WECHAT-CM",
+                  "conflictingProfileList":[
+                     
+                  ],
+                  "autoUpdateTime":"2021-07-30T16:43:25+05:30",
+                  "identifiersAll":[
+                     {
+                        "type":"cardnumber",
+                        "value":"regcm0000000000182418"
+                     },
+                     {
+                        "type":"cuid",
+                        "value":"cuid_91677872472"
+                     },
+                     {
+                        "type":"unionId",
+                        "value":"unionId_91677872472"
+                     }
+                  ]
+               }
+            ],
+            "extendedFields":{
+               "city":"city_6878387",
+               "gender":"Male"
+            }
+         },
+         {
+            "profiles":[
+               {
+                  "firstName":"Capillary",
+                  "lastName":"Customer",
+                  "fields":{
+                     "gender":"MALE"
+                  },
+                  "identifiers":[
+                     {
+                        "type":"cardnumber",
+                        "value":"regcm0000000000182417"
+                     },
+                     {
+                        "type":"unionId",
+                        "value":"unionId_915610000000"
+                     },
+                     {
+                        "type":"cuid",
+                        "value":"cuid_915610000000"
+                     }
+                  ],
+                  "commChannels":[
+                     {
+                        "type":"email",
+                        "value":"915610000000@mail.com",
+                        "primary":true,
+                        "verified":true,
+                        "meta":{
+                           "residence":false,
+                           "office":false
+                        },
+                        "attributes":{
+                           
+                        }
+                     }
+                  ],
+                  "source":"WECHAT",
+                  "userId":409967644,
+                  "accountId":"WECHAT-CM",
+                  "conflictingProfileList":[
+                     
+                  ],
+                  "autoUpdateTime":"2021-07-30T16:43:25+05:30",
+                  "identifiersAll":[
+                     {
+                        "type":"cardnumber",
+                        "value":"regcm0000000000182417"
+                     },
+                     {
+                        "type":"unionId",
+                        "value":"unionId_915610000000"
+                     },
+                     {
+                        "type":"cuid",
+                        "value":"cuid_915610000000"
+                     }
+                  ]
+               }
+            ],
+            "extendedFields":{
+               "city":"city_6878387",
+               "gender":"Male"
+            }
+         }
+      ],
+      "count":2,
+      "errors":[
+         
+      ],
+      "warnings":[
+         
+      ]
+   },
+   "warnings":[
+      
+   ],
+   "errors":[
+      
+   ],
+   "success":true
+}
+```
+
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `customers/bulk?{queryParam}={paramValue}`
+Authentication | Yes
+HTTP Method | GET
+Batch Support | Yes
+
+
+
+### Request URL
+
+`{host}/v2/customers/bulk?{queryParam}={paramValue}`
+
+
+### Request Query Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+source* | enum | Source from which you want to fetch customer details. Values: FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, ALL
+accountId** | string | Account ID for sources with multiple accounts. This is required for required for sources with multiple accounts such as WeChat or Facebook.
+associationEntityType | enum | Pass `parentCustomer`.
+associationEntityIdentifierType | enum | Identifier type used for parent customer. Value: `mobile`, `email`, `externalId`, `cardnumber`, `wechat`, `martjackId`, `fbId`. 
+associationEntityIdentifierValue | string | Value of the parent customer.
+limit | int | Limit the number of results to retrieve.
+sortBy | enum | Lets you sort the list by created date, `createdon` or last updated date, `lastUpdatedOn`.
+sortOrder | enum | Sort the results in ascending, `ASC` or descending, `DESC` order of sortBy
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
+
+
+
+
+## Get Customers (Advanced Customer Search)
 
 > Sample Request
 
@@ -2059,7 +3609,6 @@ Batch Support | No
 Parameter | Datatype | Description
 --------- | -------- | -----------
 customerId* | long | Unique ID of the customer to get the details of change requests.
-limit | int | Limit the number of results to retrieve.
 offset | int | Fetches change requests > the offset number. Offset is the position of the lead in the db record. The value is assigned based on the sequence of creation. . For example, offset=10 retrieves all the leads from record number 11.
 source | enum | Source in which want to fetch details. Values: `INSTORE`, `FACEBOOK`, `WEB_ENGAGE`, `WECHAT`, `MARTJACK`, `TMALL`, `TAOBAO`, `JD`, `ECOMMERCE`, `WEBSITE`, `LINE`, `MOBILE_APP`. For sources with multiple accounts such as WECHAT, FACEBOOK, MOBILE_APP, or LINE,
 changeType | enum | Fetch details of a specific identifier change. Values: `EMAIL`, `MOBILE`, `EXTERNAL_ID`, `MERGE`, `MOBILE_REALLOC`, `COUPON`, `POINTS`, `TIER`, `RETRO`. 
@@ -2594,7 +4143,7 @@ value* | string | Card number to issue or tag to the customer.
 type* | enum | Pass `cardnumber` to issue card.
 statusLabel* | enum | New status of the card. Value: `ACTIVE`.
 
-
+ 
 
 
 

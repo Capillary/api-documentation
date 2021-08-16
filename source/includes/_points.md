@@ -20,6 +20,8 @@ https://eu.api.capillarytech.com/v2/points/isTransferrable
 {
   "pointsTobeTransferred": 10,
   "groupProgramTransfer": "false",
+  "notes": "Sample notes",
+  “programId”: 141,
   "fromCustomerIdentifier": {
     "type": "MOBILE",
     "value": "7799497290"
@@ -260,6 +262,8 @@ Batch Support | No
 
 Parameter | Type | Description
 -------- | ----- | -----------
+programId** | long | Program ID from which points has to be transferred. Applicable for multi-program orgs.
+notes | string | Any information to store for the current transfer activity.
 pointsTobeTransferred* | int | Number of points that customer wants to transfer.
 fromCustomerIdentifier* | obj | Details of source customer - customer that wants to transfer points.
 toCustomerIdentifier* | obj | Details of destination customer - customer to whom the points have to be transferred.
@@ -373,6 +377,8 @@ https://eu.api.capillarytech.com/v2/points/transfer
 { 
    "pointsTobeTransferred":123,
    "groupProgramTransfer": "false",
+   "programId": 141,
+   "notes": "Transferred on 16th July 2021",
    "fromCustomerIdentifier":{ 
       "type":"MOBILE",
       "value":"7799000000"
@@ -392,7 +398,7 @@ https://eu.api.capillarytech.com/v2/points/transfer
 { 
    "data":[ 
       { 
-         "pointsTransferDate":"2019-10-16 15:53:42",
+         "pointsTransferDate":"2021-07-16 15:53:42",
          "pointsTransferred":15.0,
          "transferId":100,
          "transferType":"DEDUCTION",
@@ -438,6 +444,7 @@ Batch Support | No
 Parameter | Type | Description
 --------- | ---- | -----------
 pointsTobeTransferred* | int | Number of points to be transferred.
+programId** | long | Program ID from which points has to be transferred. Applicable for multi-program orgs.
 fromCustomerIdentifier* | obj | Details of source customer - customer that wants to transfer points.
 toCustomerIdentifier* | obj | Details of destination customer - customer to whom the points have to be transferred.
 type* | enum | Customer identifier type. Values: `ID` (user id of the customer), `MOBILE`, `EXTERNAL_ID`, `EMAIL`.
