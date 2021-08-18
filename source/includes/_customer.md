@@ -713,7 +713,7 @@ CODE | DESCRIPTION
 
 ## Associate Customer with Customer/Hierarchy
 
-Lets you batch register customers or associate a customer with company or hierarchy. This API registers parent and child customers (if not registered), and  associates the customer with hierarchy code, company role, parent and child customers.
+Lets you batch register customers, or associate a customer with company or hierarchy. This API registers parent and child customers (if not registered), and  associates the customer with hierarchy code, company role, parent and child customers.
 
 > Sample Request
 
@@ -1621,9 +1621,9 @@ https://us.api.capillarytech.com/v2/customers/bulk
 URI | `customers/bulk`
 Authentication | Yes
 HTTP Method | POST
-Batch Support | No
+Batch Support | Yes
 
-
+<aside class="notice">Batch support is for normal customer registration. </aside>
 
 ### Request URL
 
@@ -2063,7 +2063,7 @@ externalId | string | External ID of the company.
 
 ## Get Customers (Group Loyalty)
 
-Retrieves all child customers for a parent customer.
+Retrieves all child customers for a parent customer. 
 
 > Sample Request
 

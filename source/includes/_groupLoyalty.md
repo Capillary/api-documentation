@@ -280,7 +280,7 @@ description | string | Brief description about the hierarchy
 roles | obj | Roles and permissions of the hierarchy.
 code | enum | Unique code of the role.
 childRoleCode | string | Unique code of the child role (if any).
-maxChild | long | Maximum number of child users allowed for the parent role.
+maxChild | long | Maximum number of child users allowed for the parent role. Maximum allowed value is 30000.
 permissions | array | Permissions granted to the role. Values: `earn_points`, `burn_points`. These specified permissions are applicable to all users in the current role.
 permissionCode | enum | Unique code of the permission. 
 permissionValue | boolean | Set `true` to enable and `false` to disable the code.
@@ -2287,7 +2287,7 @@ tierNumber | int | Sequence number of the tier that you want to allocate to the 
 loyaltyPoints | int | Loyalty points to credit in customer's account.
 tierExpiryDate | date-time | Expiry date and time of the specified tier. Supported Format: YYYY-MM-DDTHH:MM:SS+/-(time-zone).
 pointsExpiryDate | date-time | Expiry date and time of the points issued. Supported Format: YYYY-MM-DDTHH:MM:SS+/-(time-zone).
-hierarchyCode | string | Unique code of the hierarchy to associate with the customer/company. All configurations set for the hierarchy will be applicable to the customer/company.
+hierarchyCode | string | Unique code of the hierarchy to associate with the customer. All configurations set for the hierarchy will be applicable to the customer.
 roleCode | string | Pre defined role code - Role of the customer in the hierarchy.
 parentCustomer | obj | User profile of the parent customer.
 fleetCompany | obj | Details of the company the customer is associated with.
@@ -2317,7 +2317,7 @@ fields | obj | Custom field details of customers in key-value pairs.
 
 
 
-## Update Association Details (for Customer/Company)
+## Update Association Details (for customer)
 
 
 
@@ -2672,7 +2672,7 @@ tierNumber | int | Sequence number of the tier that you want to allocate to the 
 loyaltyPoints | int | Loyalty points to credit in customer's account.
 tierExpiryDate | date-time | Expiry date and time of the specified tier. Supported Format: YYYY-MM-DDTHH:MM:SS+/-(time-zone).
 pointsExpiryDate | date-time | Expiry date and time of the points issued. Supported Format: YYYY-MM-DDTHH:MM:SS+/-(time-zone).
-hierarchyCode | string | Unique code of the hierarchy to associate with the customer/company.
+hierarchyCode | string | Unique code of the hierarchy to associate with the customer.
 roleCode | string | Pre defined role code.
 childCustomers | obj | Details of child customers.
 profiles | obj | Details of the customer to associate.
@@ -2886,16 +2886,16 @@ Parameter | Datatype | Description
 --------- | -------- | -----------
 source* | enum | Source from which you want to fetch customer details. Values: FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, ALL
 accountId** | string | Account ID for sources with multiple accounts. This is required for required for sources with multiple accounts such as WeChat or Facebook.
-associationEntityType | enum | 
-associationEntityIdentifierType | | 
-associationEntityIdentifierValue | | 
+associationEntityType | enum | Pass `parentCustomer`. Currently, only this value is supported.
+associationEntityIdentifierType | enum | Identifier type used for parent customer.
+associationEntityIdentifierValue | string | Value of the identifier type. 
 limit | int | Limit the number of results to retrieve.
 sortBy | enum | Lets you sort the list by created date, `createdon` or last updated date, `lastUpdatedOn`.
 sortOrder | enum | Sort the results in ascending, `ASC` or descending, `DESC` order of sortBy
 
 
 
-
+<aside class="notice">Parameters marked with * are mandatory.</aside>
 
 
 

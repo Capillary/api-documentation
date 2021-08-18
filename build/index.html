@@ -1713,7 +1713,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 
 <h2 id="associate-customer-with-customer-hierarchy">Associate Customer with Customer/Hierarchy</h2>
 
-<p>Lets you batch register customers or associate a customer with company or hierarchy. This API registers parent and child customers (if not registered), and  associates the customer with hierarchy code, company role, parent and child customers.</p>
+<p>Lets you batch register customers, or associate a customer with company or hierarchy. This API registers parent and child customers (if not registered), and  associates the customer with hierarchy code, company role, parent and child customers.</p>
 
 <blockquote>
 <p>Sample Request</p>
@@ -2624,9 +2624,11 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 </tr>
 <tr>
 <td>Batch Support</td>
-<td>No</td>
+<td>Yes</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">Batch support is for normal customer registration. </aside>
 
 <h3 id="request-url">Request URL</h3>
 
@@ -3362,7 +3364,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 
 <h2 id="get-customers-group-loyalty">Get Customers (Group Loyalty)</h2>
 
-<p>Retrieves all child customers for a parent customer.</p>
+<p>Retrieves all child customers for a parent customer. </p>
 
 <blockquote>
 <p>Sample Request</p>
@@ -22989,7 +22991,7 @@ Batch Support | No
 <tr>
 <td>maxChild</td>
 <td>long</td>
-<td>Maximum number of child users allowed for the parent role.</td>
+<td>Maximum number of child users allowed for the parent role. Maximum allowed value is 30000.</td>
 </tr>
 <tr>
 <td>permissions</td>
@@ -25345,7 +25347,7 @@ Batch Support | No
 <tr>
 <td>hierarchyCode</td>
 <td>string</td>
-<td>Unique code of the hierarchy to associate with the customer/company. All configurations set for the hierarchy will be applicable to the customer/company.</td>
+<td>Unique code of the hierarchy to associate with the customer. All configurations set for the hierarchy will be applicable to the customer.</td>
 </tr>
 <tr>
 <td>roleCode</td>
@@ -25441,7 +25443,7 @@ Batch Support | No
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
 
-<h2 id="update-association-details-for-customer-company">Update Association Details (for Customer/Company)</h2>
+<h2 id="update-association-details-for-customer">Update Association Details (for customer)</h2>
 
 <p>Lets you update group customer details.</p>
 <pre class="highlight html"><code>http://eu.api.capillarytech.com/v2/customers/search?limit=10<span class="err">&amp;</span>offset=0<span class="err">&amp;</span>q=tom
@@ -25895,7 +25897,7 @@ Batch Support | No
 <tr>
 <td>hierarchyCode</td>
 <td>string</td>
-<td>Unique code of the hierarchy to associate with the customer/company.</td>
+<td>Unique code of the hierarchy to associate with the customer.</td>
 </tr>
 <tr>
 <td>roleCode</td>
@@ -26201,17 +26203,17 @@ Batch Support | No
 <tr>
 <td>associationEntityType</td>
 <td>enum</td>
-<td></td>
+<td>Pass <code class="prettyprint">parentCustomer</code>. Currently, only this value is supported.</td>
 </tr>
 <tr>
 <td>associationEntityIdentifierType</td>
-<td></td>
-<td></td>
+<td>enum</td>
+<td>Identifier type used for parent customer.</td>
 </tr>
 <tr>
 <td>associationEntityIdentifierValue</td>
-<td></td>
-<td></td>
+<td>string</td>
+<td>Value of the identifier type.</td>
 </tr>
 <tr>
 <td>limit</td>
@@ -26229,6 +26231,8 @@ Batch Support | No
 <td>Sort the results in ascending, <code class="prettyprint">ASC</code> or descending, <code class="prettyprint">DESC</code> order of sortBy</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
 
 <h2 id="response-codes">Response Codes</h2>
 
