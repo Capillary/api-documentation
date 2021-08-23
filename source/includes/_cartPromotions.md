@@ -561,6 +561,7 @@ onEarnCommunicationChannels | | Details about earned communications and expired 
 
 ## Update Promotion Details
 
+Lets you update details of a promotion.
 
 > Sample Request
 
