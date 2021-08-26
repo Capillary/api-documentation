@@ -7310,6 +7310,20 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </tr>
 </tbody></table>
 
+<h3 id="additional-header">Additional Header</h3>
+
+<table><thead>
+<tr>
+<th>Header</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>WAIT_FOR_DOWNSTREAM</td>
+<td>Pass <code class="prettyprint">true</code> to wait for Loyalty activities to complete and then respond to the client with side effects in the API response.<br>Pass <code class="prettyprint">false</code> to run Loyalty activities in the background. No side effects are returned in the API response.</td>
+</tr>
+</tbody></table>
+
 <h3 id="request-url">Request URL</h3>
 
 <p><code class="prettyprint">{host}/v2/transactions/bulk</code></p>
@@ -7361,7 +7375,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <tr>
 <td>deliveryStatus</td>
 <td>enum</td>
-<td>Delivery status of the item. Values: DELIVERED, SHIPPED.</td>
+<td>Delivery status of the item. Values: <code class="prettyprint">PLACED</code>, <code class="prettyprint">PROCESSED</code>, <code class="prettyprint">SHIPPED</code>, <code class="prettyprint">DELIVERED</code>, <code class="prettyprint">RETURNED</code>.</td>
 </tr>
 <tr>
 <td>type*</td>
@@ -7404,6 +7418,11 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>Transaction amount before discount.</td>
 </tr>
 <tr>
+<td>outlierStatus</td>
+<td>enum</td>
+<td>Transaction level outlier status. Values: <code class="prettyprint">NORMAL</code>, <code class="prettyprint">INTERNAL</code>, <code class="prettyprint">FRAUD</code>, <code class="prettyprint">OUTLIER</code>, <code class="prettyprint">TEST</code>, <code class="prettyprint">DELETED</code>, <code class="prettyprint">FAILED</code>, <code class="prettyprint">OTHER</code></td>
+</tr>
+<tr>
 <td>note</td>
 <td>string</td>
 <td>Additional information about the transaction.</td>
@@ -7412,6 +7431,11 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>lineItemsV2</td>
 <td>obj</td>
 <td>Details of line-items.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>enum</td>
+<td>Type of the line item. Value: <code class="prettyprint">REGULAR</code>, <code class="prettyprint">NOT_INTERESTED</code>, <code class="prettyprint">RETURN</code>, <code class="prettyprint">NOT_INTERESTED_RETURN</code>, <code class="prettyprint">MIXED,NI_MIXED</code>.</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -7495,8 +7519,8 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </tr>
 <tr>
 <td>comboType</td>
-<td>string</td>
-<td>Type of the combo. For example, buy 1 shirt get one free, shirt+pant, pack of 5 soaps.</td>
+<td>enum(s)</td>
+<td>Type of the combo. Value: <code class="prettyprint">COMBO_PARENT</code> (parent item in combo), <code class="prettyprint">COMBO_ITEM</code>, <code class="prettyprint">ADD_ON_ITEM</code>, <code class="prettyprint">SPLIT</code>.</td>
 </tr>
 <tr>
 <td>addOnDetails</td>
@@ -7562,6 +7586,16 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>attributes</td>
 <td>obj</td>
 <td>Attributes of the payment mode as name-value pairs.</td>
+</tr>
+<tr>
+<td>use_async</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to run Loyalty activities in the background, side effects will not be returned in the API response. If <code class="prettyprint">false</code>, API will wait for Loyalty activities to complete and then respond to the client with side effects in the API response.</td>
+</tr>
+<tr>
+<td>returnType**</td>
+<td>enum</td>
+<td>For a return transaction, pass the return type. Value: <code class="prettyprint">AMOUNT</code>, <code class="prettyprint">FULL</code>, <code class="prettyprint">LINE_ITEM</code>, <code class="prettyprint">CANCELLED</code>.</td>
 </tr>
 <tr>
 <td>loyaltyPromotionIdentifiers</td>
@@ -7735,6 +7769,11 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>string</td>
 <td>For sources with multiple accounts (such as MARTJACK, WECHAT), pass the respective account ID.</td>
 </tr>
+<tr>
+<td>use_async</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to run Loyalty activities in the background, side effects will not be returned in the API response. If <code class="prettyprint">false</code>, API will wait for Loyalty activities to complete and then respond to the client with side effects in the API response.</td>
+</tr>
 </tbody></table>
 
 <h3 id="request-body-parameters">Request Body Parameters</h3>
@@ -7746,6 +7785,46 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>identifierType*</td>
+<td>enum</td>
+<td>Pass any of the registered identifier name of the customer. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>, or <code class="prettyprint">fbId</code> (Facebook ID).</td>
+</tr>
+<tr>
+<td>identifierValue*</td>
+<td>string</td>
+<td>Pass the respective identifier value. For example if <code class="prettyprint">identifierType</code> is mobile, <code class="prettyprint">identifierValue</code> is mobile number.</td>
+</tr>
+<tr>
+<td>source*</td>
+<td>enum</td>
+<td>Pass the source from which the transaction is made. Values: <code class="prettyprint">INSTORE</code>( for InStore), <code class="prettyprint">WECHAT</code> (WeChat), <code class="prettyprint">MARTJACK</code>(AnywhereCommerce), <code class="prettyprint">WEB_ENGAGE</code> (Web-engage integration), ECOMMERCE (ECOMMERCE), <code class="prettyprint">JD</code> (JD), <code class="prettyprint">TAOBAO</code> (Taobao), <code class="prettyprint">TMALL</code> (TMall), <code class="prettyprint">FACEBOOK</code> (Facebook), <code class="prettyprint">WEBSITE</code> (other website), <code class="prettyprint">OTHERS</code> (any other source).</td>
+</tr>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>For sources with multiple accounts (such as MARTJACK, WECHAT), pass the respective account ID.</td>
+</tr>
+<tr>
+<td>extendedFields</td>
+<td>obj</td>
+<td>Valid transaction level extended field details in name and value pairs.</td>
+</tr>
+<tr>
+<td>currencyCode</td>
+<td>string</td>
+<td>ISO currency code of the transaction. For example, <code class="prettyprint">INR</code> for Indian Rupee, SGD for Singapore Dollar, <code class="prettyprint">EUR</code> for Euro, <code class="prettyprint">IQD</code> for Iraqi Dinar.</td>
+</tr>
+<tr>
+<td>addWithLocalCurrency</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to add a transaction in local currency.</td>
+</tr>
+<tr>
+<td>deliveryStatus</td>
+<td>enum</td>
+<td>Delivery status of the item. Values: <code class="prettyprint">PLACED</code>, <code class="prettyprint">PROCESSED</code>, <code class="prettyprint">SHIPPED</code>, <code class="prettyprint">DELIVERED</code>, <code class="prettyprint">RETURNED</code>.</td>
+</tr>
 <tr>
 <td>type*</td>
 <td>enum</td>
@@ -7787,24 +7866,9 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>Transaction amount before discount.</td>
 </tr>
 <tr>
-<td>extendedFields</td>
-<td>obj</td>
-<td>Valid transaction level extended field details in name and value pairs. You can also pass line-item level extended field details in <code class="prettyprint">line_item</code> object.</td>
-</tr>
-<tr>
-<td>currencyCode</td>
-<td>string</td>
-<td>ISO currency code of the transaction. For example, <code class="prettyprint">INR</code> for Indian Rupee, SGD for Singapore Dollar, <code class="prettyprint">EUR</code> for Euro, <code class="prettyprint">IQD</code> for Iraqi Dinar.</td>
-</tr>
-<tr>
-<td>addWithLocalCurrency</td>
-<td>boolean</td>
-<td>Pass <code class="prettyprint">true</code> to add a transaction in local currency.</td>
-</tr>
-<tr>
-<td>deliveryStatus</td>
+<td>outlierStatus</td>
 <td>enum</td>
-<td>Delivery status of the item. Values: DELIVERED, SHIPPED.</td>
+<td>Transaction level outlier status. Values: <code class="prettyprint">NORMAL</code>, <code class="prettyprint">INTERNAL</code>, <code class="prettyprint">FRAUD</code>, <code class="prettyprint">OUTLIER</code>, <code class="prettyprint">TEST</code>, <code class="prettyprint">DELETED</code>, <code class="prettyprint">FAILED</code>, <code class="prettyprint">OTHER</code></td>
 </tr>
 <tr>
 <td>note</td>
@@ -7817,109 +7881,154 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>Details of line-items.</td>
 </tr>
 <tr>
-<td>amount</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;amount</td>
 <td>double</td>
 <td>Net transaction amount</td>
 </tr>
 <tr>
-<td>description</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description</td>
 <td>string</td>
 <td>One or two liner description of the line-item.</td>
 </tr>
 <tr>
-<td>itemCode</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;discount</td>
+<td>int</td>
+<td>Discount received on the line item.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;itemCode</td>
 <td>string</td>
 <td>Unique code of the transaction line-item.</td>
 </tr>
 <tr>
-<td>qty</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qty</td>
 <td>double</td>
 <td>Quantity of the current line-item.</td>
 </tr>
 <tr>
-<td>rate</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rate</td>
 <td>double</td>
 <td>Price of each line-item.</td>
 </tr>
 <tr>
-<td>serial</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;serial</td>
 <td>string</td>
 <td>Serial number of the line-item.</td>
 </tr>
 <tr>
-<td>returnable</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;returnable</td>
 <td>boolean</td>
-<td>Pass <code class="prettyprint">true</code> if the item can be returned.</td>
+<td>Pass <code class="prettyprint">true</code> if the item can be returned post purchase.</td>
 </tr>
 <tr>
-<td>returnableDays</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;returnableDays</td>
 <td>int</td>
-<td>Maximum number of days in which the item is allowed to return.</td>
+<td>Maximum number of days the item is allowed to return.</td>
 </tr>
 <tr>
-<td>customFields</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;customFields</td>
 <td>obj</td>
 <td>Transaction or line-item level custom field details.</td>
 </tr>
 <tr>
-<td>imgUrl</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imgUrl</td>
 <td>string</td>
 <td>URL of the product image.</td>
 </tr>
 <tr>
-<td>attributes</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attributes</td>
 <td>obj</td>
 <td>Attributes of the product in name-value pairs.</td>
 </tr>
 <tr>
-<td>comboDetails</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;comboDetails</td>
 <td>obj</td>
-<td>Details of combo or bundle items. For example, buy 1 shirt get one free, shirt+pant, pack of 5 soaps</td>
+<td>Details of combo, bundle, or split items.</td>
 </tr>
 <tr>
-<td>itemCode</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;itemCode</td>
 <td>string</td>
 <td>Unique line-item code.</td>
 </tr>
 <tr>
-<td>quantity</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;quantity</td>
 <td>double</td>
 <td>Quantity of the current combo item.</td>
 </tr>
 <tr>
-<td>description</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description</td>
 <td>string</td>
 <td>One or two liner description of add-on, split, or combo item.</td>
 </tr>
 <tr>
-<td>value</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rate</td>
+<td>double</td>
+<td>Price of the combo item.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value</td>
 <td>double</td>
 <td>Item price excluding discount.</td>
 </tr>
 <tr>
-<td>comboType</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;comboType</td>
 <td>string</td>
-<td>Type of the combo. For example, buy 1 shirt get one free, shirt+pant, pack of 5 soaps.</td>
+<td>Type of the combo. Value: <code class="prettyprint">COMBO_PARENT</code>, <code class="prettyprint">COMBO_ITEM</code>, <code class="prettyprint">ADD_ON_ITEM</code>, <code class="prettyprint">SPLIT</code>.</td>
 </tr>
 <tr>
-<td>addOnDetails</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addOnDetails</td>
 <td>obj</td>
 <td>Details of add-on item.</td>
 </tr>
 <tr>
-<td>splitDetails</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;splitDetails</td>
 <td>obj</td>
 <td>Details of split item.</td>
 </tr>
 <tr>
-<td>parentBillNumber</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parentBillNumber</td>
 <td>string</td>
-<td>Details of the actual transaction number. This is applicable only for return transactions.</td>
+<td>Actual transaction number. Applicable only for return transactions.</td>
 </tr>
 <tr>
-<td>purchaseTime</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;purchaseTime</td>
 <td>date-time</td>
-<td>Date and time of purchase in <code class="prettyprint">YYYY-MM-DDTHH:MM:SS</code> format.</td>
+<td>Actual date of transaction of the return item in <code class="prettyprint">YYYY-MM-DD</code>.</td>
+</tr>
+<tr>
+<td>parentBillNumber</td>
+<td>string</td>
+<td>Return transaction bill number.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;returnType</td>
+<td>string</td>
+<td>Line item type of the return. Value: <code class="prettyprint">AMOUNT</code>, <code class="prettyprint">FULL</code>, <code class="prettyprint">LINE_ITEM</code>, <code class="prettyprint">CANCELLED</code>.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;originalTxnNumber</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;appliedPromotionIdentifiers</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extendedFields</td>
+<td>obj</td>
+<td>Valid transaction line-item level extended field details.</td>
 </tr>
 <tr>
 <td>customFields</td>
@@ -7927,17 +8036,142 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>Details of transaction level or transaction line-item level custom fields.</td>
 </tr>
 <tr>
+<td>attribution</td>
+<td>obj</td>
+<td>Mapping to tag the transaction to a different user or till (other than the current user)</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;createDate</td>
+<td>date-time</td>
+<td>Date of the transaction in ISO 8601 standard format.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;createdBy</td>
+<td>obj</td>
+<td>User ID or store entity (like TILL ID, store ID) associated with the transaction.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;code</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name</td>
+<td>string</td>
+<td>Name of the attribution entry.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type</td>
+<td>enum</td>
+<td>Type of the attribution entity. Value: <code class="prettyprint">ZONE</code>, <code class="prettyprint">CONCEPT</code>, <code class="prettyprint">STORE</code>, <code class="prettyprint">TILL</code>, <code class="prettyprint">STR_SERVER</code>, <code class="prettyprint">ADMIN_USER</code>, <code class="prettyprint">ASSOCIATE</code>, <code class="prettyprint">RULE</code>, <code class="prettyprint">OU</code>.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adminType</td>
+<td>enum</td>
+<td>Pass <code class="prettyprint">ADMIN</code> if the transaction is added or modified by admin, else pass <code class="prettyprint">GENERAL</code>.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isActive</td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isOuEnabled</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;timeZoneId</td>
+<td>int</td>
+<td>Time zone ID of the store entity.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;currencyId</td>
+<td>int</td>
+<td>Currency ID of the store entity.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;languageId</td>
+<td>int</td>
+<td>Language ID of the store entity.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modifiedBy</td>
+<td>obj</td>
+<td>Details of user or store entity that modified</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modifiedDate</td>
+<td>date-time</td>
+<td>Date and time when the transaction is updated in ISO 8601 standard format.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;createdFromSource</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>returnType</td>
+<td>string</td>
+<td>Type of the return transaction. Value: <code class="prettyprint">AMOUNT</code>, <code class="prettyprint">FULL</code>, <code class="prettyprint">LINE_ITEM</code>, <code class="prettyprint">CANCELLED</code>.</td>
+</tr>
+<tr>
+<td>purchaseTime</td>
+<td>date-time</td>
+<td>Actual date of transaction of the returning bill in <code class="prettyprint">YYYY-MM-DD</code>.</td>
+</tr>
+<tr>
+<td>parentBillNumber</td>
+<td>string</td>
+<td>Return transaction bill number.</td>
+</tr>
+<tr>
+<td>notInterestedReason</td>
+<td>string</td>
+<td>Notes on why the customer is not interested to enrol into the loyalty.</td>
+</tr>
+<tr>
+<td>fleetGroupId</td>
+<td>int</td>
+<td>Group ID of the fleet associated with the customer.</td>
+</tr>
+<tr>
+<td>fleetGroupExternalId</td>
+<td>string</td>
+<td>External ID of the fleet group associated with the customer.</td>
+</tr>
+<tr>
+<td>fleetPrimaryUserId</td>
+<td>int</td>
+<td>Unique ID of the primary user of the fleet group.</td>
+</tr>
+<tr>
+<td>useDefaultFleetGroup</td>
+<td>boolean</td>
+<td>The default group associated</td>
+</tr>
+<tr>
 <td>redemptions</td>
 <td>obj</td>
 <td>Details of points and coupon redemptions for the  transaction.</td>
 </tr>
 <tr>
-<td>pointsRedemptions</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pointsRedemptions</td>
 <td>array</td>
 <td>Unique points redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]</td>
 </tr>
 <tr>
-<td>couponRedemptions</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;couponRedemptions</td>
 <td>array</td>
 <td>Unique coupon redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]</td>
 </tr>
@@ -7947,31 +8181,98 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>Payment details used for the transaction.</td>
 </tr>
 <tr>
-<td>mode</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mode</td>
 <td>string</td>
 <td>Mode of payment.</td>
 </tr>
 <tr>
-<td>value</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value</td>
 <td>double</td>
 <td>Amount paid through the current mode.</td>
 </tr>
 <tr>
-<td>notes</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;notes</td>
 <td>string</td>
 <td>Additional information related to the payment mode.</td>
 </tr>
 <tr>
-<td>attributes</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id</td>
+<td>string</td>
+<td>Unique ID of the payment mode.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attributes</td>
 <td>obj</td>
 <td>Attributes of the payment mode as name-value pairs.</td>
 </tr>
 <tr>
+<td>appliedPromotionIdentifiers</td>
+<td>array</td>
+<td>Identifiers of promotions (cart/catalog) applied to the transaction.</td>
+</tr>
+<tr>
+<td>promotionEvaluationId</td>
+<td>string</td>
+<td>Promotion ID (cart/catalog) for which the transaction is evaluated.</td>
+</tr>
+<tr>
 <td>loyaltyPromotionIdentifiers</td>
 <td>array</td>
-<td></td>
+<td>Identifier(s) of loyalty promotion(s) that you want to tag to the transaction.</td>
 </tr>
 </tbody></table>
+
+<p>type* | enum | Type of transaction. Supported value: <code class="prettyprint">REGULAR</code> for loyalty transactions. &lsquo;RETURN&rsquo; for return transactions. Currently, there is no not-interested transactions support in V2.
+returnType** | enum | For a return transaction, pass the return type. Value: <code class="prettyprint">AMOUNT</code>, <code class="prettyprint">FULL</code>, <code class="prettyprint">LINE_ITEM</code>, <code class="prettyprint">CANCELLED</code>.
+billAmount* | double | Net transaction amount.
+billNumber* |  string | Unique transaction number. The uniqueness either at till, store, or org, depends on the configuration <code class="prettyprint">CONF_LOYALTY_BILL_NUMBER_UNIQUE_IN_DAYS</code> set on InTouch <strong>Settings</strong> &gt; <strong>System &amp; Deployment</strong> &gt; <strong>InTouch POS Configuration</strong> &gt; <strong>Billing</strong>.<br>
+billingDate | date-time | Date and time of the transaction in the <code class="prettyprint">YYYY-MM-DDTHH:MM:SSZ</code> format.
+currency | string | ISO currency code of the transaction. Org&rsquo;s base currency is considered by default. For example, <code class="prettyprint">INR</code> for Indian Rupee, <code class="prettyprint">SGD</code> for Singapore Dollar, <code class="prettyprint">EUR</code> for Euro, <code class="prettyprint">IQD</code> for Iraqi Dinar.
+discount | double | Discount availed for the transaction or line item (discount amount) .
+grossAmount | double | Transaction amount before discount.
+extendedFields | obj | Valid transaction level extended field details in name and value pairs. You can also pass line-item level extended field details in <code class="prettyprint">line_item</code> object.
+currencyCode | string | ISO currency code of the transaction. For example, <code class="prettyprint">INR</code> for Indian Rupee, SGD for Singapore Dollar, <code class="prettyprint">EUR</code> for Euro, <code class="prettyprint">IQD</code> for Iraqi Dinar.
+addWithLocalCurrency | boolean | Pass <code class="prettyprint">true</code> to add a transaction in local currency.
+deliveryStatus | enum | Delivery status of the item. Values: DELIVERED, SHIPPED.
+attribution | obj | 
+&nbsp;&nbsp;&nbsp;createdBy | obj | Details of user/till who created the transaction. 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type | enum | Type of the user or store. Value: <code class="prettyprint">ZONE</code>, <code class="prettyprint">CONCEPT</code>, <code class="prettyprint">STORE</code>, <code class="prettyprint">TILL</code>, <code class="prettyprint">STR_SERVER</code>, <code class="prettyprint">ADMIN_USER</code>, <code class="prettyprint">ASSOCIATE</code>, <code class="prettyprint">RULE</code>, <code class="prettyprint">OU</code>.
+&nbsp;&nbsp;&nbsp;modifiedBy | obj | Details of user/till who modified the transaction. 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type | enum | Type of the user or store who modified the transaction. Value: <code class="prettyprint">ZONE</code>, <code class="prettyprint">CONCEPT</code>, <code class="prettyprint">STORE</code>, <code class="prettyprint">TILL</code>, <code class="prettyprint">STR_SERVER</code>, <code class="prettyprint">ADMIN_USER</code>, <code class="prettyprint">ASSOCIATE</code>, <code class="prettyprint">RULE</code>, <code class="prettyprint">OU</code>.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adminType | enum | Type of the user who created the transaction - admin or normal user. Value: <code class="prettyprint">ADMIN</code>, <code class="prettyprint">GENERAL</code>. 
+note | string | Additional information about the transaction.
+lineItemsV2 | obj | Details of line-items.
+amount | double | Net transaction amount.
+description | string | One or two liner description of the line-item.
+itemCode | string | Unique code of the transaction line-item.
+qty | double | Quantity of the current line-item.
+rate | double | Price of each line-item.
+serial | string | Serial number of the line-item.
+returnable | boolean | Pass <code class="prettyprint">true</code> if the item can be returned.
+returnableDays | int | Maximum number of days in which the item is allowed to return. 
+customFields | obj | Transaction or line-item level custom field details.
+imgUrl | string | URL of the product image.
+attributes | obj | Attributes of the product in name-value pairs.
+comboDetails | obj | Details of combo or bundle items. For example, buy 1 shirt get one free, shirt+pant, pack of 5 soaps
+itemCode | string | Unique line-item code.
+quantity | double | Quantity of the current combo item.
+description | string | One or two liner description of add-on, split, or combo item.
+value | double | Item price excluding discount.
+comboType | string | Type of the combo. For example, buy 1 shirt get one free, shirt+pant, pack of 5 soaps.
+addOnDetails | obj | Details of add-on item.
+splitDetails | obj | Details of split item.
+parentBillNumber | string | Details of the actual transaction number. This is applicable only for return transactions.
+purchaseTime | date-time | Date and time of purchase in <code class="prettyprint">YYYY-MM-DDTHH:MM:SS</code> format.
+customFields | obj | Details of transaction level or transaction line-item level custom fields.
+redemptions | obj | Details of points and coupon redemptions for the  transaction.
+pointsRedemptions | array | Unique points redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]
+couponRedemptions | array | Unique coupon redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]
+paymentModes | obj | Payment details used for the transaction. 
+mode | string | Mode of payment.
+value | double | Amount paid through the current mode.
+notes |string | Additional information related to the payment mode.
+attributes | obj | Attributes of the payment mode as name-value pairs.
+loyaltyPromotionIdentifiers | array | </p>
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
 
