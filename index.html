@@ -22931,7 +22931,6 @@ Batch Support | No
          </span><span class="p">]</span><span class="w">
       </span><span class="p">}</span><span class="w">
    </span><span class="p">],</span><span class="w">
-   </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
    </span><span class="s2">"autoGroupCreationEnabled"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
    </span><span class="s2">"hierarchyCreationStrict"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
    </span><span class="s2">"skipRoleAllowed"</span><span class="p">:</span><span class="kc">false</span><span class="w">
@@ -22994,7 +22993,7 @@ Batch Support | No
 </tr>
 </thead><tbody>
 <tr>
-<td>code</td>
+<td>code*</td>
 <td>string</td>
 <td>Unique code of the hierarchy.</td>
 </tr>
@@ -23044,11 +23043,6 @@ Batch Support | No
 <td>Set <code class="prettyprint">true</code> to enable and <code class="prettyprint">false</code> to disable the code.</td>
 </tr>
 <tr>
-<td>default</td>
-<td>boolean</td>
-<td>Set <code class="prettyprint">true</code> to make this a default hierarchy when no hierarchy is tagged to a company.</td>
-</tr>
-<tr>
 <td>pointsAggregationRole</td>
 <td>boolean</td>
 <td>To create a group implicitly, set both <code class="prettyprint">pointsAggregationRole</code> and <code class="prettyprint">autoGroupCreationEnabled</code> to true. <br>The user in the current role will become the owner of the group. All the other users conjoined with the user in the hierarchy will be included automatically and become the members of the group.<br><strong>Example</strong>: Assume A &gt; B &gt; C &gt; D as the roles in a hierarchy.<br>A is the parent of B. B is the parent of C. C is the parent of D.<br>Set <code class="prettyprint">pointsAggregationRole</code> to true for the role C to get a user registered.<br>The group is also automatically created along with this command. The user in role C will now be the owner of the group. <br>All the users associated with the user C, in roles A, B and D are also automatically added as members of the group.</td>
@@ -23061,7 +23055,7 @@ Batch Support | No
 <tr>
 <td>hierarchyCreationStrict</td>
 <td>boolean</td>
-<td>Pass <code class="prettyprint">true</code> to strictly follow the hierarchy associations; <code class="prettyprint">false</code> to allow skip-level parent child associations. For example, consider roles, A&gt;B&gt;C&gt;D in a hierarchy with A being the parent of B and so on. If <code class="prettyprint">hierarchyCreationStrict</code> is set to false, associations such as A&gt;C, A&gt;D, B&gt;D are allowed. If not, strict hierarchy is followed.</td>
+<td>Pass <code class="prettyprint">false</code> set user level permissions and group creation which will override the hierarchy configurations. Set <code class="prettyprint">true</code> to strictly follow hierarchy configurations.</td>
 </tr>
 <tr>
 <td>skipRoleAllowed</td>
@@ -23145,7 +23139,6 @@ Batch Support | No
          </span><span class="p">]</span><span class="w">
       </span><span class="p">}</span><span class="w">
    </span><span class="p">],</span><span class="w">
-   </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
    </span><span class="s2">"autoGroupCreationEnabled"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
    </span><span class="s2">"hierarchyCreationStrict"</span><span class="p">:</span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -23208,7 +23201,7 @@ Batch Support | No
 </tr>
 </thead><tbody>
 <tr>
-<td>code</td>
+<td>code*</td>
 <td>string</td>
 <td>Unique code of the hierarchy.</td>
 </tr>
@@ -23256,11 +23249,6 @@ Batch Support | No
 <td>permissionValue</td>
 <td>boolean</td>
 <td>Set <code class="prettyprint">true</code> to enable and <code class="prettyprint">false</code> to disable the code.</td>
-</tr>
-<tr>
-<td>default</td>
-<td>boolean</td>
-<td>Set <code class="prettyprint">true</code> to make this a default hierarchy when no hierarchy is tagged.</td>
 </tr>
 <tr>
 <td>autoGroupCreationEnabled</td>
@@ -23376,7 +23364,6 @@ Batch Support | No
     </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="s2">"autoGroupCreationEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="s2">"skipRoleAllowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -23512,6 +23499,8 @@ Batch Support | No
 </tr>
 </tbody></table>
 
+<aside class="notice">*The parameter is mandatory.</aside>
+
 <h2 id="get-hierarchies">Get Hierarchies</h2>
 
 <p>Retrieves hierarchies configured for the org.</p>
@@ -23585,7 +23574,6 @@ Batch Support | No
          </span><span class="s2">"active"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
          </span><span class="s2">"autoGroupCreationEnabled"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
          </span><span class="s2">"skipRoleAllowed"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
          </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="s2">"2021-06-02T16:22:53+05:30"</span><span class="p">,</span><span class="w">
@@ -23645,7 +23633,6 @@ Batch Support | No
          </span><span class="s2">"active"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
          </span><span class="s2">"autoGroupCreationEnabled"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
          </span><span class="s2">"skipRoleAllowed"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
          </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="s2">"2021-06-02T16:24:00+05:30"</span><span class="p">,</span><span class="w">
@@ -23706,7 +23693,6 @@ Batch Support | No
          </span><span class="s2">"active"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
          </span><span class="s2">"autoGroupCreationEnabled"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
          </span><span class="s2">"skipRoleAllowed"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
          </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="s2">"2021-06-02T17:15:25+05:30"</span><span class="p">,</span><span class="w">
@@ -23743,7 +23729,6 @@ Batch Support | No
          </span><span class="s2">"active"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
          </span><span class="s2">"autoGroupCreationEnabled"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
          </span><span class="s2">"skipRoleAllowed"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
          </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="s2">"2021-06-02T17:17:31+05:30"</span><span class="p">,</span><span class="w">
@@ -23804,7 +23789,6 @@ Batch Support | No
          </span><span class="s2">"active"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
          </span><span class="s2">"autoGroupCreationEnabled"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
          </span><span class="s2">"skipRoleAllowed"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
          </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="s2">"2021-07-27T19:53:59+05:30"</span><span class="p">,</span><span class="w">
@@ -23862,7 +23846,6 @@ Batch Support | No
          </span><span class="s2">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
          </span><span class="s2">"autoGroupCreationEnabled"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
          </span><span class="s2">"skipRoleAllowed"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="w">
       </span><span class="p">}</span><span class="w">
    </span><span class="p">],</span><span class="w">
    </span><span class="s2">"warnings"</span><span class="p">:[</span><span class="w">
@@ -24083,17 +24066,17 @@ Batch Support | No
 </tr>
 </thead><tbody>
 <tr>
-<td>name</td>
+<td>name*</td>
 <td>string</td>
 <td>Name of the company to add.</td>
 </tr>
 <tr>
-<td>externalId</td>
+<td>externalId*</td>
 <td>string</td>
 <td>External ID of the company.</td>
 </tr>
 <tr>
-<td>hierarchyDefinitionCode</td>
+<td>hierarchyDefinitionCode*</td>
 <td>string</td>
 <td>Unique code of the hierarchy applicable for the company. You can use only from hierarchies that are configured for the org.</td>
 </tr>
@@ -25520,7 +25503,7 @@ Batch Support | No
 <tr>
 <td>identifiers*</td>
 <td>obj</td>
-<td>Identifiers of the customer in type and value.</td>
+<td>Identifiers of the customer in type and value.  At least one identifier block is mandatory.</td>
 </tr>
 <tr>
 <td>type</td>
@@ -25613,7 +25596,7 @@ Batch Support | No
 <td>External ID of the company.</td>
 </tr>
 <tr>
-<td>profiles</td>
+<td>profiles*</td>
 <td>obj</td>
 <td>Details of the customer to associate.</td>
 </tr>
@@ -25679,7 +25662,7 @@ Batch Support | No
 </tr>
 </tbody></table>
 
-<aside class="notice">Parameters marked with * are mandatory. </aside>
+<aside class="notice">Parameters marked with * are mandatory. If identifier`type` is card, seriesCode is mandatory; if the card series has auto generation disabled, then identifier value is required</aside>
 
 <h2 id="update-association-details-for-customer">Update Association Details (for customer)</h2>
 
