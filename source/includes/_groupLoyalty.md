@@ -102,7 +102,6 @@ https://us.api.capillarytech.com/v2/fleetHierarchy
          ]
       }
    ],
-   "default":true,
    "autoGroupCreationEnabled":true,
    "hierarchyCreationStrict":true,
    "skipRoleAllowed":false
@@ -139,7 +138,7 @@ Batch Support | Yes
 
 Parameter | Datatype | Description
 --------- | -------- | -----------
-code | string | Unique code of the hierarchy.
+code* | string | Unique code of the hierarchy.
 name | string | Name of the hierarchy.
 description | string | Brief description about the hierarchy
 roles | array | Roles and permissions of the hierarchy. You need to have at least 2 roles for a hierarchy and can extend up to 8 (max).
@@ -149,10 +148,9 @@ maxChild | int | Maximum number of child users that can be associated with the u
 permissions | Array | Permissions granted to the role. For example, Points transfer, Points redemption. These specified permissions are applicable to all users in the current role.
 permissionCode | enum | Unique code of the permission.
 permissionValue | boolean | Set `true` to enable and `false` to disable the code.
-default | boolean | Set `true` to make this a default hierarchy when no hierarchy is tagged to a company.
 pointsAggregationRole | boolean | To create a group implicitly, set both `pointsAggregationRole` and `autoGroupCreationEnabled` to true. <br>The user in the current role will become the owner of the group. All the other users conjoined with the user in the hierarchy will be included automatically and become the members of the group.<br>**Example**: Assume A > B > C > D as the roles in a hierarchy.<br>A is the parent of B. B is the parent of C. C is the parent of D.<br>Set `pointsAggregationRole` to true for the role C to get a user registered.<br>The group is also automatically created along with this command. The user in role C will now be the owner of the group. <br>All the users associated with the user C, in roles A, B and D are also automatically added as members of the group.
 autoGroupCreationEnabled | boolean | Pass `true` to auto-create a group. At least one role should have `pointsAggregationRole` set to true.
-hierarchyCreationStrict | boolean | Pass `true` to strictly follow the hierarchy associations; `false` to allow skip-level parent child associations. For example, consider roles, A>B>C>D in a hierarchy with A being the parent of B and so on. If `hierarchyCreationStrict` is set to false, associations such as A>C, A>D, B>D are allowed. If not, strict hierarchy is followed.
+hierarchyCreationStrict | boolean | Pass `false` set user level permissions and group creation which will override the hierarchy configurations. Set `true` to strictly follow hierarchy configurations.
 skipRoleAllowed | boolean | Pass `true` to allow skip-level parent child associations. For example, if A>B>C>D are the roles in a hierarchy where A is the parent of B and so on. We allow associations like A>C, A>D, B>D. Pass `false`, hierarchy is followed strictly according to the sequence.
 
 
@@ -237,7 +235,6 @@ http://us.api.capillarytech.com/v2/fleetHierarchy/46
          ]
       }
    ],
-   "default":true,
    "autoGroupCreationEnabled":true,
    "hierarchyCreationStrict":true
 }
@@ -274,7 +271,7 @@ Batch Support | No
 
 Parameter | Datatype | Description
 --------- | -------- | -----------
-code | string | Unique code of the hierarchy.
+code* | string | Unique code of the hierarchy.
 name | string | Name of the hierarchy.
 description | string | Brief description about the hierarchy
 roles | obj | Roles and permissions of the hierarchy.
@@ -284,7 +281,6 @@ maxChild | long | Maximum number of child users allowed for the parent role. Max
 permissions | array | Permissions granted to the role. Values: `earn_points`, `burn_points`. These specified permissions are applicable to all users in the current role.
 permissionCode | enum | Unique code of the permission. 
 permissionValue | boolean | Set `true` to enable and `false` to disable the code.
-default | boolean | Set `true` to make this a default hierarchy when no hierarchy is tagged.
 autoGroupCreationEnabled | boolean | Pass `true` to auto-create a group. At least one role should have `pointsAggregationRole` set to true.
 hierarchyCreationStrict | boolean | Pass `true` to strictly follow the hierarchy associations; `false` to allow skip-level parent child associations. For example, consider roles, A>B>C>D in a hierarchy with A being the parent of B and so on. If `hierarchyCreationStrict` is set to false, associations such as A>C, A>D, B>D are allowed. If not, strict hierarchy is followed. 
 skipRoleAllowed | boolean | Pass `true` to allow skip-level parent child associations. For example, if A>B>C>D are the roles in a hierarchy where A is the parent of B and so on. We allow associations like A>C, A>D, B>D. Pass `false`, hierarchy is followed strictly according to the sequence.
@@ -392,7 +388,6 @@ http://us.api.capillarytech.com/v2/fleetHierarchy?id=22
     "active": true,
     "autoGroupCreationEnabled": true,
     "skipRoleAllowed": false,
-    "default": true,
     "warnings": []
 }
 ```
@@ -467,7 +462,7 @@ Parameter | Datatype | Description
 --------- | -------- | -----------
 id* | long | Unique ID of the hierarchy to delete.
 
-
+<aside class="notice">*The parameter is mandatory.</aside>
 
 ## Get Hierarchies
 
@@ -543,7 +538,6 @@ https://us.api.capillarytech.com/v2/fleetHierarchy/all
          "active":false,
          "autoGroupCreationEnabled":true,
          "skipRoleAllowed":false,
-         "default":true
       },
       {
          "createdOn":"2021-06-02T16:22:53+05:30",
@@ -603,7 +597,6 @@ https://us.api.capillarytech.com/v2/fleetHierarchy/all
          "active":false,
          "autoGroupCreationEnabled":false,
          "skipRoleAllowed":false,
-         "default":true
       },
       {
          "createdOn":"2021-06-02T16:24:00+05:30",
@@ -664,7 +657,6 @@ https://us.api.capillarytech.com/v2/fleetHierarchy/all
          "active":false,
          "autoGroupCreationEnabled":false,
          "skipRoleAllowed":false,
-         "default":true
       },
       {
          "createdOn":"2021-06-02T17:15:25+05:30",
@@ -701,7 +693,6 @@ https://us.api.capillarytech.com/v2/fleetHierarchy/all
          "active":false,
          "autoGroupCreationEnabled":false,
          "skipRoleAllowed":false,
-         "default":true
       },
       {
          "createdOn":"2021-06-02T17:17:31+05:30",
@@ -762,7 +753,6 @@ https://us.api.capillarytech.com/v2/fleetHierarchy/all
          "active":false,
          "autoGroupCreationEnabled":true,
          "skipRoleAllowed":false,
-         "default":true
       },
       {
          "createdOn":"2021-07-27T19:53:59+05:30",
@@ -820,7 +810,6 @@ https://us.api.capillarytech.com/v2/fleetHierarchy/all
          "active":true,
          "autoGroupCreationEnabled":true,
          "skipRoleAllowed":true,
-         "default":true
       }
    ],
    "warnings":[
@@ -989,9 +978,9 @@ Batch Support | No
 
 Parameter | Datatype | Description
 --------- | -------- | -----------
-name | string | Name of the company to add.
-externalId | string | External ID of the company.
-hierarchyDefinitionCode | string | Unique code of the hierarchy applicable for the company. You can use only from hierarchies that are configured for the org.
+name* | string | Name of the company to add.
+externalId* | string | External ID of the company.
+hierarchyDefinitionCode* | string | Unique code of the hierarchy applicable for the company. You can use only from hierarchies that are configured for the org.
 extendedFields | obj | Details of the company in `name`:`value` pairs.
 parentCompany | obj | Details of the parent or holding company. Applicable for child companies.
 
@@ -2271,7 +2260,7 @@ Parameter | Type | Description
 --------- | ----- | -----------
 loyaltyType* | enum | Loyalty status of the customer. Value: `loyalty`, `non_loyalty`.
 profiles | obj | Meta information of the customer.
-identifiers* | obj | Identifiers of the customer in type and value. 
+identifiers* | obj | Identifiers of the customer in type and value.  At least one identifier block is mandatory.
 type | enum | Type of the customer identifier. Values: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, `fbId` `mobile`, `tmall_uname`, `cuid`, `ali_uname`, `jd_uname`, `vip_uname`, `mobilePush`, and `line`, and `card` (to issue loyalty card to the customers through registration).
 value | string | Value of the specified identifier. For the `type` card, `value` is card number.
 seriesId | int | Card series ID (for card series generated in Capillary). Required for the identifier `type`,  `card`.
@@ -2290,7 +2279,7 @@ parentCustomer | obj | User profile of the parent customer.
 fleetCompany | obj | Details of the company the customer is associated with.
 childCustomers | obj | Profiles of the child customers.
 externalId | string | External ID of the company.
-profiles | obj | Details of the customer to associate.
+profiles* | obj | Details of the customer to associate.
 Firstname | string | First name of the customer.
 Lastname | string | Last name of the customer.
 identifiers* | obj | Identifiers of the customer in type and value. 
@@ -2307,7 +2296,7 @@ fields | obj | Custom field details of customers in key-value pairs.
 
 
 
-<aside class="notice">Parameters marked with * are mandatory. </aside>
+<aside class="notice">Parameters marked with * are mandatory. If identifier `type` is card, seriesCode is mandatory; if the card series has auto generation disabled, then identifier value is required.</aside>
 
 
 

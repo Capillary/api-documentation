@@ -6561,25 +6561,31 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </blockquote>
 <pre class="highlight json"><code><span class="p">[</span><span class="w">
    </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"identifierType"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"identifierValue"</span><span class="p">:</span><span class="s2">"919740000000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"identifierType"</span><span class="p">:</span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"identifierValue"</span><span class="p">:</span><span class="s2">"98662653"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"source"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"accountId"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
       </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"REGULAR"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"billNumber"</span><span class="p">:</span><span class="s2">"num-668288857749"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"billingDate"</span><span class="p">:</span><span class="s2">"2020-12-28T10:18:01.534Z"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"discount"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"billAmount"</span><span class="p">:</span><span class="s2">"200"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"discount"</span><span class="p">:</span><span class="s2">"10.0"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"billAmount"</span><span class="p">:</span><span class="s2">"4800.0"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"note"</span><span class="p">:</span><span class="s2">"this is test"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"grossAmount"</span><span class="p">:</span><span class="s2">"110"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"deliveryStatus"</span><span class="p">:</span><span class="s2">"SHIPPED"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"paymentModes"</span><span class="p">:[</span><span class="w">
          </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"mode"</span><span class="p">:</span><span class="s2">"Card Payment"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"5104"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"mode"</span><span class="p">:</span><span class="s2">"CardPayment"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"5100.0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"notes"</span><span class="p">:</span><span class="s2">"SPay"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"attributes"</span><span class="p">:{</span><span class="w">
                </span><span class="s2">"card_type"</span><span class="p">:</span><span class="s2">"Visa"</span><span class="w">
             </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"mode"</span><span class="p">:</span><span class="s2">"NetBanking"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"4800.0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"notes"</span><span class="p">:</span><span class="s2">"Net Banking"</span><span class="p">,</span><span class="w">
          </span><span class="p">}</span><span class="w">
       </span><span class="p">],</span><span class="w">
       </span><span class="s2">"redemptions"</span><span class="p">:{</span><span class="w">
@@ -6593,10 +6599,11 @@ Also, check the following configurations for maximum days allowed and minimum ti
          </span><span class="p">]</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
-         </span><span class="s2">"ship_first_name"</span><span class="p">:</span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"ship_last_name"</span><span class="p">:</span><span class="s2">"10.50"</span><span class="w">
+         </span><span class="s2">"ship_first_name"</span><span class="p">:</span><span class="s2">"Sam"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"ship_last_name"</span><span class="p">:</span><span class="s2">"Sundar"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="s2">"customFields"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"booking_ota"</span><span class="p">:</span><span class="s2">"Website"</span><span class="p">,</span><span class="w">
          </span><span class="s2">"trans_cf_a"</span><span class="p">:</span><span class="s2">"abc"</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="s2">"lineItemsV2"</span><span class="p">:[</span><span class="w">
@@ -6854,7 +6861,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </blockquote>
 <pre class="highlight json"><code><span class="p">[</span><span class="w">
   </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"identifierType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"identifierType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"identifierValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"919035000000"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RETURN"</span><span class="p">,</span><span class="w">
@@ -6926,28 +6933,35 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">360744866</span><span class="p">,</span><span class="w">
       </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"identifierType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"identifierValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"919740000000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"identifierType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"identifierValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"98662653"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
         </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"ship_first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"ship_last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="w">
+          </span><span class="s2">"flight_count"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="s2">"deliveryStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHIPPED"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REGULAR"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"billAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"billNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"num-668288857749"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"grossAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">110</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this is test"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"billAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">4808</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"billNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Test144e79c384598f5f9a265581d52a0a1471747957"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INR"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"redemptions"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"pointsRedemptions"</span><span class="p">:[</span><span class="w">
+            </span><span class="mi">123453</span><span class="p">,</span><span class="w">
+            </span><span class="mi">345673</span><span class="w">
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"couponRedemptions"</span><span class="p">:[</span><span class="w">
+            </span><span class="mi">727272</span><span class="p">,</span><span class="w">
+            </span><span class="mi">237878</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
         </span><span class="s2">"lineItemsV2"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_2"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CGST"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
             </span><span class="s2">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
             </span><span class="s2">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
             </span><span class="s2">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
@@ -6959,187 +6973,89 @@ Also, check the following configurations for maximum days allowed and minimum ti
             </span><span class="p">}</span><span class="w">
           </span><span class="p">},</span><span class="w">
           </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_2"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">334</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CONA"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
             </span><span class="s2">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
             </span><span class="s2">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
             </span><span class="s2">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
             </span><span class="s2">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
             </span><span class="s2">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-              </span><span class="s2">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
+            </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
           </span><span class="p">},</span><span class="w">
           </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_3"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">98</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SGST"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
             </span><span class="s2">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
             </span><span class="s2">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
             </span><span class="s2">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
             </span><span class="s2">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
             </span><span class="s2">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-              </span><span class="s2">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-          </span><span class="p">},</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_4"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-              </span><span class="s2">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-          </span><span class="p">},</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_5"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-              </span><span class="s2">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-          </span><span class="p">},</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_6"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-              </span><span class="s2">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-          </span><span class="p">},</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_7"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-              </span><span class="s2">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-          </span><span class="p">},</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_8"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-              </span><span class="s2">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-          </span><span class="p">},</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_9"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-              </span><span class="s2">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-          </span><span class="p">},</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_10"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-              </span><span class="s2">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
+            </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
           </span><span class="p">}</span><span class="w">
         </span><span class="p">],</span><span class="w">
         </span><span class="s2">"customFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"trans_cf_a"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc"</span><span class="w">
+          </span><span class="s2">"booking_ota"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Website"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"conf_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"508705538"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"fare_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"X"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"flight_destination"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CCU"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"flight_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"550"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"flight_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEL"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"seat_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"27B"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"trip_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
         </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"notInterestedReason"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sideEffects"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"entityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USER"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"rawAwardedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">480.8</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"awardedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mi">480</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"points"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
         </span><span class="s2">"paymentModes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CHECKAPI"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"500"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes_6555444"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NetBanking"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">4808</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Internet banking"</span><span class="w">
+          </span><span class="p">},</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UPI"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">4808</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UPI Pay"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
               </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BankNameAPI"</span><span class="p">,</span><span class="w">
               </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value_6555444"</span><span class="w">
             </span><span class="p">}</span><span class="w">
           </span><span class="p">}</span><span class="w">
         </span><span class="p">],</span><span class="w">
-        </span><span class="s2">"billingDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-28T10:44:15+05:30"</span><span class="w">
+        </span><span class="s2">"billingDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-07-05T14:10:00Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"useDefaultFleetGroup"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">8015</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Customer not found for the given identifiers"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-      </span><span class="p">],</span><span class="w">
-      </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+      </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+      </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">38236696</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">360744868</span><span class="p">,</span><span class="w">
       </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"identifierType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"identifierValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"919740390055"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"identifierType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"identifierValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"98662653"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
         </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
         </span><span class="s2">"deliveryStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHIPPED"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REGULAR"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"billAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"billNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"num-668288857765"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"grossAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">110</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this is test"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"billAmount"</span><span class="p">:</span><span class="w"> </span><span class="mi">4808</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"billNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test244e79c384598f5f9a265581d652a010a14717465"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"currency"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INR"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
         </span><span class="s2">"lineItemsV2"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_2"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CGST"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
             </span><span class="s2">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
             </span><span class="s2">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
             </span><span class="s2">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
@@ -7148,106 +7064,9 @@ Also, check the following configurations for maximum days allowed and minimum ti
             </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
           </span><span class="p">},</span><span class="w">
           </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_2"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">98</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SGST"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
-          </span><span class="p">},</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_3"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
-          </span><span class="p">},</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_4"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
-          </span><span class="p">},</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_5"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
-          </span><span class="p">},</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_6"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
-          </span><span class="p">},</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_7"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
-          </span><span class="p">},</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_8"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
-          </span><span class="p">},</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_9"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"addOnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"splitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
-          </span><span class="p">},</span><span class="w">
-          </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku_486741_10"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
             </span><span class="s2">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
             </span><span class="s2">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
             </span><span class="s2">"comboDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
@@ -7257,28 +7076,47 @@ Also, check the following configurations for maximum days allowed and minimum ti
           </span><span class="p">}</span><span class="w">
         </span><span class="p">],</span><span class="w">
         </span><span class="s2">"customFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-          </span><span class="s2">"trans_cf_a"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc"</span><span class="w">
+          </span><span class="s2">"booking_ota"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Website"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"conf_no"</span><span class="p">:</span><span class="w"> </span><span class="s2">"508705535"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"fare_class"</span><span class="p">:</span><span class="w"> </span><span class="s2">"X"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"flight_destination"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CCU"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"flight_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"550"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"flight_source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEL"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"seat_number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"28B"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"trip_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="w">
         </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"notInterestedReason"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"sideEffects"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"entityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USER"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"rawAwardedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">480.8</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"awardedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mi">480</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"points"</span><span class="w">
+          </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
         </span><span class="s2">"paymentModes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
           </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CHECKAPI"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"500"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes_6555444"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Card Payment"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">4808</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CardPay"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BankNameAPI"</span><span class="p">,</span><span class="w">
-              </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value_6555444"</span><span class="w">
+              </span><span class="s2">"card_type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Debit Card"</span><span class="w">
             </span><span class="p">}</span><span class="w">
           </span><span class="p">}</span><span class="w">
         </span><span class="p">],</span><span class="w">
-        </span><span class="s2">"billingDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-04-28T10:44:15+05:30"</span><span class="w">
+        </span><span class="s2">"billingDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-07-05T14:10:00Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"useDefaultFleetGroup"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-      </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+      </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"totalCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"failureCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+  </span><span class="s2">"failureCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
 </span><span class="p">}</span><span class="w">
+
 </span></code></pre>
 <h3 id="resource-information">Resource Information</h3>
 
@@ -7307,6 +7145,20 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <tr>
 <td>Rate Limited</td>
 <td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="additional-header">Additional Header</h3>
+
+<table><thead>
+<tr>
+<th>Header</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>WAIT_FOR_DOWNSTREAM</td>
+<td>Pass <code class="prettyprint">true</code> to wait for Loyalty activities to complete and then respond to the client with side effects in the API response.<br>Pass <code class="prettyprint">false</code> to run Loyalty activities in the background. No side effects are returned in the API response.</td>
 </tr>
 </tbody></table>
 
@@ -7361,7 +7213,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <tr>
 <td>deliveryStatus</td>
 <td>enum</td>
-<td>Delivery status of the item. Values: DELIVERED, SHIPPED.</td>
+<td>Delivery status of the item. Values: <code class="prettyprint">PLACED</code>, <code class="prettyprint">PROCESSED</code>, <code class="prettyprint">SHIPPED</code>, <code class="prettyprint">DELIVERED</code>, <code class="prettyprint">RETURNED</code>.</td>
 </tr>
 <tr>
 <td>type*</td>
@@ -7404,6 +7256,11 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>Transaction amount before discount.</td>
 </tr>
 <tr>
+<td>outlierStatus</td>
+<td>enum</td>
+<td>Transaction level outlier status. Values: <code class="prettyprint">NORMAL</code>, <code class="prettyprint">INTERNAL</code>, <code class="prettyprint">FRAUD</code>, <code class="prettyprint">OUTLIER</code>, <code class="prettyprint">TEST</code>, <code class="prettyprint">DELETED</code>, <code class="prettyprint">FAILED</code>, <code class="prettyprint">OTHER</code></td>
+</tr>
+<tr>
 <td>note</td>
 <td>string</td>
 <td>Additional information about the transaction.</td>
@@ -7412,6 +7269,11 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>lineItemsV2</td>
 <td>obj</td>
 <td>Details of line-items.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>enum</td>
+<td>Type of the line item. Value: <code class="prettyprint">REGULAR</code>, <code class="prettyprint">NOT_INTERESTED</code>, <code class="prettyprint">RETURN</code>, <code class="prettyprint">NOT_INTERESTED_RETURN</code>, <code class="prettyprint">MIXED,NI_MIXED</code>.</td>
 </tr>
 <tr>
 <td>amount</td>
@@ -7495,8 +7357,8 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </tr>
 <tr>
 <td>comboType</td>
-<td>string</td>
-<td>Type of the combo. For example, buy 1 shirt get one free, shirt+pant, pack of 5 soaps.</td>
+<td>enum(s)</td>
+<td>Type of the combo. Value: <code class="prettyprint">COMBO_PARENT</code> (parent item in combo), <code class="prettyprint">COMBO_ITEM</code>, <code class="prettyprint">ADD_ON_ITEM</code>, <code class="prettyprint">SPLIT</code>.</td>
 </tr>
 <tr>
 <td>addOnDetails</td>
@@ -7562,6 +7424,16 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>attributes</td>
 <td>obj</td>
 <td>Attributes of the payment mode as name-value pairs.</td>
+</tr>
+<tr>
+<td>use_async</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to run Loyalty activities in the background, side effects will not be returned in the API response. If <code class="prettyprint">false</code>, API will wait for Loyalty activities to complete and then respond to the client with side effects in the API response.</td>
+</tr>
+<tr>
+<td>returnType**</td>
+<td>enum</td>
+<td>For a return transaction, pass the return type. Value: <code class="prettyprint">AMOUNT</code>, <code class="prettyprint">FULL</code>, <code class="prettyprint">LINE_ITEM</code>, <code class="prettyprint">CANCELLED</code>.</td>
 </tr>
 <tr>
 <td>loyaltyPromotionIdentifiers</td>
@@ -7735,6 +7607,11 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>string</td>
 <td>For sources with multiple accounts (such as MARTJACK, WECHAT), pass the respective account ID.</td>
 </tr>
+<tr>
+<td>use_async</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to run Loyalty activities in the background, side effects will not be returned in the API response. If <code class="prettyprint">false</code>, API will wait for Loyalty activities to complete and then respond to the client with side effects in the API response.</td>
+</tr>
 </tbody></table>
 
 <h3 id="request-body-parameters">Request Body Parameters</h3>
@@ -7746,6 +7623,46 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>identifierType*</td>
+<td>enum</td>
+<td>Pass any of the registered identifier name of the customer. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>, or <code class="prettyprint">fbId</code> (Facebook ID).</td>
+</tr>
+<tr>
+<td>identifierValue*</td>
+<td>string</td>
+<td>Pass the respective identifier value. For example if <code class="prettyprint">identifierType</code> is mobile, <code class="prettyprint">identifierValue</code> is mobile number.</td>
+</tr>
+<tr>
+<td>source*</td>
+<td>enum</td>
+<td>Pass the source from which the transaction is made. Values: <code class="prettyprint">INSTORE</code>( for InStore), <code class="prettyprint">WECHAT</code> (WeChat), <code class="prettyprint">MARTJACK</code>(AnywhereCommerce), <code class="prettyprint">WEB_ENGAGE</code> (Web-engage integration), ECOMMERCE (ECOMMERCE), <code class="prettyprint">JD</code> (JD), <code class="prettyprint">TAOBAO</code> (Taobao), <code class="prettyprint">TMALL</code> (TMall), <code class="prettyprint">FACEBOOK</code> (Facebook), <code class="prettyprint">WEBSITE</code> (other website), <code class="prettyprint">OTHERS</code> (any other source).</td>
+</tr>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>For sources with multiple accounts (such as MARTJACK, WECHAT), pass the respective account ID.</td>
+</tr>
+<tr>
+<td>extendedFields</td>
+<td>obj</td>
+<td>Valid transaction level extended field details in name and value pairs.</td>
+</tr>
+<tr>
+<td>currencyCode</td>
+<td>string</td>
+<td>ISO currency code of the transaction. For example, <code class="prettyprint">INR</code> for Indian Rupee, SGD for Singapore Dollar, <code class="prettyprint">EUR</code> for Euro, <code class="prettyprint">IQD</code> for Iraqi Dinar.</td>
+</tr>
+<tr>
+<td>addWithLocalCurrency</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to add a transaction in local currency.</td>
+</tr>
+<tr>
+<td>deliveryStatus</td>
+<td>enum</td>
+<td>Delivery status of the item. Values: <code class="prettyprint">PLACED</code>, <code class="prettyprint">PROCESSED</code>, <code class="prettyprint">SHIPPED</code>, <code class="prettyprint">DELIVERED</code>, <code class="prettyprint">RETURNED</code>.</td>
+</tr>
 <tr>
 <td>type*</td>
 <td>enum</td>
@@ -7787,24 +7704,9 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>Transaction amount before discount.</td>
 </tr>
 <tr>
-<td>extendedFields</td>
-<td>obj</td>
-<td>Valid transaction level extended field details in name and value pairs. You can also pass line-item level extended field details in <code class="prettyprint">line_item</code> object.</td>
-</tr>
-<tr>
-<td>currencyCode</td>
-<td>string</td>
-<td>ISO currency code of the transaction. For example, <code class="prettyprint">INR</code> for Indian Rupee, SGD for Singapore Dollar, <code class="prettyprint">EUR</code> for Euro, <code class="prettyprint">IQD</code> for Iraqi Dinar.</td>
-</tr>
-<tr>
-<td>addWithLocalCurrency</td>
-<td>boolean</td>
-<td>Pass <code class="prettyprint">true</code> to add a transaction in local currency.</td>
-</tr>
-<tr>
-<td>deliveryStatus</td>
+<td>outlierStatus</td>
 <td>enum</td>
-<td>Delivery status of the item. Values: DELIVERED, SHIPPED.</td>
+<td>Transaction level outlier status. Values: <code class="prettyprint">NORMAL</code>, <code class="prettyprint">INTERNAL</code>, <code class="prettyprint">FRAUD</code>, <code class="prettyprint">OUTLIER</code>, <code class="prettyprint">TEST</code>, <code class="prettyprint">DELETED</code>, <code class="prettyprint">FAILED</code>, <code class="prettyprint">OTHER</code></td>
 </tr>
 <tr>
 <td>note</td>
@@ -7817,109 +7719,154 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>Details of line-items.</td>
 </tr>
 <tr>
-<td>amount</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;amount</td>
 <td>double</td>
 <td>Net transaction amount</td>
 </tr>
 <tr>
-<td>description</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description</td>
 <td>string</td>
 <td>One or two liner description of the line-item.</td>
 </tr>
 <tr>
-<td>itemCode</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;discount</td>
+<td>int</td>
+<td>Discount received on the line item.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;itemCode</td>
 <td>string</td>
 <td>Unique code of the transaction line-item.</td>
 </tr>
 <tr>
-<td>qty</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qty</td>
 <td>double</td>
 <td>Quantity of the current line-item.</td>
 </tr>
 <tr>
-<td>rate</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rate</td>
 <td>double</td>
 <td>Price of each line-item.</td>
 </tr>
 <tr>
-<td>serial</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;serial</td>
 <td>string</td>
 <td>Serial number of the line-item.</td>
 </tr>
 <tr>
-<td>returnable</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;returnable</td>
 <td>boolean</td>
-<td>Pass <code class="prettyprint">true</code> if the item can be returned.</td>
+<td>Pass <code class="prettyprint">true</code> if the item can be returned post purchase.</td>
 </tr>
 <tr>
-<td>returnableDays</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;returnableDays</td>
 <td>int</td>
-<td>Maximum number of days in which the item is allowed to return.</td>
+<td>Maximum number of days the item is allowed to return.</td>
 </tr>
 <tr>
-<td>customFields</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;customFields</td>
 <td>obj</td>
 <td>Transaction or line-item level custom field details.</td>
 </tr>
 <tr>
-<td>imgUrl</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imgUrl</td>
 <td>string</td>
 <td>URL of the product image.</td>
 </tr>
 <tr>
-<td>attributes</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attributes</td>
 <td>obj</td>
 <td>Attributes of the product in name-value pairs.</td>
 </tr>
 <tr>
-<td>comboDetails</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;comboDetails</td>
 <td>obj</td>
-<td>Details of combo or bundle items. For example, buy 1 shirt get one free, shirt+pant, pack of 5 soaps</td>
+<td>Details of combo, bundle, or split items.</td>
 </tr>
 <tr>
-<td>itemCode</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;itemCode</td>
 <td>string</td>
 <td>Unique line-item code.</td>
 </tr>
 <tr>
-<td>quantity</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;quantity</td>
 <td>double</td>
 <td>Quantity of the current combo item.</td>
 </tr>
 <tr>
-<td>description</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description</td>
 <td>string</td>
 <td>One or two liner description of add-on, split, or combo item.</td>
 </tr>
 <tr>
-<td>value</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rate</td>
+<td>double</td>
+<td>Price of the combo item.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value</td>
 <td>double</td>
 <td>Item price excluding discount.</td>
 </tr>
 <tr>
-<td>comboType</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;comboType</td>
 <td>string</td>
-<td>Type of the combo. For example, buy 1 shirt get one free, shirt+pant, pack of 5 soaps.</td>
+<td>Type of the combo. Value: <code class="prettyprint">COMBO_PARENT</code>, <code class="prettyprint">COMBO_ITEM</code>, <code class="prettyprint">ADD_ON_ITEM</code>, <code class="prettyprint">SPLIT</code>.</td>
 </tr>
 <tr>
-<td>addOnDetails</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addOnDetails</td>
 <td>obj</td>
 <td>Details of add-on item.</td>
 </tr>
 <tr>
-<td>splitDetails</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;splitDetails</td>
 <td>obj</td>
 <td>Details of split item.</td>
 </tr>
 <tr>
-<td>parentBillNumber</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parentBillNumber</td>
 <td>string</td>
-<td>Details of the actual transaction number. This is applicable only for return transactions.</td>
+<td>Actual transaction number. Applicable only for return transactions.</td>
 </tr>
 <tr>
-<td>purchaseTime</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;purchaseTime</td>
 <td>date-time</td>
-<td>Date and time of purchase in <code class="prettyprint">YYYY-MM-DDTHH:MM:SS</code> format.</td>
+<td>Actual date of transaction of the return item in <code class="prettyprint">YYYY-MM-DD</code>.</td>
+</tr>
+<tr>
+<td>parentBillNumber</td>
+<td>string</td>
+<td>Return transaction bill number.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;returnType</td>
+<td>string</td>
+<td>Line item type of the return. Value: <code class="prettyprint">AMOUNT</code>, <code class="prettyprint">FULL</code>, <code class="prettyprint">LINE_ITEM</code>, <code class="prettyprint">CANCELLED</code>.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;originalTxnNumber</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;appliedPromotionIdentifiers</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extendedFields</td>
+<td>obj</td>
+<td>Valid transaction line-item level extended field details.</td>
 </tr>
 <tr>
 <td>customFields</td>
@@ -7927,17 +7874,142 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>Details of transaction level or transaction line-item level custom fields.</td>
 </tr>
 <tr>
+<td>attribution</td>
+<td>obj</td>
+<td>Mapping to tag the transaction to a different user or till (other than the current user)</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;createDate</td>
+<td>date-time</td>
+<td>Date of the transaction in ISO 8601 standard format.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;createdBy</td>
+<td>obj</td>
+<td>User ID or store entity (like TILL ID, store ID) associated with the transaction.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;code</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description</td>
+<td>string</td>
+<td>Description of the</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name</td>
+<td>string</td>
+<td>Name of the attribution entry.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type</td>
+<td>enum</td>
+<td>Type of the attribution entity. Value: <code class="prettyprint">ZONE</code>, <code class="prettyprint">CONCEPT</code>, <code class="prettyprint">STORE</code>, <code class="prettyprint">TILL</code>, <code class="prettyprint">STR_SERVER</code>, <code class="prettyprint">ADMIN_USER</code>, <code class="prettyprint">ASSOCIATE</code>, <code class="prettyprint">RULE</code>, <code class="prettyprint">OU</code>.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adminType</td>
+<td>enum</td>
+<td>Pass <code class="prettyprint">ADMIN</code> if the transaction is added or modified by admin, else pass <code class="prettyprint">GENERAL</code>.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isActive</td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isOuEnabled</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;timeZoneId</td>
+<td>int</td>
+<td>Time zone ID of the store entity.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;currencyId</td>
+<td>int</td>
+<td>Currency ID of the store entity.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;languageId</td>
+<td>int</td>
+<td>Language ID of the store entity.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modifiedBy</td>
+<td>obj</td>
+<td>Details of user or store entity that modified</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modifiedDate</td>
+<td>date-time</td>
+<td>Date and time when the transaction is updated in ISO 8601 standard format.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;createdFromSource</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>returnType</td>
+<td>string</td>
+<td>Type of the return transaction. Value: <code class="prettyprint">AMOUNT</code>, <code class="prettyprint">FULL</code>, <code class="prettyprint">LINE_ITEM</code>, <code class="prettyprint">CANCELLED</code>.</td>
+</tr>
+<tr>
+<td>purchaseTime</td>
+<td>date-time</td>
+<td>Actual date of transaction of the returning bill in <code class="prettyprint">YYYY-MM-DD</code>.</td>
+</tr>
+<tr>
+<td>parentBillNumber</td>
+<td>string</td>
+<td>Return transaction bill number.</td>
+</tr>
+<tr>
+<td>notInterestedReason</td>
+<td>string</td>
+<td>Notes on why the customer is not interested to enrol into the loyalty.</td>
+</tr>
+<tr>
+<td>fleetGroupId</td>
+<td>int</td>
+<td>Group ID of the fleet associated with the customer.</td>
+</tr>
+<tr>
+<td>fleetGroupExternalId</td>
+<td>string</td>
+<td>External ID of the fleet group associated with the customer.</td>
+</tr>
+<tr>
+<td>fleetPrimaryUserId</td>
+<td>int</td>
+<td>Unique ID of the primary user of the fleet group.</td>
+</tr>
+<tr>
+<td>useDefaultFleetGroup</td>
+<td>boolean</td>
+<td>The default group associated</td>
+</tr>
+<tr>
 <td>redemptions</td>
 <td>obj</td>
 <td>Details of points and coupon redemptions for the  transaction.</td>
 </tr>
 <tr>
-<td>pointsRedemptions</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pointsRedemptions</td>
 <td>array</td>
 <td>Unique points redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]</td>
 </tr>
 <tr>
-<td>couponRedemptions</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;couponRedemptions</td>
 <td>array</td>
 <td>Unique coupon redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]</td>
 </tr>
@@ -7947,33 +8019,48 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>Payment details used for the transaction.</td>
 </tr>
 <tr>
-<td>mode</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mode</td>
 <td>string</td>
 <td>Mode of payment.</td>
 </tr>
 <tr>
-<td>value</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value</td>
 <td>double</td>
 <td>Amount paid through the current mode.</td>
 </tr>
 <tr>
-<td>notes</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;notes</td>
 <td>string</td>
 <td>Additional information related to the payment mode.</td>
 </tr>
 <tr>
-<td>attributes</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id</td>
+<td>string</td>
+<td>Unique ID of the payment mode.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attributes</td>
 <td>obj</td>
 <td>Attributes of the payment mode as name-value pairs.</td>
 </tr>
 <tr>
+<td>appliedPromotionIdentifiers</td>
+<td>array</td>
+<td>Identifiers of promotions (cart/catalog) applied to the transaction.</td>
+</tr>
+<tr>
+<td>promotionEvaluationId</td>
+<td>string</td>
+<td>Promotion ID (cart/catalog) for which the transaction is evaluated.</td>
+</tr>
+<tr>
 <td>loyaltyPromotionIdentifiers</td>
 <td>array</td>
-<td></td>
+<td>Identifier(s) of loyalty promotion(s) that you want to tag to the transaction.</td>
 </tr>
 </tbody></table>
 
-<aside class="notice">Parameters marked with * are mandatory. </aside>
+<aside class="notice">Parameters marked with * are mandatory. Pass `enum` values as strings</aside>
 
 <h2 id="get-transaction-details">Get Transaction Details</h2>
 
@@ -22682,7 +22769,6 @@ Batch Support | No
          </span><span class="p">]</span><span class="w">
       </span><span class="p">}</span><span class="w">
    </span><span class="p">],</span><span class="w">
-   </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
    </span><span class="s2">"autoGroupCreationEnabled"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
    </span><span class="s2">"hierarchyCreationStrict"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
    </span><span class="s2">"skipRoleAllowed"</span><span class="p">:</span><span class="kc">false</span><span class="w">
@@ -22745,7 +22831,7 @@ Batch Support | No
 </tr>
 </thead><tbody>
 <tr>
-<td>code</td>
+<td>code*</td>
 <td>string</td>
 <td>Unique code of the hierarchy.</td>
 </tr>
@@ -22795,11 +22881,6 @@ Batch Support | No
 <td>Set <code class="prettyprint">true</code> to enable and <code class="prettyprint">false</code> to disable the code.</td>
 </tr>
 <tr>
-<td>default</td>
-<td>boolean</td>
-<td>Set <code class="prettyprint">true</code> to make this a default hierarchy when no hierarchy is tagged to a company.</td>
-</tr>
-<tr>
 <td>pointsAggregationRole</td>
 <td>boolean</td>
 <td>To create a group implicitly, set both <code class="prettyprint">pointsAggregationRole</code> and <code class="prettyprint">autoGroupCreationEnabled</code> to true. <br>The user in the current role will become the owner of the group. All the other users conjoined with the user in the hierarchy will be included automatically and become the members of the group.<br><strong>Example</strong>: Assume A &gt; B &gt; C &gt; D as the roles in a hierarchy.<br>A is the parent of B. B is the parent of C. C is the parent of D.<br>Set <code class="prettyprint">pointsAggregationRole</code> to true for the role C to get a user registered.<br>The group is also automatically created along with this command. The user in role C will now be the owner of the group. <br>All the users associated with the user C, in roles A, B and D are also automatically added as members of the group.</td>
@@ -22812,7 +22893,7 @@ Batch Support | No
 <tr>
 <td>hierarchyCreationStrict</td>
 <td>boolean</td>
-<td>Pass <code class="prettyprint">true</code> to strictly follow the hierarchy associations; <code class="prettyprint">false</code> to allow skip-level parent child associations. For example, consider roles, A&gt;B&gt;C&gt;D in a hierarchy with A being the parent of B and so on. If <code class="prettyprint">hierarchyCreationStrict</code> is set to false, associations such as A&gt;C, A&gt;D, B&gt;D are allowed. If not, strict hierarchy is followed.</td>
+<td>Pass <code class="prettyprint">false</code> set user level permissions and group creation which will override the hierarchy configurations. Set <code class="prettyprint">true</code> to strictly follow hierarchy configurations.</td>
 </tr>
 <tr>
 <td>skipRoleAllowed</td>
@@ -22896,7 +22977,6 @@ Batch Support | No
          </span><span class="p">]</span><span class="w">
       </span><span class="p">}</span><span class="w">
    </span><span class="p">],</span><span class="w">
-   </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
    </span><span class="s2">"autoGroupCreationEnabled"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
    </span><span class="s2">"hierarchyCreationStrict"</span><span class="p">:</span><span class="kc">true</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -22959,7 +23039,7 @@ Batch Support | No
 </tr>
 </thead><tbody>
 <tr>
-<td>code</td>
+<td>code*</td>
 <td>string</td>
 <td>Unique code of the hierarchy.</td>
 </tr>
@@ -23007,11 +23087,6 @@ Batch Support | No
 <td>permissionValue</td>
 <td>boolean</td>
 <td>Set <code class="prettyprint">true</code> to enable and <code class="prettyprint">false</code> to disable the code.</td>
-</tr>
-<tr>
-<td>default</td>
-<td>boolean</td>
-<td>Set <code class="prettyprint">true</code> to make this a default hierarchy when no hierarchy is tagged.</td>
 </tr>
 <tr>
 <td>autoGroupCreationEnabled</td>
@@ -23127,7 +23202,6 @@ Batch Support | No
     </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="s2">"autoGroupCreationEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="s2">"skipRoleAllowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -23263,6 +23337,8 @@ Batch Support | No
 </tr>
 </tbody></table>
 
+<aside class="notice">*The parameter is mandatory.</aside>
+
 <h2 id="get-hierarchies">Get Hierarchies</h2>
 
 <p>Retrieves hierarchies configured for the org.</p>
@@ -23336,7 +23412,6 @@ Batch Support | No
          </span><span class="s2">"active"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
          </span><span class="s2">"autoGroupCreationEnabled"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
          </span><span class="s2">"skipRoleAllowed"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
          </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="s2">"2021-06-02T16:22:53+05:30"</span><span class="p">,</span><span class="w">
@@ -23396,7 +23471,6 @@ Batch Support | No
          </span><span class="s2">"active"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
          </span><span class="s2">"autoGroupCreationEnabled"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
          </span><span class="s2">"skipRoleAllowed"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
          </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="s2">"2021-06-02T16:24:00+05:30"</span><span class="p">,</span><span class="w">
@@ -23457,7 +23531,6 @@ Batch Support | No
          </span><span class="s2">"active"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
          </span><span class="s2">"autoGroupCreationEnabled"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
          </span><span class="s2">"skipRoleAllowed"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
          </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="s2">"2021-06-02T17:15:25+05:30"</span><span class="p">,</span><span class="w">
@@ -23494,7 +23567,6 @@ Batch Support | No
          </span><span class="s2">"active"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
          </span><span class="s2">"autoGroupCreationEnabled"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
          </span><span class="s2">"skipRoleAllowed"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
          </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="s2">"2021-06-02T17:17:31+05:30"</span><span class="p">,</span><span class="w">
@@ -23555,7 +23627,6 @@ Batch Support | No
          </span><span class="s2">"active"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
          </span><span class="s2">"autoGroupCreationEnabled"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
          </span><span class="s2">"skipRoleAllowed"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="w">
       </span><span class="p">},</span><span class="w">
       </span><span class="p">{</span><span class="w">
          </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="s2">"2021-07-27T19:53:59+05:30"</span><span class="p">,</span><span class="w">
@@ -23613,7 +23684,6 @@ Batch Support | No
          </span><span class="s2">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
          </span><span class="s2">"autoGroupCreationEnabled"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
          </span><span class="s2">"skipRoleAllowed"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="w">
       </span><span class="p">}</span><span class="w">
    </span><span class="p">],</span><span class="w">
    </span><span class="s2">"warnings"</span><span class="p">:[</span><span class="w">
@@ -23659,17 +23729,6 @@ Batch Support | No
 <h3 id="request-url">Request URL</h3>
 
 <p><code class="prettyprint">{host}/v2/fleetHierarchy/all</code></p>
-
-<h3 id="request-body-parameters">Request Body Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Datatype</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
 
 <h2 id="get-fleet-permissions">Get Fleet Permissions</h2>
 
@@ -23845,17 +23904,17 @@ Batch Support | No
 </tr>
 </thead><tbody>
 <tr>
-<td>name</td>
+<td>name*</td>
 <td>string</td>
 <td>Name of the company to add.</td>
 </tr>
 <tr>
-<td>externalId</td>
+<td>externalId*</td>
 <td>string</td>
 <td>External ID of the company.</td>
 </tr>
 <tr>
-<td>hierarchyDefinitionCode</td>
+<td>hierarchyDefinitionCode*</td>
 <td>string</td>
 <td>Unique code of the hierarchy applicable for the company. You can use only from hierarchies that are configured for the org.</td>
 </tr>
@@ -25282,7 +25341,7 @@ Batch Support | No
 <tr>
 <td>identifiers*</td>
 <td>obj</td>
-<td>Identifiers of the customer in type and value.</td>
+<td>Identifiers of the customer in type and value.  At least one identifier block is mandatory.</td>
 </tr>
 <tr>
 <td>type</td>
@@ -25375,7 +25434,7 @@ Batch Support | No
 <td>External ID of the company.</td>
 </tr>
 <tr>
-<td>profiles</td>
+<td>profiles*</td>
 <td>obj</td>
 <td>Details of the customer to associate.</td>
 </tr>
@@ -25441,7 +25500,7 @@ Batch Support | No
 </tr>
 </tbody></table>
 
-<aside class="notice">Parameters marked with * are mandatory. </aside>
+<aside class="notice">Parameters marked with * are mandatory. If identifier `type` is card, seriesCode is mandatory; if the card series has auto generation disabled, then identifier value is required.</aside>
 
 <h2 id="update-association-details-for-customer">Update Association Details (for customer)</h2>
 
@@ -42255,161 +42314,163 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 
 <h2 id="create-promotion">Create Promotion</h2>
 
-<p>Lets you create a promotion for a specific loyalty program. 
-​
-​</p>
+<p>Lets you create a promotion for a specific loyalty program. </p>
 
 <blockquote>
-<p>Sample Request
-​
-<code class="prettyprint">html
-​
-https://api.capillary.co.in/api_gateway/loyalty/v1/programs/{programId}/promotions/add/simple
-​
-</code>
-​
-​
-Sample POST Request
-​
-<code class="prettyprint">json
-​
-{
-    &quot;id&quot;: 59,
-    &quot;name&quot;: &quot;promo demo postman&quot;,
-    &quot;programId&quot;: 1745,
-    &quot;startDate&quot;: &quot;2021-06-15T12:00:00+01:00&quot;,
-    &quot;endDate&quot;: &quot;2022-01-01T12:00:00+01:00&quot;,
-    &quot;allocatePointsOn&quot;: &quot;BILL&quot;,
-    &quot;identifier&quot;: &quot;new_test_promotion_for_119&quot;,
-    &quot;eventName&quot;: &quot;TRANSACTIONADD&quot;,
-    &quot;metadata&quot;: [
-        {
-            &quot;key&quot;: &quot;&quot;,
-            &quot;value&quot;: &quot;&quot;
-        }
-    ],
-    &quot;allocationActions&quot;: [
-        {
-            &quot;A1&quot;: {
-                &quot;allocation&quot;: {
-                    &quot;type&quot;: &quot;FIXED&quot;,
-                    &quot;value&quot;: 1.25
-                },
-                &quot;expiry&quot;: {
-                    &quot;type&quot;: &quot;DAYS&quot;,
-                    &quot;value&quot;: 2
-                },
-                &quot;rounding&quot;: &quot;ROUND&quot;
-            }
-        }
-    ],
-    &quot;qualifyingConditions&quot;: [
-        {
-            &quot;C1&quot;: {
-                &quot;kpi&quot;: &quot;value&quot;,
-                &quot;params&quot;: null,
-                &quot;matchValue&quot;: &quot;100&quot;,
-                &quot;entity&quot;: &quot;BILL&quot;,
-                &quot;operator&quot;: &quot;GREATER_THAN&quot;
-            }
-        }
-    ],
-    &quot;conditionExpression&quot;: &quot;C1&quot;,
-    &quot;allocationRule&quot;: [
-        {
-            &quot;allocation_ref&quot;: &quot;A1&quot;
-        }
-    ],
-    &quot;limits&quot;: {
-        &quot;pointsPerCustomer&quot;: -1,
-        &quot;numberOfTimesPerCustomer&quot;: -1,
-        &quot;totalPointsInPromotion&quot;: -1
-    }
-}
-​
-</code>
-​
-​
-Sample Response
-​
-<code class="prettyprint">json
-​
-{
-    &quot;status&quot;: {
-        &quot;code&quot;: 200,
-        &quot;message&quot;: &quot;success&quot;
-    },
-    &quot;validationErrors&quot;: null,
-    &quot;data&quot;: [
-        {
-            &quot;id&quot;: 12525,
-            &quot;name&quot;: &quot;promo demo postman&quot;,
-            &quot;programId&quot;: 1745,
-            &quot;startDate&quot;: &quot;2021-06-15T00:00:00.612+05:30&quot;,
-            &quot;endDate&quot;: &quot;2022-01-01T23:59:59.612+05:30&quot;,
-            &quot;identifier&quot;: &quot;new_test_promotion_for_119&quot;,
-            &quot;eventName&quot;: &quot;TRANSACTIONADD&quot;,
-            &quot;metadata&quot;: [
-                {
-                    &quot;key&quot;: &quot;key&quot;,
-                    &quot;value&quot;: &quot;value&quot;,
-                    &quot;isBrandDefined&quot;: &quot;false&quot;
-                }
-            ],
-            &quot;unsavedMetadataList&quot;: null,
-            &quot;allocatePointsOn&quot;: &quot;BILL&quot;,
-            &quot;allocationActions&quot;: [
-                {
-                    &quot;A1&quot;: {
-                        &quot;allocation&quot;: {
-                            &quot;type&quot;: &quot;FIXED&quot;,
-                            &quot;value&quot;: 1.25
-                        },
-                        &quot;expiry&quot;: {
-                            &quot;type&quot;: &quot;DAYS&quot;,
-                            &quot;value&quot;: &quot;2&quot;
-                        },
-                        &quot;rounding&quot;: &quot;ROUND&quot;
-                    }
-                }
-            ],
-            &quot;qualifyingConditions&quot;: null,
-            &quot;conditionExpression&quot;: null,
-            &quot;allocationRule&quot;: null,
-            &quot;limits&quot;: {
-                &quot;pointsPerCustomer&quot;: -1,
-                &quot;numberOfTimesPerCustomer&quot;: -1,
-                &quot;totalPointsInPromotion&quot;: -1
-            },
-            &quot;active&quot;: true
-        }
-    ]
-}
-​
-</code>
-​
-​</p>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://api.capillary.co.in/api_gateway/loyalty/v1/programs/{programId}/promotions/add/simple
 
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">59</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"promo demo postman"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1745</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-15T12:00:00+01:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-01T12:00:00+01:00"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"allocatePointsOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BILL"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"identifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new_test_promotion_for_119"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"eventName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRANSACTIONADD"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"allocationActions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"A1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"allocation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FIXED"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"expiry"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DAYS"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"rounding"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ROUND"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"qualifyingConditions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"C1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"kpi"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"params"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"matchValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"entity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BILL"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"operator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GREATER_THAN"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"conditionExpression"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"allocationRule"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"allocation_ref"</span><span class="p">:</span><span class="w"> </span><span class="s2">"A1"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"limits"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"pointsPerCustomer"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"numberOfTimesPerCustomer"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"totalPointsInPromotion"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"validationErrors"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12525</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"promo demo postman"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1745</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-15T00:00:00.612+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-01T23:59:59.612+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"identifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new_test_promotion_for_119"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"eventName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRANSACTIONADD"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"key"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"isBrandDefined"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"unsavedMetadataList"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"allocatePointsOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BILL"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"allocationActions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"A1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"allocation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FIXED"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"expiry"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DAYS"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"rounding"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ROUND"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"qualifyingConditions"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"conditionExpression"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"allocationRule"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"limits"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"pointsPerCustomer"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"numberOfTimesPerCustomer"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"totalPointsInPromotion"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
 <h3 id="resource-information">Resource Information</h3>
 
-<p>​
-| | |
-&mdash;&mdash;&mdash; | &mdash;&mdash;&mdash;&ndash; |
-URI | <code class="prettyprint">api_gateway/loyalty/v1/programs/{programId}/promotions/add/simple?{queryparam}={value}</code>
-HTTP Method | POST
-API Version | v1
-Rate Limited | Yes
-Batch Support | No
-​
-​
-​</p>
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">api_gateway/loyalty/v1/programs/{programId}/promotions/add/simple?{queryparam}={value}</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v1</td>
+</tr>
+<tr>
+<td>Rate Limited</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/api_gateway/loyalty/v1/programs/{programId}/promotions/add/simple</code>
-​
-​
-​</p>
+<p><code class="prettyprint">https://{host}/api_gateway/loyalty/v1/programs/{programId}/promotions/add/simple</code></p>
 
 <h3 id="request-post-parameters">Request POST Parameters</h3>
 
@@ -42491,114 +42552,112 @@ Batch Support | No
 <td>Set the maximum number of promotional points issued to a customer during a specific promotion period. Set the maximum number of times points can be issued to a customer during a promotion period. Set the total number of points that can be generated during a promotion period.</td>
 </tr>
 </tbody></table>
-</blockquote>
 
 <aside class="notice"> Parameter marked with * is mandatory. </aside>
 
-<p>​
-​
-​</p>
-
 <h2 id="get-promotion-details">Get Promotion Details</h2>
 
-<p>Retrieves the promotion details.
-​
-​
-​</p>
+<p>Retrieves the promotion details.</p>
 
 <blockquote>
-<p>Sample Request
-​
-<code class="prettyprint">html
-​
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>
 https://api.capillary.co.in/api_gateway/loyalty/v1/programs/1745/promotions/12525
-​
-</code>
-​
-​
-​
-Sample Response
-​
-<code class="prettyprint">json
-​
-{
-    &quot;status&quot;: {
-        &quot;code&quot;: 200,
-        &quot;message&quot;: &quot;success&quot;
-    },
-    &quot;validationErrors&quot;: null,
-    &quot;data&quot;: [
-        {
-            &quot;id&quot;: 12525,
-            &quot;name&quot;: &quot;promo demo postman&quot;,
-            &quot;programId&quot;: 1745,
-            &quot;startDate&quot;: &quot;2021-06-15T00:00+05:30&quot;,
-            &quot;endDate&quot;: &quot;2022-01-01T23:59:59+05:30&quot;,
-            &quot;identifier&quot;: &quot;new_test_promotion_for_119&quot;,
-            &quot;eventName&quot;: &quot;TRANSACTIONADD&quot;,
-            &quot;metadata&quot;: [
-                {
-                    &quot;key&quot;: &quot;key&quot;,
-                    &quot;value&quot;: &quot;value&quot;,
-                    &quot;isBrandDefined&quot;: &quot;false&quot;
-                }
-            ],
-            &quot;unsavedMetadataList&quot;: null,
-            &quot;allocatePointsOn&quot;: &quot;BILL&quot;,
-            &quot;allocationActions&quot;: [
-                {
-                    &quot;A1&quot;: {
-                        &quot;allocation&quot;: {
-                            &quot;type&quot;: &quot;FIXED&quot;,
-                            &quot;value&quot;: 1.25
-                        },
-                        &quot;expiry&quot;: {
-                            &quot;type&quot;: &quot;DAYS&quot;,
-                            &quot;value&quot;: &quot;2&quot;
-                        },
-                        &quot;rounding&quot;: &quot;ROUND&quot;
-                    }
-                }
-            ],
-            &quot;qualifyingConditions&quot;: null,
-            &quot;conditionExpression&quot;: null,
-            &quot;allocationRule&quot;: null,
-            &quot;limits&quot;: {
-                &quot;pointsPerCustomer&quot;: -1,
-                &quot;numberOfTimesPerCustomer&quot;: -1,
-                &quot;totalPointsInPromotion&quot;: -1
-            },
-            &quot;active&quot;: true
-        }
-    ]
-}
-​
-</code>
-​
-​
-​</p>
-
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"success"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"validationErrors"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12525</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"promo demo postman"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1745</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-06-15T00:00+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-01T23:59:59+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"identifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new_test_promotion_for_119"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"eventName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRANSACTIONADD"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"metadata"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"key"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"value"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"isBrandDefined"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"unsavedMetadataList"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"allocatePointsOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BILL"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"allocationActions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"A1"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"allocation"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FIXED"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.25</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"expiry"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DAYS"</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2"</span><span class="w">
+                        </span><span class="p">},</span><span class="w">
+                        </span><span class="s2">"rounding"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ROUND"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"qualifyingConditions"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"conditionExpression"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"allocationRule"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"limits"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"pointsPerCustomer"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"numberOfTimesPerCustomer"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"totalPointsInPromotion"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <h3 id="resource-information">Resource Information</h3>
 
-<p>​
-| | |
-&mdash;&mdash;&mdash; | &mdash;&mdash;&mdash;&ndash; |
-URI | <code class="prettyprint">api_gateway/loyalty/v1/programs/(programId)/promotions/{promotionId}</code>
-HTTP Method | GET
-API Version | v1
-Authentication | Yes
-Rate Limited | Yes
-Batch Support | No
-​
-​
-​</p>
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">api_gateway/loyalty/v1/programs/(programId)/promotions/{promotionId}</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v1</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Rate Limited</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/api_gateway/loyalty/v1/programs/(programId)/promotions/{promotionId}</code>
-​
-​
-​</p>
+<p><code class="prettyprint">https://{host}/api_gateway/loyalty/v1/programs/(programId)/promotions/{promotionId}</code></p>
 
 <h3 id="request-path-parameters">Request Path Parameters</h3>
 
@@ -42620,7 +42679,6 @@ Batch Support | No
 <td>Unique ID of the loyalty promotion.</td>
 </tr>
 </tbody></table>
-</blockquote>
 
 <aside class="notice"> Parameter marked with * is mandatory. </aside>
 

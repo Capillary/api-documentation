@@ -2,21 +2,20 @@
 
 ## Create Promotion
 Lets you create a promotion for a specific loyalty program. 
-​
-​
+
+
 > Sample Request
-​
+
 ```html
-​
 https://api.capillary.co.in/api_gateway/loyalty/v1/programs/{programId}/promotions/add/simple
-​
+
 ```
-​
-​
+
+
 > Sample POST Request
-​
+
 ```json
-​
+
 {
     "id": 59,
     "name": "promo demo postman",
@@ -70,14 +69,13 @@ https://api.capillary.co.in/api_gateway/loyalty/v1/programs/{programId}/promotio
         "totalPointsInPromotion": -1
     }
 }
-​
+
 ```
-​
-​
+
 > Sample Response
-​
+
 ```json
-​
+
 {
     "status": {
         "code": 200,
@@ -129,12 +127,11 @@ https://api.capillary.co.in/api_gateway/loyalty/v1/programs/{programId}/promotio
         }
     ]
 }
-​
+
 ```
-​
-​
+
 ### Resource Information
-​
+
 | | |
 --------- | ----------- |
 URI | `api_gateway/loyalty/v1/programs/{programId}/promotions/add/simple?{queryparam}={value}`
@@ -142,14 +139,10 @@ HTTP Method | POST
 API Version | v1
 Rate Limited | Yes
 Batch Support | No
-​
-​
-​
+
 ### Request URL
 `https://{host}/api_gateway/loyalty/v1/programs/{programId}/promotions/add/simple`
-​
-​
-​
+
 ### Request POST Parameters
 Parameter | Datatype | Description
 --------- | -------- | -----------
@@ -170,28 +163,21 @@ limits | obj | Set the maximum number of promotional points issued to a customer
  
  
 <aside class="notice"> Parameter marked with * is mandatory. </aside>
-​
-​
-​
+
 ## Get Promotion Details
 Retrieves the promotion details.
-​
-​
-​
+
 > Sample Request
-​
+
 ```html
-​
+
 https://api.capillary.co.in/api_gateway/loyalty/v1/programs/1745/promotions/12525
-​
 ```
-​
-​
-​
+
 > Sample Response
-​
+
 ```json
-​
+
 {
     "status": {
         "code": 200,
@@ -243,13 +229,10 @@ https://api.capillary.co.in/api_gateway/loyalty/v1/programs/1745/promotions/1252
         }
     ]
 }
-​
 ```
-​
-​
-​
+
 ### Resource Information
-​
+
 | | |
 --------- | ----------- |
 URI | `api_gateway/loyalty/v1/programs/(programId)/promotions/{promotionId}`
@@ -258,19 +241,14 @@ API Version | v1
 Authentication | Yes
 Rate Limited | Yes
 Batch Support | No
-​
-​
-​
+
 ### Request URL
 `https://{host}/api_gateway/loyalty/v1/programs/(programId)/promotions/{promotionId}`
-​
-​
-​
+
 ### Request Path Parameters
 Parameter | Datatype | Description
 --------- | -------- | -----------
 programId* | int | Unique ID of the loyalty program.You can fetch multiple promotions that run under a single loyalty program.
 promotionId* | int | Unique ID of the loyalty promotion.
- 
- 
+
 <aside class="notice"> Parameter marked with * is mandatory. </aside>
