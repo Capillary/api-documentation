@@ -7672,6 +7672,20 @@ loyaltyPromotionIdentifiers | array | Identifier(s) of loyalty promotion(s) that
 </tr>
 </tbody></table>
 
+<h3 id="additional-header">Additional Header</h3>
+
+<table><thead>
+<tr>
+<th>Header</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>WAIT_FOR_DOWNSTREAM</td>
+<td>Pass <code class="prettyprint">true</code> to wait for Loyalty activities to complete and then respond to the client with side effects in the API response.<br>Pass <code class="prettyprint">false</code> to run Loyalty activities in the background. No side effects are returned in the API response.</td>
+</tr>
+</tbody></table>
+
 <h3 id="request-url">Request URL</h3>
 
 <p><code class="prettyprint">{host}/v2/transactions?source={source}&amp;identifierName={identifierName}&amp;identifierValue={identifierValue}&amp;accountId={accountId}</code></p>
