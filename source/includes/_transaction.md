@@ -644,60 +644,94 @@ WAIT_FOR_DOWNSTREAM | Pass `true` to wait for Loyalty activities to complete and
 
 Parameter | Datatype | Description
 --------- | -------- | -----------
-identifierType* | enum | Pass any of the registered identifier name of the customer. Values: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, or `fbId` (Facebook ID).
+identifierType* | enum | Pass any of the registered identifier name of the customer. Values: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, or `fbId` (Facebook ID), `id`.
 identifierValue* | string | Pass the respective identifier value. For example if `identifierType` is mobile, `identifierValue` is mobile number.
 source* | enum | Pass the source from which the transaction is made. Values: `INSTORE`( for InStore), `WECHAT` (WeChat), `MARTJACK`(AnywhereCommerce), `WEB_ENGAGE` (Web-engage integration), ECOMMERCE (ECOMMERCE), `JD` (JD), `TAOBAO` (Taobao), `TMALL` (TMall), `FACEBOOK` (Facebook), `WEBSITE` (other website), `OTHERS` (any other source).
 accountId | string | For sources with multiple accounts (such as MARTJACK, WECHAT), pass the respective account ID.
-extendedFields | obj | Valid transaction level extended field details in name and value pairs. You can also pass line-item level extended field details in `line_item` object.
-currencyCode | string | ISO currency code of the transaction. For example, `INR` for Indian Rupee, SGD for Singapore Dollar, `EUR` for Euro, `IQD` for Iraqi Dinar.
-addWithLocalCurrency | boolean | Pass `true` to add a transaction in local currency.
-deliveryStatus | enum | Delivery status of the item. Values: `PLACED`, `PROCESSED`, `SHIPPED`, `DELIVERED`, `RETURNED`.
-type* | enum | Type of transaction. Supported value: `REGULAR` for loyalty transactions. 'RETURN' for return transactions. Currently, there is no not-interested transactions support in V2.
+extendedFields | obj | Valid transaction level extended field details in name and value pairs.
+currencyCode | string | ISO currency code of the transaction to add transaction with local currency. For example, `INR` for Indian Rupee, SGD for Singapore Dollar, `EUR` for Euro, `IQD` for Iraqi Dinar. Pass the currency code that are supported for your org (InTouch > Organization Setup) and ensure the currency conversion ratio is set using `v2/currencyratio`.
+addWithLocalCurrency | boolean | Pass `true` to add a transaction in local currency.  
+deliveryStatus | enum | Delivery status of the item. Values: `PLACED`, `PROCESSED`, `SHIPPED`, `DELIVERED`, `RETURNED`. You can update the status using transac
+type* | enum | Type of transaction. Supported value: `REGULAR` for loyalty transactions. `RETURN` for return transactions. `NOT_INTERESTED`, `RETURN,NOT_INTERESTED_RETURN`, `MIXED,NI_MIXED`.
+notInterestedReason | string | Notes on why the customer is not interested to enrol into the loyalty (`type`=`NOT_INTERESTED`). Max characters supported - 255. 
 returnType** | enum | For a return transaction, pass the return type. Value: `AMOUNT`, `FULL`, `LINE_ITEM`, `CANCELLED`.
 billAmount* | double | Net transaction amount.
 billNumber* |  string | Unique transaction number. The uniqueness either at till, store, or org, depends on the configuration `CONF_LOYALTY_BILL_NUMBER_UNIQUE_IN_DAYS` set on InTouch **Settings** > **System & Deployment** > **InTouch POS Configuration** > **Billing**.  
-billingDate | date-time | Date and time of the transaction in the `YYYY-MM-DDTHH:MM:SSZ` format.
+billingDate | date-time | Date and time of the transaction in the ISO  8601 format - `YYYY-MM-DDTHH:MM:SSZ`.
 currency | string | ISO currency code of the transaction. Org's base currency is considered by default. For example, `INR` for Indian Rupee, `SGD` for Singapore Dollar, `EUR` for Euro, `IQD` for Iraqi Dinar.
 discount | double | Discount availed for the transaction or line item (discount amount) .
 grossAmount | double | Transaction amount before discount.
-outlierStatus | enum | Transaction level outlier status. Values: `NORMAL`, `INTERNAL`, `FRAUD`, `OUTLIER`, `TEST`, `DELETED`, `FAILED`, `OTHER`
+outlierStatus | enum | Transaction level outlier status. Values: `NORMAL`, `INTERNAL`, `FRAUD`, `OUTLIER`, `TEST`, `DELETED`, `FAILED`, `OTHER`. This overrides the outlier status of the configured outlier settings.
 note | string | Additional information about the transaction.
+parentBillNumber | string | Return transaction bill number.
 lineItemsV2 | obj | Details of line-items.
-type | enum | Type of the line item. Value: `REGULAR`, `NOT_INTERESTED`, `RETURN`, `NOT_INTERESTED_RETURN`, `MIXED,NI_MIXED`.
-amount | double | Net transaction amount
-description | string | One or two liner description of the line-item.
-itemCode | string | Unique code of the transaction line-item.
-qty | double | Quantity of the current line-item.
-rate | double | Price of each line-item.
-serial | string | Serial number of the line-item.
-returnable | boolean | Pass `true` if the item can be returned.
-returnableDays | int | Maximum number of days in which the item is allowed to return. 
-customFields | obj | Transaction or line-item level custom field details.
-imgUrl | string | URL of the product image.
-attributes | obj | Attributes of the product in name-value pairs.
-comboDetails | obj | Details of combo or bundle items. For example, buy 1 shirt get one free, shirt+pant, pack of 5 soaps
-itemCode | string | Unique line-item code.
-quantity | double | Quantity of the current combo item.
-description | string | One or two liner description of add-on, split, or combo item.
-value | double | Item price excluding discount.
-comboType | enum(s) | Type of the combo. Value: `COMBO_PARENT` (parent item in combo), `COMBO_ITEM`, `ADD_ON_ITEM`, `SPLIT`.
-addOnDetails | obj | Details of add-on item.
-splitDetails | obj | Details of split item.
-parentBillNumber | string | Details of the actual transaction number. This is applicable only for return transactions.
-purchaseTime | date-time | Date and time of purchase in `YYYY-MM-DDTHH:MM:SS` format.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;amount | double | Net line item amount. value-discount=amount
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description | string | One or two liner description of the line-item.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;discount | int | Discount received on the line item.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;itemCode | string | Unique code of the transaction line-item.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qty | double | Quantity of the current line-item.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rate | double | Price of each line-item.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;serial | string | Serial number of the line-item.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value | double | Gross amount of the item. Usually, rate*qty=value. 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;returnable | boolean | Pass `true` if the item can be returned post purchase.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;returnableDays | int | Maximum number of days the item is allowed to return. 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;customFields | obj | Transaction or line-item level custom field details.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imgUrl | string | URL of the product image.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attributes | obj | Attributes of the product in name-value pairs.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;comboDetails | obj | Details of combo, bundle, or split items.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;itemCode | string | Unique line-item code.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;quantity | double | Quantity of the current combo item.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description | string | One or two liner description of add-on, split, or combo item.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rate | double | Price of the combo item.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value | double | Item price excluding discount.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;comboType | string | Type of the combo. Value: `COMBO_PARENT`, `COMBO_ITEM`, `ADD_ON_ITEM`, `SPLIT`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addOnDetails | obj | Details of add-on item.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;splitDetails | obj | Details of split item.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parentBillNumber | string | Actual transaction number. Applicable only for return transactions.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;purchaseTime | date-time | Actual date of transaction of the return item in `YYYY-MM-DD`.
+parentBillNumber | string | Return transaction bill number.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;returnType | enum | Line item type of the return. Value: `AMOUNT`, `FULL`, `LINE_ITEM`, `CANCELLED`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type | enum | Type of the line item. Value: `REGULAR`, `NOT_INTERESTED`, `RETURN`, `NOT_INTERESTED_RETURN`, `MIXED`, `NI_MIXED`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;appliedPromotionIdentifiers | array | Cart or catalog promotions applied to the transaction.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extendedFields | obj | Valid transaction line-item level extended field details.
 customFields | obj | Details of transaction level or transaction line-item level custom fields.
+attribution | obj | Mapping to tag the transaction to a different user or till (other than the current user) 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;createDate | date-time | Date of the transaction in ISO 8601 standard format. 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;createdBy | obj | User ID or store entity (like TILL ID, store ID) associated with the transaction.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id | string | Entity ID of the attribute.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;code | string | Unique code of the entity.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description |string | Description of the 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name | string | Name of the attribution entry.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type | enum | Type of the attribution entity. Value: `ZONE`, `CONCEPT`, `STORE`, `TILL`, `STR_SERVER`, `ADMIN_USER`, `ASSOCIATE`, `RULE`, `OU`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adminType | enum | Pass `ADMIN` if the transaction is added or modified by admin, else pass `GENERAL`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isActive | boolean | 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isOuEnabled | boolean | 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;timeZoneId | int | Time zone ID of the store entity. 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;currencyId | int | Currency ID of the store entity.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;languageId | int | Language ID of the store entity.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modifiedBy | obj | Details of user or store entity that modified 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modifiedDate | date-time | Date and time when the transaction is updated in ISO 8601 standard format.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;createdFromSource | string | 
+returnType | string | Type of the return transaction. Value: `AMOUNT`, `FULL`, `LINE_ITEM`, `CANCELLED`. Required for return transaction.
+purchaseTime | date-time | Actual date of transaction of the returning bill in Date and time of the transaction in ISO 8601 standard - `YYYY-MM-DDTHH:MM:SSZ`.
+`YYYY-MM-DD`.
 redemptions | obj | Details of points and coupon redemptions for the  transaction.
-pointsRedemptions | array | Unique points redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]
-couponRedemptions | array | Unique coupon redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]
-paymentModes | obj | Payment details used for the transaction. 
-mode | string | Mode of payment.
-value | double | Amount paid through the current mode.
-notes |string | Additional information related to the payment mode.
-attributes | obj | Attributes of the payment mode as name-value pairs.
-use_async | boolean | Pass `true` to run Loyalty activities in the background, side effects will not be returned in the API response. If `false`, API will wait for Loyalty activities to complete and then respond to the client with side effects in the API response.
-returnType** | enum | For a return transaction, pass the return type. Value: `AMOUNT`, `FULL`, `LINE_ITEM`, `CANCELLED`.
-loyaltyPromotionIdentifiers | array | 
-      
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pointsRedemptions | array | Unique points redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;couponRedemptions | array | Unique coupon redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]
+paymentModes | obj | Payment details used for the transaction.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mode | string | Mode of payment.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value | double | Amount paid through the current mode.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;notes |string | Additional information related to the payment mode. Max characters - 250.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attributes | obj | Attributes of the payment mode as name-value pairs.
+appliedPromotionIdentifiers | array | Identifiers of promotions (cart/catalog) applied to the transaction. 
+promotionEvaluationId | string | Promotion ID (cart/catalog) for which the transaction is evaluated.
+loyaltyPromotionIdentifiers | array | Identifier(s) of loyalty promotion(s) that you want to tag to the transaction.
+
+
+
+
+
+
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
 
@@ -804,6 +838,13 @@ API Version | v2
 Batch Support | Yes
 Rate Limited | Yes
 
+### Additional Header
+
+Header | Description
+------ | -----------
+WAIT_FOR_DOWNSTREAM | Pass `true` to wait for Loyalty activities to complete and then respond to the client with side effects in the API response.<br>Pass `false` to run Loyalty activities in the background. No side effects are returned in the API response.
+
+
 
 ### Request URL
 
@@ -813,43 +854,41 @@ Rate Limited | Yes
 
 Parameter | Datatype | Description
 --------- | -------- | -----------
-identifierName* | enum | Pass any of the registered identifier name of the customer. Values: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, or `fbId` (Facebook ID), cardnumber.
+identifierName* | enum | Pass any of the registered identifier name of the customer. Values: `mobile`, `email`, `externalId`, `id`, `wechat`,`martjackId`, or `fbId` (Facebook ID), cardnumber.
 identifierValue* | string | Pass the respective identifier value. For example if `identifierType` is mobile, `identifierValue` is mobile number.
 source* | enum | Pass the source from which the transaction is made. Values: `INSTORE`( for InStore), `WECHAT` (WeChat), `MARTJACK`(AnywhereCommerce), `WEB_ENGAGE` (Web-engage integration), ECOMMERCE (ECOMMERCE), `JD` (JD), `TAOBAO` (Taobao), `TMALL` (TMall), `FACEBOOK` (Facebook), `WEBSITE` (other website), `OTHERS` (any other source).
-accountId | string | For sources with multiple accounts (such as MARTJACK, WECHAT), pass the respective account ID.
+accountId | string | For sources with multiple accounts (such as MARTJACK, WECHAT), pass the respective account ID. Not applicable for `INSTORE` source.
 use_async | boolean | Pass `true` to run Loyalty activities in the background, side effects will not be returned in the API response. If `false`, API will wait for Loyalty activities to complete and then respond to the client with side effects in the API response.
 
 ### Request Body Parameters
 
 Parameter | Datatype | Description
 --------- | -------- | -----------
-identifierType* | enum | Pass any of the registered identifier name of the customer. Values: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, or `fbId` (Facebook ID).
-identifierValue* | string | Pass the respective identifier value. For example if `identifierType` is mobile, `identifierValue` is mobile number.
-source* | enum | Pass the source from which the transaction is made. Values: `INSTORE`( for InStore), `WECHAT` (WeChat), `MARTJACK`(AnywhereCommerce), `WEB_ENGAGE` (Web-engage integration), ECOMMERCE (ECOMMERCE), `JD` (JD), `TAOBAO` (Taobao), `TMALL` (TMall), `FACEBOOK` (Facebook), `WEBSITE` (other website), `OTHERS` (any other source).
-accountId | string | For sources with multiple accounts (such as MARTJACK, WECHAT), pass the respective account ID.
 extendedFields | obj | Valid transaction level extended field details in name and value pairs.
-currencyCode | string | ISO currency code of the transaction. For example, `INR` for Indian Rupee, SGD for Singapore Dollar, `EUR` for Euro, `IQD` for Iraqi Dinar.
-addWithLocalCurrency | boolean | Pass `true` to add a transaction in local currency.
-deliveryStatus | enum | Delivery status of the item. Values: `PLACED`, `PROCESSED`, `SHIPPED`, `DELIVERED`, `RETURNED`.
-type* | enum | Type of transaction. Supported value: `REGULAR` for loyalty transactions. 'RETURN' for return transactions. Currently, there is no not-interested transactions support in V2.
+currencyCode | string | ISO currency code of the transaction to add transaction with local currency. For example, `INR` for Indian Rupee, SGD for Singapore Dollar, `EUR` for Euro, `IQD` for Iraqi Dinar. Pass the currency code that are supported for your org (InTouch > Organization Setup) and ensure the currency conversion ratio is set using `v2/currencyratio`.
+addWithLocalCurrency | boolean | Pass `true` to add a transaction in local currency. 
+deliveryStatus | enum | Delivery status of the item. Values: `PLACED`, `PROCESSED`, `SHIPPED`, `DELIVERED`, `RETURNED`. You can update the status using transac
+type* | enum | Type of transaction. Supported value: `REGULAR` for loyalty transactions. `RETURN` for return transactions. `NOT_INTERESTED`, `RETURN,NOT_INTERESTED_RETURN`, `MIXED,NI_MIXED`.
+notInterestedReason | string | Notes on why the customer is not interested to enrol into the loyalty (`type`=`NOT_INTERESTED`). Max characters supported - 255. 
 returnType** | enum | For a return transaction, pass the return type. Value: `AMOUNT`, `FULL`, `LINE_ITEM`, `CANCELLED`.
 billAmount* | double | Net transaction amount.
 billNumber* |  string | Unique transaction number. The uniqueness either at till, store, or org, depends on the configuration `CONF_LOYALTY_BILL_NUMBER_UNIQUE_IN_DAYS` set on InTouch **Settings** > **System & Deployment** > **InTouch POS Configuration** > **Billing**.  
-billingDate | date-time | Date and time of the transaction in the `YYYY-MM-DDTHH:MM:SSZ` format.
+billingDate | date-time | Date and time of the transaction in the ISO  8601 format - `YYYY-MM-DDTHH:MM:SSZ`.
 currency | string | ISO currency code of the transaction. Org's base currency is considered by default. For example, `INR` for Indian Rupee, `SGD` for Singapore Dollar, `EUR` for Euro, `IQD` for Iraqi Dinar.
 discount | double | Discount availed for the transaction or line item (discount amount) .
 grossAmount | double | Transaction amount before discount.
-outlierStatus | enum | Transaction level outlier status. Values: `NORMAL`, `INTERNAL`, `FRAUD`, `OUTLIER`, `TEST`, `DELETED`, `FAILED`, `OTHER`
+outlierStatus | enum | Transaction level outlier status. Values: `NORMAL`, `INTERNAL`, `FRAUD`, `OUTLIER`, `TEST`, `DELETED`, `FAILED`, `OTHER`. This overrides the outlier status of the configured outlier settings.
 note | string | Additional information about the transaction.
+parentBillNumber | string | Return transaction bill number.
 lineItemsV2 | obj | Details of line-items.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;amount | double | Net transaction amount
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;amount | double | Net line item amount. value-discount=amount
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description | string | One or two liner description of the line-item.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;discount | int | Discount received on the line item.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;itemCode | string | Unique code of the transaction line-item.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qty | double | Quantity of the current line-item.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rate | double | Price of each line-item.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;serial | string | Serial number of the line-item.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value | string | 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value | double | Gross amount of the item. Usually, rate*qty=value. 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;returnable | boolean | Pass `true` if the item can be returned post purchase.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;returnableDays | int | Maximum number of days the item is allowed to return. 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;customFields | obj | Transaction or line-item level custom field details.
@@ -867,23 +906,22 @@ lineItemsV2 | obj | Details of line-items.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parentBillNumber | string | Actual transaction number. Applicable only for return transactions.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;purchaseTime | date-time | Actual date of transaction of the return item in `YYYY-MM-DD`.
 parentBillNumber | string | Return transaction bill number.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;returnType | string | Line item type of the return. Value: `AMOUNT`, `FULL`, `LINE_ITEM`, `CANCELLED`.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type | string | 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;originalTxnNumber | string | 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;appliedPromotionIdentifiers | string |
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;returnType | enum | Line item type of the return. Value: `AMOUNT`, `FULL`, `LINE_ITEM`, `CANCELLED`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type | enum | Type of the line item. Value: `REGULAR`, `NOT_INTERESTED`, `RETURN`, `NOT_INTERESTED_RETURN`, `MIXED`, `NI_MIXED`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;appliedPromotionIdentifiers | array | Cart or catalog promotions applied to the transaction.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extendedFields | obj | Valid transaction line-item level extended field details.
 customFields | obj | Details of transaction level or transaction line-item level custom fields.
 attribution | obj | Mapping to tag the transaction to a different user or till (other than the current user) 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;createDate | date-time | Date of the transaction in ISO 8601 standard format. 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;createdBy | obj | User ID or store entity (like TILL ID, store ID) associated with the transaction.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id | string | 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;code | string |
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id | string | Entity ID of the attribute.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;code | string | Unique code of the entity.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description |string | Description of the 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name | string | Name of the attribution entry.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type | enum | Type of the attribution entity. Value: `ZONE`, `CONCEPT`, `STORE`, `TILL`, `STR_SERVER`, `ADMIN_USER`, `ASSOCIATE`, `RULE`, `OU`.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adminType | enum | Pass `ADMIN` if the transaction is added or modified by admin, else pass `GENERAL`.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isActive | boolean |
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isOuEnabled | | 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isActive | boolean | 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isOuEnabled | boolean | 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;timeZoneId | int | Time zone ID of the store entity. 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;currencyId | int | Currency ID of the store entity.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;languageId | int | Language ID of the store entity.
@@ -891,21 +929,15 @@ attribution | obj | Mapping to tag the transaction to a different user or till (
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modifiedDate | date-time | Date and time when the transaction is updated in ISO 8601 standard format.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;createdFromSource | string | 
 returnType | string | Type of the return transaction. Value: `AMOUNT`, `FULL`, `LINE_ITEM`, `CANCELLED`.
-purchaseTime | date-time | Actual date of transaction of the returning bill in `YYYY-MM-DD`.
-parentBillNumber | string | Return transaction bill number.
-notInterestedReason | string | Notes on why the customer is not interested to enrol into the loyalty.
-fleetGroupId | int | Group ID of the fleet associated with the customer.
-fleetGroupExternalId | string | External ID of the fleet group associated with the customer.
-fleetPrimaryUserId | int | Unique ID of the primary user of the fleet group.
-useDefaultFleetGroup | boolean | The default group associated 
+purchaseTime | date-time | Actual date of transaction of the returning bill in Date and time of the transaction in ISO 8601 standard - `YYYY-MM-DDTHH:MM:SSZ`.
+`YYYY-MM-DD`.
 redemptions | obj | Details of points and coupon redemptions for the  transaction.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pointsRedemptions | array | Unique points redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;couponRedemptions | array | Unique coupon redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]
 paymentModes | obj | Payment details used for the transaction.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mode | string | Mode of payment.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value | double | Amount paid through the current mode.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;notes |string | Additional information related to the payment mode.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id | string | Unique ID of the payment mode.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;notes |string | Additional information related to the payment mode. Max characters - 250.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attributes | obj | Attributes of the payment mode as name-value pairs.
 appliedPromotionIdentifiers | array | Identifiers of promotions (cart/catalog) applied to the transaction. 
 promotionEvaluationId | string | Promotion ID (cart/catalog) for which the transaction is evaluated.
@@ -1527,4 +1559,425 @@ Code | Description
 
 
 <aside class="notice"> The error code `625` could also appear in warning if the configuration `CONF_ALLOW_NOT_EXISTING_BILL_RETURN` is enabled. However, this is a very special case for a code that could appear as a error or warning.</aside>
+
+
+
+
+
+
+# Earning
+
+## Get Transaction Earning
+
+Retrieves all earning details of a transaction.
+
+> Sample Request
+
+```html
+https://us.api.capillarytech.com/v2/earning/167111742
+```
+
+
+> Sample Response
+
+```json
+{
+   "useDefaultFleetGroup":false,
+   "attribution":{
+      "createDate":"2021-07-28T17:08:40+05:30",
+      "createdBy":{
+         "id":12995129,
+         "code":"aa.website",
+         "description":"",
+         "name":"aa.website",
+         "type":"TILL",
+         "adminType":"GENERAL",
+         "isActive":true,
+         "isOuEnabled":false,
+         "timeZoneId":-1,
+         "currencyId":-1,
+         "languageId":-1
+      },
+      "modifiedBy":{
+         
+      },
+      "modifiedDate":"2021-07-28T17:08:41+05:30"
+   },
+   "billDetails":{
+      "amount":8000.0,
+      "billingStore":{
+         "id":12995128,
+         "code":"aa.website",
+         "description":"",
+         "name":"AirAsia",
+         "type":"STORE",
+         "adminType":"GENERAL",
+         "isActive":true,
+         "isOuEnabled":false,
+         "timeZoneId":-1,
+         "currencyId":-1,
+         "languageId":-1
+      },
+      "billNumber":"0101611121021-aa2",
+      "billingTime":"2021-07-28T17:08:40+05:30",
+      "discount":0.0,
+      "grossAmount":0.0,
+      "note":"",
+      "returnDetails":{
+         "canceled":false
+      },
+      "niReturnDetails":{
+         
+      },
+      "invalidBill":false,
+      "pointsEarningEntities":{
+         "entityId":481191985,
+         "entityType":"customer",
+         "billPoints":[
+            {
+               "programId":1414,
+               "currentPointsSummary":{
+                  "availablePoints":0,
+                  "expiredPoints":0,
+                  "redeemedPoints":0,
+                  "promisedPoints":0,
+                  "returnedPromisedPoints":0,
+                  "returnedPoints":0,
+                  "promisedPointsConverted":0
+               },
+               "issuedPointsSummary":{
+                  "redeemablePointsIssued":0,
+                  "promisedPointsIssued":0
+               },
+               "currentPointsBreakup":{
+                  "regularPointsInfo":null,
+                  "promotionalPointsInfo":null
+               }
+            },
+            {
+               "programId":1550,
+               "currentPointsSummary":{
+                  "availablePoints":0,
+                  "expiredPoints":0,
+                  "redeemedPoints":0,
+                  "promisedPoints":0,
+                  "returnedPromisedPoints":0,
+                  "returnedPoints":0,
+                  "promisedPointsConverted":0
+               },
+               "issuedPointsSummary":{
+                  "redeemablePointsIssued":0,
+                  "promisedPointsIssued":0
+               },
+               "currentPointsBreakup":{
+                  "regularPointsInfo":null,
+                  "promotionalPointsInfo":null
+               }
+            }
+         ]
+      }
+   },
+   "customFields":{
+      "flight_destination":"DEL",
+      "flight_source":"BOM"
+   },
+   "addWithLocalCurrency":false,
+   "async":false,
+   "useV2":false,
+   "customerId":481191985,
+   "id":167111742,
+   "lineItems":[
+      {
+         "id":502374973,
+         "customerId":481191985,
+         "details":{
+            "amount":4000.0,
+            "description":"",
+            "discount":0.0,
+            "itemCode":"PBAC",
+            "qty":1.0,
+            "rate":4000.0,
+            "serial":0,
+            "value":0.0,
+            "returnable":true,
+            "returnableDays":-1,
+            "attributes":{
+               "POINTS_ELIGIBILITY":"Yes",
+               "pathy_name":"",
+               "product_form":""
+            },
+            "extendedFields":{
+               "charge_type":"0"
+            },
+            "attributesSet":[
+               {
+                  "product_form":""
+               },
+               {
+                  "POINTS_ELIGIBILITY":"Yes"
+               },
+               {
+                  "pathy_name":""
+               }
+            ]
+         },
+         "outlierStatus":"NORMAL",
+         "returnDetails":{
+            
+         },
+         "valid":true,
+         "returnLineItemsDtos":[
+            
+         ],
+         "niReturnLineItemsDtos":[
+            
+         ],
+         "addonDetails":[
+            
+         ],
+         "splitItemsDetails":[
+            
+         ],
+         "pointsEarningEntities":{
+            "entityId":481191985,
+            "entityType":"customer",
+            "lineItemPoints":[
+               {
+                  "programId":1414,
+                  "currentPointsSummary":{
+                     "availablePoints":0,
+                     "expiredPoints":0,
+                     "redeemedPoints":0,
+                     "promisedPoints":0,
+                     "returnedPromisedPoints":0,
+                     "returnedPoints":0,
+                     "promisedPointsConverted":0
+                  },
+                  "issuedPointsSummary":{
+                     "redeemablePointsIssued":0,
+                     "promisedPointsIssued":0
+                  },
+                  "currentPointsBreakup":{
+                     "regularPointsInfo":null,
+                     "promotionalPointsInfo":null
+                  }
+               },
+               {
+                  "programId":1550,
+                  "currentPointsSummary":{
+                     "availablePoints":320.000,
+                     "expiredPoints":0,
+                     "redeemedPoints":0,
+                     "promisedPoints":0,
+                     "returnedPromisedPoints":0,
+                     "returnedPoints":0,
+                     "promisedPointsConverted":0
+                  },
+                  "issuedPointsSummary":{
+                     "redeemablePointsIssued":320.000,
+                     "promisedPointsIssued":0
+                  },
+                  "currentPointsBreakup":{
+                     "regularPointsInfo":{
+                        "availablePointsInfo":[
+                           {
+                              "points":320.000,
+                              "expiryDate":"2022-08-31T23:59:59+05:30",
+                              "expiryType":"rolling",
+                              "actionSourceDetails":[
+                                 {
+                                    "actionId":27229,
+                                    "sourceType":"lineItem",
+                                    "actionType":"BILL_POINTS_ACTION",
+                                    "actionPointsDetail":[
+                                       {
+                                          "points":320.000,
+                                          "sourceValue":4000.000,
+                                          "sourceIdentifiers":[
+                                             {
+                                                "key":"tracker",
+                                                "value":"AirAsiaSpends2"
+                                             }
+                                          ]
+                                       }
+                                    ]
+                                 }
+                              ]
+                           }
+                        ],
+                        "promisedPointsInfo":null
+                     },
+                     "promotionalPointsInfo":null
+                  }
+               }
+            ]
+         },
+         "niReturn":false
+      },
+      {
+         "id":502374974,
+         "customerId":481191985,
+         "details":{
+            "amount":4000.0,
+            "description":"",
+            "discount":0.0,
+            "itemCode":"FAREPRICE",
+            "qty":1.0,
+            "rate":4000.0,
+            "serial":0,
+            "value":0.0,
+            "returnable":true,
+            "returnableDays":-1,
+            "attributes":{
+               "POINTS_ELIGIBILITY":"Yes",
+               "pathy_name":"",
+               "product_form":""
+            },
+            "extendedFields":{
+               "charge_type":"0"
+            },
+            "attributesSet":[
+               {
+                  "product_form":""
+               },
+               {
+                  "POINTS_ELIGIBILITY":"Yes"
+               },
+               {
+                  "pathy_name":""
+               }
+            ]
+         },
+         "outlierStatus":"NORMAL",
+         "returnDetails":{
+            
+         },
+         "valid":true,
+         "returnLineItemsDtos":[
+            
+         ],
+         "niReturnLineItemsDtos":[
+            
+         ],
+         "addonDetails":[
+            
+         ],
+         "splitItemsDetails":[
+            
+         ],
+         "pointsEarningEntities":{
+            "entityId":481191985,
+            "entityType":"customer",
+            "lineItemPoints":[
+               {
+                  "programId":1414,
+                  "currentPointsSummary":{
+                     "availablePoints":0,
+                     "expiredPoints":0,
+                     "redeemedPoints":0,
+                     "promisedPoints":0,
+                     "returnedPromisedPoints":0,
+                     "returnedPoints":0,
+                     "promisedPointsConverted":0
+                  },
+                  "issuedPointsSummary":{
+                     "redeemablePointsIssued":0,
+                     "promisedPointsIssued":0
+                  },
+                  "currentPointsBreakup":{
+                     "regularPointsInfo":null,
+                     "promotionalPointsInfo":null
+                  }
+               },
+               {
+                  "programId":1550,
+                  "currentPointsSummary":{
+                     "availablePoints":160.000,
+                     "expiredPoints":0,
+                     "redeemedPoints":0,
+                     "promisedPoints":0,
+                     "returnedPromisedPoints":0,
+                     "returnedPoints":0,
+                     "promisedPointsConverted":0
+                  },
+                  "issuedPointsSummary":{
+                     "redeemablePointsIssued":160.000,
+                     "promisedPointsIssued":0
+                  },
+                  "currentPointsBreakup":{
+                     "regularPointsInfo":{
+                        "availablePointsInfo":[
+                           {
+                              "points":160.000,
+                              "expiryDate":"2022-08-31T23:59:59+05:30",
+                              "expiryType":"rolling",
+                              "actionSourceDetails":[
+                                 {
+                                    "actionId":27229,
+                                    "sourceType":"lineItem",
+                                    "actionType":"BILL_POINTS_ACTION",
+                                    "actionPointsDetail":[
+                                       {
+                                          "points":160.000,
+                                          "sourceValue":2000.000,
+                                          "sourceIdentifiers":[
+                                             {
+                                                "key":"tracker",
+                                                "value":"AirAsiaSpends2"
+                                             }
+                                          ]
+                                       }
+                                    ]
+                                 }
+                              ]
+                           }
+                        ],
+                        "promisedPointsInfo":null
+                     },
+                     "promotionalPointsInfo":null
+                  }
+               }
+            ]
+         },
+         "niReturn":false
+      }
+   ],
+   "outlierStatus":"NORMAL",
+   "type":"REGULAR",
+   "warnings":[
+      
+   ],
+   "lifeTimePurchases":0,
+   "ignorePoints":false,
+   "extendedFields":{
+      "boarding_status":"Boarded",
+      "flight_count":1,
+      "product_class":"EP"
+   },
+   "autoUpdateTime":"2021-07-28T17:08:41+05:30",
+   "niReturnDetails":{
+      
+   },
+   "basketSize":2.0,
+   "returnDetails":{
+      "canceled":false
+   },
+   "warnings":[
+      
+   ]
+}
+```
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/earning/{transactionId}`
+Rate Limited? | Yes
+Authentication | Yes
+HTTP Method | GET
+Batch Support | No
+
+### Request URL
+`https://{host}/v2/earning/{transactionId}`
+
 

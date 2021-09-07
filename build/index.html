@@ -7178,7 +7178,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <tr>
 <td>identifierType*</td>
 <td>enum</td>
-<td>Pass any of the registered identifier name of the customer. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>, or <code class="prettyprint">fbId</code> (Facebook ID).</td>
+<td>Pass any of the registered identifier name of the customer. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>, or <code class="prettyprint">fbId</code> (Facebook ID), <code class="prettyprint">id</code>.</td>
 </tr>
 <tr>
 <td>identifierValue*</td>
@@ -7198,12 +7198,12 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <tr>
 <td>extendedFields</td>
 <td>obj</td>
-<td>Valid transaction level extended field details in name and value pairs. You can also pass line-item level extended field details in <code class="prettyprint">line_item</code> object.</td>
+<td>Valid transaction level extended field details in name and value pairs.</td>
 </tr>
 <tr>
 <td>currencyCode</td>
 <td>string</td>
-<td>ISO currency code of the transaction. For example, <code class="prettyprint">INR</code> for Indian Rupee, SGD for Singapore Dollar, <code class="prettyprint">EUR</code> for Euro, <code class="prettyprint">IQD</code> for Iraqi Dinar.</td>
+<td>ISO currency code of the transaction to add transaction with local currency. For example, <code class="prettyprint">INR</code> for Indian Rupee, SGD for Singapore Dollar, <code class="prettyprint">EUR</code> for Euro, <code class="prettyprint">IQD</code> for Iraqi Dinar. Pass the currency code that are supported for your org (InTouch &gt; Organization Setup) and ensure the currency conversion ratio is set using <code class="prettyprint">v2/currencyratio</code>.</td>
 </tr>
 <tr>
 <td>addWithLocalCurrency</td>
@@ -7213,12 +7213,17 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <tr>
 <td>deliveryStatus</td>
 <td>enum</td>
-<td>Delivery status of the item. Values: <code class="prettyprint">PLACED</code>, <code class="prettyprint">PROCESSED</code>, <code class="prettyprint">SHIPPED</code>, <code class="prettyprint">DELIVERED</code>, <code class="prettyprint">RETURNED</code>.</td>
+<td>Delivery status of the item. Values: <code class="prettyprint">PLACED</code>, <code class="prettyprint">PROCESSED</code>, <code class="prettyprint">SHIPPED</code>, <code class="prettyprint">DELIVERED</code>, <code class="prettyprint">RETURNED</code>. You can update the status using transac</td>
 </tr>
 <tr>
 <td>type*</td>
 <td>enum</td>
-<td>Type of transaction. Supported value: <code class="prettyprint">REGULAR</code> for loyalty transactions. &lsquo;RETURN&rsquo; for return transactions. Currently, there is no not-interested transactions support in V2.</td>
+<td>Type of transaction. Supported value: <code class="prettyprint">REGULAR</code> for loyalty transactions. <code class="prettyprint">RETURN</code> for return transactions. <code class="prettyprint">NOT_INTERESTED</code>, <code class="prettyprint">RETURN,NOT_INTERESTED_RETURN</code>, <code class="prettyprint">MIXED,NI_MIXED</code>.</td>
+</tr>
+<tr>
+<td>notInterestedReason</td>
+<td>string</td>
+<td>Notes on why the customer is not interested to enrol into the loyalty (<code class="prettyprint">type</code>=<code class="prettyprint">NOT_INTERESTED</code>). Max characters supported - 255.</td>
 </tr>
 <tr>
 <td>returnType**</td>
@@ -7238,7 +7243,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <tr>
 <td>billingDate</td>
 <td>date-time</td>
-<td>Date and time of the transaction in the <code class="prettyprint">YYYY-MM-DDTHH:MM:SSZ</code> format.</td>
+<td>Date and time of the transaction in the ISO  8601 format - <code class="prettyprint">YYYY-MM-DDTHH:MM:SSZ</code>.</td>
 </tr>
 <tr>
 <td>currency</td>
@@ -7258,7 +7263,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <tr>
 <td>outlierStatus</td>
 <td>enum</td>
-<td>Transaction level outlier status. Values: <code class="prettyprint">NORMAL</code>, <code class="prettyprint">INTERNAL</code>, <code class="prettyprint">FRAUD</code>, <code class="prettyprint">OUTLIER</code>, <code class="prettyprint">TEST</code>, <code class="prettyprint">DELETED</code>, <code class="prettyprint">FAILED</code>, <code class="prettyprint">OTHER</code></td>
+<td>Transaction level outlier status. Values: <code class="prettyprint">NORMAL</code>, <code class="prettyprint">INTERNAL</code>, <code class="prettyprint">FRAUD</code>, <code class="prettyprint">OUTLIER</code>, <code class="prettyprint">TEST</code>, <code class="prettyprint">DELETED</code>, <code class="prettyprint">FAILED</code>, <code class="prettyprint">OTHER</code>. This overrides the outlier status of the configured outlier settings.</td>
 </tr>
 <tr>
 <td>note</td>
@@ -7266,119 +7271,159 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>Additional information about the transaction.</td>
 </tr>
 <tr>
+<td>parentBillNumber</td>
+<td>string</td>
+<td>Return transaction bill number.</td>
+</tr>
+<tr>
 <td>lineItemsV2</td>
 <td>obj</td>
 <td>Details of line-items.</td>
 </tr>
 <tr>
-<td>type</td>
-<td>enum</td>
-<td>Type of the line item. Value: <code class="prettyprint">REGULAR</code>, <code class="prettyprint">NOT_INTERESTED</code>, <code class="prettyprint">RETURN</code>, <code class="prettyprint">NOT_INTERESTED_RETURN</code>, <code class="prettyprint">MIXED,NI_MIXED</code>.</td>
-</tr>
-<tr>
-<td>amount</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;amount</td>
 <td>double</td>
-<td>Net transaction amount</td>
+<td>Net line item amount. value-discount=amount</td>
 </tr>
 <tr>
-<td>description</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description</td>
 <td>string</td>
 <td>One or two liner description of the line-item.</td>
 </tr>
 <tr>
-<td>itemCode</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;discount</td>
+<td>int</td>
+<td>Discount received on the line item.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;itemCode</td>
 <td>string</td>
 <td>Unique code of the transaction line-item.</td>
 </tr>
 <tr>
-<td>qty</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;qty</td>
 <td>double</td>
 <td>Quantity of the current line-item.</td>
 </tr>
 <tr>
-<td>rate</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rate</td>
 <td>double</td>
 <td>Price of each line-item.</td>
 </tr>
 <tr>
-<td>serial</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;serial</td>
 <td>string</td>
 <td>Serial number of the line-item.</td>
 </tr>
 <tr>
-<td>returnable</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value</td>
+<td>double</td>
+<td>Gross amount of the item. Usually, rate*qty=value.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;returnable</td>
 <td>boolean</td>
-<td>Pass <code class="prettyprint">true</code> if the item can be returned.</td>
+<td>Pass <code class="prettyprint">true</code> if the item can be returned post purchase.</td>
 </tr>
 <tr>
-<td>returnableDays</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;returnableDays</td>
 <td>int</td>
-<td>Maximum number of days in which the item is allowed to return.</td>
+<td>Maximum number of days the item is allowed to return.</td>
 </tr>
 <tr>
-<td>customFields</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;customFields</td>
 <td>obj</td>
 <td>Transaction or line-item level custom field details.</td>
 </tr>
 <tr>
-<td>imgUrl</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;imgUrl</td>
 <td>string</td>
 <td>URL of the product image.</td>
 </tr>
 <tr>
-<td>attributes</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attributes</td>
 <td>obj</td>
 <td>Attributes of the product in name-value pairs.</td>
 </tr>
 <tr>
-<td>comboDetails</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;comboDetails</td>
 <td>obj</td>
-<td>Details of combo or bundle items. For example, buy 1 shirt get one free, shirt+pant, pack of 5 soaps</td>
+<td>Details of combo, bundle, or split items.</td>
 </tr>
 <tr>
-<td>itemCode</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;itemCode</td>
 <td>string</td>
 <td>Unique line-item code.</td>
 </tr>
 <tr>
-<td>quantity</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;quantity</td>
 <td>double</td>
 <td>Quantity of the current combo item.</td>
 </tr>
 <tr>
-<td>description</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description</td>
 <td>string</td>
 <td>One or two liner description of add-on, split, or combo item.</td>
 </tr>
 <tr>
-<td>value</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rate</td>
+<td>double</td>
+<td>Price of the combo item.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value</td>
 <td>double</td>
 <td>Item price excluding discount.</td>
 </tr>
 <tr>
-<td>comboType</td>
-<td>enum(s)</td>
-<td>Type of the combo. Value: <code class="prettyprint">COMBO_PARENT</code> (parent item in combo), <code class="prettyprint">COMBO_ITEM</code>, <code class="prettyprint">ADD_ON_ITEM</code>, <code class="prettyprint">SPLIT</code>.</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;comboType</td>
+<td>string</td>
+<td>Type of the combo. Value: <code class="prettyprint">COMBO_PARENT</code>, <code class="prettyprint">COMBO_ITEM</code>, <code class="prettyprint">ADD_ON_ITEM</code>, <code class="prettyprint">SPLIT</code>.</td>
 </tr>
 <tr>
-<td>addOnDetails</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addOnDetails</td>
 <td>obj</td>
 <td>Details of add-on item.</td>
 </tr>
 <tr>
-<td>splitDetails</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;splitDetails</td>
 <td>obj</td>
 <td>Details of split item.</td>
 </tr>
 <tr>
-<td>parentBillNumber</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parentBillNumber</td>
 <td>string</td>
-<td>Details of the actual transaction number. This is applicable only for return transactions.</td>
+<td>Actual transaction number. Applicable only for return transactions.</td>
 </tr>
 <tr>
-<td>purchaseTime</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;purchaseTime</td>
 <td>date-time</td>
-<td>Date and time of purchase in <code class="prettyprint">YYYY-MM-DDTHH:MM:SS</code> format.</td>
+<td>Actual date of transaction of the return item in <code class="prettyprint">YYYY-MM-DD</code>.</td>
+</tr>
+<tr>
+<td>parentBillNumber</td>
+<td>string</td>
+<td>Return transaction bill number.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;returnType</td>
+<td>enum</td>
+<td>Line item type of the return. Value: <code class="prettyprint">AMOUNT</code>, <code class="prettyprint">FULL</code>, <code class="prettyprint">LINE_ITEM</code>, <code class="prettyprint">CANCELLED</code>.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type</td>
+<td>enum</td>
+<td>Type of the line item. Value: <code class="prettyprint">REGULAR</code>, <code class="prettyprint">NOT_INTERESTED</code>, <code class="prettyprint">RETURN</code>, <code class="prettyprint">NOT_INTERESTED_RETURN</code>, <code class="prettyprint">MIXED</code>, <code class="prettyprint">NI_MIXED</code>.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;appliedPromotionIdentifiers</td>
+<td>array</td>
+<td>Cart or catalog promotions applied to the transaction.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extendedFields</td>
+<td>obj</td>
+<td>Valid transaction line-item level extended field details.</td>
 </tr>
 <tr>
 <td>customFields</td>
@@ -7386,61 +7431,114 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>Details of transaction level or transaction line-item level custom fields.</td>
 </tr>
 <tr>
-<td>redemptions</td>
+<td>attribution</td>
 <td>obj</td>
-<td>Details of points and coupon redemptions for the  transaction.</td>
+<td>Mapping to tag the transaction to a different user or till (other than the current user)</td>
 </tr>
 <tr>
-<td>pointsRedemptions</td>
-<td>array</td>
-<td>Unique points redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;createDate</td>
+<td>date-time</td>
+<td>Date of the transaction in ISO 8601 standard format.</td>
 </tr>
 <tr>
-<td>couponRedemptions</td>
-<td>array</td>
-<td>Unique coupon redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]</td>
-</tr>
-<tr>
-<td>paymentModes</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;createdBy</td>
 <td>obj</td>
-<td>Payment details used for the transaction.</td>
+<td>User ID or store entity (like TILL ID, store ID) associated with the transaction.</td>
 </tr>
 <tr>
-<td>mode</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id</td>
 <td>string</td>
-<td>Mode of payment.</td>
+<td>Entity ID of the attribute.</td>
 </tr>
 <tr>
-<td>value</td>
-<td>double</td>
-<td>Amount paid through the current mode.</td>
-</tr>
-<tr>
-<td>notes</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;code</td>
 <td>string</td>
-<td>Additional information related to the payment mode.</td>
+<td>Unique code of the entity.</td>
 </tr>
 <tr>
-<td>attributes</td>
-<td>obj</td>
-<td>Attributes of the payment mode as name-value pairs.</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description</td>
+<td>string</td>
+<td>Description of the</td>
 </tr>
 <tr>
-<td>use_async</td>
-<td>boolean</td>
-<td>Pass <code class="prettyprint">true</code> to run Loyalty activities in the background, side effects will not be returned in the API response. If <code class="prettyprint">false</code>, API will wait for Loyalty activities to complete and then respond to the client with side effects in the API response.</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name</td>
+<td>string</td>
+<td>Name of the attribution entry.</td>
 </tr>
 <tr>
-<td>returnType**</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type</td>
 <td>enum</td>
-<td>For a return transaction, pass the return type. Value: <code class="prettyprint">AMOUNT</code>, <code class="prettyprint">FULL</code>, <code class="prettyprint">LINE_ITEM</code>, <code class="prettyprint">CANCELLED</code>.</td>
+<td>Type of the attribution entity. Value: <code class="prettyprint">ZONE</code>, <code class="prettyprint">CONCEPT</code>, <code class="prettyprint">STORE</code>, <code class="prettyprint">TILL</code>, <code class="prettyprint">STR_SERVER</code>, <code class="prettyprint">ADMIN_USER</code>, <code class="prettyprint">ASSOCIATE</code>, <code class="prettyprint">RULE</code>, <code class="prettyprint">OU</code>.</td>
 </tr>
 <tr>
-<td>loyaltyPromotionIdentifiers</td>
-<td>array</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adminType</td>
+<td>enum</td>
+<td>Pass <code class="prettyprint">ADMIN</code> if the transaction is added or modified by admin, else pass <code class="prettyprint">GENERAL</code>.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isActive</td>
+<td>boolean</td>
 <td></td>
 </tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isOuEnabled</td>
+<td>boolean</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;timeZoneId</td>
+<td>int</td>
+<td>Time zone ID of the store entity.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;currencyId</td>
+<td>int</td>
+<td>Currency ID of the store entity.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;languageId</td>
+<td>int</td>
+<td>Language ID of the store entity.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modifiedBy</td>
+<td>obj</td>
+<td>Details of user or store entity that modified</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modifiedDate</td>
+<td>date-time</td>
+<td>Date and time when the transaction is updated in ISO 8601 standard format.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;createdFromSource</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>returnType</td>
+<td>string</td>
+<td>Type of the return transaction. Value: <code class="prettyprint">AMOUNT</code>, <code class="prettyprint">FULL</code>, <code class="prettyprint">LINE_ITEM</code>, <code class="prettyprint">CANCELLED</code>. Required for return transaction.</td>
+</tr>
+<tr>
+<td>purchaseTime</td>
+<td>date-time</td>
+<td>Actual date of transaction of the returning bill in Date and time of the transaction in ISO 8601 standard - <code class="prettyprint">YYYY-MM-DDTHH:MM:SSZ</code>.</td>
+</tr>
 </tbody></table>
+
+<p><code class="prettyprint">YYYY-MM-DD</code>.
+redemptions | obj | Details of points and coupon redemptions for the  transaction.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pointsRedemptions | array | Unique points redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;couponRedemptions | array | Unique coupon redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]
+paymentModes | obj | Payment details used for the transaction.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mode | string | Mode of payment.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value | double | Amount paid through the current mode.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;notes |string | Additional information related to the payment mode. Max characters - 250.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attributes | obj | Attributes of the payment mode as name-value pairs.
+appliedPromotionIdentifiers | array | Identifiers of promotions (cart/catalog) applied to the transaction. 
+promotionEvaluationId | string | Promotion ID (cart/catalog) for which the transaction is evaluated.
+loyaltyPromotionIdentifiers | array | Identifier(s) of loyalty promotion(s) that you want to tag to the transaction.</p>
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
 
@@ -7590,7 +7688,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <tr>
 <td>identifierName*</td>
 <td>enum</td>
-<td>Pass any of the registered identifier name of the customer. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>, or <code class="prettyprint">fbId</code> (Facebook ID), cardnumber.</td>
+<td>Pass any of the registered identifier name of the customer. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">id</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>, or <code class="prettyprint">fbId</code> (Facebook ID), cardnumber.</td>
 </tr>
 <tr>
 <td>identifierValue*</td>
@@ -7605,7 +7703,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <tr>
 <td>accountId</td>
 <td>string</td>
-<td>For sources with multiple accounts (such as MARTJACK, WECHAT), pass the respective account ID.</td>
+<td>For sources with multiple accounts (such as MARTJACK, WECHAT), pass the respective account ID. Not applicable for <code class="prettyprint">INSTORE</code> source.</td>
 </tr>
 <tr>
 <td>use_async</td>
@@ -7624,26 +7722,6 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </tr>
 </thead><tbody>
 <tr>
-<td>identifierType*</td>
-<td>enum</td>
-<td>Pass any of the registered identifier name of the customer. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>, or <code class="prettyprint">fbId</code> (Facebook ID).</td>
-</tr>
-<tr>
-<td>identifierValue*</td>
-<td>string</td>
-<td>Pass the respective identifier value. For example if <code class="prettyprint">identifierType</code> is mobile, <code class="prettyprint">identifierValue</code> is mobile number.</td>
-</tr>
-<tr>
-<td>source*</td>
-<td>enum</td>
-<td>Pass the source from which the transaction is made. Values: <code class="prettyprint">INSTORE</code>( for InStore), <code class="prettyprint">WECHAT</code> (WeChat), <code class="prettyprint">MARTJACK</code>(AnywhereCommerce), <code class="prettyprint">WEB_ENGAGE</code> (Web-engage integration), ECOMMERCE (ECOMMERCE), <code class="prettyprint">JD</code> (JD), <code class="prettyprint">TAOBAO</code> (Taobao), <code class="prettyprint">TMALL</code> (TMall), <code class="prettyprint">FACEBOOK</code> (Facebook), <code class="prettyprint">WEBSITE</code> (other website), <code class="prettyprint">OTHERS</code> (any other source).</td>
-</tr>
-<tr>
-<td>accountId</td>
-<td>string</td>
-<td>For sources with multiple accounts (such as MARTJACK, WECHAT), pass the respective account ID.</td>
-</tr>
-<tr>
 <td>extendedFields</td>
 <td>obj</td>
 <td>Valid transaction level extended field details in name and value pairs.</td>
@@ -7651,7 +7729,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <tr>
 <td>currencyCode</td>
 <td>string</td>
-<td>ISO currency code of the transaction. For example, <code class="prettyprint">INR</code> for Indian Rupee, SGD for Singapore Dollar, <code class="prettyprint">EUR</code> for Euro, <code class="prettyprint">IQD</code> for Iraqi Dinar.</td>
+<td>ISO currency code of the transaction to add transaction with local currency. For example, <code class="prettyprint">INR</code> for Indian Rupee, SGD for Singapore Dollar, <code class="prettyprint">EUR</code> for Euro, <code class="prettyprint">IQD</code> for Iraqi Dinar. Pass the currency code that are supported for your org (InTouch &gt; Organization Setup) and ensure the currency conversion ratio is set using <code class="prettyprint">v2/currencyratio</code>.</td>
 </tr>
 <tr>
 <td>addWithLocalCurrency</td>
@@ -7661,12 +7739,17 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <tr>
 <td>deliveryStatus</td>
 <td>enum</td>
-<td>Delivery status of the item. Values: <code class="prettyprint">PLACED</code>, <code class="prettyprint">PROCESSED</code>, <code class="prettyprint">SHIPPED</code>, <code class="prettyprint">DELIVERED</code>, <code class="prettyprint">RETURNED</code>.</td>
+<td>Delivery status of the item. Values: <code class="prettyprint">PLACED</code>, <code class="prettyprint">PROCESSED</code>, <code class="prettyprint">SHIPPED</code>, <code class="prettyprint">DELIVERED</code>, <code class="prettyprint">RETURNED</code>. You can update the status using transac</td>
 </tr>
 <tr>
 <td>type*</td>
 <td>enum</td>
-<td>Type of transaction. Supported value: <code class="prettyprint">REGULAR</code> for loyalty transactions. &lsquo;RETURN&rsquo; for return transactions. Currently, there is no not-interested transactions support in V2.</td>
+<td>Type of transaction. Supported value: <code class="prettyprint">REGULAR</code> for loyalty transactions. <code class="prettyprint">RETURN</code> for return transactions. <code class="prettyprint">NOT_INTERESTED</code>, <code class="prettyprint">RETURN,NOT_INTERESTED_RETURN</code>, <code class="prettyprint">MIXED,NI_MIXED</code>.</td>
+</tr>
+<tr>
+<td>notInterestedReason</td>
+<td>string</td>
+<td>Notes on why the customer is not interested to enrol into the loyalty (<code class="prettyprint">type</code>=<code class="prettyprint">NOT_INTERESTED</code>). Max characters supported - 255.</td>
 </tr>
 <tr>
 <td>returnType**</td>
@@ -7686,7 +7769,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <tr>
 <td>billingDate</td>
 <td>date-time</td>
-<td>Date and time of the transaction in the <code class="prettyprint">YYYY-MM-DDTHH:MM:SSZ</code> format.</td>
+<td>Date and time of the transaction in the ISO  8601 format - <code class="prettyprint">YYYY-MM-DDTHH:MM:SSZ</code>.</td>
 </tr>
 <tr>
 <td>currency</td>
@@ -7706,12 +7789,17 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <tr>
 <td>outlierStatus</td>
 <td>enum</td>
-<td>Transaction level outlier status. Values: <code class="prettyprint">NORMAL</code>, <code class="prettyprint">INTERNAL</code>, <code class="prettyprint">FRAUD</code>, <code class="prettyprint">OUTLIER</code>, <code class="prettyprint">TEST</code>, <code class="prettyprint">DELETED</code>, <code class="prettyprint">FAILED</code>, <code class="prettyprint">OTHER</code></td>
+<td>Transaction level outlier status. Values: <code class="prettyprint">NORMAL</code>, <code class="prettyprint">INTERNAL</code>, <code class="prettyprint">FRAUD</code>, <code class="prettyprint">OUTLIER</code>, <code class="prettyprint">TEST</code>, <code class="prettyprint">DELETED</code>, <code class="prettyprint">FAILED</code>, <code class="prettyprint">OTHER</code>. This overrides the outlier status of the configured outlier settings.</td>
 </tr>
 <tr>
 <td>note</td>
 <td>string</td>
 <td>Additional information about the transaction.</td>
+</tr>
+<tr>
+<td>parentBillNumber</td>
+<td>string</td>
+<td>Return transaction bill number.</td>
 </tr>
 <tr>
 <td>lineItemsV2</td>
@@ -7721,7 +7809,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;amount</td>
 <td>double</td>
-<td>Net transaction amount</td>
+<td>Net line item amount. value-discount=amount</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description</td>
@@ -7755,8 +7843,8 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value</td>
-<td>string</td>
-<td></td>
+<td>double</td>
+<td>Gross amount of the item. Usually, rate*qty=value.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;returnable</td>
@@ -7845,23 +7933,18 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;returnType</td>
-<td>string</td>
+<td>enum</td>
 <td>Line item type of the return. Value: <code class="prettyprint">AMOUNT</code>, <code class="prettyprint">FULL</code>, <code class="prettyprint">LINE_ITEM</code>, <code class="prettyprint">CANCELLED</code>.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type</td>
-<td>string</td>
-<td></td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;originalTxnNumber</td>
-<td>string</td>
-<td></td>
+<td>enum</td>
+<td>Type of the line item. Value: <code class="prettyprint">REGULAR</code>, <code class="prettyprint">NOT_INTERESTED</code>, <code class="prettyprint">RETURN</code>, <code class="prettyprint">NOT_INTERESTED_RETURN</code>, <code class="prettyprint">MIXED</code>, <code class="prettyprint">NI_MIXED</code>.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;appliedPromotionIdentifiers</td>
-<td>string</td>
-<td></td>
+<td>array</td>
+<td>Cart or catalog promotions applied to the transaction.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extendedFields</td>
@@ -7891,12 +7974,12 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id</td>
 <td>string</td>
-<td></td>
+<td>Entity ID of the attribute.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;code</td>
 <td>string</td>
-<td></td>
+<td>Unique code of the entity.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description</td>
@@ -7925,7 +8008,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isOuEnabled</td>
-<td></td>
+<td>boolean</td>
 <td></td>
 </tr>
 <tr>
@@ -7966,99 +8049,22 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <tr>
 <td>purchaseTime</td>
 <td>date-time</td>
-<td>Actual date of transaction of the returning bill in <code class="prettyprint">YYYY-MM-DD</code>.</td>
-</tr>
-<tr>
-<td>parentBillNumber</td>
-<td>string</td>
-<td>Return transaction bill number.</td>
-</tr>
-<tr>
-<td>notInterestedReason</td>
-<td>string</td>
-<td>Notes on why the customer is not interested to enrol into the loyalty.</td>
-</tr>
-<tr>
-<td>fleetGroupId</td>
-<td>int</td>
-<td>Group ID of the fleet associated with the customer.</td>
-</tr>
-<tr>
-<td>fleetGroupExternalId</td>
-<td>string</td>
-<td>External ID of the fleet group associated with the customer.</td>
-</tr>
-<tr>
-<td>fleetPrimaryUserId</td>
-<td>int</td>
-<td>Unique ID of the primary user of the fleet group.</td>
-</tr>
-<tr>
-<td>useDefaultFleetGroup</td>
-<td>boolean</td>
-<td>The default group associated</td>
-</tr>
-<tr>
-<td>redemptions</td>
-<td>obj</td>
-<td>Details of points and coupon redemptions for the  transaction.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pointsRedemptions</td>
-<td>array</td>
-<td>Unique points redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;couponRedemptions</td>
-<td>array</td>
-<td>Unique coupon redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]</td>
-</tr>
-<tr>
-<td>paymentModes</td>
-<td>obj</td>
-<td>Payment details used for the transaction.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mode</td>
-<td>string</td>
-<td>Mode of payment.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value</td>
-<td>double</td>
-<td>Amount paid through the current mode.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;notes</td>
-<td>string</td>
-<td>Additional information related to the payment mode.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id</td>
-<td>string</td>
-<td>Unique ID of the payment mode.</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attributes</td>
-<td>obj</td>
-<td>Attributes of the payment mode as name-value pairs.</td>
-</tr>
-<tr>
-<td>appliedPromotionIdentifiers</td>
-<td>array</td>
-<td>Identifiers of promotions (cart/catalog) applied to the transaction.</td>
-</tr>
-<tr>
-<td>promotionEvaluationId</td>
-<td>string</td>
-<td>Promotion ID (cart/catalog) for which the transaction is evaluated.</td>
-</tr>
-<tr>
-<td>loyaltyPromotionIdentifiers</td>
-<td>array</td>
-<td>Identifier(s) of loyalty promotion(s) that you want to tag to the transaction.</td>
+<td>Actual date of transaction of the returning bill in Date and time of the transaction in ISO 8601 standard - <code class="prettyprint">YYYY-MM-DDTHH:MM:SSZ</code>.</td>
 </tr>
 </tbody></table>
+
+<p><code class="prettyprint">YYYY-MM-DD</code>.
+redemptions | obj | Details of points and coupon redemptions for the  transaction.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pointsRedemptions | array | Unique points redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;couponRedemptions | array | Unique coupon redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]
+paymentModes | obj | Payment details used for the transaction.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mode | string | Mode of payment.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value | double | Amount paid through the current mode.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;notes |string | Additional information related to the payment mode. Max characters - 250.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attributes | obj | Attributes of the payment mode as name-value pairs.
+appliedPromotionIdentifiers | array | Identifiers of promotions (cart/catalog) applied to the transaction. 
+promotionEvaluationId | string | Promotion ID (cart/catalog) for which the transaction is evaluated.
+loyaltyPromotionIdentifiers | array | Identifier(s) of loyalty promotion(s) that you want to tag to the transaction.</p>
 
 <aside class="notice">Parameters marked with * are mandatory. Pass `enum` values as strings</aside>
 
@@ -9170,6 +9176,440 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </tbody></table>
 
 <aside class="notice"> The error code `625` could also appear in warning if the configuration `CONF_ALLOW_NOT_EXISTING_BILL_RETURN` is enabled. However, this is a very special case for a code that could appear as a error or warning.</aside>
+
+<h1 id="earning">Earning</h1>
+
+<h2 id="get-transaction-earning">Get Transaction Earning</h2>
+
+<p>Retrieves all earning details of a transaction.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/earning/167111742
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"useDefaultFleetGroup"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"attribution"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"createDate"</span><span class="p">:</span><span class="s2">"2021-07-28T17:08:40+05:30"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"createdBy"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">12995129</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"aa.website"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"aa.website"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"adminType"</span><span class="p">:</span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"isActive"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"isOuEnabled"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"timeZoneId"</span><span class="p">:</span><span class="mi">-1</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"currencyId"</span><span class="p">:</span><span class="mi">-1</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"languageId"</span><span class="p">:</span><span class="mi">-1</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"modifiedBy"</span><span class="p">:{</span><span class="w">
+
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"modifiedDate"</span><span class="p">:</span><span class="s2">"2021-07-28T17:08:41+05:30"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"billDetails"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">8000.0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"billingStore"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">12995128</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"aa.website"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"AirAsia"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"STORE"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"adminType"</span><span class="p">:</span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"isActive"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"isOuEnabled"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"timeZoneId"</span><span class="p">:</span><span class="mi">-1</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"currencyId"</span><span class="p">:</span><span class="mi">-1</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"languageId"</span><span class="p">:</span><span class="mi">-1</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"billNumber"</span><span class="p">:</span><span class="s2">"0101611121021-aa2"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"billingTime"</span><span class="p">:</span><span class="s2">"2021-07-28T17:08:40+05:30"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"discount"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"grossAmount"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"note"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"returnDetails"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"canceled"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"niReturnDetails"</span><span class="p">:{</span><span class="w">
+
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"invalidBill"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"pointsEarningEntities"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"entityId"</span><span class="p">:</span><span class="mi">481191985</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"entityType"</span><span class="p">:</span><span class="s2">"customer"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"billPoints"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"programId"</span><span class="p">:</span><span class="mi">1414</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"currentPointsSummary"</span><span class="p">:{</span><span class="w">
+                  </span><span class="s2">"availablePoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"expiredPoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"redeemedPoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"promisedPoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"returnedPromisedPoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"returnedPoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"promisedPointsConverted"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="s2">"issuedPointsSummary"</span><span class="p">:{</span><span class="w">
+                  </span><span class="s2">"redeemablePointsIssued"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"promisedPointsIssued"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="s2">"currentPointsBreakup"</span><span class="p">:{</span><span class="w">
+                  </span><span class="s2">"regularPointsInfo"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"promotionalPointsInfo"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"programId"</span><span class="p">:</span><span class="mi">1550</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"currentPointsSummary"</span><span class="p">:{</span><span class="w">
+                  </span><span class="s2">"availablePoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"expiredPoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"redeemedPoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"promisedPoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"returnedPromisedPoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"returnedPoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"promisedPointsConverted"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="s2">"issuedPointsSummary"</span><span class="p">:{</span><span class="w">
+                  </span><span class="s2">"redeemablePointsIssued"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"promisedPointsIssued"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="s2">"currentPointsBreakup"</span><span class="p">:{</span><span class="w">
+                  </span><span class="s2">"regularPointsInfo"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"promotionalPointsInfo"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"customFields"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"flight_destination"</span><span class="p">:</span><span class="s2">"DEL"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"flight_source"</span><span class="p">:</span><span class="s2">"BOM"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"addWithLocalCurrency"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"async"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"useV2"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"customerId"</span><span class="p">:</span><span class="mi">481191985</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">167111742</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"lineItems"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">502374973</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"customerId"</span><span class="p">:</span><span class="mi">481191985</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"details"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">4000.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"discount"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="s2">"PBAC"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"qty"</span><span class="p">:</span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"rate"</span><span class="p">:</span><span class="mf">4000.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"serial"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"returnable"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"returnableDays"</span><span class="p">:</span><span class="mi">-1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"attributes"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"POINTS_ELIGIBILITY"</span><span class="p">:</span><span class="s2">"Yes"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"pathy_name"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"product_form"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"charge_type"</span><span class="p">:</span><span class="s2">"0"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"attributesSet"</span><span class="p">:[</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"product_form"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"POINTS_ELIGIBILITY"</span><span class="p">:</span><span class="s2">"Yes"</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"pathy_name"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="s2">"outlierStatus"</span><span class="p">:</span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"returnDetails"</span><span class="p">:{</span><span class="w">
+
+         </span><span class="p">},</span><span class="w">
+         </span><span class="s2">"valid"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"returnLineItemsDtos"</span><span class="p">:[</span><span class="w">
+
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"niReturnLineItemsDtos"</span><span class="p">:[</span><span class="w">
+
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"addonDetails"</span><span class="p">:[</span><span class="w">
+
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"splitItemsDetails"</span><span class="p">:[</span><span class="w">
+
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"pointsEarningEntities"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"entityId"</span><span class="p">:</span><span class="mi">481191985</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"entityType"</span><span class="p">:</span><span class="s2">"customer"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lineItemPoints"</span><span class="p">:[</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"programId"</span><span class="p">:</span><span class="mi">1414</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"currentPointsSummary"</span><span class="p">:{</span><span class="w">
+                     </span><span class="s2">"availablePoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"expiredPoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"redeemedPoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"promisedPoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"returnedPromisedPoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"returnedPoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"promisedPointsConverted"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="s2">"issuedPointsSummary"</span><span class="p">:{</span><span class="w">
+                     </span><span class="s2">"redeemablePointsIssued"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"promisedPointsIssued"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="s2">"currentPointsBreakup"</span><span class="p">:{</span><span class="w">
+                     </span><span class="s2">"regularPointsInfo"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"promotionalPointsInfo"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"programId"</span><span class="p">:</span><span class="mi">1550</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"currentPointsSummary"</span><span class="p">:{</span><span class="w">
+                     </span><span class="s2">"availablePoints"</span><span class="p">:</span><span class="mf">320.000</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"expiredPoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"redeemedPoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"promisedPoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"returnedPromisedPoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"returnedPoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"promisedPointsConverted"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="s2">"issuedPointsSummary"</span><span class="p">:{</span><span class="w">
+                     </span><span class="s2">"redeemablePointsIssued"</span><span class="p">:</span><span class="mf">320.000</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"promisedPointsIssued"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="s2">"currentPointsBreakup"</span><span class="p">:{</span><span class="w">
+                     </span><span class="s2">"regularPointsInfo"</span><span class="p">:{</span><span class="w">
+                        </span><span class="s2">"availablePointsInfo"</span><span class="p">:[</span><span class="w">
+                           </span><span class="p">{</span><span class="w">
+                              </span><span class="s2">"points"</span><span class="p">:</span><span class="mf">320.000</span><span class="p">,</span><span class="w">
+                              </span><span class="s2">"expiryDate"</span><span class="p">:</span><span class="s2">"2022-08-31T23:59:59+05:30"</span><span class="p">,</span><span class="w">
+                              </span><span class="s2">"expiryType"</span><span class="p">:</span><span class="s2">"rolling"</span><span class="p">,</span><span class="w">
+                              </span><span class="s2">"actionSourceDetails"</span><span class="p">:[</span><span class="w">
+                                 </span><span class="p">{</span><span class="w">
+                                    </span><span class="s2">"actionId"</span><span class="p">:</span><span class="mi">27229</span><span class="p">,</span><span class="w">
+                                    </span><span class="s2">"sourceType"</span><span class="p">:</span><span class="s2">"lineItem"</span><span class="p">,</span><span class="w">
+                                    </span><span class="s2">"actionType"</span><span class="p">:</span><span class="s2">"BILL_POINTS_ACTION"</span><span class="p">,</span><span class="w">
+                                    </span><span class="s2">"actionPointsDetail"</span><span class="p">:[</span><span class="w">
+                                       </span><span class="p">{</span><span class="w">
+                                          </span><span class="s2">"points"</span><span class="p">:</span><span class="mf">320.000</span><span class="p">,</span><span class="w">
+                                          </span><span class="s2">"sourceValue"</span><span class="p">:</span><span class="mf">4000.000</span><span class="p">,</span><span class="w">
+                                          </span><span class="s2">"sourceIdentifiers"</span><span class="p">:[</span><span class="w">
+                                             </span><span class="p">{</span><span class="w">
+                                                </span><span class="s2">"key"</span><span class="p">:</span><span class="s2">"tracker"</span><span class="p">,</span><span class="w">
+                                                </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"AirAsiaSpends2"</span><span class="w">
+                                             </span><span class="p">}</span><span class="w">
+                                          </span><span class="p">]</span><span class="w">
+                                       </span><span class="p">}</span><span class="w">
+                                    </span><span class="p">]</span><span class="w">
+                                 </span><span class="p">}</span><span class="w">
+                              </span><span class="p">]</span><span class="w">
+                           </span><span class="p">}</span><span class="w">
+                        </span><span class="p">],</span><span class="w">
+                        </span><span class="s2">"promisedPointsInfo"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="s2">"promotionalPointsInfo"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="s2">"niReturn"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">502374974</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"customerId"</span><span class="p">:</span><span class="mi">481191985</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"details"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">4000.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"discount"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="s2">"FAREPRICE"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"qty"</span><span class="p">:</span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"rate"</span><span class="p">:</span><span class="mf">4000.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"serial"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"returnable"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"returnableDays"</span><span class="p">:</span><span class="mi">-1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"attributes"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"POINTS_ELIGIBILITY"</span><span class="p">:</span><span class="s2">"Yes"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"pathy_name"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"product_form"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"charge_type"</span><span class="p">:</span><span class="s2">"0"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"attributesSet"</span><span class="p">:[</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"product_form"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"POINTS_ELIGIBILITY"</span><span class="p">:</span><span class="s2">"Yes"</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"pathy_name"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="s2">"outlierStatus"</span><span class="p">:</span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"returnDetails"</span><span class="p">:{</span><span class="w">
+
+         </span><span class="p">},</span><span class="w">
+         </span><span class="s2">"valid"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"returnLineItemsDtos"</span><span class="p">:[</span><span class="w">
+
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"niReturnLineItemsDtos"</span><span class="p">:[</span><span class="w">
+
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"addonDetails"</span><span class="p">:[</span><span class="w">
+
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"splitItemsDetails"</span><span class="p">:[</span><span class="w">
+
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"pointsEarningEntities"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"entityId"</span><span class="p">:</span><span class="mi">481191985</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"entityType"</span><span class="p">:</span><span class="s2">"customer"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lineItemPoints"</span><span class="p">:[</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"programId"</span><span class="p">:</span><span class="mi">1414</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"currentPointsSummary"</span><span class="p">:{</span><span class="w">
+                     </span><span class="s2">"availablePoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"expiredPoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"redeemedPoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"promisedPoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"returnedPromisedPoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"returnedPoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"promisedPointsConverted"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="s2">"issuedPointsSummary"</span><span class="p">:{</span><span class="w">
+                     </span><span class="s2">"redeemablePointsIssued"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"promisedPointsIssued"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="s2">"currentPointsBreakup"</span><span class="p">:{</span><span class="w">
+                     </span><span class="s2">"regularPointsInfo"</span><span class="p">:</span><span class="kc">null</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"promotionalPointsInfo"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"programId"</span><span class="p">:</span><span class="mi">1550</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"currentPointsSummary"</span><span class="p">:{</span><span class="w">
+                     </span><span class="s2">"availablePoints"</span><span class="p">:</span><span class="mf">160.000</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"expiredPoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"redeemedPoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"promisedPoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"returnedPromisedPoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"returnedPoints"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"promisedPointsConverted"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="s2">"issuedPointsSummary"</span><span class="p">:{</span><span class="w">
+                     </span><span class="s2">"redeemablePointsIssued"</span><span class="p">:</span><span class="mf">160.000</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"promisedPointsIssued"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="s2">"currentPointsBreakup"</span><span class="p">:{</span><span class="w">
+                     </span><span class="s2">"regularPointsInfo"</span><span class="p">:{</span><span class="w">
+                        </span><span class="s2">"availablePointsInfo"</span><span class="p">:[</span><span class="w">
+                           </span><span class="p">{</span><span class="w">
+                              </span><span class="s2">"points"</span><span class="p">:</span><span class="mf">160.000</span><span class="p">,</span><span class="w">
+                              </span><span class="s2">"expiryDate"</span><span class="p">:</span><span class="s2">"2022-08-31T23:59:59+05:30"</span><span class="p">,</span><span class="w">
+                              </span><span class="s2">"expiryType"</span><span class="p">:</span><span class="s2">"rolling"</span><span class="p">,</span><span class="w">
+                              </span><span class="s2">"actionSourceDetails"</span><span class="p">:[</span><span class="w">
+                                 </span><span class="p">{</span><span class="w">
+                                    </span><span class="s2">"actionId"</span><span class="p">:</span><span class="mi">27229</span><span class="p">,</span><span class="w">
+                                    </span><span class="s2">"sourceType"</span><span class="p">:</span><span class="s2">"lineItem"</span><span class="p">,</span><span class="w">
+                                    </span><span class="s2">"actionType"</span><span class="p">:</span><span class="s2">"BILL_POINTS_ACTION"</span><span class="p">,</span><span class="w">
+                                    </span><span class="s2">"actionPointsDetail"</span><span class="p">:[</span><span class="w">
+                                       </span><span class="p">{</span><span class="w">
+                                          </span><span class="s2">"points"</span><span class="p">:</span><span class="mf">160.000</span><span class="p">,</span><span class="w">
+                                          </span><span class="s2">"sourceValue"</span><span class="p">:</span><span class="mf">2000.000</span><span class="p">,</span><span class="w">
+                                          </span><span class="s2">"sourceIdentifiers"</span><span class="p">:[</span><span class="w">
+                                             </span><span class="p">{</span><span class="w">
+                                                </span><span class="s2">"key"</span><span class="p">:</span><span class="s2">"tracker"</span><span class="p">,</span><span class="w">
+                                                </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"AirAsiaSpends2"</span><span class="w">
+                                             </span><span class="p">}</span><span class="w">
+                                          </span><span class="p">]</span><span class="w">
+                                       </span><span class="p">}</span><span class="w">
+                                    </span><span class="p">]</span><span class="w">
+                                 </span><span class="p">}</span><span class="w">
+                              </span><span class="p">]</span><span class="w">
+                           </span><span class="p">}</span><span class="w">
+                        </span><span class="p">],</span><span class="w">
+                        </span><span class="s2">"promisedPointsInfo"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="s2">"promotionalPointsInfo"</span><span class="p">:</span><span class="kc">null</span><span class="w">
+                  </span><span class="p">}</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="s2">"niReturn"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"outlierStatus"</span><span class="p">:</span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"REGULAR"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"warnings"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"lifeTimePurchases"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"ignorePoints"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"boarding_status"</span><span class="p">:</span><span class="s2">"Boarded"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"flight_count"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"product_class"</span><span class="p">:</span><span class="s2">"EP"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"autoUpdateTime"</span><span class="p">:</span><span class="s2">"2021-07-28T17:08:41+05:30"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"niReturnDetails"</span><span class="p">:{</span><span class="w">
+
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"basketSize"</span><span class="p">:</span><span class="mf">2.0</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"returnDetails"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"canceled"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"warnings"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/earning/{transactionId}</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/earning/{transactionId}</code></p>
 
           <h1 id="customer-labels">Customer Labels</h1>
 
