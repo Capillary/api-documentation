@@ -72,15 +72,15 @@ https://eu.intouch.capillarytech.com/v2/transactions/bulk
          {
             "mode":"CardPayment",
             "value":"5100.0",
-			"notes":"SPay",
+            "notes":"SPay",
             "attributes":{
                "card_type":"Visa"
             }
          },
-		 {
+         {
             "mode":"NetBanking",
             "value":"4800.0",
-			"notes":"Net Banking",
+            "notes":"Net Banking"
          }
       ],
       "redemptions":{
@@ -98,7 +98,7 @@ https://eu.intouch.capillarytech.com/v2/transactions/bulk
          "ship_last_name":"Sundar"
       },
       "customFields":{
-	     "booking_ota":"Website",
+         "booking_ota":"Website",
          "trans_cf_a":"abc"
       },
       "lineItemsV2":[
@@ -347,6 +347,16 @@ https://eu.intouch.capillarytech.com/v2/transactions/bulk
                "GrossWeight":"10.50"
             }
          }
+      ],
+      "loyaltyPromotionIdentifiers":[
+         "ABC-12345",
+         "Diwali_Promotion_2020",
+         "New_Year_Promotion_2020"
+      ],
+      "promotionEvaluationId":"60f5713c4c5cb92ab2da320e",
+      "appliedPromotionIdentifiers":[
+         "eyJwcm9tb3Rpb25JZCI6IjYxMmU1YzVlNDEzM2I1NmFiZTBmMDczZSIsImRpc2NvdW50IjoiMTAwMC4wMDAwMDAiLCJhbW91bnQiOiIzMDAwLjAwMDAwMCIsImRpc2NvdW50QXBwbGllZFF0eSI6IjEiLCJwcm9tb3Rpb25BcHBsaWVkUXR5IjoiMy4wMDAwMDAiLCJyZWRlbXB0aW9uQ291bnQiOjEsInNrdSI6IkpOU1JFRzAyIiwidmVyc2lvbiI6InYxIn0=",
+         "eyJwcm9tb3Rpb25JZCI6IjYxMmU1YzVlNDEzM2I1NmFiZTBmMDczZSIsImRpc2NvdW50IjoiMTAwMC4wMDAwMDAiLCJhbW91bnQiOiIzMDAwLjAwMDAwMCIsImRpc2NvdW50QXBwbGllZFF0eSI6IjEiLCJwcm9tb3Rpb25BcHBsaWVkUXR5IjoiMy4wMDAwMDAiLCJyZWRlbXB0aW9uQ291bnQiOjEsInNrdSI6IkpOU1JFRzAyIiwidmVyc2lvbiI6InYxIn1="
       ]
    }
 ]
@@ -419,9 +429,8 @@ https://eu.intouch.capillarytech.com/v2/transactions/bulk
         "discount": 40
       }
     ]
-  }
+  },
 ]
-
 ```
 
 
@@ -436,15 +445,17 @@ https://eu.intouch.capillarytech.com/v2/transactions/bulk
         "identifierType": "id",
         "identifierValue": "98662653",
         "source": "INSTORE",
+		"accountId": "",
         "extendedFields": {
           "flight_count": 1
         },
-        "deliveryStatus": "SHIPPED",
+		"deliveryStatus": "SHIPPED",
         "type": "REGULAR",
         "billAmount": 4808,
         "billNumber": "Test144e79c384598f5f9a265581d52a0a1471747957",
-        "currency": "INR",
         "discount": 0,
+		"grossAmount": 110.0,
+        "note": "this is test",
 		"redemptions":{
          "pointsRedemptions":[
             123453,
@@ -510,6 +521,17 @@ https://eu.intouch.capillarytech.com/v2/transactions/bulk
             "rawAwardedPoints": 480.8,
             "awardedPoints": 480,
             "type": "points"
+          },
+	      {
+            "id": 397760089,
+            "entityType": "USER",
+            "couponType": "PE",
+            "couponCode": "2AWZSLSN",
+            "validTill": "2029-09-01T23:59:59+05:30",
+            "description": "NewCouponForAll",
+            "discountCode": "NO_VALUE",
+            "trimmedCouponCode": "2AWZSLSN",
+            "type": "coupon"
           }
         ],
         "paymentModes": [
@@ -605,9 +627,19 @@ https://eu.intouch.capillarytech.com/v2/transactions/bulk
         "billingDate": "2021-07-05T14:10:00Z",
         "useDefaultFleetGroup": false
       },
-      "errors": [],
+      "errors": [
+	   {
+            "status": false,
+            "code": 8084,
+            "message": "Customer details not sent"
+        }
+	  ],
       "warnings": [
-        {}
+        {
+		 "status": false,
+         "code": 91016,
+         "message": "Extended field name gender is invalid."
+		}
       ]
     }
   ],
@@ -628,7 +660,7 @@ Batch Support | Yes
 Rate Limited | Yes
 
 
-### Additional Header
+### Request Header (Optional)
 
 Header | Description
 ------ | -----------
@@ -652,14 +684,13 @@ extendedFields | obj | Valid transaction level extended field details in name an
 currencyCode | string | ISO currency code of the transaction to add transaction with local currency. For example, `INR` for Indian Rupee, SGD for Singapore Dollar, `EUR` for Euro, `IQD` for Iraqi Dinar. Pass the currency code that are supported for your org (InTouch > Organization Setup) and ensure the currency conversion ratio is set using `v2/currencyratio`.
 addWithLocalCurrency | boolean | Pass `true` to add a transaction in local currency.  
 deliveryStatus | enum | Delivery status of the item. Values: `PLACED`, `PROCESSED`, `SHIPPED`, `DELIVERED`, `RETURNED`. You can update the status using transac
-type* | enum | Type of transaction. Supported value: `REGULAR` for loyalty transactions. `RETURN` for return transactions. `NOT_INTERESTED`, `RETURN,NOT_INTERESTED_RETURN`, `MIXED,NI_MIXED`.
+type* | enum | Type of transaction. Supported value: `REGULAR` for loyalty transactions. `RETURN` for return transactions. `NOT_INTERESTED`, `RETURN,NOT_INTERESTED_RETURN`.
 notInterestedReason | string | Notes on why the customer is not interested to enrol into the loyalty (`type`=`NOT_INTERESTED`). Max characters supported - 255. 
 returnType** | enum | For a return transaction, pass the return type. Value: `AMOUNT`, `FULL`, `LINE_ITEM`, `CANCELLED`.
 billAmount* | double | Net transaction amount.
-billNumber* |  string | Unique transaction number. The uniqueness either at till, store, or org, depends on the configuration `CONF_LOYALTY_BILL_NUMBER_UNIQUE_IN_DAYS` set on InTouch **Settings** > **System & Deployment** > **InTouch POS Configuration** > **Billing**.  
+billNumber* |  string | Unique transaction number. For a return transaction, this is the original transaction number of the return item. In transaction add the uniqueness of the `billNumber` is either at till, store, or org, depends on the configuration. `CONF_LOYALTY_BILL_NUMBER_UNIQUE_IN_DAYS` set on InTouch **Settings** > **System & Deployment** > **InTouch POS Configuration** > **Billing**.  
 billingDate | date-time | Date and time of the transaction in the ISO  8601 format - `YYYY-MM-DDTHH:MM:SSZ`.
-currency | string | ISO currency code of the transaction. Org's base currency is considered by default. For example, `INR` for Indian Rupee, `SGD` for Singapore Dollar, `EUR` for Euro, `IQD` for Iraqi Dinar.
-discount | double | Discount availed for the transaction or line item (discount amount) .
+discount | double | Discount availed for the transaction or line item (discount amount).
 grossAmount | double | Transaction amount before discount.
 outlierStatus | enum | Transaction level outlier status. Values: `NORMAL`, `INTERNAL`, `FRAUD`, `OUTLIER`, `TEST`, `DELETED`, `FAILED`, `OTHER`. This overrides the outlier status of the configured outlier settings.
 note | string | Additional information about the transaction.
@@ -687,32 +718,18 @@ lineItemsV2 | obj | Details of line-items.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;comboType | string | Type of the combo. Value: `COMBO_PARENT`, `COMBO_ITEM`, `ADD_ON_ITEM`, `SPLIT`.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addOnDetails | obj | Details of add-on item.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;splitDetails | obj | Details of split item.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parentBillNumber | string | Actual transaction number. Applicable only for return transactions.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;purchaseTime | date-time | Actual date of transaction of the return item in `YYYY-MM-DD`.
-parentBillNumber | string | Return transaction bill number.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;returnType | enum | Line item type of the return. Value: `AMOUNT`, `FULL`, `LINE_ITEM`, `CANCELLED`.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type | enum | Type of the line item. Value: `REGULAR`, `NOT_INTERESTED`, `RETURN`, `NOT_INTERESTED_RETURN`, `MIXED`, `NI_MIXED`.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;appliedPromotionIdentifiers | array | Cart or catalog promotions applied to the transaction.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parentBillNumber | string | Actual transaction number of the return item. Applicable only for mixed transaction (involves both transaction and return).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;purchaseTime | date-time | Actual date and time of purchase in ISO 6801 format (ex: 2021-09-09T19:50:07+05:30).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;returnType | enum | Return type of the line item. Value: `AMOUNT`, `FULL`, `LINE_ITEM`. Not applicable if the transaction level returnType is `FULL` or `AMOUNT`. 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type | enum | Type of the line item. Value: `REGULAR` (for regular line item purchase), `NOT_INTERESTED` (for line item purchase with no customer tagging), `RETURN` (to return a regular line item ), `NOT_INTERESTED_RETURN` (to return a line item of no-interested transaction).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;appliedPromotionIdentifiers | array | Based 64 encoded format Cart or catalog promotions applied to the transaction.<br>It will have the details mentioned here `{"promotionId":"612e5c5e4133b56abe0f073e","discount":"1000.000000","amount":"3000.000000","discountAppliedQty":"1","promotionAppliedQty":"3.000000","redemptionCount":1,"sku":"JNSREG02","version":"v1"}`
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extendedFields | obj | Valid transaction line-item level extended field details.
 customFields | obj | Details of transaction level or transaction line-item level custom fields.
 attribution | obj | Mapping to tag the transaction to a different user or till (other than the current user) 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;createDate | date-time | Date of the transaction in ISO 8601 standard format. 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;createdBy | obj | User ID or store entity (like TILL ID, store ID) associated with the transaction.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id | string | Entity ID of the attribute.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;code | string | Unique code of the entity.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description |string | Description of the 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name | string | Name of the attribution entry.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type | enum | Type of the attribution entity. Value: `ZONE`, `CONCEPT`, `STORE`, `TILL`, `STR_SERVER`, `ADMIN_USER`, `ASSOCIATE`, `RULE`, `OU`.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adminType | enum | Pass `ADMIN` if the transaction is added or modified by admin, else pass `GENERAL`.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isActive | boolean | 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isOuEnabled | boolean | 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;timeZoneId | int | Time zone ID of the store entity. 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;currencyId | int | Currency ID of the store entity.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;languageId | int | Language ID of the store entity.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modifiedBy | obj | Details of user or store entity that modified 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modifiedDate | date-time | Date and time when the transaction is updated in ISO 8601 standard format.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;createdFromSource | string | 
-returnType | string | Type of the return transaction. Value: `AMOUNT`, `FULL`, `LINE_ITEM`, `CANCELLED`. Required for return transaction.
 purchaseTime | date-time | Actual date of transaction of the returning bill in Date and time of the transaction in ISO 8601 standard - `YYYY-MM-DDTHH:MM:SSZ`.
 `YYYY-MM-DD`.
 redemptions | obj | Details of points and coupon redemptions for the  transaction.
@@ -723,8 +740,8 @@ paymentModes | obj | Payment details used for the transaction.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value | double | Amount paid through the current mode.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;notes |string | Additional information related to the payment mode. Max characters - 250.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attributes | obj | Attributes of the payment mode as name-value pairs.
-appliedPromotionIdentifiers | array | Identifiers of promotions (cart/catalog) applied to the transaction. 
-promotionEvaluationId | string | Promotion ID (cart/catalog) for which the transaction is evaluated.
+promotionEvaluationId | string | Promotion evaluation code (cart/catalog) applied for the transaction.
+appliedPromotionIdentifiers | array | Base 64 encoded string of Cart/catalog promotion identifiers that are applied to the transaction.<br>It will have the details mentioned here `{"promotionId":"612e5c5e4133b56abe0f073e","discount":"1000.000000","amount":"3000.000000","discountAppliedQty":"1","promotionAppliedQty":"3.000000","redemptionCount":1,"sku":"JNSREG02","version":"v1"}`
 loyaltyPromotionIdentifiers | array | Identifier(s) of loyalty promotion(s) that you want to tag to the transaction.
 
 
@@ -732,8 +749,16 @@ loyaltyPromotionIdentifiers | array | Identifier(s) of loyalty promotion(s) that
 
 
 
-
 <aside class="notice">Parameters marked with * are mandatory. </aside>
+
+
+### Response Headers
+
+Header | Description
+------ | -----------
+X-CAP-REQUEST-ID | Unique API request ID generated. This is used for tracing and debugging purposes.
+org_id | Unique ID of the current org.
+till | Till code associated with the transaction.
 
 
 ### Response Parameters
@@ -807,7 +832,15 @@ https://us.api.capillarytech.com/v2/transactions?source=instore&identifierValue=
         "GrossWeight": "10.50"
       }
     }
-  ]
+  ],
+  "promotionEvaluationId":"60f5713c4c5cb92ab2da320e", 
+  "loyaltyPromotionIdentifiers":[
+	"ABC-12345",
+    "Diwali_Promotion_2020",
+    "New_Year_Promotion_2020"
+  ],
+  "appliedPromotionIdentifiers": ["eyJwcm9tb3Rpb25JZCI6IjYxMmU1YzVlNDEzM2I1NmFiZTBmMDczZSIsImRpc2NvdW50IjoiMTAwMC4wMDAwMDAiLCJhbW91bnQiOiIzMDAwLjAwMDAwMCIsImRpc2NvdW50QXBwbGllZFF0eSI6IjEiLCJwcm9tb3Rpb25BcHBsaWVkUXR5IjoiMy4wMDAwMDAiLCJyZWRlbXB0aW9uQ291bnQiOjEsInNrdSI6IkpOU1JFRzAyIiwidmVyc2lvbiI6InYxIn0=", "eyJwcm9tb3Rpb25JZCI6IjYxMmU1YzVlNDEzM2I1NmFiZTBmMDczZSIsImRpc2NvdW50IjoiMTAwMC4wMDAwMDAiLCJhbW91bnQiOiIzMDAwLjAwMDAwMCIsImRpc2NvdW50QXBwbGllZFF0eSI6IjEiLCJwcm9tb3Rpb25BcHBsaWVkUXR5IjoiMy4wMDAwMDAiLCJyZWRlbXB0aW9uQ291bnQiOjEsInNrdSI6IkpOU1JFRzAyIiwidmVyc2lvbiI6InYxIn1="
+   ]
 }  
 ```
 
@@ -815,18 +848,25 @@ https://us.api.capillarytech.com/v2/transactions?source=instore&identifierValue=
 
 ```json
 {
-    "createdId": 355607703,
+    "createdId": 2147939409,
     "warnings": [],
     "errors": [],
     "sideEffects": [
         {
-            "rawAwardedPoints": 400.000,
-            "awardedPoints": 400,
+            "entityType": "USER",
+            "rawAwardedPoints": 150.000,
+            "awardedPoints": 150,
             "type": "points"
         }
-    ]
+    ],
+    "customerInfo": {
+        "firstName": "Tom",
+        "lastName": "Sawyer"
+    }
 }
 ```
+
+
 
 ### Resource Information
 
@@ -838,7 +878,7 @@ API Version | v2
 Batch Support | Yes
 Rate Limited | Yes
 
-### Additional Header
+### Request Header (optional)
 
 Header | Description
 ------ | -----------
@@ -868,20 +908,18 @@ extendedFields | obj | Valid transaction level extended field details in name an
 currencyCode | string | ISO currency code of the transaction to add transaction with local currency. For example, `INR` for Indian Rupee, SGD for Singapore Dollar, `EUR` for Euro, `IQD` for Iraqi Dinar. Pass the currency code that are supported for your org (InTouch > Organization Setup) and ensure the currency conversion ratio is set using `v2/currencyratio`.
 addWithLocalCurrency | boolean | Pass `true` to add a transaction in local currency. 
 deliveryStatus | enum | Delivery status of the item. Values: `PLACED`, `PROCESSED`, `SHIPPED`, `DELIVERED`, `RETURNED`. You can update the status using transac
-type* | enum | Type of transaction. Supported value: `REGULAR` for loyalty transactions. `RETURN` for return transactions. `NOT_INTERESTED`, `RETURN,NOT_INTERESTED_RETURN`, `MIXED,NI_MIXED`.
+type* | enum | Type of transaction. Supported value: `REGULAR` for loyalty transactions. `RETURN` for return transactions. `NOT_INTERESTED`, `RETURN,NOT_INTERESTED_RETURN`.
 notInterestedReason | string | Notes on why the customer is not interested to enrol into the loyalty (`type`=`NOT_INTERESTED`). Max characters supported - 255. 
 returnType** | enum | For a return transaction, pass the return type. Value: `AMOUNT`, `FULL`, `LINE_ITEM`, `CANCELLED`.
 billAmount* | double | Net transaction amount.
 billNumber* |  string | Unique transaction number. The uniqueness either at till, store, or org, depends on the configuration `CONF_LOYALTY_BILL_NUMBER_UNIQUE_IN_DAYS` set on InTouch **Settings** > **System & Deployment** > **InTouch POS Configuration** > **Billing**.  
 billingDate | date-time | Date and time of the transaction in the ISO  8601 format - `YYYY-MM-DDTHH:MM:SSZ`.
-currency | string | ISO currency code of the transaction. Org's base currency is considered by default. For example, `INR` for Indian Rupee, `SGD` for Singapore Dollar, `EUR` for Euro, `IQD` for Iraqi Dinar.
 discount | double | Discount availed for the transaction or line item (discount amount) .
 grossAmount | double | Transaction amount before discount.
 outlierStatus | enum | Transaction level outlier status. Values: `NORMAL`, `INTERNAL`, `FRAUD`, `OUTLIER`, `TEST`, `DELETED`, `FAILED`, `OTHER`. This overrides the outlier status of the configured outlier settings.
 note | string | Additional information about the transaction.
-parentBillNumber | string | Return transaction bill number.
 lineItemsV2 | obj | Details of line-items.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;amount | double | Net line item amount. value-discount=amount
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;amount | double | Net line item amount. value-discount=amount.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description | string | One or two liner description of the line-item.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;discount | int | Discount received on the line item.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;itemCode | string | Unique code of the transaction line-item.
@@ -903,32 +941,18 @@ lineItemsV2 | obj | Details of line-items.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;comboType | string | Type of the combo. Value: `COMBO_PARENT`, `COMBO_ITEM`, `ADD_ON_ITEM`, `SPLIT`.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;addOnDetails | obj | Details of add-on item.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;splitDetails | obj | Details of split item.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parentBillNumber | string | Actual transaction number. Applicable only for return transactions.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;purchaseTime | date-time | Actual date of transaction of the return item in `YYYY-MM-DD`.
-parentBillNumber | string | Return transaction bill number.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;returnType | enum | Line item type of the return. Value: `AMOUNT`, `FULL`, `LINE_ITEM`, `CANCELLED`.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type | enum | Type of the line item. Value: `REGULAR`, `NOT_INTERESTED`, `RETURN`, `NOT_INTERESTED_RETURN`, `MIXED`, `NI_MIXED`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;parentBillNumber | string | Actual transaction number. Applicable only for mixed transaction (transaction that involves both purchaase and return - exchange).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;purchaseTime | date-time | Actual date of transaction of the return item in ISO 8601 format - `YYYY-MM-DDTHH:MM:SSZ`
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;returnType | enum | Return type of the line item. Value: `AMOUNT`, `FULL`, `LINE_ITEM`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type | enum | Type of the line item. Value: `REGULAR` (for regular line item purchase), `NOT_INTERESTED` (for line item purchase with no customer tagging), `RETURN` (to return a regular line item ), `NOT_INTERESTED_RETURN` (to return a line item of no-interested transaction).
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;appliedPromotionIdentifiers | array | Cart or catalog promotions applied to the transaction.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extendedFields | obj | Valid transaction line-item level extended field details.
 customFields | obj | Details of transaction level or transaction line-item level custom fields.
 attribution | obj | Mapping to tag the transaction to a different user or till (other than the current user) 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;createDate | date-time | Date of the transaction in ISO 8601 standard format. 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;createdBy | obj | User ID or store entity (like TILL ID, store ID) associated with the transaction.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id | string | Entity ID of the attribute.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;code | string | Unique code of the entity.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description |string | Description of the 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name | string | Name of the attribution entry.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type | enum | Type of the attribution entity. Value: `ZONE`, `CONCEPT`, `STORE`, `TILL`, `STR_SERVER`, `ADMIN_USER`, `ASSOCIATE`, `RULE`, `OU`.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;adminType | enum | Pass `ADMIN` if the transaction is added or modified by admin, else pass `GENERAL`.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isActive | boolean | 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;isOuEnabled | boolean | 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;timeZoneId | int | Time zone ID of the store entity. 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;currencyId | int | Currency ID of the store entity.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;languageId | int | Language ID of the store entity.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modifiedBy | obj | Details of user or store entity that modified 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modifiedDate | date-time | Date and time when the transaction is updated in ISO 8601 standard format.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;createdFromSource | string | 
-returnType | string | Type of the return transaction. Value: `AMOUNT`, `FULL`, `LINE_ITEM`, `CANCELLED`.
 purchaseTime | date-time | Actual date of transaction of the returning bill in Date and time of the transaction in ISO 8601 standard - `YYYY-MM-DDTHH:MM:SSZ`.
 `YYYY-MM-DD`.
 redemptions | obj | Details of points and coupon redemptions for the  transaction.
@@ -939,8 +963,8 @@ paymentModes | obj | Payment details used for the transaction.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value | double | Amount paid through the current mode.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;notes |string | Additional information related to the payment mode. Max characters - 250.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attributes | obj | Attributes of the payment mode as name-value pairs.
-appliedPromotionIdentifiers | array | Identifiers of promotions (cart/catalog) applied to the transaction. 
-promotionEvaluationId | string | Promotion ID (cart/catalog) for which the transaction is evaluated.
+promotionEvaluationId | string | Promotion evaluation code (cart/catalog) applied for the transaction.
+appliedPromotionIdentifiers | array | Base 64 encoded string of Cart/catalog promotion identifiers that are applied to the transaction.<br>It will have the details mentioned here `{"promotionId":"612e5c5e4133b56abe0f073e","discount":"1000.000000","amount":"3000.000000","discountAppliedQty":"1","promotionAppliedQty":"3.000000","redemptionCount":1,"sku":"JNSREG02","version":"v1"}`
 loyaltyPromotionIdentifiers | array | Identifier(s) of loyalty promotion(s) that you want to tag to the transaction.
 
 
@@ -948,6 +972,14 @@ loyaltyPromotionIdentifiers | array | Identifier(s) of loyalty promotion(s) that
 <aside class="notice">Parameters marked with * are mandatory. Pass `enum` values as strings</aside>
 
 
+
+### Response Headers
+
+Header | Description
+------ | -----------
+X-CAP-REQUEST-ID | Unique API request ID generated. This is used for tracing and debugging purposes.
+org_id | Unique ID of the current org.
+till | Till code associated with the transaction.
 
 
 
@@ -965,399 +997,197 @@ https://eu.api.capillarytech.com/v2/transactions/38236823?type=REGULAR
 
 ```json
 {
-    "attribution": {
-        "createDate": "2020-04-28T17:04:13+05:30",
-        "createdBy": {
-            "id": 50006796,
-            "code": "mobilepush.1",
-            "description": "",
-            "name": "mobilepush.1",
-            "type": "TILL",
-            "adminType": "GENERAL",
-            "isActive": true,
-            "isOuEnabled": false,
-            "timeZoneId": 0,
-            "currencyId": 216,
-            "languageId": 1
-        },
-        "modifiedBy": {},
-        "modifiedDate": "2020-04-28T17:04:13+05:30"
+   "useDefaultFleetGroup":false,
+   "attribution":{
+      "createDate":"2021-09-09T11:49:14+05:30",
+      "createdBy":{
+         "id":50006796,
+         "code":"mobilepush.1",
+         "description":"",
+         "name":"mobilepush.1",
+         "type":"TILL",
+         "adminType":"GENERAL",
+         "isActive":true,
+         "isOuEnabled":false,
+         "timeZoneId":191,
+         "currencyId":216,
+         "languageId":1
+      },
+      "modifiedBy":{
+         
+      },
+      "modifiedDate":"2021-09-09T11:49:17+05:30"
+   },
+   "billDetails":{
+      "amount":200.0,
+      "billingStore":{
+         "id":50006795,
+         "code":"storecode",
+         "description":"webenagestore",
+         "name":"webstore1",
+         "type":"STORE",
+         "adminType":"GENERAL",
+         "isActive":true,
+         "isOuEnabled":false,
+         "timeZoneId":191,
+         "currencyId":216,
+         "languageId":1
+      },
+      "billNumber":"num-6682855857799",
+      "billingTime":"2021-09-09T11:49:14+05:30",
+      "discount":10.0,
+      "grossAmount":110.0,
+      "note":"this is test",
+      "returnDetails":{
+         "canceled":false
+      },
+      "niReturnDetails":{
+         
+      },
+      "invalidBill":false
+   },
+   "creditNote": {
+        "amount": 1800.0,
+        "notes": "Reason for credit",
+        "number": "numbr9959104543",
+        "validity": "2022-09-09",
+        "updateAmount": false
     },
-    "billDetails": {
-        "amount": 200.0,
-        "billingStore": {
-            "id": 50006795,
-            "code": "storecode",
-            "description": "webenagestore",
-            "name": "webstore1",
-            "type": "STORE",
-            "adminType": "GENERAL",
-            "isActive": true,
-            "isOuEnabled": false,
-            "timeZoneId": 0,
-            "currencyId": 216,
-            "languageId": 1
-        },
-        "billNumber": "num-6682858599",
-        "billingTime": "2020-04-28T17:04:13+05:30",
-        "discount": 10.0,
-        "grossAmount": 110.0,
-        "note": "this is test",
-        "returnDetails": {
-            "canceled": false
-        },
-        "niReturnDetails": {},
-        "invalidBill": false
-    },
-    "customFields": {
-        "cashierid": "jim2345"
-    },
-    "addWithLocalCurrency": false,
-    "async": false,
-    "useV2": false,
-    "customerId": 316726161,
-    "id": 38236823,
-    "lineItems": [
-        {
-            "id": 2151509718,
-            "customerId": 0,
-            "details": {
-                "amount": 100.5,
-                "description": "",
-                "discount": 0.0,
-                "itemCode": "sku_486741_2",
-                "qty": 1.0,
-                "rate": 100.5,
-                "serial": 0,
-                "value": 0.0,
-                "returnable": true,
-                "returnableDays": -1,
-                "attributes": {},
-                "extendedFields": {},
-                "rateSupportingNull": 100.5,
-                "valueSupportingNull": 0.0,
-                "qtySupportingNull": 1.0,
-                "attributesSet": [],
-                "discountSupportingNull": 0.0,
-                "extendedFieldsSet": []
+   "customFields":{
+      "gender": "male"
+   },
+   "addWithLocalCurrency":false,
+   "async":false,
+   "useV2":false,
+   "customerId":316726161,
+   "id":2147866485,
+   "lineItems":[
+      {
+         "id":2153881142,
+         "customerId":0,
+         "details":{
+            "amount":100.5,
+            "description":"",
+            "discount":0.0,
+            "itemCode":"sku_486741_2",
+            "qty":1.0,
+            "rate":100.5,
+            "serial":0,
+            "value":0.0,
+            "returnable":true,
+            "returnableDays":-1,
+            "attributes":{
+               
             },
-            "outlierStatus": "NORMAL",
-            "returnDetails": {},
-            "valid": true,
-            "returnLineItemsDtos": [],
-            "niReturnLineItemsDtos": [],
-            "addonDetails": [],
-            "splitItemsDetails": [],
-            "niReturn": false
-        },
-        {
-            "id": 2151509719,
-            "customerId": 0,
-            "details": {
-                "amount": 100.5,
-                "description": "",
-                "discount": 0.0,
-                "itemCode": "sku_486741_2",
-                "qty": 1.0,
-                "rate": 100.5,
-                "serial": 0,
-                "value": 0.0,
-                "returnable": true,
-                "returnableDays": -1,
-                "attributes": {},
-                "extendedFields": {},
-                "rateSupportingNull": 100.5,
-                "valueSupportingNull": 0.0,
-                "qtySupportingNull": 1.0,
-                "attributesSet": [],
-                "discountSupportingNull": 0.0,
-                "extendedFieldsSet": []
+            "extendedFields":{
+                "paymentmode": "cash"
             },
-            "outlierStatus": "NORMAL",
-            "returnDetails": {},
-            "valid": true,
-            "returnLineItemsDtos": [],
-            "niReturnLineItemsDtos": [],
-            "addonDetails": [],
-            "splitItemsDetails": [],
-            "niReturn": false
-        },
-        {
-            "id": 2151509720,
-            "customerId": 0,
-            "details": {
-                "amount": 100.5,
-                "description": "",
-                "discount": 0.0,
-                "itemCode": "sku_486741_3",
-                "qty": 1.0,
-                "rate": 100.5,
-                "serial": 0,
-                "value": 0.0,
-                "returnable": true,
-                "returnableDays": -1,
-                "attributes": {},
-                "extendedFields": {},
-                "rateSupportingNull": 100.5,
-                "valueSupportingNull": 0.0,
-                "qtySupportingNull": 1.0,
-                "attributesSet": [],
-                "discountSupportingNull": 0.0,
-                "extendedFieldsSet": []
+            "attributesSet":[
+               
+            ]
+         },
+         "outlierStatus":"NORMAL",
+         "returnDetails":{
+            
+         },
+         "valid":true,
+         "returnLineItemsDtos":[
+            
+         ],
+         "niReturnLineItemsDtos":[
+            
+         ],
+         "addonDetails":[
+            
+         ],
+         "splitItemsDetails":[
+            
+         ],
+         "niReturn":false
+      },
+      {
+         "id":2153881151,
+         "customerId":0,
+         "details":{
+            "amount":100.5,
+            "description":"",
+            "discount":0.0,
+            "itemCode":"sku_486741_10",
+            "qty":1.0,
+            "rate":100.5,
+            "serial":0,
+            "value":0.0,
+            "returnable":true,
+            "returnableDays":-1,
+            "attributes":{
+               "POINTS_ELIGIBILITY":"Yes",
+               "pathy_name":"",
+               "product_form":""
             },
-            "outlierStatus": "NORMAL",
-            "returnDetails": {},
-            "valid": true,
-            "returnLineItemsDtos": [],
-            "niReturnLineItemsDtos": [],
-            "addonDetails": [],
-            "splitItemsDetails": [],
-            "niReturn": false
-        },
-        {
-            "id": 2151509721,
-            "customerId": 0,
-            "details": {
-                "amount": 100.5,
-                "description": "",
-                "discount": 0.0,
-                "itemCode": "sku_486741_4",
-                "qty": 1.0,
-                "rate": 100.5,
-                "serial": 0,
-                "value": 0.0,
-                "returnable": true,
-                "returnableDays": -1,
-                "attributes": {},
-                "extendedFields": {},
-                "rateSupportingNull": 100.5,
-                "valueSupportingNull": 0.0,
-                "qtySupportingNull": 1.0,
-                "attributesSet": [],
-                "discountSupportingNull": 0.0,
-                "extendedFieldsSet": []
+            "extendedFields":{
+               
             },
-            "outlierStatus": "NORMAL",
-            "returnDetails": {},
-            "valid": true,
-            "returnLineItemsDtos": [],
-            "niReturnLineItemsDtos": [],
-            "addonDetails": [],
-            "splitItemsDetails": [],
-            "niReturn": false
-        },
+            "attributesSet":[
+               {
+                  "product_form":""
+               },
+               {
+                  "POINTS_ELIGIBILITY":"Yes"
+               },
+               {
+                  "pathy_name":""
+               }
+            ]
+         },
+         "outlierStatus":"NORMAL",
+         "returnDetails":{
+            
+         },
+         "valid":true,
+         "returnLineItemsDtos":[
+            
+         ],
+         "niReturnLineItemsDtos":[
+            
+         ],
+         "addonDetails":[
+            
+         ],
+         "splitItemsDetails":[
+            
+         ],
+         "niReturn":false
+      }
+   ],
+   "outlierStatus":"NORMAL",
+   "paymentModes": [
         {
-            "id": 2151509722,
-            "customerId": 0,
-            "details": {
-                "amount": 100.5,
-                "description": "",
-                "discount": 0.0,
-                "itemCode": "sku_486741_5",
-                "qty": 1.0,
-                "rate": 100.5,
-                "serial": 0,
-                "value": 0.0,
-                "returnable": true,
-                "returnableDays": -1,
-                "attributes": {},
-                "extendedFields": {},
-                "rateSupportingNull": 100.5,
-                "valueSupportingNull": 0.0,
-                "qtySupportingNull": 1.0,
-                "attributesSet": [],
-                "discountSupportingNull": 0.0,
-                "extendedFieldsSet": []
-            },
-            "outlierStatus": "NORMAL",
-            "returnDetails": {},
-            "valid": true,
-            "returnLineItemsDtos": [],
-            "niReturnLineItemsDtos": [],
-            "addonDetails": [],
-            "splitItemsDetails": [],
-            "niReturn": false
-        },
-        {
-            "id": 2151509723,
-            "customerId": 0,
-            "details": {
-                "amount": 100.5,
-                "description": "",
-                "discount": 0.0,
-                "itemCode": "sku_486741_6",
-                "qty": 1.0,
-                "rate": 100.5,
-                "serial": 0,
-                "value": 0.0,
-                "returnable": true,
-                "returnableDays": -1,
-                "attributes": {},
-                "extendedFields": {},
-                "rateSupportingNull": 100.5,
-                "valueSupportingNull": 0.0,
-                "qtySupportingNull": 1.0,
-                "attributesSet": [],
-                "discountSupportingNull": 0.0,
-                "extendedFieldsSet": []
-            },
-            "outlierStatus": "NORMAL",
-            "returnDetails": {},
-            "valid": true,
-            "returnLineItemsDtos": [],
-            "niReturnLineItemsDtos": [],
-            "addonDetails": [],
-            "splitItemsDetails": [],
-            "niReturn": false
-        },
-        {
-            "id": 2151509724,
-            "customerId": 0,
-            "details": {
-                "amount": 100.5,
-                "description": "",
-                "discount": 0.0,
-                "itemCode": "sku_486741_7",
-                "qty": 1.0,
-                "rate": 100.5,
-                "serial": 0,
-                "value": 0.0,
-                "returnable": true,
-                "returnableDays": -1,
-                "attributes": {},
-                "extendedFields": {},
-                "rateSupportingNull": 100.5,
-                "valueSupportingNull": 0.0,
-                "qtySupportingNull": 1.0,
-                "attributesSet": [],
-                "discountSupportingNull": 0.0,
-                "extendedFieldsSet": []
-            },
-            "outlierStatus": "NORMAL",
-            "returnDetails": {},
-            "valid": true,
-            "returnLineItemsDtos": [],
-            "niReturnLineItemsDtos": [],
-            "addonDetails": [],
-            "splitItemsDetails": [],
-            "niReturn": false
-        },
-        {
-            "id": 2151509725,
-            "customerId": 0,
-            "details": {
-                "amount": 100.5,
-                "description": "",
-                "discount": 0.0,
-                "itemCode": "sku_486741_8",
-                "qty": 1.0,
-                "rate": 100.5,
-                "serial": 0,
-                "value": 0.0,
-                "returnable": true,
-                "returnableDays": -1,
-                "attributes": {},
-                "extendedFields": {},
-                "rateSupportingNull": 100.5,
-                "valueSupportingNull": 0.0,
-                "qtySupportingNull": 1.0,
-                "attributesSet": [],
-                "discountSupportingNull": 0.0,
-                "extendedFieldsSet": []
-            },
-            "outlierStatus": "NORMAL",
-            "returnDetails": {},
-            "valid": true,
-            "returnLineItemsDtos": [],
-            "niReturnLineItemsDtos": [],
-            "addonDetails": [],
-            "splitItemsDetails": [],
-            "niReturn": false
-        },
-        {
-            "id": 2151509726,
-            "customerId": 0,
-            "details": {
-                "amount": 100.5,
-                "description": "",
-                "discount": 0.0,
-                "itemCode": "sku_486741_9",
-                "qty": 1.0,
-                "rate": 100.5,
-                "serial": 0,
-                "value": 0.0,
-                "returnable": true,
-                "returnableDays": -1,
-                "attributes": {},
-                "extendedFields": {},
-                "rateSupportingNull": 100.5,
-                "valueSupportingNull": 0.0,
-                "qtySupportingNull": 1.0,
-                "attributesSet": [],
-                "discountSupportingNull": 0.0,
-                "extendedFieldsSet": []
-            },
-            "outlierStatus": "NORMAL",
-            "returnDetails": {},
-            "valid": true,
-            "returnLineItemsDtos": [],
-            "niReturnLineItemsDtos": [],
-            "addonDetails": [],
-            "splitItemsDetails": [],
-            "niReturn": false
-        },
-        {
-            "id": 2151509727,
-            "customerId": 0,
-            "details": {
-                "amount": 100.5,
-                "description": "",
-                "discount": 0.0,
-                "itemCode": "sku_486741_10",
-                "qty": 1.0,
-                "rate": 100.5,
-                "serial": 0,
-                "value": 0.0,
-                "returnable": true,
-                "returnableDays": -1,
-                "attributes": {},
-                "extendedFields": {},
-                "rateSupportingNull": 100.5,
-                "valueSupportingNull": 0.0,
-                "qtySupportingNull": 1.0,
-                "attributesSet": [],
-                "discountSupportingNull": 0.0,
-                "extendedFieldsSet": []
-            },
-            "outlierStatus": "NORMAL",
-            "returnDetails": {},
-            "valid": true,
-            "returnLineItemsDtos": [],
-            "niReturnLineItemsDtos": [],
-            "addonDetails": [],
-            "splitItemsDetails": [],
-            "niReturn": false
+            "amount": 1000.0,
+            "attributes": [],
+            "id": 24074480,
+            "mode": "UPI",
+            "notes": "",
+            "orgPaymentModeId": 8976
         }
     ],
-    "outlierStatus": "NORMAL",
-    "type": "REGULAR",
-    "warnings": [],
-    "lifeTimePurchases": 0,
-    "ignorePoints": false,
-    "extendedFields": {},
-    "autoUpdateTime": "2020-04-28T17:04:13+05:30",
-    "returnDetails": {
-        "canceled": false
-    },
-    "extendedFieldsSet": [],
-    "customFieldsSet": [
-        {
-            "cashierid": "jim2345"
-        }
-    ],
-    "niReturnDetails": {},
-    "basketSize": 10.0,
-    "warnings": []
+   "type":"REGULAR",
+   "lifeTimePurchases":0,
+   "ignorePoints":false,
+   "extendedFields":{
+      "boarding_status":"Boarded",
+      "product_class":"EP"
+   },
+   "autoUpdateTime":"2021-09-09T11:49:17+05:30",
+   "niReturnDetails":{
+      
+   },
+   "basketSize":10.0,
+   "returnDetails":{
+      "canceled":false
+   },
+   "warnings":[
+      
+   ]
 }
 ```
 
@@ -1374,17 +1204,19 @@ Rate Limited | Yes
 Batch Support | NA
 
 ### Request URL
-`{host}/v2/transactions/{id}`
+`{host}/v2/transactions/{id}?{queryParams}`
 
 
-### Request Query Parameters
+### Request Parameters
 Parameter | Datatype | Description
 --------- | -------- | -----------
-id* | long | Unique transaction id to fetch details.
-type* | enum | Type of transaction to fetch. Value: REGULAR, RETURN.
+id* (path) | long | Unique transaction id to fetch details.
+type (query)| enum | Type of transaction to fetch. Value: `REGULAR`, `RETURN`, NOT_INTERESTED`, `NOT_INTERESTED_RETURN`. Default value is `REGULAR`.
+tenders (query)| boolean | Pass `true` to retrieve payment mode details. Default value is `false`.
+credit_notes | boolean | Pass `true` to retrieve credit notes details (added through v1.1 transaction/add). Default value is `false`.
 
 
-<aside class="notice">The parameter marked with * is mandatory.</aside>
+<aside class="notice">The parameter marked with * is mandatory. Path stands for path parameter and query stands for query parameter.</aside>
 
 
 ## Response Codes
@@ -1562,14 +1394,11 @@ Code | Description
 
 
 
-
-
-
 # Earning
 
 ## Get Transaction Earning
 
-Retrieves all earning details of a transaction.
+Retrieves the details of all points earned for a transaction.
 
 > Sample Request
 

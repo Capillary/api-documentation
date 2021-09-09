@@ -207,6 +207,11 @@ Authentication | Yes
 HTTP Method | POST
 Batch Support | No
 
+### Request Header (Optional)
+
+Header | Description
+------ | -----------
+WAIT_FOR_DOWNSTREAM | Pass `true` to wait for Loyalty activities to complete and then respond to the client with side effects in the API response.<br>Pass `false` to run Loyalty activities in the background. No side effects are returned in the API response.
 
 
 ### Request URL
