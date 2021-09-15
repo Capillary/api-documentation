@@ -11,9 +11,9 @@ Transactions are classified into the following types:
 
 
 
-## Add or Return Transaction (Bulk)
+## Add/Return Transaction (Bulk)
 
-Lets you add or return one or more loyalty transactions to the Capillary system.
+Lets you add or return one or more transactions to the Capillary system. It supports both loyalty and not-interested transactions.
 
 * If CONFIG_SKIP_SECONDARY_ID_ON_PRIMARY_MISMATCH is enabled, if the primary identifier is different but any of the secondary identifiers exist, a new customer is registered with the primary identifier ignoring the secondary identifier. The config is available on the Registration Page of InTouch Profile > Organization Settings > Miscellaneous.
 
@@ -664,7 +664,7 @@ Rate Limited | Yes
 
 Header | Description
 ------ | -----------
-WAIT_FOR_DOWNSTREAM | Pass `true` to wait for Loyalty activities to complete and then respond to the client with side effects in the API response.<br>Pass `false` to run Loyalty activities in the background. No side effects are returned in the API response.
+X-CAP-DIRECT-REPLAY | Pass `true` to add the call to the event execution queue (reply event) - in this case, transaction is added and other events will be executed later. Pass `false` to directly execute the event - you will get response along with other event details (side effects).
 
 
 
@@ -731,7 +731,6 @@ attribution | obj | Mapping to tag the transaction to a different user or till (
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;code | string | Unique code of the entity.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type | enum | Type of the attribution entity. Value: `ZONE`, `CONCEPT`, `STORE`, `TILL`, `STR_SERVER`, `ADMIN_USER`, `ASSOCIATE`, `RULE`, `OU`.
 purchaseTime | date-time | Actual date of transaction of the returning bill in Date and time of the transaction in ISO 8601 standard - `YYYY-MM-DDTHH:MM:SSZ`.
-`YYYY-MM-DD`.
 redemptions | obj | Details of points and coupon redemptions for the  transaction.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pointsRedemptions | array | Unique points redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;couponRedemptions | array | Unique coupon redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]
@@ -770,9 +769,9 @@ billingDate | date-time | Date and time of the transaction in `HH-MM-DDThh:mm:ss
 
 
 
-## Add Transaction
+## Add Transaction (Single)
 
-Lets you add a new transaction or return an existing transaction.
+Lets you add a new transaction or return an existing transaction. It supports both loyalty and not-interested transactions.
 
 
 > Sample Request
@@ -781,7 +780,7 @@ Lets you add a new transaction or return an existing transaction.
 https://us.api.capillarytech.com/v2/transactions?source=instore&identifierValue=GOLD400000000000000022020&identifierName=cardnumber&accountId=
 ```
 
-> Sample POST Request
+> Sample POST Request (REGULAR)
 
 ```json
 {
@@ -843,6 +842,111 @@ https://us.api.capillarytech.com/v2/transactions?source=instore&identifierValue=
    ]
 }  
 ```
+> Sample POST Request (Mixed Transaction)
+
+```json
+{
+  "type": "REGULAR",
+  "billNumber": "bill00076",
+  "discount": "100",
+  "billAmount": "1900",
+  "note": "this is test",
+  "grossAmount": "2000",
+  "deliveryStatus": "DELIVERED",
+  "lineItemsV2": [
+      {
+        "amount": 1200,
+        "parentBillNumber": "bill00075",
+        "returnType":"LINE_ITEM",
+        "type":"RETURN",
+        "description": "blue large jeans",
+        "discount": 0,
+        "itemCode": "ITEMJEANS0005",
+        "qty": 1,
+        "rate": 1200,
+        "serial": 1,
+        "value": 1200,
+        "returnable": false,
+        "returnableDays": 0,
+        "customFields": {},
+        "imgUrl": ""
+      },
+      {
+        "amount": 6570,
+        "type":"REGULAR",
+        "description": "blue large jeans",
+        "discount": 0,
+        "itemCode": "ITEMJEANS0ih05",
+        "qty": 1,
+        "rate": 1200,
+        "serial": 1,
+        "value": 1200,
+        "returnable": false,
+        "returnableDays": 0,
+        "customFields": {},
+        "imgUrl": ""
+      }
+    ],
+  "promotionEvaluationId":"",
+  "appliedPromotionIdentifiers":[""]
+}
+```
+
+
+> Sample Request (NOT_INTERESTED)
+
+```json
+{
+  "type": "NOT_INTERESTED",
+  "billNumber": "bill12345",
+  "purchaseTime": "",
+  "discount": "100",
+  "billAmount": "1900",
+  "note": "this is test",
+  "grossAmount": "2000",
+  "deliveryStatus": "DELIVERED",
+  "lineItemsV2": [
+      {
+        "amount": 1200000000,
+        "parentBillNumber": "",
+        "returnType":"",
+        "type":"",
+        "description": "blue large jeans",
+        "discount": 0,
+        "itemCode": "ITEMJEANS0005",
+        "qty": 1,
+        "rate": 1200,
+        "serial": 1,
+        "value": 1200,
+        "returnable": false,
+        "returnableDays": 0,
+        "customFields": {},
+        "imgUrl": ""
+      },
+      {
+        "amount": 6570,
+        "type":"",
+        "description": "blue large jeans",
+        "discount": 0,
+        "itemCode": "ITEMJEANS0ih05",
+        "qty": 1,
+        "rate": 1200,
+        "serial": 1,
+        "value": 1200,
+        "returnable": false,
+        "returnableDays": 0,
+        "customFields": {},
+        "imgUrl": ""
+      }
+    ],
+    "paymentModes": [
+        {
+        }
+    ],
+  "promotionEvaluationId":"",
+  "appliedPromotionIdentifiers":[""]
+}
+```
 
 > Sample Response
 
@@ -882,7 +986,8 @@ Rate Limited | Yes
 
 Header | Description
 ------ | -----------
-WAIT_FOR_DOWNSTREAM | Pass `true` to wait for Loyalty activities to complete and then respond to the client with side effects in the API response.<br>Pass `false` to run Loyalty activities in the background. No side effects are returned in the API response.
+X-CAP-DIRECT-REPLAY | Pass `true` to add the call to the event execution queue (reply event) - in this case, transaction is added and other events will be executed later. Pass `false` to directly execute the event.
+
 
 
 
@@ -912,7 +1017,7 @@ type* | enum | Type of transaction. Supported value: `REGULAR` for loyalty trans
 notInterestedReason | string | Notes on why the customer is not interested to enrol into the loyalty (`type`=`NOT_INTERESTED`). Max characters supported - 255. 
 returnType** | enum | For a return transaction, pass the return type. Value: `AMOUNT`, `FULL`, `LINE_ITEM`, `CANCELLED`.
 billAmount* | double | Net transaction amount.
-billNumber* |  string | Unique transaction number. The uniqueness either at till, store, or org, depends on the configuration `CONF_LOYALTY_BILL_NUMBER_UNIQUE_IN_DAYS` set on InTouch **Settings** > **System & Deployment** > **InTouch POS Configuration** > **Billing**.  
+billNumber* |  string | Unique transaction number for normal or mixed transactions and original transaction number for return transactions. The uniqueness either at till, store, or org, depends on the configuration `CONF_LOYALTY_BILL_NUMBER_UNIQUE_IN_DAYS` set on InTouch **Settings** > **System & Deployment** > **InTouch POS Configuration** > **Billing**.  
 billingDate | date-time | Date and time of the transaction in the ISO  8601 format - `YYYY-MM-DDTHH:MM:SSZ`.
 discount | double | Discount availed for the transaction or line item (discount amount) .
 grossAmount | double | Transaction amount before discount.
@@ -954,7 +1059,6 @@ attribution | obj | Mapping to tag the transaction to a different user or till (
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;code | string | Unique code of the entity.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type | enum | Type of the attribution entity. Value: `ZONE`, `CONCEPT`, `STORE`, `TILL`, `STR_SERVER`, `ADMIN_USER`, `ASSOCIATE`, `RULE`, `OU`.
 purchaseTime | date-time | Actual date of transaction of the returning bill in Date and time of the transaction in ISO 8601 standard - `YYYY-MM-DDTHH:MM:SSZ`.
-`YYYY-MM-DD`.
 redemptions | obj | Details of points and coupon redemptions for the  transaction.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pointsRedemptions | array | Unique points redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;couponRedemptions | array | Unique coupon redemption id(s) that you want to apply for the transaction. For example, [727272, 237878]

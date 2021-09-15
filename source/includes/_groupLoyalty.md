@@ -34,7 +34,7 @@ Lets you create the business hierarchy for the org.
 https://us.api.capillarytech.com/v2/fleetHierarchy
 ```
 
-> Sample POST Request
+> Sample POST Request (with permission details)
 
 ```json
 {
@@ -108,6 +108,41 @@ https://us.api.capillarytech.com/v2/fleetHierarchy
 }
 ```
 
+> Sample POST Request (without Permission details)
+
+```json
+{
+	"code": "sunrise-h4",
+	"name": "sunrise-h4",
+	"description": "test description",
+	"roles": [{
+		"code": "GFA",
+		"childRoleCode": "SFA",
+		"maxChild": 5000
+	
+	
+	}, {
+		"code": "SFA",
+		"childRoleCode": "FA",
+		"maxChild": 5000
+	
+	}, {
+		"code": "FA",
+		"childRoleCode": "FC",
+		"maxChild": 5000,
+		"pointsAggregationRole": true
+		
+	}, {
+		"code": "FC"
+	
+	}],
+	"default": true,
+	"autoGroupCreationEnabled": true,
+	"hierarchyCreationStrict": true,
+	"skipRoleAllowed":false
+}
+```
+
 > Sample Response
 
 ```json
@@ -142,13 +177,13 @@ code* | string | Unique code of the hierarchy.
 name | string | Name of the hierarchy.
 description | string | Brief description about the hierarchy
 roles | array | Roles and permissions of the hierarchy. You need to have at least 2 roles for a hierarchy and can extend up to 8 (max).
-code | enum | Unique code of the role in the hierarchy.
-childRoleCode | string | Unique code of the child role (if any) associated with the current role.
-maxChild | int | Maximum number of child users that can be associated with the user in the current role. Maximum value: 30000.
-permissions | Array | Permissions granted to the role. For example, Points transfer, Points redemption. These specified permissions are applicable to all users in the current role.
-permissionCode | enum | Unique code of the permission.
-permissionValue | boolean | Set `true` to enable and `false` to disable the code.
-pointsAggregationRole | boolean | To create a group implicitly, set both `pointsAggregationRole` and `autoGroupCreationEnabled` to true. <br>The user in the current role will become the owner of the group. All the other users conjoined with the user in the hierarchy will be included automatically and become the members of the group.<br>**Example**: Assume A > B > C > D as the roles in a hierarchy.<br>A is the parent of B. B is the parent of C. C is the parent of D.<br>Set `pointsAggregationRole` to true for the role C to get a user registered.<br>The group is also automatically created along with this command. The user in role C will now be the owner of the group. <br>All the users associated with the user C, in roles A, B and D are also automatically added as members of the group.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;code | enum | Unique code of the role in the hierarchy.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;childRoleCode | string | Unique code of the child role (if any) associated with the current role.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;maxChild | int | Maximum number of child users that can be associated with the user in the current role. Maximum value: 30000.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;permissions | array | Permissions granted to the role. For example, Points transfer, Points redemption. These specified permissions are applicable to all users in the current role.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;permissionCode | enum | Unique code of the permission. Value: `block_points_redemption`, `block_points_transfer`, `earn_points`. 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;permissionValue | boolean | Set `true` to enable and `false` to disable the code.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pointsAggregationRole | boolean | To create a group implicitly, set both `pointsAggregationRole` and `autoGroupCreationEnabled` to true. <br>The user in the current role will become the owner of the group. All the other users conjoined with the user in the hierarchy will be included automatically and become the members of the group.<br>**Example**: Assume A > B > C > D as the roles in a hierarchy.<br>A is the parent of B. B is the parent of C. C is the parent of D.<br>Set `pointsAggregationRole` to true for the role C to get a user registered.<br>The group is also automatically created along with this command. The user in role C will now be the owner of the group. <br>All the users associated with the user C, in roles A, B and D are also automatically added as members of the group.
 autoGroupCreationEnabled | boolean | Pass `true` to auto-create a group. At least one role should have `pointsAggregationRole` set to true.
 hierarchyCreationStrict | boolean | Pass `false` set user level permissions and group creation which will override the hierarchy configurations. Set `true` to strictly follow hierarchy configurations.
 skipRoleAllowed | boolean | Pass `true` to allow skip-level parent child associations. For example, if A>B>C>D are the roles in a hierarchy where A is the parent of B and so on. We allow associations like A>C, A>D, B>D. Pass `false`, hierarchy is followed strictly according to the sequence.
@@ -863,8 +898,22 @@ http://us.api.capillarytech.com/v2/fleet/permissions
             "active": true
         },
         {
-            "name": "earn_points",
-            "label": "Allow Point Allocation",
+            "name": "block_points_transfer",
+            "label": "Block Points Transfer",
+            "module": "Loyalty",
+            "defaultValue": true,
+            "active": true
+        },
+        {
+            "name": "allow_points_redemption",
+            "label": "Allow Point Redemption",
+            "module": "Loyalty",
+            "defaultValue": true,
+            "active": true
+        },
+        {
+            "name": "allow_points_transfer",
+            "label": "Allow Points Transfer",
             "module": "Loyalty",
             "defaultValue": true,
             "active": true
@@ -898,9 +947,9 @@ Batch Support | No
 
 
 
+# Company (User Group)
 
-
-## Add Companies
+## Add Company
 
 Lets you add a new company to the org. 
 
@@ -910,7 +959,7 @@ Lets you add a new company to the org.
 http://us.api.capillarytech.com/v2/companies
 ```
 
-> Sample POST Request
+> Sample POST Request (Parent Company)
 
 ```json
 {
@@ -932,6 +981,33 @@ http://us.api.capillarytech.com/v2/companies
   }
 }
 ```
+
+> Sample POST Request (Child Company)
+
+```json
+{
+  "name": "name-12345",
+  "externalId": "917902000000",
+  "hierarchyDefinitionCode": "code-tst1111",
+  "extendedFields": {
+    "industry": "Information Technology",
+    "owner": "Tom Sawyyer",
+    "address1": "maldivs",
+    "address2": "US",
+    "address3": "UK",
+    "address4": "Paris",
+    "city": "Bangalore",
+    "state": "Karnataka",
+    "country": "India",
+    "pincode": "560068",
+    "phone": "9988000000"
+  },
+   "parentCompany": {
+    "externalId": "917904511111"
+  }
+}
+```
+
 
 
 > Sample Response

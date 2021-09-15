@@ -48,7 +48,31 @@ search: true
 This section provides the quarterly breakup of existing API updates and new API releases.
 
 
-## Q3 Releases (2020)
+## Q2 Releases (2021-2022)
+
+*   **User Group Loyalty**: Helps in creating and managing user groups -for B2B use cases such as manufacturer, partners, distributers and dealers;  for B2C cases such as friends, family members, colleagues, or relatives of a customer. For details, see [Group Loyalty] (https://capillary.github.io/api-documentation/#group-loyalty-companies-hierarchies)
+*   **Cart & Catalog promotions**: You can now create and manage cart and catalog promotions using APIs. For more details, see [Cart & Catalog Promotions](https://capillary.github.io/api-documentation/#set-promotion-settings-org-level). - In Progress
+* **Card External ID Support**: Customer lookup APIs now support `cardExternalId` as an identifier to fetch or update customer details.
+
+## Q1 Releases (2021-2022)
+
+
+*   **Coupons**: New APIs to create coupon series, fetch coupon series, issue coupon to customer(single & bulk), redeem customer coupons(bulk), and reactivate redeemed coupon, see in [details](https://capillary.github.io/api-documentation/#coupon).
+*   **Recommendations**: APIs on product recommendations (predict products based on customer activity) for a customer, see in [details](https://capillary.github.io/api-documentation/#recommendations).
+*   **Card Loyalty/Membership**: Card enables orgs to run card based loyalty memberships with multiple card types, see in [details](https://capillary.github.io/api-documentation/#card-loyalty-membership).
+*   **Verticals**: APIs to add, retrieve or delete a vertical, see in [details](https://capillary.github.io/api-documentation/#verticals).
+*   **Leads**: APIs are developed to retrieve reasons, lead status log, and lead follow-ups ,see in [details](https://capillary.github.io/api-documentation/#leads-lms).
+
+## Q4 Releases (2020-2021)
+
+*   **API to get shipments or orders by delivery slot** An API is developed that enables our clients to fetch the list of orders or shipments that are going to be delivered on a particular delivery slot, see in [details](https://capillary.github.io/ecom-api-document/).
+*   **Communication service to define communication templates using API** Communication templates are dissociated from communication events. If users want a communication template, they can define it without associating any predefined event. To execute this communication template, an API has been developed, see in [details](https://capillary.github.io/ecom-api-document/). **Note:**
+   *   You need to pass the template ID during this API execution. The template ID helps the system to identify and execute the template.
+   *   If the template has some variables in it, then the values for the variables should be passed via API.
+
+## Releases (2020-2021)
+
+### Q3 Releases (2020-2021)
 
 * **Card Loyalty** : APIs to create card series, generate cards, and retrieve card details. For more details see, 
 * **Support for store identifiers in the header for oAuth2 authentication** : Earlier, only TILL information could be passed in the API header for attribution of events such as registration, transaction, etc. In case of centralized POS integrations, this caused an additional overhead of maintaining store - TILL mapping at the integration end. This can be avoided now by passing store identifiers directly in the API request.
@@ -66,12 +90,14 @@ Following headers can be used to pass store or till identifiers.
   * Multiple secondary identifiers can be added in single request, see in [details](https://capillary.github.io/api-documentation/#get-points-contribution-by-secondary-members).
 
 
-## Q2 Releases (2020)
+### Q2 Releases (2020-2021)
 
 * New resource [Auth Engine] (https://capillary.github.io/api-documentation/#auth-engine) is added. Auth Engine provides front-end APIs to enable org customers to authenticate to org's mobile  or web application.
 * OAuth supports posting data through store along with Till that was already supported. Two new headers are introduced `X-CAP-API-ATTRIBUTION-ENTITY-TYPE`, `X-CAP-API-ATTRIBUTION-ENTITY-CODE` replacing `X-CAP-API-ATTRIBUTION-TILL-CODE`.
 
-## Q4 Releases (2019-20)
+## Releases (2019-2020)
+
+### Q4 Releases (2019-20)
 
 * **OAuth Support**: Besides Basic Authentication, Capillary APIs now support OAuth and access tokens for more secured API calls. For more details, see support portal. 
 * **Points Reversal**: Allows reversing redeemed points directly if the transaction - for which the points are redeemed - is returned. A new redemption ID is introduced. 

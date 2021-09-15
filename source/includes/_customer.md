@@ -223,6 +223,7 @@ Parameter | Type | Description
 --------- | ----- | -----------
 source* | enum | Source in which you want to register a customer. Value: `FACEBOOK`, `WEB_ENGAGE`, `WECHAT`, `INSTORE`, `MARTJACK`, `TMALL`, `TAOBAO`, `JD`, `ECOMMERCE`, `WEBSITE`, `LINE`, `MOBILE_APP`. You can add customers on different sources.
 accountId** | string | For sources that support multiple accounts, provide the account ID. For example, FACEBOOK, WEB_ENGAGE, WECHAT, MOBILE_APP. 
+activity | enum | State of the customer's lifecycle (entity lifecycle). State is auto assigned according to the activity. 
 
 <aside class="notice">Parameter marked with * is mandatory.<br> If you try to register a customer that exists in a different source, the accounts will merge automatically.</aside>
 
@@ -251,6 +252,7 @@ tierNumber | int | Sequence number of the tier that you want to allocate to the 
 loyaltyPoints | int | Loyalty points to credit in customer's account.
 tierExpiryDate | date-time | Expiry date and time of the specified tier. Supported Format: YYYY-MM-DDTHH:MM:SS+/-(time-zone).
 pointsExpiryDate | date-time | Expiry date and time of the points issued. Supported Format: YYYY-MM-DDTHH:MM:SS+/-(time-zone).
+
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
 
@@ -2406,7 +2408,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE&identifierNa
 }
 ```
 
-Lets you fetch unique customer id of a customer which is required to fetch customer details, update customer details, manage subscription details and other activities.
+Lets you fetch unique ID of a customer generated internally. This is required for customer related activities such as fetch customer details, update customer details, manage subscription details and other activities.
 
 
 ### Resource Information
@@ -2426,7 +2428,7 @@ Batch Support | No
 ### Request Query Parameters
 Parameter | Datatype | Description
 --------- | -------- | -----------
-source* | enum | Specify the source from which you want to fetch the customer details. Values: FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, ALL
+source* | enum | Specify the source from which you want to fetch the customer details. Values: FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, ALL.
 accountId | string | Specify the account id of the specific source if the source has multiple accounts. `accountId` is required for sources with multiple accounts such as WeChat or Facebook.
 identifierName* | enum | Identifier based on which you want to fetch the customer id. **Values**: `mobile`, `email`, `externalId`, `cardnumber`, `wechat`, `martjackId`,`fbId`.
 identifierValue* | string | Pass the respective identifier value.
@@ -2792,97 +2794,334 @@ https://eu.api.capillarytech.com/v2/customers/lookup/customerDetails?source=WECH
 
 ```json
 {
-    "id": 342963216,
-    "profiles": [
-        {
-            "firstName": "Tom",
-            "lastName": "Sawyer",
-            "attribution": {
-                "createDate": "2019-09-20T15:16:00+05:30",
-                "createdBy": {
-                    "id": 50006796,
-                    "code": "mobilepush.1",
-                    "name": "mobilepush.1",
-                    "type": "TILL"
-                },
-                "modifiedBy": {
-                    "id": 50006796,
-                    "code": "mobilepush.1",
-                    "name": "mobilepush.1",
-                    "type": "TILL"
-                },
-                "modifiedDate": "2020-03-11T13:50:58+05:30"
+   "id":481220846,
+   "profiles":[
+      {
+         "firstName":"",
+         "lastName":"",
+         "attribution":{
+            "createDate":"2021-02-18T20:31:15+05:30",
+            "createdBy":{
+               "id":12970395,
+               "code":"sit.admin",
+               "name":"sit.admin",
+               "type":"TILL"
             },
-            "fields": {},
-            "identifiers": [
-                 {
-                    "type": "line",
-                    "value": "lineAS6"
-                },
-                {
-                    "type": "cardNumber",
-                    "value": "TTM001110000000002ZS",
-                    "seriesId": 19,
-                    "statusLabel": "ACTIVE"
-                },
-				{
-                    "type": "mobile",
-                    "value": "919999000001"
-                }
-            ],
-            "commChannels": [
-                {
-                    "type": "mobile",
-                    "value": "919999000001",
-                    "primary": true,
-                    "verified": false,
-                    "meta": {
-                        "residence": false,
-                        "office": false
-                    },
-                    "attributes": {}
-                }
-            ],
-            "source": "INSTORE",
-            "userId": 342963216,
-            "accountId": "",
-            "conflictingProfileList": [],
-            "autoUpdateTime": "2020-10-16T16:18:11+05:30"
-        }
-    ],
-    "loyaltyInfo": {
-        "loyaltyType": "loyalty",
-        "attributionV2": {
-            "createDate": "2019-09-20T15:16:00+05:30",
-            "createdBy": {
-                "id": 50006796,
-                "code": "mobilepush.1",
-                "name": "mobilepush.1",
-                "type": "TILL"
+            "modifiedBy":{
+               "id":12970395,
+               "code":"sit.admin",
+               "name":"sit.admin",
+               "type":"TILL"
             },
-            "modifiedBy": {
-                "id": 50006796,
-                "code": "mobilepush.1",
-                "name": "mobilepush.1",
-                "type": "TILL"
+            "modifiedDate":"2021-02-22T13:27:29+05:30"
+         },
+         "fields":{
+            "ihcl_active":"true",
+            "tcp_active":"true",
+            "tierup_airasia":"2"
+         },
+         "identifiers":[
+            {
+               "type":"externalId",
+               "value":"888555888555898855"
             },
-            "modifiedDate": "2020-03-11T13:50:58+05:30",
-            "createdFromSource": "instore"
-        },
-        "lifetimePurchases": 18000.0
-    },
-    "fraudDetails": {
-        "markedBy": {},
-        "modifiedOn": "2019-09-23T15:13:14+05:30",
-        "status": "NOT_FRAUD"
-    },
-    "segments": {},
-    "associatedWith": "mobilepush.1",
-    "extendedFields": {
-        "city": "Bangalore",
-        "gender": "Male"
-    },
-    "warnings": []
+            {
+               "type":"line",
+               "value":"lineAS6"
+            },
+            {
+               "type":"cardNumber",
+               "value":"TTM001110000000002ZS",
+               "seriesId":19,
+               "statusLabel":"ACTIVE"
+            },
+            {
+               "type":"mobile",
+               "value":"919999000001"
+            }
+         ],
+         "commChannels":[
+            {
+               "type":"mobile",
+               "value":"919999000001",
+               "primary":true,
+               "verified":false,
+               "meta":{
+                  "residence":false,
+                  "office":false
+               },
+               "attributes":{
+                  
+               }
+            }
+         ],
+         "source":"INSTORE",
+         "userId":481220846,
+         "accountId":"",
+         "conflictingProfileList":[
+            
+         ],
+         "autoUpdateTime":"2021-09-14T17:53:13+05:30",
+         "identifiersAll":[
+            {
+               "type":"externalId",
+               "value":"888555888555898855"
+            }
+         ]
+      }
+   ],
+   "loyaltyInfo":{
+      "loyaltyType":"loyalty",
+      "attributionV2":{
+         "createDate":"2021-02-18T20:31:15+05:30",
+         "createdBy":{
+            "id":12970395,
+            "code":"sit.admin",
+            "name":"sit.admin",
+            "type":"TILL"
+         },
+         "modifiedBy":{
+            "id":12970395,
+            "code":"sit.admin",
+            "name":"sit.admin",
+            "type":"TILL"
+         },
+         "modifiedDate":"2021-02-22T13:27:29+05:30",
+         "createdFromSource":"instore"
+      },
+      "lifetimePurchases":24000.0
+   },
+   "fraudDetails":{
+      "markedBy":{
+         
+      },
+      "modifiedOn":"2019-09-23T15:13:14+05:30",
+      "status":"NOT_FRAUD"
+   },
+   "segments":{
+      
+   },
+   "associatedWith":"sit.admin",
+   "extendedFields":{
+      "city":"Bangalore",
+      "gender":"Male"
+   },
+   "loyaltyProgramDetails":[
+      {
+         "redeemed":0.0,
+         "expired":0.0,
+         "returned":0.0,
+         "adjusted":0.0,
+         "lifetimePoints":0.0,
+         "loyaltyPoints":0.0,
+         "cumulativePurchases":24000.0,
+         "loyaltyId":143032714,
+         "currentSlab":"Default",
+         "nextSlab":"",
+         "nextSlabSerialNumber":-1,
+         "nextSlabDescription":"",
+         "slabSNo":1,
+         "slabExpiryDate":"2121-02-18T23:59:59+05:30",
+         "programId":1414,
+         "delayedPoints":0.0,
+         "delayedReturnedPoints":0.0,
+         "totalAvailablePoints":0.0,
+         "totalReturnedPoints":0.0,
+         "linkedPartnerPrograms":[
+            
+         ],
+         "programTitle":"Tata Digital SITDefaultProgram",
+         "programDescription":"Default program for Tata Digital SIT",
+         "programPointsToCurrencyRatio":1.0
+      },
+      {
+         "redeemed":0.0,
+         "expired":0.0,
+         "returned":0.0,
+         "adjusted":0.0,
+         "lifetimePoints":0.0,
+         "loyaltyPoints":0.0,
+         "cumulativePurchases":0.0,
+         "loyaltyId":143032714,
+         "currentSlab":"Copper*",
+         "nextSlab":"Copper",
+         "nextSlabSerialNumber":2,
+         "nextSlabDescription":"Copper",
+         "slabSNo":1,
+         "slabExpiryDate":"2121-05-07T23:48:47+05:30",
+         "programId":1422,
+         "delayedPoints":0.0,
+         "delayedReturnedPoints":0.0,
+         "totalAvailablePoints":0.0,
+         "totalReturnedPoints":0.0,
+         "linkedPartnerPrograms":[
+            
+         ],
+         "programTitle":"IHCL",
+         "programDescription":"IHCL",
+         "programPointsToCurrencyRatio":1.0
+      },
+      {
+         "redeemed":0.0,
+         "expired":0.0,
+         "returned":0.0,
+         "adjusted":0.0,
+         "lifetimePoints":0.0,
+         "loyaltyPoints":0.0,
+         "cumulativePurchases":0.0,
+         "loyaltyId":143032714,
+         "currentSlab":"Privilege",
+         "nextSlab":"Tier 2",
+         "nextSlabSerialNumber":2,
+         "nextSlabDescription":"Tier 2",
+         "slabSNo":1,
+         "slabExpiryDate":"2121-05-07T20:44:49+05:30",
+         "programId":1423,
+         "delayedPoints":0.0,
+         "delayedReturnedPoints":0.0,
+         "totalAvailablePoints":0.0,
+         "totalReturnedPoints":0.0,
+         "linkedPartnerPrograms":[
+            
+         ],
+         "programTitle":"Croma",
+         "programDescription":"Croma",
+         "programPointsToCurrencyRatio":1.0
+      },
+      {
+         "redeemed":0.0,
+         "expired":0.0,
+         "returned":0.0,
+         "adjusted":0.0,
+         "lifetimePoints":420.0,
+         "loyaltyPoints":420.0,
+         "cumulativePurchases":24000.0,
+         "loyaltyId":143032714,
+         "currentSlab":"Aviator",
+         "nextSlab":"Explorer",
+         "nextSlabSerialNumber":2,
+         "nextSlabDescription":"Explorer",
+         "slabSNo":1,
+         "slabExpiryDate":"2121-03-10T23:59:59+05:30",
+         "programId":1550,
+         "delayedPoints":0.0,
+         "delayedReturnedPoints":0.0,
+         "totalAvailablePoints":420.0,
+         "totalReturnedPoints":0.0,
+         "linkedPartnerPrograms":[
+            
+         ],
+         "programTitle":"AirAsia India",
+         "programDescription":"AirAsia India",
+         "programPointsToCurrencyRatio":1.0
+      },
+      {
+         "redeemed":0.0,
+         "expired":0.0,
+         "returned":0.0,
+         "adjusted":0.0,
+         "lifetimePoints":0.0,
+         "loyaltyPoints":0.0,
+         "cumulativePurchases":0.0,
+         "loyaltyId":143032714,
+         "currentSlab":"Base",
+         "nextSlab":"bbstar",
+         "nextSlabSerialNumber":2,
+         "nextSlabDescription":"bbstar",
+         "slabSNo":1,
+         "slabExpiryDate":"2121-05-08T01:20:22+05:30",
+         "programId":1679,
+         "delayedPoints":0.0,
+         "delayedReturnedPoints":0.0,
+         "totalAvailablePoints":0.0,
+         "totalReturnedPoints":0.0,
+         "linkedPartnerPrograms":[
+            
+         ],
+         "programTitle":"bigbasket",
+         "programDescription":"bigbasket",
+         "programPointsToCurrencyRatio":1.0
+      }
+   ],
+   "groupLoyaltyProgramDetails":[
+      {
+         "groupProgramId":1414,
+         "title":"Tata Digital SITDefaultProgram",
+         "description":"Default program for Tata Digital SIT",
+         "programsList":[
+            {
+               "id":1414,
+               "name":"Tata Digital SITDefaultProgram",
+               "description":"Default program for Tata Digital SIT"
+            },
+            {
+               "id":1422,
+               "name":"IHCL",
+               "description":"IHCL"
+            },
+            {
+               "id":1423,
+               "name":"Croma",
+               "description":"Croma"
+            },
+            {
+               "id":1424,
+               "name":"Tata Westside Loyalty",
+               "description":""
+            },
+            {
+               "id":1497,
+               "name":"Tata TataSky Loyalty",
+               "description":"Tata TataSky Loyalty"
+            },
+            {
+               "id":1550,
+               "name":"AirAsia India",
+               "description":"AirAsia India"
+            },
+            {
+               "id":1568,
+               "name":"Tata Ginger Loyalty",
+               "description":""
+            },
+            {
+               "id":1679,
+               "name":"bigbasket",
+               "description":"bigbasket"
+            },
+            {
+               "id":1680,
+               "name":"Tata CLiQ",
+               "description":"Tata CLiQ"
+            },
+            {
+               "id":1745,
+               "name":"Playground (TataCliq)",
+               "description":"This is an experimental Program"
+            },
+            {
+               "id":1762,
+               "name":"TML  Loyalty",
+               "description":"TML  Loyalty"
+            },
+            {
+               "id":1766,
+               "name":"1mg",
+               "description":"1mg"
+            }
+         ],
+         "lifetimePoints":420.0,
+         "loyaltyPoints":420.0,
+         "promisedPoints":0.0,
+         "pointsToCurrencyRatio":1.0
+      }
+   ],
+   "cardDetails":[
+      
+   ],
+   "warnings":[
+      
+   ]
 }
 ```
 
