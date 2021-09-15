@@ -131,7 +131,39 @@
 
 <p>This section provides the quarterly breakup of existing API updates and new API releases.</p>
 
-<h2 id="q3-releases-2020">Q3 Releases (2020)</h2>
+<h2 id="q2-releases-2021-2022">Q2 Releases (2021-2022)</h2>
+
+<ul>
+<li>  <strong>User Group Loyalty</strong>: Helps in creating and managing user groups -for B2B use cases such as manufacturer, partners, distributers and dealers;  for B2C cases such as friends, family members, colleagues, or relatives of a customer. For details, see <a href="https://capillary.github.io/api-documentation/#group-loyalty-companies-hierarchies">Group Loyalty</a></li>
+<li>  <strong>Cart &amp; Catalog promotions</strong>: You can now create and manage cart and catalog promotions using APIs. For more details, see <a href="https://capillary.github.io/api-documentation/#set-promotion-settings-org-level">Cart &amp; Catalog Promotions</a>. - In Progress</li>
+<li><strong>Card External ID Support</strong>: Customer lookup IDs to support <code class="prettyprint">cardExternalId</code> as an identifier to fetch or update details.</li>
+</ul>
+
+<h2 id="q1-releases-2021-2022">Q1 Releases (2021-2022)</h2>
+
+<ul>
+<li>  <strong>Coupons</strong>: New APIs to create coupon series, fetch coupon series, issue coupon to customer(single &amp; bulk), redeem customer coupons(bulk), and reactivate redeemed coupon, see in <a href="https://capillary.github.io/api-documentation/#coupon">details</a>.</li>
+<li>  <strong>Recommendations</strong>: APIs on product recommendations (predict products based on customer activity) for a customer, see in <a href="https://capillary.github.io/api-documentation/#recommendations">details</a>.</li>
+<li>  <strong>Card Loyalty/Membership</strong>: Card enables orgs to run card based loyalty memberships with multiple card types, see in <a href="https://capillary.github.io/api-documentation/#card-loyalty-membership">details</a>.</li>
+<li>  <strong>Verticals</strong>: APIs to add, retrieve or delete a vertical, see in <a href="https://capillary.github.io/api-documentation/#verticals">details</a>.</li>
+<li>  <strong>Leads</strong>: APIs are developed to retrieve reasons, lead status log, and lead follow-ups ,see in <a href="https://capillary.github.io/api-documentation/#leads-lms">details</a>.</li>
+</ul>
+
+<h2 id="q4-releases-2020-2021">Q4 Releases (2020-2021)</h2>
+
+<ul>
+<li>  <strong>API to get shipments or orders by delivery slot</strong> An API is developed that enables our clients to fetch the list of orders or shipments that are going to be delivered on a particular delivery slot, see in <a href="https://capillary.github.io/ecom-api-document/">details</a>.</li>
+<li>  <strong>Communication service to define communication templates using API</strong> Communication templates are dissociated from communication events. If users want a communication template, they can define it without associating any predefined event. To execute this communication template, an API has been developed, see in <a href="https://capillary.github.io/ecom-api-document/">details</a>. <strong>Note:</strong>
+
+<ul>
+<li>  You need to pass the template ID during this API execution. The template ID helps the system to identify and execute the template.</li>
+<li>  If the template has some variables in it, then the values for the variables should be passed via API.</li>
+</ul></li>
+</ul>
+
+<h2 id="releases-2020-2021">Releases (2020-2021)</h2>
+
+<h3 id="q3-releases-2020-2021">Q3 Releases (2020-2021)</h3>
 
 <ul>
 <li><strong>Card Loyalty</strong> : APIs to create card series, generate cards, and retrieve card details. For more details see, </li>
@@ -154,14 +186,16 @@
 <li><p>Multiple secondary identifiers can be added in single request, see in <a href="https://capillary.github.io/api-documentation/#get-points-contribution-by-secondary-members">details</a>.</p></li>
 </ul>
 
-<h2 id="q2-releases-2020">Q2 Releases (2020)</h2>
+<h3 id="q2-releases-2020-2021">Q2 Releases (2020-2021)</h3>
 
 <ul>
 <li>New resource <a href="https://capillary.github.io/api-documentation/#auth-engine">Auth Engine</a> is added. Auth Engine provides front-end APIs to enable org customers to authenticate to org&rsquo;s mobile  or web application.</li>
 <li>OAuth supports posting data through store along with Till that was already supported. Two new headers are introduced <code class="prettyprint">X-CAP-API-ATTRIBUTION-ENTITY-TYPE</code>, <code class="prettyprint">X-CAP-API-ATTRIBUTION-ENTITY-CODE</code> replacing <code class="prettyprint">X-CAP-API-ATTRIBUTION-TILL-CODE</code>.</li>
 </ul>
 
-<h2 id="q4-releases-2019-20">Q4 Releases (2019-20)</h2>
+<h2 id="releases-2019-2020">Releases (2019-2020)</h2>
+
+<h3 id="q4-releases-2019-20">Q4 Releases (2019-20)</h3>
 
 <ul>
 <li><strong>OAuth Support</strong>: Besides Basic Authentication, Capillary APIs now support OAuth and access tokens for more secured API calls. For more details, see support portal. </li>
@@ -791,6 +825,11 @@ Extended fields are either associated to verticals or to a generic category (ava
 <td>accountId**</td>
 <td>string</td>
 <td>For sources that support multiple accounts, provide the account ID. For example, FACEBOOK, WEB_ENGAGE, WECHAT, MOBILE_APP.</td>
+</tr>
+<tr>
+<td>activity</td>
+<td>enum</td>
+<td>State of the customer&rsquo;s lifecycle (entity lifecycle). State is auto assigned according to the activity.</td>
 </tr>
 </tbody></table>
 
@@ -3783,7 +3822,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 </span><span class="s2">"warnings"</span><span class="p">:[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>Lets you fetch unique customer id of a customer which is required to fetch customer details, update customer details, manage subscription details and other activities.</p>
+<p>Lets you fetch unique ID of a customer generated internally. This is required for customer related activities such as fetch customer details, update customer details, manage subscription details and other activities.</p>
 
 <h3 id="resource-information">Resource Information</h3>
 
@@ -3827,7 +3866,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <tr>
 <td>source*</td>
 <td>enum</td>
-<td>Specify the source from which you want to fetch the customer details. Values: FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, ALL</td>
+<td>Specify the source from which you want to fetch the customer details. Values: FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, ALL.</td>
 </tr>
 <tr>
 <td>accountId</td>
@@ -4288,97 +4327,334 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <p>Sample Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">342963216</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"profiles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-09-20T15:16:00+05:30"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobilepush.1"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobilepush.1"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="s2">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobilepush.1"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobilepush.1"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="s2">"modifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-03-11T13:50:58+05:30"</span><span class="w">
+   </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">481220846</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"profiles"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"firstName"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"lastName"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"attribution"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"createDate"</span><span class="p">:</span><span class="s2">"2021-02-18T20:31:15+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdBy"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">12970395</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"sit.admin"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"sit.admin"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-            </span><span class="s2">"identifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                 </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"line"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lineAS6"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cardNumber"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TTM001110000000002ZS"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"statusLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACTIVE"</span><span class="w">
-                </span><span class="p">},</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"919999000001"</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">],</span><span class="w">
-            </span><span class="s2">"commChannels"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-                </span><span class="p">{</span><span class="w">
-                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"919999000001"</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"primary"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                    </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                        </span><span class="s2">"residence"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                        </span><span class="s2">"office"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-                    </span><span class="p">},</span><span class="w">
-                    </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
-                </span><span class="p">}</span><span class="w">
-            </span><span class="p">],</span><span class="w">
-            </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">342963216</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"conflictingProfileList"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-            </span><span class="s2">"autoUpdateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-10-16T16:18:11+05:30"</span><span class="w">
-        </span><span class="p">}</span><span class="w">
-    </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"loyaltyInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"loyaltyType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"loyalty"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"attributionV2"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-09-20T15:16:00+05:30"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobilepush.1"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobilepush.1"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
+            </span><span class="s2">"modifiedBy"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">12970395</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"sit.admin"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"sit.admin"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="s2">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobilepush.1"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobilepush.1"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
+            </span><span class="s2">"modifiedDate"</span><span class="p">:</span><span class="s2">"2021-02-22T13:27:29+05:30"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="s2">"fields"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"ihcl_active"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tcp_active"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tierup_airasia"</span><span class="p">:</span><span class="s2">"2"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="s2">"identifiers"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"externalId"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"888555888555898855"</span><span class="w">
             </span><span class="p">},</span><span class="w">
-            </span><span class="s2">"modifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-03-11T13:50:58+05:30"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"createdFromSource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"instore"</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"lifetimePurchases"</span><span class="p">:</span><span class="w"> </span><span class="mf">18000.0</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"fraudDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"markedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-        </span><span class="s2">"modifiedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-09-23T15:13:14+05:30"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOT_FRAUD"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"segments"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
-    </span><span class="s2">"associatedWith"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobilepush.1"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bangalore"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"line"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"lineAS6"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"cardNumber"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"TTM001110000000002ZS"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="mi">19</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"statusLabel"</span><span class="p">:</span><span class="s2">"ACTIVE"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"919999000001"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"commChannels"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"919999000001"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"primary"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"verified"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"meta"</span><span class="p">:{</span><span class="w">
+                  </span><span class="s2">"residence"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"office"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="s2">"attributes"</span><span class="p">:{</span><span class="w">
+
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"source"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"userId"</span><span class="p">:</span><span class="mi">481220846</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"accountId"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"conflictingProfileList"</span><span class="p">:[</span><span class="w">
+
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"autoUpdateTime"</span><span class="p">:</span><span class="s2">"2021-09-14T17:53:13+05:30"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"identifiersAll"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"externalId"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"888555888555898855"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"loyaltyInfo"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"loyaltyType"</span><span class="p">:</span><span class="s2">"loyalty"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"attributionV2"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"createDate"</span><span class="p">:</span><span class="s2">"2021-02-18T20:31:15+05:30"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"createdBy"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">12970395</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"sit.admin"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"sit.admin"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="s2">"modifiedBy"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">12970395</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"sit.admin"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"sit.admin"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="s2">"modifiedDate"</span><span class="p">:</span><span class="s2">"2021-02-22T13:27:29+05:30"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"createdFromSource"</span><span class="p">:</span><span class="s2">"instore"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"lifetimePurchases"</span><span class="p">:</span><span class="mf">24000.0</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"fraudDetails"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"markedBy"</span><span class="p">:{</span><span class="w">
+
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"modifiedOn"</span><span class="p">:</span><span class="s2">"2019-09-23T15:13:14+05:30"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"NOT_FRAUD"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"segments"</span><span class="p">:{</span><span class="w">
+
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"associatedWith"</span><span class="p">:</span><span class="s2">"sit.admin"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"city"</span><span class="p">:</span><span class="s2">"Bangalore"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"gender"</span><span class="p">:</span><span class="s2">"Male"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"loyaltyProgramDetails"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"redeemed"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"expired"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"returned"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"adjusted"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"lifetimePoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"loyaltyPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"cumulativePurchases"</span><span class="p">:</span><span class="mf">24000.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"loyaltyId"</span><span class="p">:</span><span class="mi">143032714</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"currentSlab"</span><span class="p">:</span><span class="s2">"Default"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"nextSlab"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"nextSlabSerialNumber"</span><span class="p">:</span><span class="mi">-1</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"nextSlabDescription"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"slabSNo"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"slabExpiryDate"</span><span class="p">:</span><span class="s2">"2121-02-18T23:59:59+05:30"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programId"</span><span class="p">:</span><span class="mi">1414</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"delayedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"delayedReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"totalAvailablePoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"totalReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"linkedPartnerPrograms"</span><span class="p">:[</span><span class="w">
+
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"programTitle"</span><span class="p">:</span><span class="s2">"Tata Digital SITDefaultProgram"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programDescription"</span><span class="p">:</span><span class="s2">"Default program for Tata Digital SIT"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programPointsToCurrencyRatio"</span><span class="p">:</span><span class="mf">1.0</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"redeemed"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"expired"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"returned"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"adjusted"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"lifetimePoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"loyaltyPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"cumulativePurchases"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"loyaltyId"</span><span class="p">:</span><span class="mi">143032714</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"currentSlab"</span><span class="p">:</span><span class="s2">"Copper*"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"nextSlab"</span><span class="p">:</span><span class="s2">"Copper"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"nextSlabSerialNumber"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"nextSlabDescription"</span><span class="p">:</span><span class="s2">"Copper"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"slabSNo"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"slabExpiryDate"</span><span class="p">:</span><span class="s2">"2121-05-07T23:48:47+05:30"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programId"</span><span class="p">:</span><span class="mi">1422</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"delayedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"delayedReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"totalAvailablePoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"totalReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"linkedPartnerPrograms"</span><span class="p">:[</span><span class="w">
+
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"programTitle"</span><span class="p">:</span><span class="s2">"IHCL"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programDescription"</span><span class="p">:</span><span class="s2">"IHCL"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programPointsToCurrencyRatio"</span><span class="p">:</span><span class="mf">1.0</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"redeemed"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"expired"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"returned"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"adjusted"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"lifetimePoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"loyaltyPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"cumulativePurchases"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"loyaltyId"</span><span class="p">:</span><span class="mi">143032714</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"currentSlab"</span><span class="p">:</span><span class="s2">"Privilege"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"nextSlab"</span><span class="p">:</span><span class="s2">"Tier 2"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"nextSlabSerialNumber"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"nextSlabDescription"</span><span class="p">:</span><span class="s2">"Tier 2"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"slabSNo"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"slabExpiryDate"</span><span class="p">:</span><span class="s2">"2121-05-07T20:44:49+05:30"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programId"</span><span class="p">:</span><span class="mi">1423</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"delayedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"delayedReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"totalAvailablePoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"totalReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"linkedPartnerPrograms"</span><span class="p">:[</span><span class="w">
+
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"programTitle"</span><span class="p">:</span><span class="s2">"Croma"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programDescription"</span><span class="p">:</span><span class="s2">"Croma"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programPointsToCurrencyRatio"</span><span class="p">:</span><span class="mf">1.0</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"redeemed"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"expired"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"returned"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"adjusted"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"lifetimePoints"</span><span class="p">:</span><span class="mf">420.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"loyaltyPoints"</span><span class="p">:</span><span class="mf">420.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"cumulativePurchases"</span><span class="p">:</span><span class="mf">24000.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"loyaltyId"</span><span class="p">:</span><span class="mi">143032714</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"currentSlab"</span><span class="p">:</span><span class="s2">"Aviator"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"nextSlab"</span><span class="p">:</span><span class="s2">"Explorer"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"nextSlabSerialNumber"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"nextSlabDescription"</span><span class="p">:</span><span class="s2">"Explorer"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"slabSNo"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"slabExpiryDate"</span><span class="p">:</span><span class="s2">"2121-03-10T23:59:59+05:30"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programId"</span><span class="p">:</span><span class="mi">1550</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"delayedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"delayedReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"totalAvailablePoints"</span><span class="p">:</span><span class="mf">420.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"totalReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"linkedPartnerPrograms"</span><span class="p">:[</span><span class="w">
+
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"programTitle"</span><span class="p">:</span><span class="s2">"AirAsia India"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programDescription"</span><span class="p">:</span><span class="s2">"AirAsia India"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programPointsToCurrencyRatio"</span><span class="p">:</span><span class="mf">1.0</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"redeemed"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"expired"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"returned"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"adjusted"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"lifetimePoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"loyaltyPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"cumulativePurchases"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"loyaltyId"</span><span class="p">:</span><span class="mi">143032714</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"currentSlab"</span><span class="p">:</span><span class="s2">"Base"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"nextSlab"</span><span class="p">:</span><span class="s2">"bbstar"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"nextSlabSerialNumber"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"nextSlabDescription"</span><span class="p">:</span><span class="s2">"bbstar"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"slabSNo"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"slabExpiryDate"</span><span class="p">:</span><span class="s2">"2121-05-08T01:20:22+05:30"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programId"</span><span class="p">:</span><span class="mi">1679</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"delayedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"delayedReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"totalAvailablePoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"totalReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"linkedPartnerPrograms"</span><span class="p">:[</span><span class="w">
+
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"programTitle"</span><span class="p">:</span><span class="s2">"bigbasket"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programDescription"</span><span class="p">:</span><span class="s2">"bigbasket"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programPointsToCurrencyRatio"</span><span class="p">:</span><span class="mf">1.0</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"groupLoyaltyProgramDetails"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"groupProgramId"</span><span class="p">:</span><span class="mi">1414</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"title"</span><span class="p">:</span><span class="s2">"Tata Digital SITDefaultProgram"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"Default program for Tata Digital SIT"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programsList"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1414</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Tata Digital SITDefaultProgram"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"Default program for Tata Digital SIT"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1422</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"IHCL"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"IHCL"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1423</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Croma"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"Croma"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1424</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Tata Westside Loyalty"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1497</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Tata TataSky Loyalty"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"Tata TataSky Loyalty"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1550</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"AirAsia India"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"AirAsia India"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1568</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Tata Ginger Loyalty"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1679</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"bigbasket"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"bigbasket"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1680</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Tata CLiQ"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"Tata CLiQ"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1745</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Playground (TataCliq)"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"This is an experimental Program"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1762</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"TML  Loyalty"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"TML  Loyalty"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1766</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"1mg"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"1mg"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"lifetimePoints"</span><span class="p">:</span><span class="mf">420.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"loyaltyPoints"</span><span class="p">:</span><span class="mf">420.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"promisedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"pointsToCurrencyRatio"</span><span class="p">:</span><span class="mf">1.0</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"cardDetails"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"warnings"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <h3 id="resource-information">Resource Information</h3>
@@ -6527,9 +6803,9 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <li><strong>Mixed</strong>: A transaction that involves both regular and return is termed as mixed transaction.</li>
 </ul>
 
-<h2 id="add-or-return-transaction-bulk">Add or Return Transaction (Bulk)</h2>
+<h2 id="add-return-transaction-bulk">Add/Return Transaction (Bulk)</h2>
 
-<p>Lets you add or return one or more loyalty transactions to the Capillary system.</p>
+<p>Lets you add or return one or more transactions to the Capillary system. It supports both loyalty and not-interested transactions.</p>
 
 <ul>
 <li>If CONFIG_SKIP_SECONDARY_ID_ON_PRIMARY_MISMATCH is enabled, if the primary identifier is different but any of the secondary identifiers exist, a new customer is registered with the primary identifier ignoring the secondary identifier. The config is available on the Registration Page of InTouch Profile &gt; Organization Settings &gt; Miscellaneous.</li>
@@ -7203,8 +7479,8 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </tr>
 </thead><tbody>
 <tr>
-<td>WAIT_FOR_DOWNSTREAM</td>
-<td>Pass <code class="prettyprint">true</code> to wait for Loyalty activities to complete and then respond to the client with side effects in the API response.<br>Pass <code class="prettyprint">false</code> to run Loyalty activities in the background. No side effects are returned in the API response.</td>
+<td>X-CAP-DIRECT-REPLAY</td>
+<td>Pass <code class="prettyprint">true</code> to add the call to the event execution queue (reply event) - in this case, transaction is added and other events will be executed later. Pass <code class="prettyprint">false</code> to directly execute the event - you will get response along with other event details (side effects).</td>
 </tr>
 </tbody></table>
 
@@ -7598,9 +7874,9 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </tr>
 </tbody></table>
 
-<h2 id="add-transaction">Add Transaction</h2>
+<h2 id="add-transaction-single">Add Transaction (Single)</h2>
 
-<p>Lets you add a new transaction or return an existing transaction.</p>
+<p>Lets you add a new transaction or return an existing transaction. It supports both loyalty and not-interested transactions.</p>
 
 <blockquote>
 <p>Sample Request</p>
@@ -7608,7 +7884,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <pre class="highlight html"><code>https://us.api.capillarytech.com/v2/transactions?source=instore<span class="err">&amp;</span>identifierValue=GOLD400000000000000022020<span class="err">&amp;</span>identifierName=cardnumber<span class="err">&amp;</span>accountId=
 </code></pre>
 <blockquote>
-<p>Sample POST Request</p>
+<p>Sample POST Request (REGULAR)</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REGULAR"</span><span class="p">,</span><span class="w">
@@ -7670,6 +7946,109 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </span><span class="p">}</span><span class="w">  
 </span></code></pre>
 <blockquote>
+<p>Sample POST Request (Mixed Transaction)</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REGULAR"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"billNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bill00076"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"billAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1900"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this is test"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"grossAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"deliveryStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DELIVERED"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"lineItemsV2"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"parentBillNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bill00075"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"returnType"</span><span class="p">:</span><span class="s2">"LINE_ITEM"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"RETURN"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"blue large jeans"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ITEMJEANS0005"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"serial"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"customFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="s2">"imgUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">6570</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"REGULAR"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"blue large jeans"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ITEMJEANS0ih05"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"serial"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"customFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="s2">"imgUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"promotionEvaluationId"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"appliedPromotionIdentifiers"</span><span class="p">:[</span><span class="s2">""</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Request (NOT_INTERESTED)</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOT_INTERESTED"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"billNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bill12345"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"purchaseTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"100"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"billAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1900"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this is test"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"grossAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"deliveryStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DELIVERED"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"lineItemsV2"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200000000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"parentBillNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"returnType"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"blue large jeans"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ITEMJEANS0005"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"serial"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"customFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="s2">"imgUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">6570</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"blue large jeans"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ITEMJEANS0ih05"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"serial"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"customFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="s2">"imgUrl"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"paymentModes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"promotionEvaluationId"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"appliedPromotionIdentifiers"</span><span class="p">:[</span><span class="s2">""</span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
 <p>Sample Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
@@ -7729,8 +8108,8 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </tr>
 </thead><tbody>
 <tr>
-<td>WAIT_FOR_DOWNSTREAM</td>
-<td>Pass <code class="prettyprint">true</code> to wait for Loyalty activities to complete and then respond to the client with side effects in the API response.<br>Pass <code class="prettyprint">false</code> to run Loyalty activities in the background. No side effects are returned in the API response.</td>
+<td>X-CAP-DIRECT-REPLAY</td>
+<td>Pass <code class="prettyprint">true</code> to add the call to the event execution queue (reply event) - in this case, transaction is added and other events will be executed later. Pass <code class="prettyprint">false</code> to directly execute the event.</td>
 </tr>
 </tbody></table>
 
@@ -7826,7 +8205,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <tr>
 <td>billNumber*</td>
 <td>string</td>
-<td>Unique transaction number. The uniqueness either at till, store, or org, depends on the configuration <code class="prettyprint">CONF_LOYALTY_BILL_NUMBER_UNIQUE_IN_DAYS</code> set on InTouch <strong>Settings</strong> &gt; <strong>System &amp; Deployment</strong> &gt; <strong>InTouch POS Configuration</strong> &gt; <strong>Billing</strong>.</td>
+<td>Unique transaction number for normal or mixed transactions and original transaction number for return transactions. The uniqueness either at till, store, or org, depends on the configuration <code class="prettyprint">CONF_LOYALTY_BILL_NUMBER_UNIQUE_IN_DAYS</code> set on InTouch <strong>Settings</strong> &gt; <strong>System &amp; Deployment</strong> &gt; <strong>InTouch POS Configuration</strong> &gt; <strong>Billing</strong>.</td>
 </tr>
 <tr>
 <td>billingDate</td>
@@ -22996,7 +23375,7 @@ Batch Support | No
 <pre class="highlight html"><code>https://us.api.capillarytech.com/v2/fleetHierarchy
 </code></pre>
 <blockquote>
-<p>Sample POST Request</p>
+<p>Sample POST Request (with permission details)</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
    </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"Partner1"</span><span class="p">,</span><span class="w">
@@ -23066,6 +23445,40 @@ Batch Support | No
    </span><span class="s2">"autoGroupCreationEnabled"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
    </span><span class="s2">"hierarchyCreationStrict"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
    </span><span class="s2">"skipRoleAllowed"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample POST Request (without Permission details)</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sunrise-h4"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sunrise-h4"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test description"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"roles"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w">
+        </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GFA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"childRoleCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SFA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"maxChild"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="w">
+
+
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SFA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"childRoleCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"maxChild"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="w">
+
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FA"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"childRoleCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FC"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"maxChild"</span><span class="p">:</span><span class="w"> </span><span class="mi">5000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pointsAggregationRole"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+
+    </span><span class="p">},</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FC"</span><span class="w">
+
+    </span><span class="p">}],</span><span class="w">
+    </span><span class="s2">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"autoGroupCreationEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"hierarchyCreationStrict"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"skipRoleAllowed"</span><span class="p">:</span><span class="kc">false</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -23145,37 +23558,37 @@ Batch Support | No
 <td>Roles and permissions of the hierarchy. You need to have at least 2 roles for a hierarchy and can extend up to 8 (max).</td>
 </tr>
 <tr>
-<td>code</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;code</td>
 <td>enum</td>
 <td>Unique code of the role in the hierarchy.</td>
 </tr>
 <tr>
-<td>childRoleCode</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;childRoleCode</td>
 <td>string</td>
 <td>Unique code of the child role (if any) associated with the current role.</td>
 </tr>
 <tr>
-<td>maxChild</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;maxChild</td>
 <td>int</td>
 <td>Maximum number of child users that can be associated with the user in the current role. Maximum value: 30000.</td>
 </tr>
 <tr>
-<td>permissions</td>
-<td>Array</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;permissions</td>
+<td>array</td>
 <td>Permissions granted to the role. For example, Points transfer, Points redemption. These specified permissions are applicable to all users in the current role.</td>
 </tr>
 <tr>
-<td>permissionCode</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;permissionCode</td>
 <td>enum</td>
-<td>Unique code of the permission.</td>
+<td>Unique code of the permission. Value: <code class="prettyprint">block_points_redemption</code>, <code class="prettyprint">block_points_transfer</code>, <code class="prettyprint">earn_points</code>.</td>
 </tr>
 <tr>
-<td>permissionValue</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;permissionValue</td>
 <td>boolean</td>
 <td>Set <code class="prettyprint">true</code> to enable and <code class="prettyprint">false</code> to disable the code.</td>
 </tr>
 <tr>
-<td>pointsAggregationRole</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pointsAggregationRole</td>
 <td>boolean</td>
 <td>To create a group implicitly, set both <code class="prettyprint">pointsAggregationRole</code> and <code class="prettyprint">autoGroupCreationEnabled</code> to true. <br>The user in the current role will become the owner of the group. All the other users conjoined with the user in the hierarchy will be included automatically and become the members of the group.<br><strong>Example</strong>: Assume A &gt; B &gt; C &gt; D as the roles in a hierarchy.<br>A is the parent of B. B is the parent of C. C is the parent of D.<br>Set <code class="prettyprint">pointsAggregationRole</code> to true for the role C to get a user registered.<br>The group is also automatically created along with this command. The user in role C will now be the owner of the group. <br>All the users associated with the user C, in roles A, B and D are also automatically added as members of the group.</td>
 </tr>
@@ -24046,8 +24459,22 @@ Batch Support | No
             </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"earn_points"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow Point Allocation"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"block_points_transfer"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Block Points Transfer"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"module"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Loyalty"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"defaultValue"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"allow_points_redemption"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow Point Redemption"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"module"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Loyalty"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"defaultValue"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"allow_points_transfer"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Allow Points Transfer"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"module"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Loyalty"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"defaultValue"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
             </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
@@ -24096,7 +24523,9 @@ Batch Support | No
 
 <p><code class="prettyprint">https://{host}/v2/fleet/permissions</code></p>
 
-<h2 id="add-companies">Add Companies</h2>
+<h1 id="company-user-group">Company (User Group)</h1>
+
+<h2 id="add-company">Add Company</h2>
 
 <p>Lets you add a new company to the org. </p>
 
@@ -24106,7 +24535,7 @@ Batch Support | No
 <pre class="highlight html"><code>http://us.api.capillarytech.com/v2/companies
 </code></pre>
 <blockquote>
-<p>Sample POST Request</p>
+<p>Sample POST Request (Parent Company)</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Purple Distributors"</span><span class="p">,</span><span class="w">
@@ -24124,6 +24553,31 @@ Batch Support | No
     </span><span class="s2">"company_country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"India"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"pincode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"560068"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"919900000000"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample POST Request (Child Company)</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name-12345"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"917902000000"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"hierarchyDefinitionCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"code-tst1111"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"industry"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Information Technology"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"owner"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tom Sawyyer"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address1"</span><span class="p">:</span><span class="w"> </span><span class="s2">"maldivs"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address2"</span><span class="p">:</span><span class="w"> </span><span class="s2">"US"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address3"</span><span class="p">:</span><span class="w"> </span><span class="s2">"UK"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address4"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Paris"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bangalore"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"state"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Karnataka"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"country"</span><span class="p">:</span><span class="w"> </span><span class="s2">"India"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pincode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"560068"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"phone"</span><span class="p">:</span><span class="w"> </span><span class="s2">"9988000000"</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"parentCompany"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"917904511111"</span><span class="w">
   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
