@@ -1256,272 +1256,6 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
 
-<h2 id="update-customer-details-using-identifier">Update Customer Details (using identifier)</h2>
-
-<p>Lets you update customer details with mobile number, email ID or external ID. </p>
-
-<blockquote>
-<p>Sample Request</p>
-</blockquote>
-<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="err">&amp;</span>identifierName=mobile<span class="err">&amp;</span>identifierValue=919999000001
-</code></pre>
-<blockquote>
-<p>Sample PUT request</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">  
-   </span><span class="s2">"profiles"</span><span class="p">:[</span><span class="w">  
-      </span><span class="p">{</span><span class="w">  
-         </span><span class="s2">"firstName"</span><span class="p">:</span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"lastName"</span><span class="p">:</span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"fields"</span><span class="p">:{</span><span class="w">  
-            </span><span class="s2">"gender"</span><span class="p">:</span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"city"</span><span class="p">:</span><span class="s2">"Bangalore"</span><span class="w">
-         </span><span class="p">},</span><span class="w">
-         </span><span class="s2">"identifiers"</span><span class="p">:[</span><span class="w">  
-            </span><span class="p">{</span><span class="w">  
-               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"tom.sawyer@example.com"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">  
-               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"wechat"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"wc_2"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-         </span><span class="p">],</span><span class="w">
-         </span><span class="s2">"commChannels"</span><span class="p">:[</span><span class="w">  
-            </span><span class="p">{</span><span class="w">  
-               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"tom.sawyer@example.com"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"primary"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"verified"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"meta"</span><span class="p">:{</span><span class="w">  
-                  </span><span class="s2">"residence"</span><span class="p">:</span><span class="kc">true</span><span class="w">
-               </span><span class="p">}</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">  
-               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"wechat"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"wc_2"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"primary"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"verified"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"meta"</span><span class="p">:{</span><span class="w">  
-                  </span><span class="s2">"residence"</span><span class="p">:</span><span class="kc">true</span><span class="w">
-               </span><span class="p">}</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-         </span><span class="p">],</span><span class="w">
-         </span><span class="s2">"source"</span><span class="p">:</span><span class="s2">"WECHAT"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"accountId"</span><span class="p">:</span><span class="s2">"WeChat1234"</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-   </span><span class="p">],</span><span class="w">
-   </span><span class="s2">"loyaltyInfo"</span><span class="p">:{</span><span class="w">  
-      </span><span class="s2">"loyaltyType"</span><span class="p">:</span><span class="s2">"loyalty"</span><span class="w">
-   </span><span class="p">},</span><span class="w">
-   </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w">  
-      </span><span class="p">{</span><span class="w">  
-         </span><span class="s2">"gender"</span><span class="p">:</span><span class="s2">"MALE"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"city"</span><span class="p">:</span><span class="s2">"Bangalore"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-     </span><span class="s2">"loyaltyProgramEnrollments"</span><span class="p">:[{</span><span class="w">
-     </span><span class="s2">"programId"</span><span class="p">:</span><span class="mi">1016</span><span class="p">,</span><span class="w">
-     </span><span class="s2">"tierNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">234</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"loyaltyPoints"</span><span class="p">:</span><span class="w"> </span><span class="mi">75</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"tierExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-11T16:36:17+05:30"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"pointsExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-11T16:36:17+05:30"</span><span class="w">
-</span><span class="p">}]</span><span class="w">
-
-</span><span class="p">}</span><span class="w">
-
-</span></code></pre>
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"createdId"</span><span class="p">:</span><span class="w"> </span><span class="mi">342963216</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
-    </span><span class="s2">"sideEffects"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<h3 id="resource-information">Resource Information</h3>
-
-<table><thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URI</td>
-<td><code class="prettyprint">/lookup?identifierName={identifierName}&amp;identifierValue={IdentifierValue}&amp;{queryParams}</code></td>
-</tr>
-<tr>
-<td>Authentication</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>HTTP Method</td>
-<td>PUT</td>
-</tr>
-<tr>
-<td>Batch Support</td>
-<td>No</td>
-</tr>
-</tbody></table>
-
-<h3 id="request-url">Request URL</h3>
-
-<p>For sources with single accounts</p>
-
-<p><code class="prettyprint">{host}/v2/customers/lookup?source={sourceName}?&amp;accountId={accountId}&amp;identifierName={identifierName}&amp;identifierValue={IdentifierValue}</code></p>
-
-<h3 id="request-query-parameters">Request Query Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Datatype</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>identifierName*</td>
-<td>enum</td>
-<td>Identifier you use to update customer details. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>.</td>
-</tr>
-<tr>
-<td>identifierValue*</td>
-<td>string</td>
-<td>The respective identifier value. For example if <code class="prettyprint">identifierName</code> is email, then the <code class="prettyprint">identifierValue</code> needs to be the email ID of the customer.</td>
-</tr>
-<tr>
-<td>source*</td>
-<td>enum</td>
-<td>Specify the source in which you want to update the customer details - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, MOBILE_APP. For sources with multiple accounts such as WECHAT, FACEBOOK, MOBILE_APP, or LINE, you also need to provide the respective account id.</td>
-</tr>
-<tr>
-<td>accountId**</td>
-<td>string</td>
-<td>Account in which you want to update the customer details (Required only for sources with multiple accounts)</td>
-</tr>
-</tbody></table>
-
-<aside class="notice">Parameters marked with * are mandatory.</aside>
-
-<h3 id="request-body-parameters">Request Body Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Datatype</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>loyaltyType</td>
-<td>enum</td>
-<td>Loyalty status of the customer. Value: <code class="prettyprint">loyalty</code>, <code class="prettyprint">non_loyalty</code>.</td>
-</tr>
-<tr>
-<td>commChannels</td>
-<td>obj</td>
-<td>Communication channels of the customer.</td>
-</tr>
-<tr>
-<td>type</td>
-<td>enum</td>
-<td>Type of the communication channel. Value: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">wechat</code>, <code class="prettyprint">ios</code>, <code class="prettyprint">android</code>, <code class="prettyprint">line, mobilePush</code>.</td>
-</tr>
-<tr>
-<td>value</td>
-<td>string</td>
-<td>Based on the channel <code class="prettyprint">type</code> enter the channel value. Example, mobile number is the value for <code class="prettyprint">type:mobile</code>, firebase token for <code class="prettyprint">type:mobilePush</code>. mobilePush is supported for sources mobile_app, Instore, Martjack, Ecommerce, and Website</td>
-</tr>
-<tr>
-<td>primary</td>
-<td>boolean</td>
-<td>Whether the current identifier is the primary identifier of the customer (primary identifier as per the org&rsquo;s configuration).</td>
-</tr>
-<tr>
-<td>lastViewedDate</td>
-<td>date</td>
-<td>Date when the customer recently opened the app. Applicable for the channel &lsquo;mobilePush&rsquo;.</td>
-</tr>
-<tr>
-<td>verified</td>
-<td>boolean</td>
-<td>Whether the current identifier is verified or not. For example, through OTP.</td>
-</tr>
-<tr>
-<td>profiles</td>
-<td>obj</td>
-<td>Profile information of the customer.</td>
-</tr>
-<tr>
-<td>meta</td>
-<td>obj</td>
-<td>Additional information of the identifier.</td>
-</tr>
-<tr>
-<td>Firstname</td>
-<td>string</td>
-<td>First name of the customer.</td>
-</tr>
-<tr>
-<td>Lastname</td>
-<td>string</td>
-<td>Last name of the customer.</td>
-</tr>
-<tr>
-<td>identifiers</td>
-<td>obj</td>
-<td>Identifiers of the customer that you want to add in type and value. Supported types: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>, <code class="prettyprint">fbId</code> <code class="prettyprint">mobile</code>, <code class="prettyprint">tmall_uname</code>, <code class="prettyprint">cuid</code>, <code class="prettyprint">ali_uname</code>, <code class="prettyprint">jd_uname</code>, <code class="prettyprint">vip_uname</code>, and <code class="prettyprint">line</code>.</td>
-</tr>
-<tr>
-<td>profiles</td>
-<td>fields</td>
-<td>Custom field details (only that configured for the organization)</td>
-</tr>
-<tr>
-<td>extendedFields</td>
-<td>obj</td>
-<td>Extended field details of the customer in key:value pairs. You can only pass extended fields that are enabled for your org with the respective datatypes for values.</td>
-</tr>
-<tr>
-<td>fields</td>
-<td>obj</td>
-<td>Custom field details of the customer in key:value pairs.</td>
-</tr>
-<tr>
-<td>loyaltyProgramEnrollments</td>
-<td>obj</td>
-<td>Lets you enroll new customers in the loyalty program.</td>
-</tr>
-<tr>
-<td>programId</td>
-<td>int</td>
-<td>Unique ID of the loyalty program in which you want to enroll. You cannot update details if the customer is already enrolled in the loyalty program.</td>
-</tr>
-<tr>
-<td>tierNumber</td>
-<td>int</td>
-<td>Sequence number of the tier that you want to allocate to the customer. For example, <code class="prettyprint">1</code> for the lower tier, <code class="prettyprint">2</code> for the next tier, and so on.</td>
-</tr>
-<tr>
-<td>loyaltyPoints</td>
-<td>int</td>
-<td>Loyalty points to credit in customer&rsquo;s account.</td>
-</tr>
-<tr>
-<td>tierExpiryDate</td>
-<td>date-time</td>
-<td>Expiry date and time of the specified tier. Supported Format: YYYY-MM-DDTHH:MM:SS+/-(time-zone).</td>
-</tr>
-<tr>
-<td>pointsExpiryDate</td>
-<td>date-time</td>
-<td>Expiry date and time of the points issued. Supported Format: YYYY-MM-DDTHH:MM:SS+/-(time-zone).</td>
-</tr>
-</tbody></table>
-
-<aside class="notice">Parameters marked with * are mandatory. </aside>
-
 <h2 id="update-customer-identifiers-issue-card">Update Customer Identifiers/Issue Card</h2>
 
 <blockquote>
@@ -4313,418 +4047,6 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 </tr>
 </tbody></table>
 
-<h2 id="fetch-customer-details-by-identifier">Fetch Customer Details (by Identifier)</h2>
-
-<p>Retrieves details of a customer by any of the identifiers (mobile number, email ID, external ID, or card number).</p>
-
-<blockquote>
-<p>Sample Request</p>
-</blockquote>
-<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/customers/lookup/customerDetails?source=WECHAT<span class="err">&amp;</span>accountId=22232<span class="err">&amp;</span>identifierName=mobile<span class="err">&amp;</span>identifierValue=919999000001<span class="err">&amp;</span>embed=mlp
-
-</code></pre>
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-   </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">481220846</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"profiles"</span><span class="p">:[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-         </span><span class="s2">"firstName"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"lastName"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"attribution"</span><span class="p">:{</span><span class="w">
-            </span><span class="s2">"createDate"</span><span class="p">:</span><span class="s2">"2021-02-18T20:31:15+05:30"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"createdBy"</span><span class="p">:{</span><span class="w">
-               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">12970395</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"sit.admin"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"sit.admin"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="s2">"modifiedBy"</span><span class="p">:{</span><span class="w">
-               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">12970395</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"sit.admin"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"sit.admin"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="s2">"modifiedDate"</span><span class="p">:</span><span class="s2">"2021-02-22T13:27:29+05:30"</span><span class="w">
-         </span><span class="p">},</span><span class="w">
-         </span><span class="s2">"fields"</span><span class="p">:{</span><span class="w">
-            </span><span class="s2">"ihcl_active"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"tcp_active"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"tierup_airasia"</span><span class="p">:</span><span class="s2">"2"</span><span class="w">
-         </span><span class="p">},</span><span class="w">
-         </span><span class="s2">"identifiers"</span><span class="p">:[</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"externalId"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"888555888555898855"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"line"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"lineAS6"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"cardNumber"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"TTM001110000000002ZS"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="mi">19</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"statusLabel"</span><span class="p">:</span><span class="s2">"ACTIVE"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"919999000001"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-         </span><span class="p">],</span><span class="w">
-         </span><span class="s2">"commChannels"</span><span class="p">:[</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"919999000001"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"primary"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"verified"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"meta"</span><span class="p">:{</span><span class="w">
-                  </span><span class="s2">"residence"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"office"</span><span class="p">:</span><span class="kc">false</span><span class="w">
-               </span><span class="p">},</span><span class="w">
-               </span><span class="s2">"attributes"</span><span class="p">:{</span><span class="w">
-
-               </span><span class="p">}</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-         </span><span class="p">],</span><span class="w">
-         </span><span class="s2">"source"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"userId"</span><span class="p">:</span><span class="mi">481220846</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"accountId"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"conflictingProfileList"</span><span class="p">:[</span><span class="w">
-
-         </span><span class="p">],</span><span class="w">
-         </span><span class="s2">"autoUpdateTime"</span><span class="p">:</span><span class="s2">"2021-09-14T17:53:13+05:30"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"identifiersAll"</span><span class="p">:[</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"externalId"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"888555888555898855"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-         </span><span class="p">]</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-   </span><span class="p">],</span><span class="w">
-   </span><span class="s2">"loyaltyInfo"</span><span class="p">:{</span><span class="w">
-      </span><span class="s2">"loyaltyType"</span><span class="p">:</span><span class="s2">"loyalty"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"attributionV2"</span><span class="p">:{</span><span class="w">
-         </span><span class="s2">"createDate"</span><span class="p">:</span><span class="s2">"2021-02-18T20:31:15+05:30"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"createdBy"</span><span class="p">:{</span><span class="w">
-            </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">12970395</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"sit.admin"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"sit.admin"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="w">
-         </span><span class="p">},</span><span class="w">
-         </span><span class="s2">"modifiedBy"</span><span class="p">:{</span><span class="w">
-            </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">12970395</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"sit.admin"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"sit.admin"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="w">
-         </span><span class="p">},</span><span class="w">
-         </span><span class="s2">"modifiedDate"</span><span class="p">:</span><span class="s2">"2021-02-22T13:27:29+05:30"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"createdFromSource"</span><span class="p">:</span><span class="s2">"instore"</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"lifetimePurchases"</span><span class="p">:</span><span class="mf">24000.0</span><span class="w">
-   </span><span class="p">},</span><span class="w">
-   </span><span class="s2">"fraudDetails"</span><span class="p">:{</span><span class="w">
-      </span><span class="s2">"markedBy"</span><span class="p">:{</span><span class="w">
-
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"modifiedOn"</span><span class="p">:</span><span class="s2">"2019-09-23T15:13:14+05:30"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"NOT_FRAUD"</span><span class="w">
-   </span><span class="p">},</span><span class="w">
-   </span><span class="s2">"segments"</span><span class="p">:{</span><span class="w">
-
-   </span><span class="p">},</span><span class="w">
-   </span><span class="s2">"associatedWith"</span><span class="p">:</span><span class="s2">"sit.admin"</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
-      </span><span class="s2">"city"</span><span class="p">:</span><span class="s2">"Bangalore"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"gender"</span><span class="p">:</span><span class="s2">"Male"</span><span class="w">
-   </span><span class="p">},</span><span class="w">
-   </span><span class="s2">"loyaltyProgramDetails"</span><span class="p">:[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-         </span><span class="s2">"redeemed"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"expired"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"returned"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"adjusted"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"lifetimePoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"loyaltyPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"cumulativePurchases"</span><span class="p">:</span><span class="mf">24000.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"loyaltyId"</span><span class="p">:</span><span class="mi">143032714</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"currentSlab"</span><span class="p">:</span><span class="s2">"Default"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"nextSlab"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"nextSlabSerialNumber"</span><span class="p">:</span><span class="mi">-1</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"nextSlabDescription"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"slabSNo"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"slabExpiryDate"</span><span class="p">:</span><span class="s2">"2121-02-18T23:59:59+05:30"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"programId"</span><span class="p">:</span><span class="mi">1414</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"delayedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"delayedReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"totalAvailablePoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"totalReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"linkedPartnerPrograms"</span><span class="p">:[</span><span class="w">
-
-         </span><span class="p">],</span><span class="w">
-         </span><span class="s2">"programTitle"</span><span class="p">:</span><span class="s2">"Tata Digital SITDefaultProgram"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"programDescription"</span><span class="p">:</span><span class="s2">"Default program for Tata Digital SIT"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"programPointsToCurrencyRatio"</span><span class="p">:</span><span class="mf">1.0</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-         </span><span class="s2">"redeemed"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"expired"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"returned"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"adjusted"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"lifetimePoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"loyaltyPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"cumulativePurchases"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"loyaltyId"</span><span class="p">:</span><span class="mi">143032714</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"currentSlab"</span><span class="p">:</span><span class="s2">"Copper*"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"nextSlab"</span><span class="p">:</span><span class="s2">"Copper"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"nextSlabSerialNumber"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"nextSlabDescription"</span><span class="p">:</span><span class="s2">"Copper"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"slabSNo"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"slabExpiryDate"</span><span class="p">:</span><span class="s2">"2121-05-07T23:48:47+05:30"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"programId"</span><span class="p">:</span><span class="mi">1422</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"delayedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"delayedReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"totalAvailablePoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"totalReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"linkedPartnerPrograms"</span><span class="p">:[</span><span class="w">
-
-         </span><span class="p">],</span><span class="w">
-         </span><span class="s2">"programTitle"</span><span class="p">:</span><span class="s2">"IHCL"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"programDescription"</span><span class="p">:</span><span class="s2">"IHCL"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"programPointsToCurrencyRatio"</span><span class="p">:</span><span class="mf">1.0</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-         </span><span class="s2">"redeemed"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"expired"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"returned"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"adjusted"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"lifetimePoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"loyaltyPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"cumulativePurchases"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"loyaltyId"</span><span class="p">:</span><span class="mi">143032714</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"currentSlab"</span><span class="p">:</span><span class="s2">"Privilege"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"nextSlab"</span><span class="p">:</span><span class="s2">"Tier 2"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"nextSlabSerialNumber"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"nextSlabDescription"</span><span class="p">:</span><span class="s2">"Tier 2"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"slabSNo"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"slabExpiryDate"</span><span class="p">:</span><span class="s2">"2121-05-07T20:44:49+05:30"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"programId"</span><span class="p">:</span><span class="mi">1423</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"delayedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"delayedReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"totalAvailablePoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"totalReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"linkedPartnerPrograms"</span><span class="p">:[</span><span class="w">
-
-         </span><span class="p">],</span><span class="w">
-         </span><span class="s2">"programTitle"</span><span class="p">:</span><span class="s2">"Croma"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"programDescription"</span><span class="p">:</span><span class="s2">"Croma"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"programPointsToCurrencyRatio"</span><span class="p">:</span><span class="mf">1.0</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-         </span><span class="s2">"redeemed"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"expired"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"returned"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"adjusted"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"lifetimePoints"</span><span class="p">:</span><span class="mf">420.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"loyaltyPoints"</span><span class="p">:</span><span class="mf">420.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"cumulativePurchases"</span><span class="p">:</span><span class="mf">24000.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"loyaltyId"</span><span class="p">:</span><span class="mi">143032714</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"currentSlab"</span><span class="p">:</span><span class="s2">"Aviator"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"nextSlab"</span><span class="p">:</span><span class="s2">"Explorer"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"nextSlabSerialNumber"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"nextSlabDescription"</span><span class="p">:</span><span class="s2">"Explorer"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"slabSNo"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"slabExpiryDate"</span><span class="p">:</span><span class="s2">"2121-03-10T23:59:59+05:30"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"programId"</span><span class="p">:</span><span class="mi">1550</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"delayedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"delayedReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"totalAvailablePoints"</span><span class="p">:</span><span class="mf">420.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"totalReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"linkedPartnerPrograms"</span><span class="p">:[</span><span class="w">
-
-         </span><span class="p">],</span><span class="w">
-         </span><span class="s2">"programTitle"</span><span class="p">:</span><span class="s2">"AirAsia India"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"programDescription"</span><span class="p">:</span><span class="s2">"AirAsia India"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"programPointsToCurrencyRatio"</span><span class="p">:</span><span class="mf">1.0</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-         </span><span class="s2">"redeemed"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"expired"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"returned"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"adjusted"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"lifetimePoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"loyaltyPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"cumulativePurchases"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"loyaltyId"</span><span class="p">:</span><span class="mi">143032714</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"currentSlab"</span><span class="p">:</span><span class="s2">"Base"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"nextSlab"</span><span class="p">:</span><span class="s2">"bbstar"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"nextSlabSerialNumber"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"nextSlabDescription"</span><span class="p">:</span><span class="s2">"bbstar"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"slabSNo"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"slabExpiryDate"</span><span class="p">:</span><span class="s2">"2121-05-08T01:20:22+05:30"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"programId"</span><span class="p">:</span><span class="mi">1679</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"delayedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"delayedReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"totalAvailablePoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"totalReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"linkedPartnerPrograms"</span><span class="p">:[</span><span class="w">
-
-         </span><span class="p">],</span><span class="w">
-         </span><span class="s2">"programTitle"</span><span class="p">:</span><span class="s2">"bigbasket"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"programDescription"</span><span class="p">:</span><span class="s2">"bigbasket"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"programPointsToCurrencyRatio"</span><span class="p">:</span><span class="mf">1.0</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-   </span><span class="p">],</span><span class="w">
-   </span><span class="s2">"groupLoyaltyProgramDetails"</span><span class="p">:[</span><span class="w">
-      </span><span class="p">{</span><span class="w">
-         </span><span class="s2">"groupProgramId"</span><span class="p">:</span><span class="mi">1414</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"title"</span><span class="p">:</span><span class="s2">"Tata Digital SITDefaultProgram"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"Default program for Tata Digital SIT"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"programsList"</span><span class="p">:[</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1414</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Tata Digital SITDefaultProgram"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"Default program for Tata Digital SIT"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1422</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"IHCL"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"IHCL"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1423</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Croma"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"Croma"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1424</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Tata Westside Loyalty"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">""</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1497</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Tata TataSky Loyalty"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"Tata TataSky Loyalty"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1550</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"AirAsia India"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"AirAsia India"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1568</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Tata Ginger Loyalty"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">""</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1679</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"bigbasket"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"bigbasket"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1680</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Tata CLiQ"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"Tata CLiQ"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1745</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Playground (TataCliq)"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"This is an experimental Program"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1762</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"TML  Loyalty"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"TML  Loyalty"</span><span class="w">
-            </span><span class="p">},</span><span class="w">
-            </span><span class="p">{</span><span class="w">
-               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1766</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"1mg"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"1mg"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-         </span><span class="p">],</span><span class="w">
-         </span><span class="s2">"lifetimePoints"</span><span class="p">:</span><span class="mf">420.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"loyaltyPoints"</span><span class="p">:</span><span class="mf">420.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"promisedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"pointsToCurrencyRatio"</span><span class="p">:</span><span class="mf">1.0</span><span class="w">
-      </span><span class="p">}</span><span class="w">
-   </span><span class="p">],</span><span class="w">
-   </span><span class="s2">"cardDetails"</span><span class="p">:[</span><span class="w">
-
-   </span><span class="p">],</span><span class="w">
-   </span><span class="s2">"warnings"</span><span class="p">:[</span><span class="w">
-
-   </span><span class="p">]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<h3 id="resource-information">Resource Information</h3>
-
-<table><thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URI</td>
-<td>`/lookup/customerDetails?{requestParams}&rsquo;</td>
-</tr>
-<tr>
-<td>Authentication</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>HTTP Method</td>
-<td>GET</td>
-</tr>
-<tr>
-<td>Batch Support</td>
-<td>No</td>
-</tr>
-</tbody></table>
-
-<h3 id="request-url">Request URL</h3>
-
-<p><code class="prettyprint">{host}/v2/customers/lookup/customerDetails?source={source}&amp;accountId={accountId}&amp;identifierName={identifierName}&amp;identifierValue={identifierValue}&amp;embed={embedParameterName}</code></p>
-
-<h3 id="request-query-parameters">Request Query Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Datatype</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>identifierName*</td>
-<td>enum</td>
-<td>Identifier type used to get customer details. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">cardnumber</code>, <code class="prettyprint">cardExternalId</code>.</td>
-</tr>
-<tr>
-<td>identifierValue*</td>
-<td>string</td>
-<td>Value of the identifierName passed. For example, <code class="prettyprint">identifierName=cardExternalId&amp;identifierValue=cardUUID123</code></td>
-</tr>
-<tr>
-<td>source*</td>
-<td>enum</td>
-<td>Source from which you want to fetch details. Value: <code class="prettyprint">INSTORE</code>, <code class="prettyprint">MARTJACK</code>, <code class="prettyprint">WECHAT</code>, <code class="prettyprint">ALL</code>. ( to fetch details from all sources. For sources with multiple accounts, you also need to pass the specific accountId.</td>
-</tr>
-<tr>
-<td>accountId**</td>
-<td>string</td>
-<td>For sources with multiple accounts, pass the specific accountId.</td>
-</tr>
-<tr>
-<td>embed</td>
-<td>enum</td>
-<td>To include the details of a specific entity in response. Value: <code class="prettyprint">points</code>, <code class="prettyprint">subscriptions</code>, <code class="prettyprint">mlp</code>, <code class="prettyprint">promotionalPoints</code>, <code class="prettyprint">expirySchedules</code>, <code class="prettyprint">expiredPoints</code>. For example, <code class="prettyprint">embed=expiredPoints</code> retrieves the summary of expired points of the customer. <br>Usage: <code>{host}/v2/customers/{CustomerId}/source=INSTORE&amp;&amp;embed=points</code>.</td>
-</tr>
-</tbody></table>
-
-<aside class="notice">Parameters marked with * are mandatory. </aside>
-
 <h2 id="fetch-customer-loyalty-details">Fetch Customer Loyalty Details</h2>
 
 <blockquote>
@@ -6295,6 +5617,949 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </tr>
 </tbody></table>
 
+<h1 id="customer-lookup">Customer Lookup</h1>
+
+<p>It is an extension to normal customer APIs where instead of fetching or updating details using customer ID, you can use registered identfiers like mobile number, email ID, external ID, cardnumber and so on in <code class="prettyprint">/customer/lookup</code>.</p>
+
+<h2 id="update-customer-details-using-identifier">Update Customer Details (using identifier)</h2>
+
+<p>Lets you update customer details with mobile number, email ID or external ID. </p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="err">&amp;</span>identifierName=mobile<span class="err">&amp;</span>identifierValue=919999000001
+</code></pre>
+<blockquote>
+<p>Sample PUT request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">  
+   </span><span class="s2">"profiles"</span><span class="p">:[</span><span class="w">  
+      </span><span class="p">{</span><span class="w">  
+         </span><span class="s2">"firstName"</span><span class="p">:</span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"lastName"</span><span class="p">:</span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"fields"</span><span class="p">:{</span><span class="w">  
+            </span><span class="s2">"gender"</span><span class="p">:</span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"city"</span><span class="p">:</span><span class="s2">"Bangalore"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="s2">"identifiers"</span><span class="p">:[</span><span class="w">  
+            </span><span class="p">{</span><span class="w">  
+               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"tom.sawyer@example.com"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">  
+               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"wechat"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"wc_2"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"commChannels"</span><span class="p">:[</span><span class="w">  
+            </span><span class="p">{</span><span class="w">  
+               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"tom.sawyer@example.com"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"primary"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"verified"</span><span class="p">:</span><span class="s2">"false"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"meta"</span><span class="p">:{</span><span class="w">  
+                  </span><span class="s2">"residence"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">  
+               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"wechat"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"wc_2"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"primary"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"verified"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"meta"</span><span class="p">:{</span><span class="w">  
+                  </span><span class="s2">"residence"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"source"</span><span class="p">:</span><span class="s2">"WECHAT"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"accountId"</span><span class="p">:</span><span class="s2">"WeChat1234"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"loyaltyInfo"</span><span class="p">:{</span><span class="w">  
+      </span><span class="s2">"loyaltyType"</span><span class="p">:</span><span class="s2">"loyalty"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w">  
+      </span><span class="p">{</span><span class="w">  
+         </span><span class="s2">"gender"</span><span class="p">:</span><span class="s2">"MALE"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"city"</span><span class="p">:</span><span class="s2">"Bangalore"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+     </span><span class="s2">"loyaltyProgramEnrollments"</span><span class="p">:[{</span><span class="w">
+     </span><span class="s2">"programId"</span><span class="p">:</span><span class="mi">1016</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"tierNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">234</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"loyaltyPoints"</span><span class="p">:</span><span class="w"> </span><span class="mi">75</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"tierExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-11T16:36:17+05:30"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pointsExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-11T16:36:17+05:30"</span><span class="w">
+</span><span class="p">}]</span><span class="w">
+
+</span><span class="p">}</span><span class="w">
+
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"createdId"</span><span class="p">:</span><span class="w"> </span><span class="mi">342963216</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"sideEffects"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/lookup?identifierName={identifierName}&amp;identifierValue={IdentifierValue}&amp;{queryParams}</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>PUT</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p>For sources with single accounts</p>
+
+<p><code class="prettyprint">{host}/v2/customers/lookup?source={sourceName}?&amp;accountId={accountId}&amp;identifierName={identifierName}&amp;identifierValue={IdentifierValue}</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifierName*</td>
+<td>enum</td>
+<td>Identifier you use to update customer details. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>.</td>
+</tr>
+<tr>
+<td>identifierValue*</td>
+<td>string</td>
+<td>The respective identifier value. For example if <code class="prettyprint">identifierName</code> is email, then the <code class="prettyprint">identifierValue</code> needs to be the email ID of the customer.</td>
+</tr>
+<tr>
+<td>source*</td>
+<td>enum</td>
+<td>Specify the source in which you want to update the customer details - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, MOBILE_APP. For sources with multiple accounts such as WECHAT, FACEBOOK, MOBILE_APP, or LINE, you also need to provide the respective account id.</td>
+</tr>
+<tr>
+<td>accountId**</td>
+<td>string</td>
+<td>Account in which you want to update the customer details (Required only for sources with multiple accounts)</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>loyaltyType</td>
+<td>enum</td>
+<td>Loyalty status of the customer. Value: <code class="prettyprint">loyalty</code>, <code class="prettyprint">non_loyalty</code>.</td>
+</tr>
+<tr>
+<td>commChannels</td>
+<td>obj</td>
+<td>Communication channels of the customer.</td>
+</tr>
+<tr>
+<td>type</td>
+<td>enum</td>
+<td>Type of the communication channel. Value: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">wechat</code>, <code class="prettyprint">ios</code>, <code class="prettyprint">android</code>, <code class="prettyprint">line, mobilePush</code>.</td>
+</tr>
+<tr>
+<td>value</td>
+<td>string</td>
+<td>Based on the channel <code class="prettyprint">type</code> enter the channel value. Example, mobile number is the value for <code class="prettyprint">type:mobile</code>, firebase token for <code class="prettyprint">type:mobilePush</code>. mobilePush is supported for sources mobile_app, Instore, Martjack, Ecommerce, and Website</td>
+</tr>
+<tr>
+<td>primary</td>
+<td>boolean</td>
+<td>Whether the current identifier is the primary identifier of the customer (primary identifier as per the org&rsquo;s configuration).</td>
+</tr>
+<tr>
+<td>lastViewedDate</td>
+<td>date</td>
+<td>Date when the customer recently opened the app. Applicable for the channel &#39;mobilePush&rsquo;.</td>
+</tr>
+<tr>
+<td>verified</td>
+<td>boolean</td>
+<td>Whether the current identifier is verified or not. For example, through OTP.</td>
+</tr>
+<tr>
+<td>profiles</td>
+<td>obj</td>
+<td>Profile information of the customer.</td>
+</tr>
+<tr>
+<td>meta</td>
+<td>obj</td>
+<td>Additional information of the identifier.</td>
+</tr>
+<tr>
+<td>Firstname</td>
+<td>string</td>
+<td>First name of the customer.</td>
+</tr>
+<tr>
+<td>Lastname</td>
+<td>string</td>
+<td>Last name of the customer.</td>
+</tr>
+<tr>
+<td>identifiers</td>
+<td>obj</td>
+<td>Identifiers of the customer that you want to add in type and value. Supported types: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>, <code class="prettyprint">fbId</code> <code class="prettyprint">mobile</code>, <code class="prettyprint">tmall_uname</code>, <code class="prettyprint">cuid</code>, <code class="prettyprint">ali_uname</code>, <code class="prettyprint">jd_uname</code>, <code class="prettyprint">vip_uname</code>, and <code class="prettyprint">line</code>.</td>
+</tr>
+<tr>
+<td>profiles</td>
+<td>fields</td>
+<td>Custom field details (only that configured for the organization)</td>
+</tr>
+<tr>
+<td>extendedFields</td>
+<td>obj</td>
+<td>Extended field details of the customer in key:value pairs. You can only pass extended fields that are enabled for your org with the respective datatypes for values.</td>
+</tr>
+<tr>
+<td>fields</td>
+<td>obj</td>
+<td>Custom field details of the customer in key:value pairs.</td>
+</tr>
+<tr>
+<td>loyaltyProgramEnrollments</td>
+<td>obj</td>
+<td>Lets you enroll new customers in the loyalty program.</td>
+</tr>
+<tr>
+<td>programId</td>
+<td>int</td>
+<td>Unique ID of the loyalty program in which you want to enroll. You cannot update details if the customer is already enrolled in the loyalty program.</td>
+</tr>
+<tr>
+<td>tierNumber</td>
+<td>int</td>
+<td>Sequence number of the tier that you want to allocate to the customer. For example, <code class="prettyprint">1</code> for the lower tier, <code class="prettyprint">2</code> for the next tier, and so on.</td>
+</tr>
+<tr>
+<td>loyaltyPoints</td>
+<td>int</td>
+<td>Loyalty points to credit in customer&rsquo;s account.</td>
+</tr>
+<tr>
+<td>tierExpiryDate</td>
+<td>date-time</td>
+<td>Expiry date and time of the specified tier. Supported Format: YYYY-MM-DDTHH:MM:SS+/-(time-zone).</td>
+</tr>
+<tr>
+<td>pointsExpiryDate</td>
+<td>date-time</td>
+<td>Expiry date and time of the points issued. Supported Format: YYYY-MM-DDTHH:MM:SS+/-(time-zone).</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
+
+<h2 id="get-customer-loyalty-details">Get Customer Loyalty Details</h2>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>http://api.capillary.co.in/v2/customers/lookup/loyaltyDetails?source=INSTORE<span class="err">&amp;</span>identifierName=externalId<span class="err">&amp;</span>identifierValue=888555888555898855
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"redeemed"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"expired"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"returned"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"adjusted"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lifetimePoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"loyaltyPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cumulativePurchases"</span><span class="p">:</span><span class="w"> </span><span class="mf">24000.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"loyaltyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">143032714</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"currentSlab"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"nextSlab"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"nextSlabSerialNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"nextSlabDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"slabSNo"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"slabExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2121-02-18T23:59:59+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1414</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"delayedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"delayedReturnedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"totalAvailablePoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"totalReturnedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"linkedPartnerPrograms"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"redeemed"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"expired"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"returned"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"adjusted"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lifetimePoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"loyaltyPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cumulativePurchases"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"loyaltyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">143032714</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"currentSlab"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Base"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"nextSlab"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bbstar"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"nextSlabSerialNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"nextSlabDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bbstar"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"slabSNo"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"slabExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2121-05-08T01:20:22+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1679</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"delayedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"delayedReturnedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"totalAvailablePoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"totalReturnedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"linkedPartnerPrograms"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"redeemed"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"expired"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"returned"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"adjusted"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lifetimePoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"loyaltyPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cumulativePurchases"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"loyaltyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">143032714</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"currentSlab"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CLiQPerQ"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"nextSlab"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ignore"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"nextSlabSerialNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"nextSlabDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Ignore"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"slabSNo"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"slabExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2121-05-08T01:46:18+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1680</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"delayedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"delayedReturnedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"totalAvailablePoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"totalReturnedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"linkedPartnerPrograms"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Retrieves the loyalty information of a customer across all loyalty programs of the org . You can also fetch details of a specific loyalty program.</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/lookup/loyaltyDetails?{queryParams}</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v2/customers/lookup/loyaltyDetails?{paramName}={paramValue}</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>source*</td>
+<td>enum</td>
+<td>Source from which you need to fetch customer details. Values: <code class="prettyprint">INSTORE</code>(for InStore), <code class="prettyprint">WECHAT</code> (WeChat), <code class="prettyprint">MARTJACK</code>(AnywhereCommerce), <code class="prettyprint">WEB_ENGAGE</code> (Web-engage integration), ECOMMERCE (ECOMMERCE), <code class="prettyprint">JD</code> (JD), <code class="prettyprint">TAOBAO</code> (Taobao), <code class="prettyprint">TMALL</code> (TMall), <code class="prettyprint">FACEBOOK</code> (Facebook), <code class="prettyprint">WEBSITE</code> (other website), <code class="prettyprint">OTHERS</code> (any other source).</td>
+</tr>
+<tr>
+<td>accountId**</td>
+<td>string</td>
+<td>For sources with multiple accounts (such as MARTJACK, WECHAT), pass the respective account ID. Not applicable for <code class="prettyprint">INSTORE</code> source.</td>
+</tr>
+<tr>
+<td>identifierName*</td>
+<td>enum</td>
+<td>Pass any of the registered identifier name of the customer. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">id</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>,  <code class="prettyprint">fbId</code> (Facebook ID), <code class="prettyprint">cardnumber</code>, <code class="prettyprint">cardExternalId</code>.</td>
+</tr>
+<tr>
+<td>identifierValue*</td>
+<td>string</td>
+<td>Pass the respective identifier value. For example if <code class="prettyprint">identifierType</code> is mobile, <code class="prettyprint">identifierValue</code> is mobile number.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
+
+<h2 id="fetch-customer-details-by-identifier">Fetch Customer Details (by Identifier)</h2>
+
+<p>Retrieves details of a customer by any of the identifiers (mobile number, email ID, external ID, or card number).</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/customers/lookup/customerDetails?source=WECHAT<span class="err">&amp;</span>accountId=22232<span class="err">&amp;</span>identifierName=mobile<span class="err">&amp;</span>identifierValue=919999000001<span class="err">&amp;</span>embed=mlp
+
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">481220846</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"profiles"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"firstName"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"lastName"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"attribution"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"createDate"</span><span class="p">:</span><span class="s2">"2021-02-18T20:31:15+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdBy"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">12970395</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"sit.admin"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"sit.admin"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"modifiedBy"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">12970395</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"sit.admin"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"sit.admin"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"modifiedDate"</span><span class="p">:</span><span class="s2">"2021-02-22T13:27:29+05:30"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="s2">"fields"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"ihcl_active"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tcp_active"</span><span class="p">:</span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tierup_airasia"</span><span class="p">:</span><span class="s2">"2"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="s2">"identifiers"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"externalId"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"888555888555898855"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"line"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"lineAS6"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"cardNumber"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"TTM001110000000002ZS"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="mi">19</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"statusLabel"</span><span class="p">:</span><span class="s2">"ACTIVE"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"919999000001"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"commChannels"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"919999000001"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"primary"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"verified"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"meta"</span><span class="p">:{</span><span class="w">
+                  </span><span class="s2">"residence"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"office"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="s2">"attributes"</span><span class="p">:{</span><span class="w">
+
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"source"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"userId"</span><span class="p">:</span><span class="mi">481220846</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"accountId"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"conflictingProfileList"</span><span class="p">:[</span><span class="w">
+
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"autoUpdateTime"</span><span class="p">:</span><span class="s2">"2021-09-14T17:53:13+05:30"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"identifiersAll"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"externalId"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"888555888555898855"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"loyaltyInfo"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"loyaltyType"</span><span class="p">:</span><span class="s2">"loyalty"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"attributionV2"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"createDate"</span><span class="p">:</span><span class="s2">"2021-02-18T20:31:15+05:30"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"createdBy"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">12970395</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"sit.admin"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"sit.admin"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="s2">"modifiedBy"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">12970395</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"sit.admin"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"sit.admin"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="s2">"modifiedDate"</span><span class="p">:</span><span class="s2">"2021-02-22T13:27:29+05:30"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"createdFromSource"</span><span class="p">:</span><span class="s2">"instore"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"lifetimePurchases"</span><span class="p">:</span><span class="mf">24000.0</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"fraudDetails"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"markedBy"</span><span class="p">:{</span><span class="w">
+
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"modifiedOn"</span><span class="p">:</span><span class="s2">"2019-09-23T15:13:14+05:30"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"NOT_FRAUD"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"segments"</span><span class="p">:{</span><span class="w">
+
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"associatedWith"</span><span class="p">:</span><span class="s2">"sit.admin"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"city"</span><span class="p">:</span><span class="s2">"Bangalore"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"gender"</span><span class="p">:</span><span class="s2">"Male"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"loyaltyProgramDetails"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"redeemed"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"expired"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"returned"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"adjusted"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"lifetimePoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"loyaltyPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"cumulativePurchases"</span><span class="p">:</span><span class="mf">24000.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"loyaltyId"</span><span class="p">:</span><span class="mi">143032714</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"currentSlab"</span><span class="p">:</span><span class="s2">"Default"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"nextSlab"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"nextSlabSerialNumber"</span><span class="p">:</span><span class="mi">-1</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"nextSlabDescription"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"slabSNo"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"slabExpiryDate"</span><span class="p">:</span><span class="s2">"2121-02-18T23:59:59+05:30"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programId"</span><span class="p">:</span><span class="mi">1414</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"delayedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"delayedReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"totalAvailablePoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"totalReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"linkedPartnerPrograms"</span><span class="p">:[</span><span class="w">
+
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"programTitle"</span><span class="p">:</span><span class="s2">"Tata Digital SITDefaultProgram"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programDescription"</span><span class="p">:</span><span class="s2">"Default program for Tata Digital SIT"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programPointsToCurrencyRatio"</span><span class="p">:</span><span class="mf">1.0</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"redeemed"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"expired"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"returned"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"adjusted"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"lifetimePoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"loyaltyPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"cumulativePurchases"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"loyaltyId"</span><span class="p">:</span><span class="mi">143032714</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"currentSlab"</span><span class="p">:</span><span class="s2">"Copper*"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"nextSlab"</span><span class="p">:</span><span class="s2">"Copper"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"nextSlabSerialNumber"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"nextSlabDescription"</span><span class="p">:</span><span class="s2">"Copper"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"slabSNo"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"slabExpiryDate"</span><span class="p">:</span><span class="s2">"2121-05-07T23:48:47+05:30"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programId"</span><span class="p">:</span><span class="mi">1422</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"delayedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"delayedReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"totalAvailablePoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"totalReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"linkedPartnerPrograms"</span><span class="p">:[</span><span class="w">
+
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"programTitle"</span><span class="p">:</span><span class="s2">"IHCL"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programDescription"</span><span class="p">:</span><span class="s2">"IHCL"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programPointsToCurrencyRatio"</span><span class="p">:</span><span class="mf">1.0</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"redeemed"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"expired"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"returned"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"adjusted"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"lifetimePoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"loyaltyPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"cumulativePurchases"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"loyaltyId"</span><span class="p">:</span><span class="mi">143032714</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"currentSlab"</span><span class="p">:</span><span class="s2">"Privilege"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"nextSlab"</span><span class="p">:</span><span class="s2">"Tier 2"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"nextSlabSerialNumber"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"nextSlabDescription"</span><span class="p">:</span><span class="s2">"Tier 2"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"slabSNo"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"slabExpiryDate"</span><span class="p">:</span><span class="s2">"2121-05-07T20:44:49+05:30"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programId"</span><span class="p">:</span><span class="mi">1423</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"delayedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"delayedReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"totalAvailablePoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"totalReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"linkedPartnerPrograms"</span><span class="p">:[</span><span class="w">
+
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"programTitle"</span><span class="p">:</span><span class="s2">"Croma"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programDescription"</span><span class="p">:</span><span class="s2">"Croma"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programPointsToCurrencyRatio"</span><span class="p">:</span><span class="mf">1.0</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"redeemed"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"expired"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"returned"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"adjusted"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"lifetimePoints"</span><span class="p">:</span><span class="mf">420.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"loyaltyPoints"</span><span class="p">:</span><span class="mf">420.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"cumulativePurchases"</span><span class="p">:</span><span class="mf">24000.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"loyaltyId"</span><span class="p">:</span><span class="mi">143032714</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"currentSlab"</span><span class="p">:</span><span class="s2">"Aviator"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"nextSlab"</span><span class="p">:</span><span class="s2">"Explorer"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"nextSlabSerialNumber"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"nextSlabDescription"</span><span class="p">:</span><span class="s2">"Explorer"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"slabSNo"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"slabExpiryDate"</span><span class="p">:</span><span class="s2">"2121-03-10T23:59:59+05:30"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programId"</span><span class="p">:</span><span class="mi">1550</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"delayedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"delayedReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"totalAvailablePoints"</span><span class="p">:</span><span class="mf">420.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"totalReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"linkedPartnerPrograms"</span><span class="p">:[</span><span class="w">
+
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"programTitle"</span><span class="p">:</span><span class="s2">"AirAsia India"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programDescription"</span><span class="p">:</span><span class="s2">"AirAsia India"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programPointsToCurrencyRatio"</span><span class="p">:</span><span class="mf">1.0</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"redeemed"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"expired"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"returned"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"adjusted"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"lifetimePoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"loyaltyPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"cumulativePurchases"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"loyaltyId"</span><span class="p">:</span><span class="mi">143032714</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"currentSlab"</span><span class="p">:</span><span class="s2">"Base"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"nextSlab"</span><span class="p">:</span><span class="s2">"bbstar"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"nextSlabSerialNumber"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"nextSlabDescription"</span><span class="p">:</span><span class="s2">"bbstar"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"slabSNo"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"slabExpiryDate"</span><span class="p">:</span><span class="s2">"2121-05-08T01:20:22+05:30"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programId"</span><span class="p">:</span><span class="mi">1679</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"delayedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"delayedReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"totalAvailablePoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"totalReturnedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"linkedPartnerPrograms"</span><span class="p">:[</span><span class="w">
+
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"programTitle"</span><span class="p">:</span><span class="s2">"bigbasket"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programDescription"</span><span class="p">:</span><span class="s2">"bigbasket"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programPointsToCurrencyRatio"</span><span class="p">:</span><span class="mf">1.0</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"groupLoyaltyProgramDetails"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"groupProgramId"</span><span class="p">:</span><span class="mi">1414</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"title"</span><span class="p">:</span><span class="s2">"Tata Digital SITDefaultProgram"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"Default program for Tata Digital SIT"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programsList"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1414</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Tata Digital SITDefaultProgram"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"Default program for Tata Digital SIT"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1422</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"IHCL"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"IHCL"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1423</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Croma"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"Croma"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1424</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Tata Westside Loyalty"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1497</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Tata TataSky Loyalty"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"Tata TataSky Loyalty"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1550</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"AirAsia India"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"AirAsia India"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1568</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Tata Ginger Loyalty"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1679</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"bigbasket"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"bigbasket"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1680</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Tata CLiQ"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"Tata CLiQ"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1745</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Playground (TataCliq)"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"This is an experimental Program"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1762</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"TML  Loyalty"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"TML  Loyalty"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1766</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"1mg"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"1mg"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"lifetimePoints"</span><span class="p">:</span><span class="mf">420.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"loyaltyPoints"</span><span class="p">:</span><span class="mf">420.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"promisedPoints"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"pointsToCurrencyRatio"</span><span class="p">:</span><span class="mf">1.0</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"cardDetails"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"warnings"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td>`/lookup/customerDetails?{requestParams}&lsquo;</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v2/customers/lookup/customerDetails?source={source}&amp;accountId={accountId}&amp;identifierName={identifierName}&amp;identifierValue={identifierValue}&amp;embed={embedParameterName}</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifierName*</td>
+<td>enum</td>
+<td>Identifier type used to get customer details. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">cardnumber</code>, <code class="prettyprint">cardExternalId</code>.</td>
+</tr>
+<tr>
+<td>identifierValue*</td>
+<td>string</td>
+<td>Value of the identifierName passed. For example, <code class="prettyprint">identifierName=cardExternalId&amp;identifierValue=cardUUID123</code></td>
+</tr>
+<tr>
+<td>source*</td>
+<td>enum</td>
+<td>Source from which you want to fetch details. Value: <code class="prettyprint">INSTORE</code>, <code class="prettyprint">MARTJACK</code>, <code class="prettyprint">WECHAT</code>, <code class="prettyprint">ALL</code>. ( to fetch details from all sources. For sources with multiple accounts, you also need to pass the specific accountId.</td>
+</tr>
+<tr>
+<td>accountId**</td>
+<td>string</td>
+<td>For sources with multiple accounts, pass the specific accountId.</td>
+</tr>
+<tr>
+<td>embed</td>
+<td>enum</td>
+<td>To include the details of a specific entity in response. Value: <code class="prettyprint">points</code>, <code class="prettyprint">subscriptions</code>, <code class="prettyprint">mlp</code>, <code class="prettyprint">promotionalPoints</code>, <code class="prettyprint">expirySchedules</code>, <code class="prettyprint">expiredPoints</code>. For example, <code class="prettyprint">embed=expiredPoints</code> retrieves the summary of expired points of the customer. <br>Usage: <code>{host}/v2/customers/{CustomerId}/source=INSTORE&amp;&amp;embed=points</code>.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
+
+<h2 id="fetch-customer-id">Fetch Customer ID</h2>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>
+https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="err">&amp;</span>identifierName=mobile<span class="err">&amp;</span>identifierValue=919111111111
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Entity</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">unique</span><span class="w"> </span><span class="err">id</span><span class="w"> </span><span class="err">of</span><span class="w"> </span><span class="err">the</span><span class="w"> </span><span class="err">customer</span><span class="w">
+
+</span><span class="p">{</span><span class="w">
+</span><span class="s2">"entity"</span><span class="p">:</span><span class="w"> </span><span class="mi">306</span><span class="p">,</span><span class="w">
+</span><span class="s2">"warnings"</span><span class="p">:[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>Lets you fetch unique ID of a customer generated internally. This is required for customer related activities such as fetch customer details, update customer details, manage subscription details and other activities.</p>
+
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td>`/lookup?{query parameters}&rsquo;</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v2/customers/lookup?source={SourceName}&amp;accountId={accountId}&amp;identifierName={IdentifierName}&amp;identifierValue={IdentifierValue}</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>source*</td>
+<td>enum</td>
+<td>Specify the source from which you want to fetch the customer details. Values: FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, ALL.</td>
+</tr>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>Specify the account id of the specific source if the source has multiple accounts. <code class="prettyprint">accountId</code> is required for sources with multiple accounts such as WeChat or Facebook.</td>
+</tr>
+<tr>
+<td>identifierName*</td>
+<td>enum</td>
+<td>Identifier based on which you want to fetch the customer id. <strong>Values</strong>: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">cardnumber</code>, <code class="prettyprint">wechat</code>, <code class="prettyprint">martjackId</code>,<code class="prettyprint">fbId</code>.</td>
+</tr>
+<tr>
+<td>identifierValue*</td>
+<td>string</td>
+<td>Pass the respective identifier value.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
+
+<h3 id="error-codes">Error Codes</h3>
+
+<table><thead>
+<tr>
+<th>CODE</th>
+<th>DESCRIPTION</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>8015</td>
+<td>No customer found with the given identifier.</td>
+</tr>
+<tr>
+<td>8065</td>
+<td>No customer found in the given source with the given identifier.</td>
+</tr>
+<tr>
+<td>8045</td>
+<td>Account id is not passed.</td>
+</tr>
+<tr>
+<td>8013</td>
+<td>Customer identifier is invalid. Also check if the parameter identifierName is passed correctly.</td>
+</tr>
+<tr>
+<td>8011</td>
+<td>Invalid source account passed.</td>
+</tr>
+</tbody></table>
+
 <h2 id="response-codes">Response Codes</h2>
 
 <h3 id="success-codes">Success Codes</h3>
@@ -7588,11 +7853,6 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>Additional information about the transaction.</td>
 </tr>
 <tr>
-<td>parentBillNumber</td>
-<td>string</td>
-<td>Return transaction bill number.</td>
-</tr>
-<tr>
 <td>lineItemsV2</td>
 <td>obj</td>
 <td>Details of line-items.</td>
@@ -8129,7 +8389,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <tr>
 <td>identifierName*</td>
 <td>enum</td>
-<td>Pass any of the registered identifier name of the customer. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">id</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>, or <code class="prettyprint">fbId</code> (Facebook ID), cardnumber.</td>
+<td>Pass any of the registered identifier name of the customer. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">id</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>,  <code class="prettyprint">fbId</code> (Facebook ID), <code class="prettyprint">cardnumber</code>, <code class="prettyprint">cardExternalId</code>.</td>
 </tr>
 <tr>
 <td>identifierValue*</td>
@@ -8139,7 +8399,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <tr>
 <td>source*</td>
 <td>enum</td>
-<td>Pass the source from which the transaction is made. Values: <code class="prettyprint">INSTORE</code>( for InStore), <code class="prettyprint">WECHAT</code> (WeChat), <code class="prettyprint">MARTJACK</code>(AnywhereCommerce), <code class="prettyprint">WEB_ENGAGE</code> (Web-engage integration), ECOMMERCE (ECOMMERCE), <code class="prettyprint">JD</code> (JD), <code class="prettyprint">TAOBAO</code> (Taobao), <code class="prettyprint">TMALL</code> (TMall), <code class="prettyprint">FACEBOOK</code> (Facebook), <code class="prettyprint">WEBSITE</code> (other website), <code class="prettyprint">OTHERS</code> (any other source).</td>
+<td>Pass the source from which the transaction is made. Values: <code class="prettyprint">INSTORE</code>(for InStore), <code class="prettyprint">WECHAT</code> (WeChat), <code class="prettyprint">MARTJACK</code>(AnywhereCommerce), <code class="prettyprint">WEB_ENGAGE</code> (Web-engage integration), ECOMMERCE (ECOMMERCE), <code class="prettyprint">JD</code> (JD), <code class="prettyprint">TAOBAO</code> (Taobao), <code class="prettyprint">TMALL</code> (TMall), <code class="prettyprint">FACEBOOK</code> (Facebook), <code class="prettyprint">WEBSITE</code> (other website), <code class="prettyprint">OTHERS</code> (any other source).</td>
 </tr>
 <tr>
 <td>accountId</td>
