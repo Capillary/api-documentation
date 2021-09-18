@@ -773,7 +773,7 @@ Extended fields are either associated to verticals or to a generic category (ava
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">?source={Source Name}&amp;accountId={account id}</code></td>
+<td><code class="prettyprint">/customers</code></td>
 </tr>
 <tr>
 <td>Authentication</td>
@@ -805,33 +805,7 @@ Extended fields are either associated to verticals or to a generic category (ava
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">{host}/v2/customers?source={SourceName}&amp;accountId={accountId}</code></p>
-
-<h3 id="request-query-parameters">Request Query Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>source*</td>
-<td>enum</td>
-<td>Source in which you want to register a customer. Value: <code class="prettyprint">FACEBOOK</code>, <code class="prettyprint">WEB_ENGAGE</code>, <code class="prettyprint">WECHAT</code>, <code class="prettyprint">INSTORE</code>, <code class="prettyprint">MARTJACK</code>, <code class="prettyprint">TMALL</code>, <code class="prettyprint">TAOBAO</code>, <code class="prettyprint">JD</code>, <code class="prettyprint">ECOMMERCE</code>, <code class="prettyprint">WEBSITE</code>, <code class="prettyprint">LINE</code>, <code class="prettyprint">MOBILE_APP</code>. You can add customers on different sources.</td>
-</tr>
-<tr>
-<td>accountId**</td>
-<td>string</td>
-<td>For sources that support multiple accounts, provide the account ID. For example, FACEBOOK, WEB_ENGAGE, WECHAT, MOBILE_APP.</td>
-</tr>
-<tr>
-<td>activity</td>
-<td>enum</td>
-<td>State of the customer&rsquo;s lifecycle (entity lifecycle). State is auto assigned according to the activity.</td>
-</tr>
-</tbody></table>
+<p><code class="prettyprint">{host}/v2/customers</code></p>
 
 <aside class="notice">Parameter marked with * is mandatory.<br> If you try to register a customer that exists in a different source, the accounts will merge automatically.</aside>
 
@@ -851,23 +825,38 @@ Extended fields are either associated to verticals or to a generic category (ava
 </tr>
 <tr>
 <td>profiles</td>
-<td>obj</td>
+<td>list <obj></td>
 <td>Meta information of the customer.</td>
 </tr>
 <tr>
-<td>identifiers*</td>
-<td>obj</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Firstname</td>
+<td>string</td>
+<td>First name of the customer.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lastname</td>
+<td>string</td>
+<td>Last name of the customer.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;identifiers*</td>
+<td>list obj</td>
 <td>Identifiers of the customer in type and value.</td>
 </tr>
 <tr>
-<td>type</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source*</td>
 <td>enum</td>
-<td>Type of the customer identifier. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>, <code class="prettyprint">fbId</code> <code class="prettyprint">mobile</code>, <code class="prettyprint">tmall_uname</code>, <code class="prettyprint">cuid</code>, <code class="prettyprint">ali_uname</code>, <code class="prettyprint">jd_uname</code>, <code class="prettyprint">vip_uname</code>, <code class="prettyprint">mobilePush</code>, and <code class="prettyprint">line</code>, and <code class="prettyprint">card</code> (to issue loyalty card to the customers through registration).</td>
+<td>Source in which you want to register a customer. Value: <code class="prettyprint">FACEBOOK</code>, <code class="prettyprint">WEB_ENGAGE</code>, <code class="prettyprint">WECHAT</code>, <code class="prettyprint">INSTORE</code>, <code class="prettyprint">MARTJACK</code>, <code class="prettyprint">TMALL</code>, <code class="prettyprint">TAOBAO</code>, <code class="prettyprint">JD</code>, <code class="prettyprint">ECOMMERCE</code>, <code class="prettyprint">WEBSITE</code>, <code class="prettyprint">LINE</code>, <code class="prettyprint">MOBILE_APP</code>. You can add customers on different sources.</td>
 </tr>
 <tr>
-<td>value</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;accountId**</td>
 <td>string</td>
-<td>Value of the specified identifier. For the <code class="prettyprint">type</code> card, <code class="prettyprint">value</code> is card number.</td>
+<td>For sources that support multiple accounts, provide the account ID. For example, FACEBOOK, WEB_ENGAGE, WECHAT, MOBILE_APP.</td>
+</tr>
+<tr>
+<td>activity</td>
+<td>enum</td>
+<td>State of the customer&rsquo;s lifecycle (entity lifecycle). State is auto assigned according to the activity.</td>
 </tr>
 <tr>
 <td>seriesId</td>
@@ -885,19 +874,44 @@ Extended fields are either associated to verticals or to a generic category (ava
 <td>User defined card status. Required for the identifier <code class="prettyprint">type</code>,  <code class="prettyprint">card</code>.</td>
 </tr>
 <tr>
-<td>commChannels</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;commChannels</td>
 <td>obj</td>
 <td>Available communication channels of the customer. Value: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">wechat</code>, <code class="prettyprint">ios</code>, <code class="prettyprint">android</code>, <code class="prettyprint">line</code>, <code class="prettyprint">mobilePush</code>.</td>
 </tr>
 <tr>
-<td>Firstname</td>
-<td>string</td>
-<td>First name of the customer.</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type</td>
+<td>enum</td>
+<td>Type of the customer identifier. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>, <code class="prettyprint">fbId</code> <code class="prettyprint">mobile</code>, <code class="prettyprint">tmall_uname</code>, <code class="prettyprint">cuid</code>, <code class="prettyprint">ali_uname</code>, <code class="prettyprint">jd_uname</code>, <code class="prettyprint">vip_uname</code>, <code class="prettyprint">mobilePush</code>, and <code class="prettyprint">line</code>, and <code class="prettyprint">card</code> (to issue loyalty card to the customers through registration).</td>
 </tr>
 <tr>
-<td>Lastname</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value</td>
 <td>string</td>
-<td>Last name of the customer.</td>
+<td>Value of the specified identifier. For the <code class="prettyprint">type</code> card, <code class="prettyprint">value</code> is card number.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;primary</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> if it is the primary identifier of the org (for registration).</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verified</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> if the identifier is verified.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subscribed</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> if the identifier is subscribed for the org&rsquo;s newsletters (bulk messages).</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;meta</td>
+<td>obj</td>
+<td>Additional details of the identifier.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attributes</td>
+<td>obj</td>
+<td>Additional details of the identifier.</td>
 </tr>
 <tr>
 <td>createDate</td>
@@ -910,14 +924,14 @@ Extended fields are either associated to verticals or to a generic category (ava
 <td>The TILL code associated with the customer registration.</td>
 </tr>
 <tr>
-<td>extendedFields</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extendedFields</td>
 <td>obj</td>
-<td>Customer level extended field details of the customer in key:value pairs. You can only pass extended fields that are enabled for your org with the respective datatypes for values.</td>
+<td>Customer level extended field details in key:value pairs. You can only pass extended fields that are enabled for your org with the respective datatype values.</td>
 </tr>
 <tr>
-<td>fields</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fields</td>
 <td>obj</td>
-<td>Custom field details of customers in key-value pairs.</td>
+<td>Customer level custom field details in key-value pairs.</td>
 </tr>
 <tr>
 <td>lastViewedDate**</td>
@@ -1133,6 +1147,10 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <tr>
 <td>accountId**</td>
 <td>Account in which you want to update the customer details (Required only for sources with multiple accounts)</td>
+</tr>
+<tr>
+<td>use_async</td>
+<td>boolean</td>
 </tr>
 </tbody></table>
 
@@ -1386,6 +1404,11 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <td>statusLabel</td>
 <td>enum</td>
 <td>Status of the card. Value: ACTIVE (to activate a card).</td>
+</tr>
+<tr>
+<td>use_async</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to run Loyalty activities in the background, side effects will not be returned in the API response. If <code class="prettyprint">false</code>, API will wait for Loyalty activities to complete and then respond to the client with side effects in the API response.</td>
 </tr>
 </tbody></table>
 
@@ -5765,6 +5788,11 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>string</td>
 <td>Account in which you want to update the customer details (Required only for sources with multiple accounts)</td>
 </tr>
+<tr>
+<td>use_async</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to run Loyalty activities in the background, side effects will not be returned in the API response. If <code class="prettyprint">false</code>, API will wait for Loyalty activities to complete and then respond to the client with side effects in the API response.</td>
+</tr>
 </tbody></table>
 
 <aside class="notice">Parameters marked with * are mandatory.</aside>
@@ -5886,6 +5914,125 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </tbody></table>
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
+
+<h2 id="update-customer-status">Update customer status</h2>
+
+<p>Lets you update status label of a customer.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/customers/lookup/status?source=INSTORE<span class="err">&amp;</span>identifierName=mobile<span class="err">&amp;</span>identifierValue=919999000001
+</code></pre>
+<blockquote>
+<p>Sample PUT request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"testing2"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-09-16T12:10:45Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Active"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/lookup/status?identifierName={identifierName}&amp;identifierValue={IdentifierValue}&amp;{queryParams}</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>PUT</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p>For sources with single accounts</p>
+
+<p><code class="prettyprint">{host}/v2/customers/lookup/status?source={sourceName}?&amp;accountId={accountId}&amp;identifierName={identifierName}&amp;identifierValue={IdentifierValue}</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifierName*</td>
+<td>enum</td>
+<td>Identifier you use to update customer details. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>.</td>
+</tr>
+<tr>
+<td>identifierValue*</td>
+<td>string</td>
+<td>The respective identifier value. For example if <code class="prettyprint">identifierName</code> is email, then the <code class="prettyprint">identifierValue</code> needs to be the email ID of the customer.</td>
+</tr>
+<tr>
+<td>source*</td>
+<td>enum</td>
+<td>Specify the source in which you want to update the customer details - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, MOBILE_APP. For sources with multiple accounts such as WECHAT, FACEBOOK, MOBILE_APP, or LINE, you also need to provide the respective account id.</td>
+</tr>
+<tr>
+<td>accountId**</td>
+<td>string</td>
+<td>Account in which you want to update the customer details (Required only for sources with multiple accounts)</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>reason*</td>
+<td>string</td>
+<td>Reason for the update.</td>
+</tr>
+<tr>
+<td>createdOn</td>
+<td>date-time</td>
+<td>Date and time of the status update in ISO 8601 format - <code class="prettyprint">YYYY-MM-DDTHH:MM:SSZ</code>.</td>
+</tr>
+<tr>
+<td>label*</td>
+<td>string</td>
+<td>Predefined label name to update with.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
 
 <h2 id="get-customer-loyalty-details">Get Customer Loyalty Details</h2>
 
@@ -6509,7 +6656,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <tr>
 <td>source*</td>
 <td>enum</td>
-<td>Specify the source from which you want to fetch the customer details. Values: FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, ALL.</td>
+<td>Specify the source from which you want to fetch the customer details. Values: <code class="prettyprint">FACEBOOK</code>, <code class="prettyprint">WEB_ENGAGE</code>, <code class="prettyprint">WECHAT</code>, <code class="prettyprint">INSTORE</code>, <code class="prettyprint">MARTJACK</code>, <code class="prettyprint">TMALL</code>, <code class="prettyprint">TAOBAO</code>, <code class="prettyprint">JD</code>, <code class="prettyprint">ECOMMERCE</code>, <code class="prettyprint">WEBSITE</code>, <code class="prettyprint">LINE</code>, <code class="prettyprint">ALL</code>.</td>
 </tr>
 <tr>
 <td>accountId</td>
@@ -6519,7 +6666,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <tr>
 <td>identifierName*</td>
 <td>enum</td>
-<td>Identifier based on which you want to fetch the customer id. <strong>Values</strong>: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">cardnumber</code>, <code class="prettyprint">wechat</code>, <code class="prettyprint">martjackId</code>,<code class="prettyprint">fbId</code>.</td>
+<td>Identifier based on which you want to fetch the customer id. <strong>Values</strong>: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">cardnumber</code>, <code class="prettyprint">cardExternalId</code>, <code class="prettyprint">wechat</code>, <code class="prettyprint">martjackId</code>,<code class="prettyprint">fbId</code>.</td>
 </tr>
 <tr>
 <td>identifierValue*</td>
@@ -8412,6 +8559,8 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <td>Pass <code class="prettyprint">true</code> to run Loyalty activities in the background, side effects will not be returned in the API response. If <code class="prettyprint">false</code>, API will wait for Loyalty activities to complete and then respond to the client with side effects in the API response.</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
 
 <h3 id="request-body-parameters">Request Body Parameters</h3>
 
@@ -32794,7 +32943,7 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 <tr>
 <td>eventName*</td>
 <td>string</td>
-<td>Specify the name of the standard event that you want to enable</td>
+<td>Specify the name of the standard event that you want to enable.</td>
 </tr>
 </tbody></table>
 
@@ -39613,57 +39762,6 @@ https://sg.storecare.capillarytech.com/v2/add/ffcDetails?eventType=0
 </tbody></table>
 
 <aside class="notice"> Parameter marked by * is mandatory. </aside>
-
-<h2 id="publish-events">Publish Events</h2>
-
-<blockquote>
-<p>Sample Request</p>
-</blockquote>
-<pre class="highlight html"><code>http://us.api.capillarytech.com/v2/events/standard_events/enable
-</code></pre>
-<blockquote>
-<p>Sample POST Request</p>
-</blockquote>
-<pre class="highlight json"><code><span class="w">
-</span></code></pre>
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="w">
-</span></code></pre>
-<h3 id="request-information">Request Information</h3>
-
-<table><thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URI</td>
-<td><code class="prettyprint">/events/standard_events/enable</code></td>
-</tr>
-<tr>
-<td>Rate Limited?</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>Authentication</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>HTTP Method</td>
-<td>POST</td>
-</tr>
-<tr>
-<td>Batch Support</td>
-<td>No</td>
-</tr>
-</tbody></table>
-
-<h3 id="request-url">Request URL</h3>
-
-<p><code class="prettyprint">http://{host}/v2/events/standard_events/enable</code></p>
 
 <h2 id="disable-a-custom-event">Disable a Custom Event</h2>
 
