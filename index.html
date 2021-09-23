@@ -16628,12 +16628,16 @@ https://us.api.capillarytech.com/v2/verticals/meta
 <p>The <code class="prettyprint">org</code> entity lets you fetch details of a specific org including sources configured for the org. This category provides the list of APIs related to adding and fetching sources and accounts of the org.</p>
 
 <h2 id="add-source-account">Add Source Account</h2>
-<pre class="highlight html"><code># Sample Request
 
-https://us.api.capillarytech.com/v2/org/9081/sources
-</code></pre><pre class="highlight json"><code><span class="err">#</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">POST</span><span class="w"> </span><span class="err">Request</span><span class="w">
-
-</span><span class="p">{</span><span class="w">
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/org/9081/sources
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUSH289-CM"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"sourceAccountIdentifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PUSH289-CM"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"sourceTypeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WEB_ENGAGE"</span><span class="p">,</span><span class="w">
@@ -29867,251 +29871,247 @@ Batch Support | No
 <h2 id="get-org-sources">Get Org Sources</h2>
 
 <p>​
-Retrieves all sources configured for the org along with the supported communication channels for each source. 
-​
-​
-​</p>
+Retrieves all sources configured for the org along with the supported communication channels for each source. </p>
 
 <blockquote>
-<p>Sample Request
-​
-<code class="prettyprint">html
-​
-https://us.api.capillarytech.com/v2/meta/sources
-​
-</code>
-​
-​
-​
-​
-Sample Response 
-​
-&ldquo;`json
-​
-{
-   &quot;data&rdquo;:[
-      {
-         &ldquo;id&rdquo;:1,
-         &ldquo;name&rdquo;:&ldquo;Facebook&rdquo;,
-         &ldquo;commChannels&rdquo;:[
-            &ldquo;email&rdquo;,
-            &ldquo;mobile&rdquo;
-         ]
-      },
-      {
-         &ldquo;id&rdquo;:2,
-         &ldquo;name&rdquo;:&ldquo;WEB_ENGAGE&rdquo;,
-         &ldquo;commChannels&rdquo;:[
-            &ldquo;android&rdquo;,
-            &ldquo;email&rdquo;,
-            &ldquo;ios&rdquo;,
-            &ldquo;mobile&rdquo;
-         ]
-      },
-      {
-         &ldquo;id&rdquo;:3,
-         &ldquo;name&rdquo;:&ldquo;WECHAT&rdquo;,
-         &ldquo;commChannels&rdquo;:[
-            &ldquo;email&rdquo;,
-            &ldquo;mobile&rdquo;,
-            &ldquo;wechat&rdquo;
-         ]
-      },
-      {
-         &ldquo;id&rdquo;:5,
-         &ldquo;name&rdquo;:&ldquo;INSTORE&rdquo;,
-         &ldquo;commChannels&rdquo;:[
-            &ldquo;email&rdquo;,
-            &ldquo;mobile&rdquo;,
-            &ldquo;postmail&rdquo;,
-            &ldquo;whatsapp&rdquo;
-         ]
-      },
-      {
-         &ldquo;id&rdquo;:6,
-         &ldquo;name&rdquo;:&ldquo;MARTJACK&rdquo;,
-         &ldquo;commChannels&rdquo;:[
-            &ldquo;email&rdquo;,
-            &ldquo;whatsapp&rdquo;
-         ]
-      },
-      {
-         &ldquo;id&rdquo;:7,
-         &ldquo;name&rdquo;:&ldquo;TMALL&rdquo;,
-         &ldquo;commChannels&rdquo;:[
-            &ldquo;mobile&rdquo;
-         ]
-      },
-      {
-         &ldquo;id&rdquo;:8,
-         &ldquo;name&rdquo;:&ldquo;TAOBAO&rdquo;,
-         &ldquo;commChannels&rdquo;:[
-            &ldquo;email&rdquo;
-         ]
-      },
-      {
-         &ldquo;id&rdquo;:9,
-         &ldquo;name&rdquo;:&ldquo;JD&rdquo;,
-         &ldquo;commChannels&rdquo;:[
-            &ldquo;email&rdquo;
-         ]
-      },
-      {
-         &ldquo;id&rdquo;:10,
-         &ldquo;name&rdquo;:&ldquo;ECOMMERCE&rdquo;,
-         &ldquo;commChannels&rdquo;:[
-            &ldquo;email&rdquo;,
-            &ldquo;mobile&rdquo;,
-            &ldquo;whatsapp&rdquo;
-         ]
-      },
-      {
-         &ldquo;id&rdquo;:11,
-         &ldquo;name&rdquo;:&ldquo;WEBSITE&rdquo;,
-         &ldquo;commChannels&rdquo;:[
-            &ldquo;android&rdquo;,
-            &ldquo;email&rdquo;,
-            &ldquo;ios&rdquo;,
-            &ldquo;mobile&rdquo;,
-            &ldquo;wechat&rdquo;,
-            &ldquo;whatsapp&rdquo;
-         ]
-      },
-      {
-         &ldquo;id&rdquo;:12,
-         &ldquo;name&rdquo;:&ldquo;LINE&rdquo;,
-         &ldquo;commChannels&rdquo;:[
-            &ldquo;email&rdquo;,
-            &ldquo;line&rdquo;
-         ]
-      },
-      {
-         &ldquo;id&rdquo;:13,
-         &ldquo;name&rdquo;:&ldquo;XIAOHONGSHU&rdquo;,
-         &ldquo;commChannels&rdquo;:[
-            &ldquo;mobile&rdquo;
-         ]
-      },
-      {
-         &ldquo;id&rdquo;:14,
-         &ldquo;name&rdquo;:&ldquo;GLOBAL_SCANNER&rdquo;,
-         &ldquo;commChannels&rdquo;:[
-            &ldquo;email&rdquo;
-         ]
-      },
-      {
-         &ldquo;id&rdquo;:15,
-         &ldquo;name&rdquo;:&ldquo;SUNING&rdquo;,
-         &ldquo;commChannels&rdquo;:[
-            &ldquo;email&rdquo;,
-            &ldquo;mobile&rdquo;
-         ]
-      },
-      {
-         &ldquo;id&rdquo;:16,
-         &ldquo;name&rdquo;:&ldquo;PINDUODUO&rdquo;,
-         &ldquo;commChannels&rdquo;:[
-            &ldquo;email&rdquo;,
-            &ldquo;mobile&rdquo;
-         ]
-      },
-      {
-         &ldquo;id&rdquo;:17,
-         &ldquo;name&rdquo;:&ldquo;KAOLA&rdquo;,
-         &ldquo;commChannels&rdquo;:[
-            &ldquo;email&rdquo;
-         ]
-      },
-      {
-         &ldquo;id&rdquo;:18,
-         &ldquo;name&rdquo;:&ldquo;MOBILE_APP&rdquo;,
-         &ldquo;commChannels&rdquo;:[
-            &ldquo;android&rdquo;,
-            &ldquo;ios&rdquo;,
-            &ldquo;whatsapp&rdquo;
-         ]
-      },
-      {
-         &ldquo;id&rdquo;:19,
-         &ldquo;name&rdquo;:&ldquo;WHATSAPP&rdquo;,
-         &ldquo;commChannels&rdquo;:[
-            &ldquo;whatsapp&rdquo;
-         ]
-      },
-      {
-         &ldquo;id&rdquo;:20,
-         &ldquo;name&rdquo;:&ldquo;Linkedin&rdquo;,
-         &ldquo;commChannels&rdquo;:[</p>
+<p>Sample Request</p>
 </blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/meta/sources
+</code></pre>
+<blockquote>
+<p>Sample Response </p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+   </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Facebook"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"commChannels"</span><span class="p">:[</span><span class="w">
+            </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"mobile"</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"WEB_ENGAGE"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"commChannels"</span><span class="p">:[</span><span class="w">
+            </span><span class="s2">"android"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"ios"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"mobile"</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">3</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"WECHAT"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"commChannels"</span><span class="p">:[</span><span class="w">
+            </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"wechat"</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"commChannels"</span><span class="p">:[</span><span class="w">
+            </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"postmail"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"whatsapp"</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">6</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"MARTJACK"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"commChannels"</span><span class="p">:[</span><span class="w">
+            </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"whatsapp"</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">7</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"TMALL"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"commChannels"</span><span class="p">:[</span><span class="w">
+            </span><span class="s2">"mobile"</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">8</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"TAOBAO"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"commChannels"</span><span class="p">:[</span><span class="w">
+            </span><span class="s2">"email"</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">9</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"JD"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"commChannels"</span><span class="p">:[</span><span class="w">
+            </span><span class="s2">"email"</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"ECOMMERCE"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"commChannels"</span><span class="p">:[</span><span class="w">
+            </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"whatsapp"</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">11</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"WEBSITE"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"commChannels"</span><span class="p">:[</span><span class="w">
+            </span><span class="s2">"android"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"ios"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"wechat"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"whatsapp"</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">12</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"LINE"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"commChannels"</span><span class="p">:[</span><span class="w">
+            </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"line"</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">13</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"XIAOHONGSHU"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"commChannels"</span><span class="p">:[</span><span class="w">
+            </span><span class="s2">"mobile"</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">14</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"GLOBAL_SCANNER"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"commChannels"</span><span class="p">:[</span><span class="w">
+            </span><span class="s2">"email"</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"SUNING"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"commChannels"</span><span class="p">:[</span><span class="w">
+            </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"mobile"</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">16</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"PINDUODUO"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"commChannels"</span><span class="p">:[</span><span class="w">
+            </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"mobile"</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">17</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"KAOLA"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"commChannels"</span><span class="p">:[</span><span class="w">
+            </span><span class="s2">"email"</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">18</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"MOBILE_APP"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"commChannels"</span><span class="p">:[</span><span class="w">
+            </span><span class="s2">"android"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"ios"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"whatsapp"</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">19</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"WHATSAPP"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"commChannels"</span><span class="p">:[</span><span class="w">
+            </span><span class="s2">"whatsapp"</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">20</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Linkedin"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"commChannels"</span><span class="p">:[</span><span class="w">
 
-<p>]
-      },
-      {
-         &ldquo;id&rdquo;:21,
-         &ldquo;name&rdquo;:&ldquo;SMS&rdquo;,
-         &ldquo;commChannels&rdquo;:[</p>
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">21</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"SMS"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"commChannels"</span><span class="p">:[</span><span class="w">
 
-<p>]
-      },
-      {
-         &ldquo;id&rdquo;:22,
-         &ldquo;name&rdquo;:&ldquo;Indiamart&rdquo;,
-         &ldquo;commChannels&rdquo;:[</p>
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">22</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Indiamart"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"commChannels"</span><span class="p">:[</span><span class="w">
 
-<p>]
-      },
-      {
-         &ldquo;id&rdquo;:23,
-         &ldquo;name&rdquo;:&ldquo;VIBER&rdquo;,
-         &ldquo;commChannels&rdquo;:[
-            &ldquo;viber&rdquo;
-         ]
-      },
-      {
-         &ldquo;id&rdquo;:24,
-         &ldquo;name&rdquo;:&ldquo;MPUSH_FCM&rdquo;,
-         &ldquo;commChannels&rdquo;:[
-            &ldquo;android&rdquo;,
-            &ldquo;ios&rdquo;
-         ]
-      }
-   ],
-   &ldquo;warnings&rdquo;:[</p>
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">23</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"VIBER"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"commChannels"</span><span class="p">:[</span><span class="w">
+            </span><span class="s2">"viber"</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">24</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"MPUSH_FCM"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"commChannels"</span><span class="p">:[</span><span class="w">
+            </span><span class="s2">"android"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"ios"</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"warnings"</span><span class="p">:[</span><span class="w">
 
-<p>],
-   &ldquo;errors&rdquo;:[</p>
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"errors"</span><span class="p">:[</span><span class="w">
 
-<p>]
-}
-​
-&ldquo;`
-​
-​</p>
-
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <h3 id="resource-information">Resource Information</h3>
 
-<p>​
-​
-| | |
-&mdash;&mdash;&mdash; | &mdash;&mdash;&mdash;&ndash; |
-URI | <code class="prettyprint">v2/meta/sources</code>
-HTTP Method | GET
-API Version | v2
-Batch Support | No
-Rate Limited? | No
-​
-​
-​</p>
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/meta/sources</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+</tbody></table>
 
 <h3 id="request-url">Request URL</h3>
 
+<p><code class="prettyprint">https://{host}/v2/meta/sources</code></p>
+
 <p>​
-​
-<code class="prettyprint">https://{host}/v2/meta/sources</code>
-​
-​
-​
-​
 ​
 ​
 ​
@@ -30123,179 +30123,181 @@ Rate Limited? | No
 <p>​
 Retrieves the configuration details of a specific source. 
 ​
-​
-​</p>
-
+​&gt; Sample Request</p>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/org/100458/sources/2/configs
+</code></pre>
 <blockquote>
-<p>Sample Request
-​
-<code class="prettyprint">html
-​
-https://us.api.capillarytech.com/v2/org/100458/sources/2/configs
-​
-</code>
-​
-​
-​
-​
-Sample Response 
-​
-<code class="prettyprint">json
-​
-{
-    &quot;data&quot;: [
-        {
-            &quot;id&quot;: 11,
-            &quot;name&quot;: &quot;licenseCode&quot;,
-            &quot;type&quot;: &quot;string&quot;,
-            &quot;label&quot;: &quot;License Code&quot;,
-            &quot;sourceId&quot;: 2,
-            &quot;defaultValue&quot;: &quot;&quot;,
-            &quot;displayOrder&quot;: 1,
-            &quot;attribution&quot;: {
-                &quot;createDate&quot;: &quot;2017-03-02&quot;,
-                &quot;modifiedDate&quot;: &quot;2017-03-02&quot;
-            }
-        },
-        {
-            &quot;id&quot;: 12,
-            &quot;name&quot;: &quot;accessToken&quot;,
-            &quot;type&quot;: &quot;string&quot;,
-            &quot;label&quot;: &quot;Access Token&quot;,
-            &quot;sourceId&quot;: 2,
-            &quot;defaultValue&quot;: &quot;&quot;,
-            &quot;displayOrder&quot;: 2,
-            &quot;attribution&quot;: {
-                &quot;createDate&quot;: &quot;2017-03-02&quot;,
-                &quot;modifiedDate&quot;: &quot;2017-03-02&quot;
-            }
-        },
-        {
-            &quot;id&quot;: 13,
-            &quot;name&quot;: &quot;android&quot;,
-            &quot;type&quot;: &quot;bool&quot;,
-            &quot;label&quot;: &quot;Android&quot;,
-            &quot;sourceId&quot;: 2,
-            &quot;defaultValue&quot;: &quot;&quot;,
-            &quot;displayOrder&quot;: 3,
-            &quot;attribution&quot;: {
-                &quot;createDate&quot;: &quot;2017-03-02&quot;,
-                &quot;modifiedDate&quot;: &quot;2017-03-02&quot;
-            }
-        },
-        {
-            &quot;id&quot;: 14,
-            &quot;name&quot;: &quot;ios&quot;,
-            &quot;type&quot;: &quot;bool&quot;,
-            &quot;label&quot;: &quot;IOS&quot;,
-            &quot;sourceId&quot;: 2,
-            &quot;defaultValue&quot;: &quot;&quot;,
-            &quot;displayOrder&quot;: 4,
-            &quot;attribution&quot;: {
-                &quot;createDate&quot;: &quot;2017-03-02&quot;,
-                &quot;modifiedDate&quot;: &quot;2017-03-02&quot;
-            }
-        },
-        {
-            &quot;id&quot;: 15,
-            &quot;name&quot;: &quot;validTill&quot;,
-            &quot;type&quot;: &quot;list&quot;,
-            &quot;label&quot;: &quot;Valid Till Name&quot;,
-            &quot;sourceId&quot;: 2,
-            &quot;defaultValue&quot;: &quot;&quot;,
-            &quot;displayOrder&quot;: 5,
-            &quot;attribution&quot;: {
-                &quot;createDate&quot;: &quot;2017-03-02&quot;,
-                &quot;modifiedDate&quot;: &quot;2017-03-02&quot;
-            }
-        },
-        {
-            &quot;id&quot;: 16,
-            &quot;name&quot;: &quot;loginIdentifierType&quot;,
-            &quot;type&quot;: &quot;list&quot;,
-            &quot;label&quot;: &quot;Account linking identifier&quot;,
-            &quot;sourceId&quot;: 2,
-            &quot;defaultValue&quot;: &quot;&quot;,
-            &quot;displayOrder&quot;: 6,
-            &quot;attribution&quot;: {
-                &quot;createDate&quot;: &quot;2017-03-02&quot;,
-                &quot;modifiedDate&quot;: &quot;2017-03-02&quot;
-            }
-        },
-        {
-            &quot;id&quot;: 24,
-            &quot;name&quot;: &quot;trans_campaign_id&quot;,
-            &quot;type&quot;: &quot;string&quot;,
-            &quot;label&quot;: &quot;trans_campaign_id&quot;,
-            &quot;sourceId&quot;: 2,
-            &quot;defaultValue&quot;: &quot;&quot;,
-            &quot;displayOrder&quot;: 0,
-            &quot;attribution&quot;: {
-                &quot;createDate&quot;: &quot;2017-04-04&quot;,
-                &quot;modifiedDate&quot;: &quot;2017-04-04&quot;
-            }
-        },
-        {
-            &quot;id&quot;: 28,
-            &quot;name&quot;: &quot;deeplink&quot;,
-            &quot;type&quot;: &quot;list&quot;,
-            &quot;label&quot;: &quot;Deep Link&quot;,
-            &quot;sourceId&quot;: 2,
-            &quot;defaultValue&quot;: &quot;&quot;,
-            &quot;displayOrder&quot;: 7,
-            &quot;attribution&quot;: {
-                &quot;createDate&quot;: &quot;2017-06-22&quot;,
-                &quot;modifiedDate&quot;: &quot;2017-06-22&quot;
-            }
-        }
-    ],
-    &quot;warnings&quot;: [],
-    &quot;errors&quot;: []
-}
-​
-</code>
-​
-​</p>
-
+<p>Sample Response </p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"licenseCode"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"License Code"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sourceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"defaultValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"displayOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-02"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"modifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-02"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"accessToken"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Access Token"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sourceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"defaultValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"displayOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-02"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"modifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-02"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">13</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"android"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bool"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Android"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sourceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"defaultValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"displayOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-02"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"modifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-02"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">14</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ios"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bool"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IOS"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sourceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"defaultValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"displayOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-02"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"modifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-02"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"validTill"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"list"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Valid Till Name"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sourceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"defaultValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"displayOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-02"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"modifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-02"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">16</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"loginIdentifierType"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"list"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Account linking identifier"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sourceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"defaultValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"displayOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-02"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"modifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-03-02"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trans_campaign_id"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"trans_campaign_id"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sourceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"defaultValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"displayOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-04"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"modifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-04-04"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">28</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"deeplink"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"list"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Deep Link"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sourceId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"defaultValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"displayOrder"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-22"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"modifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2017-06-22"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <h3 id="resource-information">Resource Information</h3>
 
-<p>​
-​
-| | |
-&mdash;&mdash;&mdash; | &mdash;&mdash;&mdash;&ndash; |
-URI | <code class="prettyprint">v2/org/{orgId}/sources/{sourceId}/configs</code>
-HTTP Method | GET
-API Version | v2
-Batch Support | No
-Rate Limited? | No
-​
-​
-​</p>
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/org/{orgId}/sources/{sourceId}/configs</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+</tbody></table>
 
 <h3 id="request-url">Request URL</h3>
 
-<p>​
-​
-<code class="prettyprint">https://{host}/v2/org/{orgId}/sources/{sourceId}/configs</code>
-​
-​
-​
-​
-​
-​</p>
+<p><code class="prettyprint">https://{host}/v2/org/{orgId}/sources/{sourceId}/configs</code></p>
 
 <h3 id="request-path-parameters">Request Path Parameters</h3>
 
-<p>​
-Parameter | Datatype | Description
-&mdash;&mdash;&mdash; | &mdash;&mdash;&ndash; | &mdash;&mdash;&mdash;&ndash;
-orgId* | int | Unique code to identify the organization. 
-sourceId* | int | Unique ID of the source to fetch configurations.<br>
-​
-​
-​
-<aside class="notice"> Parameters marked with * are mandatory. </aside></p>
-</blockquote>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>orgId*</td>
+<td>int</td>
+<td>Unique code to identify the organization.</td>
+</tr>
+<tr>
+<td>sourceId*</td>
+<td>int</td>
+<td>Unique ID of the source to fetch configurations.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> Parameters marked with * are mandatory. </aside>
+
+<p>​</p>
 
           <h1 id="ffc">FFC</h1>
 
