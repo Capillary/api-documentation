@@ -586,7 +586,7 @@ Password: md5 hash (server123) which is 8a16a6b70505eb1f1ff7cdc0cd5559a7</p>
 </blockquote>
 <pre class="highlight html"><code>
 
-https://us.api.capillarytech.com/v2/customers?source=MOBILE_APP<span class="err">&amp;</span>accountId=400
+https://us.api.capillarytech.com/v2/customers
 </code></pre>
 <blockquote>
 <p>Sample POST Request</p>
@@ -645,11 +645,11 @@ https://us.api.capillarytech.com/v2/customers?source=MOBILE_APP<span class="err"
         </span><span class="p">}</span><span class="w">
       </span><span class="p">],</span><span class="w">    
       </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MOBILE_APP"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountId"</span><span class="p">:</span><span class="s2">"400"</span><span class="w">
       </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"employee"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"dateofbirth"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22-10-2000"</span><span class="w">
       </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"400"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">],</span><span class="w">
   </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
@@ -801,13 +801,31 @@ Extended fields are either associated to verticals or to a generic category (ava
 <td>WAIT_FOR_DOWNSTREAM</td>
 <td>Pass <code class="prettyprint">true</code> to wait for Loyalty activities to complete and then respond to the client with side effects in the API response.<br>Pass <code class="prettyprint">false</code> to run Loyalty activities in the background. No side effects are returned in the API response.</td>
 </tr>
+<tr>
+<td>X-CAP-DIRECT-REPLAY</td>
+<td>Pass <code class="prettyprint">true</code> to add the customer but enable loyalty events to be executed at a later point of time. The events will be pushed to queue and will be executed in near real-time.</td>
+</tr>
 </tbody></table>
 
 <h3 id="request-url">Request URL</h3>
 
 <p><code class="prettyprint">{host}/v2/customers</code></p>
 
-<aside class="notice">Parameter marked with * is mandatory.<br> If you try to register a customer that exists in a different source, the accounts will merge automatically.</aside>
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>rawSideEffects</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to get complete details of incentives such as awardOn, expiryDate, strategyIds and so on. See <code class="prettyprint">rawSideEffects</code> in response for more details.</td>
+</tr>
+</tbody></table>
 
 <h3 id="request-body-parameters">Request Body Parameters</h3>
 
@@ -968,9 +986,14 @@ Extended fields are either associated to verticals or to a generic category (ava
 <td>date-time</td>
 <td>Expiry date and time of the points issued. Supported Format: YYYY-MM-DDTHH:MM:SS+/-(time-zone).</td>
 </tr>
+<tr>
+<td>endPointsEnabled</td>
+<td>array</td>
+<td>Use this to add dummy customers (for internal or testing purposes) and specify the respective endpoints. Values: <code class="prettyprint">REFERRAL_ENDPOINT</code>, <code class="prettyprint">DVS_ENDPOINT</code>, <code class="prettyprint">TIMELINE_ENDPOINT</code>, <code class="prettyprint">POINTSENGINE_ENDPOINT</code>.</td>
+</tr>
 </tbody></table>
 
-<aside class="notice">Parameters marked with * are mandatory. </aside>
+<aside class="notice">Parameter marked with * is mandatory.<br> If you try to register a customer that exists in a different source, the accounts will be merged automatically.</aside>
 
 <h2 id="update-customer-details-using-userid">Update Customer Details (using userId)</h2>
 
@@ -7894,6 +7917,10 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <td>X-CAP-DIRECT-REPLAY</td>
 <td>Pass <code class="prettyprint">true</code> to add the call to the event execution queue (reply event) - in this case, transaction is added and other events will be executed later. Pass <code class="prettyprint">false</code> to directly execute the event - you will get response along with other event details (side effects).</td>
 </tr>
+<tr>
+<td>X-CAP-DIRECT-REPLAY</td>
+<td>Pass <code class="prettyprint">true</code> to add the transaction but enable loyalty events to trigger at a later point of time. The events will be pushed to queue and will be executed.</td>
+</tr>
 </tbody></table>
 
 <h3 id="request-url">Request URL</h3>
@@ -8288,7 +8315,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/transactions?source=instore<span class="err">&amp;</span>identifierValue=GOLD400000000000000022020<span class="err">&amp;</span>identifierName=cardnumber<span class="err">&amp;</span>accountId=
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/transactions?source=instore<span class="err">&amp;</span>identifierValue=GOLD400000000000000022020<span class="err">&amp;</span>identifierName=cardnumber<span class="err">&amp;</span>rawSideEffects=true<span class="err">&amp;</span>accountId=
 </code></pre>
 <blockquote>
 <p>Sample POST Request (REGULAR)</p>
@@ -8465,11 +8492,119 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
     </span><span class="s2">"sideEffects"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
             </span><span class="s2">"entityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USER"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"rawAwardedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">150.000</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"awardedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mi">150</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"rawAwardedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">1700.000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"awardedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mi">1700</span><span class="p">,</span><span class="w">
             </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"points"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">399000028</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"entityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USER"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"couponType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PE"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"couponCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KNRYHMRW"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"validTill"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2029-09-01T23:59:59+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NewCouponForAll"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"discountCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NO_VALUE"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"trimmedCouponCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"KNRYHMRW"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"coupon"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"rawSideEffects"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"awardOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BILL"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"awardStrategyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"35637"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"awardedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23rd Sep, 2021"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"awardedOnMillis"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1632397476258"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"billNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bill00017"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"evaluatedEntity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USER"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"expiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"24th Sep, 2021"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"expiryDateMillis"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1632508199999"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"expiryStrategyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"79650"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lineItemId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pointTypeId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6463"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pointTypeIsRedeemable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pointTypeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Main"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"points"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1500.000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1016"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"promoId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"promoIdentifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"promoName"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sourceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2147876300"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sourceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bill"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tenderCodeId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AWARD"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"awardOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"BILL"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"awardStrategyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60025"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"awardedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23rd Sep, 2021"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"awardedOnMillis"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1632397476258"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"billNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bill00017"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"evaluatedEntity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USER"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"expiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"23rd Sep, 2021"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"expiryDateMillis"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1632421799999"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"expiryStrategyId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"60024"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lineItemId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pointTypeId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6463"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pointTypeIsRedeemable"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pointTypeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Main"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"points"</span><span class="p">:</span><span class="w"> </span><span class="s2">"200.000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1016"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"promoId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"promoIdentifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"promoName"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sourceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2147876300"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sourceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bill"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tenderCodeId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"AWARD"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"delayInSec"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"emailDelayInSec"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"emailTemplateId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"expiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1882981799000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"issueDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thu Sep 23 17:14:37 IST 2021"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"maxRedemptionDivisor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"mobilePushDelayInSecs"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50074"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1016"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"shortenUrlCheck"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"smsSenderId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7022012384"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"smsTemplate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hi, please enjoy this offer: {{voucher_code}}"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sourceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2147876300"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sourceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bill"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sourceTypeId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PE_ISSUE_VOUCHER"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"416670898"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"voucherCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OKN8J3L6"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"voucherId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"398995893"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"voucherSeriesId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"363653"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"weChatDelay"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"delayInSec"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"emailDelayInSec"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"emailTemplateId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"expiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1882981799000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"issueDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Thu Sep 23 17:14:37 IST 2021"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"maxRedemptionDivisor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"mobilePushDelayInSecs"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50074"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1016"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"shortenUrlCheck"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"smsTemplate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hi, your coupon: {{voucher_code}}"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sourceId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2147876300"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sourceType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bill"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"sourceTypeId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PE_ISSUE_VOUCHER"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"416670898"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"voucherCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0X7UFW20"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"voucherId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"398995894"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"voucherSeriesId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"363653"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"weChatDelay"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
     </span><span class="s2">"customerInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sawyer"</span><span class="w">
@@ -8558,6 +8693,11 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <td>boolean</td>
 <td>Pass <code class="prettyprint">true</code> to run Loyalty activities in the background, side effects will not be returned in the API response. If <code class="prettyprint">false</code>, API will wait for Loyalty activities to complete and then respond to the client with side effects in the API response.</td>
 </tr>
+<tr>
+<td>rawSideEffects</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to get complete details of incentives such as awardOn, expiryDate, strategyIds and so on. See <code class="prettyprint">rawSideEffects</code> in response for more details.</td>
+</tr>
 </tbody></table>
 
 <aside class="notice">Parameters marked with * are mandatory.</aside>
@@ -8584,7 +8724,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <tr>
 <td>addWithLocalCurrency</td>
 <td>boolean</td>
-<td>Pass <code class="prettyprint">true</code> to add a transaction in local currency.</td>
+<td>Pass <code class="prettyprint">true</code> to add a transaction in local currency. Uses the default till currency if no value is passed.</td>
 </tr>
 <tr>
 <td>deliveryStatus</td>
