@@ -27849,6 +27849,729 @@ Batch Support | No
 </tr>
 </tbody></table>
 
+          <h1 id="user-group-v2">User Group (v2)</h1>
+
+<p>The new user group solves the use cases of both B2B loyalty and B2C loyalty unlike the previous version which was designed for B2C cases. This resource contains APIs to manage user groups.</p>
+
+<h2 id="create-group">Create Group</h2>
+
+<p>Lets you create a new user group.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/userGroup2
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"purple_externalId"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"groupName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name_purple"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"maxGroupSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">110</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"entity"</span><span class="p">:</span><span class="w"> </span><span class="mi">2361</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/userGroup2</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v2/userGroup2</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>externalId*</td>
+<td>string</td>
+<td>External ID of the group.</td>
+</tr>
+<tr>
+<td>groupName</td>
+<td>string</td>
+<td>Name of the group.</td>
+</tr>
+<tr>
+<td>maxGroupSize*</td>
+<td>int</td>
+<td>Maximum members to be supported in the group.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
+
+<h3 id="response-parameters">Response Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>entity</td>
+<td>int</td>
+<td>Unique ID of the group generated.</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-user-group">Update User Group</h2>
+
+<p>Lets you create a new user group.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/userGroup2
+</code></pre>
+<blockquote>
+<p>Sample PUT Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2361"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"groupName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"newName2"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"maxGroupSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">1110</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2361</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"groupName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"newName2"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"maxGroupSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">1110</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/userGroup2</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>PUT</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v2/userGroup2</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id**</td>
+<td>int</td>
+<td>Unique ID of the group.</td>
+</tr>
+<tr>
+<td>externalId**</td>
+<td>string</td>
+<td>External ID of the group.</td>
+</tr>
+<tr>
+<td>groupName</td>
+<td>string</td>
+<td>New name of the group</td>
+</tr>
+<tr>
+<td>maxGroupSize</td>
+<td>int</td>
+<td>New value for maximum members to be supported in the group.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Any one among the parameters marked with * is mandatory.</aside>
+
+<h2 id="get-group-details">Get Group Details</h2>
+
+<p>Retrieves the details of a specific group.</p>
+
+<blockquote>
+<p>Sample Request </p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/userGroup2?id=2476
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2476</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"purple_externalId1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"groupStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACTIVE"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-09-27T15:07:22+05:30"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"groupName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name_purple"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"maxGroupSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">110</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/userGroup2?{id/externalId}={value}</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v2/userGroup2?{id/externalId}={value}</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id**</td>
+<td>int</td>
+<td>Unique ID of the group to fetch.</td>
+</tr>
+<tr>
+<td>externalId**</td>
+<td>string</td>
+<td>External ID of the group to fetch.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Any one among the parameters marked with * is mandatory.</aside>
+
+<h3 id="response-parameters">Response Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>externalId</td>
+<td>string</td>
+<td>External ID of the group</td>
+</tr>
+<tr>
+<td>groupStatus</td>
+<td>enum</td>
+<td>Current status of the group. Value: <code class="prettyprint">ACTIVE</code>,</td>
+</tr>
+<tr>
+<td>createdBy</td>
+<td>int</td>
+<td>ID of the user or store entity that created the group.</td>
+</tr>
+<tr>
+<td>createdOn</td>
+<td>date-time</td>
+<td>Date and time of group creation in  ISO 8601 format - <code class="prettyprint">YYYY-MM-DDTHH:MM:SSz</code>.</td>
+</tr>
+<tr>
+<td>groupName</td>
+<td>string</td>
+<td>Name of the group.</td>
+</tr>
+<tr>
+<td>maxGroupSize</td>
+<td>int</td>
+<td>Maximum members supported in the group.</td>
+</tr>
+</tbody></table>
+
+<h2 id="delete-group">Delete Group</h2>
+
+<p>Removes an existing group.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/userGroup2?externalId=purple_externalId1
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/userGroup2?{id/externalId}={value}</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>DELETE</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v2/userGroup2?{id/externalId}={value}</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id**</td>
+<td>int</td>
+<td>Unique ID of the group to delete.</td>
+</tr>
+<tr>
+<td>externalId**</td>
+<td>string</td>
+<td>External ID of the group to delete.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Any one among the parameters marked with * is mandatory.</aside>
+
+<h2 id="join-member-to-group">Join Member to Group</h2>
+
+<p>Lets you add a new member to a group.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/userGroup2/join?id=2361
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">416066472</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"primaryMember"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+     </span><span class="s2">"permissions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="s2">"block_points_redemption"</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">416066472</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"groupId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2361</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"permissions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"block_points_redemption"</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"defaultGroup"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"primaryMember"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"result"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">416066472</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"groupId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2361</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"permissions"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                    </span><span class="s2">"block_points_redemption"</span><span class="w">
+                </span><span class="p">],</span><span class="w">
+                </span><span class="s2">"defaultGroup"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"primaryMember"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"totalCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"failureCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/userGroup2/join?id={id}</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v2/userGroup2/join?id={id}</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>userId*</td>
+<td>long</td>
+<td>Unique ID of the customer to add.</td>
+</tr>
+<tr>
+<td>primaryMember</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> if the customer is the primary member of the group, <code class="prettyprint">false</code> for secondary members.</td>
+</tr>
+<tr>
+<td>permissions</td>
+<td>array</td>
+<td>Pass the permissions/restrictions for the customer. Values: <code class="prettyprint">block_points_redemption</code> (disables redeeming points),</td>
+</tr>
+</tbody></table>
+
+<h3 id="response-parameters">Response Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>defaultGroup</td>
+<td>boolean</td>
+<td>Whether it is the default group for the customer.</td>
+</tr>
+<tr>
+<td>active</td>
+<td>boolean</td>
+<td>false</td>
+</tr>
+<tr>
+<td>result</td>
+<td>obj</td>
+<td></td>
+</tr>
+<tr>
+<td>userId</td>
+<td>long</td>
+<td>Unique ID of the customer/member.</td>
+</tr>
+<tr>
+<td>groupId</td>
+<td>int</td>
+<td>Group ID to which the customer is added.</td>
+</tr>
+<tr>
+<td>defaultGroup</td>
+<td>boolean</td>
+<td>Whether it is a default group for the customer. This will be <code class="prettyprint">true</code> for the primary member.</td>
+</tr>
+<tr>
+<td>permissions</td>
+<td>array</td>
+<td>Permissions of the member.</td>
+</tr>
+</tbody></table>
+
+<h2 id="remove-user-from-group">Remove User from Group</h2>
+
+<p>Removes a group member.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/userGroup2/2361/leave?source=INSTORE<span class="err">&amp;</span>accountId=<span class="err">&amp;</span>identifierName=mobile<span class="err">&amp;</span>identifierValue=8867000000
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/userGroup2/{groupId}/leave?source={source}&amp;accountId={accountId}&amp;identifierName={identifierName}&amp;identifierValue={identifierValue}</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>DELETE</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v2/userGroup2/{groupId}/leave?source={source}&amp;accountId={accountId}&amp;identifierName={identifierName}&amp;identifierValue={identifierValue}</code></p>
+
+<h3 id="request-path-parameters">Request Path Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>groupId*</td>
+<td>int</td>
+<td>Unique ID of the group from which the customer needs to remove.</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifierName*</td>
+<td>enum</td>
+<td>Identifier type used to identify customer. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">cardnumber</code>, <code class="prettyprint">cardExternalId</code>.</td>
+</tr>
+<tr>
+<td>identifierValue*</td>
+<td>string</td>
+<td>Value of the identifierName passed. For example, <code class="prettyprint">identifierName=cardExternalId&amp;identifierValue=cardUUID123</code></td>
+</tr>
+<tr>
+<td>source*</td>
+<td>enum</td>
+<td>Source from which you want to fetch details. Value: <code class="prettyprint">INSTORE</code>, <code class="prettyprint">MARTJACK</code>, <code class="prettyprint">WECHAT</code>, <code class="prettyprint">ALL</code>. ( to fetch details from all sources. For sources with multiple accounts, you also need to pass the specific accountId.</td>
+</tr>
+<tr>
+<td>accountId**</td>
+<td>string</td>
+<td>For sources with multiple accounts, pass the specific accountId.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
+
+<h2 id="transfer-group">Transfer Group</h2>
+
+<p>Lets you transfer customers from one group to another.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/userGroup2/transfer
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"leaveGroupId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2361</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"joinGroupId"</span><span class="p">:</span><span class="mi">2553</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"userIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="mi">416066472</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"success"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/userGroup2/transfer</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v2/userGroup2/transfer</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>leaveGroupId*</td>
+<td>int</td>
+<td>Group ID from which the customer needs to be removed (the customer should be the group member already).</td>
+</tr>
+<tr>
+<td>joinGroupId*</td>
+<td>int</td>
+<td>Group ID to which the customer needs to join.</td>
+</tr>
+<tr>
+<td>userIds*</td>
+<td>array</td>
+<td>Unique ID of the customers that you want to transfer to the new group.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
+
           <h1 id="partner-program">Partner Program</h1>
 
 <h2 id="link-partner-program">Link Partner Program</h2>
