@@ -54,6 +54,7 @@ This section provides the quarterly breakup of existing API updates and new API 
 *   **User Group Loyalty**: Helps in creating and managing user groups -for B2B use cases such as manufacturer, partners, distributers and dealers;  for B2C cases such as friends, family members, colleagues, or relatives of a customer. For details, see [Group Loyalty] (https://capillary.github.io/api-documentation/#group-loyalty-companies-hierarchies)
 *   **Cart & Catalog promotions**: You can now create and manage cart and catalog promotions using APIs. For more details, see [Cart & Catalog Promotions](https://capillary.github.io/api-documentation/#set-promotion-settings-org-level). - In Progress
 * **Card External ID Support**: Customer lookup APIs now support `cardExternalId` as an identifier to fetch or update customer details.
+* **Get [customers/coupons](https://capillary.github.io/api-documentation/#get-customer-coupons-basic): New param values added to status - `Active_Redeemed`, `Active_Unredeemed`, `Expired_Redeemed`, `Expired_Unredeemed`. 
 
 ## Q1 Releases (2021-2022)
 
