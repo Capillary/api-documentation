@@ -665,7 +665,7 @@ Rate Limited | Yes
 Header | Description
 ------ | -----------
 X-CAP-DIRECT-REPLAY | Pass `true` to add the call to the event execution queue (reply event) - in this case, transaction is added and other events will be executed later. Pass `false` to directly execute the event - you will get response along with other event details (side effects).
-
+X-CAP-DIRECT-REPLAY | Pass `true` to add the transaction but enable loyalty events to trigger at a later point of time. The events will be pushed to queue and will be executed.
 
 
 ### Request URL
@@ -694,7 +694,6 @@ discount | double | Discount availed for the transaction or line item (discount 
 grossAmount | double | Transaction amount before discount.
 outlierStatus | enum | Transaction level outlier status. Values: `NORMAL`, `INTERNAL`, `FRAUD`, `OUTLIER`, `TEST`, `DELETED`, `FAILED`, `OTHER`. This overrides the outlier status of the configured outlier settings.
 note | string | Additional information about the transaction.
-parentBillNumber | string | Return transaction bill number.
 lineItemsV2 | obj | Details of line-items.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;amount | double | Net line item amount. value-discount=amount
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description | string | One or two liner description of the line-item.
@@ -777,7 +776,7 @@ Lets you add a new transaction or return an existing transaction. It supports bo
 > Sample Request
 
 ```html
-https://us.api.capillarytech.com/v2/transactions?source=instore&identifierValue=GOLD400000000000000022020&identifierName=cardnumber&accountId=
+https://us.api.capillarytech.com/v2/transactions?source=instore&identifierValue=GOLD400000000000000022020&identifierName=cardnumber&rawSideEffects=true&accountId=
 ```
 
 > Sample POST Request (REGULAR)
@@ -956,13 +955,121 @@ https://us.api.capillarytech.com/v2/transactions?source=instore&identifierValue=
     "warnings": [],
     "errors": [],
     "sideEffects": [
-        {
+		{
             "entityType": "USER",
-            "rawAwardedPoints": 150.000,
-            "awardedPoints": 150,
+            "rawAwardedPoints": 1700.000,
+            "awardedPoints": 1700,
             "type": "points"
+        },
+        {
+            "id": 399000028,
+            "entityType": "USER",
+            "couponType": "PE",
+            "couponCode": "KNRYHMRW",
+            "validTill": "2029-09-01T23:59:59+05:30",
+            "description": "NewCouponForAll",
+            "discountCode": "NO_VALUE",
+            "trimmedCouponCode": "KNRYHMRW",
+            "type": "coupon"
         }
     ],
+	"rawSideEffects": [
+        {
+            "awardOn": "BILL",
+            "awardStrategyId": "35637",
+            "awardedOn": "23rd Sep, 2021",
+            "awardedOnMillis": "1632397476258",
+            "billNumber": "bill00017",
+            "evaluatedEntity": "USER",
+            "expiryDate": "24th Sep, 2021",
+            "expiryDateMillis": "1632508199999",
+            "expiryStrategyId": "79650",
+            "lineItemId": "-1",
+            "pointTypeId": "6463",
+            "pointTypeIsRedeemable": "true",
+            "pointTypeName": "Main",
+            "points": "1500.000",
+            "programId": "1016",
+            "promoId": "-1",
+            "promoIdentifier": "",
+            "promoName": "",
+            "sourceId": "2147876300",
+            "sourceType": "Bill",
+            "tenderCodeId": "-1",
+            "type": "AWARD"
+        },
+        {
+            "awardOn": "BILL",
+            "awardStrategyId": "60025",
+            "awardedOn": "23rd Sep, 2021",
+            "awardedOnMillis": "1632397476258",
+            "billNumber": "bill00017",
+            "evaluatedEntity": "USER",
+            "expiryDate": "23rd Sep, 2021",
+            "expiryDateMillis": "1632421799999",
+            "expiryStrategyId": "60024",
+            "lineItemId": "-1",
+            "pointTypeId": "6463",
+            "pointTypeIsRedeemable": "true",
+            "pointTypeName": "Main",
+            "points": "200.000",
+            "programId": "1016",
+            "promoId": "-1",
+            "promoIdentifier": "",
+            "promoName": "",
+            "sourceId": "2147876300",
+            "sourceType": "Bill",
+            "tenderCodeId": "-1",
+            "type": "AWARD"
+        },
+        {
+            "amount": "0.000",
+            "delayInSec": "0",
+            "emailDelayInSec": "0",
+            "emailTemplateId": "0",
+            "expiryDate": "1882981799000",
+            "issueDate": "Thu Sep 23 17:14:37 IST 2021",
+            "maxRedemptionDivisor": "0.000",
+            "mobilePushDelayInSecs": "0",
+            "orgId": "50074",
+            "programId": "1016",
+            "shortenUrlCheck": "0",
+            "smsSenderId": "7022012384",
+            "smsTemplate": "hi, please enjoy this offer: {{voucher_code}}",
+            "sourceId": "2147876300",
+            "sourceType": "Bill",
+            "sourceTypeId": "1",
+            "type": "PE_ISSUE_VOUCHER",
+            "userId": "416670898",
+            "voucherCode": "OKN8J3L6",
+            "voucherId": "398995893",
+            "voucherSeriesId": "363653",
+            "weChatDelay": "0"
+        },
+        {
+            "amount": "0.000",
+            "delayInSec": "0",
+            "emailDelayInSec": "0",
+            "emailTemplateId": "0",
+            "expiryDate": "1882981799000",
+            "issueDate": "Thu Sep 23 17:14:37 IST 2021",
+            "maxRedemptionDivisor": "0.000",
+            "mobilePushDelayInSecs": "0",
+            "orgId": "50074",
+            "programId": "1016",
+            "shortenUrlCheck": "0",
+            "smsTemplate": "Hi, your coupon: {{voucher_code}}",
+            "sourceId": "2147876300",
+            "sourceType": "Bill",
+            "sourceTypeId": "1",
+            "type": "PE_ISSUE_VOUCHER",
+            "userId": "416670898",
+            "voucherCode": "0X7UFW20",
+            "voucherId": "398995894",
+            "voucherSeriesId": "363653",
+            "weChatDelay": "0"
+        }
+    ]
     "customerInfo": {
         "firstName": "Tom",
         "lastName": "Sawyer"
@@ -999,11 +1106,15 @@ X-CAP-DIRECT-REPLAY | Pass `true` to add the call to the event execution queue (
 
 Parameter | Datatype | Description
 --------- | -------- | -----------
-identifierName* | enum | Pass any of the registered identifier name of the customer. Values: `mobile`, `email`, `externalId`, `id`, `wechat`,`martjackId`, or `fbId` (Facebook ID), cardnumber.
+identifierName* | enum | Pass any of the registered identifier name of the customer. Values: `mobile`, `email`, `externalId`, `id`, `wechat`,`martjackId`,  `fbId` (Facebook ID), `cardnumber`, `cardExternalId`.
 identifierValue* | string | Pass the respective identifier value. For example if `identifierType` is mobile, `identifierValue` is mobile number.
-source* | enum | Pass the source from which the transaction is made. Values: `INSTORE`( for InStore), `WECHAT` (WeChat), `MARTJACK`(AnywhereCommerce), `WEB_ENGAGE` (Web-engage integration), ECOMMERCE (ECOMMERCE), `JD` (JD), `TAOBAO` (Taobao), `TMALL` (TMall), `FACEBOOK` (Facebook), `WEBSITE` (other website), `OTHERS` (any other source).
+source* | enum | Pass the source from which the transaction is made. Values: `INSTORE`(for InStore), `WECHAT` (WeChat), `MARTJACK`(AnywhereCommerce), `WEB_ENGAGE` (Web-engage integration), ECOMMERCE (ECOMMERCE), `JD` (JD), `TAOBAO` (Taobao), `TMALL` (TMall), `FACEBOOK` (Facebook), `WEBSITE` (other website), `OTHERS` (any other source).
 accountId | string | For sources with multiple accounts (such as MARTJACK, WECHAT), pass the respective account ID. Not applicable for `INSTORE` source.
 use_async | boolean | Pass `true` to run Loyalty activities in the background, side effects will not be returned in the API response. If `false`, API will wait for Loyalty activities to complete and then respond to the client with side effects in the API response.
+rawSideEffects | boolean | Pass `true` to get complete details of incentives such as awardOn, expiryDate, strategyIds and so on. See `rawSideEffects` in response for more details. 
+
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
 
 ### Request Body Parameters
 
@@ -1011,7 +1122,7 @@ Parameter | Datatype | Description
 --------- | -------- | -----------
 extendedFields | obj | Valid transaction level extended field details in name and value pairs.
 currencyCode | string | ISO currency code of the transaction to add transaction with local currency. For example, `INR` for Indian Rupee, SGD for Singapore Dollar, `EUR` for Euro, `IQD` for Iraqi Dinar. Pass the currency code that are supported for your org (InTouch > Organization Setup) and ensure the currency conversion ratio is set using `v2/currencyratio`.
-addWithLocalCurrency | boolean | Pass `true` to add a transaction in local currency. 
+addWithLocalCurrency | boolean | Pass `true` to add a transaction in local currency. Uses the default till currency if no value is passed.
 deliveryStatus | enum | Delivery status of the item. Values: `PLACED`, `PROCESSED`, `SHIPPED`, `DELIVERED`, `RETURNED`. You can update the status using transac
 type* | enum | Type of transaction. Supported value: `REGULAR` for loyalty transactions. `RETURN` for return transactions. `NOT_INTERESTED`, `RETURN,NOT_INTERESTED_RETURN`.
 notInterestedReason | string | Notes on why the customer is not interested to enrol into the loyalty (`type`=`NOT_INTERESTED`). Max characters supported - 255. 

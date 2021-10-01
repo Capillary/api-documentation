@@ -358,7 +358,8 @@ Batch Support | No
 
 Parameter | Type | Description
 --------- | ---- | -----------
-eventName* | string | Specify the name of the standard event that you want to enable
+eventName* | string | Specify the name of the standard event that you want to enable.
+		
 
 <aside class="notice">Parameter marked by * is mandatory. </aside>
 
@@ -6884,46 +6885,6 @@ webHookId* | string | Specify the GUID of the webhook account that you want to d
 <aside class="notice"> Parameter marked by * is mandatory. </aside>
 
 
-
-
-
-## Publish Events
-
-
-> Sample Request
-
-```html
-http://us.api.capillarytech.com/v2/events/standard_events/enable
-```
-
-> Sample POST Request
-
-```json
-
-```
-
-
-> Sample Response
-
-```json
-
-```
-
-
-### Request Information
-
-| | |
---------- | ----------- |
-URI | `/events/standard_events/enable`
-Rate Limited? | Yes
-Authentication | Yes
-HTTP Method | POST
-Batch Support | No
-
-
-### Request URL
-
-`http://{host}/v2/events/standard_events/enable`
 
 
 

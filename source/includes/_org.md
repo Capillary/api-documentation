@@ -3,16 +3,16 @@ The `org` entity lets you fetch details of a specific org including sources conf
  
 ## Add Source Account
 
+> Sample Request
+
 ```html
-# Sample Request
- 
 https://us.api.capillarytech.com/v2/org/9081/sources
 ```
 
+> Sample POST Request
+
 
 ```json
-# Sample POST Request
-
 {
   "name": "PUSH289-CM",
   "sourceAccountIdentifier": "PUSH289-CM",

@@ -1255,24 +1255,17 @@ Batch Support | No
 ## Get Org Sources
 ​
 Retrieves all sources configured for the org along with the supported communication channels for each source. 
-​
-​
-​
+
 > Sample Request
-​
+
 ```html
-​
 https://us.api.capillarytech.com/v2/meta/sources
-​
 ```
-​
-​
-​
-​
+
 > Sample Response 
-​
+
 ```json
-​
+
 {
    "data":[
       {
@@ -1467,13 +1460,10 @@ https://us.api.capillarytech.com/v2/meta/sources
       
    ]
 }
-​
 ```
-​
-​
+
 ### Resource Information
-​
-​
+
 | | |
 --------- | ----------- |
 URI | `v2/meta/sources`
@@ -1481,16 +1471,12 @@ HTTP Method | GET
 API Version | v2
 Batch Support | No
 Rate Limited? | No
-​
-​
-​
+
+
 ### Request URL
-​
-​
+
 `https://{host}/v2/meta/sources`
-​
-​
-​
+
 ​
 ​
 ​
@@ -1501,23 +1487,15 @@ Rate Limited? | No
 ​
 Retrieves the configuration details of a specific source. 
 ​
-​
-​
-> Sample Request
-​
+​> Sample Request
+
 ```html
-​
 https://us.api.capillarytech.com/v2/org/100458/sources/2/configs
-​
 ```
-​
-​
-​
-​
+
 > Sample Response 
-​
+
 ```json
-​
 {
     "data": [
         {
@@ -1628,13 +1606,10 @@ https://us.api.capillarytech.com/v2/org/100458/sources/2/configs
     "warnings": [],
     "errors": []
 }
-​
 ```
-​
-​
+
 ### Resource Information
-​
-​
+
 | | |
 --------- | ----------- |
 URI | `v2/org/{orgId}/sources/{sourceId}/configs`
@@ -1642,26 +1617,19 @@ HTTP Method | GET
 API Version | v2
 Batch Support | No
 Rate Limited? | No
-​
-​
-​
+
 ### Request URL
-​
-​
+
 `https://{host}/v2/org/{orgId}/sources/{sourceId}/configs`
-​
-​
-​
-​
-​
-​
+
+
 ### Request Path Parameters
-​
+
 Parameter | Datatype | Description
 --------- | -------- | -----------
 orgId* | int | Unique code to identify the organization. 
 sourceId* | int | Unique ID of the source to fetch configurations.   
-​
-​
-​
+
 <aside class="notice"> Parameters marked with * are mandatory. </aside>
+
+​

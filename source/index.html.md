@@ -29,6 +29,7 @@ includes:
   - userGroup
   - cardLoyalty
   - groupLoyalty
+  - userGroup2
   - partnerProgram
   - organizationSource
   - storeCare

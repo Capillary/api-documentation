@@ -10,7 +10,7 @@ A customer is an individual who is either enrolled in the org's loyalty program 
 ```html
 
  
-https://us.api.capillarytech.com/v2/customers?source=MOBILE_APP&accountId=400
+https://us.api.capillarytech.com/v2/customers
 ```
 
 
@@ -71,11 +71,11 @@ https://us.api.capillarytech.com/v2/customers?source=MOBILE_APP&accountId=400
         }
       ],	
       "source": "MOBILE_APP",
+      "accountId":"400"
       "fields": {
         "employee": "true",
         "dateofbirth": "22-10-2000"
       },
-      "accountId": "400"
     }
   ],
   "extendedFields": {
@@ -202,7 +202,7 @@ Following are the prerequisites to use customer registration API:
 ### Resource Information
 | | |
 --------- | ----------- |
-URI | `?source={Source Name}&accountId={account id}`
+URI | `/customers`
 Authentication | Yes
 HTTP Method | POST
 Batch Support | No
@@ -212,39 +212,46 @@ Batch Support | No
 Header | Description
 ------ | -----------
 WAIT_FOR_DOWNSTREAM | Pass `true` to wait for Loyalty activities to complete and then respond to the client with side effects in the API response.<br>Pass `false` to run Loyalty activities in the background. No side effects are returned in the API response.
+X-CAP-DIRECT-REPLAY | Pass `true` to add the customer but enable loyalty events to be executed at a later point of time. The events will be pushed to queue and will be executed in near real-time.
 
 
 ### Request URL
 
-`{host}/v2/customers?source={SourceName}&accountId={accountId}`
+`{host}/v2/customers`
+
 
 ### Request Query Parameters
 Parameter | Type | Description
 --------- | ----- | -----------
-source* | enum | Source in which you want to register a customer. Value: `FACEBOOK`, `WEB_ENGAGE`, `WECHAT`, `INSTORE`, `MARTJACK`, `TMALL`, `TAOBAO`, `JD`, `ECOMMERCE`, `WEBSITE`, `LINE`, `MOBILE_APP`. You can add customers on different sources.
-accountId** | string | For sources that support multiple accounts, provide the account ID. For example, FACEBOOK, WEB_ENGAGE, WECHAT, MOBILE_APP. 
-activity | enum | State of the customer's lifecycle (entity lifecycle). State is auto assigned according to the activity. 
+rawSideEffects | boolean | Pass `true` to get complete details of incentives such as awardOn, expiryDate, strategyIds and so on. See `rawSideEffects` in response for more details.
 
-<aside class="notice">Parameter marked with * is mandatory.<br> If you try to register a customer that exists in a different source, the accounts will merge automatically.</aside>
 
 ### Request Body Parameters
 Parameter | Type | Description
 --------- | ----- | -----------
 loyaltyType* | enum | Loyalty status of the customer. Value: `loyalty`, `non_loyalty`.
-profiles | obj | Meta information of the customer.
-identifiers* | obj | Identifiers of the customer in type and value. 
-type | enum | Type of the customer identifier. Values: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, `fbId` `mobile`, `tmall_uname`, `cuid`, `ali_uname`, `jd_uname`, `vip_uname`, `mobilePush`, and `line`, and `card` (to issue loyalty card to the customers through registration).
-value | string | Value of the specified identifier. For the `type` card, `value` is card number.
+profiles | list <obj> | Meta information of the customer.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Firstname | string | First name of the customer.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lastname | string | Last name of the customer.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;identifiers* | list obj | Identifiers of the customer in type and value.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source* | enum | Source in which you want to register a customer. Value: `FACEBOOK`, `WEB_ENGAGE`, `WECHAT`, `INSTORE`, `MARTJACK`, `TMALL`, `TAOBAO`, `JD`, `ECOMMERCE`, `WEBSITE`, `LINE`, `MOBILE_APP`. You can add customers on different sources.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;accountId** | string | For sources that support multiple accounts, provide the account ID. For example, FACEBOOK, WEB_ENGAGE, WECHAT, MOBILE_APP. 
+activity | enum | State of the customer's lifecycle (entity lifecycle). State is auto assigned according to the activity.  
 seriesId | int | Card series ID (for card series generated in Capillary). Required for the identifier `type`,  `card`.
 seriesCode | string | Unique card series code (for external card series). Applicable for the identifier `type`,  `card`.
 statusLabel | string | User defined card status. Required for the identifier `type`,  `card`.
-commChannels | obj | Available communication channels of the customer. Value: `mobile`, `email`, `wechat`, `ios`, `android`, `line`, `mobilePush`.
-Firstname | string | First name of the customer.
-Lastname | string | Last name of the customer.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;commChannels | obj | Available communication channels of the customer. Value: `mobile`, `email`, `wechat`, `ios`, `android`, `line`, `mobilePush`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type | enum | Type of the customer identifier. Values: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, `fbId` `mobile`, `tmall_uname`, `cuid`, `ali_uname`, `jd_uname`, `vip_uname`, `mobilePush`, and `line`, and `card` (to issue loyalty card to the customers through registration).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value | string | Value of the specified identifier. For the `type` card, `value` is card number.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;primary | boolean | Pass `true` if it is the primary identifier of the org (for registration). 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;verified | boolean | Pass `true` if the identifier is verified.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subscribed | boolean | Pass `true` if the identifier is subscribed for the org's newsletters (bulk messages).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;meta | obj | Additional details of the identifier.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attributes | obj | Additional details of the identifier.
 createDate | date-time | Time and date of registration in `YYYY-MM-DDTHH:MM:SS+HH:MM` format. Example: 2016-06-23T19:11:18+08:00
 associatedWith | string | The TILL code associated with the customer registration.
-extendedFields | obj | Customer level extended field details of the customer in key:value pairs. You can only pass extended fields that are enabled for your org with the respective datatypes for values.
-fields | obj | Custom field details of customers in key-value pairs.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extendedFields | obj | Customer level extended field details in key:value pairs. You can only pass extended fields that are enabled for your org with the respective datatype values.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fields | obj | Customer level custom field details in key-value pairs.
 lastViewedDate** | Date | Date when the customer recently opened the app. Applicable for the channel `mobilePush`.
 loyaltyProgramEnrollments | obj | Lets you enroll new customers in the loyalty program.
 programId | int | Unique ID of the loyalty program in which you want to enroll.
@@ -252,9 +259,9 @@ tierNumber | int | Sequence number of the tier that you want to allocate to the 
 loyaltyPoints | int | Loyalty points to credit in customer's account.
 tierExpiryDate | date-time | Expiry date and time of the specified tier. Supported Format: YYYY-MM-DDTHH:MM:SS+/-(time-zone).
 pointsExpiryDate | date-time | Expiry date and time of the points issued. Supported Format: YYYY-MM-DDTHH:MM:SS+/-(time-zone).
+endPointsEnabled | array | Use this to add dummy customers (for internal or testing purposes) and specify the respective endpoints. Values: `REFERRAL_ENDPOINT`, `DVS_ENDPOINT`, `TIMELINE_ENDPOINT`, `POINTSENGINE_ENDPOINT`.
 
-
-<aside class="notice">Parameters marked with * are mandatory. </aside>
+<aside class="notice">Parameter marked with * is mandatory.<br> If you try to register a customer that exists in a different source, the accounts will be merged automatically.</aside>
 
 
 ## Update Customer Details (using userId)
@@ -403,6 +410,8 @@ Parameter | Description
 customerId* | Unique ID of the customer whose details need to be updated
 source* | Specify the source in which you want to update the customer details - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, MOBILE_APP. For sources with multiple accounts such as WECHAT, FACEBOOK, MOBILE_APP, or LINE, you also need to provide the respective account id.
 accountId** | Account in which you want to update the customer details (Required only for sources with multiple accounts)
+use_async | boolean | Pass `true` to run Loyalty activities in the background, side effects will not be returned in the API response. If `false`, API will wait for Loyalty activities to complete and then respond to the client with side effects in the API response.
+
 
 <aside class="notice">Parameters marked with * are mandatory.</aside>
 
@@ -433,149 +442,6 @@ tierExpiryDate | date-time | Expiry date and time of the specified tier. Support
 pointsExpiryDate | date-time | Expiry date and time of the points issued. Supported Format: YYYY-MM-DDTHH:MM:SS+/-(time-zone).
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
-
-
-## Update Customer Details (using identifier)
-Lets you update customer details with mobile number, email ID or external ID. 
-
-> Sample Request
-
-```html
-https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE&identifierName=mobile&identifierValue=919999000001
-```
-
-> Sample PUT request
-
-```json
-{  
-   "profiles":[  
-      {  
-         "firstName":"Tom",
-         "lastName":"Sawyer",
-         "fields":{  
-            "gender":"Male",
-            "city":"Bangalore"
-         },
-         "identifiers":[  
-            {  
-               "type":"email",
-               "value":"tom.sawyer@example.com"
-            },
-            {  
-               "type":"wechat",
-               "value":"wc_2"
-            }
-         ],
-         "commChannels":[  
-            {  
-               "type":"email",
-               "value":"tom.sawyer@example.com",
-               "primary":"true",
-               "verified":"false",
-               "meta":{  
-                  "residence":true
-               }
-            },
-            {  
-               "type":"wechat",
-               "value":"wc_2",
-               "primary":"true",
-               "verified":"true",
-               "meta":{  
-                  "residence":true
-               }
-            }
-         ],
-         "source":"WECHAT",
-         "accountId":"WeChat1234"
-      }
-   ],
-   "loyaltyInfo":{  
-      "loyaltyType":"loyalty"
-   },
-   "extendedFields":  
-      {  
-         "gender":"MALE",
-         "city":"Bangalore"
-      },
-	 "loyaltyProgramEnrollments":[{
-	 "programId":1016,
-	 "tierNumber": 234,
-	"loyaltyPoints": 75,
-	"tierExpiryDate": "2022-02-11T16:36:17+05:30",
-	"pointsExpiryDate": "2022-02-11T16:36:17+05:30"
-}]
-   
-}
-
-```
-
-> Sample Response
-
-```json
-{
-    "createdId": 342963216,
-    "warnings": [],
-    "sideEffects": []
-}
-```
-
-
-### Resource Information
-| | |
---------- | ----------- |
-URI | `/lookup?identifierName={identifierName}&identifierValue={IdentifierValue}&{queryParams}`
-Authentication | Yes
-HTTP Method | PUT
-Batch Support | No
-
-
-
-### Request URL
-For sources with single accounts
-
-`{host}/v2/customers/lookup?source={sourceName}?&accountId={accountId}&identifierName={identifierName}&identifierValue={IdentifierValue}`
-
-
-
-### Request Query Parameters
-Parameter | Datatype | Description
---------- | -------- | -----------
-identifierName* | enum | Identifier you use to update customer details. Values: `mobile`, `email`, `externalId`.
-identifierValue* | string | The respective identifier value. For example if `identifierName` is email, then the `identifierValue` needs to be the email ID of the customer.
-source* | enum | Specify the source in which you want to update the customer details - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, MOBILE_APP. For sources with multiple accounts such as WECHAT, FACEBOOK, MOBILE_APP, or LINE, you also need to provide the respective account id.
-accountId** | string | Account in which you want to update the customer details (Required only for sources with multiple accounts)
-
-<aside class="notice">Parameters marked with * are mandatory.</aside>
-
-### Request Body Parameters
-
-Parameter | Datatype | Description
---------- | ----- | -----------
-loyaltyType | enum | Loyalty status of the customer. Value: `loyalty`, `non_loyalty`.
-commChannels | obj | Communication channels of the customer. 
-type | enum | Type of the communication channel. Value: `mobile`, `email`, `wechat`, `ios`, `android`, `line, mobilePush`.
-value | string | Based on the channel `type` enter the channel value. Example, mobile number is the value for `type:mobile`, firebase token for `type:mobilePush`. mobilePush is supported for sources mobile_app, Instore, Martjack, Ecommerce, and Website
-primary | boolean | Whether the current identifier is the primary identifier of the customer (primary identifier as per the org's configuration).
-lastViewedDate | date | Date when the customer recently opened the app. Applicable for the channel 'mobilePush'.
-verified | boolean | Whether the current identifier is verified or not. For example, through OTP.
-profiles | obj | Profile information of the customer.
-meta | obj | Additional information of the identifier.
-Firstname | string | First name of the customer.
-Lastname | string | Last name of the customer.
-identifiers | obj | Identifiers of the customer that you want to add in type and value. Supported types: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, `fbId` `mobile`, `tmall_uname`, `cuid`, `ali_uname`, `jd_uname`, `vip_uname`, and `line`.
-profiles | fields | Custom field details (only that configured for the organization)
-extendedFields | obj | Extended field details of the customer in key:value pairs. You can only pass extended fields that are enabled for your org with the respective datatypes for values.
-fields | obj | Custom field details of the customer in key:value pairs.
-loyaltyProgramEnrollments | obj | Lets you enroll new customers in the loyalty program.
-programId | int | Unique ID of the loyalty program in which you want to enroll. You cannot update details if the customer is already enrolled in the loyalty program.
-tierNumber | int | Sequence number of the tier that you want to allocate to the customer. For example, `1` for the lower tier, `2` for the next tier, and so on.
-loyaltyPoints | int | Loyalty points to credit in customer's account.
-tierExpiryDate | date-time | Expiry date and time of the specified tier. Supported Format: YYYY-MM-DDTHH:MM:SS+/-(time-zone).
-pointsExpiryDate | date-time | Expiry date and time of the points issued. Supported Format: YYYY-MM-DDTHH:MM:SS+/-(time-zone).
-
-<aside class="notice">Parameters marked with * are mandatory. </aside>
-
 
 
 
@@ -680,6 +546,8 @@ source* | enum | Source in which you want to update customer identifier(s) - FAC
 accountId** | string | Account for which you want to update the customer identifier (Required only for sources with multiple accounts)
 seriesId | int | Series ID of the card that you want to add or remove.
 statusLabel | enum | Status of the card. Value: ACTIVE (to activate a card).
+use_async | boolean | Pass `true` to run Loyalty activities in the background, side effects will not be returned in the API response. If `false`, API will wait for Loyalty activities to complete and then respond to the client with side effects in the API response.
+
 
 
 <aside class="notice">Parameters marked with * are mandatory. acountId** is required for sources with multiple accounts.</aside>
@@ -2778,379 +2646,6 @@ Code | Description
 8012 | Invalid source passed.
 
 
-## Fetch Customer Details (by Identifier)
-Retrieves details of a customer by any of the identifiers (mobile number, email ID, external ID, or card number).
-
-
-
-> Sample Request
-
-```html
-https://eu.api.capillarytech.com/v2/customers/lookup/customerDetails?source=WECHAT&accountId=22232&identifierName=mobile&identifierValue=919999000001&embed=mlp
-
-```
-
-> Sample Response
-
-```json
-{
-   "id":481220846,
-   "profiles":[
-      {
-         "firstName":"",
-         "lastName":"",
-         "attribution":{
-            "createDate":"2021-02-18T20:31:15+05:30",
-            "createdBy":{
-               "id":12970395,
-               "code":"sit.admin",
-               "name":"sit.admin",
-               "type":"TILL"
-            },
-            "modifiedBy":{
-               "id":12970395,
-               "code":"sit.admin",
-               "name":"sit.admin",
-               "type":"TILL"
-            },
-            "modifiedDate":"2021-02-22T13:27:29+05:30"
-         },
-         "fields":{
-            "ihcl_active":"true",
-            "tcp_active":"true",
-            "tierup_airasia":"2"
-         },
-         "identifiers":[
-            {
-               "type":"externalId",
-               "value":"888555888555898855"
-            },
-            {
-               "type":"line",
-               "value":"lineAS6"
-            },
-            {
-               "type":"cardNumber",
-               "value":"TTM001110000000002ZS",
-               "seriesId":19,
-               "statusLabel":"ACTIVE"
-            },
-            {
-               "type":"mobile",
-               "value":"919999000001"
-            }
-         ],
-         "commChannels":[
-            {
-               "type":"mobile",
-               "value":"919999000001",
-               "primary":true,
-               "verified":false,
-               "meta":{
-                  "residence":false,
-                  "office":false
-               },
-               "attributes":{
-                  
-               }
-            }
-         ],
-         "source":"INSTORE",
-         "userId":481220846,
-         "accountId":"",
-         "conflictingProfileList":[
-            
-         ],
-         "autoUpdateTime":"2021-09-14T17:53:13+05:30",
-         "identifiersAll":[
-            {
-               "type":"externalId",
-               "value":"888555888555898855"
-            }
-         ]
-      }
-   ],
-   "loyaltyInfo":{
-      "loyaltyType":"loyalty",
-      "attributionV2":{
-         "createDate":"2021-02-18T20:31:15+05:30",
-         "createdBy":{
-            "id":12970395,
-            "code":"sit.admin",
-            "name":"sit.admin",
-            "type":"TILL"
-         },
-         "modifiedBy":{
-            "id":12970395,
-            "code":"sit.admin",
-            "name":"sit.admin",
-            "type":"TILL"
-         },
-         "modifiedDate":"2021-02-22T13:27:29+05:30",
-         "createdFromSource":"instore"
-      },
-      "lifetimePurchases":24000.0
-   },
-   "fraudDetails":{
-      "markedBy":{
-         
-      },
-      "modifiedOn":"2019-09-23T15:13:14+05:30",
-      "status":"NOT_FRAUD"
-   },
-   "segments":{
-      
-   },
-   "associatedWith":"sit.admin",
-   "extendedFields":{
-      "city":"Bangalore",
-      "gender":"Male"
-   },
-   "loyaltyProgramDetails":[
-      {
-         "redeemed":0.0,
-         "expired":0.0,
-         "returned":0.0,
-         "adjusted":0.0,
-         "lifetimePoints":0.0,
-         "loyaltyPoints":0.0,
-         "cumulativePurchases":24000.0,
-         "loyaltyId":143032714,
-         "currentSlab":"Default",
-         "nextSlab":"",
-         "nextSlabSerialNumber":-1,
-         "nextSlabDescription":"",
-         "slabSNo":1,
-         "slabExpiryDate":"2121-02-18T23:59:59+05:30",
-         "programId":1414,
-         "delayedPoints":0.0,
-         "delayedReturnedPoints":0.0,
-         "totalAvailablePoints":0.0,
-         "totalReturnedPoints":0.0,
-         "linkedPartnerPrograms":[
-            
-         ],
-         "programTitle":"Tata Digital SITDefaultProgram",
-         "programDescription":"Default program for Tata Digital SIT",
-         "programPointsToCurrencyRatio":1.0
-      },
-      {
-         "redeemed":0.0,
-         "expired":0.0,
-         "returned":0.0,
-         "adjusted":0.0,
-         "lifetimePoints":0.0,
-         "loyaltyPoints":0.0,
-         "cumulativePurchases":0.0,
-         "loyaltyId":143032714,
-         "currentSlab":"Copper*",
-         "nextSlab":"Copper",
-         "nextSlabSerialNumber":2,
-         "nextSlabDescription":"Copper",
-         "slabSNo":1,
-         "slabExpiryDate":"2121-05-07T23:48:47+05:30",
-         "programId":1422,
-         "delayedPoints":0.0,
-         "delayedReturnedPoints":0.0,
-         "totalAvailablePoints":0.0,
-         "totalReturnedPoints":0.0,
-         "linkedPartnerPrograms":[
-            
-         ],
-         "programTitle":"IHCL",
-         "programDescription":"IHCL",
-         "programPointsToCurrencyRatio":1.0
-      },
-      {
-         "redeemed":0.0,
-         "expired":0.0,
-         "returned":0.0,
-         "adjusted":0.0,
-         "lifetimePoints":0.0,
-         "loyaltyPoints":0.0,
-         "cumulativePurchases":0.0,
-         "loyaltyId":143032714,
-         "currentSlab":"Privilege",
-         "nextSlab":"Tier 2",
-         "nextSlabSerialNumber":2,
-         "nextSlabDescription":"Tier 2",
-         "slabSNo":1,
-         "slabExpiryDate":"2121-05-07T20:44:49+05:30",
-         "programId":1423,
-         "delayedPoints":0.0,
-         "delayedReturnedPoints":0.0,
-         "totalAvailablePoints":0.0,
-         "totalReturnedPoints":0.0,
-         "linkedPartnerPrograms":[
-            
-         ],
-         "programTitle":"Croma",
-         "programDescription":"Croma",
-         "programPointsToCurrencyRatio":1.0
-      },
-      {
-         "redeemed":0.0,
-         "expired":0.0,
-         "returned":0.0,
-         "adjusted":0.0,
-         "lifetimePoints":420.0,
-         "loyaltyPoints":420.0,
-         "cumulativePurchases":24000.0,
-         "loyaltyId":143032714,
-         "currentSlab":"Aviator",
-         "nextSlab":"Explorer",
-         "nextSlabSerialNumber":2,
-         "nextSlabDescription":"Explorer",
-         "slabSNo":1,
-         "slabExpiryDate":"2121-03-10T23:59:59+05:30",
-         "programId":1550,
-         "delayedPoints":0.0,
-         "delayedReturnedPoints":0.0,
-         "totalAvailablePoints":420.0,
-         "totalReturnedPoints":0.0,
-         "linkedPartnerPrograms":[
-            
-         ],
-         "programTitle":"AirAsia India",
-         "programDescription":"AirAsia India",
-         "programPointsToCurrencyRatio":1.0
-      },
-      {
-         "redeemed":0.0,
-         "expired":0.0,
-         "returned":0.0,
-         "adjusted":0.0,
-         "lifetimePoints":0.0,
-         "loyaltyPoints":0.0,
-         "cumulativePurchases":0.0,
-         "loyaltyId":143032714,
-         "currentSlab":"Base",
-         "nextSlab":"bbstar",
-         "nextSlabSerialNumber":2,
-         "nextSlabDescription":"bbstar",
-         "slabSNo":1,
-         "slabExpiryDate":"2121-05-08T01:20:22+05:30",
-         "programId":1679,
-         "delayedPoints":0.0,
-         "delayedReturnedPoints":0.0,
-         "totalAvailablePoints":0.0,
-         "totalReturnedPoints":0.0,
-         "linkedPartnerPrograms":[
-            
-         ],
-         "programTitle":"bigbasket",
-         "programDescription":"bigbasket",
-         "programPointsToCurrencyRatio":1.0
-      }
-   ],
-   "groupLoyaltyProgramDetails":[
-      {
-         "groupProgramId":1414,
-         "title":"Tata Digital SITDefaultProgram",
-         "description":"Default program for Tata Digital SIT",
-         "programsList":[
-            {
-               "id":1414,
-               "name":"Tata Digital SITDefaultProgram",
-               "description":"Default program for Tata Digital SIT"
-            },
-            {
-               "id":1422,
-               "name":"IHCL",
-               "description":"IHCL"
-            },
-            {
-               "id":1423,
-               "name":"Croma",
-               "description":"Croma"
-            },
-            {
-               "id":1424,
-               "name":"Tata Westside Loyalty",
-               "description":""
-            },
-            {
-               "id":1497,
-               "name":"Tata TataSky Loyalty",
-               "description":"Tata TataSky Loyalty"
-            },
-            {
-               "id":1550,
-               "name":"AirAsia India",
-               "description":"AirAsia India"
-            },
-            {
-               "id":1568,
-               "name":"Tata Ginger Loyalty",
-               "description":""
-            },
-            {
-               "id":1679,
-               "name":"bigbasket",
-               "description":"bigbasket"
-            },
-            {
-               "id":1680,
-               "name":"Tata CLiQ",
-               "description":"Tata CLiQ"
-            },
-            {
-               "id":1745,
-               "name":"Playground (TataCliq)",
-               "description":"This is an experimental Program"
-            },
-            {
-               "id":1762,
-               "name":"TML  Loyalty",
-               "description":"TML  Loyalty"
-            },
-            {
-               "id":1766,
-               "name":"1mg",
-               "description":"1mg"
-            }
-         ],
-         "lifetimePoints":420.0,
-         "loyaltyPoints":420.0,
-         "promisedPoints":0.0,
-         "pointsToCurrencyRatio":1.0
-      }
-   ],
-   "cardDetails":[
-      
-   ],
-   "warnings":[
-      
-   ]
-}
-```
-
-
-### Resource Information
-| | |
---------- | ----------- |
-URI | `/lookup/customerDetails?{requestParams}'
-Authentication | Yes
-HTTP Method | GET
-Batch Support | No
-
-
-### Request URL
-`{host}/v2/customers/lookup/customerDetails?source={source}&accountId={accountId}&identifierName={identifierName}&identifierValue={identifierValue}&embed={embedParameterName}`
-
-
-### Request Query Parameters
-Parameter | Datatype | Description
---------- | -------- | -----------
-identifierName* | enum | Identifier type used to get customer details. Values: `mobile`, `email`, `externalId`, `cardnumber`, `cardExternalId`.
-identifierValue* | string | Value of the identifierName passed. For example, `identifierName=cardExternalId&identifierValue=cardUUID123`
-source* | enum | Source from which you want to fetch details. Value: `INSTORE`, `MARTJACK`, `WECHAT`, `ALL`. ( to fetch details from all sources. For sources with multiple accounts, you also need to pass the specific accountId.
-accountId** |  string | For sources with multiple accounts, pass the specific accountId.
-embed | enum | To include the details of a specific entity in response. Value: `points`, `subscriptions`, `mlp`, `promotionalPoints`, `expirySchedules`, `expiredPoints`. For example, `embed=expiredPoints` retrieves the summary of expired points of the customer. <br>Usage: <code>{host}/v2/customers/{CustomerId}/source=INSTORE&&embed=points</code>.
-
-
-
-<aside class="notice">Parameters marked with * are mandatory. </aside>
 
 
 
@@ -4001,11 +3496,185 @@ autoApprove | boolean | Pass `true` to fetch requests that are auto-approved - w
 <aside class="notice">Parameters marked with * are mandatory. </aside>
 
 
+## Get Customer Coupons (Basic)
+
+Retrieves the history of a customer coupons with basic coupon details.
+
+> Sample Request
+
+```html
+http://api.capillary.co.in/v2/customers/coupons?id=401031250
+```
+
+> Sample Response
+
+```json
+{
+   "entity":{
+      "pagination":{
+         "limit":"100",
+         "offset":"0",
+         "total":4
+      },
+      "customers":[
+         {
+            "firstname":"Tom",
+            "lastname":"Sawyer",
+            "mobile":"918860000001",
+            "id":401031250,
+            "coupons":[
+               {
+                  "code":"KNRYHMRW",
+                  "seriesId":363653,
+                  "description":"NewCouponForAll",
+                  "validTill":"2029-09-01T00:00:00+05:30",
+                  "discountType":"ABS",
+                  "discountValue":1000.0,
+                  "discountUpto":0.0,
+                  "redemptionCount":0,
+                  "redemptionsLeft":1,
+                  "id":399000028,
+                  "createdDate":"2021-09-25T16:28:11+05:30",
+                  "transactionNumber":"2147877652",
+                  "issuedAt":{
+                     "code":"storecode",
+                     "name":"webstore1"
+                  },
+                  "redemptions":[
+                     
+                  ]
+               },
+               {
+                  "code":"7TF6TBQB",
+                  "seriesId":363653,
+                  "description":"NewCouponForAll",
+                  "validTill":"2029-09-01T00:00:00+05:30",
+                  "discountType":"ABS",
+                  "discountValue":1000.0,
+                  "discountUpto":0.0,
+                  "redemptionCount":0,
+                  "redemptionsLeft":1,
+                  "id":399000029,
+                  "createdDate":"2021-09-25T16:28:11+05:30",
+                  "transactionNumber":"2147877652",
+                  "issuedAt":{
+                     "code":"storecode",
+                     "name":"webstore1"
+                  },
+                  "redemptions":[
+                     
+                  ]
+               },
+               {
+                  "code":"6JAFX7ZF",
+                  "seriesId":363653,
+                  "description":"NewCouponForAll",
+                  "validTill":"2029-09-01T00:00:00+05:30",
+                  "discountType":"ABS",
+                  "discountValue":1000.0,
+                  "discountUpto":0.0,
+                  "redemptionCount":0,
+                  "redemptionsLeft":1,
+                  "id":399000026,
+                  "createdDate":"2021-09-25T16:25:25+05:30",
+                  "transactionNumber":"2147877651",
+                  "issuedAt":{
+                     "code":"storecode",
+                     "name":"webstore1"
+                  },
+                  "redemptions":[
+                     
+                  ]
+               },
+               {
+                  "code":"KZWMCYTR",
+                  "seriesId":14162,
+                  "description":"Mobile Push offer 1",
+                  "validTill":"2022-03-20T00:00:00+05:30",
+                  "discountType":"PERC",
+                  "discountValue":10.0,
+                  "discountUpto":0.0,
+                  "redemptionCount":0,
+                  "redemptionsLeft":1,
+                  "id":397755229,
+                  "createdDate":"2021-09-01T17:53:43+05:30",
+                  "transactionNumber":"2147861881",
+                  "issuedAt":{
+                     "code":"storecode",
+                     "name":"webstore1"
+                  },
+                  "redemptions":[
+                     
+                  ]
+               }
+            ]
+         }
+      ]
+   },
+   "warnings":[
+      
+   ],
+   "errors":[
+      
+   ],
+   "success":true
+}
+```
 
 
-## Get Customer Coupons
+### Resource Information
 
-Retrieves coupon history of a customer.
+| | |
+--------- | ----------- |
+URI | `/v2/customers/coupons?{queryParams}`
+HTTP Method | GET
+API Version | v2
+Batch Support | Yes
+Rate Limited | Yes
+
+### Request Query Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | ------------
+mobile/email/externalId/id* | string | Any identifier of the customer to fetch coupons. For example, `id=9876547`.
+status | enum | Filter results by coupon status. Value: `Active`, `Redeemed`, `Unexpired`, `Unredeemed`, `Active_Redeemed` (coupon is active but redeemed), `Active_Unredeemed` (coupon is active but not redeemed), `Expired_Redeemed` (coupon is expired but redeemed),and `Expired_Unredeemed` (coupon is expired and not redeemed).
+
+
+
+### Response Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+pagination | obj | Pagination details of the results retrieved.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;limit | int | Limit of results. Usually the default limit `100`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;offset | int | Number of records ignored from the top. Default value:0.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;total | int | Total number of results retrieved.
+customers | array-obj | Details of the customer and coupons.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;firstname | string | First name of the customer.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;lastname | string | Last name of the customer.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mobile | string | Registered mobile number of the customer.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id | long | Unique internal ID of the customer.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;coupons | array-obj | Details of customer coupons.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;code | string | Unique coupon code.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;seriesId | long | Series ID associated with the coupon.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description | string | Description of the coupon series.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;validTill | date-time | Validity of the coupon in ISO `8601` format.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;discountType | enum | Type of the discount. Value: absolute (`ABS`), or percentage ().
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;discountValue | float | Discount amount in the org currency.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;discountUpto | float | Amount capping on the discount for the coupon.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;redemptionCount | int | Number of times the coupon is redeemed.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;redemptionsLeft | int | Number of redemptions left for the coupon.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id | long | 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;createdDate | date-time | 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;transactionNumber | string | Unique transaction number.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;issuedAt | obj | Details of the store entity associated with the coupon.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;code | string | Org entity code associated with the coupon.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name | string | Name of the org entity associated with the coupon.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;redemptions | array | Redemption IDs of the coupon (if redeemed).
+
+## Get Customer Coupons (Detailed)
+
+Retrieves the history of a customer coupons along with the meta information.
 
 > Sample Request
 
@@ -4322,6 +3991,9 @@ customerId* | long | Unique ID of the customer to fetch coupons.
 
 
 
+
+
+
 ## Issue Card to an Existing Customer
 
 Lets you issue card to a loyalty customer. To issue an external or manually generated card, you need to first add the card using `/v2/card` API. To issue auto-generated card, you first need to issue the card using `card/generate` API. 
@@ -4388,6 +4060,766 @@ type* | enum | Pass `cardnumber` to issue card.
 statusLabel* | enum | New status of the card. Value: `ACTIVE`.
 
  
+
+
+# Customer Lookup
+
+It is an extension to normal customer APIs where instead of fetching or updating details using customer ID, you can use registered identfiers like mobile number, email ID, external ID, cardnumber and so on in `/customer/lookup`.
+
+
+## Update Customer Details (using identifier)
+Lets you update customer details with mobile number, email ID or external ID. 
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE&identifierName=mobile&identifierValue=919999000001
+```
+
+> Sample PUT request
+
+```json
+{  
+   "profiles":[  
+      {  
+         "firstName":"Tom",
+         "lastName":"Sawyer",
+         "fields":{  
+            "gender":"Male",
+            "city":"Bangalore"
+         },
+         "identifiers":[  
+            {  
+               "type":"email",
+               "value":"tom.sawyer@example.com"
+            },
+            {  
+               "type":"wechat",
+               "value":"wc_2"
+            }
+         ],
+         "commChannels":[  
+            {  
+               "type":"email",
+               "value":"tom.sawyer@example.com",
+               "primary":"true",
+               "verified":"false",
+               "meta":{  
+                  "residence":true
+               }
+            },
+            {  
+               "type":"wechat",
+               "value":"wc_2",
+               "primary":"true",
+               "verified":"true",
+               "meta":{  
+                  "residence":true
+               }
+            }
+         ],
+         "source":"WECHAT",
+         "accountId":"WeChat1234"
+      }
+   ],
+   "loyaltyInfo":{  
+      "loyaltyType":"loyalty"
+   },
+   "extendedFields":  
+      {  
+         "gender":"MALE",
+         "city":"Bangalore"
+      },
+	 "loyaltyProgramEnrollments":[{
+	 "programId":1016,
+	 "tierNumber": 234,
+	"loyaltyPoints": 75,
+	"tierExpiryDate": "2022-02-11T16:36:17+05:30",
+	"pointsExpiryDate": "2022-02-11T16:36:17+05:30"
+}]
+   
+}
+
+```
+
+> Sample Response
+
+```json
+{
+    "createdId": 342963216,
+    "warnings": [],
+    "sideEffects": []
+}
+```
+
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/lookup?identifierName={identifierName}&identifierValue={IdentifierValue}&{queryParams}`
+Authentication | Yes
+HTTP Method | PUT
+Batch Support | No
+
+
+
+### Request URL
+For sources with single accounts
+
+`{host}/v2/customers/lookup?source={sourceName}?&accountId={accountId}&identifierName={identifierName}&identifierValue={IdentifierValue}`
+
+
+
+### Request Query Parameters
+Parameter | Datatype | Description
+--------- | -------- | -----------
+identifierName* | enum | Identifier you use to update customer details. Values: `mobile`, `email`, `externalId`.
+identifierValue* | string | The respective identifier value. For example if `identifierName` is email, then the `identifierValue` needs to be the email ID of the customer.
+source* | enum | Specify the source in which you want to update the customer details - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, MOBILE_APP. For sources with multiple accounts such as WECHAT, FACEBOOK, MOBILE_APP, or LINE, you also need to provide the respective account id.
+accountId** | string | Account in which you want to update the customer details (Required only for sources with multiple accounts)
+use_async | boolean | Pass `true` to run Loyalty activities in the background, side effects will not be returned in the API response. If `false`, API will wait for Loyalty activities to complete and then respond to the client with side effects in the API response.
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
+
+### Request Body Parameters
+
+Parameter | Datatype | Description
+--------- | ----- | -----------
+loyaltyType | enum | Loyalty status of the customer. Value: `loyalty`, `non_loyalty`.
+commChannels | obj | Communication channels of the customer. 
+type | enum | Type of the communication channel. Value: `mobile`, `email`, `wechat`, `ios`, `android`, `line, mobilePush`.
+value | string | Based on the channel `type` enter the channel value. Example, mobile number is the value for `type:mobile`, firebase token for `type:mobilePush`. mobilePush is supported for sources mobile_app, Instore, Martjack, Ecommerce, and Website
+primary | boolean | Whether the current identifier is the primary identifier of the customer (primary identifier as per the org's configuration).
+lastViewedDate | date | Date when the customer recently opened the app. Applicable for the channel 'mobilePush'.
+verified | boolean | Whether the current identifier is verified or not. For example, through OTP.
+profiles | obj | Profile information of the customer.
+meta | obj | Additional information of the identifier.
+Firstname | string | First name of the customer.
+Lastname | string | Last name of the customer.
+identifiers | obj | Identifiers of the customer that you want to add in type and value. Supported types: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, `fbId` `mobile`, `tmall_uname`, `cuid`, `ali_uname`, `jd_uname`, `vip_uname`, and `line`.
+profiles | fields | Custom field details (only that configured for the organization)
+extendedFields | obj | Extended field details of the customer in key:value pairs. You can only pass extended fields that are enabled for your org with the respective datatypes for values.
+fields | obj | Custom field details of the customer in key:value pairs.
+loyaltyProgramEnrollments | obj | Lets you enroll new customers in the loyalty program.
+programId | int | Unique ID of the loyalty program in which you want to enroll. You cannot update details if the customer is already enrolled in the loyalty program.
+tierNumber | int | Sequence number of the tier that you want to allocate to the customer. For example, `1` for the lower tier, `2` for the next tier, and so on.
+loyaltyPoints | int | Loyalty points to credit in customer's account.
+tierExpiryDate | date-time | Expiry date and time of the specified tier. Supported Format: YYYY-MM-DDTHH:MM:SS+/-(time-zone).
+pointsExpiryDate | date-time | Expiry date and time of the points issued. Supported Format: YYYY-MM-DDTHH:MM:SS+/-(time-zone).
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
+
+
+## Update customer status
+
+Lets you update status label of a customer.
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/customers/lookup/status?source=INSTORE&identifierName=mobile&identifierValue=919999000001
+```
+
+> Sample PUT request
+
+```json
+{
+  "reason": "testing2",
+  "createdOn": "2021-09-16T12:10:45Z",
+  "label": "Active"
+}
+```
+
+> Sample Response
+
+```json
+{
+   "warnings": [],
+    "error": []
+}
+```
+
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/lookup/status?identifierName={identifierName}&identifierValue={IdentifierValue}&{queryParams}`
+Authentication | Yes
+HTTP Method | PUT
+Batch Support | No
+
+
+
+### Request URL
+For sources with single accounts
+
+`{host}/v2/customers/lookup/status?source={sourceName}?&accountId={accountId}&identifierName={identifierName}&identifierValue={IdentifierValue}`
+
+
+
+### Request Query Parameters
+Parameter | Datatype | Description
+--------- | -------- | -----------
+identifierName* | enum | Identifier you use to update customer details. Values: `mobile`, `email`, `externalId`.
+identifierValue* | string | The respective identifier value. For example if `identifierName` is email, then the `identifierValue` needs to be the email ID of the customer.
+source* | enum | Specify the source in which you want to update the customer details - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, MOBILE_APP. For sources with multiple accounts such as WECHAT, FACEBOOK, MOBILE_APP, or LINE, you also need to provide the respective account id.
+accountId** | string | Account in which you want to update the customer details (Required only for sources with multiple accounts)
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
+
+### Request Body Parameters
+
+Parameter | Datatype | Description
+--------- | ----- | -----------
+reason* | string | Reason for the update.
+createdOn | date-time | Date and time of the status update in ISO 8601 format - `YYYY-MM-DDTHH:MM:SSZ`.
+label* | string | Predefined label name to update with.
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
+
+
+## Get Customer Loyalty Details
+
+> Sample Request
+
+```html
+http://api.capillary.co.in/v2/customers/lookup/loyaltyDetails?source=INSTORE&identifierName=externalId&identifierValue=888555888555898855
+```
+
+> Sample Response
+
+```json
+{
+    "data": [
+        {
+            "redeemed": 0.0,
+            "expired": 0.0,
+            "returned": 0.0,
+            "adjusted": 0.0,
+            "lifetimePoints": 0.0,
+            "loyaltyPoints": 0.0,
+            "cumulativePurchases": 24000.0,
+            "loyaltyId": 143032714,
+            "currentSlab": "Default",
+            "nextSlab": "",
+            "nextSlabSerialNumber": -1,
+            "nextSlabDescription": "",
+            "slabSNo": 1,
+            "slabExpiryDate": "2121-02-18T23:59:59+05:30",
+            "programId": 1414,
+            "delayedPoints": 0.0,
+            "delayedReturnedPoints": 0.0,
+            "totalAvailablePoints": 0.0,
+            "totalReturnedPoints": 0.0,
+            "linkedPartnerPrograms": []
+        },
+        {
+            "redeemed": 0.0,
+            "expired": 0.0,
+            "returned": 0.0,
+            "adjusted": 0.0,
+            "lifetimePoints": 0.0,
+            "loyaltyPoints": 0.0,
+            "cumulativePurchases": 0.0,
+            "loyaltyId": 143032714,
+            "currentSlab": "Base",
+            "nextSlab": "bbstar",
+            "nextSlabSerialNumber": 2,
+            "nextSlabDescription": "bbstar",
+            "slabSNo": 1,
+            "slabExpiryDate": "2121-05-08T01:20:22+05:30",
+            "programId": 1679,
+            "delayedPoints": 0.0,
+            "delayedReturnedPoints": 0.0,
+            "totalAvailablePoints": 0.0,
+            "totalReturnedPoints": 0.0,
+            "linkedPartnerPrograms": []
+        },
+        {
+            "redeemed": 0.0,
+            "expired": 0.0,
+            "returned": 0.0,
+            "adjusted": 0.0,
+            "lifetimePoints": 0.0,
+            "loyaltyPoints": 0.0,
+            "cumulativePurchases": 0.0,
+            "loyaltyId": 143032714,
+            "currentSlab": "CLiQPerQ",
+            "nextSlab": "Ignore",
+            "nextSlabSerialNumber": 2,
+            "nextSlabDescription": "Ignore",
+            "slabSNo": 1,
+            "slabExpiryDate": "2121-05-08T01:46:18+05:30",
+            "programId": 1680,
+            "delayedPoints": 0.0,
+            "delayedReturnedPoints": 0.0,
+            "totalAvailablePoints": 0.0,
+            "totalReturnedPoints": 0.0,
+            "linkedPartnerPrograms": []
+        }
+    ],
+    "warnings": [],
+    "errors": []
+}
+```
+
+
+Retrieves the loyalty information of a customer across all loyalty programs of the org . You can also fetch details of a specific loyalty program.
+
+
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/lookup/loyaltyDetails?{queryParams}`
+Authentication | Yes
+HTTP Method | GET
+Batch Support | No
+
+
+### Request URL
+`{host}/v2/customers/lookup/loyaltyDetails?{paramName}={paramValue}`
+
+### Request Query Parameters
+Parameter | Type | Description
+--------- | ---- | -----------
+source* | enum | Source from which you need to fetch customer details. Values: `INSTORE`(for InStore), `WECHAT` (WeChat), `MARTJACK`(AnywhereCommerce), `WEB_ENGAGE` (Web-engage integration), ECOMMERCE (ECOMMERCE), `JD` (JD), `TAOBAO` (Taobao), `TMALL` (TMall), `FACEBOOK` (Facebook), `WEBSITE` (other website), `OTHERS` (any other source).
+accountId** | string | For sources with multiple accounts (such as MARTJACK, WECHAT), pass the respective account ID. Not applicable for `INSTORE` source.
+identifierName* | enum | Pass any of the registered identifier name of the customer. Values: `mobile`, `email`, `externalId`, `id`, `wechat`,`martjackId`,  `fbId` (Facebook ID), `cardnumber`, `cardExternalId`.
+identifierValue* | string | Pass the respective identifier value. For example if `identifierType` is mobile, `identifierValue` is mobile number.
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
+
+## Fetch Customer Details (by Identifier)
+Retrieves details of a customer by any of the identifiers (mobile number, email ID, external ID, or card number).
+
+
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/customers/lookup/customerDetails?source=WECHAT&accountId=22232&identifierName=mobile&identifierValue=919999000001&embed=mlp
+
+```
+
+> Sample Response
+
+```json
+{
+   "id":481220846,
+   "profiles":[
+      {
+         "firstName":"",
+         "lastName":"",
+         "attribution":{
+            "createDate":"2021-02-18T20:31:15+05:30",
+            "createdBy":{
+               "id":12970395,
+               "code":"sit.admin",
+               "name":"sit.admin",
+               "type":"TILL"
+            },
+            "modifiedBy":{
+               "id":12970395,
+               "code":"sit.admin",
+               "name":"sit.admin",
+               "type":"TILL"
+            },
+            "modifiedDate":"2021-02-22T13:27:29+05:30"
+         },
+         "fields":{
+            "ihcl_active":"true",
+            "tcp_active":"true",
+            "tierup_airasia":"2"
+         },
+         "identifiers":[
+            {
+               "type":"externalId",
+               "value":"888555888555898855"
+            },
+            {
+               "type":"line",
+               "value":"lineAS6"
+            },
+            {
+               "type":"cardNumber",
+               "value":"TTM001110000000002ZS",
+               "seriesId":19,
+               "statusLabel":"ACTIVE"
+            },
+            {
+               "type":"mobile",
+               "value":"919999000001"
+            }
+         ],
+         "commChannels":[
+            {
+               "type":"mobile",
+               "value":"919999000001",
+               "primary":true,
+               "verified":false,
+               "meta":{
+                  "residence":false,
+                  "office":false
+               },
+               "attributes":{
+                  
+               }
+            }
+         ],
+         "source":"INSTORE",
+         "userId":481220846,
+         "accountId":"",
+         "conflictingProfileList":[
+            
+         ],
+         "autoUpdateTime":"2021-09-14T17:53:13+05:30",
+         "identifiersAll":[
+            {
+               "type":"externalId",
+               "value":"888555888555898855"
+            }
+         ]
+      }
+   ],
+   "loyaltyInfo":{
+      "loyaltyType":"loyalty",
+      "attributionV2":{
+         "createDate":"2021-02-18T20:31:15+05:30",
+         "createdBy":{
+            "id":12970395,
+            "code":"sit.admin",
+            "name":"sit.admin",
+            "type":"TILL"
+         },
+         "modifiedBy":{
+            "id":12970395,
+            "code":"sit.admin",
+            "name":"sit.admin",
+            "type":"TILL"
+         },
+         "modifiedDate":"2021-02-22T13:27:29+05:30",
+         "createdFromSource":"instore"
+      },
+      "lifetimePurchases":24000.0
+   },
+   "fraudDetails":{
+      "markedBy":{
+         
+      },
+      "modifiedOn":"2019-09-23T15:13:14+05:30",
+      "status":"NOT_FRAUD"
+   },
+   "segments":{
+      
+   },
+   "associatedWith":"sit.admin",
+   "extendedFields":{
+      "city":"Bangalore",
+      "gender":"Male"
+   },
+   "loyaltyProgramDetails":[
+      {
+         "redeemed":0.0,
+         "expired":0.0,
+         "returned":0.0,
+         "adjusted":0.0,
+         "lifetimePoints":0.0,
+         "loyaltyPoints":0.0,
+         "cumulativePurchases":24000.0,
+         "loyaltyId":143032714,
+         "currentSlab":"Default",
+         "nextSlab":"",
+         "nextSlabSerialNumber":-1,
+         "nextSlabDescription":"",
+         "slabSNo":1,
+         "slabExpiryDate":"2121-02-18T23:59:59+05:30",
+         "programId":1414,
+         "delayedPoints":0.0,
+         "delayedReturnedPoints":0.0,
+         "totalAvailablePoints":0.0,
+         "totalReturnedPoints":0.0,
+         "linkedPartnerPrograms":[
+            
+         ],
+         "programTitle":"Tata Digital SITDefaultProgram",
+         "programDescription":"Default program for Tata Digital SIT",
+         "programPointsToCurrencyRatio":1.0
+      },
+      {
+         "redeemed":0.0,
+         "expired":0.0,
+         "returned":0.0,
+         "adjusted":0.0,
+         "lifetimePoints":0.0,
+         "loyaltyPoints":0.0,
+         "cumulativePurchases":0.0,
+         "loyaltyId":143032714,
+         "currentSlab":"Copper*",
+         "nextSlab":"Copper",
+         "nextSlabSerialNumber":2,
+         "nextSlabDescription":"Copper",
+         "slabSNo":1,
+         "slabExpiryDate":"2121-05-07T23:48:47+05:30",
+         "programId":1422,
+         "delayedPoints":0.0,
+         "delayedReturnedPoints":0.0,
+         "totalAvailablePoints":0.0,
+         "totalReturnedPoints":0.0,
+         "linkedPartnerPrograms":[
+            
+         ],
+         "programTitle":"IHCL",
+         "programDescription":"IHCL",
+         "programPointsToCurrencyRatio":1.0
+      },
+      {
+         "redeemed":0.0,
+         "expired":0.0,
+         "returned":0.0,
+         "adjusted":0.0,
+         "lifetimePoints":0.0,
+         "loyaltyPoints":0.0,
+         "cumulativePurchases":0.0,
+         "loyaltyId":143032714,
+         "currentSlab":"Privilege",
+         "nextSlab":"Tier 2",
+         "nextSlabSerialNumber":2,
+         "nextSlabDescription":"Tier 2",
+         "slabSNo":1,
+         "slabExpiryDate":"2121-05-07T20:44:49+05:30",
+         "programId":1423,
+         "delayedPoints":0.0,
+         "delayedReturnedPoints":0.0,
+         "totalAvailablePoints":0.0,
+         "totalReturnedPoints":0.0,
+         "linkedPartnerPrograms":[
+            
+         ],
+         "programTitle":"Croma",
+         "programDescription":"Croma",
+         "programPointsToCurrencyRatio":1.0
+      },
+      {
+         "redeemed":0.0,
+         "expired":0.0,
+         "returned":0.0,
+         "adjusted":0.0,
+         "lifetimePoints":420.0,
+         "loyaltyPoints":420.0,
+         "cumulativePurchases":24000.0,
+         "loyaltyId":143032714,
+         "currentSlab":"Aviator",
+         "nextSlab":"Explorer",
+         "nextSlabSerialNumber":2,
+         "nextSlabDescription":"Explorer",
+         "slabSNo":1,
+         "slabExpiryDate":"2121-03-10T23:59:59+05:30",
+         "programId":1550,
+         "delayedPoints":0.0,
+         "delayedReturnedPoints":0.0,
+         "totalAvailablePoints":420.0,
+         "totalReturnedPoints":0.0,
+         "linkedPartnerPrograms":[
+            
+         ],
+         "programTitle":"AirAsia India",
+         "programDescription":"AirAsia India",
+         "programPointsToCurrencyRatio":1.0
+      },
+      {
+         "redeemed":0.0,
+         "expired":0.0,
+         "returned":0.0,
+         "adjusted":0.0,
+         "lifetimePoints":0.0,
+         "loyaltyPoints":0.0,
+         "cumulativePurchases":0.0,
+         "loyaltyId":143032714,
+         "currentSlab":"Base",
+         "nextSlab":"bbstar",
+         "nextSlabSerialNumber":2,
+         "nextSlabDescription":"bbstar",
+         "slabSNo":1,
+         "slabExpiryDate":"2121-05-08T01:20:22+05:30",
+         "programId":1679,
+         "delayedPoints":0.0,
+         "delayedReturnedPoints":0.0,
+         "totalAvailablePoints":0.0,
+         "totalReturnedPoints":0.0,
+         "linkedPartnerPrograms":[
+            
+         ],
+         "programTitle":"bigbasket",
+         "programDescription":"bigbasket",
+         "programPointsToCurrencyRatio":1.0
+      }
+   ],
+   "groupLoyaltyProgramDetails":[
+      {
+         "groupProgramId":1414,
+         "title":"Tata Digital SITDefaultProgram",
+         "description":"Default program for Tata Digital SIT",
+         "programsList":[
+            {
+               "id":1414,
+               "name":"Tata Digital SITDefaultProgram",
+               "description":"Default program for Tata Digital SIT"
+            },
+            {
+               "id":1422,
+               "name":"IHCL",
+               "description":"IHCL"
+            },
+            {
+               "id":1423,
+               "name":"Croma",
+               "description":"Croma"
+            },
+            {
+               "id":1424,
+               "name":"Tata Westside Loyalty",
+               "description":""
+            },
+            {
+               "id":1497,
+               "name":"Tata TataSky Loyalty",
+               "description":"Tata TataSky Loyalty"
+            },
+            {
+               "id":1550,
+               "name":"AirAsia India",
+               "description":"AirAsia India"
+            },
+            {
+               "id":1568,
+               "name":"Tata Ginger Loyalty",
+               "description":""
+            },
+            {
+               "id":1679,
+               "name":"bigbasket",
+               "description":"bigbasket"
+            },
+            {
+               "id":1680,
+               "name":"Tata CLiQ",
+               "description":"Tata CLiQ"
+            },
+            {
+               "id":1745,
+               "name":"Playground (TataCliq)",
+               "description":"This is an experimental Program"
+            },
+            {
+               "id":1762,
+               "name":"TML  Loyalty",
+               "description":"TML  Loyalty"
+            },
+            {
+               "id":1766,
+               "name":"1mg",
+               "description":"1mg"
+            }
+         ],
+         "lifetimePoints":420.0,
+         "loyaltyPoints":420.0,
+         "promisedPoints":0.0,
+         "pointsToCurrencyRatio":1.0
+      }
+   ],
+   "cardDetails":[
+      
+   ],
+   "warnings":[
+      
+   ]
+}
+```
+
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/lookup/customerDetails?{requestParams}'
+Authentication | Yes
+HTTP Method | GET
+Batch Support | No
+
+
+### Request URL
+`{host}/v2/customers/lookup/customerDetails?source={source}&accountId={accountId}&identifierName={identifierName}&identifierValue={identifierValue}&embed={embedParameterName}`
+
+
+### Request Query Parameters
+Parameter | Datatype | Description
+--------- | -------- | -----------
+identifierName* | enum | Identifier type used to get customer details. Values: `mobile`, `email`, `externalId`, `cardnumber`, `cardExternalId`.
+identifierValue* | string | Value of the identifierName passed. For example, `identifierName=cardExternalId&identifierValue=cardUUID123`
+source* | enum | Source from which you want to fetch details. Value: `INSTORE`, `MARTJACK`, `WECHAT`, `ALL`. ( to fetch details from all sources. For sources with multiple accounts, you also need to pass the specific accountId.
+accountId** |  string | For sources with multiple accounts, pass the specific accountId.
+embed | enum | To include the details of a specific entity in response. Value: `points`, `subscriptions`, `mlp`, `promotionalPoints`, `expirySchedules`, `expiredPoints`. For example, `embed=expiredPoints` retrieves the summary of expired points of the customer. <br>Usage: <code>{host}/v2/customers/{CustomerId}/source=INSTORE&&embed=points</code>.
+
+
+
+<aside class="notice">Parameters marked with * are mandatory. </aside>
+
+
+## Fetch Customer ID
+
+> Sample Request
+
+```html
+
+https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE&identifierName=mobile&identifierValue=919111111111
+```
+> Sample Response
+
+```json
+# Entity is the unique id of the customer
+
+{
+"entity": 306,
+"warnings":[]
+}
+```
+
+Lets you fetch unique ID of a customer generated internally. This is required for customer related activities such as fetch customer details, update customer details, manage subscription details and other activities.
+
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/lookup?{query parameters}'
+Authentication | Yes
+HTTP Method | GET
+Batch Support | No
+
+
+
+### Request URL
+`{host}/v2/customers/lookup?source={SourceName}&accountId={accountId}&identifierName={IdentifierName}&identifierValue={IdentifierValue}`
+
+
+### Request Query Parameters
+Parameter | Datatype | Description
+--------- | -------- | -----------
+source* | enum | Specify the source from which you want to fetch the customer details. Values: `FACEBOOK`, `WEB_ENGAGE`, `WECHAT`, `INSTORE`, `MARTJACK`, `TMALL`, `TAOBAO`, `JD`, `ECOMMERCE`, `WEBSITE`, `LINE`, `ALL`.
+accountId | string | Specify the account id of the specific source if the source has multiple accounts. `accountId` is required for sources with multiple accounts such as WeChat or Facebook.
+identifierName* | enum | Identifier based on which you want to fetch the customer id. **Values**: `mobile`, `email`, `externalId`, `cardnumber`, `cardExternalId`, `wechat`, `martjackId`,`fbId`.
+identifierValue* | string | Pass the respective identifier value.
+
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
+
+### Error Codes
+CODE | DESCRIPTION
+---- | -----------
+8015 | No customer found with the given identifier.
+8065 | No customer found in the given source with the given identifier.
+8045 | Account id is not passed.
+8013 | Customer identifier is invalid. Also check if the parameter identifierName is passed correctly.
+8011 | Invalid source account passed.
 
 
 
