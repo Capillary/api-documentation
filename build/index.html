@@ -134,10 +134,15 @@
 <h2 id="q2-releases-2021-2022">Q2 Releases (2021-2022)</h2>
 
 <ul>
-<li>  <strong>User Group Loyalty</strong>: Helps in creating and managing user groups -for B2B use cases such as manufacturer, partners, distributers and dealers;  for B2C cases such as friends, family members, colleagues, or relatives of a customer. For details, see <a href="https://capillary.github.io/api-documentation/#group-loyalty-companies-hierarchies">Group Loyalty</a></li>
+<li>  <strong>User Group Loyalty</strong>: Helps in creating and managing user groups -for B2B use cases such as manufacturer, partners, distributers and dealers;  for B2C cases such as friends, family members, colleagues, or relatives of a customer. For details, see <a href="https://capillary.github.io/api-documentation/#group-loyalty-companies-hierarchies">Group Loyalty</a>
+
+<ul>
+<li>Added <a href="https://capillary.github.io/api-documentation/#transfer-points-group">points/userGroup2/transfer API</a>, <br>group points is transferrable API - <a href="https://capillary.github.io/api-documentation/#check-if-points-transferrable-group">points/userGroup2/isTransferrable</a>, and GET points transfer details API - <a href="https://capillary.github.io/api-documentation/#get-points-transfer-details">/points/transfer?</a></li>
+<li>Transaction Add to support group association - <a href="https://capillary.github.io/api-documentation/#add-return-transaction-bulk">transactions/bulk</a> and <a href="https://capillary.github.io/api-documentation/#add-transaction-single">/transactions? single</a></li>
+</ul></li>
 <li>  <strong>Cart &amp; Catalog promotions</strong>: You can now create and manage cart and catalog promotions using APIs. For more details, see <a href="https://capillary.github.io/api-documentation/#set-promotion-settings-org-level">Cart &amp; Catalog Promotions</a>. - In Progress</li>
 <li><strong>Card External ID Support</strong>: Customer lookup APIs now support <code class="prettyprint">cardExternalId</code> as an identifier to fetch or update customer details.</li>
-<li>**Get <a href="https://capillary.github.io/api-documentation/#get-customer-coupons-basic">customers/coupons</a>: New param values added to status - <code class="prettyprint">Active_Redeemed</code>, <code class="prettyprint">Active_Unredeemed</code>, <code class="prettyprint">Expired_Redeemed</code>, <code class="prettyprint">Expired_Unredeemed</code>. </li>
+<li>Get <a href="https://capillary.github.io/api-documentation/#get-customer-coupons-basic">customers/coupons</a>: New param values added to status - <code class="prettyprint">Active_Redeemed</code>, <code class="prettyprint">Active_Unredeemed</code>, <code class="prettyprint">Expired_Redeemed</code>, <code class="prettyprint">Expired_Unredeemed</code>. </li>
 </ul>
 
 <h2 id="q1-releases-2021-2022">Q1 Releases (2021-2022)</h2>
@@ -15133,7 +15138,7 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 
 <aside class="notice">All parameters marked by * are mandatory. </aside>
 
-<h2 id="transfer-points-group-to-customer">Transfer Points (Group to Customer)</h2>
+<h2 id="transfer-points-group">Transfer Points (Group)</h2>
 
 <p>Lets you transfer points from one account to another account - group to customer, customer to group, or group to group.</p>
 

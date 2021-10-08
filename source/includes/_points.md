@@ -553,7 +553,7 @@ code* | string | Pass the OTP received by the `fromCustomer` for the current poi
 
 
 
-## Transfer Points (Group to Customer)
+## Transfer Points (Group)
 
 Lets you transfer points from one account to another account - group to customer, customer to group, or group to group.
 
