@@ -62,12 +62,15 @@ https://eu.intouch.capillarytech.com/v2/transactions/bulk
       "accountId":"",
       "type":"REGULAR",
       "billNumber":"num-668288857749",
-      "billingDate":"2020-12-28T10:18:01.534Z",
+      "billingDate":"2021-09-05T20:01:51+05:30",
       "discount":"10.0",
       "billAmount":"4800.0",
       "note":"this is test",
       "grossAmount":"110",
       "deliveryStatus":"SHIPPED",
+	  "userGroup2Id":1949,
+	  "userGroup2PrimaryUserId":414936033,
+	  "userGroup2ExternalId": "",
       "paymentModes":[
          {
             "mode":"CardPayment",
@@ -683,9 +686,12 @@ accountId | string | For sources with multiple accounts (such as MARTJACK, WECHA
 extendedFields | obj | Valid transaction level extended field details in name and value pairs.
 currencyCode | string | ISO currency code of the transaction to add transaction with local currency. For example, `INR` for Indian Rupee, SGD for Singapore Dollar, `EUR` for Euro, `IQD` for Iraqi Dinar. Pass the currency code that are supported for your org (InTouch > Organization Setup) and ensure the currency conversion ratio is set using `v2/currencyratio`.
 addWithLocalCurrency | boolean | Pass `true` to add a transaction in local currency.  
-deliveryStatus | enum | Delivery status of the item. Values: `PLACED`, `PROCESSED`, `SHIPPED`, `DELIVERED`, `RETURNED`. You can update the status using transac
+deliveryStatus | enum | Delivery status of the item. Values: `PLACED`, `PROCESSED`, `SHIPPED`, `DELIVERED`, `RETURNED`. You can update the status using `v1.1/transaction/update`.
+userGroup2Id | int | Unique ID of the user group to which the transaction needs to be associated with. Any one among the parameters with `userGroup2` is required to associate the transaction with a group.
+userGroup2PrimaryUserId | long | Unique user ID of the primary member of group to which the transaction needs to be associated with. Any one among the parameters with `userGroup2` is required to associate the transaction with a group.
+userGroup2ExternalId | string | Unique external ID of the user group to which the transaction needs to be associated with. Any one among the parameters with `userGroup2` is required to associate the transaction with a group.
 type* | enum | Type of transaction. Supported value: `REGULAR` for loyalty transactions. `RETURN` for return transactions. `NOT_INTERESTED`, `RETURN,NOT_INTERESTED_RETURN`.
-notInterestedReason | string | Notes on why the customer is not interested to enrol into the loyalty (`type`=`NOT_INTERESTED`). Max characters supported - 255. 
+notInterestedReason | string | Notes on why the customer is not interested to enroll into the loyalty (`type`=`NOT_INTERESTED`). Max characters supported - 255. 
 returnType** | enum | For a return transaction, pass the return type. Value: `AMOUNT`, `FULL`, `LINE_ITEM`, `CANCELLED`.
 billAmount* | double | Net transaction amount.
 billNumber* |  string | Unique transaction number. For a return transaction, this is the original transaction number of the return item. In transaction add the uniqueness of the `billNumber` is either at till, store, or org, depends on the configuration. `CONF_LOYALTY_BILL_NUMBER_UNIQUE_IN_DAYS` set on InTouch **Settings** > **System & Deployment** > **InTouch POS Configuration** > **Billing**.  
@@ -790,6 +796,9 @@ https://us.api.capillarytech.com/v2/transactions?source=instore&identifierValue=
   "note": "This is test",
   "grossAmount": "110",
   "deliveryStatus": "SHIPPED",
+  "userGroup2Id":1949,
+  "userGroup2PrimaryUserId":414936033,
+  "userGroup2ExternalId": "",
     "paymentModes": [
         {
           "mode": "Card Payment",
@@ -852,6 +861,9 @@ https://us.api.capillarytech.com/v2/transactions?source=instore&identifierValue=
   "note": "this is test",
   "grossAmount": "2000",
   "deliveryStatus": "DELIVERED",
+  "userGroup2Id":98765,
+  "userGroup2PrimaryUserId":"",
+  "userGroup2ExternalId": "",
   "lineItemsV2": [
       {
         "amount": 1200,
@@ -1122,10 +1134,13 @@ Parameter | Datatype | Description
 --------- | -------- | -----------
 extendedFields | obj | Valid transaction level extended field details in name and value pairs.
 currencyCode | string | ISO currency code of the transaction to add transaction with local currency. For example, `INR` for Indian Rupee, SGD for Singapore Dollar, `EUR` for Euro, `IQD` for Iraqi Dinar. Pass the currency code that are supported for your org (InTouch > Organization Setup) and ensure the currency conversion ratio is set using `v2/currencyratio`.
-addWithLocalCurrency | boolean | Pass `true` to add a transaction in local currency. Uses the default till currency if no value is passed.
-deliveryStatus | enum | Delivery status of the item. Values: `PLACED`, `PROCESSED`, `SHIPPED`, `DELIVERED`, `RETURNED`. You can update the status using transac
+addWithLocalCurrency | boolean | Pass `true` to add a transaction in local currency. 
+deliveryStatus | enum | Delivery status of the item. Values: `PLACED`, `PROCESSED`, `SHIPPED`, `DELIVERED`, `RETURNED`. You can update the status using v1.1/transaction/update.
+userGroup2Id | int | External ID of the user group to be associated with the transaction. Any one among the parameters with `userGroup2` is required to associate the transaction with a group.
+userGroup2PrimaryUserId long | ID of the primary user of the group to be associated with the transaction. Any one among the parameters with `userGroup2` is required to associate the transaction with a group.
+userGroup2ExternalId | string | External ID of the user group to be associated with the transaction. Any one among the parameters with `userGroup2` is required to associate the transaction with a group.
 type* | enum | Type of transaction. Supported value: `REGULAR` for loyalty transactions. `RETURN` for return transactions. `NOT_INTERESTED`, `RETURN,NOT_INTERESTED_RETURN`.
-notInterestedReason | string | Notes on why the customer is not interested to enrol into the loyalty (`type`=`NOT_INTERESTED`). Max characters supported - 255. 
+notInterestedReason | string | Notes on why the customer is not interested to enroll into the loyalty (`type`=`NOT_INTERESTED`). Max characters supported - 255. 
 returnType** | enum | For a return transaction, pass the return type. Value: `AMOUNT`, `FULL`, `LINE_ITEM`, `CANCELLED`.
 billAmount* | double | Net transaction amount.
 billNumber* |  string | Unique transaction number for normal or mixed transactions and original transaction number for return transactions. The uniqueness either at till, store, or org, depends on the configuration `CONF_LOYALTY_BILL_NUMBER_UNIQUE_IN_DAYS` set on InTouch **Settings** > **System & Deployment** > **InTouch POS Configuration** > **Billing**.  

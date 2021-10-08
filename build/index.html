@@ -7608,12 +7608,15 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
       </span><span class="s2">"accountId"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
       </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"REGULAR"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"billNumber"</span><span class="p">:</span><span class="s2">"num-668288857749"</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"billingDate"</span><span class="p">:</span><span class="s2">"2020-12-28T10:18:01.534Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"billingDate"</span><span class="p">:</span><span class="s2">"2021-09-05T20:01:51+05:30"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"discount"</span><span class="p">:</span><span class="s2">"10.0"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"billAmount"</span><span class="p">:</span><span class="s2">"4800.0"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"note"</span><span class="p">:</span><span class="s2">"this is test"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"grossAmount"</span><span class="p">:</span><span class="s2">"110"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"deliveryStatus"</span><span class="p">:</span><span class="s2">"SHIPPED"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"userGroup2Id"</span><span class="p">:</span><span class="mi">1949</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"userGroup2PrimaryUserId"</span><span class="p">:</span><span class="mi">414936033</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"userGroup2ExternalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
       </span><span class="s2">"paymentModes"</span><span class="p">:[</span><span class="w">
          </span><span class="p">{</span><span class="w">
             </span><span class="s2">"mode"</span><span class="p">:</span><span class="s2">"CardPayment"</span><span class="p">,</span><span class="w">
@@ -8290,7 +8293,22 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <tr>
 <td>deliveryStatus</td>
 <td>enum</td>
-<td>Delivery status of the item. Values: <code class="prettyprint">PLACED</code>, <code class="prettyprint">PROCESSED</code>, <code class="prettyprint">SHIPPED</code>, <code class="prettyprint">DELIVERED</code>, <code class="prettyprint">RETURNED</code>. You can update the status using transac</td>
+<td>Delivery status of the item. Values: <code class="prettyprint">PLACED</code>, <code class="prettyprint">PROCESSED</code>, <code class="prettyprint">SHIPPED</code>, <code class="prettyprint">DELIVERED</code>, <code class="prettyprint">RETURNED</code>. You can update the status using <code class="prettyprint">v1.1/transaction/update</code>.</td>
+</tr>
+<tr>
+<td>userGroup2Id</td>
+<td>int</td>
+<td>Unique ID of the user group to which the transaction needs to be associated with. Any one among the parameters with <code class="prettyprint">userGroup2</code> is required to associate the transaction with a group.</td>
+</tr>
+<tr>
+<td>userGroup2PrimaryUserId</td>
+<td>long</td>
+<td>Unique user ID of the primary member of group to which the transaction needs to be associated with. Any one among the parameters with <code class="prettyprint">userGroup2</code> is required to associate the transaction with a group.</td>
+</tr>
+<tr>
+<td>userGroup2ExternalId</td>
+<td>string</td>
+<td>Unique external ID of the user group to which the transaction needs to be associated with. Any one among the parameters with <code class="prettyprint">userGroup2</code> is required to associate the transaction with a group.</td>
 </tr>
 <tr>
 <td>type*</td>
@@ -8300,7 +8318,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <tr>
 <td>notInterestedReason</td>
 <td>string</td>
-<td>Notes on why the customer is not interested to enrol into the loyalty (<code class="prettyprint">type</code>=<code class="prettyprint">NOT_INTERESTED</code>). Max characters supported - 255.</td>
+<td>Notes on why the customer is not interested to enroll into the loyalty (<code class="prettyprint">type</code>=<code class="prettyprint">NOT_INTERESTED</code>). Max characters supported - 255.</td>
 </tr>
 <tr>
 <td>returnType**</td>
@@ -8644,6 +8662,9 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
   </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"This is test"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"grossAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"110"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"deliveryStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SHIPPED"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"userGroup2Id"</span><span class="p">:</span><span class="mi">1949</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"userGroup2PrimaryUserId"</span><span class="p">:</span><span class="mi">414936033</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"userGroup2ExternalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
     </span><span class="s2">"paymentModes"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
         </span><span class="p">{</span><span class="w">
           </span><span class="s2">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Card Payment"</span><span class="p">,</span><span class="w">
@@ -8706,6 +8727,9 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
   </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this is test"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"grossAmount"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2000"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"deliveryStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DELIVERED"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"userGroup2Id"</span><span class="p">:</span><span class="mi">98765</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"userGroup2PrimaryUserId"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"userGroup2ExternalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
   </span><span class="s2">"lineItemsV2"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
       </span><span class="p">{</span><span class="w">
         </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mi">1200</span><span class="p">,</span><span class="w">
@@ -9040,12 +9064,27 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <tr>
 <td>addWithLocalCurrency</td>
 <td>boolean</td>
-<td>Pass <code class="prettyprint">true</code> to add a transaction in local currency. Uses the default till currency if no value is passed.</td>
+<td>Pass <code class="prettyprint">true</code> to add a transaction in local currency.</td>
 </tr>
 <tr>
 <td>deliveryStatus</td>
 <td>enum</td>
-<td>Delivery status of the item. Values: <code class="prettyprint">PLACED</code>, <code class="prettyprint">PROCESSED</code>, <code class="prettyprint">SHIPPED</code>, <code class="prettyprint">DELIVERED</code>, <code class="prettyprint">RETURNED</code>. You can update the status using transac</td>
+<td>Delivery status of the item. Values: <code class="prettyprint">PLACED</code>, <code class="prettyprint">PROCESSED</code>, <code class="prettyprint">SHIPPED</code>, <code class="prettyprint">DELIVERED</code>, <code class="prettyprint">RETURNED</code>. You can update the status using v1.1/transaction/update.</td>
+</tr>
+<tr>
+<td>userGroup2Id</td>
+<td>int</td>
+<td>External ID of the user group to be associated with the transaction. Any one among the parameters with <code class="prettyprint">userGroup2</code> is required to associate the transaction with a group.</td>
+</tr>
+<tr>
+<td>userGroup2PrimaryUserId long</td>
+<td>ID of the primary user of the group to be associated with the transaction. Any one among the parameters with <code class="prettyprint">userGroup2</code> is required to associate the transaction with a group.</td>
+<td></td>
+</tr>
+<tr>
+<td>userGroup2ExternalId</td>
+<td>string</td>
+<td>External ID of the user group to be associated with the transaction. Any one among the parameters with <code class="prettyprint">userGroup2</code> is required to associate the transaction with a group.</td>
 </tr>
 <tr>
 <td>type*</td>
@@ -9055,7 +9094,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <tr>
 <td>notInterestedReason</td>
 <td>string</td>
-<td>Notes on why the customer is not interested to enrol into the loyalty (<code class="prettyprint">type</code>=<code class="prettyprint">NOT_INTERESTED</code>). Max characters supported - 255.</td>
+<td>Notes on why the customer is not interested to enroll into the loyalty (<code class="prettyprint">type</code>=<code class="prettyprint">NOT_INTERESTED</code>). Max characters supported - 255.</td>
 </tr>
 <tr>
 <td>returnType**</td>
@@ -14334,7 +14373,7 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 
 <p>Points represent loyalty points issued to customers through Loyalty+, Engage+, GoodWill (Member Care), or Data Import. Customers can redeem the points within the validity period and can also transfer their points to other loyalty customers.</p>
 
-<h2 id="check-if-points-transferrable">Check if Points Transferrable</h2>
+<h2 id="check-if-points-transferrable-customer">Check if Points Transferrable (Customer)</h2>
 
 <p>Checks if specific points of a customer can be transferred to an other customer. You can also issue OTP that is used to authenticate customer to transfer points (<code class="prettyprint">pointsTransfer</code> API).</p>
 
@@ -14586,10 +14625,6 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
 <td>HTTP Methods</td>
 <td>POST</td>
 </tr>
@@ -14660,6 +14695,167 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 </tbody></table>
 
 <aside class="notice"> All parameters marked by * are mandatory. </aside>
+
+<h2 id="check-if-points-transferrable-group">Check if Points Transferrable (Group)</h2>
+
+<p>Checks if specific points from one account can be transferred to another account (group to customer, customer to a group, or one group to another). </p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/points/userGroup2/isTransferrable
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"pointsTobeTransferred"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.5</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes123"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">765</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transferredBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"identifierType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"identifierValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"915410000000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WECHAT"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WECHAT-SN"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"toEntity"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUSTOMER"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"identifierType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"identifierValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"918410000000"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WECHAT-SN"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WECHAT"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"fromEntity"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"USERGROUP2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"identifierType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"identifierValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1981"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"pointsTobeTransferred"</span><span class="p">:</span><span class="mf">10.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"transferrable"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"warnings"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"errors"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/userGroup2/isTransferrable</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/points/userGroup2/isTransferrable</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pointsTobeTransferred*</td>
+<td>int</td>
+<td>Number of points to be transferred.</td>
+</tr>
+<tr>
+<td>notes</td>
+<td>string</td>
+<td>Notes to add to the transfer activity.</td>
+</tr>
+<tr>
+<td>programId**</td>
+<td>int</td>
+<td>Loyalty program ID from which points has to be transferred. Applicable for multi-program orgs. Considers the default program ID if not passed.</td>
+</tr>
+<tr>
+<td>transferredBy*</td>
+<td>obj</td>
+<td>Details of the user who is transferring points. The user should have permission to transfer points.</td>
+</tr>
+<tr>
+<td>toEntity*</td>
+<td>obj</td>
+<td>Details of the destination account (customer or group) - to which the points need to be transferred.</td>
+</tr>
+<tr>
+<td>fromEntity*</td>
+<td>obj</td>
+<td>Details of the source account (group or customer) from which the points need to be transferred.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type*</td>
+<td>enum</td>
+<td>Type of the entry. Value: <code class="prettyprint">CUSTOMER</code>, <code class="prettyprint">USERGROUP2</code>.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;identifierType*</td>
+<td>enum</td>
+<td>Identifier type to identify customer or group. Supported values for customer: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">cardnumber</code>, <code class="prettyprint">wechat</code>, <code class="prettyprint">martjackId</code>, <code class="prettyprint">fbId</code>.<br>Supported values for group: <code class="prettyprint">id</code>, <code class="prettyprint">externalId</code>.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;identifierValue*</td>
+<td>string</td>
+<td>Value of the specified <code class="prettyprint">identifierType</code>.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;accountId</td>
+<td>string</td>
+<td>Account ID for sources with multiple account IDs.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source**</td>
+<td>enum</td>
+<td>Source in which the customer account is available. Value: <code class="prettyprint">FACEBOOK</code>, <code class="prettyprint">WEB_ENGAGE</code>, <code class="prettyprint">WECHAT</code>, <code class="prettyprint">INSTORE</code>, <code class="prettyprint">MARTJACK</code>, <code class="prettyprint">TMALL</code>, <code class="prettyprint">TAOBAO</code>, <code class="prettyprint">JD</code>, <code class="prettyprint">ECOMMERCE</code>, <code class="prettyprint">WEBSITE</code>, <code class="prettyprint">LINE</code>, <code class="prettyprint">MOBILE_APP</code>. Required for customer entity.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">All parameters marked by * are mandatory. </aside>
 
 <h2 id="reverse-redeemed-points">Reverse Redeemed Points</h2>
 
@@ -14787,7 +14983,7 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 
 <aside class="notice">All parameters marked by * are mandatory. </aside>
 
-<h2 id="transfer-points">Transfer Points</h2>
+<h2 id="transfer-points-customer-to-customer">Transfer Points (Customer to Customer)</h2>
 
 <p>Transfers points from one customer account to another customer account by validating the OTP issued for the points transfer.</p>
 
@@ -14866,10 +15062,6 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 <td>Yes</td>
 </tr>
 <tr>
-<td>Response Formats</td>
-<td>JSON</td>
-</tr>
-<tr>
 <td>HTTP Methods</td>
 <td>POST</td>
 </tr>
@@ -14940,6 +15132,387 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 </tbody></table>
 
 <aside class="notice">All parameters marked by * are mandatory. </aside>
+
+<h2 id="transfer-points-group-to-customer">Transfer Points (Group to Customer)</h2>
+
+<p>Lets you transfer points from one account to another account - group to customer, customer to group, or group to group.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/points/userGroup2/transfer
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"pointsTobeTransferred"</span><span class="p">:</span><span class="mf">10.5</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"notes"</span><span class="p">:</span><span class="s2">"notes123"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"programId"</span><span class="p">:</span><span class="mi">765</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"transferredBy"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"identifierType"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"identifierValue"</span><span class="p">:</span><span class="s2">"915662420128"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"source"</span><span class="p">:</span><span class="s2">"WECHAT"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountId"</span><span class="p">:</span><span class="s2">"WECHAT-SN"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"toEntity"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"CUSTOMER"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"identifierType"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"identifierValue"</span><span class="p">:</span><span class="s2">"918662420128"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountId"</span><span class="p">:</span><span class="s2">"WECHAT-SN"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"source"</span><span class="p">:</span><span class="s2">"WECHAT"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"fromEntity"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"USERGROUP2"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"identifierType"</span><span class="p">:</span><span class="s2">"id"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"identifierValue"</span><span class="p">:</span><span class="s2">"2626"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"toEntityId"</span><span class="p">:</span><span class="mi">418400980</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"toEntityType"</span><span class="p">:</span><span class="s2">"CUSTOMER"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"fromEntityId"</span><span class="p">:</span><span class="mi">2626</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"fromEntityType"</span><span class="p">:</span><span class="s2">"USERGROUP2"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"pointsTransferDate"</span><span class="p">:</span><span class="s2">"2021-10-07 16:36:12"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"pointsTransferred"</span><span class="p">:</span><span class="mf">10.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"transferId"</span><span class="p">:</span><span class="mi">6545</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"transferType"</span><span class="p">:</span><span class="s2">"DEDUCTION"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"transferredTo"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"userId"</span><span class="p">:</span><span class="mi">418400980</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"firstName"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lastName"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="s2">"transferredFromUserGroup2"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">2626</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"groupStatus"</span><span class="p">:</span><span class="s2">"ACTIVE"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fleetGroupUsers"</span><span class="p">:[</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"userId"</span><span class="p">:</span><span class="mi">418400982</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"groupId"</span><span class="p">:</span><span class="mi">2626</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"defaultGroup"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"primaryMember"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"userId"</span><span class="p">:</span><span class="mi">418400981</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"groupId"</span><span class="p">:</span><span class="mi">2626</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"defaultGroup"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"primaryMember"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"userId"</span><span class="p">:</span><span class="mi">418400980</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"groupId"</span><span class="p">:</span><span class="mi">2626</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"defaultGroup"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"primaryMember"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"userId"</span><span class="p">:</span><span class="mi">418400984</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"groupId"</span><span class="p">:</span><span class="mi">2626</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"defaultGroup"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"primaryMember"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"userId"</span><span class="p">:</span><span class="mi">418400985</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"groupId"</span><span class="p">:</span><span class="mi">2626</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"defaultGroup"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"primaryMember"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="mi">15089282</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="s2">"2021-10-07T15:42:02+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lifeTimePurchases"</span><span class="p">:</span><span class="mi">400</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="s2">"notes"</span><span class="p">:</span><span class="s2">"notes123"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programName"</span><span class="p">:</span><span class="s2">"SunRiseDefaultProgram"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"pointsTransferBreakupByEarningPrograms"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"programId"</span><span class="p">:</span><span class="mi">765</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"deductedPoints"</span><span class="p">:</span><span class="mf">10.000</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"programCurrentPoints"</span><span class="p">:</span><span class="mi">70</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"warnings"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"errors"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/userGroup2/transfer</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/points/userGroup2/transfer</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>pointsTobeTransferred</td>
+<td>float</td>
+<td>Number of points to be transferred.</td>
+</tr>
+<tr>
+<td>notes</td>
+<td>string</td>
+<td>Notes to add for the points transfer.</td>
+</tr>
+<tr>
+<td>programId**</td>
+<td>int</td>
+<td>Loyalty program ID from which points has to be transferred. Applicable for multi-program orgs. Considers the default program ID if not passed.</td>
+</tr>
+<tr>
+<td>transferredBy*</td>
+<td>obj</td>
+<td>Details of the user who is transferring points. The user should have permission to transfer points.</td>
+</tr>
+<tr>
+<td>toEntity*</td>
+<td>obj</td>
+<td>Details of the destination account (customer or group) - to which the points need to be transferred.</td>
+</tr>
+<tr>
+<td>fromEntity*</td>
+<td>obj</td>
+<td>Details of the source account (group or customer) from which the points need to be transferred.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type*</td>
+<td>enum</td>
+<td>Type of the entry. Value: <code class="prettyprint">CUSTOMER</code>, <code class="prettyprint">USERGROUP2</code>.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;identifierType*</td>
+<td>enum</td>
+<td>Identifier type to identify customer or group. Supported values for customer: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">cardnumber</code>, <code class="prettyprint">wechat</code>, <code class="prettyprint">martjackId</code>, <code class="prettyprint">fbId</code>.<br>Supported values for group: <code class="prettyprint">id</code>, <code class="prettyprint">externalId</code>.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;identifierValue*</td>
+<td>string</td>
+<td>Value of the specified <code class="prettyprint">identifierType</code>.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;accountId</td>
+<td>string</td>
+<td>Account ID for sources with multiple account IDs.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source**</td>
+<td>enum</td>
+<td>Source in which the customer account is available. Value: <code class="prettyprint">FACEBOOK</code>, <code class="prettyprint">WEB_ENGAGE</code>, <code class="prettyprint">WECHAT</code>, <code class="prettyprint">INSTORE</code>, <code class="prettyprint">MARTJACK</code>, <code class="prettyprint">TMALL</code>, <code class="prettyprint">TAOBAO</code>, <code class="prettyprint">JD</code>, <code class="prettyprint">ECOMMERCE</code>, <code class="prettyprint">WEBSITE</code>, <code class="prettyprint">LINE</code>, <code class="prettyprint">MOBILE_APP</code>. Required for customer entity.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">All parameters marked by * are mandatory. </aside>
+
+<h2 id="get-points-transfer-details">Get Points Transfer Details</h2>
+
+<p>Retrieves the history of points transferred from a group or customer.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/points/transfer?programId=765<span class="err">&amp;</span>identifierName=id<span class="err">&amp;</span>identifierValue=2626<span class="err">&amp;</span>userEntityType=USERGROUP2
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"toEntityId"</span><span class="p">:</span><span class="mi">418400980</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"toEntityType"</span><span class="p">:</span><span class="s2">"CUSTOMER"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"fromEntityId"</span><span class="p">:</span><span class="mi">2626</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"fromEntityType"</span><span class="p">:</span><span class="s2">"USERGROUP2"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"pointsTransferDate"</span><span class="p">:</span><span class="s2">"2021-10-07 16:36:12"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"pointsTransferred"</span><span class="p">:</span><span class="mf">10.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"transferId"</span><span class="p">:</span><span class="mi">6545</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"transferType"</span><span class="p">:</span><span class="s2">"DEDUCTION"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"transferredTo"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"userId"</span><span class="p">:</span><span class="mi">418400980</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"firstName"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lastName"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="s2">"transferredFromUserGroup2"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">2626</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"groupStatus"</span><span class="p">:</span><span class="s2">"ACTIVE"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"fleetGroupUsers"</span><span class="p">:[</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"userId"</span><span class="p">:</span><span class="mi">418400982</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"groupId"</span><span class="p">:</span><span class="mi">2626</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"defaultGroup"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"primaryMember"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"userId"</span><span class="p">:</span><span class="mi">418400981</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"groupId"</span><span class="p">:</span><span class="mi">2626</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"defaultGroup"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"primaryMember"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"userId"</span><span class="p">:</span><span class="mi">418400980</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"groupId"</span><span class="p">:</span><span class="mi">2626</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"defaultGroup"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"primaryMember"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"userId"</span><span class="p">:</span><span class="mi">418400984</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"groupId"</span><span class="p">:</span><span class="mi">2626</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"defaultGroup"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"primaryMember"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"userId"</span><span class="p">:</span><span class="mi">418400985</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"groupId"</span><span class="p">:</span><span class="mi">2626</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"defaultGroup"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"active"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"primaryMember"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="mi">15089282</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="s2">"2021-10-07T15:42:02+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lifeTimePurchases"</span><span class="p">:</span><span class="mi">400</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="s2">"notes"</span><span class="p">:</span><span class="s2">"notes123"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programName"</span><span class="p">:</span><span class="s2">"SunRiseDefaultProgram"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"warnings"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"errors"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/points/transfer?{queryparams}</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2/points/transfer?{paramName}={paramValue}</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifierName*</td>
+<td>enum</td>
+<td>Identifier type to identify customer or group. Supported values for customer: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">cardnumber</code>, <code class="prettyprint">wechat</code>, <code class="prettyprint">martjackId</code>, <code class="prettyprint">fbId</code>.<br>Supported values for group: <code class="prettyprint">id</code>, <code class="prettyprint">externalId</code>.</td>
+</tr>
+<tr>
+<td>identifierValue*</td>
+<td>string</td>
+<td>Value of the specified <code class="prettyprint">identifierType</code>.</td>
+</tr>
+<tr>
+<td>source**</td>
+<td>enum</td>
+<td>Source in which the customer account is available. Value: <code class="prettyprint">FACEBOOK</code>, <code class="prettyprint">WEB_ENGAGE</code>, <code class="prettyprint">WECHAT</code>, <code class="prettyprint">INSTORE</code>, <code class="prettyprint">MARTJACK</code>, <code class="prettyprint">TMALL</code>, <code class="prettyprint">TAOBAO</code>, <code class="prettyprint">JD</code>, <code class="prettyprint">ECOMMERCE</code>, <code class="prettyprint">WEBSITE</code>, <code class="prettyprint">LINE</code>, <code class="prettyprint">MOBILE_APP</code>. Required for customer entity.</td>
+</tr>
+<tr>
+<td>accountId**</td>
+<td>string</td>
+<td>Account ID for sources with multiple account IDs. Required for sources with multiple accounts.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
 
 <h2 id="response-codes">Response Codes</h2>
 

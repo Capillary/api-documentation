@@ -1,7 +1,7 @@
 # Points
 Points represent loyalty points issued to customers through Loyalty+, Engage+, GoodWill (Member Care), or Data Import. Customers can redeem the points within the validity period and can also transfer their points to other loyalty customers.
 
-## Check if Points Transferrable
+## Check if Points Transferrable (Customer)
 
 Checks if specific points of a customer can be transferred to an other customer. You can also issue OTP that is used to authenticate customer to transfer points (`pointsTransfer` API).
 
@@ -246,7 +246,6 @@ https://eu.api.capillarytech.com/v2/points/isTransferrable
 URI | `/isTransferrable`
 Rate Limited? | No
 Authentication | Yes
-Response Formats | JSON
 HTTP Methods | POST
 Batch Support | No
 
@@ -272,6 +271,103 @@ value* | string | The value of the specified identifier.
 issueOtp** | Boolean | Sends OTP to the fromCustomer if the specified points are transferrable. Use this to issue OTP (used to authenticate `fromCustomer` to transfer points) if `isPointsTransferrable` is successful. If `false` (default value) then no OTP is generated. **However, you cannot transfer points without OTP. You need  to only pass `issueOtp` as `true` to transfer points**.  
 
 <aside class="notice"> All parameters marked by * are mandatory. </aside>
+
+
+## Check if Points Transferrable (Group)
+
+Checks if specific points from one account can be transferred to another account (group to customer, customer to a group, or one group to another). 
+
+
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/points/userGroup2/isTransferrable
+```
+
+> Sample POST Request
+
+```json
+{
+    "pointsTobeTransferred": 10.5,
+    "notes": "notes123",
+    "programId": 765,
+    "transferredBy": {
+        "identifierType": "mobile",
+        "identifierValue": "915410000000",
+        "source": "WECHAT",
+        "accountId": "WECHAT-SN"
+    },
+    "toEntity": {
+        "type": "CUSTOMER",
+        "identifierType": "mobile",
+        "identifierValue": "918410000000",
+        "accountId": "WECHAT-SN",
+        "source": "WECHAT"
+    },
+    "fromEntity": {
+        "type": "USERGROUP2",
+        "identifierType": "id",
+        "identifierValue": "1981"
+    }
+}
+```
+
+> Sample Response
+
+```json
+{
+   "data":[
+      {
+         "pointsTobeTransferred":10.0,
+         "transferrable":true
+      }
+   ],
+   "warnings":[
+      
+   ],
+   "errors":[
+      
+   ]
+}
+```
+
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/userGroup2/isTransferrable`
+Rate Limited? | No
+Authentication | Yes
+HTTP Methods | POST
+Batch Support | No
+
+* **Rate limiter** controls the number of incoming and outgoing traffic of a network
+* **Authentication** verifies the identity of the current user or integration. See Introduction > Authentication (Merchant Setup on Admin Portal) for more details
+
+### Request URL
+
+`https://{host}/v2/points/userGroup2/isTransferrable`
+
+### Request Body Parameters
+
+Parameter | Type | Description
+--------- | ---- | -----------
+pointsTobeTransferred* | int | Number of points to be transferred.
+notes | string | Notes to add to the transfer activity.
+programId** | int | Loyalty program ID from which points has to be transferred. Applicable for multi-program orgs. Considers the default program ID if not passed.
+transferredBy* | obj | Details of the user who is transferring points. The user should have permission to transfer points.
+toEntity* | obj | Details of the destination account (customer or group) - to which the points need to be transferred.
+fromEntity* | obj | Details of the source account (group or customer) from which the points need to be transferred.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type* | enum | Type of the entry. Value: `CUSTOMER`, `USERGROUP2`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;identifierType* | enum | Identifier type to identify customer or group. Supported values for customer: `mobile`, `email`, `externalId`, `cardnumber`, `wechat`, `martjackId`, `fbId`.<br>Supported values for group: `id`, `externalId`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;identifierValue* | string | Value of the specified `identifierType`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;accountId | string | Account ID for sources with multiple account IDs.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source** | enum | Source in which the customer account is available. Value: `FACEBOOK`, `WEB_ENGAGE`, `WECHAT`, `INSTORE`, `MARTJACK`, `TMALL`, `TAOBAO`, `JD`, `ECOMMERCE`, `WEBSITE`, `LINE`, `MOBILE_APP`. Required for customer entity.
+
+<aside class="notice">All parameters marked by * are mandatory. </aside>
+
+
 
 
 
@@ -359,7 +455,7 @@ pointsToBeReversed | int | The number of points be reversed.
 
 
 
-## Transfer Points
+## Transfer Points (Customer to Customer)
 
 Transfers points from one customer account to another customer account by validating the OTP issued for the points transfer.
 
@@ -428,7 +524,6 @@ https://eu.api.capillarytech.com/v2/points/transfer
 URI | `/transfer`
 Rate Limited? | No
 Authentication | Yes
-Response Formats | JSON
 HTTP Methods | POST
 Batch Support | No
 
@@ -454,6 +549,280 @@ code* | string | Pass the OTP received by the `fromCustomer` for the current poi
 
 <aside class="notice">All parameters marked by * are mandatory. </aside>
 
+
+
+
+
+## Transfer Points (Group to Customer)
+
+Lets you transfer points from one account to another account - group to customer, customer to group, or group to group.
+
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/points/userGroup2/transfer
+```
+
+> Sample POST Request
+
+```json
+{
+   "pointsTobeTransferred":10.5,
+   "notes":"notes123",
+   "programId":765,
+   "transferredBy":{
+      "identifierType":"mobile",
+      "identifierValue":"915662420128",
+      "source":"WECHAT",
+      "accountId":"WECHAT-SN"
+   },
+   "toEntity":{
+      "type":"CUSTOMER",
+      "identifierType":"mobile",
+      "identifierValue":"918662420128",
+      "accountId":"WECHAT-SN",
+      "source":"WECHAT"
+   },
+   "fromEntity":{
+      "type":"USERGROUP2",
+      "identifierType":"id",
+      "identifierValue":"2626"
+   }
+}
+```
+
+> Sample Response
+
+```json
+{
+   "data":[
+      {
+         "toEntityId":418400980,
+         "toEntityType":"CUSTOMER",
+         "fromEntityId":2626,
+         "fromEntityType":"USERGROUP2",
+         "pointsTransferDate":"2021-10-07 16:36:12",
+         "pointsTransferred":10.0,
+         "transferId":6545,
+         "transferType":"DEDUCTION",
+         "transferredTo":{
+            "userId":418400980,
+            "firstName":"",
+            "lastName":""
+         },
+         "transferredFromUserGroup2":{
+            "id":2626,
+            "groupStatus":"ACTIVE",
+            "fleetGroupUsers":[
+               {
+                  "userId":418400982,
+                  "groupId":2626,
+                  "defaultGroup":true,
+                  "active":true,
+                  "primaryMember":true
+               },
+               {
+                  "userId":418400981,
+                  "groupId":2626,
+                  "defaultGroup":false,
+                  "active":true,
+                  "primaryMember":false
+               },
+               {
+                  "userId":418400980,
+                  "groupId":2626,
+                  "defaultGroup":false,
+                  "active":true,
+                  "primaryMember":false
+               },
+               {
+                  "userId":418400984,
+                  "groupId":2626,
+                  "defaultGroup":true,
+                  "active":true,
+                  "primaryMember":false
+               },
+               {
+                  "userId":418400985,
+                  "groupId":2626,
+                  "defaultGroup":true,
+                  "active":true,
+                  "primaryMember":false
+               }
+            ],
+            "createdBy":15089282,
+            "createdOn":"2021-10-07T15:42:02+05:30",
+            "lifeTimePurchases":400
+         },
+         "notes":"notes123",
+         "programName":"SunRiseDefaultProgram",
+         "pointsTransferBreakupByEarningPrograms":[
+            {
+               "programId":765,
+               "deductedPoints":10.000,
+               "programCurrentPoints":70
+            }
+         ]
+      }
+   ],
+   "warnings":[
+      
+   ],
+   "errors":[
+      
+   ]
+}
+```
+
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/userGroup2/transfer`
+Rate Limited? | No
+Authentication | Yes
+HTTP Methods | POST
+Batch Support | No
+
+* **Rate limiter** controls the number of incoming and outgoing traffic of a network
+* **Authentication** verifies the identity of the current user or integration. See Introduction > Authentication (Merchant Setup on Admin Portal) for more details
+
+### Request URL
+
+`https://{host}/v2/points/userGroup2/transfer`
+
+### Request Body Parameters
+
+Parameter | Type | Description
+--------- | ---- | -----------
+pointsTobeTransferred | float | Number of points to be transferred.
+notes | string | Notes to add for the points transfer.
+programId** | int | Loyalty program ID from which points has to be transferred. Applicable for multi-program orgs. Considers the default program ID if not passed.
+transferredBy* | obj | Details of the user who is transferring points. The user should have permission to transfer points.
+toEntity* | obj | Details of the destination account (customer or group) - to which the points need to be transferred.
+fromEntity* | obj | Details of the source account (group or customer) from which the points need to be transferred.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type* | enum | Type of the entry. Value: `CUSTOMER`, `USERGROUP2`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;identifierType* | enum | Identifier type to identify customer or group. Supported values for customer: `mobile`, `email`, `externalId`, `cardnumber`, `wechat`, `martjackId`, `fbId`.<br>Supported values for group: `id`, `externalId`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;identifierValue* | string | Value of the specified `identifierType`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;accountId | string | Account ID for sources with multiple account IDs.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source** | enum | Source in which the customer account is available. Value: `FACEBOOK`, `WEB_ENGAGE`, `WECHAT`, `INSTORE`, `MARTJACK`, `TMALL`, `TAOBAO`, `JD`, `ECOMMERCE`, `WEBSITE`, `LINE`, `MOBILE_APP`. Required for customer entity.
+
+<aside class="notice">All parameters marked by * are mandatory. </aside>
+
+
+## Get Points Transfer Details
+
+Retrieves the history of points transferred from a group or customer.
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/points/transfer?programId=765&identifierName=id&identifierValue=2626&userEntityType=USERGROUP2
+```
+
+> Sample Response
+
+```json
+{
+   "data":[
+      {
+         "toEntityId":418400980,
+         "toEntityType":"CUSTOMER",
+         "fromEntityId":2626,
+         "fromEntityType":"USERGROUP2",
+         "pointsTransferDate":"2021-10-07 16:36:12",
+         "pointsTransferred":10.0,
+         "transferId":6545,
+         "transferType":"DEDUCTION",
+         "transferredTo":{
+            "userId":418400980,
+            "firstName":"",
+            "lastName":""
+         },
+         "transferredFromUserGroup2":{
+            "id":2626,
+            "groupStatus":"ACTIVE",
+            "fleetGroupUsers":[
+               {
+                  "userId":418400982,
+                  "groupId":2626,
+                  "defaultGroup":true,
+                  "active":true,
+                  "primaryMember":true
+               },
+               {
+                  "userId":418400981,
+                  "groupId":2626,
+                  "defaultGroup":false,
+                  "active":true,
+                  "primaryMember":false
+               },
+               {
+                  "userId":418400980,
+                  "groupId":2626,
+                  "defaultGroup":false,
+                  "active":true,
+                  "primaryMember":false
+               },
+               {
+                  "userId":418400984,
+                  "groupId":2626,
+                  "defaultGroup":true,
+                  "active":true,
+                  "primaryMember":false
+               },
+               {
+                  "userId":418400985,
+                  "groupId":2626,
+                  "defaultGroup":true,
+                  "active":true,
+                  "primaryMember":false
+               }
+            ],
+            "createdBy":15089282,
+            "createdOn":"2021-10-07T15:42:02+05:30",
+            "lifeTimePurchases":400
+         },
+         "notes":"notes123",
+         "programName":"SunRiseDefaultProgram"
+      }
+   ],
+   "warnings":[
+      
+   ],
+   "errors":[
+      
+   ]
+}
+```
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/points/transfer?{queryparams}`
+Rate Limited? | No
+Authentication | Yes
+HTTP Methods | GET
+Batch Support | No
+
+* **Rate limiter** controls the number of incoming and outgoing traffic of a network
+* **Authentication** verifies the identity of the current user or integration. See Introduction > Authentication (Merchant Setup on Admin Portal) for more details
+
+### Request URL
+
+`https://{host}/v2/points/transfer?{paramName}={paramValue}`
+
+### Request Query Parameters
+
+Parameter | Type | Description
+--------- | ---- | -----------
+identifierName* | enum | Identifier type to identify customer or group. Supported values for customer: `mobile`, `email`, `externalId`, `cardnumber`, `wechat`, `martjackId`, `fbId`.<br>Supported values for group: `id`, `externalId`.
+identifierValue* | string | Value of the specified `identifierType`.
+source** | enum | Source in which the customer account is available. Value: `FACEBOOK`, `WEB_ENGAGE`, `WECHAT`, `INSTORE`, `MARTJACK`, `TMALL`, `TAOBAO`, `JD`, `ECOMMERCE`, `WEBSITE`, `LINE`, `MOBILE_APP`. Required for customer entity.
+accountId** | string | Account ID for sources with multiple account IDs. Required for sources with multiple accounts.
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
 
 
 ## Response Codes
