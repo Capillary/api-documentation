@@ -1,6 +1,9 @@
-# User Groups
+# User Groups (v1)
 
-A User Group is a customer group that could contain friends, family members, colleagues, or relatives of a customer. A user group consists of an admin user and group members. The `usergroups` resource provides APIs to manage user groups .
+A User Group is a customer group that could contain friends, family members, colleagues, or relatives of a customer. A user group consists of an admin user and group members. The `usergroups` resource provides APIs to manage user groups.
+
+To use user groups v1, ensure hat the User Group is enabled for the org (config `CONF_USER_GROUP_ENABLED`).
+
 
 
 ## Create User Group
@@ -26,10 +29,10 @@ http://us.api.capillarytech.com/v2/usergroups
 
 ```json 
  {
-      "name": "Harsh",
+      "name": "HarshFamily",
       "primaryMemberIdentifier": {
         "type": "mobile",
-        "value": "91934000000"
+        "value": "918860000031"
       }
     }
 ```	
@@ -39,7 +42,43 @@ http://us.api.capillarytech.com/v2/usergroups
 ```json
 {
    "id":1,
-   "name":"Harsh",
+   "name":"HarshFamily",
+   "primaryUserId":281348774,
+   "createdOn":"2018-12-31T12:59:30+05:30",
+   "createdBy":15002926,
+   "updatedOn":"2018-12-31T12:59:30+05:30",
+   "updatedBy":15002926,
+    "members": [
+        {
+            "groupId": 17552,
+            "userId": 419455880,
+            "role": "PRIMARY",
+            "joinedOn": "2021-11-03T15:21:33+05:30",
+            "addedBy": 15071481,
+            "autoUpdateTime": "2021-11-03T15:21:32+05:30",
+            "name": "FirstName LastName",
+            "joinSource": "",
+            "joinAccountId": "",
+            "identifiers": [
+                {
+                    "type": "email",
+                    "value": "sample.email31@gmail.com"
+                },
+                {
+                    "type": "mobile",
+                    "value": "918860000031"
+                }
+            ],
+            "firstName": "FirstName",
+            "lastName": "LastName"
+        }
+    ],
+    "lifetimePurchases": 0.0,
+    "warnings": []
+}
+{
+   "id":1,
+   "name":"HarshFamily",
    "primaryUserId":281348774,
    "createdOn":"2018-12-31T12:59:30+05:30",
    "createdBy":15002926,
@@ -117,7 +156,7 @@ http://us.api.capillarytech.com/v2/usergroups/1/members/313099450
 ### Resource Information
 | | |
 --------- | ----------- |
-URI | `/{groupId}/members/{userId}`
+URI | `/{groupId}/members/{userId}?{queryParams}`
 Rate Limited? | No
 Authentication | Yes
 HTTP Methods | POST (No Body required)
@@ -128,17 +167,15 @@ Batch Support | No
 
 ### Request URL
 
-`https://{host}/v2/usergroups/{groupId}/members/{userId}`
+`https://{host}/v2/usergroups/{groupId}/members/{userId}?{queryParams}`
 
-### Request Query Parameters
+### Request Path Parameters
 
 Parameter | Datatype | Description
 --------- | -------- | -----------
 groupId* | long | Unique id the group that the user wants to joinedOn.
 userId** | long | Unique id of the user who wants to join the group.
-primaryMemberIdentifier** | obj | Use this create user group with customer identifier such as mobile number, email ID, or external ID. 
-type* | enum | Type of the identifier. Values: `mobile`, `email`, `externalId`. 
-value* | string | Value of the respective identifier type (mobile number/email ID/external ID).
+
 
 <aside class="notice">Parameters marked with * are mandatory. Any one among the params marked with ** is mandatory.</aside>
 
@@ -367,7 +404,7 @@ Batch Support | No
 
 `https://{host}/v2/usergroups/{groupId}`
 
-### Request Query Parameters
+### Request Path Parameters
 
 Parameter | Datatype | Description
 --------- | -------- | -----------
@@ -562,7 +599,7 @@ https://eu.api.capillarytech.com/v2/usergroups?identifierName=mobile&identifierV
 ### Resource Information
 | | |
 --------- | ----------- |
-URI | `/usergroups/{queryParams}`
+URI | `/usergroups?{queryParams}`
 Rate Limited? | No
 Authentication | Yes
 HTTP Methods | GET
@@ -582,7 +619,10 @@ Parameter | Datatype | Description
 --------- | -------- | -----------
 identifierName* | enum | Unique identifier to identifier of the primary or secondary member of a group. Value: `mobile`, `email`, `externalId`, `userId`.
 identifierValue* | string | The respective identifier value. For example if the `identifierName` is email, then the `identifierValue` needs to the email ID of the primary or any of the secondary members of the group.
+source | enum | Source from which the customer is registered.
+accountId | string | Account ID of the specific source for sources with multiple accounts.
 loyaltyDetails=true** | - | Pass to get loyalty details of the group.
+
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
 
@@ -947,8 +987,19 @@ Batch Support | No
 
 Parameter | Datatype | Description
 --------- | -------- | -----------
-identifierName* | enum | Unique identifier to identifier of the primary or a secondary member of the group that you want to get. Value: `mobile`, `email`, `externalId`, `userId`.
+identifierName* | enum | Unique identifier to identifier of the primary or a secondary member of the group that you want to get. Value: `mobile`, `email`, `externalId`, `userId`, `groupId`.
 identifierValue* | string | The respective identifier value. For example if the `identifierName` is email, then the `identifierValue` needs to the email ID of the primary or any of the secondary members of the group.
+source | enum | Source from which the customer is registered.
+accountId | string |  
+dateFrom | date-time | 
+dateTo | date-time | 
+limit | int | 
+offset | int | 
+sortBy | enum | 
+sortOrder | enum | Pass `ASC` to sort the results in the ascending order of sortBy value, `DESC` to get in descending value.
+programId | int | Program ID from which you want to fetch the history. 
+
+
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
 
@@ -1359,8 +1410,37 @@ Batch Support | No
 Parameter | Datatype | Description
 --------- | -------- | -----------
 groupId* | long | Unique id the user group that you want to fetch.
+start
+limit | int | Number of results to show per page. Default value is `20`.
+order | enum | Arrange the results in the ascending `ASC`, or descending `DESC` order of 
+transaction_id | string | Retrieve the details of a specific transaction. Pass the unique transaction ID. 
+user_id | boolean | Pass `true` to show user ID of the customer. Default value is `false`.
+credit_notes | boolean | Pass `true` to show credit notes of the transaction. Default value is `false`.
+tenders: boolean | Pass `true` to show payment mode details of each transaction. Default value is `false`.
+entered_by | long | till id
+amount | long | 
+min_amount | float | Get transactions greater than or equal to the specific amount.
+max_amount | float | Get transactions less than or equal to the specific amount.
+start_date | string | 
+end_date | string | 
+start_id | string | 
+end_id | string |
+number | string | 
+limit | int | The number of results to retrieve. Default value is 20.
+credit_note | string | Filter transactions credit note information.
+type | string | 
+outlier_status | enum | Filter transactions by outlier status. Value: `NORMAL`, `INTERNAL`, `FRAUD`, `OUTLIER`, `TEST`, `DELETED`, `FAILED`, `OTHER`.
+returned_on | date-time | Get transactions returned on a specific date.
+added_on | date-time | Get transactions 
+date | string | 
+till_code | string | Get transactions made at a specific TILL. Pass the TILL code.
+store_code | string | Get transactions made in a specific store. Pass the store code.
+delayed_accrual | boolean | Retrieve Default value `false`
+local_currency | boolean | Default value `false`
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
+
+
 
 
 

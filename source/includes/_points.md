@@ -483,7 +483,6 @@ https://eu.api.capillarytech.com/v2/points/transfer
       "type":"ID",
       "value":"342953257"
    },
-   "notes":"Transfer points to James",
    "code":"X12Y3Z"
 }
 ```

@@ -95,8 +95,17 @@ Parameter | Datatype | Description
 --------- | -------- | -----------
 entityType* | enum | Specify `MOBILE` to identify customer by mobile number, or `EMAIL` to identify customer by email id.
 entityValue* | string | Specify the registered  mobile number or email id of the customer based on the entityType passed.
-action* | enum | Choose the action for which the OTP has to be issued. Values: `COUPON` (for coupon redemption), `POINTS` (for points redemption), `REGISTRATION`, `USERGROUP`, `SUBSCRIPTION`, `GENERIC` (for other purposes).
-channels* | enum | Specify the channels through which you want to issue OTP for redemption or registration. Value: EMAIL, SMS, PHONE (phone call). You can use Phone to generate OTP through a voice call to the specified number.
+action* | enum | Choose the action for which the OTP has to be issued. Values: `COUPON` (for coupon redemption), `POINTS` (for points redemption), `REGISTRATION`, `USERGROUP`, `SUBSCRIPTION`, `GENERIC` (for other purposes), `POINTSTRANSFER`, `CUSTOMER_STATUS_UPDATE`, `CUSTOMER_IDENTIFIER_CHANGE`, `CUSTOMER_ISSUE_LINK_CARD`.
+template | string | Message template to send OTP through SMS.
+emailTemplate | obj | Email template to send OTP on email.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subject | string | Subject of the email.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;body | string | Body of the email.
+channels* | array-obj | Details of channel(s) through which you want to issue OTP. 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type* | enum | Channel on which OTP has to be generated. Value: `EMAIL`, `SMS`, `MOBILE` or `PHONE` (phone call), `BOTH` (to send OTP both on MOBILE and EMAIL ). You can use Phone to generate OTP through a voice call to the specified number. 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value | string | Value of the specified identifier type.
+
+
+
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
 

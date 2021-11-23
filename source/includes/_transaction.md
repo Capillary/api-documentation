@@ -1137,7 +1137,7 @@ currencyCode | string | ISO currency code of the transaction to add transaction 
 addWithLocalCurrency | boolean | Pass `true` to add a transaction in local currency. 
 deliveryStatus | enum | Delivery status of the item. Values: `PLACED`, `PROCESSED`, `SHIPPED`, `DELIVERED`, `RETURNED`. You can update the status using v1.1/transaction/update.
 userGroup2Id | int | External ID of the user group to be associated with the transaction. Any one among the parameters with `userGroup2` is required to associate the transaction with a group.
-userGroup2PrimaryUserId long | ID of the primary user of the group to be associated with the transaction. Any one among the parameters with `userGroup2` is required to associate the transaction with a group.
+userGroup2PrimaryUserId | long | ID of the primary user of the group to be associated with the transaction. Any one among the parameters with `userGroup2` is required to associate the transaction with a group.
 userGroup2ExternalId | string | External ID of the user group to be associated with the transaction. Any one among the parameters with `userGroup2` is required to associate the transaction with a group.
 type* | enum | Type of transaction. Supported value: `REGULAR` for loyalty transactions. `RETURN` for return transactions. `NOT_INTERESTED`, `RETURN,NOT_INTERESTED_RETURN`.
 notInterestedReason | string | Notes on why the customer is not interested to enroll into the loyalty (`type`=`NOT_INTERESTED`). Max characters supported - 255. 
