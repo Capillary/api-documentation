@@ -9082,9 +9082,9 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <td>External ID of the user group to be associated with the transaction. Any one among the parameters with <code class="prettyprint">userGroup2</code> is required to associate the transaction with a group.</td>
 </tr>
 <tr>
-<td>userGroup2PrimaryUserId long</td>
+<td>userGroup2PrimaryUserId</td>
+<td>long</td>
 <td>ID of the primary user of the group to be associated with the transaction. Any one among the parameters with <code class="prettyprint">userGroup2</code> is required to associate the transaction with a group.</td>
-<td></td>
 </tr>
 <tr>
 <td>userGroup2ExternalId</td>
@@ -11365,12 +11365,42 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <tr>
 <td>action*</td>
 <td>enum</td>
-<td>Choose the action for which the OTP has to be issued. Values: <code class="prettyprint">COUPON</code> (for coupon redemption), <code class="prettyprint">POINTS</code> (for points redemption), <code class="prettyprint">REGISTRATION</code>, <code class="prettyprint">USERGROUP</code>, <code class="prettyprint">SUBSCRIPTION</code>, <code class="prettyprint">GENERIC</code> (for other purposes).</td>
+<td>Choose the action for which the OTP has to be issued. Values: <code class="prettyprint">COUPON</code> (for coupon redemption), <code class="prettyprint">POINTS</code> (for points redemption), <code class="prettyprint">REGISTRATION</code>, <code class="prettyprint">USERGROUP</code>, <code class="prettyprint">SUBSCRIPTION</code>, <code class="prettyprint">GENERIC</code> (for other purposes), <code class="prettyprint">POINTSTRANSFER</code>, <code class="prettyprint">CUSTOMER_STATUS_UPDATE</code>, <code class="prettyprint">CUSTOMER_IDENTIFIER_CHANGE</code>, <code class="prettyprint">CUSTOMER_ISSUE_LINK_CARD</code>.</td>
+</tr>
+<tr>
+<td>template</td>
+<td>string</td>
+<td>Message template to send OTP through SMS.</td>
+</tr>
+<tr>
+<td>emailTemplate</td>
+<td>obj</td>
+<td>Email template to send OTP on email.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;subject</td>
+<td>string</td>
+<td>Subject of the email.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;body</td>
+<td>string</td>
+<td>Body of the email.</td>
 </tr>
 <tr>
 <td>channels*</td>
+<td>array-obj</td>
+<td>Details of channel(s) through which you want to issue OTP.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type*</td>
 <td>enum</td>
-<td>Specify the channels through which you want to issue OTP for redemption or registration. Value: EMAIL, SMS, PHONE (phone call). You can use Phone to generate OTP through a voice call to the specified number.</td>
+<td>Channel on which OTP has to be generated. Value: <code class="prettyprint">EMAIL</code>, <code class="prettyprint">SMS</code>, <code class="prettyprint">MOBILE</code> or <code class="prettyprint">PHONE</code> (phone call), <code class="prettyprint">BOTH</code> (to send OTP both on MOBILE and EMAIL ). You can use Phone to generate OTP through a voice call to the specified number.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value</td>
+<td>string</td>
+<td>Value of the specified identifier type.</td>
 </tr>
 </tbody></table>
 
@@ -15015,7 +15045,6 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
       </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"ID"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"342953257"</span><span class="w">
    </span><span class="p">},</span><span class="w">
-   </span><span class="s2">"notes"</span><span class="p">:</span><span class="s2">"Transfer points to James"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"X12Y3Z"</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -21208,9 +21237,11 @@ Batch Support | No
 </tr>
 </tbody></table>
 
-          <h1 id="user-groups">User Groups</h1>
+          <h1 id="user-groups-v1">User Groups (v1)</h1>
 
-<p>A User Group is a customer group that could contain friends, family members, colleagues, or relatives of a customer. A user group consists of an admin user and group members. The <code class="prettyprint">usergroups</code> resource provides APIs to manage user groups .</p>
+<p>A User Group is a customer group that could contain friends, family members, colleagues, or relatives of a customer. A user group consists of an admin user and group members. The <code class="prettyprint">usergroups</code> resource provides APIs to manage user groups.</p>
+
+<p>To use user groups v1, ensure hat the User Group is enabled for the org (config <code class="prettyprint">CONF_USER_GROUP_ENABLED</code>).</p>
 
 <h2 id="create-user-group">Create User Group</h2>
 
@@ -21233,10 +21264,10 @@ Batch Support | No
 <p>Sample POST Request (Using Customer Identifiers)</p>
 </blockquote>
 <pre class="highlight json"><code><span class="w"> </span><span class="p">{</span><span class="w">
-      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harsh"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HarshFamily"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"primaryMemberIdentifier"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"91934000000"</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"918860000031"</span><span class="w">
       </span><span class="p">}</span><span class="w">
     </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -21245,7 +21276,43 @@ Batch Support | No
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
    </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"Harsh"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"HarshFamily"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"primaryUserId"</span><span class="p">:</span><span class="mi">281348774</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="s2">"2018-12-31T12:59:30+05:30"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="mi">15002926</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"updatedOn"</span><span class="p">:</span><span class="s2">"2018-12-31T12:59:30+05:30"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"updatedBy"</span><span class="p">:</span><span class="mi">15002926</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"members"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"groupId"</span><span class="p">:</span><span class="w"> </span><span class="mi">17552</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">419455880</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"role"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRIMARY"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"joinedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-11-03T15:21:33+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"addedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">15071481</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"autoUpdateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-11-03T15:21:32+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FirstName LastName"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"joinSource"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"joinAccountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"identifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample.email31@gmail.com"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"918860000031"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FirstName"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LastName"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"lifetimePurchases"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span><span class="p">{</span><span class="w">
+   </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"HarshFamily"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"primaryUserId"</span><span class="p">:</span><span class="mi">281348774</span><span class="p">,</span><span class="w">
    </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="s2">"2018-12-31T12:59:30+05:30"</span><span class="p">,</span><span class="w">
    </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="mi">15002926</span><span class="p">,</span><span class="w">
@@ -21357,7 +21424,7 @@ Batch Support | No
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/{groupId}/members/{userId}</code></td>
+<td><code class="prettyprint">/{groupId}/members/{userId}?{queryParams}</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -21384,9 +21451,9 @@ Batch Support | No
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/usergroups/{groupId}/members/{userId}</code></p>
+<p><code class="prettyprint">https://{host}/v2/usergroups/{groupId}/members/{userId}?{queryParams}</code></p>
 
-<h3 id="request-query-parameters">Request Query Parameters</h3>
+<h3 id="request-path-parameters">Request Path Parameters</h3>
 
 <table><thead>
 <tr>
@@ -21404,21 +21471,6 @@ Batch Support | No
 <td>userId**</td>
 <td>long</td>
 <td>Unique id of the user who wants to join the group.</td>
-</tr>
-<tr>
-<td>primaryMemberIdentifier**</td>
-<td>obj</td>
-<td>Use this create user group with customer identifier such as mobile number, email ID, or external ID.</td>
-</tr>
-<tr>
-<td>type*</td>
-<td>enum</td>
-<td>Type of the identifier. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>.</td>
-</tr>
-<tr>
-<td>value*</td>
-<td>string</td>
-<td>Value of the respective identifier type (mobile number/email ID/external ID).</td>
 </tr>
 </tbody></table>
 
@@ -21737,7 +21789,7 @@ Batch Support | No
 
 <p><code class="prettyprint">https://{host}/v2/usergroups/{groupId}</code></p>
 
-<h3 id="request-query-parameters">Request Query Parameters</h3>
+<h3 id="request-path-parameters">Request Path Parameters</h3>
 
 <table><thead>
 <tr>
@@ -21943,7 +21995,7 @@ Batch Support | No
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/usergroups/{queryParams}</code></td>
+<td><code class="prettyprint">/usergroups?{queryParams}</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -21990,6 +22042,16 @@ Batch Support | No
 <td>identifierValue*</td>
 <td>string</td>
 <td>The respective identifier value. For example if the <code class="prettyprint">identifierName</code> is email, then the <code class="prettyprint">identifierValue</code> needs to the email ID of the primary or any of the secondary members of the group.</td>
+</tr>
+<tr>
+<td>source</td>
+<td>enum</td>
+<td>Source from which the customer is registered.</td>
+</tr>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>Account ID of the specific source for sources with multiple accounts.</td>
 </tr>
 <tr>
 <td>loyaltyDetails=true**</td>
@@ -22481,12 +22543,57 @@ Batch Support | No
 <tr>
 <td>identifierName*</td>
 <td>enum</td>
-<td>Unique identifier to identifier of the primary or a secondary member of the group that you want to get. Value: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">userId</code>.</td>
+<td>Unique identifier to identifier of the primary or a secondary member of the group that you want to get. Value: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">userId</code>, <code class="prettyprint">groupId</code>.</td>
 </tr>
 <tr>
 <td>identifierValue*</td>
 <td>string</td>
 <td>The respective identifier value. For example if the <code class="prettyprint">identifierName</code> is email, then the <code class="prettyprint">identifierValue</code> needs to the email ID of the primary or any of the secondary members of the group.</td>
+</tr>
+<tr>
+<td>source</td>
+<td>enum</td>
+<td>Source from which the customer is registered.</td>
+</tr>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>dateFrom</td>
+<td>date-time</td>
+<td></td>
+</tr>
+<tr>
+<td>dateTo</td>
+<td>date-time</td>
+<td></td>
+</tr>
+<tr>
+<td>limit</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>offset</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>sortBy</td>
+<td>enum</td>
+<td></td>
+</tr>
+<tr>
+<td>sortOrder</td>
+<td>enum</td>
+<td>Pass <code class="prettyprint">ASC</code> to sort the results in the ascending order of sortBy value, <code class="prettyprint">DESC</code> to get in descending value.</td>
+</tr>
+<tr>
+<td>programId</td>
+<td>int</td>
+<td>Program ID from which you want to fetch the history.</td>
 </tr>
 </tbody></table>
 
@@ -22925,6 +23032,34 @@ Batch Support | No
 <td>Unique id the user group that you want to fetch.</td>
 </tr>
 </tbody></table>
+
+<p>start
+limit | int | Number of results to show per page. Default value is <code class="prettyprint">20</code>.
+order | enum | Arrange the results in the ascending <code class="prettyprint">ASC</code>, or descending <code class="prettyprint">DESC</code> order of 
+transaction_id | string | Retrieve the details of a specific transaction. Pass the unique transaction ID. 
+user_id | boolean | Pass <code class="prettyprint">true</code> to show user ID of the customer. Default value is <code class="prettyprint">false</code>.
+credit_notes | boolean | Pass <code class="prettyprint">true</code> to show credit notes of the transaction. Default value is <code class="prettyprint">false</code>.
+tenders: boolean | Pass <code class="prettyprint">true</code> to show payment mode details of each transaction. Default value is <code class="prettyprint">false</code>.
+entered_by | long | till id
+amount | long | 
+min_amount | float | Get transactions greater than or equal to the specific amount.
+max_amount | float | Get transactions less than or equal to the specific amount.
+start_date | string | 
+end_date | string | 
+start_id | string | 
+end_id | string |
+number | string | 
+limit | int | The number of results to retrieve. Default value is 20.
+credit_note | string | Filter transactions credit note information.
+type | string | 
+outlier_status | enum | Filter transactions by outlier status. Value: <code class="prettyprint">NORMAL</code>, <code class="prettyprint">INTERNAL</code>, <code class="prettyprint">FRAUD</code>, <code class="prettyprint">OUTLIER</code>, <code class="prettyprint">TEST</code>, <code class="prettyprint">DELETED</code>, <code class="prettyprint">FAILED</code>, <code class="prettyprint">OTHER</code>.
+returned_on | date-time | Get transactions returned on a specific date.
+added_on | date-time | Get transactions 
+date | string | 
+till_code | string | Get transactions made at a specific TILL. Pass the TILL code.
+store_code | string | Get transactions made in a specific store. Pass the store code.
+delayed_accrual | boolean | Retrieve Default value <code class="prettyprint">false</code>
+local_currency | boolean | Default value <code class="prettyprint">false</code></p>
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
 

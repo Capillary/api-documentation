@@ -1405,38 +1405,36 @@ Batch Support | No
 `https://{host}/v2/usergroups/{groupId}/transactions
 
 
-### Request Query Parameters
+### Request Path Parameters
 
 Parameter | Datatype | Description
 --------- | -------- | -----------
 groupId* | long | Unique id the user group that you want to fetch.
-start
+
+
+### Request Query Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
 limit | int | Number of results to show per page. Default value is `20`.
-order | enum | Arrange the results in the ascending `ASC`, or descending `DESC` order of 
+order | enum | Arrange the results in the ascending `ASC`, or descending `DESC` order of transaction time.
+start | int | Number of records that need to be skipped from the top. It is used for offset. 
 transaction_id | string | Retrieve the details of a specific transaction. Pass the unique transaction ID. 
 user_id | boolean | Pass `true` to show user ID of the customer. Default value is `false`.
 credit_notes | boolean | Pass `true` to show credit notes of the transaction. Default value is `false`.
 tenders: boolean | Pass `true` to show payment mode details of each transaction. Default value is `false`.
-entered_by | long | till id
-amount | long | 
 min_amount | float | Get transactions greater than or equal to the specific amount.
 max_amount | float | Get transactions less than or equal to the specific amount.
-start_date | string | 
-end_date | string | 
-start_id | string | 
-end_id | string |
-number | string | 
-limit | int | The number of results to retrieve. Default value is 20.
-credit_note | string | Filter transactions credit note information.
-type | string | 
+start_date | string | Get transactions made on or after a specific date. Format: `YYYY-MM-DD hh:mm:ss`.
+end_date | string | Get transactions made on or before a specific date. Format: `YYYY-MM-DD hh:mm:ss`.
+start_id | string | Get transactions with transaction IDs of a specific range. Pass the transaction ID range in start_id and end_id respectively.
+end_id | string | Get transactions with transaction IDs of a specific range. Pass the transaction ID range in start_id and end_id respectively.
+number | string | Get a specific transaction by its transaction number (bill number).
 outlier_status | enum | Filter transactions by outlier status. Value: `NORMAL`, `INTERNAL`, `FRAUD`, `OUTLIER`, `TEST`, `DELETED`, `FAILED`, `OTHER`.
-returned_on | date-time | Get transactions returned on a specific date.
-added_on | date-time | Get transactions 
-date | string | 
+returned_on | date-time | Get transactions returned on a specific date. Date format: `YYYY-MM-DD hh:mm:ss`.
+added_on | date-time | Get transactions of a specific date. Date format: `YYYY-MM-DD hh:mm:ss`.
 till_code | string | Get transactions made at a specific TILL. Pass the TILL code.
 store_code | string | Get transactions made in a specific store. Pass the store code.
-delayed_accrual | boolean | Retrieve Default value `false`
-local_currency | boolean | Default value `false`
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
 

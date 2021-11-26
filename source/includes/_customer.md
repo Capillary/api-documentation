@@ -3641,6 +3641,11 @@ status | enum | Filter results by coupon status. Value: `Active`, `Redeemed`, `U
 
 
 
+
+
+
+
+
 ### Response Parameters
 
 Parameter | Datatype | Description
@@ -3671,6 +3676,260 @@ customers | array-obj | Details of the customer and coupons.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;code | string | Org entity code associated with the coupon.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name | string | Name of the org entity associated with the coupon.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;redemptions | array | Redemption IDs of the coupon (if redeemed).
+
+
+## Set Customer Image
+
+Lets you set a customer's profile image.
+
+> Sample Request
+
+```html
+http://eu.api.capillarytech.com/v2/customers/343014824/setImage
+```
+
+```curl
+curl -i -X POST \
+   -H "Authorization:Basic a3Jpc2huYS50aWxsMDE6MjAyY2I5NjJhYzU5MDc1Yjk2NmQyMzRiNzA=" \
+   -H "Content-Type:multipart/form-data" \
+   -H "Accept:application/json" \
+   -F "file=@\"./Screenshot 2021-11-07 at 12.30.24 PM.png\";type=image/png;filename=\"Screenshot 2021-11-07 at 12.30.24 PM.png\"" \
+ 'https://eu.api.capillarytech.com/v2/customers/343014824/setImage'
+```
+
+> Sample Response
+
+```json
+{
+    "data": [
+        {
+            "code": 200,
+            "file": {
+                "acl": "PRIVATE",
+                "fileHandle": "a014949a-0822-48b3-90ad-73908174147d",
+                "lastModified": "2021-11-24 08:59:40",
+                "latestVersion": 2,
+                "name": "50583/343014824/0",
+                "namespace": "customerImage",
+                "s3Token": "customerImage/50583/343014824/ab98b31a-d400-41be-bb2e-18229f85d420",
+                "version": 2
+            },
+            "message": "Successfully uploaded file",
+            "status": "true"
+        }
+    ],
+    "warnings": [],
+    "errors": []
+}
+```
+
+### Resource Information
+
+| | |
+--------- | ----------- |
+URI | `/v2/customers/{userId}/setImage`
+HTTP Method | POST
+API Version | v2
+Batch Support | No
+Rate Limited | Yes
+
+### Request Headers
+
+Header | Description
+--------- | ------------
+Content-Type* | Pass the relevant value such as `multipart/form-data`.
+
+
+### Request Path Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | ------------
+userId* | long | Unique ID of the customer to whom the image needs to be set.
+
+<aside class="notice">Use file upload method in the POST body of form-data.</aside>
+
+
+
+## Get Customer Image
+
+Retrieves profile image set for a customer.
+
+> Sample Request
+
+```html
+http://eu.api.capillarytech.com/v2/customers/343014824?embed=CUSTOMERIMAGE&source=INSTORE&accountId
+```
+
+
+> Sample Response
+
+```json
+{
+    "id": 343014824,
+    "profiles": [
+        {
+            "firstName": "Jim",
+            "lastName": "Carv",
+            "attribution": {
+                "createDate": "2019-10-15T12:51:33+05:30",
+                "createdBy": {
+                    "id": 50019411,
+                    "code": "admin.till01",
+                    "name": "admin.till01",
+                    "type": "TILL"
+                },
+                "modifiedBy": {
+                    "id": 50019411,
+                    "code": "krishna.till01",
+                    "name": "krishna.till01",
+                    "type": "TILL"
+                },
+                "modifiedDate": "2021-11-24T15:01:59+05:30"
+            },
+            "fields": {
+                "age_group": "“22-25”",
+                "birthday": "1971-5-7",
+                "gender": "“MALE”"
+            },
+            "identifiers": [
+                {
+                    "type": "email",
+                    "value": "jimc@example.com"
+                },
+                {
+                    "type": "externalId",
+                    "value": "0RE100003436"
+                },
+                {
+                    "type": "mobile",
+                    "value": "919750000000"
+                }
+            ],
+            "commChannels": [
+                {
+                    "type": "email",
+                    "value": "jimc@example.com",
+                    "primary": true,
+                    "verified": false,
+                    "meta": {
+                        "residence": false,
+                        "office": false
+                    },
+                    "attributes": {}
+                },
+                {
+                    "type": "mobile",
+                    "value": "919750000000",
+                    "primary": true,
+                    "verified": false,
+                    "meta": {
+                        "residence": false,
+                        "office": false
+                    },
+                    "attributes": {}
+                }
+            ],
+            "source": "INSTORE",
+            "userId": 343014824,
+            "accountId": "",
+            "conflictingProfileList": [],
+            "autoUpdateTime": "2021-11-24T21:06:43+05:30",
+            "identifiersAll": [
+                {
+                    "type": "email",
+                    "value": "jimc@example.com"
+                },
+                {
+                    "type": "externalId",
+                    "value": "0RE100003436"
+                },
+                {
+                    "type": "mobile",
+                    "value": "919750000000"
+                }
+            ]
+        }
+    ],
+    "loyaltyInfo": {
+        "loyaltyType": "loyalty",
+        "attributionV2": {
+            "createDate": "2019-10-15T12:51:33+05:30",
+            "createdBy": {
+                "id": 50019411,
+                "code": "admin.till01",
+                "name": "admin.till01",
+                "type": "TILL"
+            },
+            "modifiedBy": {
+                "id": 50019411,
+                "code": "admin.till01",
+                "name": "admin.till01",
+                "type": "TILL"
+            },
+            "modifiedDate": "2021-11-24T15:01:59+05:30",
+            "createdFromSource": "instore"
+        },
+        "lifetimePurchases": 106746.0
+    },
+    "segments": {},
+    "associatedWith": "admin.till01",
+    "customerImage": [
+        {
+            "code": 200,
+            "file": {
+                "acl": "PRIVATE",
+                "fileHandle": "a014949a-0822-48b3-90ad-73908174147d",
+                "lastModified": "2021-11-24 08:59:41",
+                "latestVersion": 2,
+                "name": "50583/343014824/0",
+                "namespace": "customerImage",
+                "s3Token": "customerImage/50583/343014824/ab98b31a-d400-41be-bb2e-18229f85d420",
+                "version": 2
+            },
+            "filePath": "https://crm-nightly-new-fileservice.s3.amazonaws.com/customerImage/50583/343014824/ab98b31a-d400-41be-bb2e-18229f85d420?X-Amz-Security-Token=FwoGZXIvYXdzEKn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDEDq2Tn1ItklX4VVhSLaAUT9zP5d%2FxzNVe2TtcWdEaeTf55VZVbrDPQ8AeG9o9x1qm%2BICsixrTztU0y5YamO5l3KrRjlpDn98j%2BVmWhLBdRhRZQViozyPAtSdvyV0InJ9BiPhBkzxIUqKfZQwKPNx6zDZ2vWZBrWTj3e%2F7tEtpWuDxiiPBuS8%2BDMbSYmd3XUIQkVAQ2sF3Qdu7FvwHGrJuTDKnHy0fFAfAKm10iGre6GLcRqgcKx1Z%2FwW0a1p9gzo5%2FZdxrS5RMn%2BBPS2AryFAfC2VATN5L%2BatffpmMV5ImpflDqxDeKCJFKKKyx%2BYwGMi2Evg3JoEH1Px9kSXPkddsc5IYJZv01WK4AEfgQ1BSK3aAmnv096M7HoJI8rjE%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20211124T153643Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIAXCQYYRKNJ3V5GF4Y%2F20211124%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=ebe65cfe0b660ba71dfc81937d7a15c981316d1af1c02c1e4b7aa22e394f04",
+            "message": "Success",
+            "secureFilePath": "https://crm-nightly-new-fileservice.s3.amazonaws.com/customerImage/50583/343014824/ab98b31a-d400-41be-bb2e-18229f85d420?X-Amz-Security-Token=FwoGZXIvYXdzEKn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDEDq2Tn1ItklX4VVhSLaAUT9zP5d%2FxzNVe2TtcWdEaeTf55VZVbrDPQ8AeG9o9x1qm%2BICsixrTztU0y5YamO5l3KrRjlpDn98j%2BVmWhLBdRhRZQViozyPAtSdvyV0InJ9BiPhBkzxIUqKfZQwKPNx6zDZ2vWZBrWTj3e%2F7tEtpWuDxiiPBuS8%2BDMbSYmd3XUIQkVAQ2sF3Qdu7FvwHGrJuTDKnHy0fFAfAKm10iGre6GLcRqgcKx1Z%2FwW0a1p9gzo5%2FZdxrS5RMn%2BBPS2AryFAfC2VATN5L%2BatffpmMV5ImpflDqxDeKCJFKKKyx%2BYwGMi2Evg3JoEH1Px9kSXPkddsc5IYJZv01WK4AEfgQ1BSK3aAmnv096M7HoJI8rjE%3D&X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20211124T153643Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3600&X-Amz-Credential=ASIAXCQYYRKNJ3V5GF4Y%2F20211124%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=ebe65cfe0b660ba71dfc81619d7a15c981316d1af1c02c1e4b7aa22e394f04",
+            "status": "true"
+        }
+    ],
+    "extendedFields": {
+        "dob": null,
+        "gender": "Male"
+    },
+    "cardDetails": [],
+    "warnings": []
+}
+```
+
+### Resource Information
+
+| | |
+--------- | ----------- |
+URI | `/v2/customers/{userId}?embed=CUSTOMERIMAGE&source=INSTORE&accountId`
+HTTP Method | Get
+API Version | v2
+Batch Support | No
+Rate Limited | Yes
+
+### Request Path Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+userId | long | Unique ID of the customer to retrieve profile image.
+
+### Request Query Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+embed=CUSTOMERIMAGE* | - | Pass to retrieve the customer image
+source* | enum | Source on which the customer is registered.
+accountId** | string | Account ID for sources with multiple accounts.
+
+<aside class="notice">Parameters marked with * are mandatory</aside>
+
+
+
+
 
 ## Get Customer Coupons (Detailed)
 
