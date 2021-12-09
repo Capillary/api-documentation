@@ -618,7 +618,15 @@ https://eu.api.capillarytech.com/v2/card
   "seriesId":15,
   "cardNumber":"EXTERNALCARD99123450233",
   "cardExternalId":"externalCardRe123",
-  "statusLabel":"CARD GENERATED"
+  "statusLabel":"CARD_GENERATED",
+  "customFields": {
+	"city" : "Bangalore",
+	"pincode" : "560056",
+	"address" : "105, Brigade Road, "
+  },
+  "extendedFields":{
+	"vehicle_make" : "ford"
+   }
 }
 ```
 
@@ -653,8 +661,82 @@ seriesId* | int | Card Series ID from which you want to generate card.
 cardNumber* | string | Unique number of the card as per the card series configuration.
 cardExternalId | string | External reference ID of the card.
 statusLabel* | string | Current user defined status of the card. Check your user defined values for the system values (not issued, active, inactive, deleted, expired). 
+customFields | obj | Card level custom field details in key:value pair. 
+extendedFields | obj | Card level extended field details in key:value pair. 
 
 <aside class="notice"> Parameter marked with * is mandatory. </aside>
+
+
+
+
+## Update Card Details
+
+Lets you add a new card number to a card series. Once the card is added, you can issue it to a customer using customers `/changeIdentifier` API.
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/card
+```
+
+> Sample POST Request
+
+```json
+{
+  "seriesId":15,
+  "cardNumber":"EXTERNALCARD99123450233",
+  "cardExternalId":"externalCardRe123",
+  "statusLabel":"CARD_GENERATED",
+  "statusInfo": {
+		"reason": "Card is generated"
+	},
+  "customFields": {
+	"city" : "Bangalore",
+	"pincode" : "560056",
+	"address" : "105, Brigade Road, "
+  },
+  "extendedFields":{
+	"vehicle_make" : "ford"
+   }
+}
+```
+
+> Sample Response
+
+```json
+{
+    "entity": 72453,
+    "warnings": []
+}
+```
+
+
+
+
+### Resource Information
+
+| | |
+--------- | ----------- |
+URI | `v2/card`
+HTTP Method | POST
+API Version | v2
+Batch Support | No
+
+### Request URL
+`{host}/v2/card`
+
+### Request Body Parameters
+Parameter | Datatype | Description
+--------- | -------- | -----------
+seriesId* | int | Card Series ID from which you want to generate card.
+cardNumber* | string | Unique number of the card as per the card series configuration.
+cardExternalId | string | External reference ID of the card.
+statusLabel* | string | Current user defined status of the card. Check your user defined values for the system values (not issued, active, inactive, deleted, expired). 
+customFields | obj | Card level custom field details to update in key:value pair. 
+extendedFields | obj | Card level extended field details to update in key:value pair. 
+
+<aside class="notice"> Parameter marked with * is mandatory. </aside>
+
 
 
 
@@ -674,21 +756,43 @@ https://us.api.capillarytech.com/v2/card?number=test123112121
 
 ```json
 {
-    "cardNumber": "test123112121",
-    "seriesId": 19,
-    "orgId": 50074,
-    "entityId": 50006796,
-    "statusInfo": {
-        "autoUpdateTime": "2020-11-04",
-        "createdOn": "2020-11-04",
-        "entityId": 550271,
-        "id": 550260,
-        "isActive": true,
-        "labelId": 12,
-        "orgId": 50074,
-        "label": "NOT_ISSUED",
-        "status": "NOT_ISSUED"
+    "cardId": 204802,
+    "issuedDate": "2021-12-08T17:53:01+05:30",
+    "createdDate": "2021-12-08",
+    "expiryDays": 0,
+    "seriesName": "14477448572684visa001",
+    "customerId": 374395406,
+    "maxActiveCards": 10,
+    "entityCode": "paw1",
+    "extendedFields": {
+        "vehicle_make": "ford"
     },
+    "customFields": {
+        "city": "Bangalore",
+        "address": "103, Richmond street ",
+        "pincode": ""
+    },
+    "type": "DIGITAL",
+    "cardNumber": "test123112121",
+    "seriesId": 298,
+    "seriesCode": "14477448572684",
+    "orgId": 50740,
+    "entityId": 50036987,
+    "statusInfo": {
+        "reason": "",
+        "createdBy": 204802,
+        "actions": [],
+        "autoUpdateTime": "2021-12-08",
+        "createdOn": "2021-12-08T17:53:01+05:30",
+        "entityId": 204802,
+        "id": 213779,
+        "isActive": true,
+        "labelId": 208,
+        "label": "ACTIVE",
+        "status": "ACTIVE"
+    },
+    "id": 204802,
+    "transactionNotAllowed": true,
     "warnings": []
 }
 ```

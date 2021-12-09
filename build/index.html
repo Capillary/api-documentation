@@ -623,7 +623,14 @@ https://us.api.capillarytech.com/v2/customers
           </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cardnumber"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test123112121"</span><span class="p">,</span><span class="w">
           </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w">
-          </span><span class="s2">"statusLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACTIVE"</span><span class="w">
+          </span><span class="s2">"statusLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACTIVE"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"card_balance"</span><span class="p">:</span><span class="w"> </span><span class="mi">2000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"year_of_registration"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="mi">18</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"customFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"bloodgroup"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"bnegative"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
         </span><span class="p">}</span><span class="w">
       </span><span class="p">],</span><span class="w">
       </span><span class="s2">"commChannels"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
@@ -950,12 +957,12 @@ Extended fields are either associated to verticals or to a generic category (ava
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extendedFields</td>
 <td>obj</td>
-<td>Customer level extended field details in key:value pairs. You can only pass extended fields that are enabled for your org with the respective datatype values.</td>
+<td>Customer or card level extended field details in key:value pairs. You can only pass extended fields that are enabled for your org with the respective datatype values.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fields</td>
 <td>obj</td>
-<td>Customer level custom field details in key-value pairs.</td>
+<td>Customer or card level custom field details in key-value pairs.</td>
 </tr>
 <tr>
 <td>lastViewedDate**</td>
@@ -3714,89 +3721,161 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <p>Sample Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-   </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">17742</span><span class="p">,</span><span class="w">
-   </span><span class="s2">"profiles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-       </span><span class="p">{</span><span class="w">
-           </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
-           </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
-           </span><span class="s2">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-               </span><span class="s2">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-23T19:11:18+08:00"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                   </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rr.till"</span><span class="p">,</span><span class="w">
-                   </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-                   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rr.till"</span><span class="p">,</span><span class="w">
-                   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
-               </span><span class="p">},</span><span class="w">
-               </span><span class="s2">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                   </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rr.till"</span><span class="p">,</span><span class="w">
-                   </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-                   </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rr.till"</span><span class="p">,</span><span class="w">
-                   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
-               </span><span class="p">},</span><span class="w">
-               </span><span class="s2">"modifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-12T18:50:23+08:00"</span><span class="w">
-           </span><span class="p">},</span><span class="w">
-           </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-               </span><span class="s2">"Gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"Favorite Color"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Green"</span><span class="w">
-           </span><span class="p">},</span><span class="w">
-           </span><span class="s2">"identifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-               </span><span class="p">{</span><span class="w">
-                   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"line"</span><span class="p">,</span><span class="w">
-                   </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"lineAS6"</span><span class="w">
-               </span><span class="p">},</span><span class="w">
-               </span><span class="p">{</span><span class="w">
-                   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cardNumber"</span><span class="p">,</span><span class="w">
-                   </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TTM001110000000002ZS"</span><span class="p">,</span><span class="w">
-                   </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w">
-                   </span><span class="s2">"statusLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACTIVE"</span><span class="w">
-               </span><span class="p">},</span><span class="w">
-               </span><span class="p">{</span><span class="w">
-                   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
-                   </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom.sawyer@example.com"</span><span class="w">
+   </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">17742</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"profiles"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"firstName"</span><span class="p">:</span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"lastName"</span><span class="p">:</span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"attribution"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"createDate"</span><span class="p">:</span><span class="s2">"2016-06-23T19:11:18+08:00"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdBy"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"rr.till"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"rr.till"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"modifiedBy"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"rr.till"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"rr.till"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"modifiedDate"</span><span class="p">:</span><span class="s2">"2016-08-12T18:50:23+08:00"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="s2">"fields"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"Gender"</span><span class="p">:</span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"Favorite Color"</span><span class="p">:</span><span class="s2">"Green"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="s2">"identifiers"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"line"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"lineAS6"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"cardNumber"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"TTM001110000000002ZS"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="mi">19</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"statusLabel"</span><span class="p">:</span><span class="s2">"ACTIVE"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"tom.sawyer@example.com"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"commChannels"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"wechat"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"ojOPTwFOX-aBmdRlE9MHptPjt2w19"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"primary"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"verified"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"meta"</span><span class="p">:{</span><span class="w">
+                  </span><span class="s2">"residence"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"office"</span><span class="p">:</span><span class="kc">false</span><span class="w">
                </span><span class="p">}</span><span class="w">
-           </span><span class="p">],</span><span class="w">
-           </span><span class="s2">"commChannels"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-               </span><span class="p">{</span><span class="w">
-                   </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"wechat"</span><span class="p">,</span><span class="w">
-                   </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ojOPTwFOX-aBmdRlE9MHptPjt2w19"</span><span class="p">,</span><span class="w">
-                   </span><span class="s2">"primary"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                   </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-                   </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                       </span><span class="s2">"residence"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-                       </span><span class="s2">"office"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
-                   </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"tom@eail.com"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"primary"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"verified"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"meta"</span><span class="p">:{</span><span class="w">
+                  </span><span class="s2">"residence"</span><span class="p">:</span><span class="kc">false</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"office"</span><span class="p">:</span><span class="kc">false</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="s2">"attributes"</span><span class="p">:{</span><span class="w">
+
                </span><span class="p">}</span><span class="w">
-           </span><span class="p">],</span><span class="w">
-           </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"WECHAT"</span><span class="p">,</span><span class="w">
-           </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">17742</span><span class="p">,</span><span class="w">
-           </span><span class="s2">"conflictingProfileList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
-           </span><span class="p">],</span><span class="w">
-           </span><span class="s2">"autoUpdateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-12T18:50:23+08:00"</span><span class="w">
-       </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"source"</span><span class="p">:</span><span class="s2">"WECHAT"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"userId"</span><span class="p">:</span><span class="mi">17742</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"accountId"</span><span class="p">:</span><span class="s2">"wechat-con1"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"conflictingProfileList"</span><span class="p">:[</span><span class="w">
+
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"autoUpdateTime"</span><span class="p">:</span><span class="s2">"2016-08-12T18:50:23+08:00"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"identifiersAll"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"916722173368"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"6722173368@mail.com"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
    </span><span class="p">],</span><span class="w">
-   </span><span class="s2">"loyaltyInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-       </span><span class="s2">"loyaltyType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"non_loyalty"</span><span class="p">,</span><span class="w">
-       </span><span class="s2">"attributionV2"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-           </span><span class="s2">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-06-23T19:11:18+08:00"</span><span class="p">,</span><span class="w">
-           </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-               </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rr.till"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rr.till"</span><span class="w">
-           </span><span class="p">},</span><span class="w">
-           </span><span class="s2">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-               </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rr.till"</span><span class="p">,</span><span class="w">
-               </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"rr.till"</span><span class="w">
-           </span><span class="p">},</span><span class="w">
-           </span><span class="s2">"modifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2016-08-12T18:50:23+08:00"</span><span class="w">
-       </span><span class="p">},</span><span class="w">
-       </span><span class="s2">"lifetimePurchases"</span><span class="p">:</span><span class="w"> </span><span class="mi">230</span><span class="w">
+   </span><span class="s2">"loyaltyInfo"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"loyaltyType"</span><span class="p">:</span><span class="s2">"non_loyalty"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"attributionV2"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"createDate"</span><span class="p">:</span><span class="s2">"2016-06-23T19:11:18+08:00"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"createdBy"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"rr.till"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"rr.till"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="s2">"modifiedBy"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"rr.till"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"rr.till"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="s2">"modifiedDate"</span><span class="p">:</span><span class="s2">"2016-08-12T18:50:23+08:00"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"lifetimePurchases"</span><span class="p">:</span><span class="mi">230</span><span class="w">
    </span><span class="p">},</span><span class="w">
-   </span><span class="s2">"segments"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+   </span><span class="s2">"segments"</span><span class="p">:{</span><span class="w">
+
    </span><span class="p">},</span><span class="w">
-     </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bangalore"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-   </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+   </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"city"</span><span class="p">:</span><span class="s2">"Bangalore"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"gender"</span><span class="p">:</span><span class="s2">"Male"</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"cardDetails"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"cardId"</span><span class="p">:</span><span class="mi">418</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"issuedDate"</span><span class="p">:</span><span class="s2">"2021-11-23T10:01:33Z"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="s2">"2021-11-23"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"expiryDays"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"seriesName"</span><span class="p">:</span><span class="s2">"sushicard"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"customerId"</span><span class="p">:</span><span class="mi">341594630</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"maxActiveCards"</span><span class="p">:</span><span class="mi">60</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"cardExternalId"</span><span class="p">:</span><span class="s2">"orea7"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"advance_card_personalisation"</span><span class="p">:</span><span class="s2">"yes"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"card_balance"</span><span class="p">:</span><span class="mf">1000.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"year_of_registration"</span><span class="p">:</span><span class="mi">18</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="s2">"customFields"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"cardname"</span><span class="p">:</span><span class="s2">"sushi"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cardscope"</span><span class="p">:</span><span class="s2">"global"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cardtype"</span><span class="p">:</span><span class="s2">"pro card"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"DIGITAL"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"cardNumber"</span><span class="p">:</span><span class="s2">"visasushi006"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="mi">23</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"seriesCode"</span><span class="p">:</span><span class="s2">"422"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"orgId"</span><span class="p">:</span><span class="mi">50247</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"entityId"</span><span class="p">:</span><span class="mi">50016843</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"statusInfo"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"reason"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="mi">50016843</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"actions"</span><span class="p">:[</span><span class="w">
+
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"autoUpdateTime"</span><span class="p">:</span><span class="s2">"2021-11-23"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="s2">"2021-11-23T10:01:33Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"entityId"</span><span class="p">:</span><span class="mi">418</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">478</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"isActive"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"labelId"</span><span class="p">:</span><span class="mi">31</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"ACTIVE"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="s2">"ACTIVE"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">418</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"transactionNotAllowed"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"warnings"</span><span class="p">:[</span><span class="w">
+
    </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -5530,6 +5609,330 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>Redemption IDs of the coupon (if redeemed).</td>
 </tr>
 </tbody></table>
+
+<h2 id="set-customer-image">Set Customer Image</h2>
+
+<p>Lets you set a customer&rsquo;s profile image.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>http://eu.api.capillarytech.com/v2/customers/343014824/setImage
+</code></pre><pre class="highlight plaintext"><code>curl -i -X POST \
+   -H "Authorization:Basic a3Jpc2huYS50aWxsMDE6MjAyY2I5NjJhYzU5MDc1Yjk2NmQyMzRiNzA=" \
+   -H "Content-Type:multipart/form-data" \
+   -H "Accept:application/json" \
+   -F "file=@\"./Screenshot 2021-11-07 at 12.30.24 PM.png\";type=image/png;filename=\"Screenshot 2021-11-07 at 12.30.24 PM.png\"" \
+ 'https://eu.api.capillarytech.com/v2/customers/343014824/setImage'
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"acl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRIVATE"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"fileHandle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a014949a-0822-48b3-90ad-73908174147d"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lastModified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-11-24 08:59:40"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"latestVersion"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50583/343014824/0"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"namespace"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customerImage"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"s3Token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customerImage/50583/343014824/ab98b31a-d400-41be-bb2e-18229f85d420"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Successfully uploaded file"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/v2/customers/{userId}/setImage</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Rate Limited</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-headers">Request Headers</h3>
+
+<table><thead>
+<tr>
+<th>Header</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>Content-Type*</td>
+<td>Pass the relevant value such as <code class="prettyprint">multipart/form-data</code>.</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-path-parameters">Request Path Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>userId*</td>
+<td>long</td>
+<td>Unique ID of the customer to whom the image needs to be set.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Use file upload method in the POST body of form-data.</aside>
+
+<h2 id="get-customer-image">Get Customer Image</h2>
+
+<p>Retrieves profile image set for a customer.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>http://eu.api.capillarytech.com/v2/customers/343014824?embed=CUSTOMERIMAGE<span class="err">&amp;</span>source=INSTORE<span class="err">&amp;</span>accountId
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">343014824</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"profiles"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"firstName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Jim"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lastName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Carv"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-15T12:51:33+05:30"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50019411</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin.till01"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin.till01"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50019411</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"krishna.till01"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"krishna.till01"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"modifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-11-24T15:01:59+05:30"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"fields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"age_group"</span><span class="p">:</span><span class="w"> </span><span class="s2">"“22-25”"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"birthday"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1971-5-7"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"“MALE”"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"identifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jimc@example.com"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"externalId"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0RE100003436"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"919750000000"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"commChannels"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jimc@example.com"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"primary"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"residence"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"office"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"919750000000"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"primary"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"verified"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"meta"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"residence"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"office"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"attributes"</span><span class="p">:</span><span class="w"> </span><span class="p">{}</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">343014824</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"accountId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"conflictingProfileList"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="s2">"autoUpdateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-11-24T21:06:43+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"identifiersAll"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"jimc@example.com"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"externalId"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0RE100003436"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"919750000000"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"loyaltyInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"loyaltyType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"loyalty"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"attributionV2"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"createDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-10-15T12:51:33+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50019411</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin.till01"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin.till01"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"modifiedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50019411</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin.till01"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin.till01"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"modifiedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-11-24T15:01:59+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdFromSource"</span><span class="p">:</span><span class="w"> </span><span class="s2">"instore"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"lifetimePurchases"</span><span class="p">:</span><span class="w"> </span><span class="mf">106746.0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"segments"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+    </span><span class="s2">"associatedWith"</span><span class="p">:</span><span class="w"> </span><span class="s2">"admin.till01"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"customerImage"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">200</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"file"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"acl"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PRIVATE"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"fileHandle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"a014949a-0822-48b3-90ad-73908174147d"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lastModified"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-11-24 08:59:41"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"latestVersion"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"50583/343014824/0"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"namespace"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customerImage"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"s3Token"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customerImage/50583/343014824/ab98b31a-d400-41be-bb2e-18229f85d420"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"version"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"filePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://crm-nightly-new-fileservice.s3.amazonaws.com/customerImage/50583/343014824/ab98b31a-d400-41be-bb2e-18229f85d420?X-Amz-Security-Token=FwoGZXIvYXdzEKn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDEDq2Tn1ItklX4VVhSLaAUT9zP5d%2FxzNVe2TtcWdEaeTf55VZVbrDPQ8AeG9o9x1qm%2BICsixrTztU0y5YamO5l3KrRjlpDn98j%2BVmWhLBdRhRZQViozyPAtSdvyV0InJ9BiPhBkzxIUqKfZQwKPNx6zDZ2vWZBrWTj3e%2F7tEtpWuDxiiPBuS8%2BDMbSYmd3XUIQkVAQ2sF3Qdu7FvwHGrJuTDKnHy0fFAfAKm10iGre6GLcRqgcKx1Z%2FwW0a1p9gzo5%2FZdxrS5RMn%2BBPS2AryFAfC2VATN5L%2BatffpmMV5ImpflDqxDeKCJFKKKyx%2BYwGMi2Evg3JoEH1Px9kSXPkddsc5IYJZv01WK4AEfgQ1BSK3aAmnv096M7HoJI8rjE%3D&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20211124T153643Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=ASIAXCQYYRKNJ3V5GF4Y%2F20211124%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=ebe65cfe0b660ba71dfc81937d7a15c981316d1af1c02c1e4b7aa22e394f04"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Success"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"secureFilePath"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://crm-nightly-new-fileservice.s3.amazonaws.com/customerImage/50583/343014824/ab98b31a-d400-41be-bb2e-18229f85d420?X-Amz-Security-Token=FwoGZXIvYXdzEKn%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaDEDq2Tn1ItklX4VVhSLaAUT9zP5d%2FxzNVe2TtcWdEaeTf55VZVbrDPQ8AeG9o9x1qm%2BICsixrTztU0y5YamO5l3KrRjlpDn98j%2BVmWhLBdRhRZQViozyPAtSdvyV0InJ9BiPhBkzxIUqKfZQwKPNx6zDZ2vWZBrWTj3e%2F7tEtpWuDxiiPBuS8%2BDMbSYmd3XUIQkVAQ2sF3Qdu7FvwHGrJuTDKnHy0fFAfAKm10iGre6GLcRqgcKx1Z%2FwW0a1p9gzo5%2FZdxrS5RMn%2BBPS2AryFAfC2VATN5L%2BatffpmMV5ImpflDqxDeKCJFKKKyx%2BYwGMi2Evg3JoEH1Px9kSXPkddsc5IYJZv01WK4AEfgQ1BSK3aAmnv096M7HoJI8rjE%3D&amp;X-Amz-Algorithm=AWS4-HMAC-SHA256&amp;X-Amz-Date=20211124T153643Z&amp;X-Amz-SignedHeaders=host&amp;X-Amz-Expires=3600&amp;X-Amz-Credential=ASIAXCQYYRKNJ3V5GF4Y%2F20211124%2Fus-east-1%2Fs3%2Faws4_request&amp;X-Amz-Signature=ebe65cfe0b660ba71dfc81619d7a15c981316d1af1c02c1e4b7aa22e394f04"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"dob"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"gender"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Male"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"cardDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/v2/customers/{userId}?embed=CUSTOMERIMAGE&amp;source=INSTORE&amp;accountId</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>Get</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Rate Limited</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-path-parameters">Request Path Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>userId</td>
+<td>long</td>
+<td>Unique ID of the customer to retrieve profile image.</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>embed=CUSTOMERIMAGE*</td>
+<td>-</td>
+<td>Pass to retrieve the customer image</td>
+</tr>
+<tr>
+<td>source*</td>
+<td>enum</td>
+<td>Source on which the customer is registered.</td>
+</tr>
+<tr>
+<td>accountId**</td>
+<td>string</td>
+<td>Account ID for sources with multiple accounts.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory</aside>
 
 <h2 id="get-customer-coupons-detailed">Get Customer Coupons (Detailed)</h2>
 
@@ -23017,7 +23420,7 @@ Batch Support | No
 
 <p>`https://{host}/v2/usergroups/{groupId}/transactions</p>
 
-<h3 id="request-query-parameters">Request Query Parameters</h3>
+<h3 id="request-path-parameters">Request Path Parameters</h3>
 
 <table><thead>
 <tr>
@@ -23033,33 +23436,111 @@ Batch Support | No
 </tr>
 </tbody></table>
 
-<p>start
-limit | int | Number of results to show per page. Default value is <code class="prettyprint">20</code>.
-order | enum | Arrange the results in the ascending <code class="prettyprint">ASC</code>, or descending <code class="prettyprint">DESC</code> order of 
-transaction_id | string | Retrieve the details of a specific transaction. Pass the unique transaction ID. 
-user_id | boolean | Pass <code class="prettyprint">true</code> to show user ID of the customer. Default value is <code class="prettyprint">false</code>.
-credit_notes | boolean | Pass <code class="prettyprint">true</code> to show credit notes of the transaction. Default value is <code class="prettyprint">false</code>.
-tenders: boolean | Pass <code class="prettyprint">true</code> to show payment mode details of each transaction. Default value is <code class="prettyprint">false</code>.
-entered_by | long | till id
-amount | long | 
-min_amount | float | Get transactions greater than or equal to the specific amount.
-max_amount | float | Get transactions less than or equal to the specific amount.
-start_date | string | 
-end_date | string | 
-start_id | string | 
-end_id | string |
-number | string | 
-limit | int | The number of results to retrieve. Default value is 20.
-credit_note | string | Filter transactions credit note information.
-type | string | 
-outlier_status | enum | Filter transactions by outlier status. Value: <code class="prettyprint">NORMAL</code>, <code class="prettyprint">INTERNAL</code>, <code class="prettyprint">FRAUD</code>, <code class="prettyprint">OUTLIER</code>, <code class="prettyprint">TEST</code>, <code class="prettyprint">DELETED</code>, <code class="prettyprint">FAILED</code>, <code class="prettyprint">OTHER</code>.
-returned_on | date-time | Get transactions returned on a specific date.
-added_on | date-time | Get transactions 
-date | string | 
-till_code | string | Get transactions made at a specific TILL. Pass the TILL code.
-store_code | string | Get transactions made in a specific store. Pass the store code.
-delayed_accrual | boolean | Retrieve Default value <code class="prettyprint">false</code>
-local_currency | boolean | Default value <code class="prettyprint">false</code></p>
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>limit</td>
+<td>int</td>
+<td>Number of results to show per page. Default value is <code class="prettyprint">20</code>.</td>
+</tr>
+<tr>
+<td>order</td>
+<td>enum</td>
+<td>Arrange the results in the ascending <code class="prettyprint">ASC</code>, or descending <code class="prettyprint">DESC</code> order of transaction time.</td>
+</tr>
+<tr>
+<td>start</td>
+<td>int</td>
+<td>Number of records that need to be skipped from the top. It is used for offset.</td>
+</tr>
+<tr>
+<td>transaction_id</td>
+<td>string</td>
+<td>Retrieve the details of a specific transaction. Pass the unique transaction ID.</td>
+</tr>
+<tr>
+<td>user_id</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to show user ID of the customer. Default value is <code class="prettyprint">false</code>.</td>
+</tr>
+<tr>
+<td>credit_notes</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to show credit notes of the transaction. Default value is <code class="prettyprint">false</code>.</td>
+</tr>
+<tr>
+<td>tenders: boolean</td>
+<td>Pass <code class="prettyprint">true</code> to show payment mode details of each transaction. Default value is <code class="prettyprint">false</code>.</td>
+<td></td>
+</tr>
+<tr>
+<td>min_amount</td>
+<td>float</td>
+<td>Get transactions greater than or equal to the specific amount.</td>
+</tr>
+<tr>
+<td>max_amount</td>
+<td>float</td>
+<td>Get transactions less than or equal to the specific amount.</td>
+</tr>
+<tr>
+<td>start_date</td>
+<td>string</td>
+<td>Get transactions made on or after a specific date. Format: <code class="prettyprint">YYYY-MM-DD hh:mm:ss</code>.</td>
+</tr>
+<tr>
+<td>end_date</td>
+<td>string</td>
+<td>Get transactions made on or before a specific date. Format: <code class="prettyprint">YYYY-MM-DD hh:mm:ss</code>.</td>
+</tr>
+<tr>
+<td>start_id</td>
+<td>string</td>
+<td>Get transactions with transaction IDs of a specific range. Pass the transaction ID range in start_id and end_id respectively.</td>
+</tr>
+<tr>
+<td>end_id</td>
+<td>string</td>
+<td>Get transactions with transaction IDs of a specific range. Pass the transaction ID range in start_id and end_id respectively.</td>
+</tr>
+<tr>
+<td>number</td>
+<td>string</td>
+<td>Get a specific transaction by its transaction number (bill number).</td>
+</tr>
+<tr>
+<td>outlier_status</td>
+<td>enum</td>
+<td>Filter transactions by outlier status. Value: <code class="prettyprint">NORMAL</code>, <code class="prettyprint">INTERNAL</code>, <code class="prettyprint">FRAUD</code>, <code class="prettyprint">OUTLIER</code>, <code class="prettyprint">TEST</code>, <code class="prettyprint">DELETED</code>, <code class="prettyprint">FAILED</code>, <code class="prettyprint">OTHER</code>.</td>
+</tr>
+<tr>
+<td>returned_on</td>
+<td>date-time</td>
+<td>Get transactions returned on a specific date. Date format: <code class="prettyprint">YYYY-MM-DD hh:mm:ss</code>.</td>
+</tr>
+<tr>
+<td>added_on</td>
+<td>date-time</td>
+<td>Get transactions of a specific date. Date format: <code class="prettyprint">YYYY-MM-DD hh:mm:ss</code>.</td>
+</tr>
+<tr>
+<td>till_code</td>
+<td>string</td>
+<td>Get transactions made at a specific TILL. Pass the TILL code.</td>
+</tr>
+<tr>
+<td>store_code</td>
+<td>string</td>
+<td>Get transactions made in a specific store. Pass the store code.</td>
+</tr>
+</tbody></table>
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
 
@@ -24067,7 +24548,15 @@ local_currency | boolean | Default value <code class="prettyprint">false</code><
   </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="w">
   </span><span class="s2">"cardNumber"</span><span class="p">:</span><span class="s2">"EXTERNALCARD99123450233"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"cardExternalId"</span><span class="p">:</span><span class="s2">"externalCardRe123"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"statusLabel"</span><span class="p">:</span><span class="s2">"CARD GENERATED"</span><span class="w">
+  </span><span class="s2">"statusLabel"</span><span class="p">:</span><span class="s2">"CARD_GENERATED"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"customFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"city"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Bangalore"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pincode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"560056"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"105, Brigade Road, "</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"vehicle_make"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"ford"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -24137,6 +24626,127 @@ local_currency | boolean | Default value <code class="prettyprint">false</code><
 <td>string</td>
 <td>Current user defined status of the card. Check your user defined values for the system values (not issued, active, inactive, deleted, expired).</td>
 </tr>
+<tr>
+<td>customFields</td>
+<td>obj</td>
+<td>Card level custom field details in key:value pair.</td>
+</tr>
+<tr>
+<td>extendedFields</td>
+<td>obj</td>
+<td>Card level extended field details in key:value pair.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> Parameter marked with * is mandatory. </aside>
+
+<h2 id="update-card-details">Update Card Details</h2>
+
+<p>Lets you add a new card number to a card series. Once the card is added, you can issue it to a customer using customers <code class="prettyprint">/changeIdentifier</code> API.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/card
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="mi">15</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cardNumber"</span><span class="p">:</span><span class="s2">"EXTERNALCARD99123450233"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"cardExternalId"</span><span class="p">:</span><span class="s2">"externalCardRe123"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"statusLabel"</span><span class="p">:</span><span class="s2">"CARD_GENERATED"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"statusInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Card is generated"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"customFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"city"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"Bangalore"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"pincode"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"560056"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"address"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"105, Brigade Road, "</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+    </span><span class="s2">"vehicle_make"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"ford"</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"entity"</span><span class="p">:</span><span class="w"> </span><span class="mi">72453</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/card</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v2/card</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>seriesId*</td>
+<td>int</td>
+<td>Card Series ID from which you want to generate card.</td>
+</tr>
+<tr>
+<td>cardNumber*</td>
+<td>string</td>
+<td>Unique number of the card as per the card series configuration.</td>
+</tr>
+<tr>
+<td>cardExternalId</td>
+<td>string</td>
+<td>External reference ID of the card.</td>
+</tr>
+<tr>
+<td>statusLabel*</td>
+<td>string</td>
+<td>Current user defined status of the card. Check your user defined values for the system values (not issued, active, inactive, deleted, expired).</td>
+</tr>
+<tr>
+<td>customFields</td>
+<td>obj</td>
+<td>Card level custom field details to update in key:value pair.</td>
+</tr>
+<tr>
+<td>extendedFields</td>
+<td>obj</td>
+<td>Card level extended field details to update in key:value pair.</td>
+</tr>
 </tbody></table>
 
 <aside class="notice"> Parameter marked with * is mandatory. </aside>
@@ -24155,21 +24765,43 @@ local_currency | boolean | Default value <code class="prettyprint">false</code><
 <p>Sample Response</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"cardNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test123112121"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="w"> </span><span class="mi">19</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50074</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50006796</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"statusInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"autoUpdateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-11-04"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-11-04"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">550271</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">550260</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"labelId"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50074</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOT_ISSUED"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOT_ISSUED"</span><span class="w">
+    </span><span class="s2">"cardId"</span><span class="p">:</span><span class="w"> </span><span class="mi">204802</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"issuedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-12-08T17:53:01+05:30"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-12-08"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expiryDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"seriesName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14477448572684visa001"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"customerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">374395406</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"maxActiveCards"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"entityCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"paw1"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"vehicle_make"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ford"</span><span class="w">
     </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"customFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"city"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Bangalore"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"address"</span><span class="p">:</span><span class="w"> </span><span class="s2">"103, Richmond street "</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pincode"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DIGITAL"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"cardNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test123112121"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="w"> </span><span class="mi">298</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"seriesCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"14477448572684"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50740</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50036987</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"statusInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">204802</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"autoUpdateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-12-08"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-12-08T17:53:01+05:30"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">204802</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">213779</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"labelId"</span><span class="p">:</span><span class="w"> </span><span class="mi">208</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACTIVE"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACTIVE"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">204802</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"transactionNotAllowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
     </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -30235,6 +30867,115 @@ local_currency | boolean | Default value <code class="prettyprint">false</code><
 </tbody></table>
 
 <aside class="notice">Parameters marked with * are mandatory, at least one among the parameters marked with ** is required. </aside>
+
+<h2 id="get-customer-activity-history">Get Customer Activity History</h2>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">https</span><span class="p">:</span><span class="err">//eu.api.capillarytech.com/v</span><span class="mi">2</span><span class="err">/partnerProgram/customerActivityHistory?source=instore&amp;identifierName=externalId&amp;identifierValue=</span><span class="mi">5</span><span class="err">c</span><span class="mi">3</span><span class="err">c</span><span class="mi">2</span><span class="err">dasc</span><span class="mi">6</span><span class="err">b</span><span class="mi">5</span><span class="err">f</span><span class="mi">33</span><span class="err">c</span><span class="mi">82</span><span class="err">fb</span><span class="mi">71</span><span class="err">f</span><span class="mi">679</span><span class="err">daf</span><span class="mi">56</span><span class="err">dq&amp;partnerProgramId=</span><span class="mi">35</span><span class="err">&amp;activityType=benefitsAvailed&amp;startDate=</span><span class="mi">2020-01-29</span><span class="err">+</span><span class="mi">12</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">45</span><span class="err">&amp;endDate=</span><span class="mi">2021-10-29</span><span class="err">+</span><span class="mi">12</span><span class="p">:</span><span class="mi">11</span><span class="p">:</span><span class="mi">45</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"partnerProgramDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"partnerProgramId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"partnerProgramName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"partnerProgramDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"partnerTierNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"partnerTierName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"partnerTierExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-27T13:17:47.677Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"partnerMembershipId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"partnerProgramType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"partnerProgramMembershipStartDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-27T13:17:47.677Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"partnerProgramMembershipEndDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-27T13:17:47.677Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"partnerProgramMembershipLastUpdatedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-27T13:17:47.677Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"partnerProgramMembershipLastUpdatedActivity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"benefitsSummary"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mappedPromotionDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"promotionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"promotionName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"promotionReferenceNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"maximumAvailableInCycle"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"additionalIssuanceInCurrentCycle"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"countAvailedInCurrentCycle"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"countAvailedInLast365Days"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"tierBased"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"customerActivityHistory"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"activityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"activityDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-27T13:17:47.677Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"benefitDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"billDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-10-27T13:17:47.677Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"billNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"billId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tillId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"tillName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"storeName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"uniqueId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/partnerProgram/</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Rate Limited</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p>`https://{host}/v2/partnerProgram/</p>
 
 <h2 id="response-codes">Response Codes</h2>
 

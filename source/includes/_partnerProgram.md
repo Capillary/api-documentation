@@ -353,6 +353,101 @@ customerPartnerReference* | obj | Loyalty details of the customer with respect t
 <aside class="notice">Parameters marked with * are mandatory, at least one among the parameters marked with ** is required. </aside>
 
 
+## Get Customer Activity History
+
+> Sample Request
+
+```json
+https://eu.api.capillarytech.com/v2/partnerProgram/customerActivityHistory?source=instore&identifierName=externalId&identifierValue=5c3c2dasc6b5f33c82fb71f679daf56dq&partnerProgramId=35&activityType=benefitsAvailed&startDate=2020-01-29+12:11:45&endDate=2021-10-29+12:11:45
+```
+
+> Sample Response
+
+```json
+{
+  "partnerProgramDetails": {
+    "partnerProgramId": 0,
+    "partnerProgramName": "string",
+    "partnerProgramDescription": "string",
+    "partnerTierNumber": 0,
+    "partnerTierName": "string",
+    "partnerTierExpiryDate": "2021-10-27T13:17:47.677Z",
+    "partnerMembershipId": "string",
+    "partnerProgramType": "string",
+    "partnerProgramMembershipStartDate": "2021-10-27T13:17:47.677Z",
+    "partnerProgramMembershipEndDate": "2021-10-27T13:17:47.677Z",
+    "partnerProgramMembershipLastUpdatedDate": "2021-10-27T13:17:47.677Z",
+    "partnerProgramMembershipLastUpdatedActivity": "string",
+    "benefitsSummary": [
+      {
+        "name": "string",
+        "type": "string",
+        "mappedPromotionDetails": {
+          "promotionId": 0,
+          "promotionName": "string",
+          "promotionReferenceNumber": "string"
+        },
+        "maximumAvailableInCycle": 0,
+        "additionalIssuanceInCurrentCycle": 0,
+        "countAvailedInCurrentCycle": 0,
+        "countAvailedInLast365Days": 0
+      }
+    ],
+    "tierBased": false
+  },
+  "customerActivityHistory": [
+    {
+      "activityType": "string",
+      "activityDate": "2021-10-27T13:17:47.677Z",
+      "benefitDetails": {
+        "name": "string",
+        "type": "string",
+        "billDate": "2021-10-27T13:17:47.677Z",
+        "billNumber": "string",
+        "billId": 0,
+        "tillId": 0,
+        "tillName": "string",
+        "storeName": "string"
+      }
+    }
+  ],
+  "notes": "string",
+  "uniqueId": "string",
+  "warnings": [
+    {
+      "status": false,
+      "code": 0,
+      "message": "string"
+    }
+  ],
+  "errors": [
+    {
+      "status": false,
+      "code": 0,
+      "message": "string"
+    }
+  ]
+}
+```
+
+### Resource Information
+
+| | |
+--------- | ----------- |
+URI | `v2/partnerProgram/`
+HTTP Method | GET
+API Version | v2
+Rate Limited | Yes
+Batch Support | No
+
+### Request URL
+`https://{host}/v2/partnerProgram/
+
+
+
+
+
+
 ## Response Codes
 
 ### Error Codes

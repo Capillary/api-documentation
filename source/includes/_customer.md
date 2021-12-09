@@ -43,7 +43,14 @@ https://us.api.capillarytech.com/v2/customers
           "type": "cardnumber",
           "value": "test123112121",
           "seriesId": 19,
-          "statusLabel": "ACTIVE"
+          "statusLabel": "ACTIVE",
+		  "extendedFields": {
+			"card_balance": 2000,
+			"year_of_registration" : 18
+		},
+		"customFields": {
+			"bloodgroup" : "bnegative"
+		}
         }
       ],
       "commChannels": [
@@ -250,8 +257,8 @@ statusLabel | string | User defined card status. Required for the identifier `ty
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attributes | obj | Additional details of the identifier.
 createDate | date-time | Time and date of registration in `YYYY-MM-DDTHH:MM:SS+HH:MM` format. Example: 2016-06-23T19:11:18+08:00
 associatedWith | string | The TILL code associated with the customer registration.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extendedFields | obj | Customer level extended field details in key:value pairs. You can only pass extended fields that are enabled for your org with the respective datatype values.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fields | obj | Customer level custom field details in key-value pairs.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;extendedFields | obj | Customer or card level extended field details in key:value pairs. You can only pass extended fields that are enabled for your org with the respective datatype values.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fields | obj | Customer or card level custom field details in key-value pairs.
 lastViewedDate** | Date | Date when the customer recently opened the app. Applicable for the channel `mobilePush`.
 loyaltyProgramEnrollments | obj | Lets you enroll new customers in the loyalty program.
 programId | int | Unique ID of the loyalty program in which you want to enroll.
@@ -2328,89 +2335,161 @@ https://eu.api.capillarytech.com/v2/customers/17742?source=WECHAT&accountId=2223
 
 ```json
 {
-   "id": 17742,
-   "profiles": [
-       {
-           "firstName": "Tom",
-           "lastName": "Sawyer",
-           "attribution": {
-               "createDate": "2016-06-23T19:11:18+08:00",
-               "createdBy": {
-                   "code": "rr.till",
-                   "description": "",
-                   "name": "rr.till",
-                   "type": "TILL"
-               },
-               "modifiedBy": {
-                   "code": "rr.till",
-                   "description": "",
-                   "name": "rr.till",
-                   "type": "TILL"
-               },
-               "modifiedDate": "2016-08-12T18:50:23+08:00"
-           },
-           "fields": {
-               "Gender": "Male",
-               "Favorite Color": "Green"
-           },
-           "identifiers": [
-               {
-                   "type": "line",
-                   "value": "lineAS6"
-               },
-               {
-                   "type": "cardNumber",
-                   "value": "TTM001110000000002ZS",
-                   "seriesId": 19,
-                   "statusLabel": "ACTIVE"
-               },
-			   {
-                   "type": "email",
-                   "value": "tom.sawyer@example.com"
+   "id":17742,
+   "profiles":[
+      {
+         "firstName":"Tom",
+         "lastName":"Sawyer",
+         "attribution":{
+            "createDate":"2016-06-23T19:11:18+08:00",
+            "createdBy":{
+               "code":"rr.till",
+               "description":"",
+               "name":"rr.till",
+               "type":"TILL"
+            },
+            "modifiedBy":{
+               "code":"rr.till",
+               "description":"",
+               "name":"rr.till",
+               "type":"TILL"
+            },
+            "modifiedDate":"2016-08-12T18:50:23+08:00"
+         },
+         "fields":{
+            "Gender":"Male",
+            "Favorite Color":"Green"
+         },
+         "identifiers":[
+            {
+               "type":"line",
+               "value":"lineAS6"
+            },
+            {
+               "type":"cardNumber",
+               "value":"TTM001110000000002ZS",
+               "seriesId":19,
+               "statusLabel":"ACTIVE"
+            },
+            {
+               "type":"email",
+               "value":"tom.sawyer@example.com"
+            }
+         ],
+         "commChannels":[
+            {
+               "type":"wechat",
+               "value":"ojOPTwFOX-aBmdRlE9MHptPjt2w19",
+               "primary":true,
+               "verified":true,
+               "meta":{
+                  "residence":false,
+                  "office":false
                }
-           ],
-           "commChannels": [
-               {
-                   "type": "wechat",
-                   "value": "ojOPTwFOX-aBmdRlE9MHptPjt2w19",
-                   "primary": true,
-                   "verified": true,
-                   "meta": {
-                       "residence": false,
-                       "office": false
-                   }
+            },
+            {
+               "type":"email",
+               "value":"tom@eail.com",
+               "primary":true,
+               "verified":false,
+               "meta":{
+                  "residence":false,
+                  "office":false
+               },
+               "attributes":{
+                  
                }
-           ],
-           "source": "WECHAT",
-           "userId": 17742,
-           "conflictingProfileList": [
-           ],
-           "autoUpdateTime": "2016-08-12T18:50:23+08:00"
-       }
+            }
+         ],
+         "source":"WECHAT",
+         "userId":17742,
+         "accountId":"wechat-con1",
+         "conflictingProfileList":[
+            
+         ],
+         "autoUpdateTime":"2016-08-12T18:50:23+08:00",
+         "identifiersAll":[
+            {
+               "type":"mobile",
+               "value":"916722173368"
+            },
+            {
+               "type":"email",
+               "value":"6722173368@mail.com"
+            }
+         ]
+      }
    ],
-   "loyaltyInfo": {
-       "loyaltyType": "non_loyalty",
-       "attributionV2": {
-           "createDate": "2016-06-23T19:11:18+08:00",
-           "createdBy": {
-               "code": "rr.till",
-               "name": "rr.till"
-           },
-           "modifiedBy": {
-               "code": "rr.till",
-               "name": "rr.till"
-           },
-           "modifiedDate": "2016-08-12T18:50:23+08:00"
-       },
-       "lifetimePurchases": 230
+   "loyaltyInfo":{
+      "loyaltyType":"non_loyalty",
+      "attributionV2":{
+         "createDate":"2016-06-23T19:11:18+08:00",
+         "createdBy":{
+            "code":"rr.till",
+            "name":"rr.till"
+         },
+         "modifiedBy":{
+            "code":"rr.till",
+            "name":"rr.till"
+         },
+         "modifiedDate":"2016-08-12T18:50:23+08:00"
+      },
+      "lifetimePurchases":230
    },
-   "segments": {
+   "segments":{
+      
    },
-     "extendedFields": {
-        "city": "Bangalore",
-        "gender": "Male"
-    },
-   "warnings": [
+   "extendedFields":{
+      "city":"Bangalore",
+      "gender":"Male"
+   },
+   "cardDetails":[
+      {
+         "cardId":418,
+         "issuedDate":"2021-11-23T10:01:33Z",
+         "createdDate":"2021-11-23",
+         "expiryDays":0,
+         "seriesName":"sushicard",
+         "customerId":341594630,
+         "maxActiveCards":60,
+         "cardExternalId":"orea7",
+         "extendedFields":{
+            "advance_card_personalisation":"yes",
+            "card_balance":1000.0,
+            "year_of_registration":18
+         },
+         "customFields":{
+            "cardname":"sushi",
+            "cardscope":"global",
+            "cardtype":"pro card"
+         },
+         "type":"DIGITAL",
+         "cardNumber":"visasushi006",
+         "seriesId":23,
+         "seriesCode":"422",
+         "orgId":50247,
+         "entityId":50016843,
+         "statusInfo":{
+            "reason":"",
+            "createdBy":50016843,
+            "actions":[
+               
+            ],
+            "autoUpdateTime":"2021-11-23",
+            "createdOn":"2021-11-23T10:01:33Z",
+            "entityId":418,
+            "id":478,
+            "isActive":true,
+            "labelId":31,
+            "label":"ACTIVE",
+            "status":"ACTIVE"
+         },
+         "id":418,
+         "transactionNotAllowed":true
+      }
+   ],
+   "warnings":[
+      
    ]
 }
 ```
