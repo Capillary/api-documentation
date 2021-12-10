@@ -23628,7 +23628,7 @@ Batch Support | No
 </tr>
 </tbody></table>
 
-          <h1 id="card-loyalty-membership">Card Loyalty/Membership</h1>
+          <h1 id="card-loyalty">Card Loyalty</h1>
 
 <p>Card enables orgs to run card based loyalty memberships with multiple card types. A customer can have multiple cards of a same or different series as intended by the org.</p>
 
@@ -24650,9 +24650,9 @@ Batch Support | No
 
 <aside class="notice"> Parameter marked with * is mandatory. </aside>
 
-<h2 id="update-card-details">Update Card Details</h2>
+<h2 id="add-card-details-single">Add Card Details (Single)</h2>
 
-<p>Lets you add a new card number to a card series. Once the card is added, you can issue it to a customer using customers <code class="prettyprint">/changeIdentifier</code> API.</p>
+<p>Lets you add/generate a new card number to a card series. Once the card is added, you can issue it to a customer using customers <code class="prettyprint">/changeIdentifier</code> API.</p>
 
 <blockquote>
 <p>Sample Request</p>
@@ -24756,6 +24756,389 @@ Batch Support | No
 <td>extendedFields</td>
 <td>obj</td>
 <td>Card level extended field details to update in key:value pair.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> Parameter marked with * is mandatory. </aside>
+
+<h2 id="update-card-details-single">Update Card Details (Single)</h2>
+
+<p>Lets you update an existing card details such as card status label, and custom/extended field values.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/card/bulk
+</code></pre>
+<blockquote>
+<p>Sample PUT Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"cardNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"warsawcustomc26"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"statusLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"statusInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Change in card status"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+     </span><span class="s2">"customFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"budapest"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"field1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"type1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"vehicle_make"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2021"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"cardId"</span><span class="p">:</span><span class="w"> </span><span class="mi">204801</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"customerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"vehicle_make"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"customFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"budapest"</span><span class="p">:</span><span class="w"> </span><span class="s2">"field1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"type1"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"cardNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"warsawcustomc26"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50740</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50036987</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"statusLabelInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-08-26"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"entityStatusId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">225</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50740</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-08-26"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOT_ISSUED"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CARD"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="s2">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"statusInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Change in card status"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"transactionNotAllowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">3039</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No update in status label"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w"> 
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/card</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>PUT</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v2/card</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>seriesId*</td>
+<td>int</td>
+<td>Series ID of the card to update.</td>
+</tr>
+<tr>
+<td>cardNumber**</td>
+<td>string</td>
+<td>Unique number of the card as per the card series configuration.</td>
+</tr>
+<tr>
+<td>cardExternalId**</td>
+<td>string</td>
+<td>External reference ID of the card.</td>
+</tr>
+<tr>
+<td>statusLabel*</td>
+<td>string</td>
+<td>Current user defined status of the card. Check your user defined values for the system values (not issued, active, inactive, deleted, expired).</td>
+</tr>
+<tr>
+<td>customFields</td>
+<td>obj</td>
+<td>Card level custom field details to update in key:value pair.</td>
+</tr>
+<tr>
+<td>extendedFields</td>
+<td>obj</td>
+<td>Card level extended field details to update in key:value pair.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> Parameter marked with * is mandatory. </aside>
+
+<h2 id="update-card-details-bulk">Update Card Details (Bulk)</h2>
+
+<p>Lets you update details of existing cards in bulk. Once the card is added, you can issue it to a customer using customers <code class="prettyprint">/changeIdentifier</code> API.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/card/bulk
+</code></pre>
+<blockquote>
+<p>Sample PUT Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"cardNumber"</span><span class="p">:</span><span class="s2">"visasushi005"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusLabel"</span><span class="p">:</span><span class="s2">"not_issued"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"limit_set_by"</span><span class="p">:</span><span class="s2">"tom"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"year_of_registration"</span><span class="p">:</span><span class="mi">2021</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"mappedEntity"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"paw1"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"customFields"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"cardstatus"</span><span class="p">:</span><span class="s2">"na"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"carda1"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"card_grade"</span><span class="p">:</span><span class="s2">"2"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"cardNumber"</span><span class="p">:</span><span class="s2">"visasushi007"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusLabel"</span><span class="p">:</span><span class="s2">"not_issued"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"limit_set_by"</span><span class="p">:</span><span class="s2">"som"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"year_of_registration"</span><span class="p">:</span><span class="mi">2021</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"mappedEntity"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"paw1"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"customFields"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"carda1"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"cardname"</span><span class="p">:</span><span class="s2">"sushi"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"cardscope"</span><span class="p">:</span><span class="s2">"global"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"cardstatus"</span><span class="p">:</span><span class="s2">"na"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"cardtype"</span><span class="p">:</span><span class="s2">"silver"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"cardId"</span><span class="p">:</span><span class="w"> </span><span class="mi">417</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"customerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"limit_set_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"year_of_registration"</span><span class="p">:</span><span class="w"> </span><span class="mi">36</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"customFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"carda1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"cardstatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"na"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"mappedEntity"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"paw1"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50016843</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"cardNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"visasushi005"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50247</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50016843</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"statusLabelInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-11-23"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"entityStatusId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"not_issued"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50247</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-11-23"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOT_ISSUED"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CARD"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                    </span><span class="s2">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"transactionNotAllowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No update in status label"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">3039</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid Custom-field name"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1022</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"cardId"</span><span class="p">:</span><span class="w"> </span><span class="mi">419</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"customerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"limit_set_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"som"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"year_of_registration"</span><span class="p">:</span><span class="w"> </span><span class="mi">36</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"customFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"carda1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"cardname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sushi"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"cardscope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"global"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"cardstatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"na"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"cardtype"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"mappedEntity"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"paw1"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50016843</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"cardNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"visasushi007"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50247</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50016843</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"statusLabelInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-11-23"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"entityStatusId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"not_issued"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50247</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-11-23"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOT_ISSUED"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CARD"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                    </span><span class="s2">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"transactionNotAllowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No update in status label"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">3039</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"totalCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"failureCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/card/bulk</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>PUT</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v2/card/bulk</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>seriesId*</td>
+<td>int</td>
+<td>Card Series ID from which you want to generate card.</td>
+</tr>
+<tr>
+<td>cardNumber*</td>
+<td>string</td>
+<td>Unique number of the card as per the card series configuration.</td>
+</tr>
+<tr>
+<td>cardExternalId</td>
+<td>string</td>
+<td>External reference ID of the card.</td>
+</tr>
+<tr>
+<td>statusLabel*</td>
+<td>string</td>
+<td>Current user defined status of the card. Check your user defined values for the system values (not issued, active, inactive, deleted, expired).</td>
+</tr>
+<tr>
+<td>customFields</td>
+<td>obj</td>
+<td>Card level custom field details to update in key:value pair.</td>
+</tr>
+<tr>
+<td>extendedFields</td>
+<td>obj</td>
+<td>Card level extended field details to update in key:value pair.</td>
+</tr>
+<tr>
+<td>mappedEntity</td>
+<td>obj</td>
+<td>Details of the TILL associated with the card.</td>
 </tr>
 </tbody></table>
 
