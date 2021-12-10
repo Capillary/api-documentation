@@ -134,7 +134,7 @@
 <h2 id="q3-releases-2021-2022">Q3 Releases (2021-2022)</h2>
 
 <ul>
-<li>  <strong>Custom fields and extended fields support in card APIs</strong>: You can now store and retrieve card related custom fields and extended fields. To know how, check out <a href="https://capillary.github.io/api-documentation/#add-card-number-to-a-card-series">POST v2/card</a>, <a href="https://capillary.github.io/api-documentation/#update-card-details">PUT v2/card</a>, <a href="https://capillary.github.io/api-documentation/#get-card-details">GET v2/card</a>
+<li>  <strong>Custom fields and extended fields support in card APIs</strong>: You can now store and retrieve card related custom fields and extended fields. To know how, check out <a href="https://capillary.github.io/api-documentation/#add-card-number-to-a-card-series">POST v2/card</a>, <a href="https://capillary.github.io/api-documentation/#update-card-details">PUT v2/card</a>, <a href="https://capillary.github.io/api-documentation/#get-card-details">GET v2/card</a>, <a href="https://capillary.github.io/api-documentation/#update-card-details-bulk">PUT v2/card/bulk</a>
 
 <ul>
 <li>Support for card level custom fields in <a href="https://capillary.github.io/api-documentation/#register-customer">POST v2/customers</a> and <a href="https://capillary.github.io/api-documentation/#fetch-customer-details-by-user-id">GET v2/customers</a>.</li>
@@ -24768,7 +24768,7 @@ Batch Support | No
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/card/bulk
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/card
 </code></pre>
 <blockquote>
 <p>Sample PUT Request</p>
@@ -24781,6 +24781,11 @@ Batch Support | No
     </span><span class="s2">"statusInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Change in card status"</span><span class="w">
     </span><span class="p">},</span><span class="w">
+     </span><span class="s2">"mappedEntity"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"paw1"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50016843</span><span class="w">
+                </span><span class="p">},</span><span class="w">
      </span><span class="s2">"customFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
         </span><span class="s2">"budapest"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"field1"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"type1"</span><span class="p">,</span><span class="w">
@@ -24804,6 +24809,11 @@ Batch Support | No
         </span><span class="s2">"budapest"</span><span class="p">:</span><span class="w"> </span><span class="s2">"field1"</span><span class="p">,</span><span class="w">
         </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
         </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"type1"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"mappedEntity"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"paw1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50016843</span><span class="w">
     </span><span class="p">},</span><span class="w">
     </span><span class="s2">"cardNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"warsawcustomc26"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
@@ -24905,13 +24915,18 @@ Batch Support | No
 <td>obj</td>
 <td>Card level extended field details to update in key:value pair.</td>
 </tr>
+<tr>
+<td>mappedEntity</td>
+<td>obj</td>
+<td>Details of the TILL associated with the card issual.</td>
+</tr>
 </tbody></table>
 
-<aside class="notice"> Parameter marked with * is mandatory. </aside>
+<aside class="notice"> Parameter marked with * is mandatory. Either cardNumber or cardExternalId is mandatory.</aside>
 
 <h2 id="update-card-details-bulk">Update Card Details (Bulk)</h2>
 
-<p>Lets you update details of existing cards in bulk. Once the card is added, you can issue it to a customer using customers <code class="prettyprint">/changeIdentifier</code> API.</p>
+<p>Lets you update details of existing cards in bulk. You can update details such as card status label, and custom/extended field values.</p>
 
 <blockquote>
 <p>Sample Request</p>
@@ -25111,12 +25126,12 @@ Batch Support | No
 <td>Card Series ID from which you want to generate card.</td>
 </tr>
 <tr>
-<td>cardNumber*</td>
+<td>cardNumber**</td>
 <td>string</td>
 <td>Unique number of the card as per the card series configuration.</td>
 </tr>
 <tr>
-<td>cardExternalId</td>
+<td>cardExternalId**</td>
 <td>string</td>
 <td>External reference ID of the card.</td>
 </tr>
@@ -25138,11 +25153,11 @@ Batch Support | No
 <tr>
 <td>mappedEntity</td>
 <td>obj</td>
-<td>Details of the TILL associated with the card.</td>
+<td>Details of the TILL associated with the card issual.</td>
 </tr>
 </tbody></table>
 
-<aside class="notice"> Parameter marked with * is mandatory. </aside>
+<aside class="notice"> Parameter marked with * is mandatory. Either cardNumber or cardExternalId is mandatory.</aside>
 
 <h2 id="get-card-details">Get Card Details</h2>
 
@@ -25246,45 +25261,128 @@ Batch Support | No
 
 <aside class="notice"> The parameter marked with * is  mandatory. </aside>
 
-<h2 id="set-status-labels">Set Status Labels</h2>
+<h2 id="set-card-status-labels">Set Card Status Labels</h2>
 
-<p>Lets you add or map custom status labels to the default labels.</p>
+<p>Lets you add or map custom status labels to standard statuses and set default label names for each status.  </p>
 
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/genericStatus/card/labels
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/genericStatus/card/labelMapping
 </code></pre>
 <blockquote>
 <p>Sample POST Request</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="s2">"NOT_ISSUED"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"CARD GENERATED"</span><span class="w"> 
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="s2">"NOT_ISSUED"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"CARD PRINTED"</span><span class="w"> 
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="s2">"NOT_ISSUED"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"CARD DISTRIBUTED"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="s2">"ACTIVE"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"CARD ISSUED"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="s2">"EXPIRED"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"CARD EXPIRED"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"mapping"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"NOT_ISSUED"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"NOT_ISSUED"</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"ISSUED"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"ISSUED"</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"ACTIVE"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"ACTIVE"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"CARD_GENERATED"</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"SUSPENDED"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"SUSPENDED"</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"EXPIRED"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"EXPIRED"</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"DELETED"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"DELETED"</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>Sample Response</p>
 </blockquote>
-<pre class="highlight json"><code><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"mapping"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"ACTIVE"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"ACTIVE"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"actions"</span><span class="p">:{</span><span class="w">
+
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"DELETED"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"DELETED"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"actions"</span><span class="p">:{</span><span class="w">
+
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"EXPIRED"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"EXPIRED"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"actions"</span><span class="p">:{</span><span class="w">
+
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"ISSUED"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"ISSUED"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"actions"</span><span class="p">:{</span><span class="w">
+
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"NOT_ISSUED"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"NOT_ISSUED"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"actions"</span><span class="p">:{</span><span class="w">
+
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"SUSPENDED"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"SUSPENDED"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"actions"</span><span class="p">:{</span><span class="w">
+
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"entityType"</span><span class="p">:</span><span class="s2">"CARD"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"warnings"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <h3 id="resource-information">Resource Information</h3>
 
@@ -25296,7 +25394,7 @@ Batch Support | No
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/v2/genericStatus/card/labels</code></td>
+<td><code class="prettyprint">/v2/genericStatus/card/labelMapping</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -25314,7 +25412,7 @@ Batch Support | No
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">{host}/v2/genericStatus/card/labels</code></p>
+<p><code class="prettyprint">{host}/v2/genericStatus/card/labelMapping</code></p>
 
 <h3 id="request-body-parameters">Request Body Parameters</h3>
 
@@ -25326,14 +25424,19 @@ Batch Support | No
 </tr>
 </thead><tbody>
 <tr>
-<td>status*</td>
-<td>enum</td>
-<td>Default status to which custom status label needs to be added.</td>
+<td>status names*</td>
+<td>array</td>
+<td>Standard status name for which custom labels need to be added.</td>
 </tr>
 <tr>
 <td>label*</td>
 <td>string</td>
 <td>Custom label name for the default status.</td>
+</tr>
+<tr>
+<td>default</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> for default values.</td>
 </tr>
 </tbody></table>
 
