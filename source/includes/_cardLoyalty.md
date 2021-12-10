@@ -1,4 +1,4 @@
-# Card Loyalty/Membership
+# Card Loyalty
 
 Card enables orgs to run card based loyalty memberships with multiple card types. A customer can have multiple cards of a same or different series as intended by the org.
 
@@ -669,9 +669,9 @@ extendedFields | obj | Card level extended field details in key:value pair.
 
 
 
-## Update Card Details
+## Add Card Details (Single)
 
-Lets you add a new card number to a card series. Once the card is added, you can issue it to a customer using customers `/changeIdentifier` API.
+Lets you add/generate a new card number to a card series. Once the card is added, you can issue it to a customer using customers `/changeIdentifier` API.
 
 > Sample Request
 
@@ -736,6 +736,313 @@ customFields | obj | Card level custom field details to update in key:value pair
 extendedFields | obj | Card level extended field details to update in key:value pair. 
 
 <aside class="notice"> Parameter marked with * is mandatory. </aside>
+
+## Update Card Details (Single)
+
+
+Lets you update an existing card details such as card status label, and custom/extended field values.
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/card
+```
+
+> Sample PUT Request
+
+```json
+
+{
+	"cardNumber": "warsawcustomc26",
+    "seriesId": 23,
+	"statusLabel": "new",
+	"statusInfo": {
+		"reason": "Change in card status"
+	},
+	 "mappedEntity": {
+                    "type": "TILL",
+                    "value": "paw1",
+                    "id": 50016843
+                },
+     "customFields": {
+		"budapest" : "field1",
+		"type" : "type1",
+		"name" : ""
+  },
+  "extendedFields":{
+		"vehicle_make" : "2021"
+    }
+}
+```
+
+> Sample Response
+
+```json
+{
+    "cardId": 204801,
+    "customerId": 0,
+    "extendedFields": {
+        "vehicle_make": "2021"
+    },
+    "customFields": {
+        "budapest": "field1",
+        "name": "",
+        "type": "type1"
+    },
+	"mappedEntity": {
+        "type": "TILL",
+        "value": "paw1",
+        "id": 50016843
+    },
+    "cardNumber": "warsawcustomc26",
+    "seriesId": 23,
+    "orgId": 50740,
+    "entityId": 50036987,
+    "statusLabelInfo": {
+        "createdOn": "2021-08-26",
+        "entityStatusId": 1,
+        "id": 225,
+        "isActive": true,
+        "label": "new",
+        "orgId": 50740,
+        "updatedOn": "2021-08-26",
+        "status": "NOT_ISSUED",
+        "type": "CARD",
+        "actions": {},
+        "default": true
+    },
+    "statusInfo": {
+        "reason": "Change in card status",
+        "actions": []
+    },
+    "transactionNotAllowed": false,
+    "warnings": [
+        {
+            "status": false,
+            "code": 3039,
+            "message": "No update in status label"
+        }
+    ]
+} 
+```
+
+
+### Resource Information
+
+| | |
+--------- | ----------- |
+URI | `v2/card`
+HTTP Method | PUT
+API Version | v2
+Batch Support | Yes
+
+### Request URL
+`{host}/v2/card`
+
+### Request Body Parameters
+Parameter | Datatype | Description
+--------- | -------- | -----------
+seriesId* | int | Series ID of the card to update.
+cardNumber** | string | Unique number of the card as per the card series configuration.
+cardExternalId** | string | External reference ID of the card.
+statusLabel* | string | Current user defined status of the card. Check your user defined values for the system values (not issued, active, inactive, deleted, expired). 
+customFields | obj | Card level custom field details to update in key:value pair. 
+extendedFields | obj | Card level extended field details to update in key:value pair. 
+mappedEntity | obj | Details of the TILL associated with the card issual.
+
+<aside class="notice"> Parameter marked with * is mandatory. Either cardNumber or cardExternalId is mandatory.</aside>
+
+
+
+
+
+## Update Card Details (Bulk)
+
+Lets you update details of existing cards in bulk. You can update details such as card status label, and custom/extended field values.
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/card/bulk
+```
+
+> Sample PUT Request
+
+```json
+[
+   {
+      "cardNumber":"visasushi005",
+      "statusLabel":"not_issued",
+      "extendedFields":{
+         "limit_set_by":"tom",
+         "year_of_registration":2021
+      },
+      "mappedEntity":{
+         "type":"TILL",
+         "value":"paw1"
+      },
+      "customFields":{
+         "cardstatus":"na",
+         "carda1":"",
+         "card_grade":"2"
+      }
+   },
+   {
+      "cardNumber":"visasushi007",
+      "statusLabel":"not_issued",
+      "extendedFields":{
+         "limit_set_by":"som",
+         "year_of_registration":2021
+      },
+      "mappedEntity":{
+         "type":"TILL",
+         "value":"paw1"
+      },
+      "customFields":{
+         "carda1":"",
+         "cardname":"sushi",
+         "cardscope":"global",
+         "cardstatus":"na",
+         "cardtype":"silver"
+      }
+   }
+]
+```
+
+> Sample Response
+
+```json
+{
+    "response": [
+        {
+            "entityId": {
+                "cardId": 417,
+                "customerId": 0,
+                "extendedFields": {
+                    "limit_set_by": "tom",
+                    "year_of_registration": 36
+                },
+                "customFields": {
+                    "carda1": "",
+                    "cardstatus": "na"
+                },
+                "mappedEntity": {
+                    "type": "TILL",
+                    "value": "paw1",
+                    "id": 50016843
+                },
+                "cardNumber": "visasushi005",
+                "orgId": 50247,
+                "entityId": 50016843,
+                "statusLabelInfo": {
+                    "createdOn": "2021-11-23",
+                    "entityStatusId": 1,
+                    "id": 24,
+                    "isActive": true,
+                    "label": "not_issued",
+                    "orgId": 50247,
+                    "updatedOn": "2021-11-23",
+                    "status": "NOT_ISSUED",
+                    "type": "CARD",
+                    "actions": {},
+                    "default": true
+                },
+                "transactionNotAllowed": false
+            },
+            "errors": [],
+            "warnings": [
+                {
+                    "status": false,
+                    "message": "No update in status label",
+                    "code": 3039
+                },
+                {
+                    "status": false,
+                    "message": "Invalid Custom-field name",
+                    "code": 1022
+                }
+            ]
+        },
+        {
+            "entityId": {
+                "cardId": 419,
+                "customerId": 0,
+                "extendedFields": {
+                    "limit_set_by": "som",
+                    "year_of_registration": 36
+                },
+                "customFields": {
+                    "carda1": "",
+                    "cardname": "sushi",
+                    "cardscope": "global",
+                    "cardstatus": "na",
+                    "cardtype": ""
+                },
+                "mappedEntity": {
+                    "type": "TILL",
+                    "value": "paw1",
+                    "id": 50016843
+                },
+                "cardNumber": "visasushi007",
+                "orgId": 50247,
+                "entityId": 50016843,
+                "statusLabelInfo": {
+                    "createdOn": "2021-11-23",
+                    "entityStatusId": 1,
+                    "id": 24,
+                    "isActive": true,
+                    "label": "not_issued",
+                    "orgId": 50247,
+                    "updatedOn": "2021-11-23",
+                    "status": "NOT_ISSUED",
+                    "type": "CARD",
+                    "actions": {},
+                    "default": true
+                },
+                "transactionNotAllowed": false
+            },
+            "errors": [],
+            "warnings": [
+                {
+                    "status": false,
+                    "message": "No update in status label",
+                    "code": 3039
+                }
+            ]
+        }
+    ],
+    "totalCount": 2,
+    "failureCount": 0
+}
+```
+
+
+
+
+### Resource Information
+
+| | |
+--------- | ----------- |
+URI | `v2/card/bulk`
+HTTP Method | PUT
+API Version | v2
+Batch Support | Yes
+
+### Request URL
+`{host}/v2/card/bulk`
+
+### Request Body Parameters
+Parameter | Datatype | Description
+--------- | -------- | -----------
+seriesId* | int | Card Series ID from which you want to generate card.
+cardNumber** | string | Unique number of the card as per the card series configuration.
+cardExternalId** | string | External reference ID of the card.
+statusLabel* | string | Current user defined status of the card. Check your user defined values for the system values (not issued, active, inactive, deleted, expired). 
+customFields | obj | Card level custom field details to update in key:value pair. 
+extendedFields | obj | Card level extended field details to update in key:value pair. 
+mappedEntity | obj | Details of the TILL associated with the card issual.
+
+<aside class="notice"> Parameter marked with * is mandatory. Either cardNumber or cardExternalId is mandatory.</aside>
 
 
 
@@ -819,49 +1126,132 @@ cardNmber* | int | Card number to retrieve details.
 
 
 
-## Set Status Labels
+## Set Card Status Labels
 
 
-Lets you add or map custom status labels to the default labels.
+Lets you add or map custom status labels to standard statuses and set default label names for each status.  
 
 > Sample Request
 
 ```html
-https://eu.api.capillarytech.com/v2/genericStatus/card/labels
+https://eu.api.capillarytech.com/v2/genericStatus/card/labelMapping
 ```
 
 
 > Sample POST Request
 
 ```json
-[
-	{
-	"status" :"NOT_ISSUED",
-	"label":"CARD GENERATED" 
-	},
-	{
-	"status" :"NOT_ISSUED",
-  	"label":"CARD PRINTED" 
-	},
-	{
-	"status" :"NOT_ISSUED",
-	"label":"CARD DISTRIBUTED"
-	},
-	{
-	"status" :"ACTIVE",
-  	"label":"CARD ISSUED"
-	},
-	{
-	"status" :"EXPIRED",
-  	"label":"CARD EXPIRED"
-	}
-]
+{
+   "mapping":{
+      "NOT_ISSUED":[
+         {
+            "default":true,
+            "label":"NOT_ISSUED"
+         }
+      ],
+      "ISSUED":[
+         {
+            "default":true,
+            "label":"ISSUED"
+         }
+      ],
+      "ACTIVE":[
+         {
+            "default":true,
+            "label":"ACTIVE"
+         },
+		 {
+            "default":true,
+            "label":"CARD_GENERATED"
+         }
+      ],
+      "SUSPENDED":[
+         {
+            "default":true,
+            "label":"SUSPENDED"
+         }
+      ],
+      "EXPIRED":[
+         {
+            "default":true,
+            "label":"EXPIRED"
+         }
+      ],
+      "DELETED":[
+         {
+            "default":true,
+            "label":"DELETED"
+         }
+      ]
+   }
+}
 ```
 
 > Sample Response
 
 ```json
-
+{
+   "mapping":{
+      "ACTIVE":[
+         {
+            "label":"ACTIVE",
+            "actions":{
+               
+            },
+            "default":true
+         }
+      ],
+      "DELETED":[
+         {
+            "label":"DELETED",
+            "actions":{
+               
+            },
+            "default":true
+         }
+      ],
+      "EXPIRED":[
+         {
+            "label":"EXPIRED",
+            "actions":{
+               
+            },
+            "default":true
+         }
+      ],
+      "ISSUED":[
+         {
+            "label":"ISSUED",
+            "actions":{
+               
+            },
+            "default":true
+         }
+      ],
+      "NOT_ISSUED":[
+         {
+            "label":"NOT_ISSUED",
+            "actions":{
+               
+            },
+            "default":true
+         }
+      ],
+      "SUSPENDED":[
+         {
+            "label":"SUSPENDED",
+            "actions":{
+               
+            },
+            "default":true
+         }
+      ]
+   },
+   "entityType":"CARD",
+   "warnings":[
+      
+   ]
+}
 ```
 
 
@@ -869,22 +1259,23 @@ https://eu.api.capillarytech.com/v2/genericStatus/card/labels
 ### Resource Information
 | | |
 --------- | ----------- |
-URI | `/v2/genericStatus/card/labels`
+URI | `/v2/genericStatus/card/labelMapping`
 Rate Limited? | Yes (1000 per hour)
 HTTP Methods | POST
 Batch Support | NA
 
 ### Request URL
 
-`{host}/v2/genericStatus/card/labels`
+`{host}/v2/genericStatus/card/labelMapping`
 
 
 ### Request Body Parameters
 
 Parameter | Datatype | Description
 --------- | -------- | -----------
-status* | enum | Default status to which custom status label needs to be added.
+status names* | array | Standard status name for which custom labels need to be added. 
 label* | string | Custom label name for the default status.
+default | boolean | Pass `true` for default values.
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
 

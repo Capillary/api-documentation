@@ -131,15 +131,25 @@
 
 <p>This section provides the quarterly breakup of existing API updates and new API releases.</p>
 
-<h2 id="q2-releases-2021-2022">Q2 Releases (2021-2022)</h2>
+<h2 id="q3-releases-2021-2022">Q3 Releases (2021-2022)</h2>
 
 <ul>
+<li>  <strong>Custom fields and extended fields support in card APIs</strong>: You can now store and retrieve card related custom fields and extended fields. To know how, check out <a href="https://capillary.github.io/api-documentation/#add-card-number-to-a-card-series">POST v2/card</a>, <a href="https://capillary.github.io/api-documentation/#update-card-details">PUT v2/card</a>, <a href="https://capillary.github.io/api-documentation/#get-card-details">GET v2/card</a>, <a href="https://capillary.github.io/api-documentation/#update-card-details-bulk">PUT v2/card/bulk</a>
+
+<ul>
+<li>Support for card level custom fields in <a href="https://capillary.github.io/api-documentation/#register-customer">POST v2/customers</a> and <a href="https://capillary.github.io/api-documentation/#fetch-customer-details-by-user-id">GET v2/customers</a>.</li>
+</ul></li>
 <li>  <strong>User Group Loyalty</strong>: Helps in creating and managing user groups -for B2B use cases such as manufacturer, partners, distributers and dealers;  for B2C cases such as friends, family members, colleagues, or relatives of a customer. For details, see <a href="https://capillary.github.io/api-documentation/#group-loyalty-companies-hierarchies">Group Loyalty</a>
 
 <ul>
 <li>Added <a href="https://capillary.github.io/api-documentation/#transfer-points-group">points/userGroup2/transfer API</a>, <br>group points is transferrable API - <a href="https://capillary.github.io/api-documentation/#check-if-points-transferrable-group">points/userGroup2/isTransferrable</a>, and GET points transfer details API - <a href="https://capillary.github.io/api-documentation/#get-points-transfer-details">/points/transfer?</a></li>
 <li>Transaction Add to support group association - <a href="https://capillary.github.io/api-documentation/#add-return-transaction-bulk">transactions/bulk</a> and <a href="https://capillary.github.io/api-documentation/#add-transaction-single">/transactions? single</a></li>
 </ul></li>
+</ul>
+
+<h2 id="q2-releases-2021-2022">Q2 Releases (2021-2022)</h2>
+
+<ul>
 <li>  <strong>Cart &amp; Catalog promotions</strong>: You can now create and manage cart and catalog promotions using APIs. For more details, see <a href="https://capillary.github.io/api-documentation/#set-promotion-settings-org-level">Cart &amp; Catalog Promotions</a>. - In Progress</li>
 <li><strong>Card External ID Support</strong>: Customer lookup APIs now support <code class="prettyprint">cardExternalId</code> as an identifier to fetch or update customer details.</li>
 <li>Get <a href="https://capillary.github.io/api-documentation/#get-customer-coupons-basic">customers/coupons</a>: New param values added to status - <code class="prettyprint">Active_Redeemed</code>, <code class="prettyprint">Active_Unredeemed</code>, <code class="prettyprint">Expired_Redeemed</code>, <code class="prettyprint">Expired_Unredeemed</code>. </li>
@@ -23618,7 +23628,7 @@ Batch Support | No
 </tr>
 </tbody></table>
 
-          <h1 id="card-loyalty-membership">Card Loyalty/Membership</h1>
+          <h1 id="card-loyalty">Card Loyalty</h1>
 
 <p>Card enables orgs to run card based loyalty memberships with multiple card types. A customer can have multiple cards of a same or different series as intended by the org.</p>
 
@@ -24640,9 +24650,9 @@ Batch Support | No
 
 <aside class="notice"> Parameter marked with * is mandatory. </aside>
 
-<h2 id="update-card-details">Update Card Details</h2>
+<h2 id="add-card-details-single">Add Card Details (Single)</h2>
 
-<p>Lets you add a new card number to a card series. Once the card is added, you can issue it to a customer using customers <code class="prettyprint">/changeIdentifier</code> API.</p>
+<p>Lets you add/generate a new card number to a card series. Once the card is added, you can issue it to a customer using customers <code class="prettyprint">/changeIdentifier</code> API.</p>
 
 <blockquote>
 <p>Sample Request</p>
@@ -24751,6 +24761,404 @@ Batch Support | No
 
 <aside class="notice"> Parameter marked with * is mandatory. </aside>
 
+<h2 id="update-card-details-single">Update Card Details (Single)</h2>
+
+<p>Lets you update an existing card details such as card status label, and custom/extended field values.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/card
+</code></pre>
+<blockquote>
+<p>Sample PUT Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"cardNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"warsawcustomc26"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"statusLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"statusInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Change in card status"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+     </span><span class="s2">"mappedEntity"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"paw1"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50016843</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+     </span><span class="s2">"customFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"budapest"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"field1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"type1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+  </span><span class="p">},</span><span class="w">
+  </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"vehicle_make"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">"2021"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"cardId"</span><span class="p">:</span><span class="w"> </span><span class="mi">204801</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"customerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"vehicle_make"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"customFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"budapest"</span><span class="p">:</span><span class="w"> </span><span class="s2">"field1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"type1"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"mappedEntity"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"paw1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50016843</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"cardNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"warsawcustomc26"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50740</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50036987</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"statusLabelInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-08-26"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"entityStatusId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">225</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"new"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50740</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-08-26"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOT_ISSUED"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CARD"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="s2">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"statusInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Change in card status"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"transactionNotAllowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">3039</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No update in status label"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w"> 
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/card</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>PUT</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v2/card</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>seriesId*</td>
+<td>int</td>
+<td>Series ID of the card to update.</td>
+</tr>
+<tr>
+<td>cardNumber**</td>
+<td>string</td>
+<td>Unique number of the card as per the card series configuration.</td>
+</tr>
+<tr>
+<td>cardExternalId**</td>
+<td>string</td>
+<td>External reference ID of the card.</td>
+</tr>
+<tr>
+<td>statusLabel*</td>
+<td>string</td>
+<td>Current user defined status of the card. Check your user defined values for the system values (not issued, active, inactive, deleted, expired).</td>
+</tr>
+<tr>
+<td>customFields</td>
+<td>obj</td>
+<td>Card level custom field details to update in key:value pair.</td>
+</tr>
+<tr>
+<td>extendedFields</td>
+<td>obj</td>
+<td>Card level extended field details to update in key:value pair.</td>
+</tr>
+<tr>
+<td>mappedEntity</td>
+<td>obj</td>
+<td>Details of the TILL associated with the card issual.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> Parameter marked with * is mandatory. Either cardNumber or cardExternalId is mandatory.</aside>
+
+<h2 id="update-card-details-bulk">Update Card Details (Bulk)</h2>
+
+<p>Lets you update details of existing cards in bulk. You can update details such as card status label, and custom/extended field values.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/card/bulk
+</code></pre>
+<blockquote>
+<p>Sample PUT Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"cardNumber"</span><span class="p">:</span><span class="s2">"visasushi005"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusLabel"</span><span class="p">:</span><span class="s2">"not_issued"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"limit_set_by"</span><span class="p">:</span><span class="s2">"tom"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"year_of_registration"</span><span class="p">:</span><span class="mi">2021</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"mappedEntity"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"paw1"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"customFields"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"cardstatus"</span><span class="p">:</span><span class="s2">"na"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"carda1"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"card_grade"</span><span class="p">:</span><span class="s2">"2"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"cardNumber"</span><span class="p">:</span><span class="s2">"visasushi007"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusLabel"</span><span class="p">:</span><span class="s2">"not_issued"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"limit_set_by"</span><span class="p">:</span><span class="s2">"som"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"year_of_registration"</span><span class="p">:</span><span class="mi">2021</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"mappedEntity"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"TILL"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"paw1"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"customFields"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"carda1"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"cardname"</span><span class="p">:</span><span class="s2">"sushi"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"cardscope"</span><span class="p">:</span><span class="s2">"global"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"cardstatus"</span><span class="p">:</span><span class="s2">"na"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"cardtype"</span><span class="p">:</span><span class="s2">"silver"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"response"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"cardId"</span><span class="p">:</span><span class="w"> </span><span class="mi">417</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"customerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"limit_set_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tom"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"year_of_registration"</span><span class="p">:</span><span class="w"> </span><span class="mi">36</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"customFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"carda1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"cardstatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"na"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"mappedEntity"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"paw1"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50016843</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"cardNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"visasushi005"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50247</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50016843</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"statusLabelInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-11-23"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"entityStatusId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"not_issued"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50247</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-11-23"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOT_ISSUED"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CARD"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                    </span><span class="s2">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"transactionNotAllowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No update in status label"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">3039</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Invalid Custom-field name"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">1022</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"cardId"</span><span class="p">:</span><span class="w"> </span><span class="mi">419</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"customerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"limit_set_by"</span><span class="p">:</span><span class="w"> </span><span class="s2">"som"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"year_of_registration"</span><span class="p">:</span><span class="w"> </span><span class="mi">36</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"customFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"carda1"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"cardname"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sushi"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"cardscope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"global"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"cardstatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"na"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"cardtype"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"mappedEntity"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"paw1"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">50016843</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"cardNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"visasushi007"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50247</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50016843</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"statusLabelInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-11-23"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"entityStatusId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"not_issued"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">50247</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"updatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-11-23"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOT_ISSUED"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CARD"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"actions"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                    </span><span class="s2">"default"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"transactionNotAllowed"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">"No update in status label"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">3039</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"totalCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"failureCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/card/bulk</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>PUT</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v2/card/bulk</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>seriesId*</td>
+<td>int</td>
+<td>Card Series ID from which you want to generate card.</td>
+</tr>
+<tr>
+<td>cardNumber**</td>
+<td>string</td>
+<td>Unique number of the card as per the card series configuration.</td>
+</tr>
+<tr>
+<td>cardExternalId**</td>
+<td>string</td>
+<td>External reference ID of the card.</td>
+</tr>
+<tr>
+<td>statusLabel*</td>
+<td>string</td>
+<td>Current user defined status of the card. Check your user defined values for the system values (not issued, active, inactive, deleted, expired).</td>
+</tr>
+<tr>
+<td>customFields</td>
+<td>obj</td>
+<td>Card level custom field details to update in key:value pair.</td>
+</tr>
+<tr>
+<td>extendedFields</td>
+<td>obj</td>
+<td>Card level extended field details to update in key:value pair.</td>
+</tr>
+<tr>
+<td>mappedEntity</td>
+<td>obj</td>
+<td>Details of the TILL associated with the card issual.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice"> Parameter marked with * is mandatory. Either cardNumber or cardExternalId is mandatory.</aside>
+
 <h2 id="get-card-details">Get Card Details</h2>
 
 <p>Retrieves the details of a specific card.</p>
@@ -24853,45 +25261,128 @@ Batch Support | No
 
 <aside class="notice"> The parameter marked with * is  mandatory. </aside>
 
-<h2 id="set-status-labels">Set Status Labels</h2>
+<h2 id="set-card-status-labels">Set Card Status Labels</h2>
 
-<p>Lets you add or map custom status labels to the default labels.</p>
+<p>Lets you add or map custom status labels to standard statuses and set default label names for each status.  </p>
 
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/genericStatus/card/labels
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/genericStatus/card/labelMapping
 </code></pre>
 <blockquote>
 <p>Sample POST Request</p>
 </blockquote>
-<pre class="highlight json"><code><span class="p">[</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="s2">"NOT_ISSUED"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"CARD GENERATED"</span><span class="w"> 
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="s2">"NOT_ISSUED"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"CARD PRINTED"</span><span class="w"> 
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="s2">"NOT_ISSUED"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"CARD DISTRIBUTED"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="s2">"ACTIVE"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"CARD ISSUED"</span><span class="w">
-    </span><span class="p">},</span><span class="w">
-    </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"status"</span><span class="w"> </span><span class="p">:</span><span class="s2">"EXPIRED"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"CARD EXPIRED"</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"mapping"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"NOT_ISSUED"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"NOT_ISSUED"</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"ISSUED"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"ISSUED"</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"ACTIVE"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"ACTIVE"</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"CARD_GENERATED"</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"SUSPENDED"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"SUSPENDED"</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"EXPIRED"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"EXPIRED"</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"DELETED"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"DELETED"</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>Sample Response</p>
 </blockquote>
-<pre class="highlight json"><code><span class="w">
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"mapping"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"ACTIVE"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"ACTIVE"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"actions"</span><span class="p">:{</span><span class="w">
+
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"DELETED"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"DELETED"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"actions"</span><span class="p">:{</span><span class="w">
+
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"EXPIRED"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"EXPIRED"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"actions"</span><span class="p">:{</span><span class="w">
+
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"ISSUED"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"ISSUED"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"actions"</span><span class="p">:{</span><span class="w">
+
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"NOT_ISSUED"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"NOT_ISSUED"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"actions"</span><span class="p">:{</span><span class="w">
+
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"SUSPENDED"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"label"</span><span class="p">:</span><span class="s2">"SUSPENDED"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"actions"</span><span class="p">:{</span><span class="w">
+
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"default"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"entityType"</span><span class="p">:</span><span class="s2">"CARD"</span><span class="p">,</span><span class="w">
+   </span><span class="s2">"warnings"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
 </span></code></pre>
 <h3 id="resource-information">Resource Information</h3>
 
@@ -24903,7 +25394,7 @@ Batch Support | No
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/v2/genericStatus/card/labels</code></td>
+<td><code class="prettyprint">/v2/genericStatus/card/labelMapping</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -24921,7 +25412,7 @@ Batch Support | No
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">{host}/v2/genericStatus/card/labels</code></p>
+<p><code class="prettyprint">{host}/v2/genericStatus/card/labelMapping</code></p>
 
 <h3 id="request-body-parameters">Request Body Parameters</h3>
 
@@ -24933,14 +25424,19 @@ Batch Support | No
 </tr>
 </thead><tbody>
 <tr>
-<td>status*</td>
-<td>enum</td>
-<td>Default status to which custom status label needs to be added.</td>
+<td>status names*</td>
+<td>array</td>
+<td>Standard status name for which custom labels need to be added.</td>
 </tr>
 <tr>
 <td>label*</td>
 <td>string</td>
 <td>Custom label name for the default status.</td>
+</tr>
+<tr>
+<td>default</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> for default values.</td>
 </tr>
 </tbody></table>
 

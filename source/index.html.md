@@ -48,12 +48,16 @@ search: true
 # Release Updates
 This section provides the quarterly breakup of existing API updates and new API releases.
 
-
-## Q2 Releases (2021-2022)
-
+## Q3 Releases (2021-2022)
+*   **Custom fields and extended fields support in card APIs**: You can now store and retrieve card related custom fields and extended fields. To know how, check out [POST v2/card](https://capillary.github.io/api-documentation/#add-card-number-to-a-card-series), [PUT v2/card](https://capillary.github.io/api-documentation/#update-card-details), [GET v2/card](https://capillary.github.io/api-documentation/#get-card-details), [PUT v2/card/bulk](https://capillary.github.io/api-documentation/#update-card-details-bulk)
+	* Support for card level custom fields in [POST v2/customers](https://capillary.github.io/api-documentation/#register-customer) and [GET v2/customers](https://capillary.github.io/api-documentation/#fetch-customer-details-by-user-id).
 *   **User Group Loyalty**: Helps in creating and managing user groups -for B2B use cases such as manufacturer, partners, distributers and dealers;  for B2C cases such as friends, family members, colleagues, or relatives of a customer. For details, see [Group Loyalty] (https://capillary.github.io/api-documentation/#group-loyalty-companies-hierarchies)
   *	Added [points/userGroup2/transfer API](https://capillary.github.io/api-documentation/#transfer-points-group), <br>group points is transferrable API - [points/userGroup2/isTransferrable](https://capillary.github.io/api-documentation/#check-if-points-transferrable-group), and GET points transfer details API - [/points/transfer?](https://capillary.github.io/api-documentation/#get-points-transfer-details)
   *	Transaction Add to support group association - [transactions/bulk](https://capillary.github.io/api-documentation/#add-return-transaction-bulk) and [/transactions? single] (https://capillary.github.io/api-documentation/#add-transaction-single)
+
+## Q2 Releases (2021-2022)
+
+
 *   **Cart & Catalog promotions**: You can now create and manage cart and catalog promotions using APIs. For more details, see [Cart & Catalog Promotions](https://capillary.github.io/api-documentation/#set-promotion-settings-org-level). - In Progress
 * **Card External ID Support**: Customer lookup APIs now support `cardExternalId` as an identifier to fetch or update customer details.
 * Get [customers/coupons](https://capillary.github.io/api-documentation/#get-customer-coupons-basic): New param values added to status - `Active_Redeemed`, `Active_Unredeemed`, `Expired_Redeemed`, `Expired_Unredeemed`. 
