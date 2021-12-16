@@ -9391,7 +9391,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 </tr>
 <tr>
 <td>Batch Support</td>
-<td>Yes</td>
+<td>No</td>
 </tr>
 <tr>
 <td>Rate Limited</td>
@@ -9487,7 +9487,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <tr>
 <td>deliveryStatus</td>
 <td>enum</td>
-<td>Delivery status of the item. Values: <code class="prettyprint">PLACED</code>, <code class="prettyprint">PROCESSED</code>, <code class="prettyprint">SHIPPED</code>, <code class="prettyprint">DELIVERED</code>, <code class="prettyprint">RETURNED</code>. You can update the status using v1.1/transaction/update.</td>
+<td>Delivery status of the item. Values: <code class="prettyprint">PLACED</code>, <code class="prettyprint">PROCESSED</code>, <code class="prettyprint">SHIPPED</code>, <code class="prettyprint">DELIVERED</code>, <code class="prettyprint">RETURNED</code>. You can update the status using You can update the status using v2 PUT <code class="prettyprint">/transactions</code>.</td>
 </tr>
 <tr>
 <td>userGroup2Id</td>
@@ -9814,6 +9814,202 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <td>Till code associated with the transaction.</td>
 </tr>
 </tbody></table>
+
+<h2 id="update-transaction">Update Transaction</h2>
+
+<p>Lets you update deliveryStatus, custom fields, and extended field details of a transaction.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/transactions?identifierName=id<span class="err">&amp;</span>identifierValue=401031250<span class="err">&amp;</span>points=MLP
+</code></pre>
+<blockquote>
+<p>Sample PUT Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2148327179</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"number"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bill00009"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"customFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+  </span><span class="s2">"loyaltyPromotionIdentifiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"deliveryStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PLACED"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"tillCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobilepush.1"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"loyaltyDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"redeemed"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"expired"</span><span class="p">:</span><span class="w"> </span><span class="mf">298400.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"returned"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"adjusted"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lifetimePoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">298440.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"loyaltyPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cumulativePurchases"</span><span class="p">:</span><span class="w"> </span><span class="mf">-1.1996371</span><span class="err">E</span><span class="mi">9</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"loyaltyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">92523645</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"currentSlab"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bronze"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"nextSlab"</span><span class="p">:</span><span class="w"> </span><span class="s2">"silver"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"nextSlabSerialNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"nextSlabDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"silver"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"slabSNo"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"slabExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2121-03-02T23:59:59+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1016</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"delayedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"delayedReturnedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"totalAvailablePoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"totalReturnedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"programTitle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"mobile pushDefaultProgram"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"programDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Default program for mobile push"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"programPointsToCurrencyRatio"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.75</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"redeemed"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"expired"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"returned"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"adjusted"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lifetimePoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"loyaltyPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cumulativePurchases"</span><span class="p">:</span><span class="w"> </span><span class="mf">207400.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"loyaltyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">92523645</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"currentSlab"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NONE"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"nextSlab"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOLD"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"nextSlabSerialNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"nextSlabDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOLD"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"slabSNo"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"slabExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2121-03-02T23:59:59+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1273</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"delayedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"delayedReturnedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"totalAvailablePoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"totalReturnedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"programTitle"</span><span class="p">:</span><span class="w"> </span><span class="s2">"www"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"programDescription"</span><span class="p">:</span><span class="w"> </span><span class="s2">" "</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"programPointsToCurrencyRatio"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/v2/transactions?{queryParams}</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>PUT</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Rate Limited</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-header-optional">Request Header (optional)</h3>
+
+<table><thead>
+<tr>
+<th>Header</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>X-CAP-DIRECT-REPLAY</td>
+<td>Pass <code class="prettyprint">true</code> to add the call to the event execution queue (reply event) - in this case, transaction is added and other events will be executed later. Pass <code class="prettyprint">false</code> to directly execute the event.</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v2/transactions?source={source}&amp;identifierName={identifierName}&amp;identifierValue={identifierValue}&amp;accountId={accountId}</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifierName*</td>
+<td>enum</td>
+<td>Pass any of the registered identifier name of the customer. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">id</code>, <code class="prettyprint">wechat</code>,<code class="prettyprint">martjackId</code>,  <code class="prettyprint">fbId</code> (Facebook ID), <code class="prettyprint">cardnumber</code>, <code class="prettyprint">cardExternalId</code>.</td>
+</tr>
+<tr>
+<td>identifierValue*</td>
+<td>string</td>
+<td>Pass the respective identifier value. For example if <code class="prettyprint">identifierType</code> is mobile, <code class="prettyprint">identifierValue</code> is mobile number.</td>
+</tr>
+<tr>
+<td>source*</td>
+<td>enum</td>
+<td>Pass the source from which the transaction is made. Values: <code class="prettyprint">INSTORE</code>(for InStore), <code class="prettyprint">WECHAT</code> (WeChat), <code class="prettyprint">MARTJACK</code>(AnywhereCommerce), <code class="prettyprint">WEB_ENGAGE</code> (Web-engage integration), ECOMMERCE (ECOMMERCE), <code class="prettyprint">JD</code> (JD), <code class="prettyprint">TAOBAO</code> (Taobao), <code class="prettyprint">TMALL</code> (TMall), <code class="prettyprint">FACEBOOK</code> (Facebook), <code class="prettyprint">WEBSITE</code> (other website), <code class="prettyprint">OTHERS</code> (any other source).</td>
+</tr>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>For sources with multiple accounts (such as MARTJACK, WECHAT), pass the respective account ID. Not applicable for <code class="prettyprint">INSTORE</code> source.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id**</td>
+<td>long</td>
+<td>Unique ID of the transaction generated internally.</td>
+</tr>
+<tr>
+<td>number**</td>
+<td>string</td>
+<td>Unique transaction number that needs to be updated.</td>
+</tr>
+<tr>
+<td>extendedFields</td>
+<td>obj</td>
+<td>Valid transaction level extended field details in name and value pairs.</td>
+</tr>
+<tr>
+<td>deliveryStatus</td>
+<td>enum</td>
+<td>Delivery status of the item. Values: <code class="prettyprint">PLACED</code>, <code class="prettyprint">PROCESSED</code>, <code class="prettyprint">SHIPPED</code>, <code class="prettyprint">DELIVERED</code>, <code class="prettyprint">RETURNED</code>.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Any one among the parameters marked with * is mandatory.</aside>
 
 <h2 id="get-transaction-details">Get Transaction Details</h2>
 
