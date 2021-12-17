@@ -6397,6 +6397,360 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </tr>
 </tbody></table>
 
+<h2 id="add-customer-referrals">Add Customer Referrals</h2>
+
+<p>Retrieves the referee details of a customer (referral).</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/420007388/referrals
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"customerReferrals"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">420007388</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"918867710031"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample.email10031@gmail.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"campaignToken"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CWRME"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"referrals"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MOBILE"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"referral"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some random name"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"identifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"918867710032"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"invitedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-12-16 13:15:45"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"customerReferrals"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">420007388</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mobile"</span><span class="p">:</span><span class="w"> </span><span class="s2">"918867710031"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sample.email10031@gmail.com"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"campaignToken"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CWRME"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"referrals"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+          </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MOBILE"</span><span class="p">,</span><span class="w">
+          </span><span class="s2">"referral"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+              </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"some random name"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"identifier"</span><span class="p">:</span><span class="w"> </span><span class="s2">"918867710032"</span><span class="p">,</span><span class="w">
+              </span><span class="s2">"invitedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-12-16 13:15:45"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+          </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/{userId}/referrals</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes (1000 per hour)</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v2/customers/referrals</code></p>
+
+<h3 id="request-body-parameter">Request Body Parameter</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>customerReferrals</td>
+<td>array-obj</td>
+<td>Details of the referrals.</td>
+</tr>
+<tr>
+<td>customer</td>
+<td>obj</td>
+<td>Details of the referrer customer.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id</td>
+<td>long</td>
+<td>Unique ID of the customer.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mobile</td>
+<td>string</td>
+<td>Mobile number number of the customer.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;email</td>
+<td>string</td>
+<td>Email Id of the customer.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;externalId</td>
+<td>string</td>
+<td>External ID of the customer.</td>
+</tr>
+<tr>
+<td>campaignToken</td>
+<td>string</td>
+<td>Unique token generated for the referral campaign.</td>
+</tr>
+<tr>
+<td>referrals</td>
+<td>array-obj</td>
+<td>Details of referees.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type</td>
+<td>enum</td>
+<td>Channel through which the referral details need to be sent - <code class="prettyprint">MOBILE</code>, <code class="prettyprint">EMAIL</code>.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;referral</td>
+<td>array-obj</td>
+<td>Details of each referee.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name</td>
+<td>string</td>
+<td>Name of the referee.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;identifier</td>
+<td>string</td>
+<td>Unique identifier of the customer as the specified <code class="prettyprint">type</code>.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;invitedOn</td>
+<td>date-time</td>
+<td>ISO standard date and time of the referral invitation.</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-customer-referrals">Get Customer Referrals</h2>
+
+<p>Retrieves the referee details of a customer (referral).</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/420007388/referrals
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"pagination"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"limit"</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"offset"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"total"</span><span class="p">:</span><span class="mi">0</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"data"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"customer"</span><span class="p">:{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">379061018</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"profiles"</span><span class="p">:[</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"firstName"</span><span class="p">:</span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"lastName"</span><span class="p">:</span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"fields"</span><span class="p">:{</span><span class="w">
+
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="s2">"identifiers"</span><span class="p">:[</span><span class="w">
+                     </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"tom.sawyer@email.com"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"917700000000"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"externalId"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"x917700000000"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">],</span><span class="w">
+                  </span><span class="s2">"commChannels"</span><span class="p">:[</span><span class="w">
+
+                  </span><span class="p">],</span><span class="w">
+                  </span><span class="s2">"userId"</span><span class="p">:</span><span class="mi">379061018</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"accountId"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"autoUpdateTime"</span><span class="p">:</span><span class="s2">"2021-12-17T15:46:46+05:30"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"identifiersAll"</span><span class="p">:[</span><span class="w">
+                     </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"917700000000@mail.com"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"917700000000"</span><span class="w">
+                     </span><span class="p">},</span><span class="w">
+                     </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"externalId"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"x917700000000"</span><span class="w">
+                     </span><span class="p">}</span><span class="w">
+                  </span><span class="p">]</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="s2">"referralCode"</span><span class="p">:</span><span class="s2">"69olcqikpf"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"invitees"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"EMAIL"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"identifier"</span><span class="p">:</span><span class="s2">"917410011111@mail.com"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"invitedOn"</span><span class="p">:</span><span class="s2">"2020-05-21 11:52:33.0"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"till"</span><span class="p">:{</span><span class="w">
+                  </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"cm.1"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"cm"</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"EMAIL"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"identifier"</span><span class="p">:</span><span class="s2">"917410011121@mail.com"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"invitedOn"</span><span class="p">:</span><span class="s2">"2020-05-22 12:15:28.0"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"till"</span><span class="p">:{</span><span class="w">
+                  </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"cm.1"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"cm"</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"EMAIL"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"identifier"</span><span class="p">:</span><span class="s2">"917410011131@mail.com"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"invitedOn"</span><span class="p">:</span><span class="s2">"2020-05-22 12:16:29.0"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"till"</span><span class="p">:{</span><span class="w">
+                  </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"cm.1"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"cm"</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"referee"</span><span class="p">:[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"eventType"</span><span class="p">:</span><span class="s2">"REGISTRATION"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"userId"</span><span class="p">:</span><span class="mi">379061020</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"firstName"</span><span class="p">:</span><span class="s2">"ORG"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"lastName"</span><span class="p">:</span><span class="s2">"Customer"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"mobile"</span><span class="p">:</span><span class="s2">"917410011111"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"addedOn"</span><span class="p">:</span><span class="s2">"2020-05-21 11:56:18.0"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"eventType"</span><span class="p">:</span><span class="s2">"REGISTRATION"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"userId"</span><span class="p">:</span><span class="mi">379061022</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"firstName"</span><span class="p">:</span><span class="s2">"Rati"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"lastName"</span><span class="p">:</span><span class="s2">"Ranjan"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"email"</span><span class="p">:</span><span class="s2">"9178000000@mail.com"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"mobile"</span><span class="p">:</span><span class="s2">"91781000000"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"externalId"</span><span class="p">:</span><span class="s2">"x91781000000"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"addedOn"</span><span class="p">:</span><span class="s2">"2020-05-21 11:59:20.0"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+               </span><span class="s2">"eventType"</span><span class="p">:</span><span class="s2">"REGISTRATION"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"userId"</span><span class="p">:</span><span class="mi">379063506</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"firstName"</span><span class="p">:</span><span class="s2">"Sim"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"lastName"</span><span class="p">:</span><span class="s2">"carea"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"email"</span><span class="p">:</span><span class="s2">"917651000000@mail.com"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"mobile"</span><span class="p">:</span><span class="s2">"917651000000"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"externalId"</span><span class="p">:</span><span class="s2">"x917651000000"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"addedOn"</span><span class="p">:</span><span class="s2">"2020-07-25 12:38:44.0"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"incentives"</span><span class="p">:[</span><span class="w">
+
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"warnings"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"errors"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/{userId}/referrals</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes (1000 per hour)</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v2/customers/{userId}/referrals</code></p>
+
+<h3 id="request-path-parameter">Request Path Parameter</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+</tbody></table>
+
 <h1 id="customer-lookup">Customer Lookup</h1>
 
 <p>It is an extension to normal customer APIs where instead of fetching or updating details using customer ID, you can use registered identfiers like mobile number, email ID, external ID, cardnumber and so on in <code class="prettyprint">/customer/lookup</code>.</p>
@@ -30405,7 +30759,7 @@ Batch Support | No
 <blockquote>
 <p>Sample Request </p>
 </blockquote>
-<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/userGroup2?id=2476
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/userGroup2?id=2476<span class="err">&amp;</span>embed=EXPIREDPOINTS<span class="err">&amp;</span>embed=EXPIRYSCHEDULES
 </code></pre>
 <blockquote>
 <p>Sample Response</p>
@@ -30418,6 +30772,60 @@ Batch Support | No
     </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-09-27T15:07:22+05:30"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"groupName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name_purple"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"maxGroupSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">110</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expiredPoints"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"points"</span><span class="p">:</span><span class="w"> </span><span class="mf">10200.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"expiredOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-11-10"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1400</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"expiredPointsSummary"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"paType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POINT_AWARDED_LINEITEM"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"paId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1748672713</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"expiryUpdateReasonType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Expiry strategy"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"expiryUpdateReasonNote"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NA"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"newExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-11-10 01:04:05.0"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"eventDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-11-10 01:04:05.0"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"points"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"strategyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20Days_rolling"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"paType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POINT_AWARDED"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"paId"</span><span class="p">:</span><span class="w"> </span><span class="mi">716820063</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"expiryUpdateReasonType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Expiry strategy"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"expiryUpdateReasonNote"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NA"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"newExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-11-10 01:04:05.0"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"eventDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-11-10 01:04:05.0"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"points"</span><span class="p">:</span><span class="w"> </span><span class="mf">10000.0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"strategyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"20Days"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"expirySchedules"</span><span class="p">:[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+         </span><span class="s2">"points"</span><span class="p">:</span><span class="mf">280.0</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"expiryDate"</span><span class="p">:</span><span class="s2">"2022-11-30"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"programId"</span><span class="p">:</span><span class="mi">765</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"gapToUpgrade"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"upgradeBasedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUMULATIVE_PURCHASES"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"upgradeThreshold"</span><span class="p">:</span><span class="w"> </span><span class="mf">10000.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"customerUpgradeEntityValues"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"currentValue"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"gapToUpgrade"</span><span class="p">:</span><span class="w"> </span><span class="mf">10000.0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"valueValidUpto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2121-11-22"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"setCurrentValue"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"setGapToUpgrade"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"setValueValidUpto"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"setUpgradeBasedOn"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"setUpgradeEntityIdentifiers"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"setUpgradeThreshold"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"setCustomerUpgradeEntityValues"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
     </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -30469,6 +30877,16 @@ Batch Support | No
 <td>externalId**</td>
 <td>string</td>
 <td>External ID of the group to fetch.</td>
+</tr>
+<tr>
+<td>embed</td>
+<td>enum</td>
+<td>Pass <code class="prettyprint">EXPIREDPOINTS</code> to get the history of expired points; pass <code class="prettyprint">EXPIRYSCHEDULES</code> to get the history of points expiry schedules.</td>
+</tr>
+<tr>
+<td>gapToUpgradeFor</td>
+<td>int</td>
+<td></td>
 </tr>
 </tbody></table>
 
