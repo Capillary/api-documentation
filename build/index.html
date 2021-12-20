@@ -134,6 +134,7 @@
 <h2 id="q3-releases-2021-2022">Q3 Releases (2021-2022)</h2>
 
 <ul>
+<li>  <strong>Get userGroup2 details API</strong> to retrieve the details of <code class="prettyprint">EXPIREDPOINTS</code> and <code class="prettyprint">EXPIRYSCHEDULES</code> through <code class="prettyprint">embed</code> query parameter. <a href="https://capillary.github.io/api-documentation/#get-group-details">Read more here</a>.</li>
 <li>  <strong>Custom fields and extended fields support in card APIs</strong>: You can now store and retrieve card related custom fields and extended fields. To know how, check out <a href="https://capillary.github.io/api-documentation/#add-card-number-to-a-card-series">POST v2/card</a>, <a href="https://capillary.github.io/api-documentation/#update-card-details">PUT v2/card</a>, <a href="https://capillary.github.io/api-documentation/#get-card-details">GET v2/card</a>, <a href="https://capillary.github.io/api-documentation/#update-card-details-bulk">PUT v2/card/bulk</a>
 
 <ul>
@@ -6399,7 +6400,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 
 <h2 id="add-customer-referrals">Add Customer Referrals</h2>
 
-<p>Retrieves the referee details of a customer (referral).</p>
+<p>Lets you add referee details of a customer (referral).</p>
 
 <blockquote>
 <p>Sample Request</p>
@@ -6749,11 +6750,16 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>userId*</td>
+<td>long</td>
+<td>Unique ID of the customer whose referral details need to be displayed.</td>
+</tr>
 </tbody></table>
 
 <h1 id="customer-lookup">Customer Lookup</h1>
 
-<p>It is an extension to normal customer APIs where instead of fetching or updating details using customer ID, you can use registered identfiers like mobile number, email ID, external ID, cardnumber and so on in <code class="prettyprint">/customer/lookup</code>.</p>
+<p>It is an extension to normal customer APIs where instead of fetching or updating details using customer ID, you can use registered identifiers like mobile number, email ID, external ID, card number and so on in <code class="prettyprint">/customer/lookup</code>.</p>
 
 <h2 id="update-customer-details-using-identifier">Update Customer Details (using identifier)</h2>
 
@@ -12496,7 +12502,7 @@ If the email template is not specified, the validation code will be sent in the 
 <tr>
 <td>action*</td>
 <td>enum</td>
-<td>Specify the action to be performed on successful validation. Values: <code class="prettyprint">COUPON</code> (for coupon redemption), <code class="prettyprint">POINTS</code> (for points redemption), <code class="prettyprint">REGISTRATION</code>, <code class="prettyprint">USERGROUP</code>, <code class="prettyprint">SUBSCRIPTION</code>, <code class="prettyprint">GENERIC</code> (for other purposes).</td>
+<td>Specify the action to be performed on successful validation. Values: <code class="prettyprint">COUPON</code> (for coupon redemption), <code class="prettyprint">POINTS</code> (for points redemption), <code class="prettyprint">REGISTRATION</code>, <code class="prettyprint">USERGROUP</code>, <code class="prettyprint">SUBSCRIPTION</code>, <code class="prettyprint">GENERIC</code> (for other purposes), <code class="prettyprint">CUSTOMER_IDENTIFIER_CHANGE</code>, <code class="prettyprint">CUSTOMER_STATUS_UPDATE</code>, <code class="prettyprint">CUSTOMER_ISSUE_LINK_CARD</code>.</td>
 </tr>
 </tbody></table>
 

@@ -4672,7 +4672,7 @@ userId* | long | Unique ID of the customer whose referral details need to be dis
 
 # Customer Lookup
 
-It is an extension to normal customer APIs where instead of fetching or updating details using customer ID, you can use registered identfiers like mobile number, email ID, external ID, cardnumber and so on in `/customer/lookup`.
+It is an extension to normal customer APIs where instead of fetching or updating details using customer ID, you can use registered identifiers like mobile number, email ID, external ID, card number and so on in `/customer/lookup`.
 
 
 ## Update Customer Details (using identifier)
