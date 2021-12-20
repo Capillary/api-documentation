@@ -4397,7 +4397,277 @@ value* | string | Card number to issue or tag to the customer.
 type* | enum | Pass `cardnumber` to issue card.
 statusLabel* | enum | New status of the card. Value: `ACTIVE`.
 
- 
+
+
+
+## Add Customer Referrals
+
+Lets you add referee details of a customer (referral).
+
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/420007388/referrals
+```
+
+> Sample POST Request
+
+```json
+{
+  "customerReferrals": [
+    {
+      "customer": {
+        "id": 420007388,
+        "mobile": "918867710031",
+        "email": "sample.email10031@gmail.com",
+        "externalId": ""
+      },
+      "campaignToken": "CWRME",
+      "referrals": [
+        {
+          "type": "MOBILE",
+          "referral": [
+            {
+              "name": "some random name",
+              "identifier": "918867710032",
+              "invitedOn": "2021-12-16 13:15:45"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+
+> Sample Response
+
+```json
+{
+  "customerReferrals": [
+    {
+      "customer": {
+        "id": 420007388,
+        "mobile": "918867710031",
+        "email": "sample.email10031@gmail.com",
+        "externalId": ""
+      },
+      "campaignToken": "CWRME",
+      "referrals": [
+        {
+          "type": "MOBILE",
+          "referral": [
+            {
+              "name": "some random name",
+              "identifier": "918867710032",
+              "invitedOn": "2021-12-16 13:15:45"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
+```
+
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/{userId}/referrals`
+Rate Limited? | Yes (1000 per hour)
+HTTP Methods | POST
+Batch Support | No
+
+
+### Request URL
+`{host}/v2/customers/referrals`
+
+### Request Body Parameter
+Parameter | Datatype | Description
+--------- | -------- | -----------
+customerReferrals | array-obj | Details of the referrals.
+customer | obj | Details of the referrer customer.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;id | long | Unique ID of the customer.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mobile | string | Mobile number number of the customer.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;email | string | Email Id of the customer. 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;externalId | string | External ID of the customer.
+campaignToken | string | Unique token generated for the referral campaign.
+referrals | array-obj | Details of referees.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type | enum | Channel through which the referral details need to be sent - `MOBILE`, `EMAIL`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;referral | array-obj | Details of each referee.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;name | string | Name of the referee.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;identifier | string | Unique identifier of the customer as the specified `type`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;invitedOn | date-time | ISO standard date and time of the referral invitation.
+
+
+
+
+## Get Customer Referrals
+
+Retrieves the referee details of a customer (referral).
+
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/420007388/referrals
+```
+
+> Sample Response
+
+```json
+{
+   "pagination":{
+      "limit":10,
+      "offset":0,
+      "total":0
+   },
+   "data":[
+      {
+         "customer":{
+            "id":379061018,
+            "profiles":[
+               {
+                  "firstName":"Tom",
+                  "lastName":"Sawyer",
+                  "fields":{
+                     
+                  },
+                  "identifiers":[
+                     {
+                        "type":"email",
+                        "value":"tom.sawyer@email.com"
+                     },
+                     {
+                        "type":"mobile",
+                        "value":"917700000000"
+                     },
+                     {
+                        "type":"externalId",
+                        "value":"x917700000000"
+                     }
+                  ],
+                  "commChannels":[
+                     
+                  ],
+                  "userId":379061018,
+                  "accountId":"",
+                  "autoUpdateTime":"2021-12-17T15:46:46+05:30",
+                  "identifiersAll":[
+                     {
+                        "type":"email",
+                        "value":"917700000000@mail.com"
+                     },
+                     {
+                        "type":"mobile",
+                        "value":"917700000000"
+                     },
+                     {
+                        "type":"externalId",
+                        "value":"x917700000000"
+                     }
+                  ]
+               }
+            ]
+         },
+         "referralCode":"69olcqikpf",
+         "invitees":[
+            {
+               "type":"EMAIL",
+               "identifier":"917410011111@mail.com",
+               "invitedOn":"2020-05-21 11:52:33.0",
+               "till":{
+                  "code":"cm.1",
+                  "name":"cm"
+               }
+            },
+            {
+               "type":"EMAIL",
+               "identifier":"917410011121@mail.com",
+               "invitedOn":"2020-05-22 12:15:28.0",
+               "till":{
+                  "code":"cm.1",
+                  "name":"cm"
+               }
+            },
+            {
+            {
+               "type":"EMAIL",
+               "identifier":"917410011131@mail.com",
+               "invitedOn":"2020-05-22 12:16:29.0",
+               "till":{
+                  "code":"cm.1",
+                  "name":"cm"
+               }
+            }
+         ],
+         "referee":[
+            {
+               "eventType":"REGISTRATION",
+               "userId":379061020,
+               "firstName":"ORG",
+               "lastName":"Customer",
+               "mobile":"917410011111",
+               "addedOn":"2020-05-21 11:56:18.0"
+            },
+            {
+               "eventType":"REGISTRATION",
+               "userId":379061022,
+               "firstName":"Rati",
+               "lastName":"Ranjan",
+               "email":"9178000000@mail.com",
+               "mobile":"91781000000",
+               "externalId":"x91781000000",
+               "addedOn":"2020-05-21 11:59:20.0"
+            },
+            {
+               "eventType":"REGISTRATION",
+               "userId":379063506,
+               "firstName":"Sim",
+               "lastName":"carea",
+               "email":"917651000000@mail.com",
+               "mobile":"917651000000",
+               "externalId":"x917651000000",
+               "addedOn":"2020-07-25 12:38:44.0"
+            }
+         ],
+         "incentives":[
+            
+         ]
+      }
+   ],
+   "warnings":[
+      
+   ],
+   "errors":[
+      
+   ]
+}
+```
+
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/{userId}/referrals`
+Rate Limited? | Yes (1000 per hour)
+HTTP Methods | GET
+Batch Support | No
+
+
+### Request URL
+`{host}/v2/customers/{userId}/referrals`
+
+### Request Path Parameter
+Parameter | Datatype | Description
+--------- | -------- | -----------
+userId* | long | Unique ID of the customer whose referral details need to be displayed.
+
+
+
 
 
 # Customer Lookup

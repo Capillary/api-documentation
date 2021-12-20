@@ -133,7 +133,7 @@ Retrieves the details of a specific group.
 > Sample Request 
 
 ```html
-https://us.api.capillarytech.com/v2/userGroup2?id=2476
+https://us.api.capillarytech.com/v2/userGroup2?id=2476&embed=EXPIREDPOINTS&embed=EXPIRYSCHEDULES
 ```
 
 
@@ -148,6 +148,60 @@ https://us.api.capillarytech.com/v2/userGroup2?id=2476
     "createdOn": "2021-09-27T15:07:22+05:30",
 	"groupName": "name_purple",
     "maxGroupSize": 110,
+	"expiredPoints": [
+        {
+            "points": 10200.0,
+            "expiredOn": "2021-11-10",
+            "programId": 1400,
+            "expiredPointsSummary": [
+                {
+                    "paType": "POINT_AWARDED_LINEITEM",
+                    "paId": 1748672713,
+                    "expiryUpdateReasonType": "Expiry strategy",
+                    "expiryUpdateReasonNote": "NA",
+                    "newExpiryDate": "2021-11-10 01:04:05.0",
+                    "eventDate": "2021-11-10 01:04:05.0",
+                    "points": 40.0,
+                    "strategyName": "20Days_rolling"
+                },
+                {
+                    "paType": "POINT_AWARDED",
+                    "paId": 716820063,
+                    "expiryUpdateReasonType": "Expiry strategy",
+                    "expiryUpdateReasonNote": "NA",
+                    "newExpiryDate": "2021-11-10 01:04:05.0",
+                    "eventDate": "2021-11-10 01:04:05.0",
+                    "points": 10000.0,
+                    "strategyName": "20Days"
+                }
+            ]
+        }
+    ],
+	"expirySchedules":[
+      {
+         "points":280.0,
+         "expiryDate":"2022-11-30",
+         "programId":765
+      }
+   ],
+   "gapToUpgrade": [
+        {
+            "upgradeBasedOn": "CUMULATIVE_PURCHASES",
+            "upgradeThreshold": 10000.0,
+            "customerUpgradeEntityValues": {
+                "currentValue": 0.0,
+                "gapToUpgrade": 10000.0,
+                "valueValidUpto": "2121-11-22",
+                "setCurrentValue": true,
+                "setGapToUpgrade": true,
+                "setValueValidUpto": true
+            },
+            "setUpgradeBasedOn": true,
+            "setUpgradeEntityIdentifiers": false,
+            "setUpgradeThreshold": true,
+            "setCustomerUpgradeEntityValues": true
+        }
+    ],
     "warnings": []
 }
 ```
@@ -172,6 +226,9 @@ Parameter | Datatype | Description
 --------- | -------- | -----------
 id** | int | Unique ID of the group to fetch.
 externalId** | string | External ID of the group to fetch.
+embed | enum | Pass `EXPIREDPOINTS` to get the history of expired points; pass `EXPIRYSCHEDULES` to get the history of points expiry schedules.
+gapToUpgradeFor | int | 
+
 
 <aside class="notice">Any one among the parameters marked with * is mandatory.</aside>
 

@@ -1098,7 +1098,7 @@ https://us.api.capillarytech.com/v2/transactions?source=instore&identifierValue=
 URI | `/v2/transactions?{queryParams}`
 HTTP Method | POST
 API Version | v2
-Batch Support | Yes
+Batch Support | No
 Rate Limited | Yes
 
 ### Request Header (optional)
@@ -1135,7 +1135,7 @@ Parameter | Datatype | Description
 extendedFields | obj | Valid transaction level extended field details in name and value pairs.
 currencyCode | string | ISO currency code of the transaction to add transaction with local currency. For example, `INR` for Indian Rupee, SGD for Singapore Dollar, `EUR` for Euro, `IQD` for Iraqi Dinar. Pass the currency code that are supported for your org (InTouch > Organization Setup) and ensure the currency conversion ratio is set using `v2/currencyratio`.
 addWithLocalCurrency | boolean | Pass `true` to add a transaction in local currency. 
-deliveryStatus | enum | Delivery status of the item. Values: `PLACED`, `PROCESSED`, `SHIPPED`, `DELIVERED`, `RETURNED`. You can update the status using v1.1/transaction/update.
+deliveryStatus | enum | Delivery status of the item. Values: `PLACED`, `PROCESSED`, `SHIPPED`, `DELIVERED`, `RETURNED`. You can update the status using You can update the status using v2 PUT `/transactions`.
 userGroup2Id | int | External ID of the user group to be associated with the transaction. Any one among the parameters with `userGroup2` is required to associate the transaction with a group.
 userGroup2PrimaryUserId | long | ID of the primary user of the group to be associated with the transaction. Any one among the parameters with `userGroup2` is required to associate the transaction with a group.
 userGroup2ExternalId | string | External ID of the user group to be associated with the transaction. Any one among the parameters with `userGroup2` is required to associate the transaction with a group.
@@ -1212,6 +1212,141 @@ org_id | Unique ID of the current org.
 till | Till code associated with the transaction.
 
 
+## Update Transaction
+
+
+Lets you update deliveryStatus, custom fields, and extended field details of a transaction.
+
+
+> Sample Request
+
+```html
+https://us.api.capillarytech.com/v2/transactions?identifierName=id&identifierValue=401031250&points=MLP
+```
+
+
+> Sample PUT Request
+
+```json
+{
+  "id": 2148327179,
+  "number": "bill00009",
+  "customFields": {},
+  "extendedFields": {},
+  "loyaltyPromotionIdentifiers": [
+    
+  ],
+  "deliveryStatus": "PLACED",
+  "tillCode": "mobilepush.1"
+}
+```
+
+> Sample Response
+
+```json
+{
+    "warnings": [],
+    "errors": [],
+    "loyaltyDetails": [
+        {
+            "redeemed": 0.0,
+            "expired": 298400.0,
+            "returned": 0.0,
+            "adjusted": 0.0,
+            "lifetimePoints": 298440.0,
+            "loyaltyPoints": 40.0,
+            "cumulativePurchases": -1.1996371E9,
+            "loyaltyId": 92523645,
+            "currentSlab": "bronze",
+            "nextSlab": "silver",
+            "nextSlabSerialNumber": 2,
+            "nextSlabDescription": "silver",
+            "slabSNo": 1,
+            "slabExpiryDate": "2121-03-02T23:59:59+05:30",
+            "programId": 1016,
+            "delayedPoints": 0.0,
+            "delayedReturnedPoints": 0.0,
+            "totalAvailablePoints": 40.0,
+            "totalReturnedPoints": 0.0,
+            "programTitle": "mobile pushDefaultProgram",
+            "programDescription": "Default program for mobile push",
+            "programPointsToCurrencyRatio": 0.75
+        },
+        {
+            "redeemed": 0.0,
+            "expired": 0.0,
+            "returned": 0.0,
+            "adjusted": 0.0,
+            "lifetimePoints": 0.0,
+            "loyaltyPoints": 0.0,
+            "cumulativePurchases": 207400.0,
+            "loyaltyId": 92523645,
+            "currentSlab": "NONE",
+            "nextSlab": "GOLD",
+            "nextSlabSerialNumber": 2,
+            "nextSlabDescription": "GOLD",
+            "slabSNo": 1,
+            "slabExpiryDate": "2121-03-02T23:59:59+05:30",
+            "programId": 1273,
+            "delayedPoints": 0.0,
+            "delayedReturnedPoints": 0.0,
+            "totalAvailablePoints": 0.0,
+            "totalReturnedPoints": 0.0,
+            "programTitle": "www",
+            "programDescription": " ",
+            "programPointsToCurrencyRatio": 1.0
+        }
+    ]
+}
+```
+
+
+
+### Resource Information
+
+| | |
+--------- | ----------- |
+URI | `/v2/transactions?{queryParams}`
+HTTP Method | PUT
+API Version | v2
+Batch Support | No
+Rate Limited | Yes
+
+### Request Header (optional)
+
+Header | Description
+------ | -----------
+X-CAP-DIRECT-REPLAY | Pass `true` to add the call to the event execution queue (reply event) - in this case, transaction is added and other events will be executed later. Pass `false` to directly execute the event.
+
+
+
+
+### Request URL
+
+`{host}/v2/transactions?source={source}&identifierName={identifierName}&identifierValue={identifierValue}&accountId={accountId}`
+
+### Request Query Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+identifierName* | enum | Pass any of the registered identifier name of the customer. Values: `mobile`, `email`, `externalId`, `id`, `wechat`,`martjackId`,  `fbId` (Facebook ID), `cardnumber`, `cardExternalId`.
+identifierValue* | string | Pass the respective identifier value. For example if `identifierType` is mobile, `identifierValue` is mobile number.
+source* | enum | Pass the source from which the transaction is made. Values: `INSTORE`(for InStore), `WECHAT` (WeChat), `MARTJACK`(AnywhereCommerce), `WEB_ENGAGE` (Web-engage integration), ECOMMERCE (ECOMMERCE), `JD` (JD), `TAOBAO` (Taobao), `TMALL` (TMall), `FACEBOOK` (Facebook), `WEBSITE` (other website), `OTHERS` (any other source).
+accountId | string | For sources with multiple accounts (such as MARTJACK, WECHAT), pass the respective account ID. Not applicable for `INSTORE` source.
+
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
+
+### Request Body Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+id** | long | Unique ID of the transaction generated internally.
+number** | string | Unique transaction number that needs to be updated.
+extendedFields | obj | Valid transaction level extended field details in name and value pairs.
+deliveryStatus | enum | Delivery status of the item. Values: `PLACED`, `PROCESSED`, `SHIPPED`, `DELIVERED`, `RETURNED`.
+
+<aside class="notice">Any one among the parameters marked with * is mandatory.</aside>
 
 
 

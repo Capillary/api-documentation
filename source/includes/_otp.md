@@ -197,7 +197,7 @@ Parameter | Datatype | Description
 entityType* | enum | Specify MOBILE to identify customer by mobile number or EMAIL to identify customer by email id.
 entityValue* | string | Specify the registered  mobile number or email id of the customer based on the entityType passed.
 code* | string | Pass the validation code received by the customer.
-action* | enum | Specify the action to be performed on successful validation. Values: `COUPON` (for coupon redemption), `POINTS` (for points redemption), `REGISTRATION`, `USERGROUP`, `SUBSCRIPTION`, `GENERIC` (for other purposes).
+action* | enum | Specify the action to be performed on successful validation. Values: `COUPON` (for coupon redemption), `POINTS` (for points redemption), `REGISTRATION`, `USERGROUP`, `SUBSCRIPTION`, `GENERIC` (for other purposes), `CUSTOMER_IDENTIFIER_CHANGE`, `CUSTOMER_STATUS_UPDATE`, `CUSTOMER_ISSUE_LINK_CARD`.
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
 
