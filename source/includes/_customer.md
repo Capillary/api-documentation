@@ -1,6 +1,7 @@
-# Customer
+# Customers and Customers/lookup
 A customer is an individual who is either enrolled in the org's loyalty program or subscribed to the org’s newsletters. An org is a business firm that is registered with Capillary - a retail store, hospital, pharmacy, restaurant, or any other firm.
 
+Customer Lookup is an extension to normal customer APIs where instead of fetching or updating details using customer ID, you can use registered identifiers like mobile number, email ID, external ID, card number and so on in `/customer/lookup`.
 
 ## Register Customer
 
@@ -4370,8 +4371,7 @@ Batch Support | No
 
 `{host}/v2/customers/{customerId}/coupons`
 
-`{host}/v2/customers/coupons/coupons?{identifierType`}={value}&status={value}
--
+
 
 ### Request Query Parameters
 
@@ -4862,10 +4862,181 @@ validationCode* | string | Unique validation code received on the customer's mob
 
 
 
+## Get Customer Status Log
 
-# Customer Lookup
+Retrieves the log of status changes of a customer.
 
-It is an extension to normal customer APIs where instead of fetching or updating details using customer ID, you can use registered identifiers like mobile number, email ID, external ID, card number and so on in `/customer/lookup`.
+> Sample Request
+
+```html
+http://api.capillary.co.in/v2/customers/987564/statusLog
+```
+
+> Sample Response
+
+```json
+{
+    "data": [
+        {
+            "createdByUser": "mobilepush.1",
+            "reason": "testing1",
+            "createdBy": 50006796,
+            "actions": [],
+            "autoUpdateTime": "2021-09-16",
+            "createdOn": "2021-09-16T17:54:24+05:30",
+            "entityId": 401031250,
+            "isActive": false,
+            "label": "Active",
+            "status": "ACTIVE"
+        },
+        {
+            "createdByUser": "mobilepush.1",
+            "reason": "testing2",
+            "createdBy": 50006796,
+            "actions": [],
+            "autoUpdateTime": "2021-09-16",
+            "createdOn": "2021-09-16T17:56:56+05:30",
+            "entityId": 401031250,
+            "isActive": false,
+            "label": "Suspended",
+            "prevLabel": "Active",
+            "status": "SUSPENDED"
+        },
+        {
+            "createdByUser": "mobilepush.1",
+            "reason": "",
+            "createdBy": 50006796,
+            "actions": [],
+            "autoUpdateTime": "2021-09-16",
+            "createdOn": "2021-09-16T18:15:07+05:30",
+            "entityId": 401031250,
+            "isActive": false,
+            "label": "Suspended",
+            "prevLabel": "Active",
+            "status": "SUSPENDED"
+        },
+        {
+            "createdByUser": "mobilepush.1",
+            "reason": "",
+            "createdBy": 50006796,
+            "actions": [],
+            "autoUpdateTime": "2021-09-16",
+            "createdOn": "2021-09-16T18:15:12+05:30",
+            "entityId": 401031250,
+            "isActive": true,
+            "label": "Deleted",
+            "prevLabel": "Suspended",
+            "status": "DELETED"
+        }
+    ],
+    "warnings": [],
+    "errors": []
+}
+```
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/{userId}/statusLog`
+Authentication | Yes
+HTTP Method | GET
+Batch Support | No
+
+
+
+### Request URL
+
+`{host}/customers/{userId}/statusLog`
+
+### Request Path Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+userId* | long | Unique ID of the customer to fetch status log details.
+
+
+## Get Customer Subscription Change Log
+
+Retrieves the log of subscription status changes of a customer.
+
+> Sample Request
+
+```html
+http://api.capillary.co.in/v2/customers/987564/subscriptionStatusChangeLog
+```
+
+> Sample Response
+
+```json
+{
+    "data": [
+        {
+            "orgUnitId": -1,
+            "source": "INSTORE",
+            "accountId": "",
+            "orgSourceId": -1,
+            "commChannelId": 1,
+            "commChannelType": "mobile",
+            "communicationCategoryId": -1,
+            "priority": "BULK",
+            "status": true,
+            "addedBy": -1,
+            "addedOn": "2021-12-27",
+            "reason": "Direct"
+        },
+        {
+            "orgUnitId": -1,
+            "source": "INSTORE",
+            "accountId": "",
+            "orgSourceId": -1,
+            "commChannelId": 9,
+            "commChannelType": "whatsapp",
+            "communicationCategoryId": -1,
+            "priority": "BULK",
+            "status": true,
+            "addedBy": -1,
+            "addedOn": "2021-12-27",
+            "reason": "Direct"
+        },
+        {
+            "orgUnitId": -1,
+            "source": "INSTORE",
+            "accountId": "",
+            "orgSourceId": -1,
+            "commChannelId": 9,
+            "commChannelType": "whatsapp",
+            "communicationCategoryId": -1,
+            "priority": "TRANS",
+            "status": true,
+            "addedBy": -1,
+            "addedOn": "2021-12-27",
+            "reason": "Direct"
+        }
+    ],
+    "warnings": [],
+    "errors": []
+}
+```
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/{userId}/subscriptionStatusChangeLog`
+Authentication | Yes
+HTTP Method | GET
+Batch Support | No
+
+
+
+### Request URL
+
+`{host}/customers/{userId}/subscriptionStatusChangeLog`
+
+### Request Path Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+userId* | long | Unique ID of the customer to fetch subscription status log details.
 
 
 ## Update Customer Details (using identifier)
@@ -5080,6 +5251,8 @@ createdOn | date-time | Date and time of the status update in ISO 8601 format - 
 label* | string | Predefined label name to update with.
 
 <aside class="notice">Parameters marked with * are mandatory.</aside>
+
+
 
 
 ## Get Customer Loyalty Details
