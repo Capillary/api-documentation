@@ -71,6 +71,10 @@ https://eu.intouch.capillarytech.com/v2/transactions/bulk
 	  "userGroup2Id":1949,
 	  "userGroup2PrimaryUserId":414936033,
 	  "userGroup2ExternalId": "",
+	  "userGroup2PrimaryUserIdentifierType":”email",
+      "userGroup2PrimaryUserIdentifierVale": "example@example.com",
+      "userGroup2PrimaryUserSource":"WEB_ENGAGE",
+      "userGroup2PrimaryUserAccountId":""
       "paymentModes":[
          {
             "mode":"CardPayment",
@@ -686,10 +690,14 @@ accountId | string | For sources with multiple accounts (such as MARTJACK, WECHA
 extendedFields | obj | Valid transaction level extended field details in name and value pairs.
 currencyCode | string | ISO currency code of the transaction to add transaction with local currency. For example, `INR` for Indian Rupee, SGD for Singapore Dollar, `EUR` for Euro, `IQD` for Iraqi Dinar. Pass the currency code that are supported for your org (InTouch > Organization Setup) and ensure the currency conversion ratio is set using `v2/currencyratio`.
 addWithLocalCurrency | boolean | Pass `true` to add a transaction in local currency.  
-deliveryStatus | enum | Delivery status of the item. Values: `PLACED`, `PROCESSED`, `SHIPPED`, `DELIVERED`, `RETURNED`. You can update the status using `v1.1/transaction/update`.
+deliveryStatus | enum | Delivery status of the item. Values: `PLACED`, `PROCESSED`, `SHIPPED`, `DELIVERED`, `RETURNED`. You can update the status using `v2/transaction/update`.
 userGroup2Id | int | Unique ID of the user group to which the transaction needs to be associated with. Any one among the parameters with `userGroup2` is required to associate the transaction with a group.
 userGroup2PrimaryUserId | long | Unique user ID of the primary member of group to which the transaction needs to be associated with. Any one among the parameters with `userGroup2` is required to associate the transaction with a group.
 userGroup2ExternalId | string | Unique external ID of the user group to which the transaction needs to be associated with. Any one among the parameters with `userGroup2` is required to associate the transaction with a group.
+userGroup2PrimaryUserIdentifierType | enum | Identifier type  used to identify group primary member. Value: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, or `fbId` (Facebook ID), `id`.
+userGroup2PrimaryUserIdentifierValue | string | Value of the specified group identifier type.
+userGroup2PrimaryUserSource | enum | Source in which the identifier of the group primary member is registered. Value: `INSTORE`( for InStore), `WECHAT` (WeChat), `MARTJACK`(AnywhereCommerce), `WEB_ENGAGE` (Web-engage integration), ECOMMERCE (ECOMMERCE), `JD` (JD), `TAOBAO` (Taobao), `TMALL` (TMall), `FACEBOOK` (Facebook), `WEBSITE` (other website), `OTHERS` (any other source).
+userGroup2PrimaryUserAccountId | string | Account ID for sources with multiple accounts such as WECHAT. 
 type* | enum | Type of transaction. Supported value: `REGULAR` for loyalty transactions. `RETURN` for return transactions. `NOT_INTERESTED`, `RETURN,NOT_INTERESTED_RETURN`.
 notInterestedReason | string | Notes on why the customer is not interested to enroll into the loyalty (`type`=`NOT_INTERESTED`). Max characters supported - 255. 
 returnType** | enum | For a return transaction, pass the return type. Value: `AMOUNT`, `FULL`, `LINE_ITEM`, `CANCELLED`.

@@ -360,7 +360,7 @@ transferredBy* | obj | Details of the user who is transferring points. The user 
 toEntity* | obj | Details of the destination account (customer or group) - to which the points need to be transferred.
 fromEntity* | obj | Details of the source account (group or customer) from which the points need to be transferred.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type* | enum | Type of the entry. Value: `CUSTOMER`, `USERGROUP2`.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;identifierType* | enum | Identifier type to identify customer or group. Supported values for customer: `mobile`, `email`, `externalId`, `cardnumber`, `wechat`, `martjackId`, `fbId`.<br>Supported values for group: `id`, `externalId`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;identifierType* | enum | Identifier type to identify customer or group. Supported values for customer: `mobile`, `email`, `externalId`, `cardnumber`, `wechat`, `martjackId`, `fbId`.<br>Supported values for group: `id`, `externalId`, `primaryUserId`, `primaryUserCardnumber`, `primaryUserMobile`, `primaryUserEmail`.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;identifierValue* | string | Value of the specified `identifierType`.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;accountId | string | Account ID for sources with multiple account IDs.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source** | enum | Source in which the customer account is available. Value: `FACEBOOK`, `WEB_ENGAGE`, `WECHAT`, `INSTORE`, `MARTJACK`, `TMALL`, `TAOBAO`, `JD`, `ECOMMERCE`, `WEBSITE`, `LINE`, `MOBILE_APP`. Required for customer entity.
@@ -702,7 +702,7 @@ transferredBy* | obj | Details of the user who is transferring points. The user 
 toEntity* | obj | Details of the destination account (customer or group) - to which the points need to be transferred.
 fromEntity* | obj | Details of the source account (group or customer) from which the points need to be transferred.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type* | enum | Type of the entry. Value: `CUSTOMER`, `USERGROUP2`.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;identifierType* | enum | Identifier type to identify customer or group. Supported values for customer: `mobile`, `email`, `externalId`, `cardnumber`, `wechat`, `martjackId`, `fbId`.<br>Supported values for group: `id`, `externalId`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;identifierType* | enum | Identifier type to identify customer or group. Supported values for customer: `mobile`, `email`, `externalId`, `cardnumber`, `wechat`, `martjackId`, `fbId`.<br>Supported values for group: `id`, `externalId`, `primaryUserId`, `primaryUserCardnumber`, `primaryUserMobile`, `primaryUserEmail`.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;identifierValue* | string | Value of the specified `identifierType`.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;accountId | string | Account ID for sources with multiple account IDs.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;source** | enum | Source in which the customer account is available. Value: `FACEBOOK`, `WEB_ENGAGE`, `WECHAT`, `INSTORE`, `MARTJACK`, `TMALL`, `TAOBAO`, `JD`, `ECOMMERCE`, `WEBSITE`, `LINE`, `MOBILE_APP`. Required for customer entity.
@@ -854,6 +854,7 @@ Code | Description
 896 | Unable to process points. Please try again later.
 898 | Unable to process points. Please try again later.
 899 | Invalid configuration. Please report to capillary support.
+3045 | Points Redemption is not allowed for the customer with id {x} as the status is fraud.
 
 
 ### Warning Codes
