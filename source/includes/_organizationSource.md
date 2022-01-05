@@ -1632,4 +1632,397 @@ sourceId* | int | Unique ID of the source to fetch configurations.
 
 <aside class="notice"> Parameters marked with * are mandatory. </aside>
 
+
+
+## Get Org Custom Fields
+
+Retrieves the details of custom fields created for the org.
+
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/organization/customFields
+```
 ​
+> Sample Response
+
+```json
+{
+    "data": [
+        {
+            "name": "Married",
+            "type": "text",
+            "dataType": "Boolean",
+            "label": "Is married",
+            "scope": "store_custom_fields",
+            "defaultValue": "",
+            "phase": "1",
+            "position": 0,
+            "rule": "",
+            "regex": "",
+            "error": "",
+            "options": "",
+            "isDisabled": 0,
+            "isCompulsory": 0,
+            "disableAtServer": 0,
+            "isUpdatable": 1
+        },
+        {
+            "name": "afterdisablednew",
+            "type": "text",
+            "dataType": "Boolean",
+            "label": "afterdisablednew",
+            "scope": "store_custom_fields",
+            "defaultValue": "",
+            "phase": "1",
+            "position": 0,
+            "rule": "",
+            "regex": "",
+            "error": "",
+            "options": "",
+            "isDisabled": 0,
+            "isCompulsory": 0,
+            "disableAtServer": 0,
+            "isUpdatable": 1
+        },
+        {
+            "name": "age_groupe",
+            "type": "email_body",
+            "dataType": "Integer",
+            "label": "年龄阶层11",
+            "scope": "loyalty_registration",
+            "defaultValue": "[\"123456781\"]",
+            "phase": "2",
+            "position": 1,
+            "rule": "33年龄阶层",
+            "regex": "11",
+            "error": "年龄阶层2",
+            "options": "{\"label1\":\"value1\",\"label2\":\"value2\"}",
+            "isDisabled": 0,
+            "isCompulsory": 1,
+            "disableAtServer": 0,
+            "isUpdatable": 1
+        },
+        {
+            "name": "anniversary",
+            "type": "datepicker",
+            "dataType": "String",
+            "label": "Anniversary",
+            "scope": "loyalty_registration",
+            "defaultValue": "",
+            "phase": "1",
+            "position": 0,
+            "rule": "",
+            "regex": "",
+            "error": "",
+            "options": "",
+            "isDisabled": 0,
+            "isCompulsory": 0,
+            "disableAtServer": 0,
+            "isUpdatable": 0
+        },
+        {
+            "name": "bankdetails",
+            "type": "text",
+            "dataType": "String",
+            "label": "银行明细",
+            "scope": "loyalty_transaction",
+            "defaultValue": "",
+            "phase": "1",
+            "position": 0,
+            "rule": "",
+            "regex": "",
+            "error": "",
+            "options": "",
+            "isDisabled": 0,
+            "isCompulsory": 0,
+            "disableAtServer": 0,
+            "isUpdatable": 1
+        },
+        {
+            "name": "child",
+            "type": "text",
+            "dataType": "String",
+            "label": "名称",
+            "scope": "loyalty_registration",
+            "defaultValue": "",
+            "phase": "1",
+            "position": 0,
+            "rule": "",
+            "regex": "",
+            "error": "",
+            "options": "",
+            "isDisabled": 0,
+            "isCompulsory": 0,
+            "disableAtServer": 0,
+            "isUpdatable": 1
+        },
+        {
+            "name": "clientmergecustomtex",
+            "type": "text",
+            "dataType": "String",
+            "label": "clientmergecustomtext1",
+            "scope": "loyalty_registration",
+            "defaultValue": "",
+            "phase": "2",
+            "position": 0,
+            "rule": "",
+            "regex": "",
+            "error": "",
+            "options": "",
+            "isDisabled": 0,
+            "isCompulsory": 0,
+            "disableAtServer": 0,
+            "isUpdatable": 1
+        },
+        {
+            "name": "coupondate",
+            "type": "datepicker",
+            "dataType": "String",
+            "label": "当前无互联网",
+            "scope": "voucher_redemption",
+            "defaultValue": "",
+            "phase": "1",
+            "position": 0,
+            "rule": "",
+            "regex": "",
+            "error": "",
+            "options": "",
+            "isDisabled": 0,
+            "isCompulsory": 1,
+            "disableAtServer": 0,
+            "isUpdatable": 0
+        },
+        {
+            "name": "customer_preference1",
+            "type": "text",
+            "dataType": "String",
+            "label": "customer_preference1",
+            "scope": "customer_preferences",
+            "defaultValue": "",
+            "phase": "1",
+            "position": 0,
+            "rule": "",
+            "regex": "",
+            "error": "",
+            "options": "",
+            "isDisabled": 0,
+            "isCompulsory": 0,
+            "disableAtServer": 0,
+            "isUpdatable": 1
+        },
+        {
+            "name": "customfield_a",
+            "type": "text",
+            "dataType": "Boolean",
+            "label": "",
+            "scope": "loyalty_registration",
+            "defaultValue": "",
+            "phase": "1",
+            "position": 0,
+            "rule": "",
+            "regex": "",
+            "error": "",
+            "options": "",
+            "isDisabled": 0,
+            "isCompulsory": 0,
+            "disableAtServer": 0,
+            "isUpdatable": 1
+        },
+        {
+            "name": "customfield_f",
+            "type": "text",
+            "dataType": "Boolean",
+            "label": "",
+            "scope": "loyalty_registration",
+            "defaultValue": "",
+            "phase": "1",
+            "position": 0,
+            "rule": "",
+            "regex": "",
+            "error": "",
+            "options": "",
+            "isDisabled": 0,
+            "isCompulsory": 0,
+            "disableAtServer": 0,
+            "isUpdatable": 1
+        },
+        {
+            "name": "customfield_g",
+            "type": "text",
+            "dataType": "Boolean",
+            "label": "",
+            "scope": "loyalty_registration",
+            "defaultValue": "",
+            "phase": "1",
+            "position": 0,
+            "rule": "",
+            "regex": "",
+            "error": "",
+            "options": "",
+            "isDisabled": 0,
+            "isCompulsory": 0,
+            "disableAtServer": 0,
+            "isUpdatable": 1
+        },
+        {
+            "name": "customfield_h",
+            "type": "text",
+            "dataType": "Boolean",
+            "label": "",
+            "scope": "loyalty_registration",
+            "defaultValue": "",
+            "phase": "1",
+            "position": 0,
+            "rule": "",
+            "regex": "",
+            "error": "",
+            "options": "",
+            "isDisabled": 0,
+            "isCompulsory": 0,
+            "disableAtServer": 0,
+            "isUpdatable": 1
+        },
+        {
+            "name": "preferredcategory",
+            "type": "checkbox",
+            "dataType": "String",
+            "label": "PreferredCategory",
+            "scope": "loyalty_registration",
+            "defaultValue": "",
+            "phase": "1",
+            "position": 0,
+            "rule": "",
+            "regex": "",
+            "error": "",
+            "options": "{\"Shirt\":\"Shirt\",\"Trousers\":\"Trousers\",\"Tshirt\":\"Tshirt\",\"Chino\":\"Chino\"}",
+            "isDisabled": 0,
+            "isCompulsory": 0,
+            "disableAtServer": 0,
+            "isUpdatable": 0
+        }
+    ],
+    "warnings": [],
+    "errors": []
+}
+```
+
+### Resource Information
+
+| | |
+--------- | ----------- |
+URI | `v2/organization/customFields`
+HTTP Method | GET
+API Version | v2
+Batch Support | No
+Rate Limited? | No
+
+
+### Request URL
+
+`https://{host}/v2/organization/customFields`
+
+
+## Get Org Config Key Values
+
+Retrieves the organization configuration values based on config name.
+
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/organization/configkeyvalue?name=IS_DIRECT_REPLAY_ENABLED
+```
+​
+> Sample Response
+
+```json
+{
+    "id": 0,
+    "entityId": 0,
+    "keyName": "IS_DIRECT_REPLAY_ENABLED",
+    "value": "0",
+    "warnings": []
+}
+```
+
+
+### Resource Information
+
+| | |
+--------- | ----------- |
+URI | `v2/organization/configkeyvalue?name={configKeyName}`
+HTTP Method | GET
+API Version | v2
+Batch Support | No
+Rate Limited? | No
+
+
+### Request URL
+
+`https://{host}/v2/organization/configkeyvalue?name={configKeyName}`
+
+
+
+## Get Org Till Details
+
+Retrieves the details of a specific ill based on the Till code or till ID passed.
+
+
+> Sample Request (by Till Code)
+
+```html
+https://eu.api.capillarytech.com/v2/organization/till?code=mp.1
+```
+
+> Sample Request (by Till ID)
+
+```html
+https://eu.api.capillarytech.com/v2/organization/till/50006799
+```
+​
+> Sample Response
+
+```json
+{
+    "id": 50006799,
+    "code": "mp.1",
+    "description": "",
+    "name": "mobilepush",
+    "type": "TILL",
+    "adminType": "GENERAL",
+    "isActive": true,
+    "isOuEnabled": false,
+    "timeZoneId": 191,
+    "currencyId": 216,
+    "languageId": 1,
+    "warnings": []
+}
+```
+
+
+### Resource Information
+
+| | |
+--------- | ----------- |
+URI | `v2/organization/till?code={tillCode}` <br>`v2/organization/till/{tillId}`
+HTTP Method | GET
+API Version | v2
+Batch Support | No
+Rate Limited? | No
+
+
+### Request URL
+
+`{host}/v2/organization/till?code={tillCode}`
+
+`{host}/v2/organization/till/{tillId}`
+
+### Request Query/Path Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+code** | string | Pass the till code to get details using tillCode (first URL).
+tillId** | long | Pass the unique till ID to get the details by tillId (second URL).
+

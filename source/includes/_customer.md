@@ -2263,6 +2263,131 @@ Parameter | Description
 q |  Enter the keyword based on which you want to fetch customers. It will fetch customers whose first name, last name, or registered identifiers start with keyword that you pass.
 
 
+## Get Customer Points Expiry Schedule
+
+Retrieves the history of points expired schedules.
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/customers/28780933/pointsExpirySchedule
+```
+
+> Sample Response
+
+```json
+{
+    "id": 28780933,
+    "profiles": [],
+    "loyaltyInfo": {
+        "loyaltyType": "loyalty"
+    },
+    "segments": {},
+    "extendedFields": {},
+    "expirySchedules": [
+        {
+            "points": 400.0,
+            "expiryDate": "2117-07-18",
+            "programId": 1009,
+            "pointsType": "bill_regular",
+            "expiryType": "fixed"
+        },
+        {
+            "points": 100.0,
+            "expiryDate": "2119-03-31",
+            "programId": 1009,
+            "pointsType": "bill_regular",
+            "expiryType": "fixed"
+        },
+        {
+            "points": 600.0,
+            "expiryDate": "2121-02-22",
+            "programId": 1009,
+            "pointsType": "line_item_regular",
+            "expiryType": "fixed"
+        },
+        {
+            "points": 150.0,
+            "expiryDate": "2121-02-24",
+            "programId": 1009,
+            "pointsType": "line_item_regular",
+            "expiryType": "fixed"
+        }
+    ],
+    "warnings": []
+}
+```
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/customers/{userId}/pointsExpirySchedule'
+Authentication | Yes
+HTTP Method | GET
+Batch Support | No
+
+
+
+### Request URL
+`{host}/v2/customers/{userId}/pointsExpirySchedule`
+
+### Request Path Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+userId* | long | Unique ID of the customer to fetch points expiry schedule history.
+
+
+## Get Customer Loyalty Events 
+
+Retrieves the details of loyalty events triggered for the customer.
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/customers/28780933/loyaltyEvents
+```
+
+> Sample Response
+
+```json
+{
+  "data": [
+   {
+      "id": 42272852,
+      "customerId": 28780933,
+      "date": "2021-06-21T19:59:09+05:30",
+      "eventName": "CustomerRegistration",
+      "orgId": 1779,
+      "status": "SUCCESS",
+      "uniqueId": "pLZ9NGKDJ6"
+    }
+  ],
+   "warnings": [],
+   "errors": []
+}
+```
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/customers/{userId}/loyaltyEvents'
+Authentication | Yes
+HTTP Method | GET
+Batch Support | No
+
+
+
+### Request URL
+`{host}/v2/customers/{userId}/loyaltyEvents`
+
+### Request Path Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+userId* | long | Unique ID of the customer to fetch loyalty events.
+
+
 
 
 ## Fetch Customer ID
@@ -4384,9 +4509,11 @@ customerId* | long | Unique ID of the customer to fetch coupons.
 
 
 
-## Issue Card to an Existing Customer
+## Link (Issue) or Delink Card
 
-Lets you issue card to a loyalty customer. To issue an external or manually generated card, you need to first add the card using `/v2/card` API. To issue auto-generated card, you first need to issue the card using `card/generate` API. 
+Lets you issue card to a loyalty customer or delink a card of a customer. 
+
+To issue an external or manually generated card, you need to first add the card using `/v2/card` API. To issue auto-generated card, you first need to issue the card using `card/generate` API. 
 
 > Sample Request
 
@@ -4447,7 +4574,7 @@ Parameter | Datatype | Description
 --------- | -------- | -----------
 value* | string | Card number to issue or tag to the customer.
 type* | enum | Pass `cardnumber` to issue card.
-statusLabel* | enum | New status of the card. Value: `ACTIVE`.
+statusLabel* | enum | New status of the card. Value: `ACTIVE` (to issue card), `NOT_ISSUED` (to delink card).
 
 
 
@@ -5036,7 +5163,7 @@ Batch Support | No
 
 Parameter | Datatype | Description
 --------- | -------- | -----------
-userId* | long | Unique ID of the customer to fetch subscription status log details.
+userId* | long | Unique ID of the customer to fetch subscription status log details.	
 
 
 ## Update Customer Details (using identifier)
@@ -5788,9 +5915,6 @@ identifierValue* | string | Pass the respective identifier value.
 
 
 <aside class="notice">Parameters marked with * are mandatory.</aside>
-
-
-
 
 
 

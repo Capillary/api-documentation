@@ -49,6 +49,8 @@ search: true
 This section provides the quarterly breakup of existing API updates and new API releases.
 
 ## Q3 Releases (2021-2022)
+*	**customers/{userId}/changeIdentifier?** to support delinking card for a customer with the new parameter value `"statusLabel": "NOT_ISSUED"`. Check out details [here](https://capillary.github.io/api-documentation/#get-customer-coupons-detailed).
+*	**v2/customers** supports two new APIs get [`pointsExpirySchedule`](https://capillary.github.io/api-documentation/#get-customer-points-expiry-schedule) and [`loyaltyEvents`](https://capillary.github.io/api-documentation/#get-customer-loyalty-events). 
 *	**Customer Consent APIs**: V2 `/customers` resource now supports adding and updating customer consent with POST and PUT `v2/customers/traiConsent` API. 
 *   **Get userGroup2 details API** to retrieve the details of `EXPIREDPOINTS` and `EXPIRYSCHEDULES` through `embed` query parameter. [Read more here](https://capillary.github.io/api-documentation/#get-group-details).
 *   **Custom fields and extended fields support in card APIs**: You can now store and retrieve card related custom fields and extended fields. To know how, check out [POST v2/card](https://capillary.github.io/api-documentation/#add-card-number-to-a-card-series), [PUT v2/card](https://capillary.github.io/api-documentation/#update-card-details), [GET v2/card](https://capillary.github.io/api-documentation/#get-card-details), [PUT v2/card/bulk](https://capillary.github.io/api-documentation/#update-card-details-bulk)
