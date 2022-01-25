@@ -131,6 +131,12 @@
 
 <p>This section provides the quarterly breakup of existing API updates and new API releases.</p>
 
+<h2 id="q4-releases-2021-2022">Q4 Releases (2021-2022)</h2>
+
+<ul>
+<li>  Introduced new query parameters <code class="prettyprint">expirySchedules</code> and <code class="prettyprint">expiredPoints</code>. These were the parameter values for the query parameter <code class="prettyprint">embed</code> earlier. <a href="https://capillary.github.io/api-documentation/#get-group-details">See this for details</a>.</li>
+</ul>
+
 <h2 id="q3-releases-2021-2022">Q3 Releases (2021-2022)</h2>
 
 <ul>
@@ -6560,14 +6566,29 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/customers/161670039/changeIdentifier?source=INSTORE
 </code></pre>
 <blockquote>
-<p>Sample POST Request</p>
+<p>Sample POST Request (to Link Card)</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"add"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOLD00000000000001032021"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cardnumber"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"seriesCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOLDPHY98"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"statusLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACTIVE"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample POST Request (to Delink Card)</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+ </span><span class="s2">"remove"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test2925063675test"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cardnumber"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"seriesCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOLDPHY98"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOT_ISSUED"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -6661,6 +6682,47 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>statusLabel*</td>
 <td>enum</td>
 <td>New status of the card. Value: <code class="prettyprint">ACTIVE</code> (to issue card), <code class="prettyprint">NOT_ISSUED</code> (to delink card).</td>
+</tr>
+</tbody></table>
+
+<h2 id="request-body-parameters">Request Body Parameters</h2>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>add</td>
+<td>array-obj</td>
+<td>Details of card to associate with the customer.</td>
+</tr>
+<tr>
+<td>remove</td>
+<td>array-obj</td>
+<td>Details of card to dissociate for the customer.</td>
+</tr>
+<tr>
+<td>value</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>enum</td>
+<td>Type of the card identifier used. <code class="prettyprint">cardnumber</code></td>
+</tr>
+<tr>
+<td>seriesCode</td>
+<td>string</td>
+<td>Associated series code of the card.</td>
+</tr>
+<tr>
+<td>statusLabel</td>
+<td>enum</td>
+<td>Pass <code class="prettyprint">ACTIVE</code> to issue card, <code class="prettyprint">NOT_ISSUED</code> to remove an existing card.</td>
 </tr>
 </tbody></table>
 
@@ -31468,7 +31530,7 @@ Batch Support | No
 <blockquote>
 <p>Sample Request </p>
 </blockquote>
-<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/userGroup2?id=2476<span class="err">&amp;</span>embed=EXPIREDPOINTS<span class="err">&amp;</span>embed=EXPIRYSCHEDULES
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/userGroup2?id=2476<span class="err">&amp;</span>expiredPoints=true<span class="err">&amp;</span>expirySchedules=true
 </code></pre>
 <blockquote>
 <p>Sample Response</p>
@@ -31588,9 +31650,14 @@ Batch Support | No
 <td>External ID of the group to fetch.</td>
 </tr>
 <tr>
-<td>embed</td>
-<td>enum</td>
-<td>Pass <code class="prettyprint">EXPIREDPOINTS</code> to get the history of expired points; pass <code class="prettyprint">EXPIRYSCHEDULES</code> to get the history of points expiry schedules.</td>
+<td>expiredPoints</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to get the history of expired points.</td>
+</tr>
+<tr>
+<td>expirySchedules</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to get the history of points expiry schedules.</td>
 </tr>
 <tr>
 <td>gapToUpgradeFor</td>
