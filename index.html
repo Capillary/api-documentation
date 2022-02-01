@@ -8628,6 +8628,10 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <td>Customer recommendations fetched successfully.</td>
 </tr>
 <tr>
+<td>1050</td>
+<td>Customer recommendations fetched successfully.</td>
+</tr>
+<tr>
 <td>1052</td>
 <td>Transactions fetched successfully.</td>
 </tr>
@@ -8650,12 +8654,12 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 </tr>
 </thead><tbody>
 <tr>
-<td>500</td>
-<td>All requests failed due to errors.</td>
-</tr>
-<tr>
 <td>400</td>
 <td>Input is invalid. Please check request parameters or input xml/json; No identifier provided to get loyalty users.</td>
+</tr>
+<tr>
+<td>500</td>
+<td>All requests failed due to errors.</td>
 </tr>
 <tr>
 <td>618</td>
@@ -8690,7 +8694,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <td>Unable to register customer. No valid primary identifier mobile number, email ID, or external ID passed.</td>
 </tr>
 <tr>
-<td>1008/ 1038</td>
+<td>1008</td>
 <td>Unable to register with external id.</td>
 </tr>
 <tr>
@@ -8848,6 +8852,10 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <tr>
 <td>1051</td>
 <td>No transactions or recommendations found for the customer.</td>
+</tr>
+<tr>
+<td>1059</td>
+<td>Error in customer registration. Email or Mobile is required.</td>
 </tr>
 <tr>
 <td>1060</td>
@@ -11407,6 +11415,9 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 
 <h2 id="response-codes">Response Codes</h2>
 
+<p>600 | Transaction added successfully.<br>Transaction retrieved successfully.
+1630 | Transaction retrospectively marked REGULAR. Transaction added successfully.</p>
+
 <h3 id="error-codes">Error Codes</h3>
 
 <table><thead>
@@ -11421,11 +11432,11 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 </tr>
 <tr>
 <td>601</td>
-<td>Transaction failed. Transaction amount, quantity, rate, or discount is invalid.</td>
+<td>Invalid transaction transaction amount.</td>
 </tr>
 <tr>
 <td>602</td>
-<td>Transaction number is invalid.</td>
+<td>Invalid transaction number.</td>
 </tr>
 <tr>
 <td>603</td>
@@ -17280,6 +17291,20 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 
 <h2 id="response-codes">Response Codes</h2>
 
+<h3 id="success-codes">Success Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>800</td>
+<td>Points redeemed successfully, points can be redeemed</td>
+</tr>
+</tbody></table>
+
 <h3 id="error-codes">Error Codes</h3>
 
 <table><thead>
@@ -17325,6 +17350,18 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 <td>User is from campaign and has not enrolled in the loyalty program. Points redemption is not applicable for the user.</td>
 </tr>
 <tr>
+<td>801</td>
+<td>Points you are trying to redeem are invalid</td>
+</tr>
+<tr>
+<td>802</td>
+<td>Mobile number/email id/external id you have entered is invalid</td>
+</tr>
+<tr>
+<td>803</td>
+<td>Unable to redeem. The points you are trying to redeem is more than the available points</td>
+</tr>
+<tr>
 <td>804</td>
 <td>Insufficient current points.</td>
 </tr>
@@ -17338,11 +17375,47 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 </tr>
 <tr>
 <td>807</td>
-<td>Redemptions points not divisible.</td>
+<td>Unable to redeem. Make sure that the points you are trying to redeem is a multiple of <X>. Check the points redemption configuration of your organization.</td>
+</tr>
+<tr>
+<td>808</td>
+<td>Unable to redeem. Validation code is invalid.</td>
 </tr>
 <tr>
 <td>809</td>
-<td>Customer is marked as fraud.</td>
+<td>Unable to process. Customer is marked as fraud.</td>
+</tr>
+<tr>
+<td>810</td>
+<td>Mismatch in points for revert API call</td>
+</tr>
+<tr>
+<td>811</td>
+<td>The transaction number entered to redeem/revert points is invalid</td>
+</tr>
+<tr>
+<td>812</td>
+<td>The points have been reverted already for this transaction number</td>
+</tr>
+<tr>
+<td>813</td>
+<td>Insufficient current points available for redemption</td>
+</tr>
+<tr>
+<td>814</td>
+<td>No points were redeemed on this transaction number</td>
+</tr>
+<tr>
+<td>815</td>
+<td>Unable to process points at this moment. Please try again later</td>
+</tr>
+<tr>
+<td>816</td>
+<td>Unable to find customer in this organization</td>
+</tr>
+<tr>
+<td>817</td>
+<td>Points redemption failed.</td>
 </tr>
 <tr>
 <td>818</td>
@@ -17350,11 +17423,51 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 </tr>
 <tr>
 <td>819</td>
-<td>Points to redeem exceeds the threshold limit (maximum points that can be redeemed in a transaction).</td>
+<td>Points you are trying to redeem are more than the maximum allowed redemption limit.</td>
+</tr>
+<tr>
+<td>820</td>
+<td>Unable to process. Customer is marked as fraud</td>
 </tr>
 <tr>
 <td>821</td>
-<td>Points you are trying to redeem are less than the minimum points allowed.</td>
+<td>Points you are trying to redeem are less than the minimum redemption limit</td>
+</tr>
+<tr>
+<td>822</td>
+<td>Unable to find missed call from the registered mobile number</td>
+</tr>
+<tr>
+<td>823</td>
+<td>Missed call redemption is disabled for your organization</td>
+</tr>
+<tr>
+<td>824</td>
+<td>Mobile number validation is mandatory for redeeming points</td>
+</tr>
+<tr>
+<td>825</td>
+<td>Client signature is required</td>
+</tr>
+<tr>
+<td>826</td>
+<td>Invalid points category or invalid configuration</td>
+</tr>
+<tr>
+<td>827</td>
+<td>Unable to redeem points. Points redemption is enabled for your organization.</td>
+</tr>
+<tr>
+<td>859</td>
+<td>The redemption time you have passed is invalid</td>
+</tr>
+<tr>
+<td>860</td>
+<td>Unable to issue OTP.</td>
+</tr>
+<tr>
+<td>881</td>
+<td>Customer is not registered into the loyalty program.</td>
 </tr>
 <tr>
 <td>886</td>
@@ -17366,11 +17479,19 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 </tr>
 <tr>
 <td>888</td>
-<td>Invalid configuration. Please report to capillary support.</td>
+<td>Configuration is invalid. Please report to Capillary Support</td>
+</tr>
+<tr>
+<td>889</td>
+<td>Points processing failed. Please try again later.</td>
+</tr>
+<tr>
+<td>894</td>
+<td>Unable to process points at this moment. Please try again later</td>
 </tr>
 <tr>
 <td>895</td>
-<td>Loyalty program is not configured for the  org.</td>
+<td>Loyalty program is not configured for your organization.</td>
 </tr>
 <tr>
 <td>896</td>
@@ -17378,15 +17499,35 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 </tr>
 <tr>
 <td>898</td>
-<td>Unable to process points. Please try again later.</td>
+<td>Unable to process points at this moment. Please try again later</td>
 </tr>
 <tr>
 <td>899</td>
-<td>Invalid configuration. Please report to capillary support.</td>
+<td>Configuration is invalid. Please report to Capillary Support</td>
+</tr>
+<tr>
+<td>901</td>
+<td>Invalid points or points redemption Id passed.</td>
+</tr>
+<tr>
+<td>902</td>
+<td>Redemption ID does not exist.</td>
+</tr>
+<tr>
+<td>903</td>
+<td>Unable to redeem points.</td>
+</tr>
+<tr>
+<td>904</td>
+<td>Invalid customer details passed.</td>
 </tr>
 <tr>
 <td>3045</td>
 <td>Points Redemption is not allowed for the customer with id {x} as the status is fraud.</td>
+</tr>
+<tr>
+<td>3802</td>
+<td>Points reversal redeemed points already reversed.</td>
 </tr>
 </tbody></table>
 
