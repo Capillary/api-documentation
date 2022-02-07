@@ -135,6 +135,7 @@
 
 <ul>
 <li>  Introduced new query parameters <code class="prettyprint">expirySchedules</code> and <code class="prettyprint">expiredPoints</code>. These were the parameter values for the query parameter <code class="prettyprint">embed</code> earlier. <a href="https://capillary.github.io/api-documentation/#get-group-details">See here for details</a>.</li>
+<li>Register customer in all the programs of the org with the query parameter <code class="prettyprint">mlp_single_enroll</code> in POST <a href="https://capillary.github.io/api-documentation/#register-customer">v2/customers</a>.</li>
 </ul>
 
 <h2 id="q3-releases-2021-2022">Q3 Releases (2021-2022)</h2>
@@ -859,6 +860,11 @@ Extended fields are either associated to verticals or to a generic category (ava
 <td>rawSideEffects</td>
 <td>boolean</td>
 <td>Pass <code class="prettyprint">true</code> to get complete details of incentives such as awardOn, expiryDate, strategyIds and so on. See <code class="prettyprint">rawSideEffects</code> in response for more details.</td>
+</tr>
+<tr>
+<td>mlp_single_enroll</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to enroll a customer in all the loyalty programs available for the org. Pass <code class="prettyprint">false</code> to enroll in a specific program or the default program of the till.</td>
 </tr>
 </tbody></table>
 
