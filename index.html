@@ -135,7 +135,7 @@
 
 <ul>
 <li>  Introduced new query parameters <code class="prettyprint">expirySchedules</code> and <code class="prettyprint">expiredPoints</code>. These were the parameter values for the query parameter <code class="prettyprint">embed</code> earlier. <a href="https://capillary.github.io/api-documentation/#get-group-details">See here for details</a>.</li>
-<li>Register customer in all the programs of the org with the query parameter <code class="prettyprint">mlp_single_enroll</code> in POST <a href="https://capillary.github.io/api-documentation/#register-customer">v2/customers</a>.</li>
+<li>Register and update customer will now support registerng customers in all programs of the org with the query parameter <code class="prettyprint">mlp_single_enroll</code> in POST <a href="https://capillary.github.io/api-documentation/#register-customer">v2/customers</a>.</li>
 </ul>
 
 <h2 id="q3-releases-2021-2022">Q3 Releases (2021-2022)</h2>
@@ -1214,6 +1214,10 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 </tr>
 <tr>
 <td>use_async</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td>mlp_single_enroll</td>
 <td>boolean</td>
 </tr>
 </tbody></table>
@@ -27518,6 +27522,250 @@ Batch Support | No
 <h3 id="request-url">Request URL</h3>
 
 <p><code class="prettyprint">{host}/v2/organization/configs/CONF_MAX_CARDS_PER_ORG</code></p>
+
+<h2 id="response-codes">Response Codes</h2>
+
+<h3 id="error-codes">Error Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>701</td>
+<td>Invalid configurations set</td>
+</tr>
+<tr>
+<td>702</td>
+<td>Maximum card numbers reached.</td>
+</tr>
+<tr>
+<td>703</td>
+<td>Card number generation disabled</td>
+</tr>
+<tr>
+<td>704</td>
+<td>Invalid card number length configured.</td>
+</tr>
+<tr>
+<td>705</td>
+<td>Card number generation failed due to unexpected reason.</td>
+</tr>
+<tr>
+<td>1060</td>
+<td>Exceeded maximum limit size of 200.</td>
+</tr>
+<tr>
+<td>3000</td>
+<td>Invalid card series.</td>
+</tr>
+<tr>
+<td>3001</td>
+<td>Series code empty.</td>
+</tr>
+<tr>
+<td>3002</td>
+<td>Series already exists.</td>
+</tr>
+<tr>
+<td>3003</td>
+<td>Series type is empty.</td>
+</tr>
+<tr>
+<td>3004</td>
+<td>Series does not exist.</td>
+</tr>
+<tr>
+<td>3005</td>
+<td>Card length invalid.</td>
+</tr>
+<tr>
+<td>3006</td>
+<td>Card configuration already exists with the same prefix,suffix and cardlength.</td>
+</tr>
+<tr>
+<td>3007</td>
+<td>Card generation config not passed.</td>
+</tr>
+<tr>
+<td>3008</td>
+<td>Card series expired.</td>
+</tr>
+<tr>
+<td>3009</td>
+<td>Card number exists.</td>
+</tr>
+<tr>
+<td>3010</td>
+<td>Card number does not exists.</td>
+</tr>
+<tr>
+<td>3011</td>
+<td>Card status not passed.</td>
+</tr>
+<tr>
+<td>3012</td>
+<td>Card status same as passed.</td>
+</tr>
+<tr>
+<td>3013</td>
+<td>Card status can only be changed to expired,deleted or suspended.</td>
+</tr>
+<tr>
+<td>3014</td>
+<td>Status labels are empty.</td>
+</tr>
+<tr>
+<td>3015</td>
+<td>Duplicate statuses passed.</td>
+</tr>
+<tr>
+<td>3016</td>
+<td>{x} card status is not valid.</td>
+</tr>
+<tr>
+<td>3017</td>
+<td>Status label invalid.</td>
+</tr>
+<tr>
+<td>3018</td>
+<td>Card status label is not mapped to NOT_ISSUED.</td>
+</tr>
+<tr>
+<td>3019</td>
+<td>Card expiry days should not be negative.</td>
+</tr>
+<tr>
+<td>3020</td>
+<td>DIGITAL &amp; PHYSICAL are the only possible card types.</td>
+</tr>
+<tr>
+<td>3021</td>
+<td>No change in card generation configurations.</td>
+</tr>
+<tr>
+<td>3022</td>
+<td>Card prefix passed is not a standard string.</td>
+</tr>
+<tr>
+<td>3023</td>
+<td>Card suffix passed is not a standard string.</td>
+</tr>
+<tr>
+<td>3024</td>
+<td>Card number total length should not be more than 150.</td>
+</tr>
+<tr>
+<td>3025</td>
+<td>Count field invalid.</td>
+</tr>
+<tr>
+<td>3026</td>
+<td>Card count exceeds 100000.</td>
+</tr>
+<tr>
+<td>3027</td>
+<td>Card is not linkable.</td>
+</tr>
+<tr>
+<td>3028</td>
+<td>Card length should not be less than 5.</td>
+</tr>
+<tr>
+<td>3029</td>
+<td>Card number max length exceeded.</td>
+</tr>
+<tr>
+<td>3030</td>
+<td>Card generation failed.</td>
+</tr>
+<tr>
+<td>3031</td>
+<td>Card can not get be unlinked.</td>
+</tr>
+<tr>
+<td>3032</td>
+<td>{x} is not alphanumeric. <br>Org unit passed is not valid.</td>
+</tr>
+<tr>
+<td>3033</td>
+<td>Card expiry days not passed.<br>{x} status mapping is not passed.</td>
+</tr>
+<tr>
+<td>3034</td>
+<td>Max active card per customer passed is negative. <br>Default label is not set for {x} status.</td>
+</tr>
+<tr>
+<td>3035</td>
+<td>Multiple cards can not be registered/updated in a single call. <br>More than one label is set as default for {x} status.</td>
+</tr>
+<tr>
+<td>3036</td>
+<td>Active cards of the customer exceeded the max configured value for this card series. <br>{x} label passed is repeating.</td>
+</tr>
+<tr>
+<td>3037</td>
+<td>Multiple cards can not be linked or unlinked at once. <br>Org unit passed is linked to a different card series.</td>
+</tr>
+<tr>
+<td>3038</td>
+<td>Card status can not be changed from {x} to {y}.<br>Registration trigger exists for a different card series.</td>
+</tr>
+<tr>
+<td>3039</td>
+<td>No update in status label.<br>Active cards of the customer exceeded the max configured value for this org.</td>
+</tr>
+<tr>
+<td>3040</td>
+<td>{x} action not supported for status {y}.</td>
+</tr>
+<tr>
+<td>3041</td>
+<td>{x} action not mapped for label {y}</td>
+</tr>
+<tr>
+<td>3042</td>
+<td>customer status was marked to deleted. Any further changes on this customer are not allowed.</td>
+</tr>
+<tr>
+<td>3043</td>
+<td>Org unit trigger exists for this org.</td>
+</tr>
+<tr>
+<td>3044</td>
+<td>Customer status is disabled.</td>
+</tr>
+<tr>
+<td>3045</td>
+<td>Card external id exists.</td>
+</tr>
+<tr>
+<td>3046</td>
+<td>Card external id &amp; card number mismatch.</td>
+</tr>
+<tr>
+<td>3047</td>
+<td>Card offset invalid.</td>
+</tr>
+<tr>
+<td>3048</td>
+<td>Mapped Entity type {x} and Entity value {y} passed is invalid.</td>
+</tr>
+<tr>
+<td>3049</td>
+<td>Mapped Entity Type Passed is invalid.</td>
+</tr>
+<tr>
+<td>3050</td>
+<td>Card external id length {x} should be equal or greater than card id length {y}.</td>
+</tr>
+<tr>
+<td>3051</td>
+<td>Unable to update/generate card external id.</td>
+</tr>
+</tbody></table>
 
           <h1 id="group-loyalty-companies-hierarchies">Group Loyalty (Companies/Hierarchies)</h1>
 
