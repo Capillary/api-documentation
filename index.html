@@ -17591,6 +17591,291 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 </tr>
 </tbody></table>
 
+<h1 id="points-ledger">Points Ledger</h1>
+
+<h2 id="get-customer-ledger-balance">Get Customer Ledger Balance</h2>
+
+<p>Retrieves the ledger balance statement</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/pointsLedger/getCustomerLedgerBalance?identifierName=externalId<span class="err">&amp;</span>identifierValue=tomanatest2<span class="err">&amp;</span>source=INSTORE
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"customerDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">502522264</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tomanatest2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"entityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUSTOMER"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ledgerDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"pageNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pageSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"totalEntries"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pageCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ledgerClosingBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"pointsCategory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DelayedAccrualPointCategory"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"programName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tata Ginger Loyalty"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1568</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"closingBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"pointsCategory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ExternalTriggerBasedPointCategory"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"programName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tata Ginger Loyalty"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1568</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"closingBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"pointsCategory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Main"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"programName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Playground"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1745</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"closingBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30000.000"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"pointsCategory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ExternalTriggerBasedPointCategory"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"programName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Westdown"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1424</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"closingBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"pointsCategory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Main"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"programName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Westdown"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1424</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"closingBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"pointsCategory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Main"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"programName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PurpleNeu"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1414</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"closingBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12703.000"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/pointsLedger/getCustomerLedgerBalance?{queryParams}</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2//pointsLedger/getCustomerLedgerBalance?identifierName={identifierName}&amp;identifierValue={value}&amp;source={source}</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifierName*</td>
+<td>enum</td>
+<td>Identifier type to identify the customer. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">cardnumber</code>, <code class="prettyprint">cardExternalId</code>.</td>
+</tr>
+<tr>
+<td>identifierValue*</td>
+<td>string</td>
+<td>Value of the specified identifier type of the customer.</td>
+</tr>
+<tr>
+<td>source*</td>
+<td>enum</td>
+<td>Source in which the identifier is available. Supported value: <code class="prettyprint">INSTORE</code>, <code class="prettyprint">MARTJACK</code>, <code class="prettyprint">WECHAT</code>, <code class="prettyprint">FACEBOOK   ,   WEB_ENGAG</code>, <code class="prettyprint">INSTORE</code>, <code class="prettyprint">TMALL</code>, <code class="prettyprint">TAOBAO</code>, <code class="prettyprint">JD</code>, <code class="prettyprint">ECOMMERCE</code>, <code class="prettyprint">WEBSITE</code>, <code class="prettyprint">LINE</code>, <code class="prettyprint">ALL</code>.</td>
+</tr>
+<tr>
+<td>acountId**</td>
+<td>string</td>
+<td>For sources with multiple accounts, pass the specific accountId.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
+
+<h2 id="get-customer-ledger-information">Get Customer Ledger Information</h2>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/pointsLedger/getCustomerLedgerBalance?identifierName=externalId<span class="err">&amp;</span>identifierValue=tomanatest2<span class="err">&amp;</span>source=INSTORE
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"customerDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">502522254</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tomanatest2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"entityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUSTOMER"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ledgerDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"pageNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pageSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"totalEntries"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pageCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ledgerEntries"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"eventLogId"</span><span class="p">:</span><span class="w"> </span><span class="mi">30263656</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"eventName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PointsRedemption"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"ledgerCreatedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-14 18:30:59.0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"entryDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"ledgerEntryType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEBIT"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"points"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"pointsCategory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Main"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"programName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hil"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1422</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"netPointsOnEvent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-10.000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"store"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sar HIL"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"storeCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hil.admin"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tillCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hil.admin.1"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"eventLogId"</span><span class="p">:</span><span class="w"> </span><span class="mi">30405652</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"eventName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TransactionAdd"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"ledgerCreatedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-16 17:36:55.0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"entryDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"ledgerEntryType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREDIT"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"points"</span><span class="p">:</span><span class="w"> </span><span class="s2">"300.00"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"pointsCategory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Main"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"programName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DemoNeu"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1414</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"ledgerEntryType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREDIT"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"points"</span><span class="p">:</span><span class="w"> </span><span class="s2">"137"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"pointsCategory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Main"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"programName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HIL"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1422</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"netPointsOnEvent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"437.080"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"transactionDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"transactionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">189948436</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"transactionNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"return_bill_0001"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"store"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo HIL"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"storeCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hil.admin"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tillCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hil.admin.1"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/pointsLedger/getCustomerLedgerInfo?{queryParams}</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2//pointsLedger/getCustomerLedgerInfo?identifierName={identifierName}&amp;identifierValue={value}&amp;source={source}</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifierName*</td>
+<td>enum</td>
+<td>Identifier type to identify the customer. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">cardnumber</code>, <code class="prettyprint">cardExternalId</code>.</td>
+</tr>
+<tr>
+<td>identifierValue*</td>
+<td>string</td>
+<td>Value of the specified identifier type of the customer.</td>
+</tr>
+<tr>
+<td>source*</td>
+<td>enum</td>
+<td>Source in which the identifier is available. Supported value: <code class="prettyprint">INSTORE</code>, <code class="prettyprint">MARTJACK</code>, <code class="prettyprint">WECHAT</code>, <code class="prettyprint">FACEBOOK   ,   WEB_ENGAG</code>, <code class="prettyprint">INSTORE</code>, <code class="prettyprint">TMALL</code>, <code class="prettyprint">TAOBAO</code>, <code class="prettyprint">JD</code>, <code class="prettyprint">ECOMMERCE</code>, <code class="prettyprint">WEBSITE</code>, <code class="prettyprint">LINE</code>, <code class="prettyprint">ALL</code>.</td>
+</tr>
+<tr>
+<td>acountId**</td>
+<td>string</td>
+<td>For sources with multiple accounts, pass the specific accountId.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
+
           <h1 id="survey">Survey</h1>
 
 <h2 id="create-a-survey">Create a Survey</h2>
