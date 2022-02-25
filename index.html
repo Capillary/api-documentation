@@ -134,6 +134,7 @@
 <h2 id="q4-releases-2021-2022">Q4 Releases (2021-2022)</h2>
 
 <ul>
+<li>  New <a href="https://capillary.github.io/api-documentation/#get-customer-ledger-balance">ledger APIs</a> to retrieve customer&rsquo;s <a href="https://capillary.github.io/api-documentation/#get-customer-ledger-balance">ledger balance</a> and <a href="https://capillary.github.io/api-documentation/#get-customer-ledger-information">ledger information</a>.</li>
 <li>  Introduced new query parameters <code class="prettyprint">expirySchedules</code> and <code class="prettyprint">expiredPoints</code>. These were the parameter values for the query parameter <code class="prettyprint">embed</code> earlier. <a href="https://capillary.github.io/api-documentation/#get-group-details">See here for details</a>.</li>
 <li>Register and update customer will now support registering customers in all programs of the org with the query parameter <code class="prettyprint">mlp_single_enroll</code> in POST <a href="https://capillary.github.io/api-documentation/#register-customer">v2/customers</a>.</li>
 </ul>
@@ -17595,7 +17596,7 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 
 <h2 id="get-customer-ledger-balance">Get Customer Ledger Balance</h2>
 
-<p>Retrieves the ledger balance statement</p>
+<p>Retrieves points&rsquo; ledger balance details of a customer categories wise for a given time.</p>
 
 <blockquote>
 <p>Sample Request</p>
@@ -17726,11 +17727,48 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 <td>string</td>
 <td>For sources with multiple accounts, pass the specific accountId.</td>
 </tr>
+<tr>
+<td>tillId</td>
+<td>int</td>
+<td>Get the customer&rsquo;s ledger balance of a specific TILL. Pass the unique till ID.</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>int</td>
+<td>Pass the number of results to retrieve. Default value is <code class="prettyprint">10</code>, and max value supported is <code class="prettyprint">10</code>.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>int</td>
+<td>Number of records ignored from the top. Page Number. Default value is <code class="prettyprint">0</code>.</td>
+</tr>
+<tr>
+<td>endDate</td>
+<td>string</td>
+<td>Get the closing balance of a specific date. Pass the end date in <code class="prettyprint">YYYY-MM-DDThh:mm:ss</code> format. Default value, startDate plus 7 days.</td>
+</tr>
+<tr>
+<td>includeTillConceptEvents</td>
+<td>boolean</td>
+<td>Fetches the deduction entries that were triggered at the tills mapped to the Concept of the Program ID even if the deductions are from a different program. Default value is <code class="prettyprint">false</code>.</td>
+</tr>
+<tr>
+<td>ledgerEntryType</td>
+<td>enum</td>
+<td>Specify the type of ledger entries you want to fetch. Supported values: <code class="prettyprint">CREDIT</code>, <code class="prettyprint">DEBIT</code>, <code class="prettyprint">OPENING_BALANCE</code>. By default, it fetches all the ledger entry types.</td>
+</tr>
+<tr>
+<td>pointCategoryType</td>
+<td>enum</td>
+<td>Specify the point category type for which you want to fetch ledger details. Supported values: <code class="prettyprint">REGULAR</code>, <code class="prettyprint">PROMISED</code>, <code class="prettyprint">TRIGGER_BASED</code>. By default, it fetches all the points category details.</td>
+</tr>
 </tbody></table>
 
 <aside class="notice">Parameters marked with * are mandatory.</aside>
 
 <h2 id="get-customer-ledger-information">Get Customer Ledger Information</h2>
+
+<p>Retrieves the points ledger entries of a customer per event.</p>
 
 <blockquote>
 <p>Sample Request</p>
@@ -17872,9 +17910,124 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 <td>string</td>
 <td>For sources with multiple accounts, pass the specific accountId.</td>
 </tr>
+<tr>
+<td>tillId</td>
+<td>int</td>
+<td>Get the customer&rsquo;s ledger information of a specific TILL. Pass the unique till ID.</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>int</td>
+<td>Pass the number of results to retrieve. Default value is <code class="prettyprint">10</code>, and max value supported is <code class="prettyprint">10</code>.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>int</td>
+<td>Page number to retrieve. Page Number. Default value is <code class="prettyprint">0</code>.</td>
+</tr>
+<tr>
+<td>programId</td>
+<td>int</td>
+<td>Retrieve the ledger details of a specific program. By default, details of all programs will be retrieved.</td>
+</tr>
+<tr>
+<td>startDate</td>
+<td>string</td>
+<td>Get ledger information from on or after a specific date. Pass the start date in <code class="prettyprint">YYYY-MM-DDThh:mm:ss</code> format. Default value 7 days before the endDate or the current date. If this is not passed, it considers the current date. <br>The maximum difference between <code class="prettyprint">startDate</code> and <code class="prettyprint">endDate</code> should not be more than 30 days.</td>
+</tr>
+<tr>
+<td>endDate</td>
+<td>string</td>
+<td>Get ledger information until a specific date. Pass the end date in <code class="prettyprint">YYYY-MM-DDThh:mm:ss</code> format. Default value, startDate plus 7 days.<br>The maximum difference between <code class="prettyprint">startDate</code> and <code class="prettyprint">endDate</code> should not be more than 30 days.</td>
+</tr>
+<tr>
+<td>includeTillConceptEvents</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to fetch deduction entries that were triggered at the tills mapped to the Concept of the Program ID even if the deductions are from a different program. Default value is <code class="prettyprint">false</code>.<br> When <code class="prettyprint">true</code>, pass the <code class="prettyprint">programId</code> also, else it will be qualified as invalid input combination.</td>
+</tr>
+<tr>
+<td>ledgerEntryType</td>
+<td>enum</td>
+<td>Specify the type of ledger entries you want to fetch. Supported values: <code class="prettyprint">CREDIT</code>, <code class="prettyprint">DEBIT</code>, <code class="prettyprint">OPENING_BALANCE</code>. By default, it fetches all the ledger entry types.</td>
+</tr>
+<tr>
+<td>pointCategoryType</td>
+<td>enum</td>
+<td>Specify the point category type for which you want to fetch ledger details. Supported values: <code class="prettyprint">REGULAR</code>, <code class="prettyprint">PROMISED</code>, <code class="prettyprint">TRIGGER_BASED</code>. By default, it fetches all the points category details.</td>
+</tr>
 </tbody></table>
 
 <aside class="notice">Parameters marked with * are mandatory.</aside>
+
+<h2 id="response-parameters">Response Parameters</h2>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>eventLogId</td>
+<td>int</td>
+</tr>
+<tr>
+<td>eventName</td>
+<td>enum</td>
+</tr>
+<tr>
+<td>ledgerCreatedDate</td>
+<td>date-time</td>
+</tr>
+<tr>
+<td>entryDetails</td>
+<td>obj</td>
+</tr>
+<tr>
+<td>pointsCategory</td>
+<td>enum</td>
+</tr>
+<tr>
+<td>programName</td>
+<td>string</td>
+</tr>
+<tr>
+<td>programId</td>
+<td>int</td>
+</tr>
+<tr>
+<td>closingBalance</td>
+<td>float</td>
+</tr>
+<tr>
+<td>netPointsOnEvent</td>
+<td>float</td>
+</tr>
+<tr>
+<td>transactionDetails</td>
+<td>obj</td>
+</tr>
+<tr>
+<td>transactionId</td>
+<td>long</td>
+</tr>
+<tr>
+<td>transactionNumber</td>
+<td>string</td>
+</tr>
+<tr>
+<td>store</td>
+<td>string</td>
+</tr>
+<tr>
+<td>storeCode</td>
+<td>string</td>
+</tr>
+<tr>
+<td>tillCode</td>
+<td>string</td>
+</tr>
+</tbody></table>
 
           <h1 id="survey">Survey</h1>
 
