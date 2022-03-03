@@ -1594,13 +1594,17 @@ credit_notes | boolean | Pass `true` to retrieve credit notes details (added thr
 
 ## Response Codes
 
+600 | Transaction added successfully.<br>Transaction retrieved successfully.
+1630 | Transaction retrospectively marked REGULAR. Transaction added successfully.
+
+
 ### Error Codes
 
 Code | Description
 ---- | ----------
 500 | Unable to retrieve transaction.
-601 | Transaction failed. Transaction amount, quantity, rate, or discount is invalid.
-602 | Transaction number is invalid.
+601 | Invalid transaction transaction amount.
+602 | Invalid transaction number.
 603 | Points are already used (Deprecated).
 604 | Transaction number already exists.
 605 | Invalid transaction type passed. Only `regular`, `return`, `not_interested`, and `not_interested_return` are supported.

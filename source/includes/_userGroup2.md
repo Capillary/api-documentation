@@ -133,7 +133,7 @@ Retrieves the details of a specific group.
 > Sample Request 
 
 ```html
-https://us.api.capillarytech.com/v2/userGroup2?id=2476&embed=EXPIREDPOINTS&embed=EXPIRYSCHEDULES
+https://us.api.capillarytech.com/v2/userGroup2?id=2476&expiredPoints=true&expirySchedules=true
 ```
 
 
@@ -226,7 +226,8 @@ Parameter | Datatype | Description
 --------- | -------- | -----------
 id** | int | Unique ID of the group to fetch.
 externalId** | string | External ID of the group to fetch.
-embed | enum | Pass `EXPIREDPOINTS` to get the history of expired points; pass `EXPIRYSCHEDULES` to get the history of points expiry schedules.
+expiredPoints | boolean | Pass `true` to get the history of expired points.
+expirySchedules | boolean | Pass `true` to get the history of points expiry schedules.
 gapToUpgradeFor | int | 
 
 

@@ -232,6 +232,7 @@ X-CAP-DIRECT-REPLAY | Pass `true` to add the customer but enable loyalty events 
 Parameter | Type | Description
 --------- | ----- | -----------
 rawSideEffects | boolean | Pass `true` to get complete details of incentives such as awardOn, expiryDate, strategyIds and so on. See `rawSideEffects` in response for more details.
+mlp_single_enroll | boolean | Pass `true` to enroll a customer in all the loyalty programs available for the org. Pass `false` to enroll in a specific program or the default program of the till.
 
 
 ### Request Body Parameters
@@ -419,7 +420,7 @@ customerId* | Unique ID of the customer whose details need to be updated
 source* | Specify the source in which you want to update the customer details - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, MOBILE_APP. For sources with multiple accounts such as WECHAT, FACEBOOK, MOBILE_APP, or LINE, you also need to provide the respective account id.
 accountId** | Account in which you want to update the customer details (Required only for sources with multiple accounts)
 use_async | boolean | Pass `true` to run Loyalty activities in the background, side effects will not be returned in the API response. If `false`, API will wait for Loyalty activities to complete and then respond to the client with side effects in the API response.
-
+mlp_single_enroll | boolean | Pass `true` to enroll a customer in all the loyalty programs available for the org. Pass `false` to enroll in a specific program or the default program of the till.
 
 <aside class="notice">Parameters marked with * are mandatory.</aside>
 
@@ -3701,7 +3702,7 @@ autoApprove | boolean | Pass `true` to fetch requests that are auto-approved - w
 <aside class="notice">Parameters marked with * are mandatory. </aside>
 
 
-## Get Customer Coupons (Basic)
+## Get Customer Coupons (Basic)	
 
 Retrieves the history of a customer coupons with basic coupon details.
 
@@ -4521,7 +4522,7 @@ To issue an external or manually generated card, you need to first add the card 
 https://eu.api.capillarytech.com/v2/customers/161670039/changeIdentifier?source=INSTORE
 ```
 
-> Sample POST Request
+> Sample POST Request (to Link Card)
 
 ```json
 {
@@ -4529,7 +4530,23 @@ https://eu.api.capillarytech.com/v2/customers/161670039/changeIdentifier?source=
     {
       "value": "GOLD00000000000001032021",
       "type": "cardnumber",
+	  "seriesCode": "GOLDPHY98",
       "statusLabel": "ACTIVE"
+    }
+  ]
+}
+```
+
+> Sample POST Request (to Delink Card)
+
+```json
+{
+ "remove": [
+    {
+      "value": "test2925063675test",
+      "type": "cardnumber",
+      "seriesCode": "GOLDPHY98",
+      "statusLabel": "NOT_ISSUED"
     }
   ]
 }
@@ -4576,7 +4593,16 @@ value* | string | Card number to issue or tag to the customer.
 type* | enum | Pass `cardnumber` to issue card.
 statusLabel* | enum | New status of the card. Value: `ACTIVE` (to issue card), `NOT_ISSUED` (to delink card).
 
+## Request Body Parameters
 
+Parameter | Datatype | Description
+--------- | -------- | -----------
+add | array-obj | Details of card to associate with the customer.
+remove | array-obj | Details of card to dissociate for the customer.
+value | string | 
+type | enum | Type of the card identifier used. `cardnumber`
+seriesCode | string | Associated series code of the card.
+statusLabel | enum | Pass `ACTIVE` to issue card, `NOT_ISSUED` to remove an existing card.
 
 
 ## Add Customer Referrals
@@ -5947,20 +5973,21 @@ Code |Description
   | Customer notes retrieved successfully.
   | Customer preferences retrieved successfully.
  | Customer preferences updated successfully.
- 1000  | Referral statistics retrieved successfully.
+1000  | Referral statistics retrieved successfully.
  | Referrals are invited successfully.
- 1040  | Customer id change request has submitted successfully.
- 1061  | Customer recommendations fetched successfully.
- 1052  | Transactions fetched successfully.
- 1300  | Ticket retrieved successfully.
+1040  | Customer id change request has submitted successfully.
+1061  | Customer recommendations fetched successfully.
+1050 | Customer recommendations fetched successfully.
+1052  | Transactions fetched successfully.
+1300  | Ticket retrieved successfully.
  | Ticket added successfully.
 
 ### Error Codes
 
 Code  | Description
 -----  | -----------
-500  | All requests failed due to errors.
 400  | Input is invalid. Please check request parameters or input xml/json; No identifier provided to get loyalty users.
+500  | All requests failed due to errors.
 618  | Not allowed - customer is marked as fraud.
 816  | Customer not found for organization.
 1001 | Unable to register. Invalid mobile number.
@@ -5969,7 +5996,7 @@ Code  | Description
 1004 | Failed to populate store.
 1006 | Unable to register. Mobile number is required.
 1007 | Unable to register customer. No valid primary identifier mobile number, email ID, or external ID passed. 
-1008/ 1038  | Unable to register with external id.
+1008 | Unable to register with external id.
 1009 | Unable to add registered customer to MLM.
 1010 | Unable to update loyalty points of the customer.
 1011 | Cannot find customer for provided identifier.
@@ -6009,6 +6036,7 @@ Code  | Description
 1048 | Customer’s email id is required to convert to loyalty customer.
 1049 | Customer’s external id is required to convert to loyalty customer. 
 1051 | No transactions or recommendations found for the customer.
+1059 | Error in customer registration. Email or Mobile is required.
 1060 | Batch limit exceeded.
 1062 | Invalid Test & Control status.
 1088 | Unable to issue points. Please report to capillary support.
@@ -6021,7 +6049,7 @@ Code  | Description
 1106 | Invalid subscription status passed.
 1107 | Invalid campaign id passed. 
 1108 | Invalid outbox id passed.
-1109 | Unable to add, update or fetch subscription details.
+	1109 | Unable to add, update or fetch subscription details.
 1150  | Invalid store ID passed.
 1110 | Unable to update subscription details.
 1222 | Internal error occurred with the referral system.

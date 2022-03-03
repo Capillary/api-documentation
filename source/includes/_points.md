@@ -826,8 +826,15 @@ accountId** | string | Account ID for sources with multiple account IDs. Require
 
 ## Response Codes
 
-### Error Codes
+### Success Codes
 
+| Code  |  Description                 | 
+|-------|------------------------------| 
+| 800   | Points redeemed successfully, points can be redeemed | 
+
+
+
+### Error Codes
 Code | Description
 ---- | -----------
 412 | Configuration key `CONF_FRAUD_STATUS_CHECK_POINTS_TRANSFER`in the `config_keys` table is not set properly.
@@ -839,22 +846,51 @@ Code | Description
 418 | From and To customers are same.
 419 | Merged customer found with id: {x}, where x is the user id of the customer.
 686 | User is from campaign and has not enrolled in the loyalty program. Points redemption is not applicable for the user.
+801 | Points you are trying to redeem are invalid
+802 | Mobile number/email id/external id you have entered is invalid
+803 | Unable to redeem. The points you are trying to redeem is more than the available points
 804 | Insufficient current points.
 805 | Insufficient lifetime points.
 806 | Insufficient lifetime purchases amount.
-807 | Redemptions points not divisible.
-809 | Customer is marked as fraud.
+807 | Unable to redeem. Make sure that the points you are trying to redeem is a multiple of <X>. Check the points redemption configuration of your organization.
+808 | Unable to redeem. Validation code is invalid.
+809 | Unable to process. Customer is marked as fraud.
+810 | Mismatch in points for revert API call
+811 | The transaction number entered to redeem/revert points is invalid
+812 | The points have been reverted already for this transaction number
+813 | Insufficient current points available for redemption
+814 | No points were redeemed on this transaction number
+815 | Unable to process points at this moment. Please try again later
+816 | Unable to find customer in this organization
+817 | Points redemption failed. 
 818 | Current points are less than points requested for redemption.
-819 | Points to redeem exceeds the threshold limit (maximum points that can be redeemed in a transaction).
-821 | Points you are trying to redeem are less than the minimum points allowed.
+819 | Points you are trying to redeem are more than the maximum allowed redemption limit.
+820 | Unable to process. Customer is marked as fraud
+821 | Points you are trying to redeem are less than the minimum redemption limit
+822 | Unable to find missed call from the registered mobile number
+823 | Missed call redemption is disabled for your organization
+824 | Mobile number validation is mandatory for redeeming points
+825 | Client signature is required
+826 | Invalid points category or invalid configuration
+827 | Unable to redeem points. Points redemption is enabled for your organization.
+859 | The redemption time you have passed is invalid
+860 | Unable to issue OTP.
+881 | Customer is not registered into the loyalty program.
 886 | Unable to process points. Please try again later.
 887 | Unable to process points. Please try again later.
-888 | Invalid configuration. Please report to capillary support.
-895 | Loyalty program is not configured for the  org.
+888 | Configuration is invalid. Please report to Capillary Support
+889 | Points processing failed. Please try again later. 
+894 | Unable to process points at this moment. Please try again later
+895 | Loyalty program is not configured for your organization.
 896 | Unable to process points. Please try again later.
-898 | Unable to process points. Please try again later.
-899 | Invalid configuration. Please report to capillary support.
+898 | Unable to process points at this moment. Please try again later
+899 | Configuration is invalid. Please report to Capillary Support
+901 | Invalid points or points redemption Id passed.
+902	| Redemption ID does not exist.
+903 | Unable to redeem points.
+904 | Invalid customer details passed.
 3045 | Points Redemption is not allowed for the customer with id {x} as the status is fraud.
+3802 | Points reversal redeemed points already reversed.
 
 
 ### Warning Codes
@@ -871,3 +907,266 @@ Code | Description
 903 | Unable to redeem points.
 904 | Invalid customer details passed.
 905 | points redemption reversal is disabled for the org.
+
+
+# Points Ledger
+
+Points as incentives are treated as currency within an org and its affiliates. The multitude of credits, debits, and adjustments impact the pool of points in the customer account. When points issued from different programs of the org can be redeemed across the org units or loyalty programs, it is important to understand the debit and credit history. Ledger APIs help you retrieve the points debit and credit details across the programs of the org.
+
+## Get Customer Ledger Balance
+
+Retrieves points' ledger balance details of a customer categories wise for a given time.
+
+
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/pointsLedger/getCustomerLedgerBalance?identifierName=externalId&identifierValue=tomanatest2&source=INSTORE
+```
+
+> Sample Response
+
+```json
+{
+    "customerDetails": {
+        "userId": 502522264,
+        "externalId": "tomanatest2",
+        "entityType": "CUSTOMER"
+    },
+    "ledgerDetails": {
+        "pageNumber": 0,
+        "pageSize": 10,
+        "totalEntries": 17,
+        "pageCount": 2,
+        "ledgerClosingBalance": [
+            {
+                "pointsCategory": "DelayedAccrualPointCategory",
+                "programName": "Tata Ginger Loyalty",
+                "programId": 1568,
+                "closingBalance": "0.000"
+            },
+            {
+                "pointsCategory": "ExternalTriggerBasedPointCategory",
+                "programName": "Tata Ginger Loyalty",
+                "programId": 1568,
+                "closingBalance": "0.000"
+            },
+            {
+                "pointsCategory": "Main",
+                "programName": "Playground",
+                "programId": 1745,
+                "closingBalance": "30000.000"
+            },
+            {
+                "pointsCategory": "ExternalTriggerBasedPointCategory",
+                "programName": "Westdown",
+                "programId": 1424,
+                "closingBalance": "0.000"
+            },
+            {
+                "pointsCategory": "Main",
+                "programName": "Westdown",
+                "programId": 1424,
+                "closingBalance": "0.000"
+            },
+            {
+                "pointsCategory": "Main",
+                "programName": "PurpleNeu",
+                "programId": 1414,
+                "closingBalance": "12703.000"
+            }
+        ]
+    },
+    "warnings": []
+}
+```
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/pointsLedger/getCustomerLedgerBalance?{queryParams}`
+Rate Limited? | No
+Authentication | Yes
+HTTP Methods | GET
+Batch Support | No
+
+* **Rate limiter** controls the number of incoming and outgoing traffic of a network
+* **Authentication** verifies the identity of the current user or integration. See Introduction > Authentication (Merchant Setup on Admin Portal) for more details
+
+### Request URL
+
+`https://{host}/v2//pointsLedger/getCustomerLedgerBalance?identifierName={identifierName}&identifierValue={value}&source={source}`
+
+### Request Query Parameters
+
+Parameter | Type | Description
+--------- | ---- | -----------
+identifierName* | enum | Identifier type to identify the customer. Values: `mobile`, `email`, `externalId`, `cardnumber`, `cardExternalId`.
+identifierValue* | string | Value of the specified identifier type of the customer. 
+source* | enum | Source in which the identifier is available. Supported value: `INSTORE`, `MARTJACK`, `WECHAT`, `FACEBOOK	, 	WEB_ENGAG`, `INSTORE`, `TMALL`, `TAOBAO`, `JD`, `ECOMMERCE`, `WEBSITE`, `LINE`, `ALL`.
+acountId** | string | For sources with multiple accounts, pass the specific accountId.
+tillId | int | Get the customer's ledger balance of a specific TILL. Pass the unique till ID.
+limit | int | Pass the number of results to retrieve. Default value is `10`, and max value supported is `10`.
+offset | int | Number of records ignored from the top. Page Number. Default value is `0`.
+endDate | string | Get the closing balance of a specific date. Pass the end date in `YYYY-MM-DDThh:mm:ss` format. Default value, startDate plus 7 days.
+includeTillConceptEvents | boolean | Fetches the deduction entries that were triggered at the tills mapped to the Concept of the Program ID even if the deductions are from a different program. Default value is `false`.
+ledgerEntryType | enum | Specify the type of ledger entries you want to fetch. Supported values: `CREDIT`, `DEBIT`, `OPENING_BALANCE`. By default, it fetches all the ledger entry types.
+pointCategoryType | enum | Specify the point category type for which you want to fetch ledger details. Supported values: `REGULAR`, `PROMISED`, `TRIGGER_BASED`. By default, it fetches all the points category details.
+
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
+
+
+
+
+
+## Get Customer Ledger Information
+
+Retrieves the points ledger entries of a customer per event.
+
+
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/pointsLedger/getCustomerLedgerBalance?identifierName=externalId&identifierValue=tomanatest2&source=INSTORE
+```
+
+> Sample Response
+
+```json
+{
+    "customerDetails": {
+        "userId": 502522254,
+        "externalId": "tomanatest2",
+        "entityType": "CUSTOMER"
+    },
+    "ledgerDetails": {
+        "pageNumber": 0,
+        "pageSize": 10,
+        "totalEntries": 17,
+        "pageCount": 2
+    },
+    "ledgerEntries": [
+        {
+            "eventLogId": 30263656,
+            "eventName": "PointsRedemption",
+            "ledgerCreatedDate": "2022-02-14 18:30:59.0",
+            "entryDetails": [
+                {
+                    "ledgerEntryType": "DEBIT",
+                    "points": "10",
+                    "pointsCategory": "Main",
+                    "programName": "hil",
+                    "programId": 1422
+                }
+            ],
+            "netPointsOnEvent": "-10.000",
+            "store": "Sar HIL",
+            "storeCode": "hil.admin",
+            "tillCode": "hil.admin.1"
+        },
+        {
+            "eventLogId": 30405652,
+            "eventName": "TransactionAdd",
+            "ledgerCreatedDate": "2022-02-16 17:36:55.0",
+            "entryDetails": [
+                {
+                    "ledgerEntryType": "CREDIT",
+                    "points": "300.00",
+                    "pointsCategory": "Main",
+                    "programName": "DemoNeu",
+                    "programId": 1414
+                },
+                {
+                    "ledgerEntryType": "CREDIT",
+                    "points": "137",
+                    "pointsCategory": "Main",
+                    "programName": "HIL",
+                    "programId": 1422
+                }
+            ],
+            "netPointsOnEvent": "437.080",
+            "transactionDetails": {
+                "transactionId": 189948436,
+                "transactionNumber": "return_bill_0001"
+            },
+            "store": "demo HIL",
+            "storeCode": "hil.admin",
+            "tillCode": "hil.admin.1"
+        }
+    ],
+    "warnings": []
+}
+```
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/pointsLedger/getCustomerLedgerInfo?{queryParams}`
+Rate Limited? | No
+Authentication | Yes
+HTTP Methods | GET
+Batch Support | No
+
+* **Rate limiter** controls the number of incoming and outgoing traffic of a network
+* **Authentication** verifies the identity of the current user or integration. See Introduction > Authentication (Merchant Setup on Admin Portal) for more details
+
+### Request URL
+
+`https://{host}/v2//pointsLedger/getCustomerLedgerInfo?identifierName={identifierName}&identifierValue={value}&source={source}`
+
+### Request Query Parameters
+
+Parameter | Type | Description
+--------- | ---- | -----------
+identifierName* | enum | Identifier type to identify the customer. Values: `mobile`, `email`, `externalId`, `cardnumber`, `cardExternalId`.
+identifierValue* | string | Value of the specified identifier type of the customer. 
+source* | enum | Source in which the identifier is available. Supported value: `INSTORE`, `MARTJACK`, `WECHAT`, `FACEBOOK	, 	WEB_ENGAG`, `INSTORE`, `TMALL`, `TAOBAO`, `JD`, `ECOMMERCE`, `WEBSITE`, `LINE`, `ALL`.
+acountId** | string | For sources with multiple accounts, pass the specific accountId.
+tillId | int | Get the customer's ledger information of a specific TILL. Pass the unique till ID.
+limit | int | Pass the number of results to retrieve. Default value is `10`, and max value supported is `10`.
+offset | int | Page number to retrieve. Page Number. Default value is `0`.
+programId | int | Retrieve the ledger details of a specific program. By default, details of all programs will be retrieved.
+startDate | string | Get ledger information from on or after a specific date. Pass the start date in `YYYY-MM-DDThh:mm:ss` format. Default value 7 days before the endDate or the current date. If this is not passed, it considers the current date. <br>The maximum difference between `startDate` and `endDate` should not be more than 30 days.
+endDate | string | Get ledger information until a specific date. Pass the end date in `YYYY-MM-DDThh:mm:ss` format. Default value, startDate plus 7 days.<br>The maximum difference between `startDate` and `endDate` should not be more than 30 days.
+includeTillConceptEvents | boolean | Pass `true` to fetch deduction entries that were triggered at the tills mapped to the Concept of the Program ID even if the deductions are from a different program. Default value is `false`.<br> When `true`, pass the `programId` also, else it will be qualified as invalid input combination.
+ledgerEntryType | enum | Specify the type of ledger entries you want to fetch. Supported values: `CREDIT`, `DEBIT`, `OPENING_BALANCE`. By default, it fetches all the ledger entry types.
+pointCategoryType | enum | Specify the point category type for which you want to fetch ledger details. Supported values: `REGULAR`, `PROMISED`, `TRIGGER_BASED`. By default, it fetches all the points category details.
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
+
+
+## Response Parameters
+
+Parameter | Description
+--------- | -----------
+customerDetails | obj | Details of the current customer.
+firstName | string | Name of the customer.
+lastName | string | Last name of the customer.
+userId | long | Unique ID of the customer.
+externalId | string | External ID of the customer.
+entityType | enum | Whether the points are issued to an individual (`CUSTOMER`), or group  (`FLEET`).
+pageNumber | int | Current page number. Default value - `0` (first page).
+pageSize | int | Number of entries shown on the current page.
+totalEntries | int | Total number of ledger entries available for the customer.
+pageCount | int | Total number of pages according to the page size.
+eventLogId | int | Unique log ID of the current event.
+eventName | string | Name of the event associated with the points. Example - `TransactionAdd`, `PointsRedemption`, `DelayedAccrual`, `PointsExpiry`, `CustomerRegistration`, `ReturnBill`.
+ledgerCreatedDate | date-time | Date and time when the points ledger entry was created.
+entryDetails | obj | Details of the points ledger. 
+ledgerClosingBalance | array-obj | Details of closing ledger balance on a specific date.
+pointsCategory | enum | Category from which points are issued. Supported values: `Main` (redeemable account), `DelayedAccrualPointCategory` (promised points), `ExternalTriggerBasedPointCategory` (promised points). 
+programName | string | Name of the loyalty program associated with points.
+programId | int | Unique ID of the loyalty program.
+closingBalance | float | Available closing balance on that particular end date.
+netPointsOnEvent | float | Net points in the current event (by adding credits and subtracting debits).
+transactionDetails | obj | Transaction details of the current points. Applicable for transaction related events.
+transactionId | long | Transaction ID associated with the points.
+transactionNumber | string | Transaction number associated with the points.
+date | date-time | Date of the transaction.
+amount | float | Net transaction amount.
+store | string | Name of the store associated with the points.
+storeCode | string | Unique code of the store associated with points.
+tillCode | string | Unique TILL code associated with points.

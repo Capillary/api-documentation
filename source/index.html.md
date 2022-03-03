@@ -48,6 +48,11 @@ search: true
 # Release Updates
 This section provides the quarterly breakup of existing API updates and new API releases.
 
+## Q4 Releases (2021-2022)
+*	New [ledger APIs](https://capillary.github.io/api-documentation/#get-customer-ledger-balance) to retrieve customer's [ledger balance](https://capillary.github.io/api-documentation/#get-customer-ledger-balance) and [ledger information](https://capillary.github.io/api-documentation/#get-customer-ledger-information).
+*	Introduced new query parameters `expirySchedules` and `expiredPoints`. These were the parameter values for the query parameter `embed` earlier. [See here for details](https://capillary.github.io/api-documentation/#get-group-details).
+* Register and update customer will now support registering customers in all programs of the org with the query parameter `mlp_single_enroll` in POST [v2/customers](https://capillary.github.io/api-documentation/#register-customer).
+
 ## Q3 Releases (2021-2022)
 *	**customers/{userId}/changeIdentifier?** to support delinking card for a customer with the new parameter value `"statusLabel": "NOT_ISSUED"`. Check out details [here](https://capillary.github.io/api-documentation/#get-customer-coupons-detailed).
 *	**v2/customers** supports two new APIs get [`pointsExpirySchedule`](https://capillary.github.io/api-documentation/#get-customer-points-expiry-schedule) and [`loyaltyEvents`](https://capillary.github.io/api-documentation/#get-customer-loyalty-events). 
