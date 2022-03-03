@@ -131,6 +131,14 @@
 
 <p>This section provides the quarterly breakup of existing API updates and new API releases.</p>
 
+<h2 id="q4-releases-2021-2022">Q4 Releases (2021-2022)</h2>
+
+<ul>
+<li>  New <a href="https://capillary.github.io/api-documentation/#get-customer-ledger-balance">ledger APIs</a> to retrieve customer&rsquo;s <a href="https://capillary.github.io/api-documentation/#get-customer-ledger-balance">ledger balance</a> and <a href="https://capillary.github.io/api-documentation/#get-customer-ledger-information">ledger information</a>.</li>
+<li>  Introduced new query parameters <code class="prettyprint">expirySchedules</code> and <code class="prettyprint">expiredPoints</code>. These were the parameter values for the query parameter <code class="prettyprint">embed</code> earlier. <a href="https://capillary.github.io/api-documentation/#get-group-details">See here for details</a>.</li>
+<li>Register and update customer will now support registering customers in all programs of the org with the query parameter <code class="prettyprint">mlp_single_enroll</code> in POST <a href="https://capillary.github.io/api-documentation/#register-customer">v2/customers</a>.</li>
+</ul>
+
 <h2 id="q3-releases-2021-2022">Q3 Releases (2021-2022)</h2>
 
 <ul>
@@ -854,6 +862,11 @@ Extended fields are either associated to verticals or to a generic category (ava
 <td>boolean</td>
 <td>Pass <code class="prettyprint">true</code> to get complete details of incentives such as awardOn, expiryDate, strategyIds and so on. See <code class="prettyprint">rawSideEffects</code> in response for more details.</td>
 </tr>
+<tr>
+<td>mlp_single_enroll</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to enroll a customer in all the loyalty programs available for the org. Pass <code class="prettyprint">false</code> to enroll in a specific program or the default program of the till.</td>
+</tr>
 </tbody></table>
 
 <h3 id="request-body-parameters">Request Body Parameters</h3>
@@ -1202,6 +1215,10 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 </tr>
 <tr>
 <td>use_async</td>
+<td>boolean</td>
+</tr>
+<tr>
+<td>mlp_single_enroll</td>
 <td>boolean</td>
 </tr>
 </tbody></table>
@@ -6560,14 +6577,29 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/customers/161670039/changeIdentifier?source=INSTORE
 </code></pre>
 <blockquote>
-<p>Sample POST Request</p>
+<p>Sample POST Request (to Link Card)</p>
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
   </span><span class="s2">"add"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
     </span><span class="p">{</span><span class="w">
       </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOLD00000000000001032021"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cardnumber"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"seriesCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOLDPHY98"</span><span class="p">,</span><span class="w">
       </span><span class="s2">"statusLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACTIVE"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample POST Request (to Delink Card)</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+ </span><span class="s2">"remove"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test2925063675test"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cardnumber"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"seriesCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GOLDPHY98"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"statusLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOT_ISSUED"</span><span class="w">
     </span><span class="p">}</span><span class="w">
   </span><span class="p">]</span><span class="w">
 </span><span class="p">}</span><span class="w">
@@ -6661,6 +6693,47 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>statusLabel*</td>
 <td>enum</td>
 <td>New status of the card. Value: <code class="prettyprint">ACTIVE</code> (to issue card), <code class="prettyprint">NOT_ISSUED</code> (to delink card).</td>
+</tr>
+</tbody></table>
+
+<h2 id="request-body-parameters">Request Body Parameters</h2>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>add</td>
+<td>array-obj</td>
+<td>Details of card to associate with the customer.</td>
+</tr>
+<tr>
+<td>remove</td>
+<td>array-obj</td>
+<td>Details of card to dissociate for the customer.</td>
+</tr>
+<tr>
+<td>value</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td>enum</td>
+<td>Type of the card identifier used. <code class="prettyprint">cardnumber</code></td>
+</tr>
+<tr>
+<td>seriesCode</td>
+<td>string</td>
+<td>Associated series code of the card.</td>
+</tr>
+<tr>
+<td>statusLabel</td>
+<td>enum</td>
+<td>Pass <code class="prettyprint">ACTIVE</code> to issue card, <code class="prettyprint">NOT_ISSUED</code> to remove an existing card.</td>
 </tr>
 </tbody></table>
 
@@ -8566,6 +8639,10 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <td>Customer recommendations fetched successfully.</td>
 </tr>
 <tr>
+<td>1050</td>
+<td>Customer recommendations fetched successfully.</td>
+</tr>
+<tr>
 <td>1052</td>
 <td>Transactions fetched successfully.</td>
 </tr>
@@ -8588,12 +8665,12 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 </tr>
 </thead><tbody>
 <tr>
-<td>500</td>
-<td>All requests failed due to errors.</td>
-</tr>
-<tr>
 <td>400</td>
 <td>Input is invalid. Please check request parameters or input xml/json; No identifier provided to get loyalty users.</td>
+</tr>
+<tr>
+<td>500</td>
+<td>All requests failed due to errors.</td>
 </tr>
 <tr>
 <td>618</td>
@@ -8628,7 +8705,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <td>Unable to register customer. No valid primary identifier mobile number, email ID, or external ID passed.</td>
 </tr>
 <tr>
-<td>1008/ 1038</td>
+<td>1008</td>
 <td>Unable to register with external id.</td>
 </tr>
 <tr>
@@ -8786,6 +8863,10 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <tr>
 <td>1051</td>
 <td>No transactions or recommendations found for the customer.</td>
+</tr>
+<tr>
+<td>1059</td>
+<td>Error in customer registration. Email or Mobile is required.</td>
 </tr>
 <tr>
 <td>1060</td>
@@ -11345,6 +11426,9 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 
 <h2 id="response-codes">Response Codes</h2>
 
+<p>600 | Transaction added successfully.<br>Transaction retrieved successfully.
+1630 | Transaction retrospectively marked REGULAR. Transaction added successfully.</p>
+
 <h3 id="error-codes">Error Codes</h3>
 
 <table><thead>
@@ -11359,11 +11443,11 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 </tr>
 <tr>
 <td>601</td>
-<td>Transaction failed. Transaction amount, quantity, rate, or discount is invalid.</td>
+<td>Invalid transaction transaction amount.</td>
 </tr>
 <tr>
 <td>602</td>
-<td>Transaction number is invalid.</td>
+<td>Invalid transaction number.</td>
 </tr>
 <tr>
 <td>603</td>
@@ -17218,6 +17302,20 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 
 <h2 id="response-codes">Response Codes</h2>
 
+<h3 id="success-codes">Success Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>800</td>
+<td>Points redeemed successfully, points can be redeemed</td>
+</tr>
+</tbody></table>
+
 <h3 id="error-codes">Error Codes</h3>
 
 <table><thead>
@@ -17263,6 +17361,18 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 <td>User is from campaign and has not enrolled in the loyalty program. Points redemption is not applicable for the user.</td>
 </tr>
 <tr>
+<td>801</td>
+<td>Points you are trying to redeem are invalid</td>
+</tr>
+<tr>
+<td>802</td>
+<td>Mobile number/email id/external id you have entered is invalid</td>
+</tr>
+<tr>
+<td>803</td>
+<td>Unable to redeem. The points you are trying to redeem is more than the available points</td>
+</tr>
+<tr>
 <td>804</td>
 <td>Insufficient current points.</td>
 </tr>
@@ -17276,11 +17386,47 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 </tr>
 <tr>
 <td>807</td>
-<td>Redemptions points not divisible.</td>
+<td>Unable to redeem. Make sure that the points you are trying to redeem is a multiple of <X>. Check the points redemption configuration of your organization.</td>
+</tr>
+<tr>
+<td>808</td>
+<td>Unable to redeem. Validation code is invalid.</td>
 </tr>
 <tr>
 <td>809</td>
-<td>Customer is marked as fraud.</td>
+<td>Unable to process. Customer is marked as fraud.</td>
+</tr>
+<tr>
+<td>810</td>
+<td>Mismatch in points for revert API call</td>
+</tr>
+<tr>
+<td>811</td>
+<td>The transaction number entered to redeem/revert points is invalid</td>
+</tr>
+<tr>
+<td>812</td>
+<td>The points have been reverted already for this transaction number</td>
+</tr>
+<tr>
+<td>813</td>
+<td>Insufficient current points available for redemption</td>
+</tr>
+<tr>
+<td>814</td>
+<td>No points were redeemed on this transaction number</td>
+</tr>
+<tr>
+<td>815</td>
+<td>Unable to process points at this moment. Please try again later</td>
+</tr>
+<tr>
+<td>816</td>
+<td>Unable to find customer in this organization</td>
+</tr>
+<tr>
+<td>817</td>
+<td>Points redemption failed.</td>
 </tr>
 <tr>
 <td>818</td>
@@ -17288,11 +17434,51 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 </tr>
 <tr>
 <td>819</td>
-<td>Points to redeem exceeds the threshold limit (maximum points that can be redeemed in a transaction).</td>
+<td>Points you are trying to redeem are more than the maximum allowed redemption limit.</td>
+</tr>
+<tr>
+<td>820</td>
+<td>Unable to process. Customer is marked as fraud</td>
 </tr>
 <tr>
 <td>821</td>
-<td>Points you are trying to redeem are less than the minimum points allowed.</td>
+<td>Points you are trying to redeem are less than the minimum redemption limit</td>
+</tr>
+<tr>
+<td>822</td>
+<td>Unable to find missed call from the registered mobile number</td>
+</tr>
+<tr>
+<td>823</td>
+<td>Missed call redemption is disabled for your organization</td>
+</tr>
+<tr>
+<td>824</td>
+<td>Mobile number validation is mandatory for redeeming points</td>
+</tr>
+<tr>
+<td>825</td>
+<td>Client signature is required</td>
+</tr>
+<tr>
+<td>826</td>
+<td>Invalid points category or invalid configuration</td>
+</tr>
+<tr>
+<td>827</td>
+<td>Unable to redeem points. Points redemption is enabled for your organization.</td>
+</tr>
+<tr>
+<td>859</td>
+<td>The redemption time you have passed is invalid</td>
+</tr>
+<tr>
+<td>860</td>
+<td>Unable to issue OTP.</td>
+</tr>
+<tr>
+<td>881</td>
+<td>Customer is not registered into the loyalty program.</td>
 </tr>
 <tr>
 <td>886</td>
@@ -17304,11 +17490,19 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 </tr>
 <tr>
 <td>888</td>
-<td>Invalid configuration. Please report to capillary support.</td>
+<td>Configuration is invalid. Please report to Capillary Support</td>
+</tr>
+<tr>
+<td>889</td>
+<td>Points processing failed. Please try again later.</td>
+</tr>
+<tr>
+<td>894</td>
+<td>Unable to process points at this moment. Please try again later</td>
 </tr>
 <tr>
 <td>895</td>
-<td>Loyalty program is not configured for the  org.</td>
+<td>Loyalty program is not configured for your organization.</td>
 </tr>
 <tr>
 <td>896</td>
@@ -17316,15 +17510,35 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 </tr>
 <tr>
 <td>898</td>
-<td>Unable to process points. Please try again later.</td>
+<td>Unable to process points at this moment. Please try again later</td>
 </tr>
 <tr>
 <td>899</td>
-<td>Invalid configuration. Please report to capillary support.</td>
+<td>Configuration is invalid. Please report to Capillary Support</td>
+</tr>
+<tr>
+<td>901</td>
+<td>Invalid points or points redemption Id passed.</td>
+</tr>
+<tr>
+<td>902</td>
+<td>Redemption ID does not exist.</td>
+</tr>
+<tr>
+<td>903</td>
+<td>Unable to redeem points.</td>
+</tr>
+<tr>
+<td>904</td>
+<td>Invalid customer details passed.</td>
 </tr>
 <tr>
 <td>3045</td>
 <td>Points Redemption is not allowed for the customer with id {x} as the status is fraud.</td>
+</tr>
+<tr>
+<td>3802</td>
+<td>Points reversal redeemed points already reversed.</td>
 </tr>
 </tbody></table>
 
@@ -17375,6 +17589,497 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 <tr>
 <td>905</td>
 <td>points redemption reversal is disabled for the org.</td>
+</tr>
+</tbody></table>
+
+<h1 id="points-ledger">Points Ledger</h1>
+
+<p>Points as incentives are treated as currency within an org and its affiliates. The multitude of credits, debits, and adjustments impact the pool of points in the customer account. When points issued from different programs of the org can be redeemed across the org units or loyalty programs, it is important to understand the debit and credit history. Ledger APIs help you retrieve the points debit and credit details across the programs of the org.</p>
+
+<h2 id="get-customer-ledger-balance">Get Customer Ledger Balance</h2>
+
+<p>Retrieves points&rsquo; ledger balance details of a customer categories wise for a given time.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/pointsLedger/getCustomerLedgerBalance?identifierName=externalId<span class="err">&amp;</span>identifierValue=tomanatest2<span class="err">&amp;</span>source=INSTORE
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"customerDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">502522264</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tomanatest2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"entityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUSTOMER"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ledgerDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"pageNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pageSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"totalEntries"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pageCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"ledgerClosingBalance"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"pointsCategory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DelayedAccrualPointCategory"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"programName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tata Ginger Loyalty"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1568</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"closingBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"pointsCategory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ExternalTriggerBasedPointCategory"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"programName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tata Ginger Loyalty"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1568</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"closingBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"pointsCategory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Main"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"programName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Playground"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1745</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"closingBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"30000.000"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"pointsCategory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ExternalTriggerBasedPointCategory"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"programName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Westdown"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1424</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"closingBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"pointsCategory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Main"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"programName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Westdown"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1424</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"closingBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"0.000"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"pointsCategory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Main"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"programName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PurpleNeu"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1414</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"closingBalance"</span><span class="p">:</span><span class="w"> </span><span class="s2">"12703.000"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">]</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/pointsLedger/getCustomerLedgerBalance?{queryParams}</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2//pointsLedger/getCustomerLedgerBalance?identifierName={identifierName}&amp;identifierValue={value}&amp;source={source}</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifierName*</td>
+<td>enum</td>
+<td>Identifier type to identify the customer. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">cardnumber</code>, <code class="prettyprint">cardExternalId</code>.</td>
+</tr>
+<tr>
+<td>identifierValue*</td>
+<td>string</td>
+<td>Value of the specified identifier type of the customer.</td>
+</tr>
+<tr>
+<td>source*</td>
+<td>enum</td>
+<td>Source in which the identifier is available. Supported value: <code class="prettyprint">INSTORE</code>, <code class="prettyprint">MARTJACK</code>, <code class="prettyprint">WECHAT</code>, <code class="prettyprint">FACEBOOK   ,   WEB_ENGAG</code>, <code class="prettyprint">INSTORE</code>, <code class="prettyprint">TMALL</code>, <code class="prettyprint">TAOBAO</code>, <code class="prettyprint">JD</code>, <code class="prettyprint">ECOMMERCE</code>, <code class="prettyprint">WEBSITE</code>, <code class="prettyprint">LINE</code>, <code class="prettyprint">ALL</code>.</td>
+</tr>
+<tr>
+<td>acountId**</td>
+<td>string</td>
+<td>For sources with multiple accounts, pass the specific accountId.</td>
+</tr>
+<tr>
+<td>tillId</td>
+<td>int</td>
+<td>Get the customer&rsquo;s ledger balance of a specific TILL. Pass the unique till ID.</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>int</td>
+<td>Pass the number of results to retrieve. Default value is <code class="prettyprint">10</code>, and max value supported is <code class="prettyprint">10</code>.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>int</td>
+<td>Number of records ignored from the top. Page Number. Default value is <code class="prettyprint">0</code>.</td>
+</tr>
+<tr>
+<td>endDate</td>
+<td>string</td>
+<td>Get the closing balance of a specific date. Pass the end date in <code class="prettyprint">YYYY-MM-DDThh:mm:ss</code> format. Default value, startDate plus 7 days.</td>
+</tr>
+<tr>
+<td>includeTillConceptEvents</td>
+<td>boolean</td>
+<td>Fetches the deduction entries that were triggered at the tills mapped to the Concept of the Program ID even if the deductions are from a different program. Default value is <code class="prettyprint">false</code>.</td>
+</tr>
+<tr>
+<td>ledgerEntryType</td>
+<td>enum</td>
+<td>Specify the type of ledger entries you want to fetch. Supported values: <code class="prettyprint">CREDIT</code>, <code class="prettyprint">DEBIT</code>, <code class="prettyprint">OPENING_BALANCE</code>. By default, it fetches all the ledger entry types.</td>
+</tr>
+<tr>
+<td>pointCategoryType</td>
+<td>enum</td>
+<td>Specify the point category type for which you want to fetch ledger details. Supported values: <code class="prettyprint">REGULAR</code>, <code class="prettyprint">PROMISED</code>, <code class="prettyprint">TRIGGER_BASED</code>. By default, it fetches all the points category details.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
+
+<h2 id="get-customer-ledger-information">Get Customer Ledger Information</h2>
+
+<p>Retrieves the points ledger entries of a customer per event.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/pointsLedger/getCustomerLedgerBalance?identifierName=externalId<span class="err">&amp;</span>identifierValue=tomanatest2<span class="err">&amp;</span>source=INSTORE
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"customerDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">502522254</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tomanatest2"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"entityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUSTOMER"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ledgerDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"pageNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pageSize"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"totalEntries"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"pageCount"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"ledgerEntries"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"eventLogId"</span><span class="p">:</span><span class="w"> </span><span class="mi">30263656</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"eventName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PointsRedemption"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"ledgerCreatedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-14 18:30:59.0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"entryDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"ledgerEntryType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DEBIT"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"points"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"pointsCategory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Main"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"programName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hil"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1422</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"netPointsOnEvent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"-10.000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"store"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sar HIL"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"storeCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hil.admin"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tillCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hil.admin.1"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"eventLogId"</span><span class="p">:</span><span class="w"> </span><span class="mi">30405652</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"eventName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TransactionAdd"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"ledgerCreatedDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-16 17:36:55.0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"entryDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"ledgerEntryType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREDIT"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"points"</span><span class="p">:</span><span class="w"> </span><span class="s2">"300.00"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"pointsCategory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Main"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"programName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DemoNeu"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1414</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"ledgerEntryType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CREDIT"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"points"</span><span class="p">:</span><span class="w"> </span><span class="s2">"137"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"pointsCategory"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Main"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"programName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"HIL"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1422</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"netPointsOnEvent"</span><span class="p">:</span><span class="w"> </span><span class="s2">"437.080"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"transactionDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"transactionId"</span><span class="p">:</span><span class="w"> </span><span class="mi">189948436</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"transactionNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"return_bill_0001"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"store"</span><span class="p">:</span><span class="w"> </span><span class="s2">"demo HIL"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"storeCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hil.admin"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tillCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hil.admin.1"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/pointsLedger/getCustomerLedgerInfo?{queryParams}</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">https://{host}/v2//pointsLedger/getCustomerLedgerInfo?identifierName={identifierName}&amp;identifierValue={value}&amp;source={source}</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifierName*</td>
+<td>enum</td>
+<td>Identifier type to identify the customer. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">cardnumber</code>, <code class="prettyprint">cardExternalId</code>.</td>
+</tr>
+<tr>
+<td>identifierValue*</td>
+<td>string</td>
+<td>Value of the specified identifier type of the customer.</td>
+</tr>
+<tr>
+<td>source*</td>
+<td>enum</td>
+<td>Source in which the identifier is available. Supported value: <code class="prettyprint">INSTORE</code>, <code class="prettyprint">MARTJACK</code>, <code class="prettyprint">WECHAT</code>, <code class="prettyprint">FACEBOOK   ,   WEB_ENGAG</code>, <code class="prettyprint">INSTORE</code>, <code class="prettyprint">TMALL</code>, <code class="prettyprint">TAOBAO</code>, <code class="prettyprint">JD</code>, <code class="prettyprint">ECOMMERCE</code>, <code class="prettyprint">WEBSITE</code>, <code class="prettyprint">LINE</code>, <code class="prettyprint">ALL</code>.</td>
+</tr>
+<tr>
+<td>acountId**</td>
+<td>string</td>
+<td>For sources with multiple accounts, pass the specific accountId.</td>
+</tr>
+<tr>
+<td>tillId</td>
+<td>int</td>
+<td>Get the customer&rsquo;s ledger information of a specific TILL. Pass the unique till ID.</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>int</td>
+<td>Pass the number of results to retrieve. Default value is <code class="prettyprint">10</code>, and max value supported is <code class="prettyprint">10</code>.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>int</td>
+<td>Page number to retrieve. Page Number. Default value is <code class="prettyprint">0</code>.</td>
+</tr>
+<tr>
+<td>programId</td>
+<td>int</td>
+<td>Retrieve the ledger details of a specific program. By default, details of all programs will be retrieved.</td>
+</tr>
+<tr>
+<td>startDate</td>
+<td>string</td>
+<td>Get ledger information from on or after a specific date. Pass the start date in <code class="prettyprint">YYYY-MM-DDThh:mm:ss</code> format. Default value 7 days before the endDate or the current date. If this is not passed, it considers the current date. <br>The maximum difference between <code class="prettyprint">startDate</code> and <code class="prettyprint">endDate</code> should not be more than 30 days.</td>
+</tr>
+<tr>
+<td>endDate</td>
+<td>string</td>
+<td>Get ledger information until a specific date. Pass the end date in <code class="prettyprint">YYYY-MM-DDThh:mm:ss</code> format. Default value, startDate plus 7 days.<br>The maximum difference between <code class="prettyprint">startDate</code> and <code class="prettyprint">endDate</code> should not be more than 30 days.</td>
+</tr>
+<tr>
+<td>includeTillConceptEvents</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to fetch deduction entries that were triggered at the tills mapped to the Concept of the Program ID even if the deductions are from a different program. Default value is <code class="prettyprint">false</code>.<br> When <code class="prettyprint">true</code>, pass the <code class="prettyprint">programId</code> also, else it will be qualified as invalid input combination.</td>
+</tr>
+<tr>
+<td>ledgerEntryType</td>
+<td>enum</td>
+<td>Specify the type of ledger entries you want to fetch. Supported values: <code class="prettyprint">CREDIT</code>, <code class="prettyprint">DEBIT</code>, <code class="prettyprint">OPENING_BALANCE</code>. By default, it fetches all the ledger entry types.</td>
+</tr>
+<tr>
+<td>pointCategoryType</td>
+<td>enum</td>
+<td>Specify the point category type for which you want to fetch ledger details. Supported values: <code class="prettyprint">REGULAR</code>, <code class="prettyprint">PROMISED</code>, <code class="prettyprint">TRIGGER_BASED</code>. By default, it fetches all the points category details.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
+
+<h2 id="response-parameters">Response Parameters</h2>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>customerDetails</td>
+<td>obj</td>
+</tr>
+<tr>
+<td>firstName</td>
+<td>string</td>
+</tr>
+<tr>
+<td>lastName</td>
+<td>string</td>
+</tr>
+<tr>
+<td>userId</td>
+<td>long</td>
+</tr>
+<tr>
+<td>externalId</td>
+<td>string</td>
+</tr>
+<tr>
+<td>entityType</td>
+<td>enum</td>
+</tr>
+<tr>
+<td>pageNumber</td>
+<td>int</td>
+</tr>
+<tr>
+<td>pageSize</td>
+<td>int</td>
+</tr>
+<tr>
+<td>totalEntries</td>
+<td>int</td>
+</tr>
+<tr>
+<td>pageCount</td>
+<td>int</td>
+</tr>
+<tr>
+<td>eventLogId</td>
+<td>int</td>
+</tr>
+<tr>
+<td>eventName</td>
+<td>string</td>
+</tr>
+<tr>
+<td>ledgerCreatedDate</td>
+<td>date-time</td>
+</tr>
+<tr>
+<td>entryDetails</td>
+<td>obj</td>
+</tr>
+<tr>
+<td>ledgerClosingBalance</td>
+<td>array-obj</td>
+</tr>
+<tr>
+<td>pointsCategory</td>
+<td>enum</td>
+</tr>
+<tr>
+<td>programName</td>
+<td>string</td>
+</tr>
+<tr>
+<td>programId</td>
+<td>int</td>
+</tr>
+<tr>
+<td>closingBalance</td>
+<td>float</td>
+</tr>
+<tr>
+<td>netPointsOnEvent</td>
+<td>float</td>
+</tr>
+<tr>
+<td>transactionDetails</td>
+<td>obj</td>
+</tr>
+<tr>
+<td>transactionId</td>
+<td>long</td>
+</tr>
+<tr>
+<td>transactionNumber</td>
+<td>string</td>
+</tr>
+<tr>
+<td>date</td>
+<td>date-time</td>
+</tr>
+<tr>
+<td>amount</td>
+<td>float</td>
+</tr>
+<tr>
+<td>store</td>
+<td>string</td>
+</tr>
+<tr>
+<td>storeCode</td>
+<td>string</td>
+</tr>
+<tr>
+<td>tillCode</td>
+<td>string</td>
 </tr>
 </tbody></table>
 
@@ -27310,6 +28015,250 @@ Batch Support | No
 
 <p><code class="prettyprint">{host}/v2/organization/configs/CONF_MAX_CARDS_PER_ORG</code></p>
 
+<h2 id="response-codes">Response Codes</h2>
+
+<h3 id="error-codes">Error Codes</h3>
+
+<table><thead>
+<tr>
+<th>Code</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>701</td>
+<td>Invalid configurations set</td>
+</tr>
+<tr>
+<td>702</td>
+<td>Maximum card numbers reached.</td>
+</tr>
+<tr>
+<td>703</td>
+<td>Card number generation disabled</td>
+</tr>
+<tr>
+<td>704</td>
+<td>Invalid card number length configured.</td>
+</tr>
+<tr>
+<td>705</td>
+<td>Card number generation failed due to unexpected reason.</td>
+</tr>
+<tr>
+<td>1060</td>
+<td>Exceeded maximum limit size of 200.</td>
+</tr>
+<tr>
+<td>3000</td>
+<td>Invalid card series.</td>
+</tr>
+<tr>
+<td>3001</td>
+<td>Series code empty.</td>
+</tr>
+<tr>
+<td>3002</td>
+<td>Series already exists.</td>
+</tr>
+<tr>
+<td>3003</td>
+<td>Series type is empty.</td>
+</tr>
+<tr>
+<td>3004</td>
+<td>Series does not exist.</td>
+</tr>
+<tr>
+<td>3005</td>
+<td>Card length invalid.</td>
+</tr>
+<tr>
+<td>3006</td>
+<td>Card configuration already exists with the same prefix,suffix and cardlength.</td>
+</tr>
+<tr>
+<td>3007</td>
+<td>Card generation config not passed.</td>
+</tr>
+<tr>
+<td>3008</td>
+<td>Card series expired.</td>
+</tr>
+<tr>
+<td>3009</td>
+<td>Card number exists.</td>
+</tr>
+<tr>
+<td>3010</td>
+<td>Card number does not exists.</td>
+</tr>
+<tr>
+<td>3011</td>
+<td>Card status not passed.</td>
+</tr>
+<tr>
+<td>3012</td>
+<td>Card status same as passed.</td>
+</tr>
+<tr>
+<td>3013</td>
+<td>Card status can only be changed to expired,deleted or suspended.</td>
+</tr>
+<tr>
+<td>3014</td>
+<td>Status labels are empty.</td>
+</tr>
+<tr>
+<td>3015</td>
+<td>Duplicate statuses passed.</td>
+</tr>
+<tr>
+<td>3016</td>
+<td>{x} card status is not valid.</td>
+</tr>
+<tr>
+<td>3017</td>
+<td>Status label invalid.</td>
+</tr>
+<tr>
+<td>3018</td>
+<td>Card status label is not mapped to NOT_ISSUED.</td>
+</tr>
+<tr>
+<td>3019</td>
+<td>Card expiry days should not be negative.</td>
+</tr>
+<tr>
+<td>3020</td>
+<td>DIGITAL &amp; PHYSICAL are the only possible card types.</td>
+</tr>
+<tr>
+<td>3021</td>
+<td>No change in card generation configurations.</td>
+</tr>
+<tr>
+<td>3022</td>
+<td>Card prefix passed is not a standard string.</td>
+</tr>
+<tr>
+<td>3023</td>
+<td>Card suffix passed is not a standard string.</td>
+</tr>
+<tr>
+<td>3024</td>
+<td>Card number total length should not be more than 150.</td>
+</tr>
+<tr>
+<td>3025</td>
+<td>Count field invalid.</td>
+</tr>
+<tr>
+<td>3026</td>
+<td>Card count exceeds 100000.</td>
+</tr>
+<tr>
+<td>3027</td>
+<td>Card is not linkable.</td>
+</tr>
+<tr>
+<td>3028</td>
+<td>Card length should not be less than 5.</td>
+</tr>
+<tr>
+<td>3029</td>
+<td>Card number max length exceeded.</td>
+</tr>
+<tr>
+<td>3030</td>
+<td>Card generation failed.</td>
+</tr>
+<tr>
+<td>3031</td>
+<td>Card can not get be unlinked.</td>
+</tr>
+<tr>
+<td>3032</td>
+<td>{x} is not alphanumeric. <br>Org unit passed is not valid.</td>
+</tr>
+<tr>
+<td>3033</td>
+<td>Card expiry days not passed.<br>{x} status mapping is not passed.</td>
+</tr>
+<tr>
+<td>3034</td>
+<td>Max active card per customer passed is negative. <br>Default label is not set for {x} status.</td>
+</tr>
+<tr>
+<td>3035</td>
+<td>Multiple cards can not be registered/updated in a single call. <br>More than one label is set as default for {x} status.</td>
+</tr>
+<tr>
+<td>3036</td>
+<td>Active cards of the customer exceeded the max configured value for this card series. <br>{x} label passed is repeating.</td>
+</tr>
+<tr>
+<td>3037</td>
+<td>Multiple cards can not be linked or unlinked at once. <br>Org unit passed is linked to a different card series.</td>
+</tr>
+<tr>
+<td>3038</td>
+<td>Card status can not be changed from {x} to {y}.<br>Registration trigger exists for a different card series.</td>
+</tr>
+<tr>
+<td>3039</td>
+<td>No update in status label.<br>Active cards of the customer exceeded the max configured value for this org.</td>
+</tr>
+<tr>
+<td>3040</td>
+<td>{x} action not supported for status {y}.</td>
+</tr>
+<tr>
+<td>3041</td>
+<td>{x} action not mapped for label {y}</td>
+</tr>
+<tr>
+<td>3042</td>
+<td>customer status was marked to deleted. Any further changes on this customer are not allowed.</td>
+</tr>
+<tr>
+<td>3043</td>
+<td>Org unit trigger exists for this org.</td>
+</tr>
+<tr>
+<td>3044</td>
+<td>Customer status is disabled.</td>
+</tr>
+<tr>
+<td>3045</td>
+<td>Card external id exists.</td>
+</tr>
+<tr>
+<td>3046</td>
+<td>Card external id &amp; card number mismatch.</td>
+</tr>
+<tr>
+<td>3047</td>
+<td>Card offset invalid.</td>
+</tr>
+<tr>
+<td>3048</td>
+<td>Mapped Entity type {x} and Entity value {y} passed is invalid.</td>
+</tr>
+<tr>
+<td>3049</td>
+<td>Mapped Entity Type Passed is invalid.</td>
+</tr>
+<tr>
+<td>3050</td>
+<td>Card external id length {x} should be equal or greater than card id length {y}.</td>
+</tr>
+<tr>
+<td>3051</td>
+<td>Unable to update/generate card external id.</td>
+</tr>
+</tbody></table>
+
           <h1 id="group-loyalty-companies-hierarchies">Group Loyalty (Companies/Hierarchies)</h1>
 
 <p>Group Loyalty helps in configuring 
@@ -31468,7 +32417,7 @@ Batch Support | No
 <blockquote>
 <p>Sample Request </p>
 </blockquote>
-<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/userGroup2?id=2476<span class="err">&amp;</span>embed=EXPIREDPOINTS<span class="err">&amp;</span>embed=EXPIRYSCHEDULES
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/userGroup2?id=2476<span class="err">&amp;</span>expiredPoints=true<span class="err">&amp;</span>expirySchedules=true
 </code></pre>
 <blockquote>
 <p>Sample Response</p>
@@ -31588,9 +32537,14 @@ Batch Support | No
 <td>External ID of the group to fetch.</td>
 </tr>
 <tr>
-<td>embed</td>
-<td>enum</td>
-<td>Pass <code class="prettyprint">EXPIREDPOINTS</code> to get the history of expired points; pass <code class="prettyprint">EXPIRYSCHEDULES</code> to get the history of points expiry schedules.</td>
+<td>expiredPoints</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to get the history of expired points.</td>
+</tr>
+<tr>
+<td>expirySchedules</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to get the history of points expiry schedules.</td>
 </tr>
 <tr>
 <td>gapToUpgradeFor</td>
