@@ -17705,7 +17705,7 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Type</th>
+<th>Datatype</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
@@ -17966,120 +17966,149 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Datatype</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
 <td>customerDetails</td>
 <td>obj</td>
+<td>Details of the current customer.</td>
 </tr>
 <tr>
 <td>firstName</td>
 <td>string</td>
+<td>Name of the customer.</td>
 </tr>
 <tr>
 <td>lastName</td>
 <td>string</td>
+<td>Last name of the customer.</td>
 </tr>
 <tr>
 <td>userId</td>
 <td>long</td>
+<td>Unique ID of the customer.</td>
 </tr>
 <tr>
 <td>externalId</td>
 <td>string</td>
+<td>External ID of the customer.</td>
 </tr>
 <tr>
 <td>entityType</td>
 <td>enum</td>
+<td>Whether the points are issued to an individual (<code class="prettyprint">CUSTOMER</code>), or group  (<code class="prettyprint">FLEET</code>).</td>
 </tr>
 <tr>
 <td>pageNumber</td>
 <td>int</td>
+<td>Current page number. Default value - <code class="prettyprint">0</code> (first page).</td>
 </tr>
 <tr>
 <td>pageSize</td>
 <td>int</td>
+<td>Number of entries shown on the current page.</td>
 </tr>
 <tr>
 <td>totalEntries</td>
 <td>int</td>
+<td>Total number of ledger entries available for the customer.</td>
 </tr>
 <tr>
 <td>pageCount</td>
 <td>int</td>
+<td>Total number of pages according to the page size.</td>
 </tr>
 <tr>
 <td>eventLogId</td>
 <td>int</td>
+<td>Unique log ID of the current event.</td>
 </tr>
 <tr>
 <td>eventName</td>
 <td>string</td>
+<td>Name of the event associated with the points. Example - <code class="prettyprint">TransactionAdd</code>, <code class="prettyprint">PointsRedemption</code>, <code class="prettyprint">DelayedAccrual</code>, <code class="prettyprint">PointsExpiry</code>, <code class="prettyprint">CustomerRegistration</code>, <code class="prettyprint">ReturnBill</code>.</td>
 </tr>
 <tr>
 <td>ledgerCreatedDate</td>
 <td>date-time</td>
+<td>Date and time when the points ledger entry was created.</td>
 </tr>
 <tr>
 <td>entryDetails</td>
 <td>obj</td>
+<td>Details of the points ledger.</td>
 </tr>
 <tr>
 <td>ledgerClosingBalance</td>
 <td>array-obj</td>
+<td>Details of closing ledger balance on a specific date.</td>
 </tr>
 <tr>
 <td>pointsCategory</td>
 <td>enum</td>
+<td>Category from which points are issued. Supported values: <code class="prettyprint">Main</code> (redeemable account), <code class="prettyprint">DelayedAccrualPointCategory</code> (promised points), <code class="prettyprint">ExternalTriggerBasedPointCategory</code> (promised points).</td>
 </tr>
 <tr>
 <td>programName</td>
 <td>string</td>
+<td>Name of the loyalty program associated with points.</td>
 </tr>
 <tr>
 <td>programId</td>
 <td>int</td>
+<td>Unique ID of the loyalty program.</td>
 </tr>
 <tr>
 <td>closingBalance</td>
 <td>float</td>
+<td>Available closing balance on that particular end date.</td>
 </tr>
 <tr>
 <td>netPointsOnEvent</td>
 <td>float</td>
+<td>Net points in the current event (by adding credits and subtracting debits).</td>
 </tr>
 <tr>
 <td>transactionDetails</td>
 <td>obj</td>
+<td>Transaction details of the current points. Applicable for transaction related events.</td>
 </tr>
 <tr>
 <td>transactionId</td>
 <td>long</td>
+<td>Transaction ID associated with the points.</td>
 </tr>
 <tr>
 <td>transactionNumber</td>
 <td>string</td>
+<td>Transaction number associated with the points.</td>
 </tr>
 <tr>
 <td>date</td>
 <td>date-time</td>
+<td>Date of the transaction.</td>
 </tr>
 <tr>
 <td>amount</td>
 <td>float</td>
+<td>Net transaction amount.</td>
 </tr>
 <tr>
 <td>store</td>
 <td>string</td>
+<td>Name of the store associated with the points.</td>
 </tr>
 <tr>
 <td>storeCode</td>
 <td>string</td>
+<td>Unique code of the store associated with points.</td>
 </tr>
 <tr>
 <td>tillCode</td>
 <td>string</td>
+<td>Unique TILL code associated with points.</td>
 </tr>
 </tbody></table>
 
