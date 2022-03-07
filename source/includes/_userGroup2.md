@@ -5,7 +5,7 @@ The new user group solves the use cases of both B2B loyalty and B2C loyalty unli
 
 ## Create Group
 
-Lets you create a new user group.
+Lets you create a new user group. Groups you create will be automatically added to the default loyalty program of the org.
 
 > Sample Request
 
@@ -509,6 +509,247 @@ joinGroupId* | int | Group ID to which the customer needs to join.
 userIds* | array | Unique ID of the customers that you want to transfer to the new group.
 
 <aside class="notice">Parameters marked with * are mandatory.</aside>
+
+
+## Get User Group Transactions
+
+Retrieves the transactions of a specific group. You can also get transactions of a group member with query parameters.
+
+> Sample Request
+
+```html
+https://us.api.capillarytech.com/v2/userGroup2/transactions?type=REGULAR&limit=100&enbed=EXTENDEDFIELDS,CUSTOMFIELDS,LINEITEMS,PAYMENTDETAILS&order=ASC&primaryUserId=420803399
+```
+
+> Sample Response
+
+```json
+{
+    "data": [
+        {
+            "useDefaultFleetGroup": false,
+            "pointSummary": {
+                "issuedPoints": 40.0,
+                "returnedPoints": 0.0,
+                "redeemedPoints": 0.0,
+                "expiredPoints": 0.0,
+                "availablePoints": 40.0,
+                "expiryDate": "2023-02-28T23:59:59+05:30",
+                "programId": 765,
+                "delayedPoints": 0.0,
+                "delayedPointsReturned": 0.0,
+                "redeemableFrom": "2022-02-11T18:12:50+05:30"
+            },
+            "userGroup2": {
+                "id": 91898,
+                "groupStatus": "ACTIVE",
+                "lifeTimePurchases": 45000,
+                "primaryUserId": 420803400
+            },
+            "billDetails": {
+                "amount": 200.0,
+                "billingStore": {
+                    "id": 15089278,
+                    "code": "northstore1",
+                    "description": "NORTH_STORE_ONE",
+                    "name": "NORTH_STORE_ONE",
+                    "type": "STORE",
+                    "adminType": "GENERAL",
+                    "isActive": true,
+                    "isOuEnabled": false,
+                    "timeZoneId": 0,
+                    "currencyId": 44,
+                    "languageId": -1
+                },
+                "billNumber": "FC2-111112573646898_bulk2",
+                "billingTime": "2022-02-11T18:12:50+05:30",
+                "discount": 10.0,
+                "grossAmount": 110.0,
+                "note": "this is test",
+                "invalidBill": false
+            },
+            "customFields": {
+                "paymentmode": "abc"
+            },
+            "addWithLocalCurrency": false,
+            "async": false,
+            "useV2": false,
+            "customerId": 420803403,
+            "id": 2148592384,
+            "lineItems": [
+                {
+                    "id": 2157283693,
+                    "customerId": 0,
+                    "details": {
+                        "amount": 100.5,
+                        "description": "",
+                        "discount": 0.0,
+                        "itemCode": "sku__2",
+                        "qty": 1.0,
+                        "rate": 100.5,
+                        "serial": 0,
+                        "value": 0.0,
+                        "returnable": true,
+                        "returnableDays": -1,
+                        "extendedFields": {
+                            "GrossWeight": 10.5,
+                            "MetalRate": 22.02
+                        }
+                    },
+                    "outlierStatus": "NORMAL",
+                    "returnDetails": {},
+                    "valid": true,
+                    "returnLineItemsDtos": [],
+                    "niReturnLineItemsDtos": [],
+                    "addonDetails": [],
+                    "splitItemsDetails": [],
+                    "niReturn": false
+                },
+                {
+                    "id": 2157283694,
+                    "customerId": 0,
+                    "details": {
+                        "amount": 100.5,
+                        "description": "",
+                        "discount": 0.0,
+                        "itemCode": "sku__2",
+                        "qty": 1.0,
+                        "rate": 100.5,
+                        "serial": 0,
+                        "value": 0.0,
+                        "returnable": true,
+                        "returnableDays": -1,
+                        "extendedFields": {
+                            "GrossWeight": 10.5,
+                            "MetalRate": 22.02
+                        }
+                    },
+                    "outlierStatus": "NORMAL",
+                    "returnDetails": {},
+                    "valid": true,
+                    "returnLineItemsDtos": [],
+                    "niReturnLineItemsDtos": [],
+                    "addonDetails": [],
+                    "splitItemsDetails": [],
+                    "niReturn": false
+                },
+                {
+                    "id": 2157283701,
+                    "customerId": 0,
+                    "details": {
+                        "amount": 100.5,
+                        "description": "",
+                        "discount": 0.0,
+                        "itemCode": "sku__9",
+                        "qty": 1.0,
+                        "rate": 100.5,
+                        "serial": 0,
+                        "value": 0.0,
+                        "returnable": true,
+                        "returnableDays": -1,
+                        "extendedFields": {
+                            "GrossWeight": 10.5,
+                            "MetalRate": 22.02
+                        }
+                    },
+                    "outlierStatus": "NORMAL",
+                    "returnDetails": {},
+                    "valid": true,
+                    "returnLineItemsDtos": [],
+                    "niReturnLineItemsDtos": [],
+                    "addonDetails": [],
+                    "splitItemsDetails": [],
+                    "niReturn": false
+                },
+                {
+                    "id": 2157283702,
+                    "customerId": 0,
+                    "details": {
+                        "amount": 100.5,
+                        "description": "",
+                        "discount": 0.0,
+                        "itemCode": "sku__10",
+                        "qty": 1.0,
+                        "rate": 100.5,
+                        "serial": 0,
+                        "value": 0.0,
+                        "returnable": true,
+                        "returnableDays": -1,
+                        "extendedFields": {
+                            "GrossWeight": 10.5,
+                            "MetalRate": 22.02
+                        }
+                    },
+                    "outlierStatus": "NORMAL",
+                    "returnDetails": {},
+                    "valid": true,
+                    "returnLineItemsDtos": [],
+                    "niReturnLineItemsDtos": [],
+                    "addonDetails": [],
+                    "splitItemsDetails": [],
+                    "niReturn": false
+                }
+            ],
+            "outlierStatus": "NORMAL",
+            "paymentModes": [],
+            "type": "REGULAR",
+            "warnings": [],
+            "lifeTimePurchases": 0,
+            "ignorePoints": false,
+            "extendedFields": {
+                "checkin_date": "2020-06-30T18:03:52+05:30",
+                "checkout_date": "2020-07-12T18:03:52+05:30",
+                "ship_first_name": "22.02",
+                "ship_last_name": "10.50"
+            },
+            "autoUpdateTime": "2022-02-11T18:12:50+05:30",
+            "transactionEventStatus": "PROCESSING_COMPLETE",
+            "basketSize": 10.0
+        }
+    ],
+    "warnings": [],
+    "errors": []
+}
+```
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/userGroup2/transactions?{queryParameters}`
+Authentication | Yes
+HTTP Method | GET
+Batch Support | No
+
+
+### Request URL
+
+`{host}/v2/userGroup2/transactions?{queryParameters}`
+
+### Request Query Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+type | enum | Type of the transactions to retrieve. Value: `REGULAR`, `RETURN`. 
+id** | Long | Unique ID of the user group to fetch transactions.
+externalId** | String | External ID of the user group.
+primaryUserId** | Long | User ID of the primary member of the group.
+identifierName | enum | Identifier used for the primary user of the group. Values: `mobile`, `email`, `externalId`.
+identifierValue | String | Value of the specified identifier type.
+source | String | Source in which the identifier is available.
+accountId | string | Account ID of the sources with multiple accounts.
+transactionId | int | Fetch transaction details by transaction id.
+billNumber | String | Fetch transaction details by bill number.
+customerId | Long | Fetch group transactions made by the customer
+startDate | String | Filter results where transaction_date >= startDate. Pass `ISO` standard date format.
+endDate | String | Filter results where transaction_date < end_date. Pass `ISO` standard date format.
+embed | enum | Additional details that needs to be fetched. Values: `EXTENDEDFIELDS`, `CUSTOMFIELDS`, `LINEITEMS`, `PAYMENTDETAILS`. You can pass multiple values each separated by a comma. `PAYMENTDETAILS` is supported only for regular transaction.
+getDataForAllPrograms | boolean | Pass `true` to fetch transactions from all program data (future use case).
+offset | long | Offset of the first entry in the result. This should be positive. If offset is less than 0, then 0 default offset will be used.
+limit | int | Maximum number of results to show. This should be positive. if limit is less <=0, then the default limit `20` is  considered.
+order | enum | Arranges the transactions based on the value set in sort in an ascending (asc) or descending order (desc). By default, results are shown in the descending order of transactionDate.
+creditNotes | boolean | Pass `true` to fetch creditNotes details.
+
+<aside class="notice">Any one identifier is needed. If you are using identifierName, then identifierValue, and source required.</aside> 
 
 
 

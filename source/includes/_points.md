@@ -1000,7 +1000,7 @@ Batch Support | No
 
 ### Request Query Parameters
 
-Parameter | Type | Description
+Parameter | Datatype | Description
 --------- | ---- | -----------
 identifierName* | enum | Identifier type to identify the customer. Values: `mobile`, `email`, `externalId`, `cardnumber`, `cardExternalId`.
 identifierValue* | string | Value of the specified identifier type of the customer. 
@@ -1140,8 +1140,8 @@ pointCategoryType | enum | Specify the point category type for which you want to
 
 ## Response Parameters
 
-Parameter | Description
---------- | -----------
+Parameter | Datatype | Description
+--------- | -------- | ----------
 customerDetails | obj | Details of the current customer.
 firstName | string | Name of the customer.
 lastName | string | Last name of the customer.

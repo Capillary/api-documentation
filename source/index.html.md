@@ -27,9 +27,9 @@ includes:
   - staffUser
   - leads
   - userGroup
+  - userGroup2
   - cardLoyalty
   - groupLoyalty
-  - userGroup2
   - partnerProgram
   - organizationSource
   - storeCare
@@ -41,6 +41,7 @@ includes:
   - promotions
   - recommendations
   - cartPromotions
+  - communications
 
 search: true
 ---
@@ -49,6 +50,8 @@ search: true
 This section provides the quarterly breakup of existing API updates and new API releases.
 
 ## Q4 Releases (2021-2022)
+*	New API to [retrieve transactions of a group](https://capillary.github.io/api-documentation/#get-user-group-transactions).
+*	New body parameter `fileEncodingType` introduced in `communications/email` to capture the encoded format for images attached in the email.
 *	New [ledger APIs](https://capillary.github.io/api-documentation/#get-customer-ledger-balance) to retrieve customer's [ledger balance](https://capillary.github.io/api-documentation/#get-customer-ledger-balance) and [ledger information](https://capillary.github.io/api-documentation/#get-customer-ledger-information).
 *	Introduced new query parameters `expirySchedules` and `expiredPoints`. These were the parameter values for the query parameter `embed` earlier. [See here for details](https://capillary.github.io/api-documentation/#get-group-details).
 * Register and update customer will now support registering customers in all programs of the org with the query parameter `mlp_single_enroll` in POST [v2/customers](https://capillary.github.io/api-documentation/#register-customer).

@@ -100,6 +100,6 @@ attachments | obj | Details of the attachment used in the email.
 attachment | array-obj | Details of each attachment in email.
 fileName | string | Name of the attached file. 
 fileType | string | Type of the file (file format). 
-fileData | 
-fileEncodingType": "base64"
+fileData | strig | Encoded data of the  attachment.
+fileEncodingType | string | Encoding type of the attachment provided in fileData.
 scheduledTime | date-time | `ISO` standard date and time of scheduling the email.
