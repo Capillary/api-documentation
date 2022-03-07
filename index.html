@@ -32249,7 +32249,7 @@ Batch Support | No
 
 <h2 id="create-group">Create Group</h2>
 
-<p>Lets you create a new user group.</p>
+<p>Lets you create a new user group. Groups you create will be automatically added to the default loyalty program of the org.</p>
 
 <blockquote>
 <p>Sample Request</p>
@@ -33046,6 +33046,343 @@ Batch Support | No
 </tbody></table>
 
 <aside class="notice">Parameters marked with * are mandatory.</aside>
+
+<h2 id="get-user-group-transactions">Get User Group Transactions</h2>
+
+<p>Retrieves the transactions of a group member (in the group).</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/userGroup2/transactions?type=REGULAR<span class="err">&amp;</span>limit=100<span class="err">&amp;</span>enbed=EXTENDEDFIELDS,CUSTOMFIELDS,LINEITEMS,PAYMENTDETAILS<span class="err">&amp;</span>order=ASC<span class="err">&amp;</span>primaryUserId=420803399
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"useDefaultFleetGroup"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pointSummary"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"issuedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"returnedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"redeemedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"expiredPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"availablePoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">40.0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"expiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2023-02-28T23:59:59+05:30"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">765</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"delayedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"delayedPointsReturned"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"redeemableFrom"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-11T18:12:50+05:30"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"userGroup2"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">91898</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"groupStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ACTIVE"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lifeTimePurchases"</span><span class="p">:</span><span class="w"> </span><span class="mi">45000</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"primaryUserId"</span><span class="p">:</span><span class="w"> </span><span class="mi">420803400</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"billDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">200.0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"billingStore"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">15089278</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"northstore1"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NORTH_STORE_ONE"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NORTH_STORE_ONE"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STORE"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"adminType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GENERAL"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"isActive"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"isOuEnabled"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"timeZoneId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"currencyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">44</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"languageId"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"billNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FC2-111112573646898_bulk2"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"billingTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-11T18:12:50+05:30"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"grossAmount"</span><span class="p">:</span><span class="w"> </span><span class="mf">110.0</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"note"</span><span class="p">:</span><span class="w"> </span><span class="s2">"this is test"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"invalidBill"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"customFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"paymentmode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"abc"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"addWithLocalCurrency"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"async"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"useV2"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"customerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">420803403</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2148592384</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lineItems"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2157283693</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"customerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku__2"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"serial"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.5</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">22.02</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"outlierStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"returnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                    </span><span class="s2">"valid"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"returnLineItemsDtos"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                    </span><span class="s2">"niReturnLineItemsDtos"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                    </span><span class="s2">"addonDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                    </span><span class="s2">"splitItemsDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                    </span><span class="s2">"niReturn"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2157283694</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"customerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku__2"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"serial"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.5</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">22.02</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"outlierStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"returnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                    </span><span class="s2">"valid"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"returnLineItemsDtos"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                    </span><span class="s2">"niReturnLineItemsDtos"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                    </span><span class="s2">"addonDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                    </span><span class="s2">"splitItemsDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                    </span><span class="s2">"niReturn"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2157283701</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"customerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku__9"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"serial"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.5</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">22.02</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"outlierStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"returnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                    </span><span class="s2">"valid"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"returnLineItemsDtos"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                    </span><span class="s2">"niReturnLineItemsDtos"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                    </span><span class="s2">"addonDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                    </span><span class="s2">"splitItemsDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                    </span><span class="s2">"niReturn"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2157283702</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"customerId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"details"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"amount"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"discount"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sku__10"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"qty"</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"rate"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"serial"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"returnable"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"returnableDays"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                            </span><span class="s2">"GrossWeight"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.5</span><span class="p">,</span><span class="w">
+                            </span><span class="s2">"MetalRate"</span><span class="p">:</span><span class="w"> </span><span class="mf">22.02</span><span class="w">
+                        </span><span class="p">}</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"outlierStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"returnDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+                    </span><span class="s2">"valid"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"returnLineItemsDtos"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                    </span><span class="s2">"niReturnLineItemsDtos"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                    </span><span class="s2">"addonDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                    </span><span class="s2">"splitItemsDetails"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+                    </span><span class="s2">"niReturn"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"outlierStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NORMAL"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"paymentModes"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"REGULAR"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+            </span><span class="s2">"lifeTimePurchases"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"ignorePoints"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"checkin_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-06-30T18:03:52+05:30"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"checkout_date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2020-07-12T18:03:52+05:30"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"ship_first_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"ship_last_name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.50"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"autoUpdateTime"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-11T18:12:50+05:30"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"transactionEventStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PROCESSING_COMPLETE"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"basketSize"</span><span class="p">:</span><span class="w"> </span><span class="mf">10.0</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/userGroup2/transactions?{queryParameters}</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v2/userGroup2/transactions?{queryParameters}</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>type</td>
+<td>enum</td>
+<td>Type of the transactions to retrieve. Value: <code class="prettyprint">REGULAR</code>, <code class="prettyprint">RETURN</code>.</td>
+</tr>
+<tr>
+<td>id**</td>
+<td>Long</td>
+<td>Unique ID of the user group to fetch transactions.</td>
+</tr>
+<tr>
+<td>externalId**</td>
+<td>String</td>
+<td>External ID of the user group.</td>
+</tr>
+<tr>
+<td>primaryUserId**</td>
+<td>Long</td>
+<td>User ID of the primary member of the group.</td>
+</tr>
+<tr>
+<td>identifierName</td>
+<td>enum</td>
+<td>Identifier used for the primary user of the group. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>.</td>
+</tr>
+<tr>
+<td>identifierValue</td>
+<td>String</td>
+<td>Value of the specified identifier type.</td>
+</tr>
+<tr>
+<td>source</td>
+<td>String</td>
+<td>Source in which the identifier is available.</td>
+</tr>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>Account ID of the sources with multiple accounts.</td>
+</tr>
+<tr>
+<td>transactionId</td>
+<td>int</td>
+<td>Fetch transaction details by transaction id.</td>
+</tr>
+<tr>
+<td>billNumber</td>
+<td>String</td>
+<td>Fetch transaction details by bill number.</td>
+</tr>
+<tr>
+<td>customerId</td>
+<td>Long</td>
+<td>Fetch group transactions made by the customer</td>
+</tr>
+<tr>
+<td>startDate</td>
+<td>String</td>
+<td>Filter results where transaction_date &gt;= startDate. Pass <code class="prettyprint">ISO</code> standard date format.</td>
+</tr>
+<tr>
+<td>endDate</td>
+<td>String</td>
+<td>Filter results where transaction_date &lt; end_date. Pass <code class="prettyprint">ISO</code> standard date format.</td>
+</tr>
+<tr>
+<td>embed</td>
+<td>enum</td>
+<td>Additional details that needs to be fetched. Values: <code class="prettyprint">EXTENDEDFIELDS</code>, <code class="prettyprint">CUSTOMFIELDS</code>, <code class="prettyprint">LINEITEMS</code>, <code class="prettyprint">PAYMENTDETAILS</code>. You can pass multiple values each separated by a comma. <code class="prettyprint">PAYMENTDETAILS</code> is supported only for regular transaction.</td>
+</tr>
+<tr>
+<td>getDataForAllPrograms</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to fetch transactions from all program data (future use case).</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>long</td>
+<td>Offset of the first entry in the result. This should be positive. If offset is less than 0, then 0 default offset will be used.</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>int</td>
+<td>Maximum number of results to show. This should be positive. if limit is less &lt;=0, then the default limit <code class="prettyprint">20</code> is  considered.</td>
+</tr>
+<tr>
+<td>order</td>
+<td>enum</td>
+<td>Arranges the transactions based on the value set in sort in an ascending (asc) or descending order (desc). By default, results are shown in the descending order of transactionDate.</td>
+</tr>
+<tr>
+<td>creditNotes</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to fetch creditNotes details.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Any one identifier is needed. If you are using identifierName, then identifierValue, and source required.</aside> 
 
 <h2 id="response-codes">Response Codes</h2>
 
