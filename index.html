@@ -5474,186 +5474,6 @@ Also, check the following configurations for maximum days allowed and minimum ti
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
 
-<h2 id="get-customer-coupons-basic">Get Customer Coupons (Basic)</h2>
-
-<p>Retrieves the history of a customer coupons with basic coupon details.</p>
-
-<blockquote>
-<p>Sample Request</p>
-</blockquote>
-<pre class="highlight html"><code>http://api.capillary.co.in/v2/customers/coupons?id=401031250
-</code></pre>
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-   </span><span class="s2">"entity"</span><span class="p">:{</span><span class="w">
-      </span><span class="s2">"pagination"</span><span class="p">:{</span><span class="w">
-         </span><span class="s2">"limit"</span><span class="p">:</span><span class="s2">"100"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"offset"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"total"</span><span class="p">:</span><span class="mi">4</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"customers"</span><span class="p">:[</span><span class="w">
-         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"firstname"</span><span class="p">:</span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"lastname"</span><span class="p">:</span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"mobile"</span><span class="p">:</span><span class="s2">"918860000001"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">401031250</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"coupons"</span><span class="p">:[</span><span class="w">
-               </span><span class="p">{</span><span class="w">
-                  </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"KNRYHMRW"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="mi">363653</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"NewCouponForAll"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"validTill"</span><span class="p">:</span><span class="s2">"2029-09-01T00:00:00+05:30"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"discountType"</span><span class="p">:</span><span class="s2">"ABS"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"discountValue"</span><span class="p">:</span><span class="mf">1000.0</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"discountUpto"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"redemptionCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"redemptionsLeft"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">399000028</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="s2">"2021-09-25T16:28:11+05:30"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"transactionNumber"</span><span class="p">:</span><span class="s2">"2147877652"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"issuedAt"</span><span class="p">:{</span><span class="w">
-                     </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"storecode"</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"webstore1"</span><span class="w">
-                  </span><span class="p">},</span><span class="w">
-                  </span><span class="s2">"redemptions"</span><span class="p">:[</span><span class="w">
-                     </span><span class="p">{</span><span class="w">
-                       </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-03-10T14:48:09+05:30"</span><span class="p">,</span><span class="w">
-                       </span><span class="s2">"transactionNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1646903888000"</span><span class="p">,</span><span class="w">
-                       </span><span class="s2">"redeemedAt"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                       </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"luciauto_store2"</span><span class="p">,</span><span class="w">
-                       </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Auto Store2"</span><span class="w">
-                      </span><span class="p">}</span><span class="w">
-                  </span><span class="p">]</span><span class="w">
-               </span><span class="p">},</span><span class="w">
-               </span><span class="p">{</span><span class="w">
-                  </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"7TF6TBQB"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="mi">363653</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"NewCouponForAll"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"validTill"</span><span class="p">:</span><span class="s2">"2029-09-01T00:00:00+05:30"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"discountType"</span><span class="p">:</span><span class="s2">"ABS"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"discountValue"</span><span class="p">:</span><span class="mf">1000.0</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"discountUpto"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"redemptionCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"redemptionsLeft"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">399000029</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="s2">"2021-09-25T16:28:11+05:30"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"transactionNumber"</span><span class="p">:</span><span class="s2">"2147877652"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"issuedAt"</span><span class="p">:{</span><span class="w">
-                     </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"storecode"</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"webstore1"</span><span class="w">
-                  </span><span class="p">},</span><span class="w">
-                  </span><span class="s2">"redemptions"</span><span class="p">:[</span><span class="w">
-
-                  </span><span class="p">]</span><span class="w">
-               </span><span class="p">},</span><span class="w">
-               </span><span class="p">{</span><span class="w">
-                  </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"6JAFX7ZF"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="mi">363653</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"NewCouponForAll"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"validTill"</span><span class="p">:</span><span class="s2">"2029-09-01T00:00:00+05:30"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"discountType"</span><span class="p">:</span><span class="s2">"ABS"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"discountValue"</span><span class="p">:</span><span class="mf">1000.0</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"discountUpto"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"redemptionCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"redemptionsLeft"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">399000026</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="s2">"2021-09-25T16:25:25+05:30"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"transactionNumber"</span><span class="p">:</span><span class="s2">"2147877651"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"issuedAt"</span><span class="p">:{</span><span class="w">
-                     </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"storecode"</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"webstore1"</span><span class="w">
-                  </span><span class="p">},</span><span class="w">
-                  </span><span class="s2">"redemptions"</span><span class="p">:[</span><span class="w">
-
-                  </span><span class="p">]</span><span class="w">
-               </span><span class="p">},</span><span class="w">
-               </span><span class="p">{</span><span class="w">
-                  </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"KZWMCYTR"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="mi">14162</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"Mobile Push offer 1"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"validTill"</span><span class="p">:</span><span class="s2">"2022-03-20T00:00:00+05:30"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"discountType"</span><span class="p">:</span><span class="s2">"PERC"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"discountValue"</span><span class="p">:</span><span class="mf">10.0</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"discountUpto"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"redemptionCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"redemptionsLeft"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">397755229</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="s2">"2021-09-01T17:53:43+05:30"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"transactionNumber"</span><span class="p">:</span><span class="s2">"2147861881"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"issuedAt"</span><span class="p">:{</span><span class="w">
-                     </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"storecode"</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"webstore1"</span><span class="w">
-                  </span><span class="p">},</span><span class="w">
-                  </span><span class="s2">"redemptions"</span><span class="p">:[</span><span class="w">
-
-                  </span><span class="p">]</span><span class="w">
-               </span><span class="p">}</span><span class="w">
-            </span><span class="p">]</span><span class="w">
-         </span><span class="p">}</span><span class="w">
-      </span><span class="p">]</span><span class="w">
-   </span><span class="p">},</span><span class="w">
-   </span><span class="s2">"warnings"</span><span class="p">:[</span><span class="w">
-
-   </span><span class="p">],</span><span class="w">
-   </span><span class="s2">"errors"</span><span class="p">:[</span><span class="w">
-
-   </span><span class="p">],</span><span class="w">
-   </span><span class="s2">"success"</span><span class="p">:</span><span class="kc">true</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<h3 id="resource-information">Resource Information</h3>
-
-<table><thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URI</td>
-<td><code class="prettyprint">/v2/customers/coupons?{queryParams}</code></td>
-</tr>
-<tr>
-<td>HTTP Method</td>
-<td>GET</td>
-</tr>
-<tr>
-<td>API Version</td>
-<td>v2</td>
-</tr>
-<tr>
-<td>Batch Support</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>Rate Limited</td>
-<td>Yes</td>
-</tr>
-</tbody></table>
-
-<h3 id="request-query-parameters">Request Query Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Datatype</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>mobile/email/externalId/id*</td>
-<td>string</td>
-<td>Any identifier of the customer to fetch coupons. For example, <code class="prettyprint">id=9876547</code>.</td>
-</tr>
-<tr>
-<td>status</td>
-<td>enum</td>
-<td>Filter results by coupon status. Value: <code class="prettyprint">Active</code>, <code class="prettyprint">Redeemed</code>, <code class="prettyprint">Unexpired</code>, <code class="prettyprint">Unredeemed</code>, <code class="prettyprint">Active_Redeemed</code> (coupon is active but redeemed), <code class="prettyprint">Active_Unredeemed</code> (coupon is active but not redeemed), <code class="prettyprint">Expired_Redeemed</code> (coupon is expired but redeemed),and <code class="prettyprint">Expired_Unredeemed</code> (coupon is expired and not redeemed).</td>
-</tr>
-</tbody></table>
-
 <h3 id="response-parameters">Response Parameters</h3>
 
 <table><thead>
@@ -6202,6 +6022,186 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>image_ids</td>
 <td>array</td>
 <td>Delete specific images. Pass the list of image IDs generated by <code class="prettyprint">/setImage</code>.</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-customer-coupons-basic">Get Customer Coupons (Basic)</h2>
+
+<p>Retrieves the history of a customer coupons with basic coupon details.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>http://api.capillary.co.in/v2/customers/coupons?id=401031250
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"entity"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"pagination"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"limit"</span><span class="p">:</span><span class="s2">"100"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"offset"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"total"</span><span class="p">:</span><span class="mi">4</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"customers"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"firstname"</span><span class="p">:</span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lastname"</span><span class="p">:</span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"mobile"</span><span class="p">:</span><span class="s2">"918860000001"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">401031250</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"coupons"</span><span class="p">:[</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"KNRYHMRW"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="mi">363653</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"NewCouponForAll"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"validTill"</span><span class="p">:</span><span class="s2">"2029-09-01T00:00:00+05:30"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"discountType"</span><span class="p">:</span><span class="s2">"ABS"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"discountValue"</span><span class="p">:</span><span class="mf">1000.0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"discountUpto"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"redemptionCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"redemptionsLeft"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">399000028</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="s2">"2021-09-25T16:28:11+05:30"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"transactionNumber"</span><span class="p">:</span><span class="s2">"2147877652"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"issuedAt"</span><span class="p">:{</span><span class="w">
+                     </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"storecode"</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"webstore1"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="s2">"redemptions"</span><span class="p">:[</span><span class="w">
+                     </span><span class="p">{</span><span class="w">
+                       </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-03-10T14:48:09+05:30"</span><span class="p">,</span><span class="w">
+                       </span><span class="s2">"transactionNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1646903888000"</span><span class="p">,</span><span class="w">
+                       </span><span class="s2">"redeemedAt"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                       </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"luciauto_store2"</span><span class="p">,</span><span class="w">
+                       </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Auto Store2"</span><span class="w">
+                      </span><span class="p">}</span><span class="w">
+                  </span><span class="p">]</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"7TF6TBQB"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="mi">363653</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"NewCouponForAll"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"validTill"</span><span class="p">:</span><span class="s2">"2029-09-01T00:00:00+05:30"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"discountType"</span><span class="p">:</span><span class="s2">"ABS"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"discountValue"</span><span class="p">:</span><span class="mf">1000.0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"discountUpto"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"redemptionCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"redemptionsLeft"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">399000029</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="s2">"2021-09-25T16:28:11+05:30"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"transactionNumber"</span><span class="p">:</span><span class="s2">"2147877652"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"issuedAt"</span><span class="p">:{</span><span class="w">
+                     </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"storecode"</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"webstore1"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="s2">"redemptions"</span><span class="p">:[</span><span class="w">
+
+                  </span><span class="p">]</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"6JAFX7ZF"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="mi">363653</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"NewCouponForAll"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"validTill"</span><span class="p">:</span><span class="s2">"2029-09-01T00:00:00+05:30"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"discountType"</span><span class="p">:</span><span class="s2">"ABS"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"discountValue"</span><span class="p">:</span><span class="mf">1000.0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"discountUpto"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"redemptionCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"redemptionsLeft"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">399000026</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="s2">"2021-09-25T16:25:25+05:30"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"transactionNumber"</span><span class="p">:</span><span class="s2">"2147877651"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"issuedAt"</span><span class="p">:{</span><span class="w">
+                     </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"storecode"</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"webstore1"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="s2">"redemptions"</span><span class="p">:[</span><span class="w">
+
+                  </span><span class="p">]</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"KZWMCYTR"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="mi">14162</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"Mobile Push offer 1"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"validTill"</span><span class="p">:</span><span class="s2">"2022-03-20T00:00:00+05:30"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"discountType"</span><span class="p">:</span><span class="s2">"PERC"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"discountValue"</span><span class="p">:</span><span class="mf">10.0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"discountUpto"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"redemptionCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"redemptionsLeft"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">397755229</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="s2">"2021-09-01T17:53:43+05:30"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"transactionNumber"</span><span class="p">:</span><span class="s2">"2147861881"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"issuedAt"</span><span class="p">:{</span><span class="w">
+                     </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"storecode"</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"webstore1"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="s2">"redemptions"</span><span class="p">:[</span><span class="w">
+
+                  </span><span class="p">]</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"warnings"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"errors"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"success"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/v2/customers/coupons?{queryParams}</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Rate Limited</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mobile/email/externalId/id*</td>
+<td>string</td>
+<td>Any identifier of the customer to fetch coupons. For example, <code class="prettyprint">id=9876547</code>.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>enum</td>
+<td>Filter results by coupon status. Value: <code class="prettyprint">Active</code>, <code class="prettyprint">Redeemed</code>, <code class="prettyprint">Unexpired</code>, <code class="prettyprint">Unredeemed</code>, <code class="prettyprint">Active_Redeemed</code> (coupon is active but redeemed), <code class="prettyprint">Active_Unredeemed</code> (coupon is active but not redeemed), <code class="prettyprint">Expired_Redeemed</code> (coupon is expired but redeemed),and <code class="prettyprint">Expired_Unredeemed</code> (coupon is expired and not redeemed).</td>
 </tr>
 </tbody></table>
 
