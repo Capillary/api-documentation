@@ -51464,7 +51464,7 @@ https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/item/similar-a
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight html"><code>https://us.api.capillarytech.com/v1/promotion-management/promotions
+<pre class="highlight html"><code>https://eucrm.cc.capillarytech.com/v1/promotion-management/promotions
 </code></pre>
 <blockquote>
 <p>Sample POST Request for Generic Cart Promotion</p>
@@ -51824,6 +51824,49 @@ https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/item/similar-a
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">&gt;</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
+
+</span><span class="err">```json</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"623c3f73cc485e2e6ec80125"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DemoPromotion"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100528</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"messageLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test!"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POS"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"condition"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CART"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cartCondition"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"kpi"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUBTOTAL"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"operator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GREATER_THAN_OR_EQUAL"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1500.000000"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CART_BASED"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cartBasedAction"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PERCENTAGE"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.000000"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75044302</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="mi">1648115571586</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75044302</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="mi">1648115571586</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1624256511786</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1627669800000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"campaignId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1036475</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"earnLimitedToSpecificAudience"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DISCOUNT"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"maxIssuancePerCustomer"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <h3 id="resource-information">Resource Information</h3>
 
 <table><thead>
@@ -51834,7 +51877,7 @@ https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/item/similar-a
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">promotion-management/promotions</code></td>
+<td><code class="prettyprint">v1/promotion-management/promotions</code></td>
 </tr>
 <tr>
 <td>HTTP Method</td>
@@ -51868,14 +51911,14 @@ https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/item/similar-a
 </tr>
 </thead><tbody>
 <tr>
-<td>name</td>
+<td>name*</td>
 <td>string</td>
 <td>Name of the promotion.</td>
 </tr>
 <tr>
 <td>orgId</td>
-<td>long</td>
-<td>Unique ID of the org associated with the promotion.</td>
+<td>int</td>
+<td>Unique ID of the org.</td>
 </tr>
 <tr>
 <td>priority</td>
@@ -51885,65 +51928,40 @@ https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/item/similar-a
 <tr>
 <td>active</td>
 <td>boolean</td>
-<td>Set <code class="prettyprint">true</code> to make the current promotion active.</td>
+<td>Set <code class="prettyprint">true</code> to make the promotion active, <code class="prettyprint">false</code> to issue promotion in the deactivated state. Default value is <code class="prettyprint">false</code></td>
 </tr>
 <tr>
 <td>messageLabel</td>
 <td>string</td>
-<td></td>
+<td>A short description of the promotion.</td>
 </tr>
 <tr>
 <td>type</td>
 <td>enum</td>
-<td>Type of the promotion. Values: <code class="prettyprint">POS</code>, <code class="prettyprint">CUSTOMER</code>, <code class="prettyprint">EARNING</code>, <code class="prettyprint">REWARD</code>.</td>
+<td>Type of the promotion. Value: <code class="prettyprint">POS</code>, <code class="prettyprint">CUSTOMER</code>, <code class="prettyprint">EARNING</code>, <code class="prettyprint">REWARD</code>.</td>
 </tr>
 <tr>
 <td>timeCriteria</td>
 <td>obj</td>
-<td>Limit promotion to a specific duration. For example, promotion is applicable only on Sunday from 5PM to 6PM.</td>
+<td>Information related to Time based restriction for the offer.</td>
 </tr>
 <tr>
-<td>durationInHours</td>
-<td>int</td>
-<td></td>
+<td>storeCriteria</td>
+<td>Obj</td>
+<td>Information related to the store based restriction (store scope).</td>
 </tr>
 <tr>
-<td>monthlyDayValues</td>
-<td>int</td>
-<td></td>
-</tr>
-<tr>
-<td>repeatFrequency</td>
-<td>enum</td>
-<td>Values: <code class="prettyprint">DAYS</code>, <code class="prettyprint">DOES_NOT_REPEAT</code>, <code class="prettyprint">WEEKS</code>.</td>
-</tr>
-<tr>
-<td>startTime</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>weeklyValues</td>
-<td>array</td>
-<td></td>
-</tr>
-<tr>
-<td>storeCriteria*</td>
-<td>obj</td>
-<td>Details of scope of promotion (store, zone, or concept to be promoted).</td>
-</tr>
-<tr>
-<td>storeCriteria: operator*</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;operator*</td>
 <td>enum</td>
 <td>Operator used to evaluate store condition. Value: <code class="prettyprint">IN</code>, <code class="prettyprint">NOT_IN</code>.</td>
 </tr>
 <tr>
-<td>storeCriteria: type*</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type*</td>
 <td>enum</td>
 <td>Base store type to evaluate. Value: <code class="prettyprint">CONCEPT</code>, <code class="prettyprint">STORE</code>, <code class="prettyprint">ZONE</code>.</td>
 </tr>
 <tr>
-<td>storeCriteria: values*</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;values*</td>
 <td>int</td>
 <td>Value of the selected store type. For example, store ID, zone ID, or concept ID.</td>
 </tr>
@@ -51953,34 +51971,64 @@ https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/item/similar-a
 <td>Details of promotion availing condition.</td>
 </tr>
 <tr>
-<td>type</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type</td>
 <td>enum</td>
-<td>Type of the promotion. Value: <code class="prettyprint">CART</code> for cart promotion, <code class="prettyprint">PRODUCT</code> for catalog promotion.</td>
+<td>Type of the promotion. Value: <code class="prettyprint">CATALOG</code>, <code class="prettyprint">PRODUCT</code>.</td>
 </tr>
 <tr>
-<td>cartCondition</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cartCondition</td>
 <td>obj</td>
-<td></td>
+<td>Details of the cart promotion availing condition.</td>
 </tr>
 <tr>
-<td>kpi</td>
-<td>string</td>
-<td><code class="prettyprint">SUBTOTAL</code></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kpi</td>
+<td>enum</td>
+<td>On what basis you want to evaluate the availing condition. Values: <code class="prettyprint">SUBTOTAL</code>,</td>
 </tr>
 <tr>
-<td>operator</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;operator</td>
 <td>enum</td>
 <td><code class="prettyprint">GREATER_THAN_OR_EQUAL</code></td>
 </tr>
 <tr>
-<td>value</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value</td>
+<td>float</td>
+<td>Value of the condition expression</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;productCondition</td>
+<td></td>
+<td>Details of the product (catalog) promotion availing condition</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;criteriaList</td>
+<td>array-obj</td>
+<td>Details of the product condition.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;entity</td>
+<td>enum</td>
+<td>On what basis the product condition is defined. Values: <code class="prettyprint">SKU</code>,</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;operator</td>
+<td>enum</td>
+<td>Operator for the rule expression. Value:</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; values</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>productCondition</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attributeName</td>
 <td></td>
 <td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kpi</td>
+<td>enum</td>
+<td>Value: <code class="prettyprint">QUANITITY</code></td>
 </tr>
 <tr>
 <td>comboProductCondition</td>
@@ -51990,112 +52038,112 @@ https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/item/similar-a
 <tr>
 <td>action</td>
 <td>obj</td>
-<td>Details of</td>
+<td></td>
 </tr>
 <tr>
-<td>type</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type</td>
 <td>enum</td>
-<td>Type of the promotion. <code class="prettyprint">CART_BASED</code>, <code class="prettyprint">PRODUCT_BASED</code>, <code class="prettyprint">FIXED_PRICE</code>, <code class="prettyprint">FREE_PRODUCT</code>.</td>
+<td>Sub-type of the promotion. Values: <code class="prettyprint">CART_BASED</code>, <code class="prettyprint">PRODUCT_BASED</code>, <code class="prettyprint">FIXED_PRICE</code>, <code class="prettyprint">FREE_PRODUCT</code>.</td>
 </tr>
 <tr>
-<td>cartBasedAction</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cartBasedAction</td>
 <td>obj</td>
-<td>Details of benefit applied on cart.</td>
+<td>Benefit to be applied. It is applied when promo condition is matched.</td>
 </tr>
 <tr>
-<td>type</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type</td>
 <td>enum</td>
-<td>Type of the discount. Value: <code class="prettyprint">PERCENTAGE</code>, <code class="prettyprint">ABSOLUTE</code>. Benefits/offers in Percentage(PERCENTAGE).</td>
+<td><code class="prettyprint">PERCENTAGE</code>.</td>
 </tr>
 <tr>
-<td>value</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value</td>
 <td>float</td>
-<td>Discount or offer value according to the<code class="prettyprint">type</code>. For example, Buy 10 ltrs of Petrol and get 10% off on it (<code class="prettyprint">&quot;type&quot;: &quot;PERCENTAGE&quot;</code>).  <br> Buy 10 ltrs of Petrol and get 100/- off (when <code class="prettyprint">&quot;type&quot;: &quot;PERCENTAGE&quot;</code>).</td>
+<td>Discount or offer value according to the<code class="prettyprint">type</code>. For example, Buy 10 liters of Petrol and get 10% off on it (<code class="prettyprint">&quot;type&quot;: &quot;PERCENTAGE&quot;</code>).  <br> Buy 10 ltrs of Petrol and get 100/- off (when <code class="prettyprint">&quot;type&quot;: &quot;PERCENTAGE&quot;</code>).Percentage discount (as amount), <code class="prettyprint">ABSOLUTE</code> (Buy 2 products at $50).</td>
 </tr>
 <tr>
-<td>productBasedAction</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;productBasedAction</td>
 <td></td>
-<td>Whether the promotion to be applied on products or line items.</td>
+<td>The benefit to be applied when promo condition (specific product in cart) is satisfied.</td>
 </tr>
 <tr>
-<td>fixedPriceAction</td>
-<td></td>
-<td>Fixed price benefits. Example: Buy 2 shirts at $100.</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fixedPriceAction</td>
+<td>obj</td>
+<td>Details of the fixed price based benefit. For example, buy 1X get 1X with a discount, or buy 2X with fixed price.</td>
 </tr>
 <tr>
-<td>freeProductAction</td>
-<td></td>
-<td>Buy X and Get Y benefits. Example: Buy 1 shirt and Get another shirts as free.</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;freeProductAction</td>
+<td>obj</td>
+<td>Details of free product based benefit. Example: buy 1X get 1Y free.</td>
 </tr>
 <tr>
 <td>createdBy</td>
 <td>long</td>
-<td>Unique ID of the user who created the promotion.</td>
+<td>Unique ID of the user creating the offer.</td>
 </tr>
 <tr>
 <td>createdOn</td>
-<td>date-time</td>
-<td>Unix time-stamp of when the promotion was created.</td>
+<td>string</td>
+<td>Unique time-stamp (milliseconds) of when the promotion was created.</td>
 </tr>
 <tr>
 <td>lastUpdatedBy</td>
 <td>long</td>
-<td>Unique ID of the user who updated the promotion recently.</td>
+<td>ID of the user who updated the promotion recently.</td>
 </tr>
 <tr>
 <td>lastUpdatedOn</td>
-<td>date-time</td>
-<td>Unix time-stamp of when the promotion was recently updated.</td>
+<td></td>
+<td>string</td>
 </tr>
 <tr>
-<td>startDate</td>
-<td>date-time</td>
-<td>Unix time-stamp of the start date of the promotion in milliseconds.</td>
+<td>startDate*</td>
+<td>string</td>
+<td>Duration of the promotion in <code class="prettyprint">startDate</code> and <code class="prettyprint">endDate</code> in milliseconds. Unix time-stamp of the end date of the promotion in milliseconds.</td>
 </tr>
 <tr>
-<td>endDate</td>
-<td>date-time</td>
-<td>Unix time-stamp of the end date of the promotion in milliseconds.</td>
+<td>endDate*</td>
+<td></td>
+<td>Duration of the promotion in <code class="prettyprint">startDate</code> and <code class="prettyprint">endDate</code>. Unix time-stamp of the end date of the promotion in milliseconds.</td>
 </tr>
 <tr>
 <td>campaignId</td>
-<td>long</td>
-<td>Campaign ID associated with the promotion.</td>
+<td>int</td>
+<td>ID of the campaign associated with the promotion.</td>
 </tr>
 <tr>
 <td>loyaltyEarningExpiryDays</td>
 <td>int</td>
-<td>Days in which the earned promotion should expire.</td>
+<td>Number of days in which the Loyalty promotion earned should expire.</td>
 </tr>
 <tr>
 <td>maxEarningPerCustomer</td>
 <td>int</td>
-<td>Number of times a customer can earn the promotion.</td>
+<td>Number of times a customer can earn the current promotion.</td>
 </tr>
 <tr>
 <td>earningCriteria</td>
-<td></td>
-<td>Condition a customer should fulfil to earn the promotion.</td>
+<td>obj</td>
+<td>Conditions that customers should fulfil to unlock the promotion. For example, unlock the promotion for the Transaction activity with amount more than $100.</td>
 </tr>
 <tr>
 <td>promotionRestrictions</td>
 <td></td>
-<td>Restrictions or limitations on the promotion.</td>
+<td>Restrictions applied to the promotion on Discount, Transaction, and/or Redemption.</td>
 </tr>
 <tr>
 <td>earnLimitedToSpecificAudience</td>
 <td>boolean</td>
-<td>Pass <code class="prettyprint">true</code> to enable the promotion to specific list of audience, <code class="prettyprint">false</code> to enable any customer to earn the promotion.</td>
+<td>Pass <code class="prettyprint">true</code> to enable the promotion to specific list of customers, <code class="prettyprint">false</code> to enable any customer to earn the promotion.</td>
 </tr>
 <tr>
 <td>customFieldValues</td>
-<td></td>
-<td>Meta promotion level custom field values.</td>
+<td>string</td>
+<td>Meta promotion of the promotion level custom field values.</td>
 </tr>
 <tr>
 <td>onEarnCommunicationChannels</td>
 <td></td>
-<td>Details about earned communications and expired communications.</td>
+<td>Channel through which points a customer earn or expire needs to be communicated - SMS, Push notification or email.</td>
 </tr>
 </tbody></table>
 
