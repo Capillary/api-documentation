@@ -134,9 +134,11 @@
 <h2 id="q4-releases-2021-2022">Q4 Releases (2021-2022)</h2>
 
 <ul>
+<li>  GET v2/companies to fetch companies by extended field values - partial or complete string. For details, see <a href="https://capillary.github.io/api-documentation/#get-companies-by-extended-field-values">v2/companies/extendedFieldSearch</a></li>
 <li>  New API to <a href="https://capillary.github.io/api-documentation/#get-user-group-transactions">retrieve transactions of a group</a>.</li>
 <li>  New body parameter <code class="prettyprint">fileEncodingType</code> introduced in <code class="prettyprint">communications/email</code> to capture the encoded format for images attached in the email.</li>
 <li>  New <a href="https://capillary.github.io/api-documentation/#get-customer-ledger-balance">ledger APIs</a> to retrieve customer&rsquo;s <a href="https://capillary.github.io/api-documentation/#get-customer-ledger-balance">ledger balance</a> and <a href="https://capillary.github.io/api-documentation/#get-customer-ledger-information">ledger information</a>.</li>
+<li>  New parameter value in GET <a href="https://capillary.github.io/api-documentation/#get-organization-configs">v2/organization/configs/</a></li>
 <li>  Introduced new query parameters <code class="prettyprint">expirySchedules</code> and <code class="prettyprint">expiredPoints</code>. These were the parameter values for the query parameter <code class="prettyprint">embed</code> earlier. <a href="https://capillary.github.io/api-documentation/#get-group-details">See here for details</a>.</li>
 <li>Register and update customer will now support registering customers in all programs of the org with the query parameter <code class="prettyprint">mlp_single_enroll</code> in POST <a href="https://capillary.github.io/api-documentation/#register-customer">v2/customers</a>.</li>
 </ul>
@@ -31683,7 +31685,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 </tr>
 </tbody></table>
 
-<h2 id="get-companies-by-extended-field-vales">Get Companies by Extended Field Vales</h2>
+<h2 id="get-companies-by-extended-field-values">Get Companies by Extended Field Values</h2>
 
 <p>Fetches companies using the first few values of an extended field value provided.</p>
 
@@ -36924,12 +36926,78 @@ Retrieves the configuration details of a specific source.
 <tr>
 <td>includeDisabled</td>
 <td>boolean</td>
-<td>default value <code class="prettyprint">false</code>.</td>
+<td>Default value <code class="prettyprint">false</code>.</td>
 </tr>
 <tr>
 <td>includeDisabledAtServer</td>
 <td>boolean</td>
 <td>Default value <code class="prettyprint">false</code>.</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-organization-configs">Get Organization Configs</h2>
+
+<p>Retrieves the details of a specific configuration based on the name of the configuration passed.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/organization/configs/CONF_MAX_CARDS_PER_ORG
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100458</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"keyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CONF_MAX_CARDS_PER_ORG"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ORG"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/v2/organization/configs/{name}</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes (1000 per hour)</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v2/organization/configs/{name}</code></p>
+
+<h3 id="request-path-parameter">Request Path Parameter</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Name of the configuration to fetch. For example, <code class="prettyprint">CONF_MAX_CARDS_PER_ORG</code>, <code class="prettyprint">IS_DIRECT_REPLAY_ENABLED</code></td>
 </tr>
 </tbody></table>
 
@@ -37077,72 +37145,6 @@ Retrieves the configuration details of a specific source.
 <td>tillId**</td>
 <td>long</td>
 <td>Pass the unique till ID to get the details by tillId (second URL).</td>
-</tr>
-</tbody></table>
-
-<h2 id="get-organization-configs">Get Organization Configs</h2>
-
-<p>Retrieves the details of a specific configuration based on the name of the configuration passed.</p>
-
-<blockquote>
-<p>Sample Request</p>
-</blockquote>
-<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/organization/configs/CONF_MAX_CARDS_PER_ORG
-</code></pre>
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100458</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"keyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CONF_MAX_CARDS_PER_ORG"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ORG"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<h3 id="resource-information">Resource Information</h3>
-
-<table><thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URI</td>
-<td><code class="prettyprint">/v2/organization/configs/{name}</code></td>
-</tr>
-<tr>
-<td>Rate Limited?</td>
-<td>Yes (1000 per hour)</td>
-</tr>
-<tr>
-<td>HTTP Methods</td>
-<td>GET</td>
-</tr>
-<tr>
-<td>Batch Support</td>
-<td>No</td>
-</tr>
-</tbody></table>
-
-<h3 id="request-url">Request URL</h3>
-
-<p><code class="prettyprint">{host}/v2/organization/configs/{name}</code></p>
-
-<h3 id="request-path-parameter">Request Path Parameter</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Datatype</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>name</td>
-<td>string</td>
-<td>Name of the configuration to fetch. For example, <code class="prettyprint">CONF_MAX_CARDS_PER_ORG</code>, <code class="prettyprint">IS_DIRECT_REPLAY_ENABLED</code></td>
 </tr>
 </tbody></table>
 
