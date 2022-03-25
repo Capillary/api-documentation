@@ -115,7 +115,7 @@ Lets you create a specific promotion program - Card or Catalog based.
 > Sample Request
 
 ```html
-https://us.api.capillarytech.com/v1/promotion-management/promotions
+https://eucrm.cc.capillarytech.com/v1/promotion-management/promotions
 ```
 
 
@@ -488,12 +488,55 @@ https://us.api.capillarytech.com/v1/promotion-management/promotions
 }
 ```
 
+> Sample Response
+
+```json
+> Sample Response
+
+```json
+{
+    "data": {
+        "id": "623c3f73cc485e2e6ec80125",
+        "name": "DemoPromotion",
+        "orgId": 100528,
+        "priority": 0,
+        "active": true,
+        "messageLabel": "test!",
+        "type": "POS",
+        "condition": {
+            "type": "CART",
+            "cartCondition": {
+                "kpi": "SUBTOTAL",
+                "operator": "GREATER_THAN_OR_EQUAL",
+                "value": "1500.000000"
+            }
+        },
+        "action": {
+            "type": "CART_BASED",
+            "cartBasedAction": {
+                "type": "PERCENTAGE",
+                "value": "10.000000"
+            }
+        },
+        "createdBy": 75044302,
+        "createdOn": 1648115571586,
+        "lastUpdatedBy": 75044302,
+        "lastUpdatedOn": 1648115571586,
+        "startDate": 1624256511786,
+        "endDate": 1627669800000,
+        "campaignId": 1036475,
+        "earnLimitedToSpecificAudience": false,
+        "mode": "DISCOUNT",
+        "maxIssuancePerCustomer": 1
+    }
+}
+```
 
 ### Resource Information
 
 | | |
 --------- | ----------- |
-URI | `promotion-management/promotions`
+URI | `v1/promotion-management/promotions`
 HTTP Method | POST
 API Version | v1
 Rate Limited | Yes
@@ -505,57 +548,62 @@ Batch Support | No
 `{host}/v1/promotion-management/promotions`
 
 
+
+
+
 ### Request Body Parameters
+
 Parameter | Datatype | Description
 --------- | -------- | -----------
-name | string | Name of the promotion.
-orgId | long | Unique ID of the org associated with the promotion.
+name* | string | Name of the promotion.
+orgId | int | Unique ID of the org. 
 priority | int | Priority of evaluating the cart promotion. Pass `0` for the highest priority and higher numbers for lower priorities.
-active | boolean | Set `true` to make the current promotion active.
-messageLabel | string | 
-type | enum | Type of the promotion. Values: `POS`, `CUSTOMER`, `EARNING`, `REWARD`.
-timeCriteria | obj | Limit promotion to a specific duration. For example, promotion is applicable only on Sunday from 5PM to 6PM.
-durationInHours | int | 
-monthlyDayValues | int | 
-repeatFrequency | enum | Values: `DAYS`, `DOES_NOT_REPEAT`, `WEEKS`.
-startTime | | 
-weeklyValues | array |
-storeCriteria* | obj | Details of scope of promotion (store, zone, or concept to be promoted).  
-storeCriteria: operator* | enum | Operator used to evaluate store condition. Value: `IN`, `NOT_IN`.
-storeCriteria: type* | enum | Base store type to evaluate. Value: `CONCEPT`, `STORE`, `ZONE`.
-storeCriteria: values* | int | Value of the selected store type. For example, store ID, zone ID, or concept ID.
+active | boolean | Set `true` to make the promotion active, `false` to issue promotion in the deactivated state. Default value is `false`
+messageLabel | string | A short description of the promotion.
+type | enum | Type of the promotion. Value: `POS`, `CUSTOMER`, `EARNING`, `REWARD`.
+timeCriteria | obj | Information related to Time based restriction for the offer.
+storeCriteria | Obj | Information related to the store based restriction (store scope).
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;operator* | enum | Operator used to evaluate store condition. Value: `IN`, `NOT_IN`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type* | enum | Base store type to evaluate. Value: `CONCEPT`, `STORE`, `ZONE`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;values* | int | Value of the selected store type. For example, store ID, zone ID, or concept ID.
 condition | obj | Details of promotion availing condition.
-type | enum | Type of the promotion. Value: `CART` for cart promotion, `PRODUCT` for catalog promotion.
-cartCondition | obj |   
-kpi | string | `SUBTOTAL`
-operator | enum | `GREATER_THAN_OR_EQUAL`
-value | | 
-productCondition | | 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type | enum | Type of the promotion. Value: `CATALOG`, `PRODUCT`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cartCondition | obj | Details of the cart promotion availing condition.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kpi | enum | On what basis you want to evaluate the availing condition. Values: `SUBTOTAL`, 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;operator | enum | `GREATER_THAN_OR_EQUAL`
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value | float | Value of the condition expression
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;productCondition | | Details of the product (catalog) promotion availing condition
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;criteriaList | array-obj | Details of the product condition.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;entity | enum | On what basis the product condition is defined. Values: `SKU`, 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;operator | enum | Operator for the rule expression. Value:
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; values | | 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attributeName | | 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kpi | enum | Value: `QUANITITY`
 comboProductCondition | | 
-action | obj | Details of 
-type | enum | Type of the promotion. `CART_BASED`, `PRODUCT_BASED`, `FIXED_PRICE`, `FREE_PRODUCT`.
-cartBasedAction | obj | Details of benefit applied on cart.
-type | enum | Type of the discount. Value: `PERCENTAGE`, `ABSOLUTE`. Benefits/offers in Percentage(PERCENTAGE). 
-value | float | Discount or offer value according to the`type`. For example, Buy 10 ltrs of Petrol and get 10% off on it (`"type": "PERCENTAGE"`).  <br> Buy 10 ltrs of Petrol and get 100/- off (when `"type": "PERCENTAGE"`).
-productBasedAction | | Whether the promotion to be applied on products or line items.
-fixedPriceAction | | Fixed price benefits. Example: Buy 2 shirts at $100.
-freeProductAction | | Buy X and Get Y benefits. Example: Buy 1 shirt and Get another shirts as free.
-createdBy | long | Unique ID of the user who created the promotion.
-createdOn | date-time | Unix time-stamp of when the promotion was created.
-lastUpdatedBy | long | Unique ID of the user who updated the promotion recently.
-lastUpdatedOn | date-time | Unix time-stamp of when the promotion was recently updated.
-startDate | date-time | Unix time-stamp of the start date of the promotion in milliseconds. 
-endDate | date-time | Unix time-stamp of the end date of the promotion in milliseconds. 
-campaignId | long | Campaign ID associated with the promotion.
-loyaltyEarningExpiryDays | int | Days in which the earned promotion should expire.
-maxEarningPerCustomer | int | Number of times a customer can earn the promotion.
-earningCriteria | | Condition a customer should fulfil to earn the promotion.
-promotionRestrictions | | Restrictions or limitations on the promotion.
-earnLimitedToSpecificAudience | boolean | Pass `true` to enable the promotion to specific list of audience, `false` to enable any customer to earn the promotion.
-customFieldValues | | Meta promotion level custom field values.
-onEarnCommunicationChannels | | Details about earned communications and expired communications.
+action | obj | 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type | enum | Sub-type of the promotion. Values: `CART_BASED`, `PRODUCT_BASED`, `FIXED_PRICE`, `FREE_PRODUCT`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cartBasedAction | obj | Benefit to be applied. It is applied when promo condition is matched.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type | enum | `PERCENTAGE`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value | float | Discount or offer value according to the`type`. For example, Buy 10 liters of Petrol and get 10% off on it (`"type": "PERCENTAGE"`).  <br> Buy 10 ltrs of Petrol and get 100/- off (when `"type": "PERCENTAGE"`).Percentage discount (as amount), `ABSOLUTE` (Buy 2 products at $50). 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;productBasedAction | | The benefit to be applied when promo condition (specific product in cart) is satisfied.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fixedPriceAction | obj | Details of the fixed price based benefit. For example, buy 1X get 1X with a discount, or buy 2X with fixed price.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;freeProductAction | obj | Details of free product based benefit. Example: buy 1X get 1Y free.
+createdBy | long | Unique ID of the user creating the offer.
+createdOn | string | Unique time-stamp (milliseconds) of when the promotion was created.
+lastUpdatedBy | long | ID of the user who updated the promotion recently.
+lastUpdatedOn | | string | Unix time-stamp (in milliseconds) of when the promotion was recently updated.
+startDate* | string | Duration of the promotion in `startDate` and `endDate` in milliseconds. Unix time-stamp of the end date of the promotion in milliseconds.
+endDate* | | Duration of the promotion in `startDate` and `endDate`. Unix time-stamp of the end date of the promotion in milliseconds.
+campaignId | int | ID of the campaign associated with the promotion.	
+loyaltyEarningExpiryDays | int | Number of days in which the Loyalty promotion earned should expire.	
+maxEarningPerCustomer | int | Number of times a customer can earn the current promotion.	
+earningCriteria | obj | Conditions that customers should fulfil to unlock the promotion. For example, unlock the promotion for the Transaction activity with amount more than $100.	
+promotionRestrictions | | Restrictions applied to the promotion on Discount, Transaction, and/or Redemption.
+earnLimitedToSpecificAudience | boolean | Pass `true` to enable the promotion to specific list of customers, `false` to enable any customer to earn the promotion. 
+customFieldValues | string | Meta promotion of the promotion level custom field values.
+onEarnCommunicationChannels | | Channel through which points a customer earn or expire needs to be communicated - SMS, Push notification or email.
  
- 
+
 <aside class="notice"> Parameter marked with * is mandatory. </aside>
 
 

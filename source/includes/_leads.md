@@ -10,23 +10,19 @@ Following are the predefined enum values for `type` and `status` respectively.
 
 
 ## Get Lead Status Log
+
 Retrieves the status change log of a specific lead. 
-​
-​
+
+
 > Sample Request
-​
+
 ```html
-​
 https://us.api.capillarytech.com/v2/leads/12/statusLog
-​
 ```
-​
-​
-​
+
 > Sample Response
-​
+
 ```json
-​
 {
     "data": [
         {
@@ -53,11 +49,10 @@ https://us.api.capillarytech.com/v2/leads/12/statusLog
     "warnings": [],
     "errors": []
 }
-​
 ```
 ​
 ### Resource Information
-​
+
 | | |
 --------- | ----------- |
 URI | `v2/leads/{leadId}/statusLog`
@@ -65,12 +60,10 @@ HTTP Method | GET
 API Version | v2
 Rate Limited | Yes
 Batch Support | No
-​
-​
+
 ### Request URL
 `https://{host}/v2/leads/{leadId}/statusLog`
-​
-​
+
 ### Request Path Parameters
 Parameter | Datatype | Description
 --------- | -------- | -----------
@@ -83,22 +76,19 @@ leadId* | long | Unique ID of the lead.
 ## Get Lead follow-ups
 
 Retrieves the follow ups of a specific lead.
-​
-​
+
 > Sample Request
-​
+
 ```html
-​
 https://us.api.capillarytech.com/v2/leads/12/followups
-​
 ```
-​
-​
-​
+
+
+
 > Sample Response
-​
+
 ```json
-​
+
 {
     "data": [
         {
@@ -127,11 +117,10 @@ https://us.api.capillarytech.com/v2/leads/12/followups
     "warnings": [],
     "errors": []
 }
-​
 ```
-​
+
 ### Resource Information
-​
+
 | | |
 --------- | ----------- |
 URI | `v2/leads/{leadId}/followups`
@@ -139,13 +128,13 @@ HTTP Method | GET
 API Version | v2
 Rate Limited | Yes
 Batch Support | No
-​
-​
+
 ### Request URL
+
 `https://{host}/v2/leads/{leadId}/followups`
-​
-​
+
 ### Request Path Parameters
+
 Parameter | Datatype | Description
 --------- | -------- | -----------
 leadId* | long | Unique ID of the lead.

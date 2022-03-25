@@ -108,7 +108,7 @@ http://us.api.capillarytech.com/v2/usergroups
 URI | `/usergroups`
 Rate Limited? | No
 Authentication | Yes
-HTTP Methods | POST
+HTTP Method | POST
 Batch Support | No
 
 * **Rate limiter** controls the number of incoming and outgoing traffic of a network
@@ -159,7 +159,7 @@ http://us.api.capillarytech.com/v2/usergroups/1/members/313099450
 URI | `/{groupId}/members/{userId}?{queryParams}`
 Rate Limited? | No
 Authentication | Yes
-HTTP Methods | POST (No Body required)
+HTTP Method | POST (No Body required)
 Batch Support | No
 
 * **Rate limiter** controls the number of incoming and outgoing traffic of a network
@@ -238,7 +238,7 @@ https://eu.api.capillarytech.com/v2/usergroups/2876/members
 URI | `/{groupId}/members`
 Rate Limited? | No
 Authentication | Yes
-HTTP Methods | POST
+HTTP Method | POST
 Batch Support | Yes
 
 * **Rate limiter** controls the number of incoming and outgoing traffic of a network
@@ -305,7 +305,7 @@ http://us.api.capillarytech.com/v2/usergroups/1/members/313099450
 URI | `/v2/usergroups/{groupId}/members/{userId}`
 Rate Limited? | No
 Authentication | Yes
-HTTP Methods | PUT
+HTTP Method | PUT
 Batch Support | No
 
 * **Rate limiter** controls the number of incoming and outgoing traffic of a network
@@ -394,7 +394,7 @@ https://us.ap.capillarytech.com/v2/usergroups/1
 URI | `/usergroups/{groupId}`
 Rate Limited? | No
 Authentication | Yes
-HTTP Methods | GET
+HTTP Method | GET
 Batch Support | No
 
 * **Rate limiter** controls the number of incoming and outgoing traffic of a network
@@ -602,7 +602,7 @@ https://eu.api.capillarytech.com/v2/usergroups?identifierName=mobile&identifierV
 URI | `/usergroups?{queryParams}`
 Rate Limited? | No
 Authentication | Yes
-HTTP Methods | GET
+HTTP Method | GET
 Batch Support | No
 
 * **Rate limiter** controls the number of incoming and outgoing traffic of a network
@@ -699,7 +699,7 @@ https://us.api.capillarytech.com/v2/usergroups/1
 URI | `/usergroups/{groupId}`
 Rate Limited? | No
 Authentication | Yes
-HTTP Methods | PUT
+HTTP Method | PUT
 Batch Support | No
 
 * **Rate limiter** controls the number of incoming and outgoing traffic of a network
@@ -800,7 +800,7 @@ URI | `/usergroups/{groupId}/primaryuser/{userId}`
 Rate Limited? | No
 Authentication | Yes
 Response Formats | JSON
-HTTP Methods | PUT
+HTTP Method | PUT
 Batch Support | No
 
 * **Rate limiter** controls the number of incoming and outgoing traffic of a network
@@ -851,7 +851,7 @@ https://us.api.capillarytech.com/v2/usergroups/1
 --------- | ----------- |
 URI | `/usergroups/{groupId}/members/{userId}`
 Authentication | Yes
-HTTP Methods | DELETE
+HTTP Method | DELETE
 Batch Support | No
 
 * **Rate limiter** controls the number of incoming and outgoing traffic of a network
@@ -871,7 +871,7 @@ userId* | long | Unique id of the user that you want to exit from the group.
 <aside class="notice">Parameters marked with * are mandatory. </aside>
 
 
-## Get Points Contribution by Secondary Members
+## Get Points Contribution History (by Secondary Members)
 
 Retrieves the details of points transferred from secondary members to the primary member of the group on predefined events. Pass any of the identifiers of the primary member or any of the secondary members of the group. For more details on the configurations related to points pooling, see [Group Loyalty Overview](https://support.capillarytech.com/en/support/solutions/articles/4000162618-group-loyalty-overview).
 
@@ -973,7 +973,7 @@ https://eu.api.capillarytech.com/v2/usergroups/pointContributionHistory?identifi
 --------- | ----------- |
 URI | `/usergroups/pointContributionHistory?identifierName={identifierName}&identifierValue={identifierValue}`
 Authentication | Yes
-HTTP Methods | GET
+HTTP Method | GET
 Batch Support | No
 
 * **Rate limiter** controls the number of incoming and outgoing traffic of a network
@@ -989,12 +989,12 @@ Parameter | Datatype | Description
 --------- | -------- | -----------
 identifierName* | enum | Unique identifier to identifier of the primary or a secondary member of the group that you want to get. Value: `mobile`, `email`, `externalId`, `userId`, `groupId`.
 identifierValue* | string | The respective identifier value. For example if the `identifierName` is email, then the `identifierValue` needs to the email ID of the primary or any of the secondary members of the group.
-source | enum | Source from which the customer is registered.
-accountId | string |  
-dateFrom | date-time | 
-dateTo | date-time | 
-limit | int | 
-offset | int | 
+source | enum | Source from which the customer is registered. Value: `INSTORE`, `MARTJACK`, `WECHAT`, `ALL`. ( to fetch details from all sources. For sources with multiple accounts, you also need to pass the specific accountId.
+accountId | string | Account ID for sources with multiple accounts.
+dateFrom | date-time | Filter results where the event date is >= specified date. Pass the date in`ISO` standard date format.
+dateTo | date-time | Filter results where the event date is <= specified date. Pass the date in`ISO` standard date format.
+limit | int | Maximum number of results to show. This should be positive. if limit is less <=0, then the default limit `20` is  considered.
+offset | int | Offset of the first entry in the result. This should be positive. If offset is less than 0, then 0 default offset will be used.
 sortBy | enum | 
 sortOrder | enum | Pass `ASC` to sort the results in the ascending order of sortBy value, `DESC` to get in descending value.
 programId | int | Program ID from which you want to fetch the history. 
@@ -1394,7 +1394,7 @@ https://eu.api.capillarytech.com/v2/usergroups/1/transactions
 URI | `/usergroups/{groupId}/transactions`
 Rate Limited? | No
 Authentication | Yes
-HTTP Methods | GET
+HTTP Method | GET
 Batch Support | No
 
 * **Rate limiter** controls the number of incoming and outgoing traffic of a network

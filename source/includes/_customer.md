@@ -1546,8 +1546,6 @@ identifiers* | obj | Identifiers of the customer in type and value.
 type | enum | Type of the customer identifier. Values: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, `fbId` `mobile`, `tmall_uname`, `cuid`, `ali_uname`, `jd_uname`, `vip_uname`, `mobilePush`, and `line`, and `card` (to issue loyalty card to the customers through registration).
 value | string | Value of the specified identifier. For the `type` card, `value` is card number.
 commChannels | obj | Available communication channels of the customer. Value: `mobile`, `email`, `wechat`, `ios`, `android`, `line`, `mobilePush`.
-Firstname | string | First name of the customer.
-Lastname | string | Last name of the customer.
 createDate | date-time | Time and date of registration in `YYYY-MM-DDTHH:MM:SS+HH:MM` format. Example: 2016-06-23T19:11:18+08:00
 associatedWith | string | The TILL code associated with the customer registration.
 extendedFields | obj | Customer level extended field details of the customer in key:value pairs. You can only pass extended fields that are enabled for your org with the respective datatypes for values.
@@ -1896,10 +1894,7 @@ Parameter | Datatype | Description
 source* | enum | Source on which the customer details need to be updated Values: FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, ALL.
 accountId** | string | The account id of the specific source. Required for sources with multiple accounts such as WeChat or Facebook.
 
-### Request Body Parameters
 
-Parameter | Datatype | Description
---------- | -------- | -----------
 ### Request Body Parameters
 Parameter | Type | Description
 --------- | ----- | -----------
@@ -1928,8 +1923,6 @@ identifiers* | obj | Identifiers of the customer in type and value.
 type | enum | Type of the customer identifier. Values: `mobile`, `email`, `externalId`, `wechat`,`martjackId`, `fbId` `mobile`, `tmall_uname`, `cuid`, `ali_uname`, `jd_uname`, `vip_uname`, `mobilePush`, and `line`, and `card` (to issue loyalty card to the customers through registration).
 value | string | Value of the specified identifier. For the `type` card, `value` is card number.
 commChannels | obj | Available communication channels of the customer. Value: `mobile`, `email`, `wechat`, `ios`, `android`, `line`, `mobilePush`.
-Firstname | string | First name of the customer.
-Lastname | string | Last name of the customer.
 createDate | date-time | Time and date of registration in `YYYY-MM-DDTHH:MM:SS+HH:MM` format. Example: 2016-06-23T19:11:18+08:00
 associatedWith | string | The TILL code associated with the customer registration.
 extendedFields | obj | Customer level extended field details of the customer in key:value pairs. You can only pass extended fields that are enabled for your org with the respective datatypes for values.
@@ -3052,7 +3045,7 @@ This API allows updating (opt-in or opt-out) subscription status of transactiona
 
 | | |
 --------- | ----------- |
-URI | `/{customerId}/subscriptions`
+URI | `/{customerId}/subscriptions` OR <br>`/lookup/subscriptions?{queryParams}`
 Authentication | Yes
 HTTP Method | POST
 Batch Support | No
@@ -3060,7 +3053,31 @@ Batch Support | No
 ### Request URL
 `{host}/v2/customers/{customerId}/subscriptions`
 
-### Request Parameters
+OR
+
+`{host}/v2/customers/lookup/subscriptions?source={sourceName}?&accountId={accountId}&identifierName={identifierName}&identifierValue={IdentifierValue}`
+
+
+### Request Path Parameters (for normal API)
+
+Parameter | Type | Description
+--------- | ---- | -----------
+customerId* | long | Unique ID of the customer to add subscription details.
+
+
+### Request Query Parameters (for lookup API)
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+identifierName** | enum | Identifier type to used for the customer. Values: `mobile`, `email`, `externalId`, `cardExternalId`, `cardNumber`.
+identifierValue* | string | The respective identifier value. For example if `identifierName` is email, then the `identifierValue` needs to be the email ID of the customer.
+source* | enum | Specify the source in which you want to update the customer details - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, MOBILE_APP. For sources with multiple accounts such as WECHAT, FACEBOOK, MOBILE_APP, or LINE, you also need to provide the respective account id.
+accountId* | string | Account in which you want to update the customer details (Required only for sources with multiple accounts)
+
+<aside class="notice">The parameter userId is required for normal API and the parameters marked with ** are required for lookup API.</aside>
+
+### Request Body Parameters
+
 Parameter | Description
 --------- | -----------
 customerId* | Unique ID of the customer whose subscription details you want to modify
@@ -3074,7 +3091,7 @@ sourceName | Source in which the identifier is registered. Values: `INSTORE`, `F
 
 
 
-## Retrieve Subscription Details
+## Get Subscription Details
 
 > Sample Request
 
@@ -3131,12 +3148,30 @@ Batch Support | No
 ### Request URL
 `{host}/v2/customers/{customerId}/subscriptions`
 
-### Request Query Parameters
-Parameter | Description
---------- | -----------
-id* | Pass the unique ID of the customer to fetch the subscription details
+OR
 
-<aside class="notice">Parameter marked with * is mandatory.</aside>
+`{host}/v2/customers/{customerId}/subscriptions?source={sourceName}?&accountId={accountId}&identifierName={identifierName}&identifierValue={IdentifierValue}`
+
+
+### Request Path Parameters (for normal API)
+
+Parameter | Type | Description
+--------- | ---- | -----------
+customerId* | long | Unique ID of the customer to fetch retro transaction details.
+
+
+### Request Query Parameters (for lookup API)
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+identifierName** | enum | Identifier type to used for the customer. Values: `mobile`, `email`, `externalId`, `cardExternalId`, `cardNumber`.
+identifierValue* | string | The respective identifier value. For example if `identifierName` is email, then the `identifierValue` needs to be the email ID of the customer.
+source* | enum | Specify the source in which you want to update the customer details - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, MOBILE_APP. For sources with multiple accounts such as WECHAT, FACEBOOK, MOBILE_APP, or LINE, you also need to provide the respective account id.
+accountId* | string | Account in which you want to update the customer details (Required only for sources with multiple accounts)
+
+<aside class="notice">The parameter userId is required for normal API and the parameters marked with ** are required for lookup API.</aside>
+
+
 
 
 ## Get Points Transfer Summary of Customer
@@ -3430,10 +3465,9 @@ http://us.api.capillarytech.com/v2/customers/368881003/retroRequest
 
 | | |
 --------- | ----------- |
-URI | `/{customerId}/retroRequest?{query parameters}`
+URI | `/{customerId}/retroRequest?{query parameters}` OR <br>`/lookup/retroRequest?`
 Rate Limited? | Yes
 Authentication | Yes
-Response Formats | JSON
 HTTP Method | GET
 Batch Support | No
 
@@ -3442,7 +3476,33 @@ Batch Support | No
 `{host}/v2/customers/{customerId}/retroRequest?{queryParameters}`
 
 
-### Request Query Parameters
+
+OR
+
+`{host}/v2/customers/lookup/retroRequest?source={sourceName}?&accountId={accountId}&identifierName={identifierName}&identifierValue={IdentifierValue}`
+
+
+### Request Path Parameters (for normal API)
+
+Parameter | Type | Description
+--------- | ---- | -----------
+customerId* | long | Unique ID of the customer to fetch retro transaction details.
+
+
+### Request Query Parameters (for lookup API)
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+identifierName** | enum | Identifier type to used for the customer. Values: `mobile`, `email`, `externalId`, `cardExternalId`, `cardNumber`.
+identifierValue* | string | The respective identifier value. For example if `identifierName` is email, then the `identifierValue` needs to be the email ID of the customer.
+source* | enum | Specify the source in which you want to update the customer details - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, MOBILE_APP. For sources with multiple accounts such as WECHAT, FACEBOOK, MOBILE_APP, or LINE, you also need to provide the respective account id.
+accountId* | string | Account in which you want to update the customer details (Required only for sources with multiple accounts)
+
+<aside class="notice">The parameter userId is required for normal API and the parameters marked with ** are required for lookup API.</aside>
+
+
+
+### Request Query Parameters (common)
 
 Parameter | Type | Description
 --------- | ---- | -----------
@@ -3453,6 +3513,16 @@ startId | long | Filter results by sequence ID (sequence in which a change happe
 endId | long | Filter results by sequence ID (sequence in which a change happened). For example, get lists from startId 200 until endId 400.
 offset | long | Number of rows that you want omit from showing.
 limit | int | Pass the number of results that you want to see.
+source | enum | 
+accountId | | 
+activity | |
+cardNumber | |
+startLimit | |
+type | |
+startId | |
+endId | |
+sortBy | |
+sortOrder | |
 
 ## Get Identifier Change Requests
 
@@ -3702,148 +3772,6 @@ autoApprove | boolean | Pass `true` to fetch requests that are auto-approved - w
 <aside class="notice">Parameters marked with * are mandatory. </aside>
 
 
-## Get Customer Coupons (Basic)	
-
-Retrieves the history of a customer coupons with basic coupon details.
-
-> Sample Request
-
-```html
-http://api.capillary.co.in/v2/customers/coupons?id=401031250
-```
-
-> Sample Response
-
-```json
-{
-   "entity":{
-      "pagination":{
-         "limit":"100",
-         "offset":"0",
-         "total":4
-      },
-      "customers":[
-         {
-            "firstname":"Tom",
-            "lastname":"Sawyer",
-            "mobile":"918860000001",
-            "id":401031250,
-            "coupons":[
-               {
-                  "code":"KNRYHMRW",
-                  "seriesId":363653,
-                  "description":"NewCouponForAll",
-                  "validTill":"2029-09-01T00:00:00+05:30",
-                  "discountType":"ABS",
-                  "discountValue":1000.0,
-                  "discountUpto":0.0,
-                  "redemptionCount":0,
-                  "redemptionsLeft":1,
-                  "id":399000028,
-                  "createdDate":"2021-09-25T16:28:11+05:30",
-                  "transactionNumber":"2147877652",
-                  "issuedAt":{
-                     "code":"storecode",
-                     "name":"webstore1"
-                  },
-                  "redemptions":[
-                     
-                  ]
-               },
-               {
-                  "code":"7TF6TBQB",
-                  "seriesId":363653,
-                  "description":"NewCouponForAll",
-                  "validTill":"2029-09-01T00:00:00+05:30",
-                  "discountType":"ABS",
-                  "discountValue":1000.0,
-                  "discountUpto":0.0,
-                  "redemptionCount":0,
-                  "redemptionsLeft":1,
-                  "id":399000029,
-                  "createdDate":"2021-09-25T16:28:11+05:30",
-                  "transactionNumber":"2147877652",
-                  "issuedAt":{
-                     "code":"storecode",
-                     "name":"webstore1"
-                  },
-                  "redemptions":[
-                     
-                  ]
-               },
-               {
-                  "code":"6JAFX7ZF",
-                  "seriesId":363653,
-                  "description":"NewCouponForAll",
-                  "validTill":"2029-09-01T00:00:00+05:30",
-                  "discountType":"ABS",
-                  "discountValue":1000.0,
-                  "discountUpto":0.0,
-                  "redemptionCount":0,
-                  "redemptionsLeft":1,
-                  "id":399000026,
-                  "createdDate":"2021-09-25T16:25:25+05:30",
-                  "transactionNumber":"2147877651",
-                  "issuedAt":{
-                     "code":"storecode",
-                     "name":"webstore1"
-                  },
-                  "redemptions":[
-                     
-                  ]
-               },
-               {
-                  "code":"KZWMCYTR",
-                  "seriesId":14162,
-                  "description":"Mobile Push offer 1",
-                  "validTill":"2022-03-20T00:00:00+05:30",
-                  "discountType":"PERC",
-                  "discountValue":10.0,
-                  "discountUpto":0.0,
-                  "redemptionCount":0,
-                  "redemptionsLeft":1,
-                  "id":397755229,
-                  "createdDate":"2021-09-01T17:53:43+05:30",
-                  "transactionNumber":"2147861881",
-                  "issuedAt":{
-                     "code":"storecode",
-                     "name":"webstore1"
-                  },
-                  "redemptions":[
-                     
-                  ]
-               }
-            ]
-         }
-      ]
-   },
-   "warnings":[
-      
-   ],
-   "errors":[
-      
-   ],
-   "success":true
-}
-```
-
-
-### Resource Information
-
-| | |
---------- | ----------- |
-URI | `/v2/customers/coupons?{queryParams}`
-HTTP Method | GET
-API Version | v2
-Batch Support | Yes
-Rate Limited | Yes
-
-### Request Query Parameters
-
-Parameter | Datatype | Description
---------- | -------- | ------------
-mobile/email/externalId/id* | string | Any identifier of the customer to fetch coupons. For example, `id=9876547`.
-status | enum | Filter results by coupon status. Value: `Active`, `Redeemed`, `Unexpired`, `Unredeemed`, `Active_Redeemed` (coupon is active but redeemed), `Active_Unredeemed` (coupon is active but not redeemed), `Expired_Redeemed` (coupon is expired but redeemed),and `Expired_Unredeemed` (coupon is expired and not redeemed).
 
 
 
@@ -3933,7 +3861,7 @@ curl -i -X POST \
 
 | | |
 --------- | ----------- |
-URI | `/v2/customers/{userId}/setImage`
+URI | `/v2/customers/{userId}/setImage` OR <br> `/lookup/setImage?{queryParams}
 HTTP Method | POST
 API Version | v2
 Batch Support | No
@@ -3944,6 +3872,35 @@ Rate Limited | Yes
 Header | Description
 --------- | ------------
 Content-Type* | Pass the relevant value such as `multipart/form-data`.
+
+
+### Request URL
+
+`{host}/v2/customers/{customerId}/setImage`
+
+
+
+`{host}/v2/customers/lookup/setImage?source={sourceName}?&accountId={accountId}&identifierName={identifierName}&identifierValue={IdentifierValue}`
+
+
+### Request Path Parameters (for normal API)
+
+Parameter | Type | Description
+--------- | ---- | -----------
+customerId* | long | Unique ID of the customer.
+
+
+### Request Query Parameters (for lookup API)
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+identifierName** | enum | Identifier type to used for the customer. Values: `mobile`, `email`, `externalId`, `cardExternalId`, `cardNumber`.
+identifierValue* | string | The respective identifier value. For example if `identifierName` is email, then the `identifierValue` needs to be the email ID of the customer.
+source* | enum | Specify the source in which you want to update the customer details - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, MOBILE_APP. For sources with multiple accounts such as WECHAT, FACEBOOK, MOBILE_APP, or LINE, you also need to provide the respective account id.
+accountId* | string | Account in which you want to update the customer details (Required only for sources with multiple accounts)
+
+<aside class="notice">The parameter userId is required for normal API and the parameters marked with ** are required for lookup API.</aside>
+
 
 
 ### Request Path Parameters
@@ -4183,6 +4140,155 @@ Parameter | Datatype | Description
 --------- | -------- | -----------
 image_ids | array | Delete specific images. Pass the list of image IDs generated by `/setImage`.
 
+
+## Get Customer Coupons (Basic)	
+
+Retrieves the history of a customer coupons with basic coupon details.
+
+> Sample Request
+
+```html
+http://api.capillary.co.in/v2/customers/coupons?id=401031250
+```
+
+> Sample Response
+
+```json
+{
+   "entity":{
+      "pagination":{
+         "limit":"100",
+         "offset":"0",
+         "total":4
+      },
+      "customers":[
+         {
+            "firstname":"Tom",
+            "lastname":"Sawyer",
+            "mobile":"918860000001",
+            "id":401031250,
+            "coupons":[
+               {
+                  "code":"KNRYHMRW",
+                  "seriesId":363653,
+                  "description":"NewCouponForAll",
+                  "validTill":"2029-09-01T00:00:00+05:30",
+                  "discountType":"ABS",
+                  "discountValue":1000.0,
+                  "discountUpto":0.0,
+                  "redemptionCount":0,
+                  "redemptionsLeft":1,
+                  "id":399000028,
+                  "createdDate":"2021-09-25T16:28:11+05:30",
+                  "transactionNumber":"2147877652",
+                  "issuedAt":{
+                     "code":"storecode",
+                     "name":"webstore1"
+                  },
+                  "redemptions":[
+                     {
+                       "date": "2022-03-10T14:48:09+05:30",
+                       "transactionNumber": "1646903888000",
+                       "redeemedAt": {
+                       "code": "luciauto_store2",
+                       "name": "Auto Store2"
+                      }
+                  ]
+               },
+               {
+                  "code":"7TF6TBQB",
+                  "seriesId":363653,
+                  "description":"NewCouponForAll",
+                  "validTill":"2029-09-01T00:00:00+05:30",
+                  "discountType":"ABS",
+                  "discountValue":1000.0,
+                  "discountUpto":0.0,
+                  "redemptionCount":0,
+                  "redemptionsLeft":1,
+                  "id":399000029,
+                  "createdDate":"2021-09-25T16:28:11+05:30",
+                  "transactionNumber":"2147877652",
+                  "issuedAt":{
+                     "code":"storecode",
+                     "name":"webstore1"
+                  },
+                  "redemptions":[
+                     
+                  ]
+               },
+               {
+                  "code":"6JAFX7ZF",
+                  "seriesId":363653,
+                  "description":"NewCouponForAll",
+                  "validTill":"2029-09-01T00:00:00+05:30",
+                  "discountType":"ABS",
+                  "discountValue":1000.0,
+                  "discountUpto":0.0,
+                  "redemptionCount":0,
+                  "redemptionsLeft":1,
+                  "id":399000026,
+                  "createdDate":"2021-09-25T16:25:25+05:30",
+                  "transactionNumber":"2147877651",
+                  "issuedAt":{
+                     "code":"storecode",
+                     "name":"webstore1"
+                  },
+                  "redemptions":[
+                     
+                  ]
+               },
+               {
+                  "code":"KZWMCYTR",
+                  "seriesId":14162,
+                  "description":"Mobile Push offer 1",
+                  "validTill":"2022-03-20T00:00:00+05:30",
+                  "discountType":"PERC",
+                  "discountValue":10.0,
+                  "discountUpto":0.0,
+                  "redemptionCount":0,
+                  "redemptionsLeft":1,
+                  "id":397755229,
+                  "createdDate":"2021-09-01T17:53:43+05:30",
+                  "transactionNumber":"2147861881",
+                  "issuedAt":{
+                     "code":"storecode",
+                     "name":"webstore1"
+                  },
+                  "redemptions":[
+                     
+                  ]
+               }
+            ]
+         }
+      ]
+   },
+   "warnings":[
+      
+   ],
+   "errors":[
+      
+   ],
+   "success":true
+}
+```
+
+
+### Resource Information
+
+| | |
+--------- | ----------- |
+URI | `/v2/customers/coupons?{queryParams}`
+HTTP Method | GET
+API Version | v2
+Batch Support | Yes
+Rate Limited | Yes
+
+### Request Query Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | ------------
+mobile/email/externalId/id* | string | Any identifier of the customer to fetch coupons. For example, `id=9876547`.
+status | enum | Filter results by coupon status. Value: `Active`, `Redeemed`, `Unexpired`, `Unredeemed`, `Active_Redeemed` (coupon is active but redeemed), `Active_Unredeemed` (coupon is active but not redeemed), `Expired_Redeemed` (coupon is expired but redeemed),and `Expired_Unredeemed` (coupon is expired and not redeemed).
 
 
 
@@ -4857,7 +4963,7 @@ https://eu.api.capillarytech.com/420007388/referrals
 ### Resource Information
 | | |
 --------- | ----------- |
-URI | `/{userId}/referrals`
+URI | `/{userId}/referrals` <br> OR /lookup/referrals?{queryParams}
 Rate Limited? | Yes (1000 per hour)
 HTTP Methods | GET
 Batch Support | No
@@ -4866,10 +4972,24 @@ Batch Support | No
 ### Request URL
 `{host}/v2/customers/{userId}/referrals`
 
-### Request Path Parameter
+OR
+
+`{host}/v2/customers/{userId}/referrals?source={sourceName}?&accountId={accountId}&identifierName={identifierName}&identifierValue={IdentifierValue}`
+
+
+
+### Request Query Parameters
+
 Parameter | Datatype | Description
 --------- | -------- | -----------
 userId* | long | Unique ID of the customer whose referral details need to be displayed.
+identifierName** | enum | Identifier type to used for the customer. Values: `mobile`, `email`, `externalId`, `cardExternalId`, `cardNumber`.
+identifierValue* | string | The respective identifier value. For example if `identifierName` is email, then the `identifierValue` needs to be the email ID of the customer.
+source* | enum | Specify the source in which you want to update the customer details - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, MOBILE_APP. For sources with multiple accounts such as WECHAT, FACEBOOK, MOBILE_APP, or LINE, you also need to provide the respective account id.
+accountId* | string | Account in which you want to update the customer details (Required only for sources with multiple accounts)
+
+<aside class="notice">The parameter userId is required for normal API and the parameters marked with ** are required for lookup API.</aside>
+
 
 
 ## Add TRAI Consent
@@ -5944,6 +6064,62 @@ identifierValue* | string | Pass the respective identifier value.
 
 
 
+## Get Customer Recommendations
+
+> Sample Request
+
+```html
+https://us.api.capillarytech.com/v2/customers/lookup/recommendations?accountId=&source=INSTORE&identifierName=cardnumber&identifierValue=ouid0000000000000039test
+```
+
+> Sample Response
+
+```json
+{
+    "customer": {
+        "id": 399012826,
+        "attributionTill": 0,
+        "extendedFields": {},
+        "lifetimePurchases": 0,
+        "loyaltyId": 0,
+        "orgId": 0,
+        "registeredById": 0,
+        "source": "INSTORE",
+        "type": "LOYALTY",
+        "mergeSurvivor": false,
+        "customerUpdate": false,
+        "identifierHash": "customer_~~MOBILE:null~~~~EXTERNAL_ID:null~~~~EMAIL:null~~~~ID:399012826~~~~CARD_NUMBER:null~~~~CARD_EXTERNAL_ID:null~~",
+        "extendedFieldsSet": [],
+        "new": false,
+        "campaignUser": true
+    },
+    "count": 0,
+    "warnings": []
+}
+```
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/lookup/recommendations?{query parameters}'
+Authentication | Yes
+HTTP Method | GET
+Batch Support | No
+
+
+
+### Request URL
+
+`{host}/v2/customers/lookup?recommendations?accountId=&source={source}&identifierName={identifierName}&identifierValue={identifierValue}`
+
+
+### Request Query Parameters
+Parameter | Datatype | Description
+--------- | -------- | -----------
+source* | enum | Specify the source from which you want to fetch the customer details. Values: `FACEBOOK`, `WEB_ENGAGE`, `WECHAT`, `INSTORE`, `MARTJACK`, `TMALL`, `TAOBAO`, `JD`, `ECOMMERCE`, `WEBSITE`, `LINE`, `ALL`.
+accountId | string | Specify the account id of the specific source if the source has multiple accounts. `accountId` is required for sources with multiple accounts such as WeChat or Facebook.
+identifierName* | enum | Identifier based on which you want to fetch the customer id. **Values**: `mobile`, `email`, `externalId`, `cardnumber`, `cardExternalId`, `wechat`, `martjackId`,`fbId`.
+identifierValue* | string | Pass the respective identifier value.
 
 
 ### Error Codes

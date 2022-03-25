@@ -207,7 +207,9 @@ So the Authentication Header is
 To use username and password for authentication, pass TILL ID as username and md5 hash encrypted password.
 
 Consider the preceding example:
+
 username: store.server
+
 Password: md5 hash (server123) which is 8a16a6b70505eb1f1ff7cdc0cd5559a7
 
 <aside class="notice">You can create TILL credentials in Organization Setup. To know more see <a href="https://support.capillarytech.com/a/solutions/articles/4000028057?lang=en&portalId=44632#Add-Till" target="_blank">Add TILL</a> </aside>
@@ -286,7 +288,7 @@ https://eu.api.capillarytech.com/v3/oauth/token/generate
 ```
 
 ### Other Headers Required
-* **Content type** - This should be set as application/json
+* **Content-Type** - This should be set as application/json
 
 * **Accept** - This should also be set as application/json
 

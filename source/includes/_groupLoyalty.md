@@ -1409,7 +1409,85 @@ sortBy | enum | Sort the results by created date.  Supported values: `createdDat
 sortOrder | enum | Sort the results in ascending (`asc`) or descending (`desc`) order of the chosen `soryBy`
 offset | int | Number of rows to be ignored from the top.
 
+## Get Companies by Extended Field Vales
 
+Fetches companies using the first few values of an extended field value provided.
+
+> Sample Request
+
+```html
+https://us.api.capillarytech.com/v2/companies/extendedFieldSearch?extendedFieldName=owner&q=Capillary&limit=100&offset=1
+```
+
+> Sample Response
+
+```json
+{
+    "pagination": {
+        "limit": 100,
+        "offset": 1,
+        "total": 0
+    },
+    "data": [
+        {
+            "entityId": 113,
+            "matchedExtendedField": {
+                "fieldName": "owner",
+                "fieldValue": "Capillary"
+            },
+            "externalId": "ex-9177100000",
+            "name": "name-9177100000"
+        },
+        {
+            "entityId": 75,
+            "matchedExtendedField": {
+                "fieldName": "owner",
+                "fieldValue": "Capillary"
+            },
+            "externalId": "ex917800000",
+            "name": "name-9178300000"
+        },
+        {
+            "entityId": 114,
+            "matchedExtendedField": {
+                "fieldName": "owner",
+                "fieldValue": "Capillary"
+            },
+            "externalId": "ex-918403067314",
+            "name": "name-918400000000"
+        }
+    ],
+    "warnings": [],
+    "errors": []
+}
+```
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `companies?extendedFieldSearch?{queryParam}={paramValue}`
+Authentication | Yes
+HTTP Method | POST
+Batch Support | No
+
+
+### Request URL
+
+`{host}/v2/companies?extendedFieldSearch?extendedFieldName={name}&q={value}&{queryParams}`
+
+
+### Request Query Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+extendedFieldName* | string | Name of the extended field basis which companies need to be fetched.
+q* | string | Enter the first few characters of the extended field value. Pass at least `3` characters. For example, `?extendedFieldName=city&q=ban` fetches all the companies that has the city name starts with Ban.
+limit | int | Number of results to relative.
+sortBy | enum | Sort the results by created date.  Supported values: `createdDate`.
+sortOrder | enum | Sort the results in ascending (`asc`) or descending (`desc`) order of the chosen `soryBy`.
+offset | int | Number of rows to be ignored from the top.
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
 
 ## Associate Customer with Customer/Hierarchy
 

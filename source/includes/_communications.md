@@ -101,5 +101,5 @@ attachment | array-obj | Details of each attachment in email.
 fileName | string | Name of the attached file. 
 fileType | string | Type of the file (file format). 
 fileData | strig | Encoded data of the  attachment.
-fileEncodingType | string | Encoding type of the attachment provided in fileData.
+fileEncodingType | string | Encoding type of the image attachment to upload images in the right format. Required for all base64 encoded image formats such as JPG, PNG, JPEG, and GIF. This is not required for other file types like TXT, and PDF which are not base64 encoded.
 scheduledTime | date-time | `ISO` standard date and time of scheduling the email.

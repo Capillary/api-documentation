@@ -327,9 +327,11 @@
 
 <p>To use username and password for authentication, pass TILL ID as username and md5 hash encrypted password.</p>
 
-<p>Consider the preceding example:
-username: store.server
-Password: md5 hash (server123) which is 8a16a6b70505eb1f1ff7cdc0cd5559a7</p>
+<p>Consider the preceding example:</p>
+
+<p>username: store.server</p>
+
+<p>Password: md5 hash (server123) which is 8a16a6b70505eb1f1ff7cdc0cd5559a7</p>
 
 <aside class="notice">You can create TILL credentials in Organization Setup. To know more see <a href="https://support.capillarytech.com/a/solutions/articles/4000028057?lang=en&portalId=44632#Add-Till" target="_blank">Add TILL</a> </aside>
 
@@ -426,7 +428,7 @@ Password: md5 hash (server123) which is 8a16a6b70505eb1f1ff7cdc0cd5559a7</p>
 <h3 id="other-headers-required">Other Headers Required</h3>
 
 <ul>
-<li><p><strong>Content type</strong> - This should be set as application/json</p></li>
+<li><p><strong>Content-Type</strong> - This should be set as application/json</p></li>
 <li><p><strong>Accept</strong> - This should also be set as application/json</p></li>
 </ul>
 
@@ -2665,16 +2667,6 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <td>Available communication channels of the customer. Value: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">wechat</code>, <code class="prettyprint">ios</code>, <code class="prettyprint">android</code>, <code class="prettyprint">line</code>, <code class="prettyprint">mobilePush</code>.</td>
 </tr>
 <tr>
-<td>Firstname</td>
-<td>string</td>
-<td>First name of the customer.</td>
-</tr>
-<tr>
-<td>Lastname</td>
-<td>string</td>
-<td>Last name of the customer.</td>
-</tr>
-<tr>
 <td>createDate</td>
 <td>date-time</td>
 <td>Time and date of registration in <code class="prettyprint">YYYY-MM-DDTHH:MM:SS+HH:MM</code> format. Example: 2016-06-23T19:11:18+08:00</td>
@@ -3059,17 +3051,6 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <table><thead>
 <tr>
 <th>Parameter</th>
-<th>Datatype</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-</tbody></table>
-
-<h3 id="request-body-parameters">Request Body Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
 <th>Type</th>
 <th>Description</th>
 </tr>
@@ -3198,16 +3179,6 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <td>commChannels</td>
 <td>obj</td>
 <td>Available communication channels of the customer. Value: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">wechat</code>, <code class="prettyprint">ios</code>, <code class="prettyprint">android</code>, <code class="prettyprint">line</code>, <code class="prettyprint">mobilePush</code>.</td>
-</tr>
-<tr>
-<td>Firstname</td>
-<td>string</td>
-<td>First name of the customer.</td>
-</tr>
-<tr>
-<td>Lastname</td>
-<td>string</td>
-<td>Last name of the customer.</td>
 </tr>
 <tr>
 <td>createDate</td>
@@ -4612,7 +4583,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/{customerId}/subscriptions</code></td>
+<td><code class="prettyprint">/{customerId}/subscriptions</code> OR <br><code class="prettyprint">/lookup/subscriptions?{queryParams}</code></td>
 </tr>
 <tr>
 <td>Authentication</td>
@@ -4632,7 +4603,60 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 
 <p><code class="prettyprint">{host}/v2/customers/{customerId}/subscriptions</code></p>
 
-<h3 id="request-parameters">Request Parameters</h3>
+<p>OR</p>
+
+<p><code class="prettyprint">{host}/v2/customers/lookup/subscriptions?source={sourceName}?&amp;accountId={accountId}&amp;identifierName={identifierName}&amp;identifierValue={IdentifierValue}</code></p>
+
+<h3 id="request-path-parameters-for-normal-api">Request Path Parameters (for normal API)</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>customerId*</td>
+<td>long</td>
+<td>Unique ID of the customer to add subscription details.</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-query-parameters-for-lookup-api">Request Query Parameters (for lookup API)</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifierName**</td>
+<td>enum</td>
+<td>Identifier type to used for the customer. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">cardExternalId</code>, <code class="prettyprint">cardNumber</code>.</td>
+</tr>
+<tr>
+<td>identifierValue*</td>
+<td>string</td>
+<td>The respective identifier value. For example if <code class="prettyprint">identifierName</code> is email, then the <code class="prettyprint">identifierValue</code> needs to be the email ID of the customer.</td>
+</tr>
+<tr>
+<td>source*</td>
+<td>enum</td>
+<td>Specify the source in which you want to update the customer details - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, MOBILE_APP. For sources with multiple accounts such as WECHAT, FACEBOOK, MOBILE_APP, or LINE, you also need to provide the respective account id.</td>
+</tr>
+<tr>
+<td>accountId*</td>
+<td>string</td>
+<td>Account in which you want to update the customer details (Required only for sources with multiple accounts)</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">The parameter userId is required for normal API and the parameters marked with ** are required for lookup API.</aside>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
 
 <table><thead>
 <tr>
@@ -4668,7 +4692,7 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 
 <aside class="notice">Parameter marked with * is mandatory and also pass other dependent required for the specific action. </aside> 
 
-<h2 id="retrieve-subscription-details">Retrieve Subscription Details</h2>
+<h2 id="get-subscription-details">Get Subscription Details</h2>
 
 <blockquote>
 <p>Sample Request</p>
@@ -4742,21 +4766,58 @@ https://eu.api.capillarytech.com/v2/customers/17742/subscriptions
 
 <p><code class="prettyprint">{host}/v2/customers/{customerId}/subscriptions</code></p>
 
-<h3 id="request-query-parameters">Request Query Parameters</h3>
+<p>OR</p>
+
+<p><code class="prettyprint">{host}/v2/customers/{customerId}/subscriptions?source={sourceName}?&amp;accountId={accountId}&amp;identifierName={identifierName}&amp;identifierValue={IdentifierValue}</code></p>
+
+<h3 id="request-path-parameters-for-normal-api">Request Path Parameters (for normal API)</h3>
 
 <table><thead>
 <tr>
 <th>Parameter</th>
+<th>Type</th>
 <th>Description</th>
 </tr>
 </thead><tbody>
 <tr>
-<td>id*</td>
-<td>Pass the unique ID of the customer to fetch the subscription details</td>
+<td>customerId*</td>
+<td>long</td>
+<td>Unique ID of the customer to fetch retro transaction details.</td>
 </tr>
 </tbody></table>
 
-<aside class="notice">Parameter marked with * is mandatory.</aside>
+<h3 id="request-query-parameters-for-lookup-api">Request Query Parameters (for lookup API)</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifierName**</td>
+<td>enum</td>
+<td>Identifier type to used for the customer. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">cardExternalId</code>, <code class="prettyprint">cardNumber</code>.</td>
+</tr>
+<tr>
+<td>identifierValue*</td>
+<td>string</td>
+<td>The respective identifier value. For example if <code class="prettyprint">identifierName</code> is email, then the <code class="prettyprint">identifierValue</code> needs to be the email ID of the customer.</td>
+</tr>
+<tr>
+<td>source*</td>
+<td>enum</td>
+<td>Specify the source in which you want to update the customer details - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, MOBILE_APP. For sources with multiple accounts such as WECHAT, FACEBOOK, MOBILE_APP, or LINE, you also need to provide the respective account id.</td>
+</tr>
+<tr>
+<td>accountId*</td>
+<td>string</td>
+<td>Account in which you want to update the customer details (Required only for sources with multiple accounts)</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">The parameter userId is required for normal API and the parameters marked with ** are required for lookup API.</aside>
 
 <h2 id="get-points-transfer-summary-of-customer">Get Points Transfer Summary of Customer</h2>
 
@@ -5083,7 +5144,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/{customerId}/retroRequest?{query parameters}</code></td>
+<td><code class="prettyprint">/{customerId}/retroRequest?{query parameters}</code> OR <br><code class="prettyprint">/lookup/retroRequest?</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -5092,10 +5153,6 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <tr>
 <td>Authentication</td>
 <td>Yes</td>
-</tr>
-<tr>
-<td>Response Formats</td>
-<td>JSON</td>
 </tr>
 <tr>
 <td>HTTP Method</td>
@@ -5111,7 +5168,60 @@ Also, check the following configurations for maximum days allowed and minimum ti
 
 <p><code class="prettyprint">{host}/v2/customers/{customerId}/retroRequest?{queryParameters}</code></p>
 
-<h3 id="request-query-parameters">Request Query Parameters</h3>
+<p>OR</p>
+
+<p><code class="prettyprint">{host}/v2/customers/lookup/retroRequest?source={sourceName}?&amp;accountId={accountId}&amp;identifierName={identifierName}&amp;identifierValue={IdentifierValue}</code></p>
+
+<h3 id="request-path-parameters-for-normal-api">Request Path Parameters (for normal API)</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>customerId*</td>
+<td>long</td>
+<td>Unique ID of the customer to fetch retro transaction details.</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-query-parameters-for-lookup-api">Request Query Parameters (for lookup API)</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifierName**</td>
+<td>enum</td>
+<td>Identifier type to used for the customer. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">cardExternalId</code>, <code class="prettyprint">cardNumber</code>.</td>
+</tr>
+<tr>
+<td>identifierValue*</td>
+<td>string</td>
+<td>The respective identifier value. For example if <code class="prettyprint">identifierName</code> is email, then the <code class="prettyprint">identifierValue</code> needs to be the email ID of the customer.</td>
+</tr>
+<tr>
+<td>source*</td>
+<td>enum</td>
+<td>Specify the source in which you want to update the customer details - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, MOBILE_APP. For sources with multiple accounts such as WECHAT, FACEBOOK, MOBILE_APP, or LINE, you also need to provide the respective account id.</td>
+</tr>
+<tr>
+<td>accountId*</td>
+<td>string</td>
+<td>Account in which you want to update the customer details (Required only for sources with multiple accounts)</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">The parameter userId is required for normal API and the parameters marked with ** are required for lookup API.</aside>
+
+<h3 id="request-query-parameters-common">Request Query Parameters (common)</h3>
 
 <table><thead>
 <tr>
@@ -5154,6 +5264,56 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>limit</td>
 <td>int</td>
 <td>Pass the number of results that you want to see.</td>
+</tr>
+<tr>
+<td>source</td>
+<td>enum</td>
+<td></td>
+</tr>
+<tr>
+<td>accountId</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>activity</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>cardNumber</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>startLimit</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>type</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>startId</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>endId</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>sortBy</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>sortOrder</td>
+<td></td>
+<td></td>
 </tr>
 </tbody></table>
 
@@ -5503,180 +5663,6 @@ Also, check the following configurations for maximum days allowed and minimum ti
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
 
-<h2 id="get-customer-coupons-basic">Get Customer Coupons (Basic)</h2>
-
-<p>Retrieves the history of a customer coupons with basic coupon details.</p>
-
-<blockquote>
-<p>Sample Request</p>
-</blockquote>
-<pre class="highlight html"><code>http://api.capillary.co.in/v2/customers/coupons?id=401031250
-</code></pre>
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-   </span><span class="s2">"entity"</span><span class="p">:{</span><span class="w">
-      </span><span class="s2">"pagination"</span><span class="p">:{</span><span class="w">
-         </span><span class="s2">"limit"</span><span class="p">:</span><span class="s2">"100"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"offset"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
-         </span><span class="s2">"total"</span><span class="p">:</span><span class="mi">4</span><span class="w">
-      </span><span class="p">},</span><span class="w">
-      </span><span class="s2">"customers"</span><span class="p">:[</span><span class="w">
-         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"firstname"</span><span class="p">:</span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"lastname"</span><span class="p">:</span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"mobile"</span><span class="p">:</span><span class="s2">"918860000001"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">401031250</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"coupons"</span><span class="p">:[</span><span class="w">
-               </span><span class="p">{</span><span class="w">
-                  </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"KNRYHMRW"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="mi">363653</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"NewCouponForAll"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"validTill"</span><span class="p">:</span><span class="s2">"2029-09-01T00:00:00+05:30"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"discountType"</span><span class="p">:</span><span class="s2">"ABS"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"discountValue"</span><span class="p">:</span><span class="mf">1000.0</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"discountUpto"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"redemptionCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"redemptionsLeft"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">399000028</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="s2">"2021-09-25T16:28:11+05:30"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"transactionNumber"</span><span class="p">:</span><span class="s2">"2147877652"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"issuedAt"</span><span class="p">:{</span><span class="w">
-                     </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"storecode"</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"webstore1"</span><span class="w">
-                  </span><span class="p">},</span><span class="w">
-                  </span><span class="s2">"redemptions"</span><span class="p">:[</span><span class="w">
-
-                  </span><span class="p">]</span><span class="w">
-               </span><span class="p">},</span><span class="w">
-               </span><span class="p">{</span><span class="w">
-                  </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"7TF6TBQB"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="mi">363653</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"NewCouponForAll"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"validTill"</span><span class="p">:</span><span class="s2">"2029-09-01T00:00:00+05:30"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"discountType"</span><span class="p">:</span><span class="s2">"ABS"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"discountValue"</span><span class="p">:</span><span class="mf">1000.0</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"discountUpto"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"redemptionCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"redemptionsLeft"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">399000029</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="s2">"2021-09-25T16:28:11+05:30"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"transactionNumber"</span><span class="p">:</span><span class="s2">"2147877652"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"issuedAt"</span><span class="p">:{</span><span class="w">
-                     </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"storecode"</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"webstore1"</span><span class="w">
-                  </span><span class="p">},</span><span class="w">
-                  </span><span class="s2">"redemptions"</span><span class="p">:[</span><span class="w">
-
-                  </span><span class="p">]</span><span class="w">
-               </span><span class="p">},</span><span class="w">
-               </span><span class="p">{</span><span class="w">
-                  </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"6JAFX7ZF"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="mi">363653</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"NewCouponForAll"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"validTill"</span><span class="p">:</span><span class="s2">"2029-09-01T00:00:00+05:30"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"discountType"</span><span class="p">:</span><span class="s2">"ABS"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"discountValue"</span><span class="p">:</span><span class="mf">1000.0</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"discountUpto"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"redemptionCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"redemptionsLeft"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">399000026</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="s2">"2021-09-25T16:25:25+05:30"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"transactionNumber"</span><span class="p">:</span><span class="s2">"2147877651"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"issuedAt"</span><span class="p">:{</span><span class="w">
-                     </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"storecode"</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"webstore1"</span><span class="w">
-                  </span><span class="p">},</span><span class="w">
-                  </span><span class="s2">"redemptions"</span><span class="p">:[</span><span class="w">
-
-                  </span><span class="p">]</span><span class="w">
-               </span><span class="p">},</span><span class="w">
-               </span><span class="p">{</span><span class="w">
-                  </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"KZWMCYTR"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="mi">14162</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"Mobile Push offer 1"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"validTill"</span><span class="p">:</span><span class="s2">"2022-03-20T00:00:00+05:30"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"discountType"</span><span class="p">:</span><span class="s2">"PERC"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"discountValue"</span><span class="p">:</span><span class="mf">10.0</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"discountUpto"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"redemptionCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"redemptionsLeft"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">397755229</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="s2">"2021-09-01T17:53:43+05:30"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"transactionNumber"</span><span class="p">:</span><span class="s2">"2147861881"</span><span class="p">,</span><span class="w">
-                  </span><span class="s2">"issuedAt"</span><span class="p">:{</span><span class="w">
-                     </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"storecode"</span><span class="p">,</span><span class="w">
-                     </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"webstore1"</span><span class="w">
-                  </span><span class="p">},</span><span class="w">
-                  </span><span class="s2">"redemptions"</span><span class="p">:[</span><span class="w">
-
-                  </span><span class="p">]</span><span class="w">
-               </span><span class="p">}</span><span class="w">
-            </span><span class="p">]</span><span class="w">
-         </span><span class="p">}</span><span class="w">
-      </span><span class="p">]</span><span class="w">
-   </span><span class="p">},</span><span class="w">
-   </span><span class="s2">"warnings"</span><span class="p">:[</span><span class="w">
-
-   </span><span class="p">],</span><span class="w">
-   </span><span class="s2">"errors"</span><span class="p">:[</span><span class="w">
-
-   </span><span class="p">],</span><span class="w">
-   </span><span class="s2">"success"</span><span class="p">:</span><span class="kc">true</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<h3 id="resource-information">Resource Information</h3>
-
-<table><thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URI</td>
-<td><code class="prettyprint">/v2/customers/coupons?{queryParams}</code></td>
-</tr>
-<tr>
-<td>HTTP Method</td>
-<td>GET</td>
-</tr>
-<tr>
-<td>API Version</td>
-<td>v2</td>
-</tr>
-<tr>
-<td>Batch Support</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td>Rate Limited</td>
-<td>Yes</td>
-</tr>
-</tbody></table>
-
-<h3 id="request-query-parameters">Request Query Parameters</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Datatype</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>mobile/email/externalId/id*</td>
-<td>string</td>
-<td>Any identifier of the customer to fetch coupons. For example, <code class="prettyprint">id=9876547</code>.</td>
-</tr>
-<tr>
-<td>status</td>
-<td>enum</td>
-<td>Filter results by coupon status. Value: <code class="prettyprint">Active</code>, <code class="prettyprint">Redeemed</code>, <code class="prettyprint">Unexpired</code>, <code class="prettyprint">Unredeemed</code>, <code class="prettyprint">Active_Redeemed</code> (coupon is active but redeemed), <code class="prettyprint">Active_Unredeemed</code> (coupon is active but not redeemed), <code class="prettyprint">Expired_Redeemed</code> (coupon is expired but redeemed),and <code class="prettyprint">Expired_Unredeemed</code> (coupon is expired and not redeemed).</td>
-</tr>
-</tbody></table>
-
 <h3 id="response-parameters">Response Parameters</h3>
 
 <table><thead>
@@ -5868,7 +5854,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/v2/customers/{userId}/setImage</code></td>
+<td><code class="prettyprint">/v2/customers/{userId}/setImage</code> OR <br> `/lookup/setImage?{queryParams}</td>
 </tr>
 <tr>
 <td>HTTP Method</td>
@@ -5901,6 +5887,61 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>Pass the relevant value such as <code class="prettyprint">multipart/form-data</code>.</td>
 </tr>
 </tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v2/customers/{customerId}/setImage</code></p>
+
+<p><code class="prettyprint">{host}/v2/customers/lookup/setImage?source={sourceName}?&amp;accountId={accountId}&amp;identifierName={identifierName}&amp;identifierValue={IdentifierValue}</code></p>
+
+<h3 id="request-path-parameters-for-normal-api">Request Path Parameters (for normal API)</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>customerId*</td>
+<td>long</td>
+<td>Unique ID of the customer.</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-query-parameters-for-lookup-api">Request Query Parameters (for lookup API)</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>identifierName**</td>
+<td>enum</td>
+<td>Identifier type to used for the customer. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">cardExternalId</code>, <code class="prettyprint">cardNumber</code>.</td>
+</tr>
+<tr>
+<td>identifierValue*</td>
+<td>string</td>
+<td>The respective identifier value. For example if <code class="prettyprint">identifierName</code> is email, then the <code class="prettyprint">identifierValue</code> needs to be the email ID of the customer.</td>
+</tr>
+<tr>
+<td>source*</td>
+<td>enum</td>
+<td>Specify the source in which you want to update the customer details - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, MOBILE_APP. For sources with multiple accounts such as WECHAT, FACEBOOK, MOBILE_APP, or LINE, you also need to provide the respective account id.</td>
+</tr>
+<tr>
+<td>accountId*</td>
+<td>string</td>
+<td>Account in which you want to update the customer details (Required only for sources with multiple accounts)</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">The parameter userId is required for normal API and the parameters marked with ** are required for lookup API.</aside>
 
 <h3 id="request-path-parameters">Request Path Parameters</h3>
 
@@ -6225,6 +6266,186 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>image_ids</td>
 <td>array</td>
 <td>Delete specific images. Pass the list of image IDs generated by <code class="prettyprint">/setImage</code>.</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-customer-coupons-basic">Get Customer Coupons (Basic)</h2>
+
+<p>Retrieves the history of a customer coupons with basic coupon details.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>http://api.capillary.co.in/v2/customers/coupons?id=401031250
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+   </span><span class="s2">"entity"</span><span class="p">:{</span><span class="w">
+      </span><span class="s2">"pagination"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"limit"</span><span class="p">:</span><span class="s2">"100"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"offset"</span><span class="p">:</span><span class="s2">"0"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"total"</span><span class="p">:</span><span class="mi">4</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"customers"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"firstname"</span><span class="p">:</span><span class="s2">"Tom"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lastname"</span><span class="p">:</span><span class="s2">"Sawyer"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"mobile"</span><span class="p">:</span><span class="s2">"918860000001"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">401031250</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"coupons"</span><span class="p">:[</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"KNRYHMRW"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="mi">363653</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"NewCouponForAll"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"validTill"</span><span class="p">:</span><span class="s2">"2029-09-01T00:00:00+05:30"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"discountType"</span><span class="p">:</span><span class="s2">"ABS"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"discountValue"</span><span class="p">:</span><span class="mf">1000.0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"discountUpto"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"redemptionCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"redemptionsLeft"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">399000028</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="s2">"2021-09-25T16:28:11+05:30"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"transactionNumber"</span><span class="p">:</span><span class="s2">"2147877652"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"issuedAt"</span><span class="p">:{</span><span class="w">
+                     </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"storecode"</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"webstore1"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="s2">"redemptions"</span><span class="p">:[</span><span class="w">
+                     </span><span class="p">{</span><span class="w">
+                       </span><span class="s2">"date"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-03-10T14:48:09+05:30"</span><span class="p">,</span><span class="w">
+                       </span><span class="s2">"transactionNumber"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1646903888000"</span><span class="p">,</span><span class="w">
+                       </span><span class="s2">"redeemedAt"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                       </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"luciauto_store2"</span><span class="p">,</span><span class="w">
+                       </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Auto Store2"</span><span class="w">
+                      </span><span class="p">}</span><span class="w">
+                  </span><span class="p">]</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"7TF6TBQB"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="mi">363653</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"NewCouponForAll"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"validTill"</span><span class="p">:</span><span class="s2">"2029-09-01T00:00:00+05:30"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"discountType"</span><span class="p">:</span><span class="s2">"ABS"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"discountValue"</span><span class="p">:</span><span class="mf">1000.0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"discountUpto"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"redemptionCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"redemptionsLeft"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">399000029</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="s2">"2021-09-25T16:28:11+05:30"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"transactionNumber"</span><span class="p">:</span><span class="s2">"2147877652"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"issuedAt"</span><span class="p">:{</span><span class="w">
+                     </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"storecode"</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"webstore1"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="s2">"redemptions"</span><span class="p">:[</span><span class="w">
+
+                  </span><span class="p">]</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"6JAFX7ZF"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="mi">363653</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"NewCouponForAll"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"validTill"</span><span class="p">:</span><span class="s2">"2029-09-01T00:00:00+05:30"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"discountType"</span><span class="p">:</span><span class="s2">"ABS"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"discountValue"</span><span class="p">:</span><span class="mf">1000.0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"discountUpto"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"redemptionCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"redemptionsLeft"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">399000026</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="s2">"2021-09-25T16:25:25+05:30"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"transactionNumber"</span><span class="p">:</span><span class="s2">"2147877651"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"issuedAt"</span><span class="p">:{</span><span class="w">
+                     </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"storecode"</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"webstore1"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="s2">"redemptions"</span><span class="p">:[</span><span class="w">
+
+                  </span><span class="p">]</span><span class="w">
+               </span><span class="p">},</span><span class="w">
+               </span><span class="p">{</span><span class="w">
+                  </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"KZWMCYTR"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"seriesId"</span><span class="p">:</span><span class="mi">14162</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"Mobile Push offer 1"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"validTill"</span><span class="p">:</span><span class="s2">"2022-03-20T00:00:00+05:30"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"discountType"</span><span class="p">:</span><span class="s2">"PERC"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"discountValue"</span><span class="p">:</span><span class="mf">10.0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"discountUpto"</span><span class="p">:</span><span class="mf">0.0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"redemptionCount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"redemptionsLeft"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"id"</span><span class="p">:</span><span class="mi">397755229</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"createdDate"</span><span class="p">:</span><span class="s2">"2021-09-01T17:53:43+05:30"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"transactionNumber"</span><span class="p">:</span><span class="s2">"2147861881"</span><span class="p">,</span><span class="w">
+                  </span><span class="s2">"issuedAt"</span><span class="p">:{</span><span class="w">
+                     </span><span class="s2">"code"</span><span class="p">:</span><span class="s2">"storecode"</span><span class="p">,</span><span class="w">
+                     </span><span class="s2">"name"</span><span class="p">:</span><span class="s2">"webstore1"</span><span class="w">
+                  </span><span class="p">},</span><span class="w">
+                  </span><span class="s2">"redemptions"</span><span class="p">:[</span><span class="w">
+
+                  </span><span class="p">]</span><span class="w">
+               </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="s2">"warnings"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"errors"</span><span class="p">:[</span><span class="w">
+
+   </span><span class="p">],</span><span class="w">
+   </span><span class="s2">"success"</span><span class="p">:</span><span class="kc">true</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/v2/customers/coupons?{queryParams}</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Rate Limited</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>mobile/email/externalId/id*</td>
+<td>string</td>
+<td>Any identifier of the customer to fetch coupons. For example, <code class="prettyprint">id=9876547</code>.</td>
+</tr>
+<tr>
+<td>status</td>
+<td>enum</td>
+<td>Filter results by coupon status. Value: <code class="prettyprint">Active</code>, <code class="prettyprint">Redeemed</code>, <code class="prettyprint">Unexpired</code>, <code class="prettyprint">Unredeemed</code>, <code class="prettyprint">Active_Redeemed</code> (coupon is active but redeemed), <code class="prettyprint">Active_Unredeemed</code> (coupon is active but not redeemed), <code class="prettyprint">Expired_Redeemed</code> (coupon is expired but redeemed),and <code class="prettyprint">Expired_Unredeemed</code> (coupon is expired and not redeemed).</td>
 </tr>
 </tbody></table>
 
@@ -7062,7 +7283,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/{userId}/referrals</code></td>
+<td><code class="prettyprint">/{userId}/referrals</code> <br> OR /lookup/referrals?{queryParams}</td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -7082,7 +7303,11 @@ Also, check the following configurations for maximum days allowed and minimum ti
 
 <p><code class="prettyprint">{host}/v2/customers/{userId}/referrals</code></p>
 
-<h3 id="request-path-parameter">Request Path Parameter</h3>
+<p>OR</p>
+
+<p><code class="prettyprint">{host}/v2/customers/{userId}/referrals?source={sourceName}?&amp;accountId={accountId}&amp;identifierName={identifierName}&amp;identifierValue={IdentifierValue}</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
 
 <table><thead>
 <tr>
@@ -7096,7 +7321,29 @@ Also, check the following configurations for maximum days allowed and minimum ti
 <td>long</td>
 <td>Unique ID of the customer whose referral details need to be displayed.</td>
 </tr>
+<tr>
+<td>identifierName**</td>
+<td>enum</td>
+<td>Identifier type to used for the customer. Values: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">cardExternalId</code>, <code class="prettyprint">cardNumber</code>.</td>
+</tr>
+<tr>
+<td>identifierValue*</td>
+<td>string</td>
+<td>The respective identifier value. For example if <code class="prettyprint">identifierName</code> is email, then the <code class="prettyprint">identifierValue</code> needs to be the email ID of the customer.</td>
+</tr>
+<tr>
+<td>source*</td>
+<td>enum</td>
+<td>Specify the source in which you want to update the customer details - FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, MOBILE_APP. For sources with multiple accounts such as WECHAT, FACEBOOK, MOBILE_APP, or LINE, you also need to provide the respective account id.</td>
+</tr>
+<tr>
+<td>accountId*</td>
+<td>string</td>
+<td>Account in which you want to update the customer details (Required only for sources with multiple accounts)</td>
+</tr>
 </tbody></table>
+
+<aside class="notice">The parameter userId is required for normal API and the parameters marked with ** are required for lookup API.</aside>
 
 <h2 id="add-trai-consent">Add TRAI Consent</h2>
 
@@ -8543,6 +8790,99 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 </tbody></table>
 
 <aside class="notice">Parameters marked with * are mandatory.</aside>
+
+<h2 id="get-customer-recommendations">Get Customer Recommendations</h2>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/customers/lookup/recommendations?accountId=<span class="err">&amp;</span>source=INSTORE<span class="err">&amp;</span>identifierName=cardnumber<span class="err">&amp;</span>identifierValue=ouid0000000000000039test
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"customer"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">399012826</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"attributionTill"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+        </span><span class="s2">"lifetimePurchases"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"loyaltyId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"registeredById"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"source"</span><span class="p">:</span><span class="w"> </span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LOYALTY"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mergeSurvivor"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"customerUpdate"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"identifierHash"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customer_~~MOBILE:null~~~~EXTERNAL_ID:null~~~~EMAIL:null~~~~ID:399012826~~~~CARD_NUMBER:null~~~~CARD_EXTERNAL_ID:null~~"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"extendedFieldsSet"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+        </span><span class="s2">"new"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"campaignUser"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"count"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td>`/lookup/recommendations?{query parameters}&lsquo;</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v2/customers/lookup?recommendations?accountId=&amp;source={source}&amp;identifierName={identifierName}&amp;identifierValue={identifierValue}</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>source*</td>
+<td>enum</td>
+<td>Specify the source from which you want to fetch the customer details. Values: <code class="prettyprint">FACEBOOK</code>, <code class="prettyprint">WEB_ENGAGE</code>, <code class="prettyprint">WECHAT</code>, <code class="prettyprint">INSTORE</code>, <code class="prettyprint">MARTJACK</code>, <code class="prettyprint">TMALL</code>, <code class="prettyprint">TAOBAO</code>, <code class="prettyprint">JD</code>, <code class="prettyprint">ECOMMERCE</code>, <code class="prettyprint">WEBSITE</code>, <code class="prettyprint">LINE</code>, <code class="prettyprint">ALL</code>.</td>
+</tr>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>Specify the account id of the specific source if the source has multiple accounts. <code class="prettyprint">accountId</code> is required for sources with multiple accounts such as WeChat or Facebook.</td>
+</tr>
+<tr>
+<td>identifierName*</td>
+<td>enum</td>
+<td>Identifier based on which you want to fetch the customer id. <strong>Values</strong>: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">cardnumber</code>, <code class="prettyprint">cardExternalId</code>, <code class="prettyprint">wechat</code>, <code class="prettyprint">martjackId</code>,<code class="prettyprint">fbId</code>.</td>
+</tr>
+<tr>
+<td>identifierValue*</td>
+<td>string</td>
+<td>Pass the respective identifier value.</td>
+</tr>
+</tbody></table>
 
 <h3 id="error-codes">Error Codes</h3>
 
@@ -21899,73 +22239,78 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 
 <h2 id="get-lead-status-log">Get Lead Status Log</h2>
 
-<p>Retrieves the status change log of a specific lead. 
-​
-​</p>
+<p>Retrieves the status change log of a specific lead. </p>
 
 <blockquote>
-<p>Sample Request
-​
-<code class="prettyprint">html
-​
-https://us.api.capillarytech.com/v2/leads/12/statusLog
-​
-</code>
-​
-​
-​
-Sample Response
-​
-<code class="prettyprint">json
-​
-{
-    &quot;data&quot;: [
-        {
-            &quot;id&quot;: 23,
-            &quot;userId&quot;: 90486525,
-            &quot;leadId&quot;: 12,
-            &quot;status&quot;: &quot;OPEN&quot;,
-            &quot;createdBy&quot;: 75029724,
-            &quot;createdOn&quot;: &quot;2019-02-20T15:33:11Z&quot;,
-            &quot;reasonId&quot;: 3,
-            &quot;reason&quot;: &quot;APICALL&quot;
-        },
-        {
-            &quot;id&quot;: 24,
-            &quot;userId&quot;: 90486525,
-            &quot;leadId&quot;: 12,
-            &quot;status&quot;: &quot;ON_HOLD&quot;,
-            &quot;createdBy&quot;: 75029724,
-            &quot;createdOn&quot;: &quot;2019-02-20T15:33:11Z&quot;,
-            &quot;reasonId&quot;: 4,
-            &quot;reason&quot;: &quot;NOT PICKING CALL&quot;
-        }
-    ],
-    &quot;warnings&quot;: [],
-    &quot;errors&quot;: []
-}
-​
-</code>
-​</p>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/leads/12/statusLog
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">90486525</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"OPEN"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-20T15:33:11Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"APICALL"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">90486525</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"status"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ON_HOLD"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-20T15:33:11Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"reasonId"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"reason"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOT PICKING CALL"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<p>​</p>
 
 <h3 id="resource-information">Resource Information</h3>
 
-<p>​
-| | |
-&mdash;&mdash;&mdash; | &mdash;&mdash;&mdash;&ndash; |
-URI | <code class="prettyprint">v2/leads/{leadId}/statusLog</code>
-HTTP Method | GET
-API Version | v2
-Rate Limited | Yes
-Batch Support | No
-​
-​</p>
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/leads/{leadId}/statusLog</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Rate Limited</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/leads/{leadId}/statusLog</code>
-​
-​</p>
+<p><code class="prettyprint">https://{host}/v2/leads/{leadId}/statusLog</code></p>
 
 <h3 id="request-path-parameters">Request Path Parameters</h3>
 
@@ -21982,7 +22327,6 @@ Batch Support | No
 <td>Unique ID of the lead.</td>
 </tr>
 </tbody></table>
-</blockquote>
 
 <aside class="notice"> Parameter marked with * is mandatory. </aside>
 
@@ -21992,75 +22336,79 @@ Batch Support | No
 
 <h2 id="get-lead-follow-ups">Get Lead follow-ups</h2>
 
-<p>Retrieves the follow ups of a specific lead.
-​
-​</p>
+<p>Retrieves the follow ups of a specific lead.</p>
 
 <blockquote>
-<p>Sample Request
-​
-<code class="prettyprint">html
-​
-https://us.api.capillarytech.com/v2/leads/12/followups
-​
-</code>
-​
-​
-​
-Sample Response
-​
-<code class="prettyprint">json
-​
-{
-    &quot;data&quot;: [
-        {
-            &quot;id&quot;: 23,
-            &quot;userId&quot;: 90486525,
-            &quot;leadId&quot;: 12,
-            &quot;notes&quot;: &quot;notes 1&quot;,
-            &quot;createdBy&quot;: 75029724,
-            &quot;createdOn&quot;: &quot;2019-02-20T15:33:11Z&quot;,
-            &quot;followedUpBy&quot;: 75029724,
-            &quot;followedUpOn&quot;: &quot;2018-10-04T07:15:00Z&quot;,
-            &quot;scheduledFollowUp&quot;: &quot;2018-10-04T07:00:00Z&quot;
-        },
-        {
-            &quot;id&quot;: 24,
-            &quot;userId&quot;: 90486525,
-            &quot;leadId&quot;: 12,
-            &quot;notes&quot;: &quot;notes 2&quot;,
-            &quot;createdBy&quot;: 75029724,
-            &quot;createdOn&quot;: &quot;2019-02-20T15:33:11Z&quot;,
-            &quot;followedUpBy&quot;: 75029724,
-            &quot;followedUpOn&quot;: &quot;2018-10-04T07:15:00Z&quot;,
-            &quot;scheduledFollowUp&quot;: &quot;2018-10-04T07:00:00Z&quot;
-        }
-    ],
-    &quot;warnings&quot;: [],
-    &quot;errors&quot;: []
-}
-​
-</code>
-​</p>
-
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/leads/12/followups
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">23</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">90486525</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes 1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-20T15:33:11Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"followedUpBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"followedUpOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T07:15:00Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"scheduledFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T07:00:00Z"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">24</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"userId"</span><span class="p">:</span><span class="w"> </span><span class="mi">90486525</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"leadId"</span><span class="p">:</span><span class="w"> </span><span class="mi">12</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"notes 2"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2019-02-20T15:33:11Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"followedUpBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75029724</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"followedUpOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T07:15:00Z"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"scheduledFollowUp"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2018-10-04T07:00:00Z"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <h3 id="resource-information">Resource Information</h3>
 
-<p>​
-| | |
-&mdash;&mdash;&mdash; | &mdash;&mdash;&mdash;&ndash; |
-URI | <code class="prettyprint">v2/leads/{leadId}/followups</code>
-HTTP Method | GET
-API Version | v2
-Rate Limited | Yes
-Batch Support | No
-​
-​</p>
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">v2/leads/{leadId}/followups</code></td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v2</td>
+</tr>
+<tr>
+<td>Rate Limited</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
 
 <h3 id="request-url">Request URL</h3>
 
-<p><code class="prettyprint">https://{host}/v2/leads/{leadId}/followups</code>
-​
-​</p>
+<p><code class="prettyprint">https://{host}/v2/leads/{leadId}/followups</code></p>
 
 <h3 id="request-path-parameters">Request Path Parameters</h3>
 
@@ -22077,7 +22425,6 @@ Batch Support | No
 <td>Unique ID of the lead.</td>
 </tr>
 </tbody></table>
-</blockquote>
 
 <aside class="notice"> Parameter marked with * is mandatory. </aside>
 
@@ -23763,7 +24110,7 @@ Batch Support | No
 <td>Yes</td>
 </tr>
 <tr>
-<td>HTTP Methods</td>
+<td>HTTP Method</td>
 <td>POST</td>
 </tr>
 <tr>
@@ -23843,7 +24190,7 @@ Batch Support | No
 <td>Yes</td>
 </tr>
 <tr>
-<td>HTTP Methods</td>
+<td>HTTP Method</td>
 <td>POST (No Body required)</td>
 </tr>
 <tr>
@@ -23950,7 +24297,7 @@ Batch Support | No
 <td>Yes</td>
 </tr>
 <tr>
-<td>HTTP Methods</td>
+<td>HTTP Method</td>
 <td>POST</td>
 </tr>
 <tr>
@@ -24059,7 +24406,7 @@ Batch Support | No
 <td>Yes</td>
 </tr>
 <tr>
-<td>HTTP Methods</td>
+<td>HTTP Method</td>
 <td>PUT</td>
 </tr>
 <tr>
@@ -24179,7 +24526,7 @@ Batch Support | No
 <td>Yes</td>
 </tr>
 <tr>
-<td>HTTP Methods</td>
+<td>HTTP Method</td>
 <td>GET</td>
 </tr>
 <tr>
@@ -24414,7 +24761,7 @@ Batch Support | No
 <td>Yes</td>
 </tr>
 <tr>
-<td>HTTP Methods</td>
+<td>HTTP Method</td>
 <td>GET</td>
 </tr>
 <tr>
@@ -24549,7 +24896,7 @@ Batch Support | No
 <td>Yes</td>
 </tr>
 <tr>
-<td>HTTP Methods</td>
+<td>HTTP Method</td>
 <td>PUT</td>
 </tr>
 <tr>
@@ -24688,7 +25035,7 @@ Batch Support | No
 <td>JSON</td>
 </tr>
 <tr>
-<td>HTTP Methods</td>
+<td>HTTP Method</td>
 <td>PUT</td>
 </tr>
 <tr>
@@ -24770,7 +25117,7 @@ Batch Support | No
 <td>Yes</td>
 </tr>
 <tr>
-<td>HTTP Methods</td>
+<td>HTTP Method</td>
 <td>DELETE</td>
 </tr>
 <tr>
@@ -24811,7 +25158,7 @@ Batch Support | No
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
 
-<h2 id="get-points-contribution-by-secondary-members">Get Points Contribution by Secondary Members</h2>
+<h2 id="get-points-contribution-history-by-secondary-members">Get Points Contribution History (by Secondary Members)</h2>
 
 <p>Retrieves the details of points transferred from secondary members to the primary member of the group on predefined events. Pass any of the identifiers of the primary member or any of the secondary members of the group. For more details on the configurations related to points pooling, see <a href="https://support.capillarytech.com/en/support/solutions/articles/4000162618-group-loyalty-overview">Group Loyalty Overview</a>.</p>
 
@@ -24921,7 +25268,7 @@ Batch Support | No
 <td>Yes</td>
 </tr>
 <tr>
-<td>HTTP Methods</td>
+<td>HTTP Method</td>
 <td>GET</td>
 </tr>
 <tr>
@@ -24961,32 +25308,32 @@ Batch Support | No
 <tr>
 <td>source</td>
 <td>enum</td>
-<td>Source from which the customer is registered.</td>
+<td>Source from which the customer is registered. Value: <code class="prettyprint">INSTORE</code>, <code class="prettyprint">MARTJACK</code>, <code class="prettyprint">WECHAT</code>, <code class="prettyprint">ALL</code>. ( to fetch details from all sources. For sources with multiple accounts, you also need to pass the specific accountId.</td>
 </tr>
 <tr>
 <td>accountId</td>
 <td>string</td>
-<td></td>
+<td>Account ID for sources with multiple accounts.</td>
 </tr>
 <tr>
 <td>dateFrom</td>
 <td>date-time</td>
-<td></td>
+<td>Filter results where the event date is &gt;= specified date. Pass the date in<code class="prettyprint">ISO</code> standard date format.</td>
 </tr>
 <tr>
 <td>dateTo</td>
 <td>date-time</td>
-<td></td>
+<td>Filter results where the event date is &lt;= specified date. Pass the date in<code class="prettyprint">ISO</code> standard date format.</td>
 </tr>
 <tr>
 <td>limit</td>
 <td>int</td>
-<td></td>
+<td>Maximum number of results to show. This should be positive. if limit is less &lt;=0, then the default limit <code class="prettyprint">20</code> is  considered.</td>
 </tr>
 <tr>
 <td>offset</td>
 <td>int</td>
-<td></td>
+<td>Offset of the first entry in the result. This should be positive. If offset is less than 0, then 0 default offset will be used.</td>
 </tr>
 <tr>
 <td>sortBy</td>
@@ -25407,7 +25754,7 @@ Batch Support | No
 <td>Yes</td>
 </tr>
 <tr>
-<td>HTTP Methods</td>
+<td>HTTP Method</td>
 <td>GET</td>
 </tr>
 <tr>
@@ -31336,6 +31683,130 @@ Batch Support | No
 </tr>
 </tbody></table>
 
+<h2 id="get-companies-by-extended-field-vales">Get Companies by Extended Field Vales</h2>
+
+<p>Fetches companies using the first few values of an extended field value provided.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://us.api.capillarytech.com/v2/companies/extendedFieldSearch?extendedFieldName=owner<span class="err">&amp;</span>q=Capillary<span class="err">&amp;</span>limit=100<span class="err">&amp;</span>offset=1
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"pagination"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"limit"</span><span class="p">:</span><span class="w"> </span><span class="mi">100</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"offset"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"total"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">113</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"matchedExtendedField"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"fieldName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"owner"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"fieldValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Capillary"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ex-9177100000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name-9177100000"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">75</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"matchedExtendedField"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"fieldName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"owner"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"fieldValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Capillary"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ex917800000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name-9178300000"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">114</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"matchedExtendedField"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"fieldName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"owner"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"fieldValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Capillary"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"externalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ex-918403067314"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"name-918400000000"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">companies?extendedFieldSearch?{queryParam}={paramValue}</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v2/companies?extendedFieldSearch?extendedFieldName={name}&amp;q={value}&amp;{queryParams}</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>extendedFieldName*</td>
+<td>string</td>
+<td>Name of the extended field basis which companies need to be fetched.</td>
+</tr>
+<tr>
+<td>q*</td>
+<td>string</td>
+<td>Enter the first few characters of the extended field value. Pass at least <code class="prettyprint">3</code> characters. For example, <code class="prettyprint">?extendedFieldName=city&amp;q=ban</code> fetches all the companies that has the city name starts with Ban.</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>int</td>
+<td>Number of results to relative.</td>
+</tr>
+<tr>
+<td>sortBy</td>
+<td>enum</td>
+<td>Sort the results by created date.  Supported values: <code class="prettyprint">createdDate</code>.</td>
+</tr>
+<tr>
+<td>sortOrder</td>
+<td>enum</td>
+<td>Sort the results in ascending (<code class="prettyprint">asc</code>) or descending (<code class="prettyprint">desc</code>) order of the chosen <code class="prettyprint">soryBy</code>.</td>
+</tr>
+<tr>
+<td>offset</td>
+<td>int</td>
+<td>Number of rows to be ignored from the top.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with * are mandatory.</aside>
+
 <h2 id="associate-customer-with-customer-hierarchy">Associate Customer with Customer/Hierarchy</h2>
 
 <p>Lets you batch register customer or associate customer with company or hierarchy. The batch support is to register parent and child customer at the same time.</p>
@@ -36344,60 +36815,6 @@ Retrieves the configuration details of a specific source.
             </span><span class="s2">"isUpdatable"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
         </span><span class="p">},</span><span class="w">
         </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customer_preference1"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"String"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customer_preference1"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customer_preferences"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"defaultValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"phase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"position"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"rule"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"regex"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"isDisabled"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"isCompulsory"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"disableAtServer"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"isUpdatable"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customfield_a"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boolean"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"loyalty_registration"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"defaultValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"phase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"position"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"rule"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"regex"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"isDisabled"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"isCompulsory"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"disableAtServer"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"isUpdatable"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customfield_f"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boolean"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"label"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"loyalty_registration"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"defaultValue"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"phase"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"position"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"rule"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"regex"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"error"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"options"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"isDisabled"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"isCompulsory"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"disableAtServer"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"isUpdatable"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="p">{</span><span class="w">
             </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"customfield_g"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"text"</span><span class="p">,</span><span class="w">
             </span><span class="s2">"dataType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Boolean"</span><span class="p">,</span><span class="w">
@@ -36489,6 +36906,32 @@ Retrieves the configuration details of a specific source.
 <h3 id="request-url">Request URL</h3>
 
 <p><code class="prettyprint">https://{host}/v2/organization/customFields</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>scope</td>
+<td>enum</td>
+<td>Filter custom fields by sccope. Value: <code class="prettyprint">loyalty_registration</code> <code class="prettyprint">loyalty_transaction</code>, <code class="prettyprint">customer_feedback</code>, <code class="prettyprint">customer_preferences</code>, <code class="prettyprint">store_custom_fields</code>, <code class="prettyprint">points_redemption</code>, <code class="prettyprint">voucher_redemption</code>, <code class="prettyprint">check_in_feedback</code>, <code class="prettyprint">customer_card</code>.</td>
+</tr>
+<tr>
+<td>includeDisabled</td>
+<td>boolean</td>
+<td>default value <code class="prettyprint">false</code>.</td>
+</tr>
+<tr>
+<td>includeDisabledAtServer</td>
+<td>boolean</td>
+<td>Default value <code class="prettyprint">false</code>.</td>
+</tr>
+</tbody></table>
 
 <h2 id="get-org-config-key-values">Get Org Config Key Values</h2>
 
@@ -36634,6 +37077,72 @@ Retrieves the configuration details of a specific source.
 <td>tillId**</td>
 <td>long</td>
 <td>Pass the unique till ID to get the details by tillId (second URL).</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-organization-configs">Get Organization Configs</h2>
+
+<p>Retrieves the details of a specific configuration based on the name of the configuration passed.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/organization/configs/CONF_MAX_CARDS_PER_ORG
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100458</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"keyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CONF_MAX_CARDS_PER_ORG"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ORG"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/v2/organization/configs/{name}</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes (1000 per hour)</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v2/organization/configs/{name}</code></p>
+
+<h3 id="request-path-parameter">Request Path Parameter</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Name of the configuration to fetch. For example, <code class="prettyprint">CONF_MAX_CARDS_PER_ORG</code>, <code class="prettyprint">IS_DIRECT_REPLAY_ENABLED</code></td>
 </tr>
 </tbody></table>
 
@@ -50955,7 +51464,7 @@ https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/item/similar-a
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
-<pre class="highlight html"><code>https://us.api.capillarytech.com/v1/promotion-management/promotions
+<pre class="highlight html"><code>https://eucrm.cc.capillarytech.com/v1/promotion-management/promotions
 </code></pre>
 <blockquote>
 <p>Sample POST Request for Generic Cart Promotion</p>
@@ -51315,6 +51824,49 @@ https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/item/similar-a
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="err">&gt;</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
+
+</span><span class="err">```json</span><span class="w">
+</span><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"623c3f73cc485e2e6ec80125"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DemoPromotion"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100528</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"messageLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test!"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POS"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"condition"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CART"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cartCondition"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"kpi"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUBTOTAL"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"operator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GREATER_THAN_OR_EQUAL"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1500.000000"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CART_BASED"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"cartBasedAction"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PERCENTAGE"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.000000"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75044302</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="mi">1648115571586</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75044302</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="mi">1648115571586</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1624256511786</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1627669800000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"campaignId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1036475</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"earnLimitedToSpecificAudience"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DISCOUNT"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"maxIssuancePerCustomer"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <h3 id="resource-information">Resource Information</h3>
 
 <table><thead>
@@ -51325,7 +51877,7 @@ https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/item/similar-a
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">promotion-management/promotions</code></td>
+<td><code class="prettyprint">v1/promotion-management/promotions</code></td>
 </tr>
 <tr>
 <td>HTTP Method</td>
@@ -51359,14 +51911,14 @@ https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/item/similar-a
 </tr>
 </thead><tbody>
 <tr>
-<td>name</td>
+<td>name*</td>
 <td>string</td>
 <td>Name of the promotion.</td>
 </tr>
 <tr>
 <td>orgId</td>
-<td>long</td>
-<td>Unique ID of the org associated with the promotion.</td>
+<td>int</td>
+<td>Unique ID of the org.</td>
 </tr>
 <tr>
 <td>priority</td>
@@ -51376,65 +51928,40 @@ https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/item/similar-a
 <tr>
 <td>active</td>
 <td>boolean</td>
-<td>Set <code class="prettyprint">true</code> to make the current promotion active.</td>
+<td>Set <code class="prettyprint">true</code> to make the promotion active, <code class="prettyprint">false</code> to issue promotion in the deactivated state. Default value is <code class="prettyprint">false</code></td>
 </tr>
 <tr>
 <td>messageLabel</td>
 <td>string</td>
-<td></td>
+<td>A short description of the promotion.</td>
 </tr>
 <tr>
 <td>type</td>
 <td>enum</td>
-<td>Type of the promotion. Values: <code class="prettyprint">POS</code>, <code class="prettyprint">CUSTOMER</code>, <code class="prettyprint">EARNING</code>, <code class="prettyprint">REWARD</code>.</td>
+<td>Type of the promotion. Value: <code class="prettyprint">POS</code>, <code class="prettyprint">CUSTOMER</code>, <code class="prettyprint">EARNING</code>, <code class="prettyprint">REWARD</code>.</td>
 </tr>
 <tr>
 <td>timeCriteria</td>
 <td>obj</td>
-<td>Limit promotion to a specific duration. For example, promotion is applicable only on Sunday from 5PM to 6PM.</td>
+<td>Information related to Time based restriction for the offer.</td>
 </tr>
 <tr>
-<td>durationInHours</td>
-<td>int</td>
-<td></td>
+<td>storeCriteria</td>
+<td>Obj</td>
+<td>Information related to the store based restriction (store scope).</td>
 </tr>
 <tr>
-<td>monthlyDayValues</td>
-<td>int</td>
-<td></td>
-</tr>
-<tr>
-<td>repeatFrequency</td>
-<td>enum</td>
-<td>Values: <code class="prettyprint">DAYS</code>, <code class="prettyprint">DOES_NOT_REPEAT</code>, <code class="prettyprint">WEEKS</code>.</td>
-</tr>
-<tr>
-<td>startTime</td>
-<td></td>
-<td></td>
-</tr>
-<tr>
-<td>weeklyValues</td>
-<td>array</td>
-<td></td>
-</tr>
-<tr>
-<td>storeCriteria*</td>
-<td>obj</td>
-<td>Details of scope of promotion (store, zone, or concept to be promoted).</td>
-</tr>
-<tr>
-<td>storeCriteria: operator*</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;operator*</td>
 <td>enum</td>
 <td>Operator used to evaluate store condition. Value: <code class="prettyprint">IN</code>, <code class="prettyprint">NOT_IN</code>.</td>
 </tr>
 <tr>
-<td>storeCriteria: type*</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type*</td>
 <td>enum</td>
 <td>Base store type to evaluate. Value: <code class="prettyprint">CONCEPT</code>, <code class="prettyprint">STORE</code>, <code class="prettyprint">ZONE</code>.</td>
 </tr>
 <tr>
-<td>storeCriteria: values*</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;values*</td>
 <td>int</td>
 <td>Value of the selected store type. For example, store ID, zone ID, or concept ID.</td>
 </tr>
@@ -51444,34 +51971,64 @@ https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/item/similar-a
 <td>Details of promotion availing condition.</td>
 </tr>
 <tr>
-<td>type</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type</td>
 <td>enum</td>
-<td>Type of the promotion. Value: <code class="prettyprint">CART</code> for cart promotion, <code class="prettyprint">PRODUCT</code> for catalog promotion.</td>
+<td>Type of the promotion. Value: <code class="prettyprint">CATALOG</code>, <code class="prettyprint">PRODUCT</code>.</td>
 </tr>
 <tr>
-<td>cartCondition</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cartCondition</td>
 <td>obj</td>
-<td></td>
+<td>Details of the cart promotion availing condition.</td>
 </tr>
 <tr>
-<td>kpi</td>
-<td>string</td>
-<td><code class="prettyprint">SUBTOTAL</code></td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kpi</td>
+<td>enum</td>
+<td>On what basis you want to evaluate the availing condition. Values: <code class="prettyprint">SUBTOTAL</code>,</td>
 </tr>
 <tr>
-<td>operator</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;operator</td>
 <td>enum</td>
 <td><code class="prettyprint">GREATER_THAN_OR_EQUAL</code></td>
 </tr>
 <tr>
-<td>value</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value</td>
+<td>float</td>
+<td>Value of the condition expression</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;productCondition</td>
+<td></td>
+<td>Details of the product (catalog) promotion availing condition</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;criteriaList</td>
+<td>array-obj</td>
+<td>Details of the product condition.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;entity</td>
+<td>enum</td>
+<td>On what basis the product condition is defined. Values: <code class="prettyprint">SKU</code>,</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;operator</td>
+<td>enum</td>
+<td>Operator for the rule expression. Value:</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; values</td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>productCondition</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attributeName</td>
 <td></td>
 <td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kpi</td>
+<td>enum</td>
+<td>Value: <code class="prettyprint">QUANITITY</code></td>
 </tr>
 <tr>
 <td>comboProductCondition</td>
@@ -51481,112 +52038,112 @@ https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/item/similar-a
 <tr>
 <td>action</td>
 <td>obj</td>
-<td>Details of</td>
+<td></td>
 </tr>
 <tr>
-<td>type</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type</td>
 <td>enum</td>
-<td>Type of the promotion. <code class="prettyprint">CART_BASED</code>, <code class="prettyprint">PRODUCT_BASED</code>, <code class="prettyprint">FIXED_PRICE</code>, <code class="prettyprint">FREE_PRODUCT</code>.</td>
+<td>Sub-type of the promotion. Values: <code class="prettyprint">CART_BASED</code>, <code class="prettyprint">PRODUCT_BASED</code>, <code class="prettyprint">FIXED_PRICE</code>, <code class="prettyprint">FREE_PRODUCT</code>.</td>
 </tr>
 <tr>
-<td>cartBasedAction</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cartBasedAction</td>
 <td>obj</td>
-<td>Details of benefit applied on cart.</td>
+<td>Benefit to be applied. It is applied when promo condition is matched.</td>
 </tr>
 <tr>
-<td>type</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type</td>
 <td>enum</td>
-<td>Type of the discount. Value: <code class="prettyprint">PERCENTAGE</code>, <code class="prettyprint">ABSOLUTE</code>. Benefits/offers in Percentage(PERCENTAGE).</td>
+<td><code class="prettyprint">PERCENTAGE</code>.</td>
 </tr>
 <tr>
-<td>value</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value</td>
 <td>float</td>
-<td>Discount or offer value according to the<code class="prettyprint">type</code>. For example, Buy 10 ltrs of Petrol and get 10% off on it (<code class="prettyprint">&quot;type&quot;: &quot;PERCENTAGE&quot;</code>).  <br> Buy 10 ltrs of Petrol and get 100/- off (when <code class="prettyprint">&quot;type&quot;: &quot;PERCENTAGE&quot;</code>).</td>
+<td>Discount or offer value according to the<code class="prettyprint">type</code>. For example, Buy 10 liters of Petrol and get 10% off on it (<code class="prettyprint">&quot;type&quot;: &quot;PERCENTAGE&quot;</code>).  <br> Buy 10 ltrs of Petrol and get 100/- off (when <code class="prettyprint">&quot;type&quot;: &quot;PERCENTAGE&quot;</code>).Percentage discount (as amount), <code class="prettyprint">ABSOLUTE</code> (Buy 2 products at $50).</td>
 </tr>
 <tr>
-<td>productBasedAction</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;productBasedAction</td>
 <td></td>
-<td>Whether the promotion to be applied on products or line items.</td>
+<td>The benefit to be applied when promo condition (specific product in cart) is satisfied.</td>
 </tr>
 <tr>
-<td>fixedPriceAction</td>
-<td></td>
-<td>Fixed price benefits. Example: Buy 2 shirts at $100.</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fixedPriceAction</td>
+<td>obj</td>
+<td>Details of the fixed price based benefit. For example, buy 1X get 1X with a discount, or buy 2X with fixed price.</td>
 </tr>
 <tr>
-<td>freeProductAction</td>
-<td></td>
-<td>Buy X and Get Y benefits. Example: Buy 1 shirt and Get another shirts as free.</td>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;freeProductAction</td>
+<td>obj</td>
+<td>Details of free product based benefit. Example: buy 1X get 1Y free.</td>
 </tr>
 <tr>
 <td>createdBy</td>
 <td>long</td>
-<td>Unique ID of the user who created the promotion.</td>
+<td>Unique ID of the user creating the offer.</td>
 </tr>
 <tr>
 <td>createdOn</td>
-<td>date-time</td>
-<td>Unix time-stamp of when the promotion was created.</td>
+<td>string</td>
+<td>Unique time-stamp (milliseconds) of when the promotion was created.</td>
 </tr>
 <tr>
 <td>lastUpdatedBy</td>
 <td>long</td>
-<td>Unique ID of the user who updated the promotion recently.</td>
+<td>ID of the user who updated the promotion recently.</td>
 </tr>
 <tr>
 <td>lastUpdatedOn</td>
-<td>date-time</td>
-<td>Unix time-stamp of when the promotion was recently updated.</td>
+<td></td>
+<td>string</td>
 </tr>
 <tr>
-<td>startDate</td>
-<td>date-time</td>
-<td>Unix time-stamp of the start date of the promotion in milliseconds.</td>
+<td>startDate*</td>
+<td>string</td>
+<td>Duration of the promotion in <code class="prettyprint">startDate</code> and <code class="prettyprint">endDate</code> in milliseconds. Unix time-stamp of the end date of the promotion in milliseconds.</td>
 </tr>
 <tr>
-<td>endDate</td>
-<td>date-time</td>
-<td>Unix time-stamp of the end date of the promotion in milliseconds.</td>
+<td>endDate*</td>
+<td></td>
+<td>Duration of the promotion in <code class="prettyprint">startDate</code> and <code class="prettyprint">endDate</code>. Unix time-stamp of the end date of the promotion in milliseconds.</td>
 </tr>
 <tr>
 <td>campaignId</td>
-<td>long</td>
-<td>Campaign ID associated with the promotion.</td>
+<td>int</td>
+<td>ID of the campaign associated with the promotion.</td>
 </tr>
 <tr>
 <td>loyaltyEarningExpiryDays</td>
 <td>int</td>
-<td>Days in which the earned promotion should expire.</td>
+<td>Number of days in which the Loyalty promotion earned should expire.</td>
 </tr>
 <tr>
 <td>maxEarningPerCustomer</td>
 <td>int</td>
-<td>Number of times a customer can earn the promotion.</td>
+<td>Number of times a customer can earn the current promotion.</td>
 </tr>
 <tr>
 <td>earningCriteria</td>
-<td></td>
-<td>Condition a customer should fulfil to earn the promotion.</td>
+<td>obj</td>
+<td>Conditions that customers should fulfil to unlock the promotion. For example, unlock the promotion for the Transaction activity with amount more than $100.</td>
 </tr>
 <tr>
 <td>promotionRestrictions</td>
 <td></td>
-<td>Restrictions or limitations on the promotion.</td>
+<td>Restrictions applied to the promotion on Discount, Transaction, and/or Redemption.</td>
 </tr>
 <tr>
 <td>earnLimitedToSpecificAudience</td>
 <td>boolean</td>
-<td>Pass <code class="prettyprint">true</code> to enable the promotion to specific list of audience, <code class="prettyprint">false</code> to enable any customer to earn the promotion.</td>
+<td>Pass <code class="prettyprint">true</code> to enable the promotion to specific list of customers, <code class="prettyprint">false</code> to enable any customer to earn the promotion.</td>
 </tr>
 <tr>
 <td>customFieldValues</td>
-<td></td>
-<td>Meta promotion level custom field values.</td>
+<td>string</td>
+<td>Meta promotion of the promotion level custom field values.</td>
 </tr>
 <tr>
 <td>onEarnCommunicationChannels</td>
 <td></td>
-<td>Details about earned communications and expired communications.</td>
+<td>Channel through which points a customer earn or expire needs to be communicated - SMS, Push notification or email.</td>
 </tr>
 </tbody></table>
 
@@ -52092,7 +52649,7 @@ https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/item/similar-a
 <tr>
 <td>fileEncodingType</td>
 <td>string</td>
-<td>Encoding type of the attachment provided in fileData.</td>
+<td>Encoding type of the image attachment to upload images in the right format. Required for all base64 encoded image formats such as JPG, PNG, JPEG, and GIF. This is not required for other file types like TXT, and PDF which are not base64 encoded.</td>
 </tr>
 <tr>
 <td>scheduledTime</td>
