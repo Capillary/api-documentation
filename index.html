@@ -51525,13 +51525,32 @@ https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/item/similar-a
 <td>string</td>
 <td>Short description of the target period.</td>
 </tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;endDate</td>
+<td>date-time</td>
+<td>ISO standard Timestamp of the target period&rsquo;s end date.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;periodStatus</td>
+<td>enum</td>
+<td>Status of the target period. Values: <code class="prettyprint">RUNNING</code>,</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;refCode</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;startDate</td>
+<td>date-time</td>
+<td>ISO standard Timestamp of the target period&rsquo;s start date.</td>
+</tr>
+<tr>
+<td>activePeriod</td>
+<td>obj</td>
+<td></td>
+</tr>
 </tbody></table>
-
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;endDate&quot;: &ldquo;2022-05-29T11:35:52.976Z&rdquo;,
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;periodStatus | enum | Status of the target period. Values: <code class="prettyprint">RUNNING</code>,
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;refCode | string | 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;startDate | date-time | Timestamp of the target period&rsquo;s start date.
-activePeriod | obj | </p>
 
 <h2 id="modify-target-groups">Modify Target Groups</h2>
 
@@ -52127,95 +52146,95 @@ activePeriod | obj | </p>
 <blockquote>
 <p>Sample POST Request</p>
 </blockquote>
-<pre class="highlight plaintext"><code>{
-    "data": [
-        {
-            "id": 70,
-            "attribution": {
-                "createdOn": "2022-02-25T11:01:34.000+0000",
-                "lastUpdatedOn": "2022-02-25T11:01:34.000+0000",
-                "lastUpdatedBy": {
-                    "id": 75047814,
-                    "code": "1614748040_",
-                    "description": "",
-                    "name": "Harsh Deo",
-                    "type": "ADMIN_USER"
-                },
-                "createdBy": {
-                    "id": 75047814,
-                    "code": "1614748040_",
-                    "description": "",
-                    "name": "Harsh Deo",
-                    "type": "ADMIN_USER"
-                }
-            },
-            "startDate": "2022-02-26",
-            "endDate": "2022-03-25",
-            "refCode": "Period ",
-            "periodStatus": "ENDED",
-            "targetGroupId": 30,
-            "description": "string1",
-            "active": true
-        },
-        {
-            "id": 71,
-            "attribution": {
-                "createdOn": "2022-02-25T11:01:34.000+0000",
-                "lastUpdatedOn": "2022-02-25T11:01:34.000+0000",
-                "lastUpdatedBy": {
-                    "id": 75047814,
-                    "code": "1614748040_",
-                    "description": "",
-                    "name": "Harsh Deo",
-                    "type": "ADMIN_USER"
-                },
-                "createdBy": {
-                    "id": 75047814,
-                    "code": "1614748040_",
-                    "description": "",
-                    "name": "Harsh Deo",
-                    "type": "ADMIN_USER"
-                }
-            },
-            "startDate": "2022-03-26",
-            "endDate": "2022-04-25",
-            "refCode": "Cycle 2",
-            "periodStatus": "RUNNING",
-            "targetGroupId": 30,
-            "active": true
-        },
-        {
-            "id": 75,
-            "attribution": {
-                "createdOn": "2022-03-30T12:16:44.000+0000",
-                "lastUpdatedOn": "2022-03-30T12:16:44.000+0000",
-                "lastUpdatedBy": {
-                    "id": 75040399,
-                    "code": "bukl.till",
-                    "description": "",
-                    "name": "bukl.till",
-                    "type": "TILL"
-                },
-                "createdBy": {
-                    "id": 75040399,
-                    "code": "bukl.till",
-                    "description": "",
-                    "name": "bukl.till",
-                    "type": "TILL"
-                }
-            },
-            "startDate": "2022-06-28",
-            "endDate": "2022-06-29",
-            "refCode": "string1",
-            "periodStatus": "NOT_STARTED",
-            "targetGroupId": 30,
-            "description": "string",
-            "active": true
-        }
-    ],
-    "errors": null
-}
-</code></pre>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-25T11:01:34.000+0000"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-25T11:01:34.000+0000"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75047814</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1614748040_"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harsh Deo"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADMIN_USER"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75047814</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1614748040_"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harsh Deo"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADMIN_USER"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-26"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-03-25"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"refCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Period "</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"periodStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ENDED"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"targetGroupId"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">71</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-25T11:01:34.000+0000"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-25T11:01:34.000+0000"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75047814</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1614748040_"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harsh Deo"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADMIN_USER"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75047814</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1614748040_"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harsh Deo"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADMIN_USER"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-03-26"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-04-25"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"refCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cycle 2"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"periodStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RUNNING"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"targetGroupId"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-03-30T12:16:44.000+0000"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-03-30T12:16:44.000+0000"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75040399</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bukl.till"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bukl.till"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75040399</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bukl.till"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bukl.till"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-06-28"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-06-29"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"refCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"periodStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOT_STARTED"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"targetGroupId"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
 <h3 id="resource-information">Resource Information</h3>
 
 <table><thead>
@@ -52278,29 +52297,29 @@ activePeriod | obj | </p>
 <blockquote>
 <p>Sample POST Request</p>
 </blockquote>
-<pre class="highlight plaintext"><code>[
-  {
-    "active": true,
-    "description": "string",
-    "emfRuleSetId": 0,
-    "emfUnrolledRulesetId": 0,
-    "expression": "true",
-    "expressionJson": "{\"arity\":\"literal\",\"value\":\"true\",\"type\":\"boolean:primitive\"}",
-    "filters": [
-      {
-        "entityIds": [
-          0
-        ],
-        "entityType": "STORE"
-      }
-    ],
-    "name": "string13",
-    "targetEntity": "TRANSACTION",
-    "targetGroupId": 4,
-    "targetType": "QUANTITY"
-  }
-]
-</code></pre>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+  </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"emfRuleSetId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"emfUnrolledRulesetId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expression"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"expressionJson"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">arity</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">literal</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">value</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">true</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">boolean:primitive</span><span class="se">\"</span><span class="s2">}"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"filters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+      </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"entityIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+          </span><span class="mi">0</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"entityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STORE"</span><span class="w">
+      </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string13"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"targetEntity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRANSACTION"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"targetGroupId"</span><span class="p">:</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"targetType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"QUANTITY"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
 <blockquote>
 <p>Sample Response</p>
 </blockquote>
@@ -52493,13 +52512,13 @@ activePeriod | obj | </p>
 <blockquote>
 <p>Sample PUT Request</p>
 </blockquote>
-<pre class="highlight plaintext"><code>
-</code></pre>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
 <blockquote>
 <p>Sample Response</p>
 </blockquote>
-<pre class="highlight plaintext"><code>
-</code></pre>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
 <h3 id="resource-information">Resource Information</h3>
 
 <table><thead>
