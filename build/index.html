@@ -134,9 +134,11 @@
 <h2 id="q4-releases-2021-2022">Q4 Releases (2021-2022)</h2>
 
 <ul>
+<li>  GET v2/companies to fetch companies by extended field values - partial or complete string. For details, see <a href="https://capillary.github.io/api-documentation/#get-companies-by-extended-field-values">v2/companies/extendedFieldSearch</a></li>
 <li>  New API to <a href="https://capillary.github.io/api-documentation/#get-user-group-transactions">retrieve transactions of a group</a>.</li>
 <li>  New body parameter <code class="prettyprint">fileEncodingType</code> introduced in <code class="prettyprint">communications/email</code> to capture the encoded format for images attached in the email.</li>
 <li>  New <a href="https://capillary.github.io/api-documentation/#get-customer-ledger-balance">ledger APIs</a> to retrieve customer&rsquo;s <a href="https://capillary.github.io/api-documentation/#get-customer-ledger-balance">ledger balance</a> and <a href="https://capillary.github.io/api-documentation/#get-customer-ledger-information">ledger information</a>.</li>
+<li>  New parameter value in GET <a href="https://capillary.github.io/api-documentation/#get-organization-configs">v2/organization/configs/</a></li>
 <li>  Introduced new query parameters <code class="prettyprint">expirySchedules</code> and <code class="prettyprint">expiredPoints</code>. These were the parameter values for the query parameter <code class="prettyprint">embed</code> earlier. <a href="https://capillary.github.io/api-documentation/#get-group-details">See here for details</a>.</li>
 <li>Register and update customer will now support registering customers in all programs of the org with the query parameter <code class="prettyprint">mlp_single_enroll</code> in POST <a href="https://capillary.github.io/api-documentation/#register-customer">v2/customers</a>.</li>
 </ul>
@@ -9493,302 +9495,302 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
       </span><span class="s2">"userGroup2Id"</span><span class="p">:</span><span class="mi">1949</span><span class="p">,</span><span class="w">
       </span><span class="s2">"userGroup2PrimaryUserId"</span><span class="p">:</span><span class="mi">414936033</span><span class="p">,</span><span class="w">
       </span><span class="s2">"userGroup2ExternalId"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
-      </span><span class="s2">"userGroup2PrimaryUserIdentifierType"</span><span class="p">:</span><span class="err">”email</span><span class="s2">",
-      "</span><span class="err">userGroup</span><span class="mi">2</span><span class="err">PrimaryUserIdentifierVale</span><span class="s2">": "</span><span class="err">example@example.com</span><span class="s2">",
-      "</span><span class="err">userGroup</span><span class="mi">2</span><span class="err">PrimaryUserSource</span><span class="s2">":"</span><span class="err">WEB_ENGAGE</span><span class="s2">",
-      "</span><span class="err">userGroup</span><span class="mi">2</span><span class="err">PrimaryUserAccountId</span><span class="s2">":""
-      "</span><span class="err">paymentModes</span><span class="s2">":[
-         {
-            "</span><span class="err">mode</span><span class="s2">":"</span><span class="err">CardPayment</span><span class="s2">",
-            "</span><span class="err">value</span><span class="s2">":"</span><span class="mf">5100.0</span><span class="s2">",
-            "</span><span class="err">notes</span><span class="s2">":"</span><span class="err">SPay</span><span class="s2">",
-            "</span><span class="err">attributes</span><span class="s2">":{
-               "</span><span class="err">card_type</span><span class="s2">":"</span><span class="err">Visa</span><span class="s2">"
-            }
-         },
-         {
-            "</span><span class="err">mode</span><span class="s2">":"</span><span class="err">NetBanking</span><span class="s2">",
-            "</span><span class="err">value</span><span class="s2">":"</span><span class="mf">4800.0</span><span class="s2">",
-            "</span><span class="err">notes</span><span class="s2">":"</span><span class="err">Net</span><span class="w"> </span><span class="err">Banking</span><span class="s2">"
-         }
-      ],
-      "</span><span class="err">redemptions</span><span class="s2">":{
-         "</span><span class="err">pointsRedemptions</span><span class="s2">":[
-            123453,
-            345673
-         ],
-         "</span><span class="err">couponRedemptions</span><span class="s2">":[
-            727272,
-            237878
-         ]
-      },
-      "</span><span class="err">extendedFields</span><span class="s2">":{
-         "</span><span class="err">ship_first_name</span><span class="s2">":"</span><span class="err">Sam</span><span class="s2">",
-         "</span><span class="err">ship_last_name</span><span class="s2">":"</span><span class="err">Sundar</span><span class="s2">"
-      },
-      "</span><span class="err">customFields</span><span class="s2">":{
-         "</span><span class="err">booking_ota</span><span class="s2">":"</span><span class="err">Website</span><span class="s2">",
-         "</span><span class="err">trans_cf_a</span><span class="s2">":"</span><span class="err">abc</span><span class="s2">"
-      },
-      "</span><span class="err">lineItemsV</span><span class="mi">2</span><span class="s2">":[
-         {
-            "</span><span class="err">itemCode</span><span class="s2">":"</span><span class="err">sku_</span><span class="mi">486741</span><span class="err">_</span><span class="mi">2</span><span class="s2">",
-            "</span><span class="err">amount</span><span class="s2">":100.5,
-            "</span><span class="err">description</span><span class="s2">":"</span><span class="err">sample</span><span class="w"> </span><span class="err">description</span><span class="s2">",
-            "</span><span class="err">discount</span><span class="s2">":0,
-            "</span><span class="err">rate</span><span class="s2">":100.5,
-            "</span><span class="err">qty</span><span class="s2">":1,
-            "</span><span class="err">extendedFields</span><span class="s2">":{
-               "</span><span class="err">MetalRate</span><span class="s2">":"</span><span class="mf">22.02</span><span class="s2">",
-               "</span><span class="err">GrossWeight</span><span class="s2">":"</span><span class="mf">10.50</span><span class="s2">"
-            }
-         },
-         {
-            "</span><span class="err">itemCode</span><span class="s2">":"</span><span class="err">sku_</span><span class="mi">486741</span><span class="err">_</span><span class="mi">2</span><span class="s2">",
-            "</span><span class="err">amount</span><span class="s2">":100.5,
-            "</span><span class="err">description</span><span class="s2">":"</span><span class="err">sample</span><span class="w"> </span><span class="err">description</span><span class="s2">",
-            "</span><span class="err">discount</span><span class="s2">":0,
-            "</span><span class="err">rate</span><span class="s2">":100.5,
-            "</span><span class="err">qty</span><span class="s2">":1,
-            "</span><span class="err">extendedFields</span><span class="s2">":{
-               "</span><span class="err">MetalRate</span><span class="s2">":"</span><span class="mf">22.02</span><span class="s2">",
-               "</span><span class="err">GrossWeight</span><span class="s2">":"</span><span class="mf">10.50</span><span class="s2">"
-            }
-         },
-         {
-            "</span><span class="err">itemCode</span><span class="s2">":"</span><span class="err">sku_</span><span class="mi">486741</span><span class="err">_</span><span class="mi">3</span><span class="s2">",
-            "</span><span class="err">amount</span><span class="s2">":100.5,
-            "</span><span class="err">rate</span><span class="s2">":100.5,
-            "</span><span class="err">qty</span><span class="s2">":1,
-            "</span><span class="err">extendedFields</span><span class="s2">":{
-               "</span><span class="err">gender</span><span class="s2">":"</span><span class="err">Male</span><span class="s2">",
-               "</span><span class="err">marital_status</span><span class="s2">":"</span><span class="err">Married</span><span class="s2">"
-            },
-            "</span><span class="err">customFields</span><span class="s2">":{
-               "</span><span class="err">cashierid</span><span class="s2">":"</span><span class="err">jim</span><span class="mi">2345</span><span class="s2">",
-               "</span><span class="err">city</span><span class="s2">":"</span><span class="err">Bangalore</span><span class="s2">"
-            }
-         },
-         {
-            "</span><span class="err">itemCode</span><span class="s2">":"</span><span class="err">sku_</span><span class="mi">486741</span><span class="err">_</span><span class="mi">4</span><span class="s2">",
-            "</span><span class="err">amount</span><span class="s2">":100.5,
-            "</span><span class="err">rate</span><span class="s2">":100.5,
-            "</span><span class="err">qty</span><span class="s2">":1,
-            "</span><span class="err">extendedFields</span><span class="s2">":{
-               "</span><span class="err">MetalRate</span><span class="s2">":"</span><span class="mf">22.02</span><span class="s2">",
-               "</span><span class="err">GrossWeight</span><span class="s2">":"</span><span class="mf">10.50</span><span class="s2">"
-            }
-         },
-         {
-            "</span><span class="err">itemCode</span><span class="s2">":"</span><span class="err">sku_</span><span class="mi">486741</span><span class="err">_</span><span class="mi">5</span><span class="s2">",
-            "</span><span class="err">amount</span><span class="s2">":100.5,
-            "</span><span class="err">rate</span><span class="s2">":100.5,
-            "</span><span class="err">qty</span><span class="s2">":1,
-            "</span><span class="err">extendedFields</span><span class="s2">":{
-               "</span><span class="err">MetalRate</span><span class="s2">":"</span><span class="mf">22.02</span><span class="s2">",
-               "</span><span class="err">GrossWeight</span><span class="s2">":"</span><span class="mf">10.50</span><span class="s2">"
-            }
-         },
-         {
-            "</span><span class="err">itemCode</span><span class="s2">":"</span><span class="err">sku_</span><span class="mi">486741</span><span class="err">_</span><span class="mi">6</span><span class="s2">",
-            "</span><span class="err">amount</span><span class="s2">":100.5,
-            "</span><span class="err">rate</span><span class="s2">":100.5,
-            "</span><span class="err">qty</span><span class="s2">":1,
-            "</span><span class="err">extendedFields</span><span class="s2">":{
-               "</span><span class="err">MetalRate</span><span class="s2">":"</span><span class="mf">22.02</span><span class="s2">",
-               "</span><span class="err">GrossWeight</span><span class="s2">":"</span><span class="mf">10.50</span><span class="s2">"
-            }
-         },
-         {
-            "</span><span class="err">itemCode</span><span class="s2">":"</span><span class="err">sku_</span><span class="mi">486741</span><span class="err">_</span><span class="mi">7</span><span class="s2">",
-            "</span><span class="err">amount</span><span class="s2">":100.5,
-            "</span><span class="err">rate</span><span class="s2">":100.5,
-            "</span><span class="err">qty</span><span class="s2">":1,
-            "</span><span class="err">extendedFields</span><span class="s2">":{
-               "</span><span class="err">MetalRate</span><span class="s2">":"</span><span class="mf">22.02</span><span class="s2">",
-               "</span><span class="err">GrossWeight</span><span class="s2">":"</span><span class="mf">10.50</span><span class="s2">"
-            }
-         },
-         {
-            "</span><span class="err">itemCode</span><span class="s2">":"</span><span class="err">sku_</span><span class="mi">486741</span><span class="err">_</span><span class="mi">8</span><span class="s2">",
-            "</span><span class="err">amount</span><span class="s2">":100.5,
-            "</span><span class="err">discount</span><span class="s2">":0,
-            "</span><span class="err">rate</span><span class="s2">":100.5,
-            "</span><span class="err">qty</span><span class="s2">":1,
-            "</span><span class="err">extendedFields</span><span class="s2">":{
-               "</span><span class="err">MetalRate</span><span class="s2">":"</span><span class="mf">22.02</span><span class="s2">",
-               "</span><span class="err">GrossWeight</span><span class="s2">":"</span><span class="mf">10.50</span><span class="s2">"
-            }
-         },
-         {
-            "</span><span class="err">itemCode</span><span class="s2">":"</span><span class="err">sku_</span><span class="mi">486741</span><span class="err">_</span><span class="mi">9</span><span class="s2">",
-            "</span><span class="err">amount</span><span class="s2">":100.5,
-            "</span><span class="err">rate</span><span class="s2">":100.5,
-            "</span><span class="err">qty</span><span class="s2">":1,
-            "</span><span class="err">extendedFields</span><span class="s2">":{
-               "</span><span class="err">MetalRate</span><span class="s2">":"</span><span class="mf">22.02</span><span class="s2">",
-               "</span><span class="err">GrossWeight</span><span class="s2">":"</span><span class="mf">10.50</span><span class="s2">"
-            }
-         },
-         {
-            "</span><span class="err">itemCode</span><span class="s2">":"</span><span class="err">sku_</span><span class="mi">486741</span><span class="err">_</span><span class="mi">10</span><span class="s2">",
-            "</span><span class="err">amount</span><span class="s2">":100.5,
-            "</span><span class="err">rate</span><span class="s2">":100.5,
-            "</span><span class="err">qty</span><span class="s2">":1,
-            "</span><span class="err">extendedFields</span><span class="s2">":{
-               "</span><span class="err">MetalRate</span><span class="s2">":"</span><span class="mf">22.02</span><span class="s2">",
-               "</span><span class="err">GrossWeight</span><span class="s2">":"</span><span class="mf">10.50</span><span class="s2">"
-            }
-         }
-      ]
-   },
-   {
-      "</span><span class="err">identifierType</span><span class="s2">":"</span><span class="err">mobile</span><span class="s2">",
-      "</span><span class="err">identifierValue</span><span class="s2">":"</span><span class="mi">919740000000</span><span class="s2">",
-      "</span><span class="err">source</span><span class="s2">":"</span><span class="err">INSTORE</span><span class="s2">",
-      "</span><span class="err">accountId</span><span class="s2">":"",
-      "</span><span class="err">type</span><span class="s2">":"</span><span class="err">REGULAR</span><span class="s2">",
-      "</span><span class="err">billNumber</span><span class="s2">":"</span><span class="err">num</span><span class="mi">-668288857765</span><span class="s2">",
-      "</span><span class="err">discount</span><span class="s2">":"</span><span class="mi">10</span><span class="s2">",
-      "</span><span class="err">billAmount</span><span class="s2">":"</span><span class="mi">200</span><span class="s2">",
-      "</span><span class="err">note</span><span class="s2">":"</span><span class="err">this</span><span class="w"> </span><span class="err">is</span><span class="w"> </span><span class="err">test</span><span class="s2">",
-      "</span><span class="err">grossAmount</span><span class="s2">":"</span><span class="mi">110</span><span class="s2">",
-      "</span><span class="err">deliveryStatus</span><span class="s2">":"</span><span class="err">SHIPPED</span><span class="s2">",
-      "</span><span class="err">paymentModes</span><span class="s2">":[
-         {
-            "</span><span class="err">attributes</span><span class="s2">":{
-               "</span><span class="err">BankNameAPI</span><span class="s2">":"</span><span class="err">value_</span><span class="mi">6555444</span><span class="s2">"
-            },
-            "</span><span class="err">notes</span><span class="s2">":"</span><span class="err">notes_</span><span class="mi">6555444</span><span class="s2">",
-            "</span><span class="err">mode</span><span class="s2">":"</span><span class="err">CHECKAPI</span><span class="s2">",
-            "</span><span class="err">value</span><span class="s2">":"</span><span class="mi">500</span><span class="s2">"
-         }
-      ],
-      "</span><span class="err">extendedFields</span><span class="s2">":{
-         "</span><span class="err">ship_first_name</span><span class="s2">":"</span><span class="mf">22.02</span><span class="s2">",
-         "</span><span class="err">ship_last_name</span><span class="s2">":"</span><span class="mf">10.50</span><span class="s2">"
-      },
-      "</span><span class="err">customFields</span><span class="s2">":{
-         "</span><span class="err">trans_cf_a</span><span class="s2">":"</span><span class="err">abc</span><span class="s2">"
-      },
-      "</span><span class="err">lineItemsV</span><span class="mi">2</span><span class="s2">":[
-         {
-            "</span><span class="err">itemCode</span><span class="s2">":"</span><span class="err">sku_</span><span class="mi">486741</span><span class="err">_</span><span class="mi">2</span><span class="s2">",
-            "</span><span class="err">amount</span><span class="s2">":100.5,
-            "</span><span class="err">rate</span><span class="s2">":100.5,
-            "</span><span class="err">qty</span><span class="s2">":1,
-            "</span><span class="err">extendedFields</span><span class="s2">":{
-               "</span><span class="err">MetalRate</span><span class="s2">":"</span><span class="mf">22.02</span><span class="s2">",
-               "</span><span class="err">GrossWeight</span><span class="s2">":"</span><span class="mf">10.50</span><span class="s2">"
-            }
-         },
-         {
-            "</span><span class="err">itemCode</span><span class="s2">":"</span><span class="err">sku_</span><span class="mi">486741</span><span class="err">_</span><span class="mi">2</span><span class="s2">",
-            "</span><span class="err">amount</span><span class="s2">":100.5,
-            "</span><span class="err">rate</span><span class="s2">":100.5,
-            "</span><span class="err">qty</span><span class="s2">":1,
-            "</span><span class="err">extendedFields</span><span class="s2">":{
-               "</span><span class="err">MetalRate</span><span class="s2">":"</span><span class="mf">22.02</span><span class="s2">",
-               "</span><span class="err">GrossWeight</span><span class="s2">":"</span><span class="mf">10.50</span><span class="s2">"
-            }
-         },
-         {
-            "</span><span class="err">itemCode</span><span class="s2">":"</span><span class="err">sku_</span><span class="mi">486741</span><span class="err">_</span><span class="mi">3</span><span class="s2">",
-            "</span><span class="err">amount</span><span class="s2">":100.5,
-            "</span><span class="err">rate</span><span class="s2">":100.5,
-            "</span><span class="err">qty</span><span class="s2">":1,
-            "</span><span class="err">extendedFields</span><span class="s2">":{
-               "</span><span class="err">MetalRate</span><span class="s2">":"</span><span class="mf">22.02</span><span class="s2">",
-               "</span><span class="err">GrossWeight</span><span class="s2">":"</span><span class="mf">10.50</span><span class="s2">"
-            }
-         },
-         {
-            "</span><span class="err">itemCode</span><span class="s2">":"</span><span class="err">sku_</span><span class="mi">486741</span><span class="err">_</span><span class="mi">4</span><span class="s2">",
-            "</span><span class="err">amount</span><span class="s2">":100.5,
-            "</span><span class="err">rate</span><span class="s2">":100.5,
-            "</span><span class="err">qty</span><span class="s2">":1,
-            "</span><span class="err">extendedFields</span><span class="s2">":{
-               "</span><span class="err">MetalRate</span><span class="s2">":"</span><span class="mf">22.02</span><span class="s2">",
-               "</span><span class="err">GrossWeight</span><span class="s2">":"</span><span class="mf">10.50</span><span class="s2">"
-            }
-         },
-         {
-            "</span><span class="err">itemCode</span><span class="s2">":"</span><span class="err">sku_</span><span class="mi">486741</span><span class="err">_</span><span class="mi">5</span><span class="s2">",
-            "</span><span class="err">amount</span><span class="s2">":100.5,
-            "</span><span class="err">rate</span><span class="s2">":100.5,
-            "</span><span class="err">qty</span><span class="s2">":1,
-            "</span><span class="err">extendedFields</span><span class="s2">":{
-               "</span><span class="err">MetalRate</span><span class="s2">":"</span><span class="mf">22.02</span><span class="s2">",
-               "</span><span class="err">GrossWeight</span><span class="s2">":"</span><span class="mf">10.50</span><span class="s2">"
-            }
-         },
-         {
-            "</span><span class="err">itemCode</span><span class="s2">":"</span><span class="err">sku_</span><span class="mi">486741</span><span class="err">_</span><span class="mi">6</span><span class="s2">",
-            "</span><span class="err">amount</span><span class="s2">":100.5,
-            "</span><span class="err">rate</span><span class="s2">":100.5,
-            "</span><span class="err">qty</span><span class="s2">":1,
-            "</span><span class="err">extendedFields</span><span class="s2">":{
-               "</span><span class="err">MetalRate</span><span class="s2">":"</span><span class="mf">22.02</span><span class="s2">",
-               "</span><span class="err">GrossWeight</span><span class="s2">":"</span><span class="mf">10.50</span><span class="s2">"
-            }
-         },
-         {
-            "</span><span class="err">itemCode</span><span class="s2">":"</span><span class="err">sku_</span><span class="mi">486741</span><span class="err">_</span><span class="mi">7</span><span class="s2">",
-            "</span><span class="err">amount</span><span class="s2">":100.5,
-            "</span><span class="err">rate</span><span class="s2">":100.5,
-            "</span><span class="err">qty</span><span class="s2">":1,
-            "</span><span class="err">extendedFields</span><span class="s2">":{
-               "</span><span class="err">MetalRate</span><span class="s2">":"</span><span class="mf">22.02</span><span class="s2">",
-               "</span><span class="err">GrossWeight</span><span class="s2">":"</span><span class="mf">10.50</span><span class="s2">"
-            }
-         },
-         {
-            "</span><span class="err">itemCode</span><span class="s2">":"</span><span class="err">sku_</span><span class="mi">486741</span><span class="err">_</span><span class="mi">8</span><span class="s2">",
-            "</span><span class="err">amount</span><span class="s2">":100.5,
-            "</span><span class="err">rate</span><span class="s2">":100.5,
-            "</span><span class="err">qty</span><span class="s2">":1,
-            "</span><span class="err">extendedFields</span><span class="s2">":{
-               "</span><span class="err">gender</span><span class="s2">":"</span><span class="err">Male</span><span class="s2">",
-               "</span><span class="err">marital_status</span><span class="s2">":"</span><span class="err">Married</span><span class="s2">"
-            },
-            "</span><span class="err">customFields</span><span class="s2">":{
-               "</span><span class="err">cashierid</span><span class="s2">":"</span><span class="err">jim</span><span class="mi">2345</span><span class="s2">",
-               "</span><span class="err">city</span><span class="s2">":"</span><span class="err">Bangalore</span><span class="s2">"
-            }
-         },
-         {
-            "</span><span class="err">itemCode</span><span class="s2">":"</span><span class="err">sku_</span><span class="mi">486741</span><span class="err">_</span><span class="mi">9</span><span class="s2">",
-            "</span><span class="err">amount</span><span class="s2">":100.5,
-            "</span><span class="err">rate</span><span class="s2">":100.5,
-            "</span><span class="err">qty</span><span class="s2">":1,
-            "</span><span class="err">extendedFields</span><span class="s2">":{
-               "</span><span class="err">MetalRate</span><span class="s2">":"</span><span class="mf">22.02</span><span class="s2">",
-               "</span><span class="err">GrossWeight</span><span class="s2">":"</span><span class="mf">10.50</span><span class="s2">"
-            }
-         },
-         {
-            "</span><span class="err">itemCode</span><span class="s2">":"</span><span class="err">sku_</span><span class="mi">486741</span><span class="err">_</span><span class="mi">10</span><span class="s2">",
-            "</span><span class="err">amount</span><span class="s2">":100.5,
-            "</span><span class="err">rate</span><span class="s2">":100.5,
-            "</span><span class="err">qty</span><span class="s2">":1,
-            "</span><span class="err">extendedFields</span><span class="s2">":{
-               "</span><span class="err">MetalRate</span><span class="s2">":"</span><span class="mf">22.02</span><span class="s2">",
-               "</span><span class="err">GrossWeight</span><span class="s2">":"</span><span class="mf">10.50</span><span class="s2">"
-            }
-         }
-      ],
-      "</span><span class="err">loyaltyPromotionIdentifiers</span><span class="s2">":[
-         "</span><span class="err">ABC</span><span class="mi">-12345</span><span class="s2">",
-         "</span><span class="err">Diwali_Promotion_</span><span class="mi">2020</span><span class="s2">",
-         "</span><span class="err">New_Year_Promotion_</span><span class="mi">2020</span><span class="s2">"
-      ],
-      "</span><span class="err">promotionEvaluationId</span><span class="s2">":"</span><span class="mi">60</span><span class="err">f</span><span class="mi">5713</span><span class="err">c</span><span class="mi">4</span><span class="err">c</span><span class="mi">5</span><span class="err">cb</span><span class="mi">92</span><span class="err">ab</span><span class="mi">2</span><span class="err">da</span><span class="mi">320</span><span class="err">e</span><span class="s2">",
-      "</span><span class="err">appliedPromotionIdentifiers</span><span class="s2">":[
-         "</span><span class="err">eyJwcm</span><span class="mi">9</span><span class="err">tb</span><span class="mi">3</span><span class="err">Rpb</span><span class="mi">25</span><span class="err">JZCI</span><span class="mi">6</span><span class="err">IjYxMmU</span><span class="mi">1</span><span class="err">YzVlNDEzM</span><span class="mi">2</span><span class="err">I</span><span class="mi">1</span><span class="err">NmFiZTBmMDczZSIsImRpc</span><span class="mi">2</span><span class="err">NvdW</span><span class="mi">50</span><span class="err">IjoiMTAwMC</span><span class="mi">4</span><span class="err">wMDAwMDAiLCJhbW</span><span class="mi">91</span><span class="err">bnQiOiIzMDAwLjAwMDAwMCIsImRpc</span><span class="mi">2</span><span class="err">NvdW</span><span class="mi">50</span><span class="err">QXBwbGllZFF</span><span class="mi">0</span><span class="err">eSI</span><span class="mi">6</span><span class="err">IjEiLCJwcm</span><span class="mi">9</span><span class="err">tb</span><span class="mi">3</span><span class="err">Rpb</span><span class="mi">25</span><span class="err">BcHBsaWVkUXR</span><span class="mi">5</span><span class="err">IjoiMy</span><span class="mi">4</span><span class="err">wMDAwMDAiLCJyZWRlbXB</span><span class="mi">0</span><span class="err">aW</span><span class="mi">9</span><span class="err">uQ</span><span class="mi">291</span><span class="err">bnQiOjEsInNrdSI</span><span class="mi">6</span><span class="err">IkpOU</span><span class="mi">1</span><span class="err">JFRzAyIiwidmVyc</span><span class="mi">2</span><span class="err">lvbiI</span><span class="mi">6</span><span class="err">InYxIn</span><span class="mi">0</span><span class="err">=</span><span class="s2">",
-         "</span><span class="err">eyJwcm</span><span class="mi">9</span><span class="err">tb</span><span class="mi">3</span><span class="err">Rpb</span><span class="mi">25</span><span class="err">JZCI</span><span class="mi">6</span><span class="err">IjYxMmU</span><span class="mi">1</span><span class="err">YzVlNDEzM</span><span class="mi">2</span><span class="err">I</span><span class="mi">1</span><span class="err">NmFiZTBmMDczZSIsImRpc</span><span class="mi">2</span><span class="err">NvdW</span><span class="mi">50</span><span class="err">IjoiMTAwMC</span><span class="mi">4</span><span class="err">wMDAwMDAiLCJhbW</span><span class="mi">91</span><span class="err">bnQiOiIzMDAwLjAwMDAwMCIsImRpc</span><span class="mi">2</span><span class="err">NvdW</span><span class="mi">50</span><span class="err">QXBwbGllZFF</span><span class="mi">0</span><span class="err">eSI</span><span class="mi">6</span><span class="err">IjEiLCJwcm</span><span class="mi">9</span><span class="err">tb</span><span class="mi">3</span><span class="err">Rpb</span><span class="mi">25</span><span class="err">BcHBsaWVkUXR</span><span class="mi">5</span><span class="err">IjoiMy</span><span class="mi">4</span><span class="err">wMDAwMDAiLCJyZWRlbXB</span><span class="mi">0</span><span class="err">aW</span><span class="mi">9</span><span class="err">uQ</span><span class="mi">291</span><span class="err">bnQiOjEsInNrdSI</span><span class="mi">6</span><span class="err">IkpOU</span><span class="mi">1</span><span class="err">JFRzAyIiwidmVyc</span><span class="mi">2</span><span class="err">lvbiI</span><span class="mi">6</span><span class="err">InYxIn</span><span class="mi">1</span><span class="err">=</span><span class="s2">"
-      ]
-   }
-]
+      </span><span class="s2">"userGroup2PrimaryUserIdentifierType"</span><span class="p">:</span><span class="s2">"email"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"userGroup2PrimaryUserIdentifierVale"</span><span class="p">:</span><span class="w"> </span><span class="s2">"example@example.com"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"userGroup2PrimaryUserSource"</span><span class="p">:</span><span class="s2">"WEB_ENGAGE"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"userGroup2PrimaryUserAccountId"</span><span class="p">:</span><span class="s2">""</span><span class="w">
+      </span><span class="s2">"paymentModes"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"mode"</span><span class="p">:</span><span class="s2">"CardPayment"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"5100.0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"notes"</span><span class="p">:</span><span class="s2">"SPay"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"attributes"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"card_type"</span><span class="p">:</span><span class="s2">"Visa"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"mode"</span><span class="p">:</span><span class="s2">"NetBanking"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"4800.0"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"notes"</span><span class="p">:</span><span class="s2">"Net Banking"</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"redemptions"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"pointsRedemptions"</span><span class="p">:[</span><span class="w">
+            </span><span class="mi">123453</span><span class="p">,</span><span class="w">
+            </span><span class="mi">345673</span><span class="w">
+         </span><span class="p">],</span><span class="w">
+         </span><span class="s2">"couponRedemptions"</span><span class="p">:[</span><span class="w">
+            </span><span class="mi">727272</span><span class="p">,</span><span class="w">
+            </span><span class="mi">237878</span><span class="w">
+         </span><span class="p">]</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"ship_first_name"</span><span class="p">:</span><span class="s2">"Sam"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"ship_last_name"</span><span class="p">:</span><span class="s2">"Sundar"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"customFields"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"booking_ota"</span><span class="p">:</span><span class="s2">"Website"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"trans_cf_a"</span><span class="p">:</span><span class="s2">"abc"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"lineItemsV2"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="s2">"sku_486741_2"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"sample description"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"discount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"rate"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"qty"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"MetalRate"</span><span class="p">:</span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"GrossWeight"</span><span class="p">:</span><span class="s2">"10.50"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="s2">"sku_486741_2"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="s2">"sample description"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"discount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"rate"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"qty"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"MetalRate"</span><span class="p">:</span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"GrossWeight"</span><span class="p">:</span><span class="s2">"10.50"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="s2">"sku_486741_3"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"rate"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"qty"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"gender"</span><span class="p">:</span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"marital_status"</span><span class="p">:</span><span class="s2">"Married"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"customFields"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"cashierid"</span><span class="p">:</span><span class="s2">"jim2345"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"city"</span><span class="p">:</span><span class="s2">"Bangalore"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="s2">"sku_486741_4"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"rate"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"qty"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"MetalRate"</span><span class="p">:</span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"GrossWeight"</span><span class="p">:</span><span class="s2">"10.50"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="s2">"sku_486741_5"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"rate"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"qty"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"MetalRate"</span><span class="p">:</span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"GrossWeight"</span><span class="p">:</span><span class="s2">"10.50"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="s2">"sku_486741_6"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"rate"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"qty"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"MetalRate"</span><span class="p">:</span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"GrossWeight"</span><span class="p">:</span><span class="s2">"10.50"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="s2">"sku_486741_7"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"rate"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"qty"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"MetalRate"</span><span class="p">:</span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"GrossWeight"</span><span class="p">:</span><span class="s2">"10.50"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="s2">"sku_486741_8"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"discount"</span><span class="p">:</span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"rate"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"qty"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"MetalRate"</span><span class="p">:</span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"GrossWeight"</span><span class="p">:</span><span class="s2">"10.50"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="s2">"sku_486741_9"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"rate"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"qty"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"MetalRate"</span><span class="p">:</span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"GrossWeight"</span><span class="p">:</span><span class="s2">"10.50"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="s2">"sku_486741_10"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"rate"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"qty"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"MetalRate"</span><span class="p">:</span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"GrossWeight"</span><span class="p">:</span><span class="s2">"10.50"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">},</span><span class="w">
+   </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"identifierType"</span><span class="p">:</span><span class="s2">"mobile"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"identifierValue"</span><span class="p">:</span><span class="s2">"919740000000"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"source"</span><span class="p">:</span><span class="s2">"INSTORE"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"accountId"</span><span class="p">:</span><span class="s2">""</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"type"</span><span class="p">:</span><span class="s2">"REGULAR"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"billNumber"</span><span class="p">:</span><span class="s2">"num-668288857765"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"discount"</span><span class="p">:</span><span class="s2">"10"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"billAmount"</span><span class="p">:</span><span class="s2">"200"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"note"</span><span class="p">:</span><span class="s2">"this is test"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"grossAmount"</span><span class="p">:</span><span class="s2">"110"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"deliveryStatus"</span><span class="p">:</span><span class="s2">"SHIPPED"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"paymentModes"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"attributes"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"BankNameAPI"</span><span class="p">:</span><span class="s2">"value_6555444"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"notes"</span><span class="p">:</span><span class="s2">"notes_6555444"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"mode"</span><span class="p">:</span><span class="s2">"CHECKAPI"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"value"</span><span class="p">:</span><span class="s2">"500"</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"ship_first_name"</span><span class="p">:</span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"ship_last_name"</span><span class="p">:</span><span class="s2">"10.50"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"customFields"</span><span class="p">:{</span><span class="w">
+         </span><span class="s2">"trans_cf_a"</span><span class="p">:</span><span class="s2">"abc"</span><span class="w">
+      </span><span class="p">},</span><span class="w">
+      </span><span class="s2">"lineItemsV2"</span><span class="p">:[</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="s2">"sku_486741_2"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"rate"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"qty"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"MetalRate"</span><span class="p">:</span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"GrossWeight"</span><span class="p">:</span><span class="s2">"10.50"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="s2">"sku_486741_2"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"rate"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"qty"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"MetalRate"</span><span class="p">:</span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"GrossWeight"</span><span class="p">:</span><span class="s2">"10.50"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="s2">"sku_486741_3"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"rate"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"qty"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"MetalRate"</span><span class="p">:</span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"GrossWeight"</span><span class="p">:</span><span class="s2">"10.50"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="s2">"sku_486741_4"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"rate"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"qty"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"MetalRate"</span><span class="p">:</span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"GrossWeight"</span><span class="p">:</span><span class="s2">"10.50"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="s2">"sku_486741_5"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"rate"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"qty"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"MetalRate"</span><span class="p">:</span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"GrossWeight"</span><span class="p">:</span><span class="s2">"10.50"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="s2">"sku_486741_6"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"rate"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"qty"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"MetalRate"</span><span class="p">:</span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"GrossWeight"</span><span class="p">:</span><span class="s2">"10.50"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="s2">"sku_486741_7"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"rate"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"qty"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"MetalRate"</span><span class="p">:</span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"GrossWeight"</span><span class="p">:</span><span class="s2">"10.50"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="s2">"sku_486741_8"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"rate"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"qty"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"gender"</span><span class="p">:</span><span class="s2">"Male"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"marital_status"</span><span class="p">:</span><span class="s2">"Married"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"customFields"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"cashierid"</span><span class="p">:</span><span class="s2">"jim2345"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"city"</span><span class="p">:</span><span class="s2">"Bangalore"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="s2">"sku_486741_9"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"rate"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"qty"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"MetalRate"</span><span class="p">:</span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"GrossWeight"</span><span class="p">:</span><span class="s2">"10.50"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">},</span><span class="w">
+         </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"itemCode"</span><span class="p">:</span><span class="s2">"sku_486741_10"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"amount"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"rate"</span><span class="p">:</span><span class="mf">100.5</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"qty"</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"extendedFields"</span><span class="p">:{</span><span class="w">
+               </span><span class="s2">"MetalRate"</span><span class="p">:</span><span class="s2">"22.02"</span><span class="p">,</span><span class="w">
+               </span><span class="s2">"GrossWeight"</span><span class="p">:</span><span class="s2">"10.50"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+         </span><span class="p">}</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"loyaltyPromotionIdentifiers"</span><span class="p">:[</span><span class="w">
+         </span><span class="s2">"ABC-12345"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"Diwali_Promotion_2020"</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"New_Year_Promotion_2020"</span><span class="w">
+      </span><span class="p">],</span><span class="w">
+      </span><span class="s2">"promotionEvaluationId"</span><span class="p">:</span><span class="s2">"60f5713c4c5cb92ab2da320e"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"appliedPromotionIdentifiers"</span><span class="p">:[</span><span class="w">
+         </span><span class="s2">"eyJwcm9tb3Rpb25JZCI6IjYxMmU1YzVlNDEzM2I1NmFiZTBmMDczZSIsImRpc2NvdW50IjoiMTAwMC4wMDAwMDAiLCJhbW91bnQiOiIzMDAwLjAwMDAwMCIsImRpc2NvdW50QXBwbGllZFF0eSI6IjEiLCJwcm9tb3Rpb25BcHBsaWVkUXR5IjoiMy4wMDAwMDAiLCJyZWRlbXB0aW9uQ291bnQiOjEsInNrdSI6IkpOU1JFRzAyIiwidmVyc2lvbiI6InYxIn0="</span><span class="p">,</span><span class="w">
+         </span><span class="s2">"eyJwcm9tb3Rpb25JZCI6IjYxMmU1YzVlNDEzM2I1NmFiZTBmMDczZSIsImRpc2NvdW50IjoiMTAwMC4wMDAwMDAiLCJhbW91bnQiOiIzMDAwLjAwMDAwMCIsImRpc2NvdW50QXBwbGllZFF0eSI6IjEiLCJwcm9tb3Rpb25BcHBsaWVkUXR5IjoiMy4wMDAwMDAiLCJyZWRlbXB0aW9uQ291bnQiOjEsInNrdSI6IkpOU1JFRzAyIiwidmVyc2lvbiI6InYxIn1="</span><span class="w">
+      </span><span class="p">]</span><span class="w">
+   </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
 </span></code></pre>
 <blockquote>
 <p>Sample POST Request (Return Transaction)</p>
@@ -16519,7 +16521,7 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
   </span><span class="s2">"pointsTobeTransferred"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w">
   </span><span class="s2">"groupProgramTransfer"</span><span class="p">:</span><span class="w"> </span><span class="s2">"false"</span><span class="p">,</span><span class="w">
   </span><span class="s2">"notes"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sample notes"</span><span class="p">,</span><span class="w">
-  </span><span class="err">“programId”</span><span class="p">:</span><span class="w"> </span><span class="mi">141</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">141</span><span class="p">,</span><span class="w">
   </span><span class="s2">"fromCustomerIdentifier"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
     </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MOBILE"</span><span class="p">,</span><span class="w">
     </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"7799497290"</span><span class="w">
@@ -31683,7 +31685,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 </tr>
 </tbody></table>
 
-<h2 id="get-companies-by-extended-field-vales">Get Companies by Extended Field Vales</h2>
+<h2 id="get-companies-by-extended-field-values">Get Companies by Extended Field Values</h2>
 
 <p>Fetches companies using the first few values of an extended field value provided.</p>
 
@@ -36924,12 +36926,78 @@ Retrieves the configuration details of a specific source.
 <tr>
 <td>includeDisabled</td>
 <td>boolean</td>
-<td>default value <code class="prettyprint">false</code>.</td>
+<td>Default value <code class="prettyprint">false</code>.</td>
 </tr>
 <tr>
 <td>includeDisabledAtServer</td>
 <td>boolean</td>
 <td>Default value <code class="prettyprint">false</code>.</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-organization-configs">Get Organization Configs</h2>
+
+<p>Retrieves the details of a specific configuration based on the name of the configuration passed.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/organization/configs/CONF_MAX_CARDS_PER_ORG
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100458</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"keyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CONF_MAX_CARDS_PER_ORG"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ORG"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/v2/organization/configs/{name}</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>Yes (1000 per hour)</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v2/organization/configs/{name}</code></p>
+
+<h3 id="request-path-parameter">Request Path Parameter</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>string</td>
+<td>Name of the configuration to fetch. For example, <code class="prettyprint">CONF_MAX_CARDS_PER_ORG</code>, <code class="prettyprint">IS_DIRECT_REPLAY_ENABLED</code></td>
 </tr>
 </tbody></table>
 
@@ -37077,72 +37145,6 @@ Retrieves the configuration details of a specific source.
 <td>tillId**</td>
 <td>long</td>
 <td>Pass the unique till ID to get the details by tillId (second URL).</td>
-</tr>
-</tbody></table>
-
-<h2 id="get-organization-configs">Get Organization Configs</h2>
-
-<p>Retrieves the details of a specific configuration based on the name of the configuration passed.</p>
-
-<blockquote>
-<p>Sample Request</p>
-</blockquote>
-<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/organization/configs/CONF_MAX_CARDS_PER_ORG
-</code></pre>
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="p">{</span><span class="w">
-    </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100458</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"keyName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CONF_MAX_CARDS_PER_ORG"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"6"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"scope"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ORG"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<h3 id="resource-information">Resource Information</h3>
-
-<table><thead>
-<tr>
-<th></th>
-<th></th>
-</tr>
-</thead><tbody>
-<tr>
-<td>URI</td>
-<td><code class="prettyprint">/v2/organization/configs/{name}</code></td>
-</tr>
-<tr>
-<td>Rate Limited?</td>
-<td>Yes (1000 per hour)</td>
-</tr>
-<tr>
-<td>HTTP Methods</td>
-<td>GET</td>
-</tr>
-<tr>
-<td>Batch Support</td>
-<td>No</td>
-</tr>
-</tbody></table>
-
-<h3 id="request-url">Request URL</h3>
-
-<p><code class="prettyprint">{host}/v2/organization/configs/{name}</code></p>
-
-<h3 id="request-path-parameter">Request Path Parameter</h3>
-
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Datatype</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>name</td>
-<td>string</td>
-<td>Name of the configuration to fetch. For example, <code class="prettyprint">CONF_MAX_CARDS_PER_ORG</code>, <code class="prettyprint">IS_DIRECT_REPLAY_ENABLED</code></td>
 </tr>
 </tbody></table>
 
@@ -51312,6 +51314,1628 @@ https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/item/similar-a
 </tr>
 </tbody></table>
 
+          <h1 id="target-loyalty">Target Loyalty</h1>
+
+<h1 id="create-target-groups">Create Target Groups</h1>
+
+<p>Lets you create a new target group.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v3/targetGroups
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TGF19"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"fromDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-27T08:41:00.529Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TGF19"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"preferredTillId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"toDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-28T08:41:00.529Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"totalPeriods"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"frequency"</span><span class="p">:</span><span class="mi">5</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"recurringCycles"</span><span class="p">:</span><span class="mi">2</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"targetCycleStartDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-28T08:41:00.529Z"</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"periods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-05-29T11:35:52.976Z"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"periodStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RUNNING"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"refCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-03-29T11:35:52.976Z"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">],</span><span class="w">
+  </span><span class="s2">"activePeriod"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+    </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sample description"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-04-29T11:35:52.975Z"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"periodStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RUNNING"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"refCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gdf123"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-03-28T11:35:52.975Z"</span><span class="w">
+  </span><span class="p">}</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TGF19"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fromDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-27"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"toDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-28"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"preferredTillId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"periods"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+            </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">74</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-03-28T13:28:32.602+0000"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-03-28T13:28:32.602+0000"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75040399</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bukl.till"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bukl.till"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
+                    </span><span class="p">},</span><span class="w">
+                    </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75040399</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bukl.till"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bukl.till"</span><span class="p">,</span><span class="w">
+                        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
+                    </span><span class="p">}</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-03-29"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-05-29"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"refCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"periodStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOT_STARTED"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"targetGroupId"</span><span class="p">:</span><span class="w"> </span><span class="mi">32</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">],</span><span class="w">
+        </span><span class="s2">"activePeriod"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-03-28"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-04-29"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"refCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"gdf123"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"periodStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RUNNING"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Samplr description"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"totalPeriods"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TGF19"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"recurringCycles"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"frequency"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"targetCycleStartDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-05-28T08:41:00.529Z"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/v3/targetGroups</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v3</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">http://{host}/v3/targetGroups</code></p>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>active</td>
+<td>boolean</td>
+<td>Current status of the target group. Pass <code class="prettyprint">true</code> to keep the group active, <code class="prettyprint">false</code> to inactive.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>Short Description about the group.</td>
+</tr>
+<tr>
+<td>fromDate</td>
+<td>date-time</td>
+<td>Timestamp of when the group is created in ISO standard date format. This should be a future date.</td>
+</tr>
+<tr>
+<td>name*</td>
+<td>string</td>
+<td>Name of the target group.</td>
+</tr>
+<tr>
+<td>preferredTillId*</td>
+<td>string</td>
+<td>TILL that needs to be associated for points issued on completing the target.</td>
+</tr>
+<tr>
+<td>toDate</td>
+<td>date-time</td>
+<td>Timestamp until when the group is active in ISO standard date format. This should be a future date and &gt; <code class="prettyprint">startDate</code>.</td>
+</tr>
+<tr>
+<td>totalPeriods</td>
+<td>int</td>
+<td>The total number of periods in the group.</td>
+</tr>
+<tr>
+<td>frequency</td>
+<td>int</td>
+<td>Frequency of custom recurring cycle in number of days.</td>
+</tr>
+<tr>
+<td>recurringCycles</td>
+<td>int</td>
+<td>Frequency of the recurring cycle of Values: <code class="prettyprint">MONTHLY</code>, <code class="prettyprint">QUARTERLY</code>, <code class="prettyprint">HALF_YEARLY</code>, <code class="prettyprint">YEARLY</code>, <code class="prettyprint">CUSTOM</code>.</td>
+</tr>
+<tr>
+<td>targetCycleStartDate</td>
+<td>date-time</td>
+<td>Start date and time of the target cycle (ISO standard date format)</td>
+</tr>
+<tr>
+<td>periods</td>
+<td>array-obj</td>
+<td>Details of each target period of the group.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;active</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to activate the target group.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description</td>
+<td>string</td>
+<td>Short description of the target period.</td>
+</tr>
+</tbody></table>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;endDate&quot;: &ldquo;2022-05-29T11:35:52.976Z&rdquo;,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;periodStatus | enum | Status of the target period. Values: <code class="prettyprint">RUNNING</code>,
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;refCode | string | 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;startDate | date-time | Timestamp of the target period&rsquo;s start date.
+activePeriod | obj | </p>
+
+<h2 id="modify-target-groups">Modify Target Groups</h2>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v3/targetGroups
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/v3/targetGroups</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v3</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>PUT</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-target-groups">Get Target Groups</h2>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v3/targetGroups/20
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-11-17T06:02:54.000+0000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-11-17T06:02:54.000+0000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75047814</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1614748040_"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tom Sawyer"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADMIN_USER"</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75047814</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1614748040_"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tom Sawyer"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADMIN_USER"</span><span class="w">
+            </span><span class="p">}</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Demo Targets"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"fromDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2021-11-18"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"toDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-01-17"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"preferredTillId"</span><span class="p">:</span><span class="w"> </span><span class="mi">75043577</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"totalPeriods"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"targetEvaluationType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"FIXED_CALENDAR_WINDOW"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"recurringCycles"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"frequency"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"frequencyType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"MONTHLY"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/v3/targetGroups/{groupId}</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v3</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v3/targetGroups/{groupId}</code></p>
+
+<h3 id="request-path-parameter">Request Path Parameter</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>groupId*</td>
+<td>int</td>
+<td>Group ID of the target to retrieve.</td>
+</tr>
+</tbody></table>
+
+<h2 id="delete-target-group">Delete Target Group</h2>
+
+<p>Removes an existing target group.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v3/targetGroups/20
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+  </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+  </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+      </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+      </span><span class="s2">"message"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+  </span><span class="p">]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/v3/targetGroups/{groupId}</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v3</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>DELETE</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v3/targetGroups/{groupId}</code></p>
+
+<h3 id="request-path-parameter">Request Path Parameter</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>groupId*</td>
+<td>int</td>
+<td>Group ID of the target to delete.</td>
+</tr>
+</tbody></table>
+
+<h2 id="create-target-periods">Create Target Periods</h2>
+
+<p>Lets you add target periods to an existing target group.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v3/targetGroups/19/targetPeriods
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-06-29T11:58:12.063Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"periodStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RUNNING"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"refCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-06-28T11:58:12.063Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"targetGroupId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-09-29T11:58:12.063Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"periodStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RUNNING"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"refCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"refCode01"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-10-28T11:58:12.063Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"targetGroupId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-25T11:01:34.000+0000"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-25T11:01:34.000+0000"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75047814</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1614748040_"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harsh Deo"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADMIN_USER"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75047814</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1614748040_"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harsh Deo"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADMIN_USER"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-26"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-03-25"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"refCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Period "</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"periodStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ENDED"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"targetGroupId"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">71</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-25T11:01:34.000+0000"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-25T11:01:34.000+0000"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75047814</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1614748040_"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harsh Deo"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADMIN_USER"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75047814</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1614748040_"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harsh Deo"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADMIN_USER"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-03-26"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-04-25"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"refCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cycle 2"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"periodStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RUNNING"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"targetGroupId"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-03-30T12:16:43.544+0000"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-03-30T12:16:43.544+0000"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75040399</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bukl.till"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bukl.till"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75040399</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bukl.till"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bukl.till"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-06-28"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-06-29"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"refCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"periodStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"NOT_STARTED"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"targetGroupId"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/v3/targetGroups/{groupId}/targetPeriods</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v3</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v3/targetGroups/{groupId}/targetPeriods</code></p>
+
+<h3 id="request-path-parameter">Request Path Parameter</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>groupId*</td>
+<td>int</td>
+<td>Group ID for which target periods need to be added.</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>active</td>
+<td>boolean</td>
+<td>Current status of the target period. <code class="prettyprint">true</code> for active, <code class="prettyprint">false</code> for inactive.</td>
+</tr>
+<tr>
+<td>description*</td>
+<td>string</td>
+<td>Short description of the target period.</td>
+</tr>
+<tr>
+<td>startDate*</td>
+<td>date-time</td>
+<td>Duration of the target period in ISO standard timestamp between <code class="prettyprint">startDate</code> and <code class="prettyprint">endDate</code>.</td>
+</tr>
+<tr>
+<td>endDate*</td>
+<td>date-time</td>
+<td>Duration of the target period in ISO standard timestamp between <code class="prettyprint">startDate</code> and <code class="prettyprint">endDate</code>.</td>
+</tr>
+<tr>
+<td>periodStatus</td>
+<td>enum</td>
+<td>Status of the period. Values: <code class="prettyprint">RUNNING</code>, <code class="prettyprint">NOT_STARTED</code>, <code class="prettyprint">ENDED</code>.</td>
+</tr>
+<tr>
+<td>refCode</td>
+<td>string</td>
+<td>Reference code of  the target period.</td>
+</tr>
+</tbody></table>
+
+<h2 id="update-target-period">Update Target Period</h2>
+
+<p>Lets you update an existing target period.</p>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v3/targetGroups/19/targetPeriods
+</code></pre>
+<blockquote>
+<p>Sample PUT Request</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">[</span><span class="w">
+    </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-06-29T11:58:12.063Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"periodStatus"</span><span class="p">:</span><span class="w"> </span><span class="s2">"RUNNING"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"refCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string1"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-06-28T11:58:12.063Z"</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"targetGroupId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+</span><span class="p">]</span><span class="w">
+</span></code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-25T11:01:34.000+0000"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-25T11:01:34.000+0000"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75047814</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1614748040_"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harsh Deo"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADMIN_USER"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75047814</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1614748040_"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harsh Deo"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADMIN_USER"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-26"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-03-25"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"refCode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Period "</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"targetGroupId"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string1"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/v3/targetGroups/{groupId}/targetPeriods</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v3</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>PUT</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v3/targetGroups/{groupId}/targetPeriods</code></p>
+
+<h3 id="request-path-parameter">Request Path Parameter</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>groupId*</td>
+<td>int</td>
+<td>Group ID for which target period needs to be updated.</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id*</td>
+<td>int</td>
+<td>Unique ID of the target period to modify.</td>
+</tr>
+<tr>
+<td>active</td>
+<td>boolean</td>
+<td>Current status of the target period. <code class="prettyprint">true</code> for active, <code class="prettyprint">false</code> for inactive.</td>
+</tr>
+<tr>
+<td>description*</td>
+<td>string</td>
+<td>Short description of the target period.</td>
+</tr>
+<tr>
+<td>startDate*</td>
+<td>date-time</td>
+<td>Duration of the target period in ISO standard timestamp between <code class="prettyprint">startDate</code> and <code class="prettyprint">endDate</code>.</td>
+</tr>
+<tr>
+<td>endDate*</td>
+<td>date-time</td>
+<td>Duration of the target period in ISO standard timestamp between <code class="prettyprint">startDate</code> and <code class="prettyprint">endDate</code>.</td>
+</tr>
+<tr>
+<td>periodStatus</td>
+<td>enum</td>
+<td>Status of the period. Values: <code class="prettyprint">RUNNING</code>, <code class="prettyprint">NOT_STARTED</code>, <code class="prettyprint">ENDED</code>.</td>
+</tr>
+<tr>
+<td>refCode</td>
+<td>string</td>
+<td>Reference code of  the target period.</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-target-periods">Get Target Periods</h2>
+
+<p>Retrieves the details of target periods of a specific target group.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v3/targetGroups/30/targetPeriods
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight plaintext"><code>{
+    "data": [
+        {
+            "id": 70,
+            "attribution": {
+                "createdOn": "2022-02-25T11:01:34.000+0000",
+                "lastUpdatedOn": "2022-02-25T11:01:34.000+0000",
+                "lastUpdatedBy": {
+                    "id": 75047814,
+                    "code": "1614748040_",
+                    "description": "",
+                    "name": "Harsh Deo",
+                    "type": "ADMIN_USER"
+                },
+                "createdBy": {
+                    "id": 75047814,
+                    "code": "1614748040_",
+                    "description": "",
+                    "name": "Harsh Deo",
+                    "type": "ADMIN_USER"
+                }
+            },
+            "startDate": "2022-02-26",
+            "endDate": "2022-03-25",
+            "refCode": "Period ",
+            "periodStatus": "ENDED",
+            "targetGroupId": 30,
+            "description": "string1",
+            "active": true
+        },
+        {
+            "id": 71,
+            "attribution": {
+                "createdOn": "2022-02-25T11:01:34.000+0000",
+                "lastUpdatedOn": "2022-02-25T11:01:34.000+0000",
+                "lastUpdatedBy": {
+                    "id": 75047814,
+                    "code": "1614748040_",
+                    "description": "",
+                    "name": "Harsh Deo",
+                    "type": "ADMIN_USER"
+                },
+                "createdBy": {
+                    "id": 75047814,
+                    "code": "1614748040_",
+                    "description": "",
+                    "name": "Harsh Deo",
+                    "type": "ADMIN_USER"
+                }
+            },
+            "startDate": "2022-03-26",
+            "endDate": "2022-04-25",
+            "refCode": "Cycle 2",
+            "periodStatus": "RUNNING",
+            "targetGroupId": 30,
+            "active": true
+        },
+        {
+            "id": 75,
+            "attribution": {
+                "createdOn": "2022-03-30T12:16:44.000+0000",
+                "lastUpdatedOn": "2022-03-30T12:16:44.000+0000",
+                "lastUpdatedBy": {
+                    "id": 75040399,
+                    "code": "bukl.till",
+                    "description": "",
+                    "name": "bukl.till",
+                    "type": "TILL"
+                },
+                "createdBy": {
+                    "id": 75040399,
+                    "code": "bukl.till",
+                    "description": "",
+                    "name": "bukl.till",
+                    "type": "TILL"
+                }
+            },
+            "startDate": "2022-06-28",
+            "endDate": "2022-06-29",
+            "refCode": "string1",
+            "periodStatus": "NOT_STARTED",
+            "targetGroupId": 30,
+            "description": "string",
+            "active": true
+        }
+    ],
+    "errors": null
+}
+</code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/v3/targetGroups/{groupId}/targetPeriods</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v3</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v3/targetGroups/{groupId}/targetPeriods</code></p>
+
+<h3 id="request-path-parameter">Request Path Parameter</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>groupId*</td>
+<td>int</td>
+<td>Group ID of the target group to fetch target periods.</td>
+</tr>
+</tbody></table>
+
+<h2 id="create-targets">Create Targets</h2>
+
+<p>Lets you add targets to the existing target group.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v3/targetGroups/20/targets
+</code></pre>
+<blockquote>
+<p>Sample POST Request</p>
+</blockquote>
+<pre class="highlight plaintext"><code>[
+  {
+    "active": true,
+    "description": "string",
+    "emfRuleSetId": 0,
+    "emfUnrolledRulesetId": 0,
+    "expression": "true",
+    "expressionJson": "{\"arity\":\"literal\",\"value\":\"true\",\"type\":\"boolean:primitive\"}",
+    "filters": [
+      {
+        "entityIds": [
+          0
+        ],
+        "entityType": "STORE"
+      }
+    ],
+    "name": "string13",
+    "targetEntity": "TRANSACTION",
+    "targetGroupId": 4,
+    "targetType": "QUANTITY"
+  }
+]
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">39</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-03-28T14:33:38.543+0000"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-03-28T14:33:38.543+0000"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75040399</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bukl.till"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bukl.till"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75040399</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bukl.till"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bukl.till"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TILL"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string13"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"emfRuleSetId"</span><span class="p">:</span><span class="w"> </span><span class="mi">13550</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"emfUnrolledRulesetId"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"targetType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"QUANTITY"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"targetEntity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRANSACTION"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"targetGroupId"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">"string"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"expression"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"expressionJson"</span><span class="p">:</span><span class="w"> </span><span class="s2">"{</span><span class="se">\"</span><span class="s2">arity</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">literal</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">value</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">true</span><span class="se">\"</span><span class="s2">,</span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">boolean:primitive</span><span class="se">\"</span><span class="s2">}"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"filters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"entityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STORE"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"entityIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="mi">0</span><span class="w">
+                    </span><span class="p">]</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"enrolmentMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"IMPORT"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/v3/targetGroups/{groupId}/targets</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v3</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>POST</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v3/targetGroups/{groupId}/targets</code></p>
+
+<h3 id="request-path-parameter">Request Path Parameter</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>groupId*</td>
+<td>int</td>
+<td>Group ID for which target needs to be added.</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>active</td>
+<td>boolean</td>
+<td>Current status of the target.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>Short description of the target.</td>
+</tr>
+<tr>
+<td>emfRuleSetId</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>emfUnrolledRulesetId</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>enrolmentMethod</td>
+<td>enum</td>
+<td>How to enroll customers and add target values. Values: <code class="prettyprint">TRANSACTION</code> (enroll loyalty customers who transacts during the target period), <code class="prettyprint">IMPORT</code> (to import a list of customers with custom target value).</td>
+</tr>
+<tr>
+<td>expression</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>expressionJson</td>
+<td>string</td>
+<td>Condition (rule expression) to be evaluated based for the chosen <code class="prettyprint">targetEntity</code>.</td>
+</tr>
+<tr>
+<td>filters</td>
+<td>array-obj</td>
+<td>Restrict the target to specific stores.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;entityIds</td>
+<td>array</td>
+<td>Pass the unique IDs  of selected <code class="prettyprint">entityType</code>. For example, if <code class="prettyprint">entityType</code> is <code class="prettyprint">STORES</code>, pass the applicable store IDs in <code class="prettyprint">entityIds</code>.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;entityType</td>
+<td></td>
+<td>Entity by which the target is restricted. Values: <code class="prettyprint">STORE</code>, <code class="prettyprint">ZONE</code>, <code class="prettyprint">CONCEPT</code>.</td>
+</tr>
+<tr>
+<td>name*</td>
+<td>string</td>
+<td>Name of the target</td>
+</tr>
+<tr>
+<td>targetEntity</td>
+<td>enum</td>
+<td>Entity to define target condition. Values: <code class="prettyprint">TRANSACTION</code>, <code class="prettyprint">LINEITEM</code>, <code class="prettyprint">POINTS</code>. For example, pass <code class="prettyprint">LINEITEM</code> to define condition on the transaction line item.</td>
+</tr>
+<tr>
+<td>targetGroupId</td>
+<td>int</td>
+<td>Unique ID of the target group associated with the target.</td>
+</tr>
+<tr>
+<td>targetType*</td>
+<td>enum</td>
+<td>Transaction parameter to consider for the target. Values: <code class="prettyprint">QUANTITY</code>, <code class="prettyprint">SALES</code>, <code class="prettyprint">COUNT</code>, <code class="prettyprint">VISIT</code>.</td>
+</tr>
+</tbody></table>
+
+<h2 id="modify-target">Modify Target</h2>
+
+<p>Lets you modify an existing target.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v3/targetGroups/20/targets
+</code></pre>
+<blockquote>
+<p>Sample PUT Request</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight plaintext"><code>
+</code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/v3/targetGroups/{groupId}/targets</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v3</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>PUT</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v3/targetGroups/{groupId}/targets</code></p>
+
+<h3 id="request-path-parameter">Request Path Parameter</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>groupId*</td>
+<td>int</td>
+<td>Group ID for which target needs to be updated.</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-body-parameters">Request Body Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>active</td>
+<td>boolean</td>
+<td>Current status of the target.</td>
+</tr>
+<tr>
+<td>description</td>
+<td>string</td>
+<td>Short description of the target.</td>
+</tr>
+<tr>
+<td>emfRuleSetId</td>
+<td>int</td>
+<td></td>
+</tr>
+<tr>
+<td>emfUnrolledRulesetId</td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>enrolmentMethod</td>
+<td>enum</td>
+<td>How to enroll customers and add target values. Values: <code class="prettyprint">TRANSACTION</code> (enroll loyalty customers who transacts during the target period), <code class="prettyprint">IMPORT</code> (to import a list of customers with custom target value).</td>
+</tr>
+<tr>
+<td>expression</td>
+<td>string</td>
+<td></td>
+</tr>
+<tr>
+<td>expressionJson</td>
+<td>string</td>
+<td>Condition (rule expression) to be evaluated based for the chosen <code class="prettyprint">targetEntity</code>.</td>
+</tr>
+<tr>
+<td>filters</td>
+<td>array-obj</td>
+<td>Restrict the target to specific stores.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;entityIds</td>
+<td>array</td>
+<td>Pass the unique IDs  of selected <code class="prettyprint">entityType</code>. For example, if <code class="prettyprint">entityType</code> is <code class="prettyprint">STORES</code>, pass the applicable store IDs in <code class="prettyprint">entityIds</code>.</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;entityType</td>
+<td></td>
+<td>Entity by which the target is restricted. Values: <code class="prettyprint">STORE</code>, <code class="prettyprint">ZONE</code>, <code class="prettyprint">CONCEPT</code>.</td>
+</tr>
+<tr>
+<td>name*</td>
+<td>string</td>
+<td>Name of the target</td>
+</tr>
+<tr>
+<td>targetEntity</td>
+<td>enum</td>
+<td>Entity to define target condition. Values: <code class="prettyprint">TRANSACTION</code>, <code class="prettyprint">LINEITEM</code>, <code class="prettyprint">POINTS</code>. For example, pass <code class="prettyprint">LINEITEM</code> to define condition on the transaction line item.</td>
+</tr>
+<tr>
+<td>targetGroupId</td>
+<td>int</td>
+<td>Unique ID of the target group associated with the target.</td>
+</tr>
+<tr>
+<td>targetType*</td>
+<td>enum</td>
+<td>Transaction parameter to consider for the target. Values: <code class="prettyprint">QUANTITY</code>, <code class="prettyprint">SALES</code>, <code class="prettyprint">COUNT</code>, <code class="prettyprint">VISIT</code>.</td>
+</tr>
+</tbody></table>
+
+<h2 id="get-target-details">Get Target Details</h2>
+
+<p>Retrieves the details of a target of a specific target group.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v3/targetGroups/30/targets
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">34</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-25T11:03:02.000+0000"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-25T11:03:02.000+0000"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75047814</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1614748040_"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harsh Deo"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADMIN_USER"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75047814</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1614748040_"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harsh Deo"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADMIN_USER"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Complete purchases worth 10000"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"emfRuleSetId"</span><span class="p">:</span><span class="w"> </span><span class="mi">9937</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"emfUnrolledRulesetId"</span><span class="p">:</span><span class="w"> </span><span class="mi">9936</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"targetType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SALES"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"targetEntity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LINEITEM"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"targetGroupId"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"expression"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"expressionJson"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\n</span><span class="s2">{</span><span class="se">\n</span><span class="s2">  </span><span class="se">\"</span><span class="s2">arity</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">literal</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">  </span><span class="se">\"</span><span class="s2">value</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">true</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">  </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">boolean:primitive</span><span class="se">\"\n</span><span class="s2">}"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"filters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"entityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STORE"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"entityIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="mi">75027647</span><span class="p">,</span><span class="w">
+                        </span><span class="mi">75046489</span><span class="w">
+                    </span><span class="p">]</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"enrolmentMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRANSACTION"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"defaultValues"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">54</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"periodId"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"defaultValue"</span><span class="p">:</span><span class="w"> </span><span class="mf">9997.000</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">55</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"periodId"</span><span class="p">:</span><span class="w"> </span><span class="mi">71</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"defaultValue"</span><span class="p">:</span><span class="w"> </span><span class="mf">10000.000</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">35</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-25T11:03:35.000+0000"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-02-25T11:03:35.000+0000"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75047814</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1614748040_"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harsh Deo"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADMIN_USER"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75047814</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1614748040_"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harsh Deo"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADMIN_USER"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"On 5 visits"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"emfRuleSetId"</span><span class="p">:</span><span class="w"> </span><span class="mi">9939</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"emfUnrolledRulesetId"</span><span class="p">:</span><span class="w"> </span><span class="mi">9938</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"targetType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SALES"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"targetEntity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"LINEITEM"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"targetGroupId"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"expression"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"expressionJson"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\n</span><span class="s2">{</span><span class="se">\n</span><span class="s2">  </span><span class="se">\"</span><span class="s2">arity</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">literal</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">  </span><span class="se">\"</span><span class="s2">value</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">true</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">  </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">boolean:primitive</span><span class="se">\"\n</span><span class="s2">}"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"filters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"entityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STORE"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"entityIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="mi">75027647</span><span class="p">,</span><span class="w">
+                        </span><span class="mi">75046489</span><span class="p">,</span><span class="w">
+                        </span><span class="mi">75027642</span><span class="p">,</span><span class="w">
+                        </span><span class="mi">75037225</span><span class="p">,</span><span class="w">
+                        </span><span class="mi">75051583</span><span class="p">,</span><span class="w">
+                        </span><span class="mi">75051591</span><span class="p">,</span><span class="w">
+                        </span><span class="mi">75027645</span><span class="p">,</span><span class="w">
+                        </span><span class="mi">75027646</span><span class="p">,</span><span class="w">
+                        </span><span class="mi">75027638</span><span class="p">,</span><span class="w">
+                        </span><span class="mi">75046490</span><span class="w">
+                    </span><span class="p">]</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"enrolmentMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRANSACTION"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"defaultValues"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">56</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"periodId"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"defaultValue"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.000</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">57</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"periodId"</span><span class="p">:</span><span class="w"> </span><span class="mi">71</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"defaultValue"</span><span class="p">:</span><span class="w"> </span><span class="mf">5.000</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">38</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"attribution"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-03-17T08:56:17.000+0000"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-03-17T08:56:17.000+0000"</span><span class="p">,</span><span class="w">
+                </span><span class="s2">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75047814</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1614748040_"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harsh Deo"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADMIN_USER"</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">75047814</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"code"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1614748040_"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"description"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Harsh Deo"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ADMIN_USER"</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">},</span><span class="w">
+            </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sales target for Knorr"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"emfRuleSetId"</span><span class="p">:</span><span class="w"> </span><span class="mi">12850</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"targetType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SALES"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"targetEntity"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRANSACTION"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"targetGroupId"</span><span class="p">:</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"expression"</span><span class="p">:</span><span class="w"> </span><span class="s2">"true"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"expressionJson"</span><span class="p">:</span><span class="w"> </span><span class="s2">"</span><span class="se">\n</span><span class="s2">{</span><span class="se">\n</span><span class="s2">  </span><span class="se">\"</span><span class="s2">arity</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">literal</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">  </span><span class="se">\"</span><span class="s2">value</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">true</span><span class="se">\"</span><span class="s2">,</span><span class="se">\n</span><span class="s2">  </span><span class="se">\"</span><span class="s2">type</span><span class="se">\"</span><span class="s2">:</span><span class="se">\"</span><span class="s2">boolean:primitive</span><span class="se">\"\n</span><span class="s2">}"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"filters"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"entityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"STORE"</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"entityIds"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                        </span><span class="mi">75027647</span><span class="p">,</span><span class="w">
+                        </span><span class="mi">75046489</span><span class="p">,</span><span class="w">
+                        </span><span class="mi">75027642</span><span class="p">,</span><span class="w">
+                        </span><span class="mi">75037225</span><span class="p">,</span><span class="w">
+                        </span><span class="mi">75051583</span><span class="p">,</span><span class="w">
+                        </span><span class="mi">75027638</span><span class="p">,</span><span class="w">
+                        </span><span class="mi">75046490</span><span class="w">
+                    </span><span class="p">]</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">],</span><span class="w">
+            </span><span class="s2">"enrolmentMethod"</span><span class="p">:</span><span class="w"> </span><span class="s2">"TRANSACTION"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"defaultValues"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">62</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"periodId"</span><span class="p">:</span><span class="w"> </span><span class="mi">70</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"defaultValue"</span><span class="p">:</span><span class="w"> </span><span class="mf">10000.000</span><span class="w">
+                </span><span class="p">},</span><span class="w">
+                </span><span class="p">{</span><span class="w">
+                    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">63</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"periodId"</span><span class="p">:</span><span class="w"> </span><span class="mi">71</span><span class="p">,</span><span class="w">
+                    </span><span class="s2">"defaultValue"</span><span class="p">:</span><span class="w"> </span><span class="mf">15000.000</span><span class="w">
+                </span><span class="p">}</span><span class="w">
+            </span><span class="p">]</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"errors"</span><span class="p">:</span><span class="w"> </span><span class="kc">null</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/v3/targetGroups/{groupId}/targets</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v3</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v3/targetGroups/{groupId}/targets</code></p>
+
+<h3 id="request-path-parameter">Request Path Parameter</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>groupId*</td>
+<td>int</td>
+<td>Group ID for which target needs to retrieve.</td>
+</tr>
+</tbody></table>
+
+<h2 id="deactivate-target">Deactivate Target</h2>
+
+<p>Deactivates a specific target from a target group.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v3/targetGroups/30/targets/19
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/v3/targetGroups/{groupId}/targets/{targetId}</code></td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>API Version</td>
+<td>v3</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>DELETE</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>Yes</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<p><code class="prettyprint">{host}/v3/targetGroups/{groupId}/targets/{targetId}</code></p>
+
+<h3 id="request-path-parameter">Request Path Parameter</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>groupId*</td>
+<td>int</td>
+<td>Group ID associated with the target.</td>
+</tr>
+<tr>
+<td>targetId*</td>
+<td>int</td>
+<td>Unique ID of the target to deactivate.</td>
+</tr>
+</tbody></table>
+
           <h1 id="cart-catalog-promotions">Cart &amp; Catalog Promotions</h1>
 
 <h2 id="set-promotion-settings-org-level">Set Promotion Settings (Org Level)</h2>
@@ -51823,50 +53447,50 @@ https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/item/similar-a
       </span><span class="s2">"freeProductAction"</span><span class="p">:</span><span class="kc">null</span><span class="w">
    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
-</span></code></pre>
-<blockquote>
-<p>Sample Response</p>
-</blockquote>
-<pre class="highlight json"><code><span class="err">&gt;</span><span class="w"> </span><span class="err">Sample</span><span class="w"> </span><span class="err">Response</span><span class="w">
+</span></code></pre><pre class="highlight plaintext"><code>
+&gt; Sample Response
 
-</span><span class="err">```json</span><span class="w">
-</span><span class="p">{</span><span class="w">
-    </span><span class="s2">"data"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-        </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"623c3f73cc485e2e6ec80125"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DemoPromotion"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"orgId"</span><span class="p">:</span><span class="w"> </span><span class="mi">100528</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"priority"</span><span class="p">:</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"active"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"messageLabel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"test!"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"POS"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"condition"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CART"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"cartCondition"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"kpi"</span><span class="p">:</span><span class="w"> </span><span class="s2">"SUBTOTAL"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"operator"</span><span class="p">:</span><span class="w"> </span><span class="s2">"GREATER_THAN_OR_EQUAL"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"1500.000000"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"action"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-            </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CART_BASED"</span><span class="p">,</span><span class="w">
-            </span><span class="s2">"cartBasedAction"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
-                </span><span class="s2">"type"</span><span class="p">:</span><span class="w"> </span><span class="s2">"PERCENTAGE"</span><span class="p">,</span><span class="w">
-                </span><span class="s2">"value"</span><span class="p">:</span><span class="w"> </span><span class="s2">"10.000000"</span><span class="w">
-            </span><span class="p">}</span><span class="w">
-        </span><span class="p">},</span><span class="w">
-        </span><span class="s2">"createdBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75044302</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"createdOn"</span><span class="p">:</span><span class="w"> </span><span class="mi">1648115571586</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"lastUpdatedBy"</span><span class="p">:</span><span class="w"> </span><span class="mi">75044302</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"lastUpdatedOn"</span><span class="p">:</span><span class="w"> </span><span class="mi">1648115571586</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"startDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1624256511786</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"endDate"</span><span class="p">:</span><span class="w"> </span><span class="mi">1627669800000</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"campaignId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1036475</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"earnLimitedToSpecificAudience"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"mode"</span><span class="p">:</span><span class="w"> </span><span class="s2">"DISCOUNT"</span><span class="p">,</span><span class="w">
-        </span><span class="s2">"maxIssuancePerCustomer"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="w">
-    </span><span class="p">}</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
+```json
+&gt; Sample Response
+
+```json
+{
+    "data": {
+        "id": "623c3f73cc485e2e6ec80125",
+        "name": "DemoPromotion",
+        "orgId": 100528,
+        "priority": 0,
+        "active": true,
+        "messageLabel": "test!",
+        "type": "POS",
+        "condition": {
+            "type": "CART",
+            "cartCondition": {
+                "kpi": "SUBTOTAL",
+                "operator": "GREATER_THAN_OR_EQUAL",
+                "value": "1500.000000"
+            }
+        },
+        "action": {
+            "type": "CART_BASED",
+            "cartBasedAction": {
+                "type": "PERCENTAGE",
+                "value": "10.000000"
+            }
+        },
+        "createdBy": 75044302,
+        "createdOn": 1648115571586,
+        "lastUpdatedBy": 75044302,
+        "lastUpdatedOn": 1648115571586,
+        "startDate": 1624256511786,
+        "endDate": 1627669800000,
+        "campaignId": 1036475,
+        "earnLimitedToSpecificAudience": false,
+        "mode": "DISCOUNT",
+        "maxIssuancePerCustomer": 1
+    }
+}
+</code></pre>
 <h3 id="resource-information">Resource Information</h3>
 
 <table><thead>
@@ -51973,7 +53597,7 @@ https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/item/similar-a
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type</td>
 <td>enum</td>
-<td>Type of the promotion. Value: <code class="prettyprint">CATALOG</code>, <code class="prettyprint">PRODUCT</code>.</td>
+<td>Scope of the promotion availing condition. Value: <code class="prettyprint">CATALOG</code>, <code class="prettyprint">PRODUCT</code>.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cartCondition</td>
@@ -52038,12 +53662,12 @@ https://incrm.cc.capillarytech.com/api_gateway/v1/recommendations/item/similar-a
 <tr>
 <td>action</td>
 <td>obj</td>
-<td></td>
+<td>Details of the benefits to be applied.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type</td>
 <td>enum</td>
-<td>Sub-type of the promotion. Values: <code class="prettyprint">CART_BASED</code>, <code class="prettyprint">PRODUCT_BASED</code>, <code class="prettyprint">FIXED_PRICE</code>, <code class="prettyprint">FREE_PRODUCT</code>.</td>
+<td>Type of the benefit. Values: <code class="prettyprint">CART_BASED</code>, <code class="prettyprint">PRODUCT_BASED</code>, <code class="prettyprint">FIXED_PRICE</code>, <code class="prettyprint">FREE_PRODUCT</code>.</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cartBasedAction</td>

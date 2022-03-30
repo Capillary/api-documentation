@@ -488,6 +488,8 @@ https://eucrm.cc.capillarytech.com/v1/promotion-management/promotions
 }
 ```
 
+```
+
 > Sample Response
 
 ```json
@@ -567,7 +569,7 @@ storeCriteria | Obj | Information related to the store based restriction (store 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type* | enum | Base store type to evaluate. Value: `CONCEPT`, `STORE`, `ZONE`.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;values* | int | Value of the selected store type. For example, store ID, zone ID, or concept ID.
 condition | obj | Details of promotion availing condition.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type | enum | Type of the promotion. Value: `CATALOG`, `PRODUCT`.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type | enum | Scope of the promotion availing condition. Value: `CATALOG`, `PRODUCT`.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cartCondition | obj | Details of the cart promotion availing condition.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kpi | enum | On what basis you want to evaluate the availing condition. Values: `SUBTOTAL`, 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;operator | enum | `GREATER_THAN_OR_EQUAL`
@@ -580,8 +582,8 @@ condition | obj | Details of promotion availing condition.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;attributeName | | 
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;kpi | enum | Value: `QUANITITY`
 comboProductCondition | | 
-action | obj | 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type | enum | Sub-type of the promotion. Values: `CART_BASED`, `PRODUCT_BASED`, `FIXED_PRICE`, `FREE_PRODUCT`.
+action | obj | Details of the benefits to be applied.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type | enum | Type of the benefit. Values: `CART_BASED`, `PRODUCT_BASED`, `FIXED_PRICE`, `FREE_PRODUCT`.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cartBasedAction | obj | Benefit to be applied. It is applied when promo condition is matched.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type | enum | `PERCENTAGE`.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;value | float | Discount or offer value according to the`type`. For example, Buy 10 liters of Petrol and get 10% off on it (`"type": "PERCENTAGE"`).  <br> Buy 10 ltrs of Petrol and get 100/- off (when `"type": "PERCENTAGE"`).Percentage discount (as amount), `ABSOLUTE` (Buy 2 products at $50). 
@@ -694,7 +696,6 @@ Retrieves the promotion details.
 ```html
 https://api.capillary.co.in/api_gateway/loyalty/v1/programs/1745/promotions/12525
 ```
-
 
 
 > Sample Response

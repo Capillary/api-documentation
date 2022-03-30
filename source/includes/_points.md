@@ -21,7 +21,7 @@ https://eu.api.capillarytech.com/v2/points/isTransferrable
   "pointsTobeTransferred": 10,
   "groupProgramTransfer": "false",
   "notes": "Sample notes",
-  “programId”: 141,
+  "programId": 141,
   "fromCustomerIdentifier": {
     "type": "MOBILE",
     "value": "7799497290"

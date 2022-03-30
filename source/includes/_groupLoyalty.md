@@ -1409,7 +1409,7 @@ sortBy | enum | Sort the results by created date.  Supported values: `createdDat
 sortOrder | enum | Sort the results in ascending (`asc`) or descending (`desc`) order of the chosen `soryBy`
 offset | int | Number of rows to be ignored from the top.
 
-## Get Companies by Extended Field Vales
+## Get Companies by Extended Field Values
 
 Fetches companies using the first few values of an extended field value provided.
 

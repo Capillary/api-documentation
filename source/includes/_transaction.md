@@ -71,7 +71,7 @@ https://eu.intouch.capillarytech.com/v2/transactions/bulk
 	  "userGroup2Id":1949,
 	  "userGroup2PrimaryUserId":414936033,
 	  "userGroup2ExternalId": "",
-	  "userGroup2PrimaryUserIdentifierType":”email",
+	  "userGroup2PrimaryUserIdentifierType":"email",
       "userGroup2PrimaryUserIdentifierVale": "example@example.com",
       "userGroup2PrimaryUserSource":"WEB_ENGAGE",
       "userGroup2PrimaryUserAccountId":""

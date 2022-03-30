@@ -1875,8 +1875,50 @@ Rate Limited? | No
 Parameter | Datatype | Description
 --------- | -------- | -----------
 scope | enum | Filter custom fields by sccope. Value: `loyalty_registration` `loyalty_transaction`, `customer_feedback`, `customer_preferences`, `store_custom_fields`, `points_redemption`, `voucher_redemption`, `check_in_feedback`, `customer_card`.
-includeDisabled | boolean | default value `false`.
+includeDisabled | boolean | Default value `false`.
 includeDisabledAtServer | boolean | Default value `false`.
+
+## Get Organization Configs
+
+Retrieves the details of a specific configuration based on the name of the configuration passed.
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/organization/configs/CONF_MAX_CARDS_PER_ORG
+```
+
+
+
+> Sample Response
+
+```json
+{
+    "entityId": 100458,
+    "keyName": "CONF_MAX_CARDS_PER_ORG",
+    "value": "6",
+    "scope": "ORG",
+    "warnings": []
+}
+```
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/v2/organization/configs/{name}`
+Rate Limited? | Yes (1000 per hour)
+HTTP Methods | GET
+Batch Support | No
+
+
+### Request URL
+`{host}/v2/organization/configs/{name}`
+
+### Request Path Parameter
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+name | string | Name of the configuration to fetch. For example, `CONF_MAX_CARDS_PER_ORG`, `IS_DIRECT_REPLAY_ENABLED`
 
 
 ## Get Org Config Key Values
@@ -1982,44 +2024,3 @@ code** | string | Pass the till code to get details using tillCode (first URL).
 tillId** | long | Pass the unique till ID to get the details by tillId (second URL).
 
 
-## Get Organization Configs
-
-Retrieves the details of a specific configuration based on the name of the configuration passed.
-
-> Sample Request
-
-```html
-https://eu.api.capillarytech.com/v2/organization/configs/CONF_MAX_CARDS_PER_ORG
-```
-
-
-
-> Sample Response
-
-```json
-{
-    "entityId": 100458,
-    "keyName": "CONF_MAX_CARDS_PER_ORG",
-    "value": "6",
-    "scope": "ORG",
-    "warnings": []
-}
-```
-
-### Resource Information
-| | |
---------- | ----------- |
-URI | `/v2/organization/configs/{name}`
-Rate Limited? | Yes (1000 per hour)
-HTTP Methods | GET
-Batch Support | No
-
-
-### Request URL
-`{host}/v2/organization/configs/{name}`
-
-### Request Path Parameter
-
-Parameter | Datatype | Description
---------- | -------- | -----------
-name | string | Name of the configuration to fetch. For example, `CONF_MAX_CARDS_PER_ORG`, `IS_DIRECT_REPLAY_ENABLED`
