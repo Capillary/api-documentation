@@ -3704,6 +3704,154 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 </tr>
 </tbody></table>
 
+<h2 id="get-points-expiry-schedule-light-api">Get Points Expiry Schedule (Light API)</h2>
+
+<p>Retrieves the history of points expiry schedules for a specific duration. The expiry schedules are sorted by date in the ascending order.</p>
+
+<p>This is a light API and hence the data retrieval is faster as it shows only the key information of  the API. </p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>https://eu.api.capillarytech.com/v2/customers/lookup/pointsExpirySchedule?identifierName=mobile<span class="err">&amp;</span>identifierValue=919110000000<span class="err">&amp;</span>source=INSTORE<span class="err">&amp;</span>fetchDataForAllPrograms=true<span class="err">&amp;</span>fetchEarliestExpiryOnly=false<span class="err">&amp;</span>programId=1357
+</code></pre>
+<blockquote>
+<p>Sample Response (when no programId passed)</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">421098436</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"profiles"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"loyaltyInfo"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span><span class="w">
+        </span><span class="s2">"loyaltyType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"loyalty"</span><span class="w">
+    </span><span class="p">},</span><span class="w">
+    </span><span class="s2">"segments"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+    </span><span class="s2">"extendedFields"</span><span class="p">:</span><span class="w"> </span><span class="p">{},</span><span class="w">
+    </span><span class="s2">"expirySchedules"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"points"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"expiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2122-03-20"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1356</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pointsType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"line_item_regular"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"expiryType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fixed"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"points"</span><span class="p">:</span><span class="w"> </span><span class="mf">20.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"expiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2122-03-20"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1356</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pointsType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bill_regular"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"expiryType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fixed"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"points"</span><span class="p">:</span><span class="w"> </span><span class="mf">200.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"expiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-05-19"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1357</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pointsType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"line_item_regular"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"expiryType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fixed"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"points"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.0</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"expiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-05-20"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1357</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pointsType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"line_item_regular"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"expiryType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fixed"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/customers/{userId}/pointsExpirySchedule&#39; &lt;br&gt;</code>customers/pointsExpirySchedule?{queryParams}`</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Method</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<h3 id="request-url">Request URL</h3>
+
+<ul>
+<li>User Id</li>
+</ul>
+
+<p><code class="prettyprint">{host}/v2/customers/{userId}/pointsExpirySchedule?{queryParams}</code></p>
+
+<ul>
+<li>lookup</li>
+</ul>
+
+<p><code class="prettyprint">{host}/v2/customers/lookup/pointsExpirySchedule?identifierName={identifierName}&amp;identifierValue={value}&amp;source={source}&amp;accountId={accountId}&amp;{queryParams}</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id** (path)</td>
+<td>long</td>
+<td>Unique ID of the customer to fetch points balance. Required for non-lookup call.</td>
+</tr>
+<tr>
+<td>source**</td>
+<td>enum</td>
+<td>Specify the source from which you want to fetch the customer details. Values: <code class="prettyprint">FACEBOOK</code>, <code class="prettyprint">WEB_ENGAGE</code>, <code class="prettyprint">WECHAT</code>, <code class="prettyprint">INSTORE</code>, <code class="prettyprint">MARTJACK</code>, <code class="prettyprint">TMALL</code>, <code class="prettyprint">TAOBAO</code>, <code class="prettyprint">JD</code>, <code class="prettyprint">ECOMMERCE</code>, <code class="prettyprint">WEBSITE</code>, <code class="prettyprint">LINE</code>, <code class="prettyprint">ALL</code>.</td>
+</tr>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>Specify the account id of the specific source if the source has multiple accounts. <code class="prettyprint">accountId</code> is required for sources with multiple accounts such as WeChat or Facebook.</td>
+</tr>
+<tr>
+<td>identifierName**</td>
+<td>enum</td>
+<td>Identifier based on which you want to fetch the customer id. <strong>Values</strong>: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">cardnumber</code>, <code class="prettyprint">cardExternalId</code>, <code class="prettyprint">wechat</code>, <code class="prettyprint">martjackId</code>,<code class="prettyprint">fbId</code>.</td>
+</tr>
+<tr>
+<td>identifierValue**</td>
+<td>string</td>
+<td>Pass the respective identifier value.</td>
+</tr>
+<tr>
+<td>fetchDataForAllPrograms</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to fetch expiry schedules across all programs of the org (program-wise details). Default value is <code class="prettyprint">false</code>.</td>
+</tr>
+<tr>
+<td>fetchEarliestExpiryOnly</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to fetch points that are expiring in the near future.</td>
+</tr>
+<tr>
+<td>programId</td>
+<td>long</td>
+<td>Pass the program ID to fetch expiry schedules of a specific loyalty program. When no programId is passed, it fetches the data from the default loyalty program.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with ** are required for lookup API. Whereas, userId is reqired for normal API.</aside>
+
 <h2 id="get-customer-loyalty-events">Get Customer Loyalty Events</h2>
 
 <p>Retrieves the details of loyalty events triggered for the customer.</p>
@@ -8855,6 +9003,52 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 
 <p><code class="prettyprint">{host}/v2/customers/lookup?recommendations?accountId=&amp;source={source}&amp;identifierName={identifierName}&amp;identifierValue={identifierValue}</code></p>
 
+<h2 id="get-points-balance-light-api">Get Points Balance (Light API)</h2>
+
+<p>Retrieves points balance of a customer from a single program or all programs of the org. Points are aggregated for each Point Category.</p>
+
+<ul>
+<li>Main</li>
+<li>Delayed accrual</li>
+<li>External trigger based</li>
+</ul>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>http://eu.api.capillarytech.com/v2/customers/points/balance/{{id}}?programId=115<span class="err">&amp;</span>entityType=CUSTOMER<span class="err">&amp;</span>fetchDataForAllPrograms=true
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2352</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"entityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUSTOMER"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">115</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"totalPoints"</span><span class="p">:</span><span class="mi">420</span><span class="w">
+    </span><span class="s2">"mainPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">100.000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"promisedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">320.000</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"promisedPointsBreakup"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"delayedAccrualPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">320.000</span><span class="p">,</span><span class="w">
+        </span><span class="s2">"externalTriggerBasedPoints"</span><span class="p">:</span><span class="w"> </span><span class="mf">0.000</span><span class="p">,</span><span class="w">
+    </span><span class="p">}</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="request-url">Request URL</h3>
+
+<ul>
+<li>UserId</li>
+</ul>
+
+<p><code class="prettyprint">http://{{URL}}/v2/customers/points/balance/{id}?programId={programId}&amp;entityType=CUSTOMER&amp;fetchDataForAllPrograms=true</code></p>
+
+<ul>
+<li>lookup</li>
+</ul>
+
+<p><code class="prettyprint">http://{{URL}}/v2/customers/points/balance?identifierName={identifierName}&amp;identifierValue={value}&amp;source={source}&amp;accountId={accountId}&amp;programId={programId}&amp;entityType=CUSTOMER&amp;fetchDataForAllPrograms=true</code></p>
+
 <h3 id="request-query-parameters">Request Query Parameters</h3>
 
 <table><thead>
@@ -8864,6 +9058,11 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <th>Description</th>
 </tr>
 </thead><tbody>
+<tr>
+<td>id** (path)</td>
+<td>long</td>
+<td>Unique ID of the customer to fetch points balance. Required for non-lookup call.</td>
+</tr>
 <tr>
 <td>source*</td>
 <td>enum</td>
@@ -8884,37 +9083,315 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <td>string</td>
 <td>Pass the respective identifier value.</td>
 </tr>
+<tr>
+<td>programId</td>
+<td>Unique ID of the loyalty program from which points balance needs to retrieve.  If not passed, it shows the points balance in the default program.</td>
+<td></td>
+</tr>
+<tr>
+<td>entityType</td>
+<td>enum</td>
+<td>Pass <code class="prettyprint">CUSTOMER</code> to fetch the individal customer&rsquo;s points balance, <code class="prettyprint">FLEET</code> to see group-level details. This is the default value.</td>
+</tr>
+<tr>
+<td>fetchDataForAllPrograms</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to fetch the sum of points balance from all the available programs of the org.</td>
+</tr>
 </tbody></table>
 
-<h3 id="error-codes">Error Codes</h3>
+<h2 id="get-customer-tier-light-api">Get Customer Tier (Light API)</h2>
+
+<p>Retrieves tier details of a customer for a single program or across all programs of the org. </p>
+
+<ul>
+<li>Main</li>
+<li>Delayed accrual</li>
+<li>External trigger based</li>
+</ul>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>http://eu.api.capillarytech.com/v2/customers/lookup/tierDetails?programId=1933<span class="err">&amp;</span>entityType=CUSTOMER<span class="err">&amp;</span>fetchDataForAllPrograms=true<span class="err">&amp;</span>identifierName=mobile<span class="err">&amp;</span>identifierValue=917752198768<span class="err">&amp;</span>source=INSTORE
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">374844123</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"entityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUSTOMER"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"programTiers"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">1933</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"currentTierName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"C"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"currentTierSerialNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"tierExpiryDate"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-05-02 23:59:59"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"nextTierName"</span><span class="p">:</span><span class="w"> </span><span class="s2">""</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"nextTierSerialNumber"</span><span class="p">:</span><span class="w"> </span><span class="mi">-1</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
 
 <table><thead>
 <tr>
-<th>CODE</th>
-<th>DESCRIPTION</th>
+<th></th>
+<th></th>
 </tr>
 </thead><tbody>
 <tr>
-<td>8015</td>
-<td>No customer found with the given identifier.</td>
+<td>URI</td>
+<td><code class="prettyprint">/customers/{userId}/tierDetails?{queryParams}</code> <br> <code class="prettyprint">/customers/lookup/tierDetails?{queryParams}</code></td>
 </tr>
 <tr>
-<td>8065</td>
-<td>No customer found in the given source with the given identifier.</td>
+<td>Rate Limited?</td>
+<td>No</td>
 </tr>
 <tr>
-<td>8045</td>
-<td>Account id is not passed.</td>
+<td>Authentication</td>
+<td>Yes</td>
 </tr>
 <tr>
-<td>8013</td>
-<td>Customer identifier is invalid. Also check if the parameter identifierName is passed correctly.</td>
+<td>HTTP Methods</td>
+<td>GET</td>
 </tr>
 <tr>
-<td>8011</td>
-<td>Invalid source account passed.</td>
+<td>Batch Support</td>
+<td>No</td>
 </tr>
 </tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<ul>
+<li>UserId</li>
+</ul>
+
+<p><code class="prettyprint">http://{{URL}}/v2/customers/points/balance/{id}/tierDetails?{queryParams}</code></p>
+
+<ul>
+<li>lookup</li>
+</ul>
+
+<p><code class="prettyprint">http://{{URL}}/v2/customers/lookup/tierDetails?identifierName={identifierName}&amp;identifierValue={value}&amp;source={source}&amp;accountId={accountId}&amp;programId={programId}&amp;entityType=CUSTOMER&amp;fetchDataForAllPrograms=true</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id** (path)</td>
+<td>long</td>
+<td>Unique ID of the customer to fetch tier details. Required for non-lookup call.</td>
+</tr>
+<tr>
+<td>source**</td>
+<td>enum</td>
+<td>Specify the source from which you want to fetch the customer details. Values: <code class="prettyprint">FACEBOOK</code>, <code class="prettyprint">WEB_ENGAGE</code>, <code class="prettyprint">WECHAT</code>, <code class="prettyprint">INSTORE</code>, <code class="prettyprint">MARTJACK</code>, <code class="prettyprint">TMALL</code>, <code class="prettyprint">TAOBAO</code>, <code class="prettyprint">JD</code>, <code class="prettyprint">ECOMMERCE</code>, <code class="prettyprint">WEBSITE</code>, <code class="prettyprint">LINE</code>, <code class="prettyprint">ALL</code>.</td>
+</tr>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>Specify the account id of the specific source if the source has multiple accounts. <code class="prettyprint">accountId</code> is required for sources with multiple accounts such as WeChat or Facebook.</td>
+</tr>
+<tr>
+<td>identifierName**</td>
+<td>enum</td>
+<td>Identifier based on which you want to fetch the customer id. <strong>Values</strong>: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">cardnumber</code>, <code class="prettyprint">cardExternalId</code>, <code class="prettyprint">wechat</code>, <code class="prettyprint">martjackId</code>,<code class="prettyprint">fbId</code>.</td>
+</tr>
+<tr>
+<td>identifierValue**</td>
+<td>string</td>
+<td>Respective identifier value of the customer.</td>
+</tr>
+<tr>
+<td>programId</td>
+<td>Unique ID of the loyalty program from which points balance needs to retrieve.  If not passed, it shows the points balance in the default program.</td>
+<td></td>
+</tr>
+<tr>
+<td>entityType</td>
+<td>enum</td>
+<td>Pass <code class="prettyprint">CUSTOMER</code> to fetch the customer&rsquo;s points balance, <code class="prettyprint">FLEET</code> to fetch group level details. This is the default value.</td>
+</tr>
+<tr>
+<td>fetchDataForAllPrograms</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to fetch tier details from all the available programs of the org.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with ** are required for lookup call except ID. id is mandatory for normal call. </aside>
+
+<h2 id="get-points-conversion-schedule-light-api">Get Points Conversion Schedule (Light API)</h2>
+
+<p>Retrieves the history of points expiry schedules of a customer for a single program or across all programs of the org.</p>
+
+<blockquote>
+<p>Sample Request</p>
+</blockquote>
+<pre class="highlight html"><code>http://eu.api.capillarytech.com/v2/customers/lookup/promisedPointsSchedule?programId=2199<span class="err">&amp;</span>entityType=CUSTOMER<span class="err">&amp;</span>fetchDataForAllPrograms=true<span class="err">&amp;</span>identifierName=mobile<span class="err">&amp;</span>identifierValue=917752000000<span class="err">&amp;</span>source=INSTORE
+</code></pre>
+<blockquote>
+<p>Sample Response</p>
+</blockquote>
+<pre class="highlight json"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"entityId"</span><span class="p">:</span><span class="w"> </span><span class="mi">374844123</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"entityType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CUSTOMER"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"promisedPointsScheduleList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"points"</span><span class="p">:</span><span class="w"> </span><span class="mf">390.000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"redeemableFrom"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-04-10"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2199</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pointsType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"line_item_promotions"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"points"</span><span class="p">:</span><span class="w"> </span><span class="mf">130.000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"redeemableFrom"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-04-10"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2199</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pointsType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bill_regular"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"points"</span><span class="p">:</span><span class="w"> </span><span class="mf">130.000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"redeemableFrom"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-04-10"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2199</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pointsType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"bill_promotions"</span><span class="w">
+        </span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"points"</span><span class="p">:</span><span class="w"> </span><span class="mf">390.000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"redeemableFrom"</span><span class="p">:</span><span class="w"> </span><span class="s2">"2022-04-10"</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">2199</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pointsType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"line_item_regular"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
+    </span><span class="s2">"triggerBasedPointsList"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre>
+<h3 id="resource-information">Resource Information</h3>
+
+<table><thead>
+<tr>
+<th></th>
+<th></th>
+</tr>
+</thead><tbody>
+<tr>
+<td>URI</td>
+<td><code class="prettyprint">/customers/{userId}/promisedPointsSchedule?{queryParams}</code> <br> <code class="prettyprint">/customers/lookup/promisedPointsSchedule?{queryParams}</code></td>
+</tr>
+<tr>
+<td>Rate Limited?</td>
+<td>No</td>
+</tr>
+<tr>
+<td>Authentication</td>
+<td>Yes</td>
+</tr>
+<tr>
+<td>HTTP Methods</td>
+<td>GET</td>
+</tr>
+<tr>
+<td>Batch Support</td>
+<td>No</td>
+</tr>
+</tbody></table>
+
+<ul>
+<li><strong>Rate limiter</strong> controls the number of incoming and outgoing traffic of a network</li>
+<li><strong>Authentication</strong> verifies the identity of the current user or integration. See Introduction &gt; Authentication (Merchant Setup on Admin Portal) for more details</li>
+</ul>
+
+<h3 id="request-url">Request URL</h3>
+
+<ul>
+<li>UserId</li>
+</ul>
+
+<p><code class="prettyprint">http://{{URL}}/v2/customers/points/balance/{id}/promisedPointsSchedule?{queryParams}</code></p>
+
+<ul>
+<li>lookup</li>
+</ul>
+
+<p><code class="prettyprint">http://{{URL}}/v2/customers/lookup/promisedPointsSchedule?identifierName={identifierName}&amp;identifierValue={value}&amp;source={source}&amp;accountId={accountId}&amp;programId={programId}&amp;entityType=CUSTOMER&amp;fetchDataForAllPrograms=true</code></p>
+
+<h3 id="request-query-parameters">Request Query Parameters</h3>
+
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Datatype</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>id** (path)</td>
+<td>long</td>
+<td>Unique ID of the customer to fetch details. Required for non-lookup call.</td>
+</tr>
+<tr>
+<td>source**</td>
+<td>enum</td>
+<td>Specify the source in which the identifier is available. Values: <code class="prettyprint">FACEBOOK</code>, <code class="prettyprint">WEB_ENGAGE</code>, <code class="prettyprint">WECHAT</code>, <code class="prettyprint">INSTORE</code>, <code class="prettyprint">MARTJACK</code>, <code class="prettyprint">TMALL</code>, <code class="prettyprint">TAOBAO</code>, <code class="prettyprint">JD</code>, <code class="prettyprint">ECOMMERCE</code>, <code class="prettyprint">WEBSITE</code>, <code class="prettyprint">LINE</code>, <code class="prettyprint">ALL</code>.</td>
+</tr>
+<tr>
+<td>accountId</td>
+<td>string</td>
+<td>Specify the account id of the specific source if the source has multiple accounts. <code class="prettyprint">accountId</code> is required for sources with multiple accounts such as WeChat or Facebook.</td>
+</tr>
+<tr>
+<td>identifierName**</td>
+<td>enum</td>
+<td>Identifier based on which you want to fetch points conversion schedule of the  customer. <strong>Values</strong>: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">cardnumber</code>, <code class="prettyprint">cardExternalId</code>, <code class="prettyprint">wechat</code>, <code class="prettyprint">martjackId</code>,<code class="prettyprint">fbId</code>.</td>
+</tr>
+<tr>
+<td>identifierValue**</td>
+<td>string</td>
+<td>Registered identifier value of the customer.</td>
+</tr>
+<tr>
+<td>programId</td>
+<td>Fetch points conversion schedules of the customer from a specific program. Pass the programId.  If not passed, it shows the points balance in the default program.</td>
+<td></td>
+</tr>
+<tr>
+<td>entityType</td>
+<td>enum</td>
+<td>Pass <code class="prettyprint">CUSTOMER</code> to fetch the customer&rsquo;s points conversion schedules, <code class="prettyprint">FLEET</code> to fetch group level details. This is the default value.</td>
+</tr>
+<tr>
+<td>fetchDataForAllPrograms</td>
+<td>boolean</td>
+<td>Pass <code class="prettyprint">true</code> to fetch points conversion schedules from all the available programs of the org.</td>
+</tr>
+<tr>
+<td>startDate</td>
+<td>date-time</td>
+<td>Date (<code class="prettyprint">YYYY-MM-DD</code>) from which points conversion schedule details need to be fetched. Minimum supported date - current time + 1 day.</td>
+</tr>
+<tr>
+<td>endDate</td>
+<td>date-time</td>
+<td>End date (<code class="prettyprint">YYYY-MM-DD</code>) for the points conversion schedule details need to be fetched. Maximum supported date - current time + 100 years.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Parameters marked with ** are required for lookup call except ID. id is mandatory for normal call. </aside>
 
 <h2 id="response-codes">Response Codes</h2>
 
@@ -9311,6 +9788,26 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <tr>
 <td>1303</td>
 <td>Ticket subject should not be empty.</td>
+</tr>
+<tr>
+<td>8011</td>
+<td>Invalid source account passed.</td>
+</tr>
+<tr>
+<td>8013</td>
+<td>Customer identifier is invalid. Also check if the parameter identifierName is passed correctly.</td>
+</tr>
+<tr>
+<td>8015</td>
+<td>No customer found with the given identifier.</td>
+</tr>
+<tr>
+<td>8045</td>
+<td>Account id is not passed.</td>
+</tr>
+<tr>
+<td>8065</td>
+<td>No customer found in the given source with the given identifier.</td>
 </tr>
 <tr>
 <td>10001</td>
@@ -17946,7 +18443,7 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 
 <h2 id="get-customer-ledger-balance">Get Customer Ledger Balance</h2>
 
-<p>Retrieves points&rsquo; ledger balance details of a customer categories wise for a given time.</p>
+<p>Retrieves category-wise points&rsquo; ledger balance details of a customer for a given time.</p>
 
 <blockquote>
 <p>Sample Request</p>
@@ -18118,7 +18615,7 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 
 <h2 id="get-customer-ledger-information">Get Customer Ledger Information</h2>
 
-<p>Retrieves the points ledger entries of a customer per event.</p>
+<p>Retrieves the points ledger entries of a customer for each event.</p>
 
 <blockquote>
 <p>Sample Request</p>
