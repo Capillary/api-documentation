@@ -131,6 +131,12 @@
 
 <p>This section provides the quarterly breakup of existing API updates and new API releases.</p>
 
+<h2 id="q1-releases-2022-2023">Q1 Releases (2022-2023)</h2>
+
+<ul>
+<li>  Introducing Light APIs that fetch only basic or key information expected from an API. This reduces the load on the system and fetches data in no time or load time is quite faster compared with normal APIs. The APIs include <a href="https://capillary.github.io/api-documentation/#get-customer-tier-light-api">Fech customer tier details</a>, <a href="https://capillary.github.io/api-documentation/#get-points-balance-light-api">Fetch points balance</a>, <a href="https://capillary.github.io/api-documentation/#get-points-expiry-schedule-light-api">Fetch points expiry schedule</a>, and <a href="https://capillary.github.io/api-documentation/#get-points-conversion-schedule-light-api">fetch points conversion schedules</a>. </li>
+</ul>
+
 <h2 id="q4-releases-2021-2022">Q4 Releases (2021-2022)</h2>
 
 <ul>
@@ -9005,13 +9011,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 
 <h2 id="get-points-balance-light-api">Get Points Balance (Light API)</h2>
 
-<p>Retrieves points balance of a customer from a single program or all programs of the org. Points are aggregated for each Point Category.</p>
-
-<ul>
-<li>Main</li>
-<li>Delayed accrual</li>
-<li>External trigger based</li>
-</ul>
+<p>Retrieves points balance of a customer from a single program or all programs of the org. Points are aggregated for each Point Category - Main, delayed accrual, and external trigger based.</p>
 
 <blockquote>
 <p>Sample Request</p>
@@ -9104,12 +9104,6 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 
 <p>Retrieves tier details of a customer for a single program or across all programs of the org. </p>
 
-<ul>
-<li>Main</li>
-<li>Delayed accrual</li>
-<li>External trigger based</li>
-</ul>
-
 <blockquote>
 <p>Sample Request</p>
 </blockquote>
@@ -9144,7 +9138,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 </thead><tbody>
 <tr>
 <td>URI</td>
-<td><code class="prettyprint">/customers/{userId}/tierDetails?{queryParams}</code> <br> <code class="prettyprint">/customers/lookup/tierDetails?{queryParams}</code></td>
+<td><code class="prettyprint">/customers/{userId}/tierDetails?{queryParams}</code> OR <br> <code class="prettyprint">/customers/lookup/tierDetails?{queryParams}</code></td>
 </tr>
 <tr>
 <td>Rate Limited?</td>
@@ -9175,7 +9169,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <li>UserId</li>
 </ul>
 
-<p><code class="prettyprint">http://{{URL}}/v2/customers/points/balance/{id}/tierDetails?{queryParams}</code></p>
+<p><code class="prettyprint">http://{{URL}}/v2/customers/points/balance/{userId}/tierDetails?{queryParams}</code></p>
 
 <ul>
 <li>lookup</li>
@@ -9193,7 +9187,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 </tr>
 </thead><tbody>
 <tr>
-<td>id** (path)</td>
+<td>userId** (path)</td>
 <td>long</td>
 <td>Unique ID of the customer to fetch tier details. Required for non-lookup call.</td>
 </tr>
@@ -9322,7 +9316,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <li>UserId</li>
 </ul>
 
-<p><code class="prettyprint">http://{{URL}}/v2/customers/points/balance/{id}/promisedPointsSchedule?{queryParams}</code></p>
+<p><code class="prettyprint">http://{{URL}}/v2/customers/points/balance/{userId}/promisedPointsSchedule?{queryParams}</code></p>
 
 <ul>
 <li>lookup</li>
@@ -9340,7 +9334,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 </tr>
 </thead><tbody>
 <tr>
-<td>id** (path)</td>
+<td>userId** (path)</td>
 <td>long</td>
 <td>Unique ID of the customer to fetch details. Required for non-lookup call.</td>
 </tr>
@@ -9394,6 +9388,8 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <aside class="notice">Parameters marked with ** are required for lookup call except ID. id is mandatory for normal call. </aside>
 
 <h2 id="response-codes">Response Codes</h2>
+
+<p>This section provides the list of success codes, error codes, and warning codes of the <code class="prettyprint">customers</code> resource.</p>
 
 <h3 id="success-codes">Success Codes</h3>
 
