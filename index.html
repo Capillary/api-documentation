@@ -3437,7 +3437,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <tr>
 <td>associationEntityType</td>
 <td>enum</td>
-<td>Pass <code class="prettyprint">parentCustomer</code>.</td>
+<td>Pass <code class="prettyprint">parentCustomer</code> for a parent entity, <code class="prettyprint">company</code> for company.</td>
 </tr>
 <tr>
 <td>associationEntityIdentifierType</td>
@@ -3613,7 +3613,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 
 <h2 id="get-customer-points-expiry-schedule">Get Customer Points Expiry Schedule</h2>
 
-<p>Retrieves the history of points expired schedules.</p>
+<p>Retrieves the history of points expiry schedules.</p>
 
 <blockquote>
 <p>Sample Request</p>
@@ -3817,7 +3817,7 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 <tr>
 <td>id** (path)</td>
 <td>long</td>
-<td>Unique ID of the customer to fetch points balance. Required for non-lookup call.</td>
+<td>Unique ID of the customer to fetch points expiry schedules. Required for non-lookup call.</td>
 </tr>
 <tr>
 <td>source**</td>
@@ -3851,12 +3851,62 @@ https://us.api.capillarytech.com/v2/customers/329?source=WECHAT<span class="err"
 </tr>
 <tr>
 <td>programId</td>
-<td>long</td>
+<td>int</td>
 <td>Pass the program ID to fetch expiry schedules of a specific loyalty program. When no programId is passed, it fetches the data from the default loyalty program.</td>
+</tr>
+<tr>
+<td>startDate</td>
+<td>date-time</td>
+<td>Date (<code class="prettyprint">YYYY-MM-DD</code>) from which points expiry schedule details need to be fetched. Minimum supported date - current time + 1 day. Default value - current time.</td>
+</tr>
+<tr>
+<td>endDate</td>
+<td>date-time</td>
+<td>End date (<code class="prettyprint">YYYY-MM-DD</code>) for the points expiry schedule details need to be fetched. Maximum supported date - current time + 100 years (this is the default value)</td>
 </tr>
 </tbody></table>
 
 <aside class="notice">Parameters marked with ** are required for lookup API. Whereas, userId is reqired for normal API.</aside>
+
+<h3 id="important-notes">Important Notes</h3>
+
+<table><thead>
+<tr>
+<th>When</th>
+<th><code class="prettyprint">fetchDataForAllPrograms</code> is true</th>
+<th><code class="prettyprint">fetchDataForAllPrograms</code> is false</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>programId is passed</td>
+<td>You will still see points expiry schedules of the customer for all programs</td>
+<td>You will still see points expiry schedules of that particular program.</td>
+</tr>
+<tr>
+<td>programId is not passed</td>
+<td>You will still see points expiry schedules of the customer for all programs</td>
+<td>You will still see points expiry schedules of the default program.</td>
+</tr>
+</tbody></table>
+
+<table><thead>
+<tr>
+<th>When</th>
+<th><code class="prettyprint">fetchEarliestExpiryOnly</code> is true</th>
+<th><code class="prettyprint">fetchEarliestExpiryOnly</code> is not passed or <code class="prettyprint">false</code></th>
+</tr>
+</thead><tbody>
+<tr>
+<td><code class="prettyprint">fetchDataForAllPrograms</code> is passed</td>
+<td>You will still see earliest points expiry schedules for all programs (program-wise)</td>
+<td>You will still see points expiry schedules of all programs.</td>
+</tr>
+<tr>
+<td><code class="prettyprint">fetchDataForAllPrograms</code> is not passed</td>
+<td>You will still see earliest points expiry schedules for the default program</td>
+<td>You will still see points expiry schedules of the default program or of the programId passed.</td>
+</tr>
+</tbody></table>
 
 <h2 id="get-customer-loyalty-events">Get Customer Loyalty Events</h2>
 
@@ -5807,7 +5857,7 @@ Also, check the following configurations for maximum days allowed and minimum ti
 </tr>
 <tr>
 <td>programId</td>
-<td>string</td>
+<td>int</td>
 <td>Get requests of a specific loyalty program. Pass the unique loyalty program ID.</td>
 </tr>
 <tr>
@@ -9041,7 +9091,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <li>UserId</li>
 </ul>
 
-<p><code class="prettyprint">http://{{URL}}/v2/customers/points/balance/{id}?programId={programId}&amp;entityType=CUSTOMER&amp;fetchDataForAllPrograms=true</code></p>
+<p><code class="prettyprint">http://{{URL}}/v2/customers/points/balance/{userId}?programId={programId}&amp;entityType=CUSTOMER&amp;fetchDataForAllPrograms=true</code></p>
 
 <ul>
 <li>lookup</li>
@@ -9059,12 +9109,12 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 </tr>
 </thead><tbody>
 <tr>
-<td>id** (path)</td>
+<td>userId** (path)</td>
 <td>long</td>
 <td>Unique ID of the customer to fetch points balance. Required for non-lookup call.</td>
 </tr>
 <tr>
-<td>source*</td>
+<td>source**</td>
 <td>enum</td>
 <td>Specify the source from which you want to fetch the customer details. Values: <code class="prettyprint">FACEBOOK</code>, <code class="prettyprint">WEB_ENGAGE</code>, <code class="prettyprint">WECHAT</code>, <code class="prettyprint">INSTORE</code>, <code class="prettyprint">MARTJACK</code>, <code class="prettyprint">TMALL</code>, <code class="prettyprint">TAOBAO</code>, <code class="prettyprint">JD</code>, <code class="prettyprint">ECOMMERCE</code>, <code class="prettyprint">WEBSITE</code>, <code class="prettyprint">LINE</code>, <code class="prettyprint">ALL</code>.</td>
 </tr>
@@ -9074,29 +9124,52 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <td>Specify the account id of the specific source if the source has multiple accounts. <code class="prettyprint">accountId</code> is required for sources with multiple accounts such as WeChat or Facebook.</td>
 </tr>
 <tr>
-<td>identifierName*</td>
+<td>identifierName**</td>
 <td>enum</td>
 <td>Identifier based on which you want to fetch the customer id. <strong>Values</strong>: <code class="prettyprint">mobile</code>, <code class="prettyprint">email</code>, <code class="prettyprint">externalId</code>, <code class="prettyprint">cardnumber</code>, <code class="prettyprint">cardExternalId</code>, <code class="prettyprint">wechat</code>, <code class="prettyprint">martjackId</code>,<code class="prettyprint">fbId</code>.</td>
 </tr>
 <tr>
-<td>identifierValue*</td>
+<td>identifierValue**</td>
 <td>string</td>
 <td>Pass the respective identifier value.</td>
 </tr>
 <tr>
 <td>programId</td>
+<td>int</td>
 <td>Unique ID of the loyalty program from which points balance needs to retrieve.  If not passed, it shows the points balance in the default program.</td>
-<td></td>
 </tr>
 <tr>
 <td>entityType</td>
 <td>enum</td>
-<td>Pass <code class="prettyprint">CUSTOMER</code> to fetch the individal customer&rsquo;s points balance, <code class="prettyprint">FLEET</code> to see group-level details. This is the default value.</td>
+<td>Pass <code class="prettyprint">CUSTOMER</code> to fetch the individual customer&rsquo;s points balance, <code class="prettyprint">FLEET</code> to see group-level details. Default value is <code class="prettyprint">CUSTOMER</code>.</td>
 </tr>
 <tr>
 <td>fetchDataForAllPrograms</td>
 <td>boolean</td>
-<td>Pass <code class="prettyprint">true</code> to fetch the sum of points balance from all the available programs of the org.</td>
+<td>Pass <code class="prettyprint">true</code> to fetch the sum of points balance from all the available programs of the org. Default value is <code class="prettyprint">false</code>.</td>
+</tr>
+</tbody></table>
+
+<aside class="notice">Either userId or other parameters marked with ** are mandatory.</aside>
+
+<h3 id="important-note">Important Note</h3>
+
+<table><thead>
+<tr>
+<th>When</th>
+<th><code class="prettyprint">fetchDataForAllPrograms</code> is true</th>
+<th><code class="prettyprint">fetchDataForAllPrograms</code> is false</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>programId is passed</td>
+<td>You will still see points balance of the customer across all programs</td>
+<td>You will still see points balance of the customer for that particular program.</td>
+</tr>
+<tr>
+<td>programId is not passed</td>
+<td>You will still see points balance of the customer across all programs</td>
+<td>You will still see points balance of the customer for the default program.</td>
 </tr>
 </tbody></table>
 
@@ -9169,7 +9242,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <li>UserId</li>
 </ul>
 
-<p><code class="prettyprint">http://{{URL}}/v2/customers/points/balance/{userId}/tierDetails?{queryParams}</code></p>
+<p><code class="prettyprint">http://{{URL}}/v2/customers/tierDetails/{userId}/tierDetails?{queryParams}</code></p>
 
 <ul>
 <li>lookup</li>
@@ -9213,26 +9286,47 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 </tr>
 <tr>
 <td>programId</td>
-<td>Unique ID of the loyalty program from which points balance needs to retrieve.  If not passed, it shows the points balance in the default program.</td>
-<td></td>
+<td>int</td>
+<td>Unique ID of the loyalty program from which tier details need to retrieve.  If not passed, it shows the points balance in the default program.</td>
 </tr>
 <tr>
 <td>entityType</td>
 <td>enum</td>
-<td>Pass <code class="prettyprint">CUSTOMER</code> to fetch the customer&rsquo;s points balance, <code class="prettyprint">FLEET</code> to fetch group level details. This is the default value.</td>
+<td>Pass <code class="prettyprint">CUSTOMER</code> to fetch tier details of the individual, <code class="prettyprint">FLEET</code> to fetch details of the user group. Default value is <code class="prettyprint">CUSTOMER</code>.</td>
 </tr>
 <tr>
 <td>fetchDataForAllPrograms</td>
 <td>boolean</td>
-<td>Pass <code class="prettyprint">true</code> to fetch tier details from all the available programs of the org.</td>
+<td>Pass <code class="prettyprint">true</code> to fetch tier details from all the available programs of the org. Default value is <code class="prettyprint">false</code>.</td>
 </tr>
 </tbody></table>
 
 <aside class="notice">Parameters marked with ** are required for lookup call except ID. id is mandatory for normal call. </aside>
 
+<h3 id="important-note">Important Note</h3>
+
+<table><thead>
+<tr>
+<th>When</th>
+<th><code class="prettyprint">fetchDataForAllPrograms</code> is true</th>
+<th><code class="prettyprint">fetchDataForAllPrograms</code> is false</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>programId is passed</td>
+<td>You will still see tier details of the customer across all programs</td>
+<td>You will still see tier details of the customer for that particular program.</td>
+</tr>
+<tr>
+<td>programId is not passed</td>
+<td>You will still see tier details of the customer across all programs</td>
+<td>You will still see tier details of the customer for the default program.</td>
+</tr>
+</tbody></table>
+
 <h2 id="get-points-conversion-schedule-light-api">Get Points Conversion Schedule (Light API)</h2>
 
-<p>Retrieves the history of points expiry schedules of a customer for a single program or across all programs of the org.</p>
+<p>Retrieves the history of promised points conversion schedules of a customer for a single program or across all programs of the org.</p>
 
 <blockquote>
 <p>Sample Request</p>
@@ -9316,7 +9410,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <li>UserId</li>
 </ul>
 
-<p><code class="prettyprint">http://{{URL}}/v2/customers/points/balance/{userId}/promisedPointsSchedule?{queryParams}</code></p>
+<p><code class="prettyprint">http://{{URL}}/v2/customers/{userId}/promisedPointsSchedule?{queryParams}</code></p>
 
 <ul>
 <li>lookup</li>
@@ -9336,7 +9430,7 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <tr>
 <td>userId** (path)</td>
 <td>long</td>
-<td>Unique ID of the customer to fetch details. Required for non-lookup call.</td>
+<td>Unique ID of the customer to fetch promised points conversion details. Required for non-lookup call.</td>
 </tr>
 <tr>
 <td>source**</td>
@@ -9360,32 +9454,53 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 </tr>
 <tr>
 <td>programId</td>
+<td>int</td>
 <td>Fetch points conversion schedules of the customer from a specific program. Pass the programId.  If not passed, it shows the points balance in the default program.</td>
-<td></td>
 </tr>
 <tr>
 <td>entityType</td>
 <td>enum</td>
-<td>Pass <code class="prettyprint">CUSTOMER</code> to fetch the customer&rsquo;s points conversion schedules, <code class="prettyprint">FLEET</code> to fetch group level details. This is the default value.</td>
+<td>Pass <code class="prettyprint">CUSTOMER</code> to fetch the points conversion schedules of an individual (customer), <code class="prettyprint">FLEET</code> to fetch details at the group level. Default value is <code class="prettyprint">CUSTOMER</code>.</td>
 </tr>
 <tr>
 <td>fetchDataForAllPrograms</td>
 <td>boolean</td>
-<td>Pass <code class="prettyprint">true</code> to fetch points conversion schedules from all the available programs of the org.</td>
+<td>Pass <code class="prettyprint">true</code> to fetch points conversion schedules from all the available programs of the org. Default value is <code class="prettyprint">false</code>.</td>
 </tr>
 <tr>
 <td>startDate</td>
 <td>date-time</td>
-<td>Date (<code class="prettyprint">YYYY-MM-DD</code>) from which points conversion schedule details need to be fetched. Minimum supported date - current time + 1 day.</td>
+<td>Date (<code class="prettyprint">YYYY-MM-DD</code>) from which points conversion schedule details need to be fetched. Minimum supported date - current time + 1 day. Default value - current time.</td>
 </tr>
 <tr>
 <td>endDate</td>
 <td>date-time</td>
-<td>End date (<code class="prettyprint">YYYY-MM-DD</code>) for the points conversion schedule details need to be fetched. Maximum supported date - current time + 100 years.</td>
+<td>End date (<code class="prettyprint">YYYY-MM-DD</code>) for the points conversion schedule details need to be fetched. Maximum supported date - current time + 100 years (this is the default value).</td>
 </tr>
 </tbody></table>
 
-<aside class="notice">Parameters marked with ** are required for lookup call except ID. id is mandatory for normal call. </aside>
+<aside class="notice">Parameters marked with ** are required for lookup call except ID. id is mandatory for normal call.</aside>
+
+<h3 id="important-note">Important Note</h3>
+
+<table><thead>
+<tr>
+<th>When</th>
+<th><code class="prettyprint">fetchDataForAllPrograms</code> is true</th>
+<th><code class="prettyprint">fetchDataForAllPrograms</code> is false</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>programId is passed</td>
+<td>You will still see promised points schedules of the customer across all programs</td>
+<td>You will still see promised points schedules of that particular program.</td>
+</tr>
+<tr>
+<td>programId is not passed</td>
+<td>You will still see promised points schedules of the customer across all programs</td>
+<td>You will still see promised points schedules of the default program.</td>
+</tr>
+</tbody></table>
 
 <h2 id="response-codes">Response Codes</h2>
 
@@ -9770,6 +9885,30 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <td>Failed to add referral. Referral type is not supported.</td>
 </tr>
 <tr>
+<td>1212</td>
+<td>Invalid entity type passed.</td>
+</tr>
+<tr>
+<td>1213</td>
+<td>Invalid programId passed in request.</td>
+</tr>
+<tr>
+<td>1214</td>
+<td>startDate is after endDate.</td>
+</tr>
+<tr>
+<td>1215</td>
+<td>{x} cannot be a past date.</td>
+</tr>
+<tr>
+<td>1216</td>
+<td>The date format used for {x} is not supported. Enter the the date in (YYYY-MM-DD) format.</td>
+</tr>
+<tr>
+<td>1217</td>
+<td>Date mentioned is a far future date. {x} cannot be after 100 years from now.</td>
+</tr>
+<tr>
 <td>1222</td>
 <td>Internal error occurred with the referral system.</td>
 </tr>
@@ -9804,6 +9943,10 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <tr>
 <td>8065</td>
 <td>No customer found in the given source with the given identifier.</td>
+</tr>
+<tr>
+<td>8089</td>
+<td>Customer not registered for the Loyalty Program.</td>
 </tr>
 <tr>
 <td>10001</td>
