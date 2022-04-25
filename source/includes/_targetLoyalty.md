@@ -136,10 +136,10 @@ targetCycleStartDate | date-time | Start date and time of the target cycle (ISO 
 periods | array-obj | Details of each target period of the group.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;active | boolean | Pass `true` to activate the target group.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;description | string | Short description of the target period.
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;endDate": "2022-05-29T11:35:52.976Z",
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;endDate | date-time | ISO standard Timestamp of the target period's end date.
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;periodStatus | enum | Status of the target period. Values: `RUNNING`,
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;refCode | string | 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;startDate | date-time | Timestamp of the target period's start date.
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;startDate | date-time | ISO standard Timestamp of the target period's start date.
 activePeriod | obj | 
 
 
@@ -457,6 +457,7 @@ refCode | string | Reference code of  the target period.
 
 Lets you update an existing target period.
 
+> Sample Request
 
 ```html
 https://eu.api.capillarytech.com/v3/targetGroups/19/targetPeriods
@@ -564,7 +565,7 @@ https://eu.api.capillarytech.com/v3/targetGroups/30/targetPeriods
 
 > Sample POST Request
 
-```Json
+```json
 {
     "data": [
         {
@@ -691,7 +692,7 @@ https://eu.api.capillarytech.com/v3/targetGroups/20/targets
 
 > Sample POST Request
 
-```Json
+```json
 [
   {
     "active": true,
@@ -821,14 +822,14 @@ https://eu.api.capillarytech.com/v3/targetGroups/20/targets
 
 > Sample PUT Request
 
-```Json
+```json
 
 ```
 
 > Sample Response
 
 
-```Json
+```json
 
 ```
 
@@ -1125,3 +1126,207 @@ Parameter | Datatype | Description
 --------- | -------- | -----------
 groupId* | int | Group ID associated with the target.
 targetId* | int | Unique ID of the target to deactivate.
+
+## Get Target Channels
+
+Retrieves the list of target channels (configured for target loyalty) enabled for the org.
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v3/targetGroups/30/targets/19
+```
+
+> Sample Response
+
+```json
+{
+    "data": [
+        {
+            "id": 1,
+            "name": "SMS"
+        },
+        {
+            "id": 2,
+            "name": "EMAIL"
+        },
+        {
+            "id": 3,
+            "name": "MOBILE PUSH"
+        }
+    ],
+    "errors": null
+}
+```
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/v3/targetGroups/channels`
+Authentication | Yes
+API Version | v3
+HTTP Methods | GET
+Batch Support | Yes
+
+### Request URL
+
+`{host}/v3/targetGroups/channels`
+
+
+## Upsert Target Communications
+
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v3/targetGroups/19/targets/27/communications/upsert
+```
+> Sample POST Request
+
+```json
+[
+  {
+    "active": true,
+    "channelId": 1,
+    "communicationType": "REMINDER",
+    "messageTemplate": "Test messageTemplate",
+    "offsetDays": 1,
+    "sender": "tes-mail",
+     
+    "subjectTemplate": "Test subjectTemplate"
+    
+   
+  }
+]
+```
+
+> Sample Response
+
+```json
+{
+    "data": [
+        {
+            "id": 2,
+            "attribution": {
+                "createdOn": "2022-03-31T07:33:52.012+0000",
+                "lastUpdatedOn": "2022-03-31T07:33:52.012+0000",
+                "lastUpdatedBy": {
+                    "id": 75040399,
+                    "code": "bukl.till",
+                    "description": "",
+                    "name": "bukl.till",
+                    "type": "TILL"
+                },
+                "createdBy": {
+                    "id": 75040399,
+                    "code": "bukl.till",
+                    "description": "",
+                    "name": "bukl.till",
+                    "type": "TILL"
+                }
+            },
+            "targetId": 27,
+            "targetGroupId": 19,
+            "communicationType": "REMINDER",
+            "channelId": 1,
+            "subjectTemplate": "Test subjectTemplate",
+            "messageTemplate": "Test messageTemplate",
+            "sender": "tes-mail",
+            "offsetDays": 1,
+            "active": true
+        }
+    ],
+    "errors": null
+}
+```
+
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/v3/targetGroups/{groupId}targets/{targetId}/communications/upsert`
+Authentication | Yes
+API Version | v3
+HTTP Methods | POST
+Batch Support | No
+
+### Request URL
+
+`{host}/v3/targetGroups/{groupId}targets/{targetId}/communications/upsert`
+
+### Request Body Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+active | boolean | Pass `true` to make the communication active.
+channelId | int | Unique ID of the channel through which the communication needs to be sent.
+communicationType | enum | Type of the communication. Values: `START`, `FINISH`, `CHANGE`, `REMINDER`.
+messageTemplate | string | Content that should go in the message.
+offsetDays | int | 
+sender | string | Sender ID from which the communication needs to go.
+subjectTemplate | string | Subject line of the template.
+
+
+## Get Target Communication Template
+
+Retrieves the details of communication templates created for a target.
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v3/targetGroups/19/targets/27/communications
+```
+> Sample Response
+
+```json
+{
+    "data": [
+        {
+            "id": 2,
+            "attribution": {
+                "createdOn": "2022-03-31T07:33:52.000+0000",
+                "lastUpdatedOn": "2022-03-31T07:33:52.000+0000",
+                "lastUpdatedBy": {
+                    "id": 75040399,
+                    "code": "bukl.till",
+                    "description": "",
+                    "name": "bukl.till",
+                    "type": "TILL"
+                },
+                "createdBy": {
+                    "id": 75040399,
+                    "code": "bukl.till",
+                    "description": "",
+                    "name": "bukl.till",
+                    "type": "TILL"
+                }
+            },
+            "targetId": 27,
+            "targetGroupId": 19,
+            "communicationType": "REMINDER",
+            "channelId": 1,
+            "subjectTemplate": "Test subjectTemplate",
+            "messageTemplate": "Test messageTemplate",
+            "sender": "tes-mail",
+            "offsetDays": 1,
+            "active": true,
+            "configs": []
+        }
+    ],
+    "errors": null
+}
+```
+
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/v3/targetGroups/{groupId}targets/{targetId}/communications`
+Authentication | Yes
+API Version | v3
+HTTP Methods | GET
+Batch Support | No
+
+### Request URL
+
+`{host}/v3/targetGroups/{groupId}targets/{targetId}/communications`

@@ -50,6 +50,10 @@ search: true
 # Release Updates
 This section provides the quarterly breakup of existing API updates and new API releases.
 
+## Q1 Releases (2022-2023)
+*	Introducing Light APIs that reduces the load on the system and increases the speed of retrieving data. Light APIs achieve this by retrieving only the basic or key information required for an API time and avoids loading unnecessary data. Here is the list of new APIs added [Fech customer tier details](https://capillary.github.io/api-documentation/#get-customer-tier-light-api), [Fetch points balance](https://capillary.github.io/api-documentation/#get-points-balance-light-api), [Fetch points expiry schedule](https://capillary.github.io/api-documentation/#get-points-expiry-schedule-light-api), and [fetch points conversion schedules](https://capillary.github.io/api-documentation/#get-points-conversion-schedule-light-api). 
+ 
+
 ## Q4 Releases (2021-2022)
 *	GET v2/companies to fetch companies by extended field values - partial or complete string. For details, see [v2/companies/extendedFieldSearch](https://capillary.github.io/api-documentation/#get-companies-by-extended-field-values)
 *	New API to [retrieve transactions of a group](https://capillary.github.io/api-documentation/#get-user-group-transactions).

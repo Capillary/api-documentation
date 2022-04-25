@@ -2125,7 +2125,7 @@ Parameter | Datatype | Description
 --------- | -------- | -----------
 source* | enum | Source from which you want to fetch customer details. Values: FACEBOOK, WEB_ENGAGE, WECHAT, INSTORE, MARTJACK, TMALL, TAOBAO, JD, ECOMMERCE, WEBSITE, LINE, ALL
 accountId** | string | Account ID for sources with multiple accounts. This is required for required for sources with multiple accounts such as WeChat or Facebook.
-associationEntityType | enum | Pass `parentCustomer`.
+associationEntityType | enum | Pass `parentCustomer` for a parent entity, `company` for company.
 associationEntityIdentifierType | enum | Identifier type used for parent customer. Value: `mobile`, `email`, `externalId`, `cardnumber`, `wechat`, `martjackId`, `fbId`. 
 associationEntityIdentifierValue | string | Value of the parent customer.
 limit | int | Limit the number of results to retrieve.
@@ -2259,7 +2259,7 @@ q |  Enter the keyword based on which you want to fetch customers. It will fetch
 
 ## Get Customer Points Expiry Schedule
 
-Retrieves the history of points expired schedules.
+Retrieves the history of points expiry schedules.
 
 > Sample Request
 
@@ -2330,6 +2330,130 @@ Batch Support | No
 Parameter | Datatype | Description
 --------- | -------- | -----------
 userId* | long | Unique ID of the customer to fetch points expiry schedule history.
+
+
+
+
+
+
+## Get Points Expiry Schedule (Light API)
+
+Retrieves the history of points expiry schedules for a specific duration. The expiry schedules are sorted by date in the ascending order.
+
+This is a light API and hence the data retrieval is faster as it shows only the key information of  the API. 
+
+
+
+> Sample Request
+
+```html
+https://eu.api.capillarytech.com/v2/customers/lookup/pointsExpirySchedule?identifierName=mobile&identifierValue=919110000000&source=INSTORE&fetchDataForAllPrograms=true&fetchEarliestExpiryOnly=false&programId=1357
+```
+
+> Sample Response (when no programId passed)
+
+```json
+{
+    "id": 421098436,
+    "profiles": [],
+    "loyaltyInfo": {
+        "loyaltyType": "loyalty"
+    },
+    "segments": {},
+    "extendedFields": {},
+    "expirySchedules": [
+        {
+            "points": 100.0,
+            "expiryDate": "2122-03-20",
+            "programId": 1356,
+            "pointsType": "line_item_regular",
+            "expiryType": "fixed"
+        },
+        {
+            "points": 20.0,
+            "expiryDate": "2122-03-20",
+            "programId": 1356,
+            "pointsType": "bill_regular",
+            "expiryType": "fixed"
+        },
+        {
+            "points": 200.0,
+            "expiryDate": "2022-05-19",
+            "programId": 1357,
+            "pointsType": "line_item_regular",
+            "expiryType": "fixed"
+        },
+        {
+            "points": 100.0,
+            "expiryDate": "2022-05-20",
+            "programId": 1357,
+            "pointsType": "line_item_regular",
+            "expiryType": "fixed"
+        }
+    ],
+    "warnings": []
+}
+```
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/customers/{userId}/pointsExpirySchedule` <br> `customers/pointsExpirySchedule?{queryParams}`
+Authentication | Yes
+HTTP Method | GET
+Batch Support | No
+
+
+
+### Request URL 
+
+- User Id
+
+`{host}/v2/customers/{userId}/pointsExpirySchedule?{queryParams}`
+
+- lookup
+
+`{host}/v2/customers/lookup/pointsExpirySchedule?identifierName={identifierName}&identifierValue={value}&source={source}&accountId={accountId}&{queryParams}`
+
+
+### Request Query Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+id** (path) | long | Unique ID of the customer to fetch points expiry schedules. Required for non-lookup call.
+source** | enum | Specify the source from which you want to fetch the customer details. Values: `FACEBOOK`, `WEB_ENGAGE`, `WECHAT`, `INSTORE`, `MARTJACK`, `TMALL`, `TAOBAO`, `JD`, `ECOMMERCE`, `WEBSITE`, `LINE`, `ALL`.
+accountId | string | Specify the account id of the specific source if the source has multiple accounts. `accountId` is required for sources with multiple accounts such as WeChat or Facebook.
+identifierName** | enum | Identifier based on which you want to fetch the customer id. **Values**: `mobile`, `email`, `externalId`, `cardnumber`, `cardExternalId`, `wechat`, `martjackId`,`fbId`.
+identifierValue** | string | Pass the respective identifier value.
+fetchDataForAllPrograms | boolean | Pass `true` to fetch expiry schedules across all programs of the org (program-wise details). Default value is `false`.
+fetchEarliestExpiryOnly | boolean | Pass `true` to fetch only the earliest expiry from each program, points type, and expiry type. For example, you will get earliest expiry at the bill level, 1 for fixed and 1 for rolling expiry type. Similarly, you will see earliest expiry for each entry such as bill level points, line item level points, and customer promotions. 
+programId | int | Pass the program ID to fetch expiry schedules of a specific loyalty program. When no programId is passed, it fetches the data from the default loyalty program.
+startDate | date-time | Date (`YYYY-MM-DD`) from which points expiry schedule details need to be fetched. Minimum supported date - current time + 1 day. Default value - current time.
+endDate | date-time | End date (`YYYY-MM-DD`) for the points expiry schedule details need to be fetched. Maximum supported date - current time + 100 years (this is the default value)
+
+<aside class="notice">Parameters marked with ** are required for lookup API. Whereas, userId is required for normal API.</aside>
+
+
+### Important Notes
+
+When | `fetchDataForAllPrograms` is true | `fetchDataForAllPrograms` is false
+---- | --------------------------------- | ----------------------------------
+programId is passed | You will still see points expiry schedules of the customer for all programs | You will still see points expiry schedules of that particular program.
+programId is not passed | You will still see points expiry schedules of the customer for all programs | You will still see points expiry schedules of the default program.
+
+When | `fetchEarliestExpiryOnly` is true | `fetchEarliestExpiryOnly` is not passed or `false`
+---- | --------------------------------- | -------------------------------------------------
+`fetchDataForAllPrograms` is passed | You will still see earliest points expiry schedules for all programs (program-wise) | You will still see points expiry schedules of all programs.
+`fetchDataForAllPrograms` is not passed | You will still see earliest points expiry schedules for the default program | You will still see points expiry schedules of the default program or of the programId passed.
+
+
+
+### Response Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+entityId | long | Unique ID of the customer.
+
 
 
 ## Get Customer Loyalty Events 
@@ -3766,7 +3890,7 @@ Parameter | Datatype | Description
 currencyId* | long | Pass the unique ID of the customer whose goodwill request details you want to fetch.
 requestId | long | Unique id of the goodwill request that you want to fetch.
 is_one_step_change | boolean | Pass `true` to fetch goodwill points or coupon requests that are issued instantly (one step issual).
-programId | string | Get requests of a specific loyalty program. Pass the unique loyalty program ID.
+programId | int | Get requests of a specific loyalty program. Pass the unique loyalty program ID.
 autoApprove | boolean | Pass `true` to fetch requests that are auto-approved - without the involvement of the back-end team.
 
 <aside class="notice">Parameters marked with * are mandatory. </aside>
@@ -6113,28 +6237,285 @@ Batch Support | No
 `{host}/v2/customers/lookup?recommendations?accountId=&source={source}&identifierName={identifierName}&identifierValue={identifierValue}`
 
 
+## Get Points Balance (Light API)
+
+Retrieves points balance of a customer from a single program or all programs of the org. Points are aggregated for each Point Category - Main, delayed accrual, and external trigger based.
+
+> Sample Request
+
+```html
+http://eu.api.capillarytech.com/v2/customers/points/balance/{{id}}?programId=115&entityType=CUSTOMER&fetchDataForAllPrograms=true
+```
+
+> Sample Response
+
+```json
+{
+    "entityId": 2352,
+    "entityType": "CUSTOMER",
+    "programId": 115,
+    "totalPoints":420
+    "mainPoints": 100.000,
+    "promisedPoints": 320.000,
+    "promisedPointsBreakup":{
+        "delayedAccrualPoints": 320.000,
+        "externalTriggerBasedPoints": 0.000,
+    }
+    "warnings": []
+}
+```
+
+
+### Request URL
+
+- UserId
+
+`http://{{URL}}/v2/customers/points/balance/{userId}?programId={programId}&entityType=CUSTOMER&fetchDataForAllPrograms=true`
+
+
+- lookup
+
+`http://{{URL}}/v2/customers/points/balance?identifierName={identifierName}&identifierValue={value}&source={source}&accountId={accountId}&programId={programId}&entityType=CUSTOMER&fetchDataForAllPrograms=true`
+
+
+
 ### Request Query Parameters
 Parameter | Datatype | Description
 --------- | -------- | -----------
-source* | enum | Specify the source from which you want to fetch the customer details. Values: `FACEBOOK`, `WEB_ENGAGE`, `WECHAT`, `INSTORE`, `MARTJACK`, `TMALL`, `TAOBAO`, `JD`, `ECOMMERCE`, `WEBSITE`, `LINE`, `ALL`.
+userId** (path) | long | Unique ID of the customer to fetch points balance. Required for non-lookup call.
+source** | enum | Specify the source from which you want to fetch the customer details. Values: `FACEBOOK`, `WEB_ENGAGE`, `WECHAT`, `INSTORE`, `MARTJACK`, `TMALL`, `TAOBAO`, `JD`, `ECOMMERCE`, `WEBSITE`, `LINE`, `ALL`.
 accountId | string | Specify the account id of the specific source if the source has multiple accounts. `accountId` is required for sources with multiple accounts such as WeChat or Facebook.
-identifierName* | enum | Identifier based on which you want to fetch the customer id. **Values**: `mobile`, `email`, `externalId`, `cardnumber`, `cardExternalId`, `wechat`, `martjackId`,`fbId`.
-identifierValue* | string | Pass the respective identifier value.
+identifierName** | enum | Identifier based on which you want to fetch the customer id. **Values**: `mobile`, `email`, `externalId`, `cardnumber`, `cardExternalId`, `wechat`, `martjackId`,`fbId`.
+identifierValue** | string | Pass the respective identifier value.
+programId | int | Unique ID of the loyalty program from which points balance needs to retrieve.  If not passed, it shows the points balance in the default program.
+entityType | enum | Pass `CUSTOMER` to fetch the individual customer's points balance, `FLEET` to see group-level details. Default value is `CUSTOMER`.
+fetchDataForAllPrograms | boolean | Pass `true` to fetch the sum of points balance from all the available programs of the org. Default value is `false`.
+
+<aside class="notice">Either userId or other parameters marked with ** are mandatory.</aside>
 
 
-### Error Codes
-CODE | DESCRIPTION
----- | -----------
-8015 | No customer found with the given identifier.
-8065 | No customer found in the given source with the given identifier.
-8045 | Account id is not passed.
-8013 | Customer identifier is invalid. Also check if the parameter identifierName is passed correctly.
-8011 | Invalid source account passed.
+### Important Note
+
+When | `fetchDataForAllPrograms` is true | `fetchDataForAllPrograms` is false
+---- | --------------------------------- | ----------------------------------
+programId is passed | You will still see points balance of the customer across all programs | You will still see points balance of the customer for that particular program.
+programId is not passed | You will still see points balance of the customer across all programs | You will still see points balance of the customer for the default program.
+
+### Response Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+entityId | long | Unique ID of the customer.
+promisedPointsBreakup | obj | Break up details of promised points.
+
+
+## Get Customer Tier (Light API)
+
+Retrieves tier details of a customer for a single program or across all programs of the org. 
+
+
+> Sample Request
+
+```html
+http://eu.api.capillarytech.com/v2/customers/lookup/tierDetails?programId=1933&entityType=CUSTOMER&fetchDataForAllPrograms=true&identifierName=mobile&identifierValue=917752198768&source=INSTORE
+```
+
+> Sample Response
+
+```json
+{
+    "entityId": 374844123,
+    "entityType": "CUSTOMER",
+    "programTiers": [
+        {
+            "programId": 1933,
+            "currentTierName": "C",
+            "currentTierSerialNumber": 3,
+            "tierExpiryDate": "2022-05-02 23:59:59",
+            "nextTierName": "",
+            "nextTierSerialNumber": -1
+        }
+    ],
+    "warnings": []
+}
+```
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/customers/{userId}/tierDetails?{queryParams}` OR <br> `/customers/lookup/tierDetails?{queryParams}`
+Rate Limited? | No
+Authentication | Yes
+HTTP Methods | GET
+Batch Support | No
+
+* **Rate limiter** controls the number of incoming and outgoing traffic of a network
+* **Authentication** verifies the identity of the current user or integration. See Introduction > Authentication (Merchant Setup on Admin Portal) for more details
+
+### Request URL
+
+- UserId
+
+`http://{{URL}}/v2/customers/tierDetails/{userId}/tierDetails?{queryParams}`
+
+
+- lookup
+
+`http://{{URL}}/v2/customers/lookup/tierDetails?identifierName={identifierName}&identifierValue={value}&source={source}&accountId={accountId}&programId={programId}&entityType=CUSTOMER&fetchDataForAllPrograms=true`
 
 
 
+### Request Query Parameters
+Parameter | Datatype | Description
+--------- | -------- | -----------
+userId** (path) | long | Unique ID of the customer to fetch tier details. Required for non-lookup call.
+source** | enum | Specify the source from which you want to fetch the customer details. Values: `FACEBOOK`, `WEB_ENGAGE`, `WECHAT`, `INSTORE`, `MARTJACK`, `TMALL`, `TAOBAO`, `JD`, `ECOMMERCE`, `WEBSITE`, `LINE`, `ALL`.
+accountId | string | Specify the account id of the specific source if the source has multiple accounts. `accountId` is required for sources with multiple accounts such as WeChat or Facebook.
+identifierName** | enum | Identifier based on which you want to fetch the customer id. **Values**: `mobile`, `email`, `externalId`, `cardnumber`, `cardExternalId`, `wechat`, `martjackId`,`fbId`.
+identifierValue** | string | Respective identifier value of the customer.
+programId | int | Unique ID of the loyalty program from which tier details need to retrieve.  If not passed, it shows the points balance in the default program.
+entityType | enum | Pass `CUSTOMER` to fetch tier details of the individual, `FLEET` to fetch details of the user group. Default value is `CUSTOMER`.
+fetchDataForAllPrograms | boolean | Pass `true` to fetch tier details from all the available programs of the org. Default value is `false`.
 
-## Response Codes
+
+
+<aside class="notice">Parameters marked with ** are required for lookup call except ID. id is mandatory for normal call. </aside>
+
+
+### Important Note
+
+When | `fetchDataForAllPrograms` is true | `fetchDataForAllPrograms` is false
+---- | --------------------------------- | ----------------------------------
+programId is passed | You will still see tier details of the customer across all programs | You will still see tier details of the customer for that particular program.
+programId is not passed | You will still see tier details of the customer across all programs | You will still see tier details of the customer for the default program.
+
+
+### Response Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+entityId | long | Unique ID of the customer.
+currentTierSerialNumber | int | Serial number of the current tier. For highest tier, this value is shown as `-1` meaning no next tier is available. 
+nextTierSerialNumber | int | Serial number of the next tier. For highest tier, this value is shown as `-1` meaning no next tier is available. 
+
+
+
+## Get Points Conversion Schedule (Light API)
+
+Retrieves the history of promised points conversion schedules of a customer for a single program or across all programs of the org.
+
+
+
+> Sample Request
+
+```html
+http://eu.api.capillarytech.com/v2/customers/lookup/promisedPointsSchedule?programId=2199&entityType=CUSTOMER&fetchDataForAllPrograms=true&identifierName=mobile&identifierValue=917752000000&source=INSTORE
+```
+
+> Sample Response
+
+```json
+{
+    "entityId": 374844123,
+    "entityType": "CUSTOMER",
+    "promisedPointsScheduleList": [
+        {
+            "points": 390.000,
+            "redeemableFrom": "2022-04-10",
+            "programId": 2199,
+            "pointsType": "line_item_promotions"
+        },
+        {
+            "points": 130.000,
+            "redeemableFrom": "2022-04-10",
+            "programId": 2199,
+            "pointsType": "bill_regular"
+        },
+        {
+            "points": 130.000,
+            "redeemableFrom": "2022-04-10",
+            "programId": 2199,
+            "pointsType": "bill_promotions"
+        },
+        {
+            "points": 390.000,
+            "redeemableFrom": "2022-04-10",
+            "programId": 2199,
+            "pointsType": "line_item_regular"
+        }
+    ],
+    "triggerBasedPointsList": [],
+    "warnings": []
+}
+```
+
+### Resource Information
+| | |
+--------- | ----------- |
+URI | `/customers/{userId}/promisedPointsSchedule?{queryParams}` <br> `/customers/lookup/promisedPointsSchedule?{queryParams}`
+Rate Limited? | No
+Authentication | Yes
+HTTP Methods | GET
+Batch Support | No
+
+* **Rate limiter** controls the number of incoming and outgoing traffic of a network
+* **Authentication** verifies the identity of the current user or integration. See Introduction > Authentication (Merchant Setup on Admin Portal) for more details
+
+### Request URL
+
+- UserId
+
+`http://{{URL}}/v2/customers/{userId}/promisedPointsSchedule?{queryParams}`
+
+
+- lookup
+
+`http://{{URL}}/v2/customers/lookup/promisedPointsSchedule?identifierName={identifierName}&identifierValue={value}&source={source}&accountId={accountId}&programId={programId}&entityType=CUSTOMER&fetchDataForAllPrograms=true`
+
+
+
+### Request Query Parameters
+Parameter | Datatype | Description
+--------- | -------- | -----------
+userId** (path) | long | Unique ID of the customer to fetch promised points conversion details. Required for non-lookup call.
+source** | enum | Specify the source in which the identifier is available. Values: `FACEBOOK`, `WEB_ENGAGE`, `WECHAT`, `INSTORE`, `MARTJACK`, `TMALL`, `TAOBAO`, `JD`, `ECOMMERCE`, `WEBSITE`, `LINE`, `ALL`.
+accountId | string | Specify the account id of the specific source if the source has multiple accounts. `accountId` is required for sources with multiple accounts such as WeChat or Facebook.
+identifierName** | enum | Identifier based on which you want to fetch points conversion schedule of the  customer. **Values**: `mobile`, `email`, `externalId`, `cardnumber`, `cardExternalId`, `wechat`, `martjackId`,`fbId`.
+identifierValue** | string | Registered identifier value of the customer.
+programId | int | Fetch points conversion schedules of the customer from a specific program. Pass the programId.  If not passed, it shows the points balance in the default program.
+entityType | enum | Pass `CUSTOMER` to fetch the points conversion schedules of an individual (customer), `FLEET` to fetch details at the group level. Default value is `CUSTOMER`.
+fetchDataForAllPrograms | boolean | Pass `true` to fetch points conversion schedules from all the available programs of the org. Default value is `false`.
+startDate | date-time | Date (`YYYY-MM-DD`) from which points conversion schedule details need to be fetched. Minimum supported date - current time + 1 day. Default value - current time.
+endDate | date-time | End date (`YYYY-MM-DD`) for the points conversion schedule details need to be fetched. Maximum supported date - current time + 100 years (this is the default value).
+
+
+<aside class="notice">Parameters marked with ** are required for lookup call except ID. id is mandatory for normal call.</aside>
+
+### Important Note
+
+When | `fetchDataForAllPrograms` is true | `fetchDataForAllPrograms` is false
+---- | --------------------------------- | ----------------------------------
+programId is passed | You will still see promised points schedules of the customer across all programs | You will still see promised points schedules of that particular program.
+programId is not passed | You will still see promised points schedules of the customer across all programs | You will still see promised points schedules of the default program.
+
+
+### Response Parameters
+
+Parameter | Datatype | Description
+--------- | -------- | -----------
+entityId | long | Unique ID of the customer.
+pointsType | enum | Type of the points entry. Values: bill_regular, bill_promotions, line_item_regular, line_item_promotions, customer_promotions.
+expiryType | enum | Points expiry type - `fixed` or `rolling`.
+
+
+<aside class="notice">Segments and extendedFields are currently blank. You will not see any details here.</aside>
+
+
+
+## Status Codes
+
+This section provides the list of success codes, error codes, and warning codes of the `customers` resource.
+
 ### Success Codes
 
 Code |Description
@@ -6234,10 +6615,22 @@ Code  | Description
 1204 | The customer may not be eligible for the referral program.
 1205 | Unable to find the referrer in the specific campaign.
 1206 | Failed to add referral. Referral type is not supported. 
+1212 | Invalid entity type passed.
+1213 | Invalid programId passed in request.
+1214 | startDate is after endDate.
+1215 | {x} cannot be a past date.
+1216 | The date format used for {x} is not supported. Enter the the date in (YYYY-MM-DD) format.
+1217 | Date mentioned is a far future date. {x} cannot be after 100 years from now.
 1222 | Internal error occurred with the referral system.
 1301 | A ticket already exists with the same subject.
 1302 | Ticket registration failed.
 1303 | Ticket subject should not be empty.
+8011 | Invalid source account passed.
+8013 | Customer identifier is invalid. Also check if the parameter identifierName is passed correctly.
+8015 | No customer found with the given identifier.
+8045 | Account id is not passed.
+8065 | No customer found in the given source with the given identifier.
+8089 | Customer not registered for the Loyalty Program.
 10001  | Failed to add customer.
 10002  | Failed to update customer details. 
 91009  | Retrieved survivor account for the requested merge victim. 

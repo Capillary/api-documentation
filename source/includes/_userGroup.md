@@ -1443,7 +1443,7 @@ store_code | string | Get transactions made in a specific store. Pass the store 
 
 
 
-## Response Codes
+## Status Codes
 
 Code | Description
 ---- | -----------
