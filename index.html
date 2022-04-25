@@ -12961,6 +12961,10 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <td>Transaction status is invalid.</td>
 </tr>
 <tr>
+<td>3045</td>
+<td>Transaction is not allowed for the customer with ID {x} as the customer is marked as fraud.</td>
+</tr>
+<tr>
 <td>8015</td>
 <td>No customer found for the given identifiers.</td>
 </tr>
@@ -18669,7 +18673,7 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 
 <h2 id="get-customer-ledger-balance">Get Customer Ledger Balance</h2>
 
-<p>Retrieves points&rsquo; ledger balance details of a customer categories wise for a given time.</p>
+<p>Retrieves category-wise points&rsquo; ledger balance details of a customer for a given time.</p>
 
 <blockquote>
 <p>Sample Request</p>
@@ -18841,7 +18845,7 @@ https://crm-nightly-new.cc.capillarytech.com/coupon/api/v1/upload/getUploadRedee
 
 <h2 id="get-customer-ledger-information">Get Customer Ledger Information</h2>
 
-<p>Retrieves the points ledger entries of a customer per event.</p>
+<p>Retrieves the points ledger entries of a customer for each event.</p>
 
 <blockquote>
 <p>Sample Request</p>
@@ -30029,7 +30033,7 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 
 <aside class="notice">Parameters marked with * are mandatory.</aside>
 
-<h2 id="expire-or-delete-a-card">Expire or Delete a Card</h2>
+<h2 id="update-card-status">Update Card Status</h2>
 
 <p>Lets you expire an active card of a customer.</p>
 
@@ -30048,7 +30052,10 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 </blockquote>
 <pre class="highlight json"><code><span class="p">{</span><span class="w">
     </span><span class="s2">"cardNumber"</span><span class="p">:</span><span class="s2">"GOLD00000000000003002020"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"statusLabel"</span><span class="p">:</span><span class="s2">"EXPIRED"</span><span class="w">
+    </span><span class="s2">"statusLabel"</span><span class="p">:</span><span class="s2">"EXPIRED"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"statusInfo"</span><span class="p">:{</span><span class="w">
+        </span><span class="s2">"reason"</span><span class="p">:</span><span class="s2">"Example reason"</span><span class="w">
+    </span><span class="p">}</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
 <blockquote>
@@ -30100,6 +30107,11 @@ https://api.us.capillarytech.com/v2/org/9876/sources/ca46ee9cc14b46d1837bd6e923d
 <td>statusLabel*</td>
 <td>string</td>
 <td>New custom status label related to expire to expire the card, and delete to delete the card.</td>
+</tr>
+<tr>
+<td>reason</td>
+<td>string</td>
+<td>Reason for updating the card status.</td>
 </tr>
 </tbody></table>
 
