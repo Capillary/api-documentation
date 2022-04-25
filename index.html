@@ -9428,7 +9428,13 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
             </span><span class="s2">"pointsType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"line_item_regular"</span><span class="w">
         </span><span class="p">}</span><span class="w">
     </span><span class="p">],</span><span class="w">
-    </span><span class="s2">"triggerBasedPointsList"</span><span class="p">:</span><span class="w"> </span><span class="p">[],</span><span class="w">
+    </span><span class="s2">"triggerBasedPointsList"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="w">
+        </span><span class="p">{</span><span class="w">
+            </span><span class="s2">"points"</span><span class="p">:</span><span class="w"> </span><span class="mf">300.000</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"programId"</span><span class="p">:</span><span class="w"> </span><span class="mi">890</span><span class="p">,</span><span class="w">
+            </span><span class="s2">"pointsType"</span><span class="p">:</span><span class="w"> </span><span class="s2">"line_item_promotions"</span><span class="w">
+        </span><span class="p">}</span><span class="w">
+    </span><span class="p">],</span><span class="w">
     </span><span class="s2">"warnings"</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
@@ -9588,6 +9594,11 @@ https://eu.api.capillarytech.com/v2/customers/lookup?source=INSTORE<span class="
 <td>expiryType</td>
 <td>enum</td>
 <td>Points expiry type - <code class="prettyprint">fixed</code> or <code class="prettyprint">rolling</code>.</td>
+</tr>
+<tr>
+<td>triggerBasedPointsList</td>
+<td>obj</td>
+<td>Shows the required condition to convert delayed accrual (promised points) to main points.</td>
 </tr>
 </tbody></table>
 
