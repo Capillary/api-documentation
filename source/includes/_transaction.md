@@ -1715,6 +1715,7 @@ Code | Description
 1634 | Return type is invalid.
 1635 | Please pass line-items that need to be returned.
 1636 | Transaction status is invalid.
+3045 | Transaction is not allowed for the customer with ID {x} as the customer is marked as fraud.
 8015 | No customer found for the given identifiers.
 8084 | Unable to send customer details.
 9601 | Failed to add line-item.

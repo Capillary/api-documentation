@@ -915,7 +915,7 @@ Points as incentives are treated as currency within an org and its affiliates. T
 
 ## Get Customer Ledger Balance
 
-Retrieves points' ledger balance details of a customer categories wise for a given time.
+Retrieves category-wise points' ledger balance details of a customer for a given time.
 
 
 
@@ -1023,7 +1023,7 @@ pointCategoryType | enum | Specify the point category type for which you want to
 
 ## Get Customer Ledger Information
 
-Retrieves the points ledger entries of a customer per event.
+Retrieves the points ledger entries of a customer for each event.
 
 
 

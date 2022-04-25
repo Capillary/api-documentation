@@ -1520,7 +1520,7 @@ statusLabel* | string | Current or new custom status label (required to update s
 
 
 
-## Expire or Delete a Card
+## Update Card Status
 
 Lets you expire an active card of a customer.
 
@@ -1538,7 +1538,10 @@ https://eu.api.capillarytech.com/v2/card
 ```json
 {
 	"cardNumber":"GOLD00000000000003002020",
-	"statusLabel":"EXPIRED"
+	"statusLabel":"EXPIRED",
+	"statusInfo":{
+		"reason":"Example reason"
+	}
 }
 ```
 
@@ -1564,6 +1567,7 @@ Parameter | Datatype | Description
 --------- | -------- | -----------
 cardNumber* | string | Card number to expire or delete.
 statusLabel* | string | New custom status label related to expire to expire the card, and delete to delete the card.
+reason | string | Reason for updating the card status.
 
 <aside class="notice">Parameters marked with * are mandatory.</aside>
 
